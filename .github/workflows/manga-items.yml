@@ -18,6 +18,10 @@ jobs:
 
       - run: node scripts/manga/openbd_items.mjs
 
+      - run: node scripts/manga/vol1_backfill_rakuten.mjs
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+
       - run: npm i --no-save paapi5-nodejs-sdk
       - run: node scripts/manga/amazon_asin.mjs
         env:
