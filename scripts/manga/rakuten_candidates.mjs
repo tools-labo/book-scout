@@ -3,20 +3,30 @@ import fs from "node:fs/promises";
 const APP = process.env.RAKUTEN_APP_ID;
 if (!APP) throw new Error("RAKUTEN_APP_ID is missing");
 
-const j = (u) => fetch(u).then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)));
+async function getJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) {
+    const t = await r.text().catch(() => "");
+    throw new Error(`HTTP ${r.status}\nURL: ${url}\nBODY: ${t.slice(0, 200)}`);
+  }
+  return r.json();
+}
 
-const GENRE_URL = `https://app.rakuten.co.jp/services/api/BooksGenre/Search/20121128?format=json&formatVersion=2&applicationId=${APP}&booksGenreId=001`;
-const SEARCH = (gid, page) =>
-  `https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&formatVersion=2&applicationId=${APP}&booksGenreId=${gid}&size=9&sort=sales&hits=30&page=${page}&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,salesDate,reviewCount`;
+// まずは固定：マンガ（楽天ブックスのジャンルID）
+// ※ここが正しいか切り分けるため、API 1本で検証する
+const MANGA_GENRE = "001001";
 
-const genre = await j(GENRE_URL); // docs: BooksGenre/Search  [oai_citation:0‡webservice.rakuten.co.jp](https://webservice.rakuten.co.jp/documentation/books-genre-search)
-const children = genre?.children || [];
-const manga = children.find(x => (x.booksGenreName || "").includes("漫画"))?.booksGenreId || "001001";
+const url = (page) =>
+  `https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404` +
+  `?format=json&formatVersion=2&applicationId=${APP}` +
+  `&booksGenreId=${MANGA_GENRE}&hits=30&page=${page}` +
+  `&sort=sales` +
+  `&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,salesDate,reviewCount`;
 
-const pages = 3; // まずは少なめ（90件）で取得できるか検証
+const pages = 1; // まず1ページだけ（30件）で疎通確認
 let items = [];
 for (let p = 1; p <= pages; p++) {
-  const res = await j(SEARCH(manga, p)); // docs: BooksBook/Search  [oai_citation:1‡webservice.rakuten.co.jp](https://webservice.rakuten.co.jp/documentation/books-book-search)
+  const res = await getJson(url(p));
   items.push(...(res.Items || []));
 }
 
@@ -35,6 +45,9 @@ const out = items
   .filter(x => x.title && x.isbn);
 
 await fs.mkdir("data/manga", { recursive: true });
-await fs.writeFile("data/manga/candidates.json", JSON.stringify({ genreId: manga, count: out.length, items: out }, null, 2));
+await fs.writeFile(
+  "data/manga/candidates.json",
+  JSON.stringify({ genreId: MANGA_GENRE, count: out.length, items: out }, null, 2)
+);
 
-console.log(`genreId=${manga} items=${out.length}`);
+console.log(`genreId=${MANGA_GENRE} items=${out.length}`);
