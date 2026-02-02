@@ -21,8 +21,10 @@ const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => ({
 }[c]));
 
 async function load(cat) {
-  const url = `./data/${cat}/items_master.json`;
-  $("status").textContent = `読み込み中: ${url}`;
+  const base = `./data/${cat}/items_master.json`;
+  const url = `${base}?v=${Date.now()}`; // ★キャッシュ回避
+  $("status").textContent = `読み込み中: ${base}`;
+
   try {
     const r = await fetch(url, { cache: "no-store" });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -31,7 +33,7 @@ async function load(cat) {
     $("status").textContent = `${cat}: ${works}作品（data ${items.length}件）`;
     return items;
   } catch {
-    $("status").textContent = `データがまだありません（${url}）`;
+    $("status").textContent = `データがまだありません（${base}）`;
     return [];
   }
 }
@@ -60,6 +62,16 @@ function pickWorkRep(group) {
   return group.find(x => x._rep) || group.find(x => x.seriesType === "main") || group[0] || null;
 }
 
+// seriesTypeごとに1つだけ（重複ボタン排除）
+function uniqueBySeriesType(group) {
+  const map = new Map();
+  for (const it of group) {
+    const k = it.seriesType || "other";
+    if (!map.has(k)) map.set(k, it);
+  }
+  return [...map.values()].sort((a,b)=>stKey(a.seriesType)-stKey(b.seriesType));
+}
+
 function showWorkDetail(group) {
   const d = $("detail");
   if (!group || group.length === 0) {
@@ -67,14 +79,13 @@ function showWorkDetail(group) {
     return;
   }
 
-  const reps = [...group].sort((a,b) => stKey(a.seriesType) - stKey(b.seriesType));
+  const reps = uniqueBySeriesType(group);
   let current = reps.find(x => x.seriesType === "main") || reps[0];
 
   const render = () => {
     const meta = [current.author, current.publisher, current.publishedAt].filter(Boolean).join(" / ");
 
-    // 今の子に無ければ兄弟から拾う（Amazonが消えない）
-    const a = amazonLink(current) || amazonLink(reps.find(x => amazonLink(x)) || null);
+    const a = amazonLink(current) || amazonLink(group.find(x => amazonLink(x)) || null);
     const btn = a
       ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`
       : "";
