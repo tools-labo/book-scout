@@ -30,10 +30,12 @@ function baseTitle(title) {
     .trim();
 }
 
-// 親（本編の核）を作る：系列語以降を切り落として同じ親に寄せる
+// 親（本編の核）: “系列語/版” 以降を切って同じ親に寄せる
 function parentWorkKey(title) {
   const b = baseTitle(title);
-  const cut = b.split(/\b(episode|spinoff)\b|外伝|番外編|スピンオフ|公式|ガイド|guide|画集|ファンブック|データブック|ムック|カラーウォーク|color walk/i)[0];
+  const cut = b.split(
+    /\b(episode|spinoff)\b|外伝|番外編|スピンオフ|公式|ガイド|guide|画集|ファンブック|データブック|ムック|カラーウォーク|color walk|モノクロ|完全版|新装版|愛蔵版|総集編/i
+  )[0];
   return norm(cut || b);
 }
 
@@ -68,7 +70,7 @@ let prev = [];
 try { prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8")); } catch {}
 const prevByIsbn = new Map(prev.map(x => [x.isbn13, x]).filter(([k]) => k));
 
-// items生成（親子分類つき）
+// items生成
 const items = [];
 for (const x of src) {
   const isbn = x.isbn || null;
@@ -82,7 +84,7 @@ for (const x of src) {
 
   const prevHit = prevByIsbn.get(isbn) || {};
 
-  const rec = {
+  items.push({
     workKey: o.workKey || parentWorkKey(x.title),
     seriesType: o.seriesType || classifySeriesType(x.title),
     title: x.title,
@@ -95,12 +97,10 @@ for (const x of src) {
     description: v?.description || null,
     image: x.image || v?.imageLinks?.thumbnail || null,
     volumeHint: (o.forceVolume ?? volumeHint(x.title)) || null,
-  };
-
-  items.push(rec);
+  });
 }
 
-// ASIN側override（必要なら）
+// ASIN側override
 for (const it of items) {
   const o = it.asin ? (ovAsin[it.asin] || {}) : {};
   if (o.workKey) it.workKey = o.workKey;
@@ -112,7 +112,8 @@ for (const it of items) {
 }
 const items2 = items.filter(x => !x._hide);
 
-// 親ごとの代表を _rep=true にする（main優先→巻1→最古）
+// 親代表（main優先→巻1→最古）
+// ※ publishedAt は表記揺れがあるので、最古は “入ってるものだけ” でOK（巻1優先が主）
 function pickRep(group) {
   const main = group.filter(x => x.seriesType === "main");
   const pool = main.length ? main : group;
@@ -120,7 +121,7 @@ function pickRep(group) {
   const v1 = pool.find(x => x.volumeHint === 1);
   if (v1) return v1;
 
-  const dated = pool.filter(x => x.publishedAt).sort((a,b) => (a.publishedAt > b.publishedAt ? 1 : -1));
+  const dated = pool.filter(x => x.publishedAt);
   return dated[0] || pool[0];
 }
 
@@ -133,13 +134,12 @@ for (const it of items2) {
 }
 
 for (const [wk, g] of byWork) {
-  const rep = pickRep(g);
-  rep._rep = true;
+  pickRep(g)._rep = true;
 }
 
 await fs.writeFile("data/manga/items_master.json", JSON.stringify(items2, null, 2));
 
 const works = items2.filter(x => x._rep).length;
 const desc = items2.filter(x => x.description).length;
-const asin = items2.filter(x => x.asin || x.amazonUrl).length;
-console.log(`items=${items2.length} works=${works} desc=${desc} amazon=${asin}`);
+const amazon = items2.filter(x => x.asin || x.amazonUrl).length;
+console.log(`items=${items2.length} works=${works} desc=${desc} amazon=${amazon}`);
