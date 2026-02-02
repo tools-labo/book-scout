@@ -4,6 +4,7 @@ const getParams = () => {
   const sp = new URLSearchParams(location.search);
   return { cat: sp.get("cat") || "manga", q: sp.get("q") || "" };
 };
+
 const setParams = (next, replace = true) => {
   const sp = new URLSearchParams(location.search);
   if (next.cat != null) sp.set("cat", next.cat);
@@ -14,6 +15,7 @@ const setParams = (next, replace = true) => {
   const url = `${location.pathname}?${sp.toString()}`;
   replace ? history.replaceState(null, "", url) : history.pushState(null, "", url);
 };
+
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => ({
   "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
@@ -23,9 +25,10 @@ async function load(cat) {
   $("status").textContent = `読み込み中: ${url}`;
   try {
     const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error();
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const items = await r.json();
-    $("status").textContent = `${cat}: ${items.filter(x=>x._rep).length}作品（data ${items.length}件）`;
+    const works = items.filter(x => x._rep).length;
+    $("status").textContent = `${cat}: ${works}作品（data ${items.length}件）`;
     return items;
   } catch {
     $("status").textContent = `データがまだありません（${url}）`;
@@ -50,32 +53,32 @@ function groupByWork(items) {
   return m;
 }
 
+const order = { main: 0, spinoff: 1, guide: 2, art: 3, other: 9 };
+const stKey = (t) => order[t] ?? 9;
+
 function pickWorkRep(group) {
-  const rep = group.find(x => x._rep);
-  if (rep) return rep;
-  const main = group.filter(x => x.seriesType === "main");
-  return (main[0] || group[0] || null);
+  return group.find(x => x._rep) || group.find(x => x.seriesType === "main") || group[0] || null;
 }
 
-function seriesOrderKey(t) {
-  const order = { main: 0, spinoff: 1, guide: 2, art: 3, other: 9 };
-  return order[t] ?? 9;
-}
-
-function showWorkDetail(workGroup) {
+function showWorkDetail(group) {
   const d = $("detail");
-  if (!workGroup || workGroup.length === 0) {
+  if (!group || group.length === 0) {
     d.innerHTML = `<div class="d-title">作品を選ぶと詳細が表示されます</div>`;
     return;
   }
 
-  const reps = [...workGroup].sort((a,b)=>seriesOrderKey(a.seriesType)-seriesOrderKey(b.seriesType));
-  let current = reps.find(x=>x.seriesType==="main") || reps[0];
+  const reps = [...group].sort((a,b) => stKey(a.seriesType) - stKey(b.seriesType));
+  let current = reps.find(x => x.seriesType === "main") || reps[0];
 
   const render = () => {
     const meta = [current.author, current.publisher, current.publishedAt].filter(Boolean).join(" / ");
-    const a = amazonLink(current);
-    const btn = a ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>` : "";
+
+    // 今の子に無ければ兄弟から拾う（Amazonが消えない）
+    const a = amazonLink(current) || amazonLink(reps.find(x => amazonLink(x)) || null);
+    const btn = a
+      ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`
+      : "";
+
     const chips = reps.map(x => {
       const label = x.seriesType || "other";
       const on = (x === current) ? ' style="font-weight:700"' : "";
@@ -90,9 +93,9 @@ function showWorkDetail(workGroup) {
       <div class="d-desc">${escapeHtml(current.description || "") || '<span class="d-empty">説明文がありません</span>'}</div>
     `;
 
-    d.querySelectorAll("button[data-st]").forEach(btnEl => {
-      btnEl.addEventListener("click", () => {
-        const st = btnEl.getAttribute("data-st");
+    d.querySelectorAll("button[data-st]").forEach(el => {
+      el.addEventListener("click", () => {
+        const st = el.getAttribute("data-st");
         current = reps.find(x => (x.seriesType || "other") === st) || current;
         render();
       });
@@ -106,12 +109,12 @@ function render(items, q) {
   const list = $("list");
   list.innerHTML = "";
 
-  const m = groupByWork(items);
+  const byWork = groupByWork(items);
   const works = [];
-  for (const [wk, group] of m) {
+  for (const [wk, group] of byWork) {
     const rep = pickWorkRep(group);
     if (!rep) continue;
-    works.push({ wk, rep, group });
+    works.push({ rep, group });
   }
 
   const qq = (q || "").trim().toLowerCase();
@@ -157,11 +160,13 @@ function setup() {
     setParams({ q: $("q").value }, true);
     render(all, $("q").value);
   });
+
   $("cat").addEventListener("change", async () => {
     setParams({ cat: $("cat").value }, false);
     all = await load($("cat").value);
     render(all, $("q").value);
   });
+
   addEventListener("popstate", sync);
 }
 
