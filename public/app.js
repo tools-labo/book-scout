@@ -35,16 +35,31 @@ async function load(cat) {
   }
 }
 
+function amazonLink(x) {
+  // PA-APIで取れたDetailPageURLがあればそれを優先
+  if (x?.amazonUrl) return x.amazonUrl;
+  // 無ければASINから組み立て（JP）
+  if (x?.asin) return `https://www.amazon.co.jp/dp/${encodeURIComponent(x.asin)}`;
+  return null;
+}
+
 function showDetail(x) {
   const d = $("detail");
   if (!x) {
     d.innerHTML = `<div class="d-title">作品を選ぶと詳細が表示されます</div>`;
     return;
   }
+
   const meta = [x.author, x.publisher, x.publishedAt].filter(Boolean).join(" / ");
+  const a = amazonLink(x);
+  const btn = a
+    ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`
+    : "";
+
   d.innerHTML = `
     <div class="d-title">${escapeHtml(x.title || "")}</div>
     <div class="d-meta">${escapeHtml(meta)}</div>
+    ${btn}
     <div class="d-desc">${escapeHtml(x.description || "") || '<span class="d-empty">説明文がありません</span>'}</div>
   `;
 }
@@ -70,8 +85,7 @@ function render(items, q) {
     `;
     li.addEventListener("click", () => showDetail(x));
     list.appendChild(li);
-
-    if (i === 0) showDetail(x); // 最初の1件をデフォ表示（UX改善）
+    if (i === 0) showDetail(x);
   });
 }
 
