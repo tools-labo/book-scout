@@ -39,7 +39,7 @@ function parentWorkKey(title) {
   return norm(cut || b);
 }
 
-// 固定カテゴリ（増やさない前提）
+// 固定カテゴリ
 function classifySeriesType(title) {
   const t = norm(title);
   if (/(color\s*walk|カラー\s*ウォーク|カラーウォーク|画集|イラスト|art\s*book|visual|ビジュアル|原画|設定資料)/i.test(t)) return "art";
@@ -83,7 +83,6 @@ for (const x of src) {
   if (!v?.description) v = await byTitle(x.title, x.author);
 
   const prevHit = prevByIsbn.get(isbn) || {};
-
   items.push({
     workKey: o.workKey || parentWorkKey(x.title),
     seriesType: o.seriesType || classifySeriesType(x.title),
@@ -112,16 +111,18 @@ for (const it of items) {
 }
 const items2 = items.filter(x => !x._hide);
 
-// 親代表（main優先→巻1→最古）
-// ※ publishedAt は表記揺れがあるので、最古は “入ってるものだけ” でOK（巻1優先が主）
+// ★代表決定：main優先 → (巻数があるなら最小巻数) → 最古publishedAt → 先頭
 function pickRep(group) {
   const main = group.filter(x => x.seriesType === "main");
   const pool = main.length ? main : group;
 
-  const v1 = pool.find(x => x.volumeHint === 1);
-  if (v1) return v1;
+  const withVol = pool.filter(x => Number.isFinite(x.volumeHint));
+  if (withVol.length) {
+    withVol.sort((a,b) => a.volumeHint - b.volumeHint);
+    return withVol[0];
+  }
 
-  const dated = pool.filter(x => x.publishedAt);
+  const dated = pool.filter(x => x.publishedAt).slice().sort((a,b) => String(a.publishedAt).localeCompare(String(b.publishedAt)));
   return dated[0] || pool[0];
 }
 
