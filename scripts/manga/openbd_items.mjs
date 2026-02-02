@@ -5,7 +5,12 @@ const src = (cand.items || []).slice(0, 30);
 
 const j = (u) => fetch(u).then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)));
 const pick = (r) => r?.items?.[0]?.volumeInfo || null;
-const norm = (s) => (s || "").toLowerCase().replace(/[【】\[\]（）()]/g, " ").replace(/\s+/g, " ").trim();
+
+const norm = (s) => (s || "")
+  .toLowerCase()
+  .replace(/[【】\[\]（）()]/g, " ")
+  .replace(/\s+/g, " ")
+  .trim();
 
 function volumeHint(title) {
   const t = title || "";
@@ -25,113 +30,109 @@ function baseTitle(title) {
     .trim();
 }
 
+// 固定カテゴリ（増やさない前提）
+function classifySeriesType(title) {
+  const t = norm(title);
+  if (/(color\s*walk|カラー\s*ウォーク|カラーウォーク|画集|イラスト|art\s*book|visual|ビジュアル|原画|設定資料)/i.test(t)) return "art";
+  if (/(公式|ガイド|guide|ファンブック|キャラクター|データブック|ムック|解説|大全|book\s*guide)/i.test(t)) return "guide";
+  if (/(スピンオフ|spinoff|外伝|番外編|短編集|アンソロジー|公式アンソロジー)/i.test(t)) return "spinoff";
+  return "main";
+}
+
 async function byIsbn(isbn) {
   const u = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&maxResults=1`;
   return pick(await j(u));
 }
-
-async function byTitle(title, author, max = 1) {
+async function byTitle(title, author) {
   const q = [title, author].filter(Boolean).join(" ");
-  const u = `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(q)}&maxResults=${max}`;
-  return await j(u);
+  const u = `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(q)}&maxResults=1`;
+  return pick(await j(u));
 }
 
-// 続巻シリーズだけ：1巻を追加探索（maxResults=5の中から巻1っぽいのを拾う）
-async function findVol1(base, author) {
-  const bad = /(color\s*walk|画集|公式|ガイド|guide|ファンブック|キャラクター|データブック|magazine)/i;
+// overrides（無ければ空）
+let overrides = {};
+try { overrides = JSON.parse(await fs.readFile("data/overrides.json", "utf8")); } catch {}
+const ovIsbn = overrides.byIsbn || {};
+const ovAsin = overrides.byAsin || {};
+const ovHide = overrides.hide || {};
 
-  const r = await byTitle(`${base} 1`, author, 8);
-  const arr = r?.items || [];
+// 既存items_masterからASIN/amazonUrlを引き継ぐ（重要）
+let prev = [];
+try { prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8")); } catch {}
+const prevByIsbn = new Map(prev.map(x => [x.isbn13, x]).filter(([k]) => k));
 
-  // まず「巻1っぽい」候補を集める
-  const cands = [];
-  for (const it of arr) {
-    const v = it?.volumeInfo;
-    const t = v?.title || "";
-    if (!t) continue;
-    if (bad.test(t)) continue;
-    if (!norm(t).includes(norm(base))) continue; // baseTitleを含まないものは除外
-    if (volumeHint(t) !== 1) continue;
-    cands.push(v);
-  }
-
-  return cands[0] || null;
-}
-
-const groups = new Map();
-let descCount = 0;
-
+const items = [];
 for (const x of src) {
-  const vHint = volumeHint(x.title);
-  const sKey = baseTitle(x.title) + "::" + norm(x.author);
+  const isbn = x.isbn || null;
+  if (!isbn) continue;
 
-  let v = null;
-  if (x.isbn) v = await byIsbn(x.isbn);
-  if (!v?.description) v = pick(await byTitle(x.title, x.author, 1));
+  let v = await byIsbn(isbn);
+  if (!v?.description) v = await byTitle(x.title, x.author);
 
-  const rec = {
-    seriesKey: sKey,
-    base: baseTitle(x.title),
+  const prevHit = prevByIsbn.get(isbn) || {};
+  const o = ovIsbn[isbn] || {};
+
+  const workKey = o.workKey || baseTitle(x.title);
+  const seriesType = o.seriesType || classifySeriesType(x.title);
+  if (ovHide[isbn]) continue;
+
+  items.push({
+    workKey,
+    seriesType,
     title: x.title,
     author: x.author || v?.authors?.[0] || null,
     publisher: x.publisher || v?.publisher || null,
-    isbn13: x.isbn || null,
-    asin: null,
+    isbn13: isbn,
+    asin: o.asin || prevHit.asin || null,
+    amazonUrl: o.amazonUrl || prevHit.amazonUrl || null,
     publishedAt: x.salesDate || v?.publishedDate || null,
     description: v?.description || null,
     image: x.image || v?.imageLinks?.thumbnail || null,
-    volumeHint: vHint,
-  };
-
-  const g = groups.get(sKey) || { items: [], maxVol: 0, latest: null };
-  g.items.push(rec);
-  g.maxVol = Math.max(g.maxVol, vHint || 0);
-  g.latest = [g.latest, rec.publishedAt].filter(Boolean).sort().slice(-1)[0] || g.latest;
-  groups.set(sKey, g);
-
-  if (rec.description) descCount++;
-}
-
-// 代表選定：巻1優先 → 最古発売日 → isbn最小
-function pickRep(arr) {
-  const v1 = arr.find(x => x.volumeHint === 1);
-  if (v1) return v1;
-  const dated = arr.filter(x => x.publishedAt).sort((a,b) => (a.publishedAt > b.publishedAt ? 1 : -1));
-  if (dated[0]) return dated[0];
-  return [...arr].sort((a,b) => String(a.isbn13||"").localeCompare(String(b.isbn13||"")))[0];
-}
-
-const out = [];
-let addedVol1 = 0;
-
-for (const [seriesKey, g] of groups) {
-  let rep = pickRep(g.items);
-
-  // ★ 続巻っぽい(複数件) かつ 1巻が無いときだけ追加探索
-  if (g.items.length >= 2 && !g.items.some(x => x.volumeHint === 1)) {
-    const v1 = await findVol1(g.items[0].base, g.items[0].author);
-    if (v1?.title) {
-      rep = {
-        ...rep,
-        title: v1.title,
-        author: rep.author || v1.authors?.[0] || null,
-        publisher: rep.publisher || v1.publisher || null,
-        publishedAt: rep.publishedAt || v1.publishedDate || null,
-        description: rep.description || v1.description || null,
-        image: rep.image || v1.imageLinks?.thumbnail || null,
-        volumeHint: 1,
-        // isbn13 は見つからないこともあるので無理に埋めない（保持してOK）
-      };
-      addedVol1++;
-    }
-  }
-
-  out.push({
-    ...rep,
-    latestVolumeHint: g.maxVol || null,
-    latestPublishedAt: g.latest || null,
+    volumeHint: o.forceVolume ?? volumeHint(x.title),
   });
 }
 
-await fs.writeFile("data/manga/items_master.json", JSON.stringify(out, null, 2));
-console.log(`series=${out.length} (desc ${out.filter(x=>x.description).length}) (vol1_added ${addedVol1})`);
+// workKey単位の代表（main優先 → 巻1 → 最古）
+function pickRep(arr) {
+  const main = arr.filter(x => x.seriesType === "main");
+  const pool = main.length ? main : arr;
+
+  const v1 = pool.find(x => x.volumeHint === 1);
+  if (v1) return v1;
+
+  const dated = pool.filter(x => x.publishedAt).sort((a,b) => (a.publishedAt > b.publishedAt ? 1 : -1));
+  return dated[0] || pool[0];
+}
+
+// workKeyごとの集計（Bの保持情報）
+const byWork = new Map();
+for (const it of items) {
+  const o = ovAsin[it.asin] || {};
+  if (o.workKey) it.workKey = o.workKey;
+  if (o.seriesType) it.seriesType = o.seriesType;
+  if (o.forceVolume != null) it.volumeHint = o.forceVolume;
+  if (o.asin) it.asin = o.asin;
+  if (o.amazonUrl) it.amazonUrl = o.amazonUrl;
+  if (ovHide[it.asin]) continue;
+
+  const g = byWork.get(it.workKey) || { items: [], latestVolumeHint: 0, latestPublishedAt: null };
+  g.items.push(it);
+  g.latestVolumeHint = Math.max(g.latestVolumeHint, it.volumeHint || 0);
+  g.latestPublishedAt = [g.latestPublishedAt, it.publishedAt].filter(Boolean).sort().slice(-1)[0] || g.latestPublishedAt;
+  byWork.set(it.workKey, g);
+}
+
+// 代表のみリスト用に rep=true を付ける（フロント側で親一覧を作りやすく）
+for (const [wk, g] of byWork) {
+  const rep = pickRep(g.items);
+  rep._rep = true;
+  for (const it of g.items) {
+    it.latestVolumeHint = g.latestVolumeHint || null;
+    it.latestPublishedAt = g.latestPublishedAt || null;
+  }
+}
+
+await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
+const repCount = items.filter(x => x._rep).length;
+const descCount = items.filter(x => x.description).length;
+console.log(`items=${items.length} works=${repCount} desc=${descCount}`);
