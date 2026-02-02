@@ -4,9 +4,12 @@ const APP = process.env.RAKUTEN_APP_ID;
 if (!APP) throw new Error("missing RAKUTEN_APP_ID");
 
 const j = (u) =>
-  fetch(u).then(async (r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}\n${(await r.text()).slice(0, 200)}`))));
+  fetch(u).then(async (r) =>
+    r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}\n${(await r.text()).slice(0, 200)}`))
+  );
 
-const norm = (s) => (s || "").toLowerCase().replace(/[【】\[\]（）()]/g, " ").replace(/\s+/g, " ").trim();
+const norm = (s) =>
+  (s || "").toLowerCase().replace(/[【】\[\]（）()]/g, " ").replace(/\s+/g, " ").trim();
 
 function volumeHint(title) {
   const t = title || "";
@@ -34,14 +37,20 @@ function parentWorkKey(title) {
   return norm(cut || b);
 }
 
-async function rakutenSearch(keyword, sort) {
-  const u =
+async function rakutenSearch({ title, keyword, sort, page }) {
+  const base =
     "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
     `?format=json&formatVersion=2&applicationId=${encodeURIComponent(APP)}` +
-    `&booksGenreId=001001&hits=30&keyword=${encodeURIComponent(keyword)}` +
+    `&booksGenreId=001001&hits=30&page=${page || 1}` +
     (sort ? `&sort=${encodeURIComponent(sort)}` : "") +
     `&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,salesDate`;
-  const r = await j(u);
+
+  const url =
+    base +
+    (title ? `&title=${encodeURIComponent(title)}` : "") +
+    (keyword ? `&keyword=${encodeURIComponent(keyword)}` : "");
+
+  const r = await j(url);
   const items = r?.Items || [];
   return items.map((x) => x?.Item || x).filter(Boolean);
 }
@@ -54,7 +63,8 @@ async function googleDesc(isbn) {
 
 function pickBest(targetWK, list) {
   const t = norm(targetWK);
-  const scored = [];
+  let best = null;
+
   for (const it of list) {
     const title = it.title || "";
     const wk = parentWorkKey(title);
@@ -65,12 +75,39 @@ function pickBest(targetWK, list) {
     if (!ok) continue;
 
     const v = volumeHint(title);
-    // 巻1を最優先、次に巻が小さいほど良い
     const score = (wk === t ? 1000 : 100) + (v === 1 ? 800 : Number.isFinite(v) ? 400 - v : 0);
-    scored.push({ it, v, score });
+
+    if (!best || score > best.score) best = { it, v, score };
   }
-  scored.sort((a, b) => b.score - a.score);
-  return scored[0] || null;
+  return best;
+}
+
+async function findVol1Candidate(wk) {
+  // 最大4回：title(kw=wk 1) p1/p2 → title(wk) p1/p2 → keyword(wk 1) p1/p2 → keyword(wk) p1/p2
+  // ただし早期に見つかれば即終了
+  const titleKey = wk; // parentWorkKey済みなので短め
+  const tries = [
+    // ① まず title で「wk 1」
+    { title: `${titleKey} 1`, sort: "standard", page: 1 },
+    { title: `${titleKey} 1`, sort: "standard", page: 2 },
+
+    // ② title で wk（古い巻が出やすい想定）
+    { title: titleKey, sort: "+releaseDate", page: 1 },
+    { title: titleKey, sort: "+releaseDate", page: 2 },
+
+    // ③ keyword にフォールバック（保険）
+    { keyword: `${titleKey} 1`, sort: "standard", page: 1 },
+    { keyword: `${titleKey} 1`, sort: "standard", page: 2 },
+    { keyword: titleKey, sort: "+releaseDate", page: 1 },
+    { keyword: titleKey, sort: "+releaseDate", page: 2 },
+  ];
+
+  for (const q of tries) {
+    const list = await rakutenSearch(q);
+    const best = pickBest(wk, list);
+    if (best) return best;
+  }
+  return null;
 }
 
 const path = "data/manga/items_master.json";
@@ -94,12 +131,7 @@ for (const [wk, group] of byWork) {
   const main = group.filter((x) => x.seriesType === "main");
   if (main.some((x) => x.volumeHint === 1)) continue;
 
-  // 1) 「作品名 + 1」(標準)
-  let best = pickBest(wk, await rakutenSearch(`${wk} 1`, "standard"));
-
-  // 2) ダメなら「作品名だけ」を “古い巻が出やすい” 並びで（※楽天のsort仕様に依存）
-  if (!best) best = pickBest(wk, await rakutenSearch(wk, "+releaseDate"));
-
+  const best = await findVol1Candidate(wk);
   if (!best) continue;
   backfilled++;
 
@@ -107,7 +139,7 @@ for (const [wk, group] of byWork) {
   const isbn = it.isbn || null;
   if (!isbn) continue;
 
-  // 既に同ISBNがあるなら“昇格”して代表を①巻に寄せる
+  // 既にあるISBNなら“昇格”
   if (byIsbn.has(isbn)) {
     const ex = items.find((x) => x.isbn13 === isbn);
     if (ex) {
@@ -153,11 +185,13 @@ for (const x of items) {
 function pickRep(group) {
   const main = group.filter((x) => x.seriesType === "main");
   const pool = main.length ? main : group;
-  const withVol = pool.filter((x) => Number.isFinite(x.volumeHint)).sort((a, b) => a.volumeHint - b.volumeHint);
+  const withVol = pool
+    .filter((x) => Number.isFinite(x.volumeHint))
+    .sort((a, b) => a.volumeHint - b.volumeHint);
   return withVol[0] || pool[0];
 }
 
-for (const [wk, g] of byWork2) pickRep(g)._rep = true;
+for (const [k, g] of byWork2) pickRep(g)._rep = true;
 
 await fs.writeFile(path, JSON.stringify(items, null, 2));
 
