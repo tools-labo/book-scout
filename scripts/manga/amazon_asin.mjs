@@ -10,12 +10,12 @@ const client = ProductAdvertisingAPIv1.ApiClient.instance;
 client.accessKey = accessKey;
 client.secretKey = secretKey;
 client.host = "webservices.amazon.co.jp";
-client.region = "us-west-2"; // JP locale  [oai_citation:1‡Amazon Web Services](https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html)
+client.region = "us-west-2";
 
 const api = new ProductAdvertisingAPIv1.DefaultApi();
 
-const items = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
-const targets = items.slice(0, 30);
+const path = "data/manga/items_master.json";
+const items = JSON.parse(await fs.readFile(path, "utf8"));
 
 const pickIsbn = (item) =>
   item?.ItemInfo?.ExternalIds?.ISBNs?.DisplayValues?.[0] ||
@@ -29,7 +29,7 @@ async function isbnToAsin(isbn) {
     req.PartnerType = "Associates";
     req.SearchIndex = "Books";
     req.Keywords = String(isbn);
-    req.ItemCount = 3; // 複数返る可能性があるので少しだけ  [oai_citation:2‡Amazon Web Services](https://webservices.amazon.com/paapi5/documentation/use-cases/search-with-external-identifiers.html?utm_source=chatgpt.com)
+    req.ItemCount = 3;
     req.Resources = ["ItemInfo.ExternalIds", "ItemInfo.Title"];
 
     api.searchItems(req, (err, data) => {
@@ -43,9 +43,22 @@ async function isbnToAsin(isbn) {
   });
 }
 
+// ①優先順：_rep → main&vol1 → main → その他（ASIN未付与のみ）
+const need = items
+  .filter((x) => x.isbn13 && !x.asin && !x.amazonUrl)
+  .map((x) => {
+    const p =
+      (x._rep ? 0 : 10) +
+      (x.seriesType === "main" && x.volumeHint === 1 ? 0 : 2) +
+      (x.seriesType === "main" ? 0 : 4);
+    return { x, p };
+  })
+  .sort((a, b) => a.p - b.p)
+  .slice(0, 30)
+  .map((o) => o.x);
+
 let ok = 0;
-for (const x of targets) {
-  if (!x.isbn13 || x.asin) continue;
+for (const x of need) {
   const r = await isbnToAsin(x.isbn13);
   if (r.ok && r.asin) {
     x.asin = r.asin;
@@ -54,5 +67,5 @@ for (const x of targets) {
   }
 }
 
-await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
-console.log(`asin_added=${ok}`);
+await fs.writeFile(path, JSON.stringify(items, null, 2));
+console.log(`asin_added=${ok} targets=${need.length} items=${items.length}`);
