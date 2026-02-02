@@ -1,8 +1,32 @@
 const $ = (id) => document.getElementById(id);
 
+function getParams() {
+  const sp = new URLSearchParams(location.search);
+  return {
+    cat: sp.get("cat") || "manga",
+    q: sp.get("q") || "",
+  };
+}
+
+function setParams(next, { replace = true } = {}) {
+  const sp = new URLSearchParams(location.search);
+
+  if (next.cat != null) sp.set("cat", next.cat);
+  if (next.q != null) {
+    const q = String(next.q).trim();
+    if (q) sp.set("q", q);
+    else sp.delete("q");
+  }
+
+  const url = `${location.pathname}?${sp.toString()}`;
+  if (replace) history.replaceState(null, "", url);
+  else history.pushState(null, "", url);
+}
+
 async function load(category) {
   const url = `./data/${category}/items_master.json`;
   $("status").textContent = `読み込み中: ${url}`;
+
   try {
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -15,13 +39,23 @@ async function load(category) {
   }
 }
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[c]));
+}
+
 function render(items, q) {
   const list = $("list");
   list.innerHTML = "";
-  const qq = (q || "").trim().toLowerCase();
 
+  const qq = (q || "").trim().toLowerCase();
   const filtered = qq
-    ? items.filter(x => (x.title || "").toLowerCase().includes(qq))
+    ? items.filter((x) => (x.title || "").toLowerCase().includes(qq))
     : items;
 
   if (filtered.length === 0) {
@@ -39,24 +73,51 @@ function render(items, q) {
   }
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
+let all = [];
+let loading = false;
+
+async function syncFromUrlAndRender() {
+  if (loading) return;
+  loading = true;
+
+  const { cat, q } = getParams();
+
+  // UIへ反映
+  $("cat").value = cat;
+  $("q").value = q;
+
+  // データ読み込み & 描画
+  all = await load(cat);
+  render(all, q);
+
+  loading = false;
 }
 
-let all = [];
+function setupEvents() {
+  // 検索：入力のたびにURL更新（replace）＋即時描画
+  $("q").addEventListener("input", () => {
+    const q = $("q").value;
+    setParams({ q }, { replace: true });
+    render(all, q);
+  });
 
-async function main() {
-  const cat = $("cat");
-  all = await load(cat.value);
-  render(all, $("q").value);
-
-  $("q").addEventListener("input", () => render(all, $("q").value));
-  cat.addEventListener("change", async () => {
-    all = await load(cat.value);
+  // カテゴリ変更：pushで履歴を残す（戻る/進むが効く）
+  $("cat").addEventListener("change", async () => {
+    const cat = $("cat").value;
+    setParams({ cat }, { replace: false });
+    all = await load(cat);
     render(all, $("q").value);
   });
+
+  // ブラウザの戻る/進む対応
+  window.addEventListener("popstate", () => {
+    syncFromUrlAndRender();
+  });
+}
+
+async function main() {
+  setupEvents();
+  await syncFromUrlAndRender();
 }
 
 main();
