@@ -9,9 +9,13 @@ const j = (u) =>
   );
 
 const norm = (s) =>
-  (s || "").toLowerCase().replace(/[【】\[\]（）()]/g, " ").replace(/\s+/g, " ").trim();
+  (s || "")
+    .toLowerCase()
+    .replace(/[【】\[\]（）()]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-function volumeHint(title) {
+function volumeHintFromTitle(title) {
   const t = title || "";
   const m =
     t.match(/[（(]\s*(\d+)\s*[）)]/) ||
@@ -70,11 +74,11 @@ function pickBest(targetWK, list) {
     const wk = parentWorkKey(title);
     if (!wk) continue;
 
-    // 親キー一致（完全一致 > 部分一致）だけ通す
+    // 親キー一致（完全一致 > 部分一致）
     const ok = wk === t || wk.includes(t) || t.includes(wk);
     if (!ok) continue;
 
-    const v = volumeHint(title);
+    const v = volumeHintFromTitle(title);
     const score = (wk === t ? 1000 : 100) + (v === 1 ? 800 : Number.isFinite(v) ? 400 - v : 0);
 
     if (!best || score > best.score) best = { it, v, score };
@@ -83,19 +87,17 @@ function pickBest(targetWK, list) {
 }
 
 async function findVol1Candidate(wk) {
-  // 最大4回：title(kw=wk 1) p1/p2 → title(wk) p1/p2 → keyword(wk 1) p1/p2 → keyword(wk) p1/p2
-  // ただし早期に見つかれば即終了
-  const titleKey = wk; // parentWorkKey済みなので短め
+  const titleKey = wk; // workKeyは既に正規化されてる想定
   const tries = [
-    // ① まず title で「wk 1」
+    // ① titleで「wk 1」優先
     { title: `${titleKey} 1`, sort: "standard", page: 1 },
     { title: `${titleKey} 1`, sort: "standard", page: 2 },
 
-    // ② title で wk（古い巻が出やすい想定）
+    // ② titleで wk（古い巻が上に来やすい並び）
     { title: titleKey, sort: "+releaseDate", page: 1 },
     { title: titleKey, sort: "+releaseDate", page: 2 },
 
-    // ③ keyword にフォールバック（保険）
+    // ③ keywordにフォールバック（保険）
     { keyword: `${titleKey} 1`, sort: "standard", page: 1 },
     { keyword: `${titleKey} 1`, sort: "standard", page: 2 },
     { keyword: titleKey, sort: "+releaseDate", page: 1 },
@@ -112,6 +114,14 @@ async function findVol1Candidate(wk) {
 
 const path = "data/manga/items_master.json";
 const items = JSON.parse(await fs.readFile(path, "utf8"));
+
+// 既存アイテムにvolumeHintが無ければ補完（rep選定の精度を上げる）
+for (const x of items) {
+  if (!Number.isFinite(x.volumeHint)) {
+    const v = volumeHintFromTitle(x.title);
+    if (Number.isFinite(v)) x.volumeHint = v;
+  }
+}
 
 const byWork = new Map();
 for (const x of items) {
@@ -139,13 +149,13 @@ for (const [wk, group] of byWork) {
   const isbn = it.isbn || null;
   if (!isbn) continue;
 
-  // 既にあるISBNなら“昇格”
+  // 既に同ISBNがあるなら昇格（main/vol1扱い）
   if (byIsbn.has(isbn)) {
     const ex = items.find((x) => x.isbn13 === isbn);
     if (ex) {
       ex.workKey = wk;
       ex.seriesType = "main";
-      if (best.v === 1) ex.volumeHint = 1;
+      ex.volumeHint = 1; // ①巻候補として扱う（repを確実に寄せる）
       promoted++;
     }
     continue;
@@ -172,7 +182,7 @@ for (const [wk, group] of byWork) {
   added++;
 }
 
-// 代表作り直し：main優先→巻数最小→先頭
+// 代表付け替え：main&vol1があれば必ずそれを_repにする
 const byWork2 = new Map();
 for (const x of items) {
   x._rep = false;
@@ -183,15 +193,22 @@ for (const x of items) {
 }
 
 function pickRep(group) {
+  // 1) mainの①巻があれば最優先
+  const v1 = group.find((x) => x.seriesType === "main" && x.volumeHint === 1);
+  if (v1) return v1;
+
+  // 2) mainの最小巻
   const main = group.filter((x) => x.seriesType === "main");
   const pool = main.length ? main : group;
+
   const withVol = pool
     .filter((x) => Number.isFinite(x.volumeHint))
     .sort((a, b) => a.volumeHint - b.volumeHint);
+
   return withVol[0] || pool[0];
 }
 
-for (const [k, g] of byWork2) pickRep(g)._rep = true;
+for (const [, g] of byWork2) pickRep(g)._rep = true;
 
 await fs.writeFile(path, JSON.stringify(items, null, 2));
 
