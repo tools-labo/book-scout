@@ -3,12 +3,22 @@ body { margin: 0; }
 .header { padding: 16px 20px; border-bottom: 1px solid #eee; }
 .sub { margin: 6px 0 0; color: #666; font-size: 14px; }
 
-.wrap { padding: 16px 20px; max-width: 960px; margin: 0 auto; }
+.wrap { padding: 16px 20px; max-width: 1100px; margin: 0 auto; }
 .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
 .controls input, .controls select { padding: 10px 12px; font-size: 16px; }
 
+.grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 900px) { .grid { grid-template-columns: 1fr 380px; } }
+
 .status { color: #666; font-size: 14px; margin: 10px 0; }
 .list { list-style: none; padding: 0; margin: 0; }
-.list li { padding: 12px 8px; border-bottom: 1px solid #f0f0f0; }
+.list li { padding: 12px 8px; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+.list li:hover { background: #fafafa; }
 .title { font-weight: 600; }
 .meta { color: #666; font-size: 13px; margin-top: 4px; }
+
+.detail { border: 1px solid #eee; border-radius: 8px; padding: 12px; background: #fff; }
+.d-title { font-weight: 700; margin-bottom: 6px; }
+.d-meta { color: #666; font-size: 13px; margin-bottom: 10px; }
+.d-desc { font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+.d-empty { color: #666; font-size: 13px; }
