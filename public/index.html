@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOOKスカウト</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>BOOKスカウト</h1>
+    <p class="sub">好みで絞って、作品がサクッと分かる。</p>
+  </header>
+
+  <main class="wrap">
+    <section class="controls">
+      <input id="q" type="search" placeholder="作品名で検索（例：ワンピ / 呪術）" />
+      <select id="cat">
+        <option value="manga">マンガ</option>
+        <option value="light-novel">ラノベ</option>
+        <option value="novel">一般小説</option>
+      </select>
+    </section>
+
+    <section>
+      <div id="status" class="status"></div>
+      <ul id="list" class="list"></ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
