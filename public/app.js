@@ -4,7 +4,6 @@ const getParams = () => {
   const sp = new URLSearchParams(location.search);
   return { cat: sp.get("cat") || "manga", q: sp.get("q") || "" };
 };
-
 const setParams = (next, replace = true) => {
   const sp = new URLSearchParams(location.search);
   if (next.cat != null) sp.set("cat", next.cat);
@@ -15,7 +14,6 @@ const setParams = (next, replace = true) => {
   const url = `${location.pathname}?${sp.toString()}`;
   replace ? history.replaceState(null, "", url) : history.pushState(null, "", url);
 };
-
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => ({
   "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
@@ -25,9 +23,9 @@ async function load(cat) {
   $("status").textContent = `読み込み中: ${url}`;
   try {
     const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    if (!r.ok) throw new Error();
     const items = await r.json();
-    $("status").textContent = `${cat}: ${items.length}件`;
+    $("status").textContent = `${cat}: ${items.filter(x=>x._rep).length}作品（data ${items.length}件）`;
     return items;
   } catch {
     $("status").textContent = `データがまだありません（${url}）`;
@@ -36,56 +34,107 @@ async function load(cat) {
 }
 
 function amazonLink(x) {
-  // PA-APIで取れたDetailPageURLがあればそれを優先
   if (x?.amazonUrl) return x.amazonUrl;
-  // 無ければASINから組み立て（JP）
   if (x?.asin) return `https://www.amazon.co.jp/dp/${encodeURIComponent(x.asin)}`;
   return null;
 }
 
-function showDetail(x) {
+function groupByWork(items) {
+  const m = new Map();
+  for (const it of items) {
+    const k = it.workKey || it.title;
+    const g = m.get(k) || [];
+    g.push(it);
+    m.set(k, g);
+  }
+  return m;
+}
+
+function pickWorkRep(group) {
+  const rep = group.find(x => x._rep);
+  if (rep) return rep;
+  const main = group.filter(x => x.seriesType === "main");
+  return (main[0] || group[0] || null);
+}
+
+function seriesOrderKey(t) {
+  const order = { main: 0, spinoff: 1, guide: 2, art: 3, other: 9 };
+  return order[t] ?? 9;
+}
+
+function showWorkDetail(workGroup) {
   const d = $("detail");
-  if (!x) {
+  if (!workGroup || workGroup.length === 0) {
     d.innerHTML = `<div class="d-title">作品を選ぶと詳細が表示されます</div>`;
     return;
   }
 
-  const meta = [x.author, x.publisher, x.publishedAt].filter(Boolean).join(" / ");
-  const a = amazonLink(x);
-  const btn = a
-    ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`
-    : "";
+  const reps = [...workGroup].sort((a,b)=>seriesOrderKey(a.seriesType)-seriesOrderKey(b.seriesType));
+  let current = reps.find(x=>x.seriesType==="main") || reps[0];
 
-  d.innerHTML = `
-    <div class="d-title">${escapeHtml(x.title || "")}</div>
-    <div class="d-meta">${escapeHtml(meta)}</div>
-    ${btn}
-    <div class="d-desc">${escapeHtml(x.description || "") || '<span class="d-empty">説明文がありません</span>'}</div>
-  `;
+  const render = () => {
+    const meta = [current.author, current.publisher, current.publishedAt].filter(Boolean).join(" / ");
+    const a = amazonLink(current);
+    const btn = a ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>` : "";
+    const chips = reps.map(x => {
+      const label = x.seriesType || "other";
+      const on = (x === current) ? ' style="font-weight:700"' : "";
+      return `<button data-st="${escapeHtml(label)}"${on}>${escapeHtml(label)}</button>`;
+    }).join(" ");
+
+    d.innerHTML = `
+      <div class="d-title">${escapeHtml(current.title || "")}</div>
+      <div class="d-meta">${escapeHtml(meta)}</div>
+      <div class="d-meta">シリーズ: ${chips}</div>
+      ${btn}
+      <div class="d-desc">${escapeHtml(current.description || "") || '<span class="d-empty">説明文がありません</span>'}</div>
+    `;
+
+    d.querySelectorAll("button[data-st]").forEach(btnEl => {
+      btnEl.addEventListener("click", () => {
+        const st = btnEl.getAttribute("data-st");
+        current = reps.find(x => (x.seriesType || "other") === st) || current;
+        render();
+      });
+    });
+  };
+
+  render();
 }
 
 function render(items, q) {
   const list = $("list");
   list.innerHTML = "";
 
+  const m = groupByWork(items);
+  const works = [];
+  for (const [wk, group] of m) {
+    const rep = pickWorkRep(group);
+    if (!rep) continue;
+    works.push({ wk, rep, group });
+  }
+
   const qq = (q || "").trim().toLowerCase();
-  const filtered = qq ? items.filter(x => (x.title || "").toLowerCase().includes(qq)) : items;
+  const filtered = qq
+    ? works.filter(w => (w.rep.title || "").toLowerCase().includes(qq))
+    : works;
 
   if (filtered.length === 0) {
     list.innerHTML = `<li>該当なし</li>`;
-    showDetail(null);
+    showWorkDetail(null);
     return;
   }
 
-  filtered.forEach((x, i) => {
+  filtered.forEach((w, i) => {
+    const x = w.rep;
     const li = document.createElement("li");
     li.innerHTML = `
       <div class="title">${escapeHtml(x.title || "（タイトルなし）")}</div>
       <div class="meta">${escapeHtml([x.author, x.publisher].filter(Boolean).join(" / "))}</div>
     `;
-    li.addEventListener("click", () => showDetail(x));
+    li.addEventListener("click", () => showWorkDetail(w.group));
     list.appendChild(li);
-    if (i === 0) showDetail(x);
+    if (i === 0) showWorkDetail(w.group);
   });
 }
 
@@ -108,13 +157,11 @@ function setup() {
     setParams({ q: $("q").value }, true);
     render(all, $("q").value);
   });
-
   $("cat").addEventListener("change", async () => {
     setParams({ cat: $("cat").value }, false);
     all = await load($("cat").value);
     render(all, $("q").value);
   });
-
   addEventListener("popstate", sync);
 }
 
