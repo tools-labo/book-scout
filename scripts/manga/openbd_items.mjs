@@ -38,14 +38,24 @@ async function byTitle(title, author, max = 1) {
 
 // 続巻シリーズだけ：1巻を追加探索（maxResults=5の中から巻1っぽいのを拾う）
 async function findVol1(base, author) {
-  const r = await byTitle(`${base} 1`, author, 5);
+  const bad = /(color\s*walk|画集|公式|ガイド|guide|ファンブック|キャラクター|データブック|magazine)/i;
+
+  const r = await byTitle(`${base} 1`, author, 8);
   const arr = r?.items || [];
+
+  // まず「巻1っぽい」候補を集める
+  const cands = [];
   for (const it of arr) {
     const v = it?.volumeInfo;
     const t = v?.title || "";
-    if (volumeHint(t) === 1) return v;
+    if (!t) continue;
+    if (bad.test(t)) continue;
+    if (!norm(t).includes(norm(base))) continue; // baseTitleを含まないものは除外
+    if (volumeHint(t) !== 1) continue;
+    cands.push(v);
   }
-  return null;
+
+  return cands[0] || null;
 }
 
 const groups = new Map();
