@@ -1,7 +1,8 @@
 [
   {
     "seriesKey": "one piece::尾田 栄一郎",
-    "title": "ONE PIECE 113",
+    "base": "one piece",
+    "title": "One Piece Color walk 1",
     "author": "尾田 栄一郎",
     "publisher": "集英社",
     "isbn13": "9784088847382",
@@ -9,12 +10,13 @@
     "publishedAt": "2025年11月04日",
     "description": "ジャンプコミックスDIGITAL「ONE PIECE モノクロ版」113巻、12月4日配信スタート!! ※配信日は変更になることがあります。ご了承ください。",
     "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7382/9784088847382_1_10.jpg?_ex=200x200",
-    "volumeHint": 113,
+    "volumeHint": 1,
     "latestVolumeHint": 114,
     "latestPublishedAt": "2026年03月04日"
   },
   {
     "seriesKey": "ミステリと言う勿れ::田村 由美",
+    "base": "ミステリと言う勿れ",
     "title": "ミステリと言う勿れ（16）",
     "author": "田村 由美",
     "publisher": "小学館",
@@ -29,6 +31,7 @@
   },
   {
     "seriesKey": "転生したらスライムだった件::川上 泰樹/伏瀬/みっつばー",
+    "base": "転生したらスライムだった件",
     "title": "転生したらスライムだった件（31）",
     "author": "川上 泰樹/伏瀬/みっつばー",
     "publisher": "講談社",
@@ -43,6 +46,7 @@
   },
   {
     "seriesKey": "giant killing::ツジトモ/綱本 将也",
+    "base": "giant killing",
     "title": "GIANT　KILLING（69）",
     "author": "ツジトモ/綱本 将也",
     "publisher": "講談社",
@@ -57,6 +61,7 @@
   },
   {
     "seriesKey": "キングダム::原 泰久",
+    "base": "キングダム",
     "title": "キングダム 78",
     "author": "原 泰久",
     "publisher": "集英社",
@@ -71,6 +76,7 @@
   },
   {
     "seriesKey": "昴と彗星::しげの 秀一",
+    "base": "昴と彗星",
     "title": "昴と彗星（2）",
     "author": "しげの 秀一",
     "publisher": "講談社",
@@ -85,6 +91,7 @@
   },
   {
     "seriesKey": "きのう何食べた？::よしなが ふみ",
+    "base": "きのう何食べた？",
     "title": "きのう何食べた？（25）",
     "author": "よしなが ふみ",
     "publisher": "講談社",
@@ -99,6 +106,7 @@
   },
   {
     "seriesKey": "boruto-ボルトー -two blue vortex-::池本 幹雄/岸本 斉史",
+    "base": "boruto-ボルトー -two blue vortex-",
     "title": "BORUTO-ボルトー 7 -TWO BLUE VORTEX-",
     "author": "池本 幹雄/岸本 斉史",
     "publisher": "集英社",
@@ -113,6 +121,7 @@
   },
   {
     "seriesKey": "アルスラーン戦記::荒川 弘/田中 芳樹",
+    "base": "アルスラーン戦記",
     "title": "アルスラーン戦記（24）",
     "author": "荒川 弘/田中 芳樹",
     "publisher": "講談社",
@@ -127,6 +136,7 @@
   },
   {
     "seriesKey": "空母いぶきgreat game::かわぐち かいじ/八木 勝大/潮 匡人/惠谷 治",
+    "base": "空母いぶきgreat game",
     "title": "空母いぶきGREAT GAME（18）",
     "author": "かわぐち かいじ/八木 勝大/潮 匡人/惠谷 治",
     "publisher": "小学館",
@@ -141,6 +151,7 @@
   },
   {
     "seriesKey": "呪術廻戦≡::岩崎 優次/芥見 下々",
+    "base": "呪術廻戦≡",
     "title": "呪術廻戦≡ 2",
     "author": "岩崎 優次/芥見 下々",
     "publisher": "集英社",
@@ -155,6 +166,7 @@
   },
   {
     "seriesKey": "ワンパンマン::one/村田 雄介",
+    "base": "ワンパンマン",
     "title": "ワンパンマン 36",
     "author": "ONE/村田 雄介",
     "publisher": "集英社",
@@ -169,6 +181,7 @@
   },
   {
     "seriesKey": "アオのハコ::三浦 糀",
+    "base": "アオのハコ",
     "title": "アオのハコ 24",
     "author": "三浦 糀",
     "publisher": "集英社",
@@ -183,6 +196,7 @@
   },
   {
     "seriesKey": "the jojolands::荒木 飛呂彦",
+    "base": "the jojolands",
     "title": "The JOJOLands 8",
     "author": "荒木 飛呂彦",
     "publisher": "集英社",
@@ -197,6 +211,7 @@
   },
   {
     "seriesKey": "魔入りました！入間くん::西修",
+    "base": "魔入りました！入間くん",
     "title": "魔入りました！入間くん　47",
     "author": "西修",
     "publisher": "秋田書店",
@@ -211,6 +226,7 @@
   },
   {
     "seriesKey": "お気楽領主の楽しい領地防衛::青色まろ/赤池 宗/転",
+    "base": "お気楽領主の楽しい領地防衛",
     "title": "お気楽領主の楽しい領地防衛 8",
     "author": "青色まろ/赤池 宗/転",
     "publisher": "オーバーラップ",
@@ -225,6 +241,7 @@
   },
   {
     "seriesKey": "blue giant momentum::石塚 真一/number8",
+    "base": "blue giant momentum",
     "title": "BLUE GIANT MOMENTUM（7）",
     "author": "石塚 真一/NUMBER8",
     "publisher": "小学館",
@@ -239,6 +256,7 @@
   },
   {
     "seriesKey": "暁のヨナ::草凪 みずほ",
+    "base": "暁のヨナ",
     "title": "暁のヨナ 47",
     "author": "草凪 みずほ",
     "publisher": "白泉社",
@@ -253,6 +271,7 @@
   },
   {
     "seriesKey": "黄泉のツガイ::荒川弘",
+    "base": "黄泉のツガイ",
     "title": "黄泉のツガイ（12）",
     "author": "荒川弘",
     "publisher": "スクウェア・エニックス",
@@ -267,6 +286,7 @@
   },
   {
     "seriesKey": "日外出録ハンチョウ::上原 求/新井 和也/萩原 天晴/福本 伸行",
+    "base": "日外出録ハンチョウ",
     "title": "1日外出録ハンチョウ（22）",
     "author": "上原 求/新井 和也/萩原 天晴/福本 伸行",
     "publisher": "講談社",
@@ -281,6 +301,7 @@
   },
   {
     "seriesKey": "金田一パパの事件簿::天樹 征丸/さとう ふみや",
+    "base": "金田一パパの事件簿",
     "title": "金田一パパの事件簿（3）",
     "author": "天樹 征丸/さとう ふみや",
     "publisher": "講談社",
@@ -295,6 +316,7 @@
   },
   {
     "seriesKey": "薫る花は凛と咲く::三香見 サカ",
+    "base": "薫る花は凛と咲く",
     "title": "薫る花は凛と咲く（22）",
     "author": "三香見 サカ",
     "publisher": "講談社",
@@ -309,6 +331,7 @@
   },
   {
     "seriesKey": "葬送のフリーレン::山田 鐘人/アベツカサ",
+    "base": "葬送のフリーレン",
     "title": "葬送のフリーレン（15）",
     "author": "山田 鐘人/アベツカサ",
     "publisher": "小学館",
@@ -323,6 +346,7 @@
   },
   {
     "seriesKey": "無職転生〜異世界行ったら本気だす〜::フジカワ ユカ/理不尽な孫の手/シロタカ",
+    "base": "無職転生〜異世界行ったら本気だす〜",
     "title": "無職転生〜異世界行ったら本気だす〜　24",
     "author": "フジカワ　ユカ/理不尽な孫の手/シロタカ",
     "publisher": "KADOKAWA",
@@ -337,6 +361,7 @@
   },
   {
     "seriesKey": "ホタルの嫁入り::橘 オレコ",
+    "base": "ホタルの嫁入り",
     "title": "ホタルの嫁入り（11）",
     "author": "橘 オレコ",
     "publisher": "小学館",
@@ -351,6 +376,7 @@
   },
   {
     "seriesKey": "天国大魔境::石黒 正数",
+    "base": "天国大魔境",
     "title": "天国大魔境（13）",
     "author": "石黒 正数",
     "publisher": "講談社",
@@ -365,6 +391,7 @@
   },
   {
     "seriesKey": "ブルーロック::金城 宗幸/ノ村 優介",
+    "base": "ブルーロック",
     "title": "ブルーロック（38）",
     "author": "金城 宗幸/ノ村 優介",
     "publisher": "講談社",
@@ -379,6 +406,7 @@
   },
   {
     "seriesKey": "メダリスト::つるまいかだ",
+    "base": "メダリスト",
     "title": "メダリスト（14）",
     "author": "つるまいかだ",
     "publisher": "講談社",
@@ -393,6 +421,7 @@
   },
   {
     "seriesKey": "アンダーニンジャ::花沢 健吾",
+    "base": "アンダーニンジャ",
     "title": "アンダーニンジャ（17）",
     "author": "花沢 健吾",
     "publisher": "講談社",
