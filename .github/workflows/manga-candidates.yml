@@ -1,0 +1,26 @@
+name: Manga candidates (Rakuten)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 18 * * *" # JST 03:20
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+
+      - run: node scripts/manga/rakuten_candidates.mjs
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+
+      - run: |
+          git add data/manga/candidates.json
+          git diff --cached --quiet || git commit -m "update manga candidates (rakuten)"
+          git push
