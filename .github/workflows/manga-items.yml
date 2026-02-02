@@ -1,4 +1,4 @@
-name: Manga items (openBD)
+name: Manga items (build)
 
 on:
   workflow_dispatch:
@@ -18,9 +18,16 @@ jobs:
 
       - run: node scripts/manga/openbd_items.mjs
 
+      - run: npm i --no-save paapi5-nodejs-sdk
+      - run: node scripts/manga/amazon_asin.mjs
+        env:
+          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/manga/items_master.json
-          git diff --cached --quiet || git commit -m "build manga items (openbd)"
+          git diff --cached --quiet || git commit -m "build manga items"
           git push
