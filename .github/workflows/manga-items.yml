@@ -2,13 +2,19 @@ name: Manga items (build)
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *" # JST 12:17 くらい（適当でOK）
 
 permissions:
   contents: write
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
+    concurrency:
+      group: manga-items
+      cancel-in-progress: true
+
     steps:
       - uses: actions/checkout@v4
 
@@ -16,22 +22,45 @@ jobs:
         with:
           node-version: "20"
 
-      - run: node scripts/manga/openbd_items.mjs
+      # 1) openBDで候補の書誌/説明を埋める
+      - name: Build items from openBD
+        run: node scripts/manga/openbd_items.mjs
 
-      - run: node scripts/manga/vol1_backfill_rakuten.mjs
+      # 2) 楽天で1巻を逆引きして items_master に追加（あなたの現行フロー）
+      - name: Backfill vol1 by Rakuten
+        run: node scripts/manga/vol1_backfill_rakuten.mjs
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
 
-      - run: npm i --no-save paapi5-nodejs-sdk
-      - run: node scripts/manga/amazon_asin.mjs
+      # 3) ★追加：楽天のジャンルID/Nameを raw で付与（新スクリプト）
+      - name: Tag by Rakuten genre (raw)
+        run: node scripts/manga/rakuten_tags.mjs
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+
+      # 4) Amazon PA-APIでASIN/URLを埋める（必要なときだけインストール）
+      - name: Install paapi sdk
+        run: npm i --no-save paapi5-nodejs-sdk
+
+      - name: Fill Amazon ASIN
+        run: node scripts/manga/amazon_asin.mjs
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
 
-      - run: |
+      # 5) コミット&プッシュ（差分があるときだけ）
+      - name: Commit changes
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/manga/items_master.json
-          git diff --cached --quiet || git commit -m "build manga items"
+
+          git add data/manga/items_master.json || true
+
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+
+          git commit -m "build manga items"
           git push
