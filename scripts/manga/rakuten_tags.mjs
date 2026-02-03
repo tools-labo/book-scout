@@ -1,7 +1,10 @@
 import fs from "node:fs/promises";
 
 const APP_ID = process.env.RAKUTEN_APP_ID;
-if (!APP_ID) throw new Error("missing RAKUTEN_APP_ID secret");
+if (!APP_ID) throw new Error("missing RAKUTEN_APP_ID");
+
+const src = "data/manga/items_master.json";
+const cachePath = "data/manga/rakuten_genre_by_isbn.json";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -11,7 +14,7 @@ async function fetchJson(url, tries = 4) {
     const t = await r.text();
     if (r.ok) return JSON.parse(t);
     if (r.status === 429 && i < tries - 1) { await sleep(1200 * (i + 1)); continue; }
-    throw new Error(`HTTP ${r.status}\nURL: ${url}\nBODY: ${t.slice(0, 200)}`);
+    throw new Error(`HTTP ${r.status}\n${t.slice(0, 200)}`);
   }
 }
 
@@ -22,12 +25,9 @@ const pickItem = (p) => {
 };
 
 const splitPath = (s) =>
-  String(s || "")
-    .split("/")
-    .map((x) => x.trim())
-    .filter(Boolean);
+  String(s || "").split("/").map((x) => x.trim()).filter(Boolean);
 
-function buildUrl(isbn13) {
+function urlBookByIsbn(isbn13) {
   const u = new URL("https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404");
   u.searchParams.set("format", "json");
   u.searchParams.set("formatVersion", "2");
@@ -37,24 +37,30 @@ function buildUrl(isbn13) {
   return u.toString();
 }
 
-const path = "data/manga/items_master.json";
-const items = JSON.parse(await fs.readFile(path, "utf8"));
+const items = JSON.parse(await fs.readFile(src, "utf8"));
 
-let tagged = 0, miss = 0, updated = 0;
+let cache = {};
+try { cache = JSON.parse(await fs.readFile(cachePath, "utf8")); } catch {}
+
+let hitCache = 0, fetched = 0, miss = 0;
+
 for (const x of items) {
-  if (!x?.isbn13) continue;
+  const isbn = x?.isbn13;
+  if (!isbn) continue;
 
-  const hasIds = (x.rakutenGenreIds || []).length > 0;
-  const hasNames = (x.rakutenGenreNames || []).length > 0;
-
-  // idsもnamesも揃ってるならスキップ（＝空namesは埋め直す）
-  if (hasIds && hasNames) continue;
+  // まずキャッシュがあれば復元（API呼ばない）
+  const c = cache[isbn];
+  if (c?.ids?.length) {
+    x.rakutenGenreIds = c.ids;
+    hitCache++;
+    continue;
+  }
 
   await sleep(220);
 
   let it = null;
   try {
-    const p = await fetchJson(buildUrl(x.isbn13));
+    const p = await fetchJson(urlBookByIsbn(isbn));
     it = pickItem(p);
   } catch {
     miss++;
@@ -63,16 +69,11 @@ for (const x of items) {
   if (!it) { miss++; continue; }
 
   const ids = splitPath(it.booksGenreId);
-  const names = splitPath(it.booksGenreName);
-
-  if (ids.length || names.length) {
-    x.rakutenGenreIds = ids;
-    x.rakutenGenreNames = names;
-    if (hasIds || hasNames) updated++; else tagged++;
-  } else {
-    miss++;
-  }
+  x.rakutenGenreIds = ids;
+  cache[isbn] = { ids };
+  fetched++;
 }
 
-await fs.writeFile(path, JSON.stringify(items, null, 2));
-console.log(`rakuten_tags: tagged=${tagged} updated=${updated} miss=${miss}`);
+await fs.writeFile(src, JSON.stringify(items, null, 2));
+await fs.writeFile(cachePath, JSON.stringify(cache, null, 2));
+console.log(`rakuten_tags: cache_hit=${hitCache} fetched=${fetched} miss=${miss}`);
