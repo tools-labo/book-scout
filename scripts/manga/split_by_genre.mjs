@@ -16,37 +16,15 @@ for (const it of items) {
 }
 const reps = [...m.values()];
 
-// ★デバッグ：楽天ジャンル名の実物を少しだけ出す（最初の5件）
-console.log("[split_by_genre] sample genreNames:");
+// ★デバッグ：解決済みジャンル階層名を5件だけ出す
+console.log("[split_by_genre] sample genrePathNames:");
 for (const x of reps.slice(0, 5)) {
-  console.log(" -", (x.rakutenGenreNames || []).join(" / "));
+  console.log(" -", (x.rakutenGenrePathNames || []).join(" / "));
 }
 
-const norm = (s) => String(s || "").toLowerCase();
+// いまは全部otherにしておく（語彙確認後にbucket実装）
+const buckets = new Map([["other", reps]]);
 
-// いったん雑に「内容っぽい語」が見えたら拾う（当たらなければotherへ）
-function bucket(x) {
-  const names = (x.rakutenGenreNames || []).join(" ");
-  const s = norm(names);
-
-  if (s.includes("恋愛") || s.includes("ラブ") || s.includes("ロマンス")) return "love";
-  if (s.includes("ギャグ") || s.includes("コメディ")) return "gag";
-  if (s.includes("ミステリー") || s.includes("サスペンス") || s.includes("ホラー") || s.includes("怪談")) return "mystery";
-  if (s.includes("歴史") || s.includes("時代")) return "history";
-  if (s.includes("アクション") || s.includes("バトル") || s.includes("格闘")) return "action";
-
-  return "other";
-}
-
-const buckets = new Map();
-for (const x of reps) {
-  const b = bucket(x);
-  const arr = buckets.get(b) || [];
-  arr.push(x);
-  buckets.set(b, arr);
-}
-
-// 一覧に必要な最小フィールドだけ出力（軽量）
 const pick = (x) => ({
   workKey: x.workKey || x.title,
   title: x.title || "",
@@ -58,7 +36,7 @@ const pick = (x) => ({
   asin: x.asin || null,
   amazonUrl: x.amazonUrl || null,
   rakutenGenreIds: x.rakutenGenreIds || [],
-  rakutenGenreNames: x.rakutenGenreNames || []
+  rakutenGenrePathNames: x.rakutenGenrePathNames || []
 });
 
 await fs.mkdir(outDir, { recursive: true });
