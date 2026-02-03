@@ -2,25 +2,34 @@ import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function j(url, tries = 6) {
+async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
-    const r = await fetch(url, { cache: "no-store" });
-    if (r.ok) return await r.json();
+    const ac = new AbortController();
+    const to = setTimeout(() => ac.abort(), 15000); // 15s timeout
+    try {
+      const r = await fetch(url, { cache: "no-store", signal: ac.signal });
+      clearTimeout(to);
 
-    const body = await r.text().catch(() => "");
-    const retryAfter = Number(r.headers.get("retry-after") || 0) * 1000;
+      if (r.ok) return await r.json();
 
-    // 429 / 5xx は待って再試行
-    if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
-      const backoff = 800 * (2 ** i); // 0.8s, 1.6s, 3.2s...
-      const jitter = Math.floor(Math.random() * 300);
-      await sleep(Math.max(retryAfter, backoff) + jitter);
-      continue;
+      const body = await r.text().catch(() => "");
+      // 429/5xx は短くリトライ（長い待ちはしない）
+      if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
+        await sleep(800 + i * 600); // 0.8s, 1.4s
+        continue;
+      }
+      throw new Error(`HTTP ${r.status}\nBODY: ${body.slice(0, 120)}`);
+    } catch (e) {
+      clearTimeout(to);
+      // Abort/Network も短くリトライ
+      if (i < tries - 1) {
+        await sleep(800 + i * 600);
+        continue;
+      }
+      throw e;
     }
-
-    throw new Error(`HTTP ${r.status}\nURL: ${url}\nBODY: ${body.slice(0, 200)}`);
   }
-  throw new Error(`HTTP 429 (exhausted retries)\nURL: ${url}`);
+  return null;
 }
 
 const norm = (s) =>
@@ -48,7 +57,6 @@ function baseTitle(title) {
     .trim();
 }
 
-// 親（本編）寄せキー
 function parentWorkKey(title) {
   const b = baseTitle(title);
   const cut = b.split(
@@ -61,22 +69,19 @@ function classifySeriesType(title) {
   const t = norm(title);
   if (/(color\s*walk|カラー\s*ウォーク|カラーウォーク|画集|イラスト|art\s*book|visual|ビジュアル|原画|設定資料)/i.test(t)) return "art";
   if (/(公式|ガイド|guide|ファンブック|キャラクター|データブック|ムック|解説|大全|book\s*guide)/i.test(t)) return "guide";
-  if (/(スピンオフ|spinoff|episode|外伝|番外編|短編集|アンソロジー|公式アンソロジー)/i.test(t)) return "spinoff";
+  if (/(スピンオフ|spinoff|episode|外伝|番外編|短編集|アンソロジー)/i.test(t)) return "spinoff";
   return "main";
 }
 
 async function googleByIsbn(isbn) {
   const u = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&maxResults=1`;
-  const r = await j(u);
+  const r = await fetchJson(u);
   return r?.items?.[0]?.volumeInfo || null;
 }
 
 function repPick(group) {
-  // 1) main&vol1 があれば必ずそれ
   const v1 = group.find((x) => x.seriesType === "main" && x.volumeHint === 1);
   if (v1) return v1;
-
-  // 2) mainの最小巻
   const main = group.filter((x) => x.seriesType === "main");
   const pool = main.length ? main : group;
   const withVol = pool
@@ -85,44 +90,38 @@ function repPick(group) {
   return withVol[0] || pool[0];
 }
 
-// ---------------------------
-// main
-// ---------------------------
-
+// ---- main ----
 const N = Number(process.env.ITEMS_MASTER || 30);
 
-// candidates 読み込み（形が違っても耐える）
 const candRaw = JSON.parse(await fs.readFile("data/manga/candidates.json", "utf8"));
 const candList = Array.isArray(candRaw) ? candRaw : candRaw.items || candRaw.Items || [];
 const src = candList.slice(0, N);
 
-// 既存items_masterがあればASIN等を引き継ぐ
+// 既存を引き継ぐ（asin/amazonUrl）
 let prev = [];
-try {
-  prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
-} catch {}
+try { prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8")); } catch {}
 const prevByIsbn = new Map(prev.map((x) => [x.isbn13, x]).filter(([k]) => k));
 
 const items = [];
 let descCount = 0;
 
-// candidates → items（429対策で少し間隔を空ける）
-for (const x of src) {
+for (let i = 0; i < src.length; i++) {
+  const x = src[i];
   const isbn = x.isbn || x.isbn13 || null;
   if (!isbn) continue;
 
   const prevHit = prevByIsbn.get(isbn) || {};
-  let v = null;
+  console.log(`[openbd_items] ${i + 1}/${src.length} isbn=${isbn} title=${String(x.title || "").slice(0, 40)}`);
 
+  let v = null;
   try {
     v = await googleByIsbn(isbn);
   } catch (e) {
-    // ここで落とさない（次のループへ）
+    console.log(`[openbd_items]   skip (fetch failed): ${String(e?.message || e).slice(0, 80)}`);
     v = null;
   }
 
-  // 連続アクセス抑制（429予防）
-  await sleep(140);
+  await sleep(120); // 呼び出し間隔を少し空ける
 
   const description = v?.description || null;
   if (description) descCount++;
@@ -144,7 +143,7 @@ for (const x of src) {
   });
 }
 
-// rep付け
+// rep付与
 const byWork = new Map();
 for (const it of items) {
   const k = it.workKey || it.title;
@@ -152,10 +151,8 @@ for (const it of items) {
   g.push(it);
   byWork.set(k, g);
 }
-
 for (const [, g] of byWork) repPick(g)._rep = true;
 
-// 書き込み
 await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
 
 const works = items.filter((x) => x._rep).length;
