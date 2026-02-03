@@ -49,6 +49,16 @@ function amazonLink(x) {
   return null;
 }
 
+// ★誤誘導防止：①巻(main&vol1)のリンクが無いなら他巻へフォールバックしない
+function bestAmazonLink(group, current) {
+  const isVol1 = (x) => x?.seriesType === "main" && x?.volumeHint === 1;
+  return (
+    amazonLink(current) ||
+    amazonLink(group.find(isVol1) || null) ||
+    null
+  );
+}
+
 function groupByWork(items) {
   const m = new Map();
   for (const it of items) {
@@ -92,7 +102,6 @@ function showWorkDetail(group, initialItem) {
 
   const reps = repsBySeriesType(group);
 
-  // ★ここが修正点：クリックした行（initialItem）を優先して表示
   let current =
     (initialItem && group.find((x) => x.isbn13 === initialItem.isbn13)) ||
     group.find((x) => x._rep) ||
@@ -102,10 +111,10 @@ function showWorkDetail(group, initialItem) {
   const render = () => {
     const meta = [current.author, current.publisher, current.publishedAt].filter(Boolean).join(" / ");
 
-    const a = amazonLink(current) || amazonLink(group.find((x) => amazonLink(x)) || null);
+    const a = bestAmazonLink(group, current);
     const btn = a
       ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`
-      : "";
+      : `<p class="d-empty">Amazonリンク準備中</p>`;
 
     const chips = reps
       .map((x) => {
@@ -126,7 +135,6 @@ function showWorkDetail(group, initialItem) {
     d.querySelectorAll("button[data-st]").forEach((el) => {
       el.addEventListener("click", () => {
         const st = el.getAttribute("data-st");
-        // seriesTypeの代表へ切り替え（_rep優先で安定）
         current = reps.find((x) => (x.seriesType || "other") === st) || current;
         render();
       });
@@ -166,7 +174,6 @@ function render(items, q) {
       <div class="title">${escapeHtml(x.title || "（タイトルなし）")}</div>
       <div class="meta">${escapeHtml([x.author, x.publisher].filter(Boolean).join(" / "))}</div>
     `;
-    // ★ここが修正点：クリックしたrepを渡す
     li.addEventListener("click", () => showWorkDetail(w.group, w.rep));
     list.appendChild(li);
     if (i === 0) showWorkDetail(w.group, w.rep);
