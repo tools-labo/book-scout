@@ -36,9 +36,13 @@ async function isbnToAsin(isbn) {
       if (err) return resolve({ ok: false, err });
       const res = ProductAdvertisingAPIv1.SearchItemsResponse.constructFromObject(data);
       const list = res?.SearchResult?.Items || [];
-      const hit = list.find((x) => pickIsbn(x) === String(isbn)) || list[0];
-      if (!hit) return resolve({ ok: true, asin: null, url: null });
-      resolve({ ok: true, asin: hit.ASIN || null, url: hit.DetailPageURL || null });
+      const exact = list.find((x) => pickIsbn(x) === String(isbn)) || null;
+if (!exact) return resolve({ ok: true, asin: null, url: null });
+
+const title = exact?.ItemInfo?.Title?.DisplayValue || "";
+if (isSetTitle(title)) return resolve({ ok: true, asin: null, url: null });
+
+resolve({ ok: true, asin: exact.ASIN || null, url: exact.DetailPageURL || null });
     });
   });
 }
@@ -67,5 +71,18 @@ for (const x of need) {
   }
 }
 
+const isSetTitle = (t) => {
+  const s = String(t || "").toLowerCase();
+  return (
+    s.includes("セット") ||
+    s.includes("全巻") ||
+    s.includes("box") ||
+    s.includes("ボックス") ||
+    s.includes("まとめ") ||
+    s.includes("コミックセット") ||
+    s.match(/\b\d+\s*-\s*\d+\b/) ||   // 1-11
+    s.match(/1\s*〜\s*\d+/)           // 1〜11
+  );
+};
 await fs.writeFile(path, JSON.stringify(items, null, 2));
 console.log(`asin_added=${ok} targets=${need.length} items=${items.length}`);
