@@ -3,7 +3,6 @@ name: Manga items (build)
 on:
   workflow_dispatch:
   schedule:
-    # 既存の頻度に合わせて調整してOK。例: 6時間に1回
     - cron: "17 */6 * * *"
 
 jobs:
@@ -20,7 +19,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Build manga items
         env:
@@ -34,7 +32,6 @@ jobs:
           node scripts/manga/rakuten_tags.mjs
           node scripts/manga/rakuten_genre_resolve.mjs
 
-          # ★追加：Wikidata → AniList でジャンル/タグ補完
           node scripts/manga/wikidata_ids.mjs
           node scripts/manga/anilist_tags.mjs
 
