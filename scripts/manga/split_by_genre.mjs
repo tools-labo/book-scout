@@ -16,14 +16,18 @@ for (const it of items) {
 }
 const reps = [...m.values()];
 
-// ★デバッグ：解決済みジャンル階層名を5件だけ出す
-console.log("[split_by_genre] sample genrePathNames:");
-for (const x of reps.slice(0, 5)) {
-  console.log(" -", (x.rakutenGenrePathNames || []).join(" / "));
-}
+const norm = (s) => String(s || "");
 
-// いまは全部otherにしておく（語彙確認後にbucket実装）
-const buckets = new Map([["other", reps]]);
+function bucket(x) {
+  const p = x.rakutenGenrePathNames || [];
+  if (!p.length) return "unknown";
+  const s = norm(p.join(" / "));
+  if (s.includes("少年")) return "shonen";
+  if (s.includes("少女")) return "shojo";
+  if (s.includes("青年")) return "seinen";
+  if (s.includes("レディース") || s.includes("女性")) return "josei";
+  return "other";
+}
 
 const pick = (x) => ({
   workKey: x.workKey || x.title,
@@ -39,13 +43,23 @@ const pick = (x) => ({
   rakutenGenrePathNames: x.rakutenGenrePathNames || []
 });
 
+const buckets = new Map();
+for (const x of reps) {
+  const b = bucket(x);
+  const arr = buckets.get(b) || [];
+  arr.push(pick(x));
+  buckets.set(b, arr);
+}
+
 await fs.mkdir(outDir, { recursive: true });
 
 let total = 0;
 for (const [b, arr] of buckets) {
-  const data = arr.map(pick);
-  total += data.length;
-  await fs.writeFile(`${outDir}/${b}.json`, JSON.stringify(data, null, 2));
+  total += arr.length;
+  await fs.writeFile(`${outDir}/${b}.json`, JSON.stringify(arr, null, 2));
 }
 
-console.log(`split_by_genre: works=${reps.length} files=${buckets.size} total_written=${total}`);
+console.log(
+  `split_by_genre: works=${reps.length} files=${buckets.size} total_written=${total}`
+);
+for (const [b, arr] of buckets) console.log(`  - ${b}: ${arr.length}`);
