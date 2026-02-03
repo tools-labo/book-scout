@@ -2,12 +2,17 @@ const $ = (id) => document.getElementById(id);
 
 const getParams = () => {
   const sp = new URLSearchParams(location.search);
-  return { cat: sp.get("cat") || "manga", q: sp.get("q") || "" };
+  return {
+    cat: sp.get("cat") || "manga",
+    q: sp.get("q") || "",
+    g: sp.get("g") || "all",
+  };
 };
 
 const setParams = (next, replace = true) => {
   const sp = new URLSearchParams(location.search);
   if (next.cat != null) sp.set("cat", next.cat);
+  if (next.g != null) sp.set("g", next.g);
   if (next.q != null) {
     const q = String(next.q).trim();
     q ? sp.set("q", q) : sp.delete("q");
@@ -25,17 +30,20 @@ const escapeHtml = (s) =>
     "'": "&#39;",
   }[c]));
 
-async function load(cat) {
-  const base = `./data/${cat}/items_master.json`;
-  const url = `${base}?v=${Date.now()}`; // キャッシュ回避
-  $("status").textContent = `読み込み中: ${base}`;
+function dataUrl(cat, g) {
+  if (cat === "manga" && g && g !== "all") return `./data/manga/by_genre/${g}.json`;
+  return `./data/${cat}/items_master.json`;
+}
 
+async function load(cat, g) {
+  const base = dataUrl(cat, g);
+  const url = `${base}?v=${Date.now()}`;
+  $("status").textContent = `読み込み中: ${base}`;
   try {
     const r = await fetch(url, { cache: "no-store" });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const items = await r.json();
-    const works = items.filter((x) => x._rep).length;
-    $("status").textContent = `${cat}: ${works}作品（data ${items.length}件）`;
+    $("status").textContent = `${cat}${g && g !== "all" ? `/${g}` : ""}: ${items.length}件`;
     return items;
   } catch {
     $("status").textContent = `データがまだありません（${base}）`;
@@ -47,16 +55,6 @@ function amazonLink(x) {
   if (x?.amazonUrl) return x.amazonUrl;
   if (x?.asin) return `https://www.amazon.co.jp/dp/${encodeURIComponent(x.asin)}`;
   return null;
-}
-
-// ★誤誘導防止：①巻(main&vol1)のリンクが無いなら他巻へフォールバックしない
-function bestAmazonLink(group, current) {
-  const isVol1 = (x) => x?.seriesType === "main" && x?.volumeHint === 1;
-  return (
-    amazonLink(current) ||
-    amazonLink(group.find(isVol1) || null) ||
-    null
-  );
 }
 
 function groupByWork(items) {
@@ -77,16 +75,12 @@ function pickWorkRep(group) {
   return group.find((x) => x._rep) || group.find((x) => x.seriesType === "main") || group[0] || null;
 }
 
-// seriesTypeごとに代表を1つにする（優先: _rep > volumeHint=1 > 先に来たもの）
 function repsBySeriesType(group) {
   const map = new Map();
   for (const it of group) {
     const k = it.seriesType || "other";
     const cur = map.get(k);
-    if (!cur) {
-      map.set(k, it);
-      continue;
-    }
+    if (!cur) { map.set(k, it); continue; }
     if (!cur._rep && it._rep) { map.set(k, it); continue; }
     if (cur.volumeHint !== 1 && it.volumeHint === 1) { map.set(k, it); continue; }
   }
@@ -110,11 +104,10 @@ function showWorkDetail(group, initialItem) {
 
   const render = () => {
     const meta = [current.author, current.publisher, current.publishedAt].filter(Boolean).join(" / ");
-
-    const a = bestAmazonLink(group, current);
+    const a = amazonLink(current) || amazonLink(group.find((x) => amazonLink(x)) || null);
     const btn = a
       ? `<p><a href="${escapeHtml(a)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`
-      : `<p class="d-empty">Amazonリンク準備中</p>`;
+      : `<p><span class="d-empty">準備中（Amazonリンク未取得）</span></p>`;
 
     const chips = reps
       .map((x) => {
@@ -148,12 +141,19 @@ function render(items, q) {
   const list = $("list");
   list.innerHTML = "";
 
-  const byWork = groupByWork(items);
+  // by_genreは代表配列なので、そのまま works 扱い
+  const looksLikeReps = items.length && !items[0]._rep && !items.some((x) => x.seriesType);
   const works = [];
-  for (const [wk, group] of byWork) {
-    const rep = pickWorkRep(group);
-    if (!rep) continue;
-    works.push({ rep, group });
+
+  if (looksLikeReps) {
+    for (const x of items) works.push({ rep: x, group: [x] });
+  } else {
+    const byWork = groupByWork(items);
+    for (const [, group] of byWork) {
+      const rep = pickWorkRep(group);
+      if (!rep) continue;
+      works.push({ rep, group });
+    }
   }
 
   const qq = (q || "").trim().toLowerCase();
@@ -170,8 +170,10 @@ function render(items, q) {
   filtered.forEach((w, i) => {
     const x = w.rep;
     const li = document.createElement("li");
+    const a = amazonLink(x);
+    const linkState = a ? "" : "（準備中）";
     li.innerHTML = `
-      <div class="title">${escapeHtml(x.title || "（タイトルなし）")}</div>
+      <div class="title">${escapeHtml(x.title || "（タイトルなし）")} ${escapeHtml(linkState)}</div>
       <div class="meta">${escapeHtml([x.author, x.publisher].filter(Boolean).join(" / "))}</div>
     `;
     li.addEventListener("click", () => showWorkDetail(w.group, w.rep));
@@ -183,14 +185,26 @@ function render(items, q) {
 let all = [];
 let lock = false;
 
+function syncGenreUi(cat, g) {
+  const el = $("genre");
+  if (!el) return;
+  const show = cat === "manga";
+  el.style.display = show ? "" : "none";
+  if (show) el.value = g || "all";
+}
+
 async function sync() {
   if (lock) return;
   lock = true;
-  const { cat, q } = getParams();
+
+  const { cat, q, g } = getParams();
   $("cat").value = cat;
   $("q").value = q;
-  all = await load(cat);
+  syncGenreUi(cat, g);
+
+  all = await load(cat, g);
   render(all, q);
+
   lock = false;
 }
 
@@ -201,10 +215,24 @@ function setup() {
   });
 
   $("cat").addEventListener("change", async () => {
-    setParams({ cat: $("cat").value }, false);
-    all = await load($("cat").value);
+    const cat = $("cat").value;
+    const g = getParams().g || "all";
+    setParams({ cat }, false);
+    syncGenreUi(cat, g);
+    all = await load(cat, g);
     render(all, $("q").value);
   });
+
+  const genre = $("genre");
+  if (genre) {
+    genre.addEventListener("change", async () => {
+      const { cat } = getParams();
+      const g = genre.value || "all";
+      setParams({ g }, false);
+      all = await load(cat, g);
+      render(all, $("q").value);
+    });
+  }
 
   addEventListener("popstate", sync);
 }
