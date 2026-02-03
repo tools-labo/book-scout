@@ -3,10 +3,33 @@ import fs from "node:fs/promises";
 const APP = process.env.RAKUTEN_APP_ID;
 if (!APP) throw new Error("missing RAKUTEN_APP_ID");
 
-const j = (u) =>
-  fetch(u).then(async (r) =>
-    r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}\n${(await r.text()).slice(0, 200)}`))
-  );
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function fetchJson(url, tries = 3) {
+  for (let i = 0; i < tries; i++) {
+    const ac = new AbortController();
+    const to = setTimeout(() => ac.abort(), 15000);
+    try {
+      const r = await fetch(url, { cache: "no-store", signal: ac.signal });
+      clearTimeout(to);
+      if (r.ok) return await r.json();
+      if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
+        await sleep(800 + i * 600);
+        continue;
+      }
+      const t = await r.text().catch(() => "");
+      throw new Error(`HTTP ${r.status}\n${t.slice(0, 200)}`);
+    } catch (e) {
+      clearTimeout(to);
+      if (i < tries - 1) {
+        await sleep(800 + i * 600);
+        continue;
+      }
+      throw e;
+    }
+  }
+  return null;
+}
 
 const norm = (s) =>
   (s || "")
@@ -47,22 +70,16 @@ async function rakutenSearch({ title, keyword, sort, page }) {
     `?format=json&formatVersion=2&applicationId=${encodeURIComponent(APP)}` +
     `&booksGenreId=001001&hits=30&page=${page || 1}` +
     (sort ? `&sort=${encodeURIComponent(sort)}` : "") +
-    `&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,salesDate`;
+    `&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,salesDate,itemCaption`;
 
   const url =
     base +
     (title ? `&title=${encodeURIComponent(title)}` : "") +
     (keyword ? `&keyword=${encodeURIComponent(keyword)}` : "");
 
-  const r = await j(url);
+  const r = await fetchJson(url);
   const items = r?.Items || [];
   return items.map((x) => x?.Item || x).filter(Boolean);
-}
-
-async function googleDesc(isbn) {
-  const u = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&maxResults=1`;
-  const r = await j(u);
-  return r?.items?.[0]?.volumeInfo?.description || null;
 }
 
 function pickBest(targetWK, list) {
@@ -74,7 +91,6 @@ function pickBest(targetWK, list) {
     const wk = parentWorkKey(title);
     if (!wk) continue;
 
-    // 親キー一致（完全一致 > 部分一致）
     const ok = wk === t || wk.includes(t) || t.includes(wk);
     if (!ok) continue;
 
@@ -87,35 +103,40 @@ function pickBest(targetWK, list) {
 }
 
 async function findVol1Candidate(wk) {
-  const titleKey = wk; // workKeyは既に正規化されてる想定
+  const titleKey = wk;
   const tries = [
-    // ① titleで「wk 1」優先
     { title: `${titleKey} 1`, sort: "standard", page: 1 },
     { title: `${titleKey} 1`, sort: "standard", page: 2 },
-
-    // ② titleで wk（古い巻が上に来やすい並び）
     { title: titleKey, sort: "+releaseDate", page: 1 },
     { title: titleKey, sort: "+releaseDate", page: 2 },
-
-    // ③ keywordにフォールバック（保険）
     { keyword: `${titleKey} 1`, sort: "standard", page: 1 },
     { keyword: `${titleKey} 1`, sort: "standard", page: 2 },
-    { keyword: titleKey, sort: "+releaseDate", page: 1 },
-    { keyword: titleKey, sort: "+releaseDate", page: 2 },
   ];
 
   for (const q of tries) {
     const list = await rakutenSearch(q);
     const best = pickBest(wk, list);
     if (best) return best;
+    await sleep(120);
   }
   return null;
+}
+
+function pickRep(group) {
+  const v1 = group.find((x) => x.seriesType === "main" && x.volumeHint === 1);
+  if (v1) return v1;
+  const main = group.filter((x) => x.seriesType === "main");
+  const pool = main.length ? main : group;
+  const withVol = pool
+    .filter((x) => Number.isFinite(x.volumeHint))
+    .sort((a, b) => a.volumeHint - b.volumeHint);
+  return withVol[0] || pool[0];
 }
 
 const path = "data/manga/items_master.json";
 const items = JSON.parse(await fs.readFile(path, "utf8"));
 
-// 既存アイテムにvolumeHintが無ければ補完（rep選定の精度を上げる）
+// volumeHintが空なら補完
 for (const x of items) {
   if (!Number.isFinite(x.volumeHint)) {
     const v = volumeHintFromTitle(x.title);
@@ -149,19 +170,19 @@ for (const [wk, group] of byWork) {
   const isbn = it.isbn || null;
   if (!isbn) continue;
 
-  // 既に同ISBNがあるなら昇格（main/vol1扱い）
+  // 既にあれば昇格
   if (byIsbn.has(isbn)) {
     const ex = items.find((x) => x.isbn13 === isbn);
     if (ex) {
       ex.workKey = wk;
       ex.seriesType = "main";
-      ex.volumeHint = 1; // ①巻候補として扱う（repを確実に寄せる）
+      ex.volumeHint = 1;
+      if (!ex.description && it.itemCaption) ex.description = it.itemCaption;
+      if (!ex.image && it.largeImageUrl) ex.image = it.largeImageUrl;
       promoted++;
     }
     continue;
   }
-
-  const desc = await googleDesc(isbn);
 
   items.push({
     workKey: wk,
@@ -173,16 +194,17 @@ for (const [wk, group] of byWork) {
     asin: null,
     amazonUrl: null,
     publishedAt: it.salesDate || null,
-    description: desc,
+    description: it.itemCaption || null,
     image: it.largeImageUrl || null,
     volumeHint: best.v || 1,
+    _rep: false,
   });
 
   byIsbn.add(isbn);
   added++;
 }
 
-// 代表付け替え：main&vol1があれば必ずそれを_repにする
+// rep 付け替え
 const byWork2 = new Map();
 for (const x of items) {
   x._rep = false;
@@ -191,23 +213,6 @@ for (const x of items) {
   g.push(x);
   byWork2.set(k, g);
 }
-
-function pickRep(group) {
-  // 1) mainの①巻があれば最優先
-  const v1 = group.find((x) => x.seriesType === "main" && x.volumeHint === 1);
-  if (v1) return v1;
-
-  // 2) mainの最小巻
-  const main = group.filter((x) => x.seriesType === "main");
-  const pool = main.length ? main : group;
-
-  const withVol = pool
-    .filter((x) => Number.isFinite(x.volumeHint))
-    .sort((a, b) => a.volumeHint - b.volumeHint);
-
-  return withVol[0] || pool[0];
-}
-
 for (const [, g] of byWork2) pickRep(g)._rep = true;
 
 await fs.writeFile(path, JSON.stringify(items, null, 2));
