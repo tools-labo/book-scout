@@ -1,175 +1,105 @@
 import fs from "node:fs/promises";
+import crypto from "node:crypto";
 
-const SRC = "data/manga/items_master.json";
-const OUT_WORKS = "data/manga/works.json";
-const OUT_DIR = "data/manga/index";
+const worksPath = "data/manga/works.json";
+const outDir = "data/manga/index";
 
-const safeJson = async (p) => {
-  try { return JSON.parse(await fs.readFile(p, "utf8")); } catch { return null; }
+const works = JSON.parse(await fs.readFile(worksPath, "utf8"));
+
+const ensureArray = (v) => {
+  if (!v) return [];
+  if (Array.isArray(v)) return v.filter(Boolean).map(String);
+  return [String(v)];
 };
 
-// 安定した短いID（出版社など日本語を安全なファイル名にする）
-const fnv1a = (s) => {
-  let h = 0x811c9dc5;
-  for (const ch of String(s)) {
-    h ^= ch.codePointAt(0);
-    h = Math.imul(h, 0x01000193);
-  }
-  return (h >>> 0).toString(16);
+const uniq = (arr) => [...new Set(arr.filter(Boolean).map(String))];
+
+const safeKey = (s) =>
+  String(s || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_]+/g, "")
+    .slice(0, 64) || "unknown";
+
+const hashId = (prefix, s) => {
+  const h = crypto.createHash("sha1").update(String(s || "")).digest("hex").slice(0, 8);
+  return `${prefix}_${h}`;
 };
-const uniq = (arr) => [...new Set((arr || []).filter(Boolean))];
 
-// workKey単位で代表を作る（_rep優先→volumeHint=1→先着）
-function pickRep(prev, cur) {
-  if (!prev) return cur;
-  if (!prev._rep && cur._rep) return cur;
-  if (prev.volumeHint !== 1 && cur.volumeHint === 1) return cur;
-  return prev;
-}
-
-const items = await safeJson(SRC) || [];
-const repMap = new Map();
-for (const it of items) {
-  const k = it.workKey || it.title;
-  repMap.set(k, pickRep(repMap.get(k), it));
-}
-const reps = [...repMap.values()];
-
-// AniListキャッシュ（すでに作ってる前提：data/manga/anilist_by_work.json）
-const anilist = (await safeJson("data/manga/anilist_by_work.json")) || {};
-const alGet = (wk) => anilist[wk] || null;
-
-// 作品→大ジャンル（まずは取れる範囲で）
-const GENRE_KEYS = {
-  action_battle: ["Action"],
-  adventure: ["Adventure", "Fantasy"],
-  comedy_gag: ["Comedy"],
-  drama: ["Drama", "Slice of Life"],
-  mystery: ["Mystery", "Thriller", "Psychological"],
-  romance_lovecom: ["Romance"],
-  sports: ["Sports"],
-};
-function pickGenres(wk) {
-  const a = alGet(wk);
-  const genres = uniq(a?.genres);
-  const out = [];
-  for (const [k, keys] of Object.entries(GENRE_KEYS)) {
-    if (keys.some((x) => genres.includes(x))) out.push(k);
-  }
-  return out.length ? out : ["other"];
-}
-
-// 楽天のジャンルパス（少年/少女/青年/女性など）
-function pickDemo(rep) {
-  const p = (rep.rakutenGenrePathNames || []).join(" / ");
-  if (!p) return ["unknown"];
-  if (p.includes("少年")) return ["shonen"];
-  if (p.includes("少女")) return ["shojo"];
-  if (p.includes("青年")) return ["seinen"];
-  if (p.includes("レディース") || p.includes("女性")) return ["josei"];
-  return ["other"];
-}
-
-// 出版社は日本語が多いのでID化して meta に表示名を持つ
-function pickPublisher(rep) {
-  const name = (rep.publisher || "").trim();
-  if (!name) return { id: "unknown", label: "不明" };
-  const id = `p_${fnv1a(name)}`;
-  return { id, label: name };
-}
-
-// works.json（workKey→作品）
-const works = {};
-// index（facet/value→workKey配列）
-const index = {
+// facet -> valueKey -> [workKey...]
+const facetMap = {
   genre: new Map(),
   demo: new Map(),
   publisher: new Map(),
 };
 
-const pushIndex = (facet, key, wk) => {
-  const m = index[facet];
-  const a = m.get(key) || [];
-  a.push(wk);
-  m.set(key, a);
-};
+function addFacet(facet, valueKey, workKey) {
+  const m = facetMap[facet];
+  const arr = m.get(valueKey) || [];
+  arr.push(workKey);
+  m.set(valueKey, arr);
+}
 
-const meta = {
-  genre: {
-    action_battle: "アクション",
-    adventure: "冒険",
-    comedy_gag: "ギャグ",
-    drama: "ドラマ",
-    mystery: "ミステリー",
-    romance_lovecom: "恋愛/ラブコメ",
-    sports: "スポーツ",
-    other: "その他",
-  },
-  demo: {
-    shonen: "少年",
-    shojo: "少女",
-    seinen: "青年",
-    josei: "女性",
-    other: "その他",
-    unknown: "不明",
-  },
-  publisher: { unknown: "不明" },
-};
+let workCount = 0;
 
-for (const rep of reps) {
-  const wk = rep.workKey || rep.title;
-  const genres = pickGenres(wk);
-  const demos = pickDemo(rep);
-  const pub = pickPublisher(rep);
+for (const [workKey, w] of Object.entries(works)) {
+  workCount++;
 
-  // works 本体
-  works[wk] = {
-    workKey: wk,
-    title: rep.title || "",
-    author: rep.author || "",
-    publisher: rep.publisher || "",
-    publishedAt: rep.publishedAt || "",
-    description: rep.description || "",
-    image: rep.image || rep.largeImageUrl || rep.cover || "",
-    asin: rep.asin || null,
-    amazonUrl: rep.amazonUrl || null,
-    tags: {
-      genre: genres,
-      demo: demos,
-      publisher: [pub.id],
-    },
-  };
+  const tags = w.tags || {};
 
-  // index へ（複数所属OK）
-  for (const g of genres) pushIndex("genre", g, wk);
-  for (const d of demos) pushIndex("demo", d, wk);
-  pushIndex("publisher", pub.id, wk);
+  // ---- genre（複数OK。空なら unknown。）
+  const genres = uniq(ensureArray(tags.genre));
+  if (genres.length === 0) addFacet("genre", "unknown", workKey);
+  else for (const g of genres) addFacet("genre", safeKey(g), workKey);
 
-  meta.publisher[pub.id] = pub.label;
+  // ---- demo（複数OK。空なら unknown。）
+  const demos = uniq(ensureArray(tags.demo));
+  if (demos.length === 0) addFacet("demo", "unknown", workKey);
+  else for (const d of demos) addFacet("demo", safeKey(d), workKey);
+
+  // ---- publisher（あなたの現状：tags.publisher が p_xxxxxxxx なのでそのまま使う）
+  // もし tags.publisher が無い作品が増えたら、publisher文字列から生成して入れる。
+  const pubs = uniq(ensureArray(tags.publisher));
+  if (pubs.length === 0) {
+    if (w.publisher) addFacet("publisher", hashId("p", w.publisher), workKey);
+    else addFacet("publisher", "unknown", workKey);
+  } else {
+    for (const p of pubs) addFacet("publisher", safeKey(p), workKey);
+  }
 }
 
 // 出力
-await fs.mkdir(`${OUT_DIR}/genre`, { recursive: true });
-await fs.mkdir(`${OUT_DIR}/demo`, { recursive: true });
-await fs.mkdir(`${OUT_DIR}/publisher`, { recursive: true });
+await fs.mkdir(outDir, { recursive: true });
+for (const facet of Object.keys(facetMap)) {
+  await fs.mkdir(`${outDir}/${facet}`, { recursive: true });
+}
 
-await fs.writeFile(OUT_WORKS, JSON.stringify(works, null, 2));
+// facetファイルを書き出し（内容は workKey 配列）
+let fileCount = 0;
+const facetsSummary = {};
 
-let files = 0;
-for (const facet of ["genre", "demo", "publisher"]) {
-  for (const [k, arr] of index[facet]) {
-    const list = uniq(arr).sort();
-    await fs.writeFile(`${OUT_DIR}/${facet}/${k}.json`, JSON.stringify(list, null, 2));
-    files++;
-  }
-  // 「unknown を必ず出す」（0件でも）
-  if (!index[facet].has("unknown")) {
-    await fs.writeFile(`${OUT_DIR}/${facet}/unknown.json`, JSON.stringify([], null, 2));
-    files++;
+for (const [facet, m] of Object.entries(facetMap)) {
+  const keys = [...m.keys()].sort();
+  facetsSummary[facet] = keys.length;
+
+  for (const k of keys) {
+    const arr = uniq(m.get(k)).sort();
+    await fs.writeFile(`${outDir}/${facet}/${k}.json`, JSON.stringify(arr, null, 2));
+    fileCount++;
   }
 }
 
-await fs.writeFile(`${OUT_DIR}/_meta.json`, JSON.stringify(meta, null, 2));
+// メタ
+const meta = {
+  generatedAt: new Date().toISOString(),
+  works: workCount,
+  facets: facetsSummary,
+};
 
-console.log(`[build_indexes] works=${reps.length} files=${files}`);
-console.log(`[build_indexes] facets: genre=${index.genre.size}, demo=${index.demo.size}, publisher=${index.publisher.size}`);
+await fs.writeFile(`${outDir}/_meta.json`, JSON.stringify(meta, null, 2));
+
+console.log(`[build_indexes] works=${workCount} files=${fileCount + 1}`); // +1 meta
+console.log(
+  `[build_indexes] facets: genre=${facetsSummary.genre}, demo=${facetsSummary.demo}, publisher=${facetsSummary.publisher}`
+);
