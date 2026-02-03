@@ -14,75 +14,70 @@ client.region = "us-west-2";
 
 const api = new ProductAdvertisingAPIv1.DefaultApi();
 
-const path = "data/manga/items_master.json";
-const items = JSON.parse(await fs.readFile(path, "utf8"));
+const items = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
 
-const pickIsbn = (item) =>
-  item?.ItemInfo?.ExternalIds?.ISBNs?.DisplayValues?.[0] ||
-  item?.ItemInfo?.ExternalIds?.EANs?.DisplayValues?.[0] ||
-  null;
+const digits = (s) => String(s || "").replace(/\D/g, "");
+const isSetTitle = (t) => {
+  const s = String(t || "");
+  return (
+    s.includes("セット") ||
+    s.includes("全巻") ||
+    s.includes("BOX") ||
+    s.includes("ボックス") ||
+    s.includes("まとめ") ||
+    s.includes("コミックセット") ||
+    /\b\d+\s*-\s*\d+\b/.test(s) ||
+    /1\s*〜\s*\d+/.test(s)
+  );
+};
 
-async function isbnToAsin(isbn) {
+const pickIsbn13 = (item) => {
+  const a = item?.ItemInfo?.ExternalIds?.ISBNs?.DisplayValues || [];
+  const b = item?.ItemInfo?.ExternalIds?.EANs?.DisplayValues || [];
+  return digits(a[0] || b[0] || "");
+};
+
+async function searchByIsbn(isbn13) {
+  const req = new ProductAdvertisingAPIv1.SearchItemsRequest();
+  req.PartnerTag = partnerTag;
+  req.PartnerType = "Associates";
+  req.SearchIndex = "Books";
+  req.Keywords = String(isbn13);
+  req.ItemCount = 10;
+  req.Resources = ["ItemInfo.ExternalIds", "ItemInfo.Title"];
+
   return await new Promise((resolve) => {
-    const req = new ProductAdvertisingAPIv1.SearchItemsRequest();
-    req.PartnerTag = partnerTag;
-    req.PartnerType = "Associates";
-    req.SearchIndex = "Books";
-    req.Keywords = String(isbn);
-    req.ItemCount = 3;
-    req.Resources = ["ItemInfo.ExternalIds", "ItemInfo.Title"];
-
     api.searchItems(req, (err, data) => {
       if (err) return resolve({ ok: false, err });
       const res = ProductAdvertisingAPIv1.SearchItemsResponse.constructFromObject(data);
       const list = res?.SearchResult?.Items || [];
-      const exact = list.find((x) => pickIsbn(x) === String(isbn)) || null;
-if (!exact) return resolve({ ok: true, asin: null, url: null });
-
-const title = exact?.ItemInfo?.Title?.DisplayValue || "";
-if (isSetTitle(title)) return resolve({ ok: true, asin: null, url: null });
-
-resolve({ ok: true, asin: exact.ASIN || null, url: exact.DetailPageURL || null });
+      resolve({ ok: true, list });
     });
   });
 }
 
-// ①優先順：_rep → main&vol1 → main → その他（ASIN未付与のみ）
-const need = items
-  .filter((x) => x.isbn13 && !x.asin && !x.amazonUrl)
-  .map((x) => {
-    const p =
-      (x._rep ? 0 : 10) +
-      (x.seriesType === "main" && x.volumeHint === 1 ? 0 : 2) +
-      (x.seriesType === "main" ? 0 : 4);
-    return { x, p };
-  })
-  .sort((a, b) => a.p - b.p)
-  .slice(0, 30)
-  .map((o) => o.x);
+// ★対象は「①巻(main&vol1)で asin/amazonUrl が空」のものだけ
+const targets = items.filter(
+  (x) => x.seriesType === "main" && x.volumeHint === 1 && x.isbn13 && !x.asin && !x.amazonUrl
+);
 
-let ok = 0;
-for (const x of need) {
-  const r = await isbnToAsin(x.isbn13);
-  if (r.ok && r.asin) {
-    x.asin = r.asin;
-    x.amazonUrl = r.url;
-    ok++;
-  }
+let added = 0, setBlocked = 0, notFound = 0;
+
+for (const x of targets) {
+  const want = digits(x.isbn13);
+  const r = await searchByIsbn(want);
+  if (!r.ok) continue;
+
+  const hit = (r.list || []).find((it) => pickIsbn13(it) === want) || null;
+  if (!hit) { notFound++; continue; }
+
+  const title = hit?.ItemInfo?.Title?.DisplayValue || "";
+  if (isSetTitle(title)) { setBlocked++; continue; }
+
+  x.asin = hit.ASIN || null;
+  x.amazonUrl = hit.DetailPageURL || null;
+  if (x.asin || x.amazonUrl) added++;
 }
 
-const isSetTitle = (t) => {
-  const s = String(t || "").toLowerCase();
-  return (
-    s.includes("セット") ||
-    s.includes("全巻") ||
-    s.includes("box") ||
-    s.includes("ボックス") ||
-    s.includes("まとめ") ||
-    s.includes("コミックセット") ||
-    s.match(/\b\d+\s*-\s*\d+\b/) ||   // 1-11
-    s.match(/1\s*〜\s*\d+/)           // 1〜11
-  );
-};
-await fs.writeFile(path, JSON.stringify(items, null, 2));
-console.log(`asin_added=${ok} targets=${need.length} items=${items.length}`);
+await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
+console.log(`asin_added=${added} targets=${targets.length} set_blocked=${setBlocked} not_found=${notFound}`);
