@@ -3,7 +3,28 @@ import fs from "node:fs/promises";
 const cand = JSON.parse(await fs.readFile("data/manga/candidates.json", "utf8"));
 const src = (cand.items || []).slice(0, 30);
 
-const j = (u) => fetch(u).then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)));
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function j(url, tries = 6) {
+  for (let i = 0; i < tries; i++) {
+    const r = await fetch(url, { cache: "no-store" });
+    if (r.ok) return await r.json();
+
+    const body = await r.text().catch(() => "");
+    const retryAfter = Number(r.headers.get("retry-after") || 0) * 1000;
+
+    // 429/5xx は待って再試行（最後の1回は投げる）
+    if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
+      const backoff = 800 * (2 ** i);          // 0.8s, 1.6s, 3.2s...
+      const jitter = Math.floor(Math.random() * 300);
+      await sleep(Math.max(retryAfter, backoff) + jitter);
+      continue;
+    }
+
+    throw new Error(`HTTP ${r.status}\nURL: ${url}\nBODY: ${body.slice(0, 200)}`);
+  }
+  throw new Error(`HTTP 429 (exhausted retries)\nURL: ${url}`);
+}
 const pick1 = (r) => r?.items?.[0]?.volumeInfo || null;
 
 const norm = (s) => (s || "")
