@@ -5,23 +5,19 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
     const ac = new AbortController();
-    const to = setTimeout(() => ac.abort(), 15000); // 15s timeout
+    const to = setTimeout(() => ac.abort(), 15000);
     try {
       const r = await fetch(url, { cache: "no-store", signal: ac.signal });
       clearTimeout(to);
-
       if (r.ok) return await r.json();
-
-      const body = await r.text().catch(() => "");
-      // 429/5xx は短くリトライ（長い待ちはしない）
       if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
-        await sleep(800 + i * 600); // 0.8s, 1.4s
+        await sleep(800 + i * 600);
         continue;
       }
-      throw new Error(`HTTP ${r.status}\nBODY: ${body.slice(0, 120)}`);
+      const t = await r.text().catch(() => "");
+      throw new Error(`HTTP ${r.status}\n${t.slice(0, 120)}`);
     } catch (e) {
       clearTimeout(to);
-      // Abort/Network も短くリトライ
       if (i < tries - 1) {
         await sleep(800 + i * 600);
         continue;
@@ -73,10 +69,23 @@ function classifySeriesType(title) {
   return "main";
 }
 
-async function googleByIsbn(isbn) {
-  const u = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&maxResults=1`;
+function pickOpenbdText(x) {
+  const tcs = x?.onix?.CollateralDetail?.TextContent;
+  if (Array.isArray(tcs)) {
+    const hit = tcs.find((a) => a?.Text) || tcs.find((a) => a?.Text?.[0]);
+    const t = hit?.Text;
+    if (typeof t === "string") return t;
+    if (Array.isArray(t) && typeof t[0] === "string") return t[0];
+  }
+  const s = x?.summary?.description;
+  return typeof s === "string" ? s : null;
+}
+
+async function openbdByIsbn(isbn) {
+  const u = `https://api.openbd.jp/v1/get?isbn=${encodeURIComponent(isbn)}`;
   const r = await fetchJson(u);
-  return r?.items?.[0]?.volumeInfo || null;
+  const x = Array.isArray(r) ? r[0] : null;
+  return x || null;
 }
 
 function repPick(group) {
@@ -97,7 +106,7 @@ const candRaw = JSON.parse(await fs.readFile("data/manga/candidates.json", "utf8
 const candList = Array.isArray(candRaw) ? candRaw : candRaw.items || candRaw.Items || [];
 const src = candList.slice(0, N);
 
-// 既存を引き継ぐ（asin/amazonUrl）
+// 既存 items_master があれば ASIN など引き継ぐ
 let prev = [];
 try { prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8")); } catch {}
 const prevByIsbn = new Map(prev.map((x) => [x.isbn13, x]).filter(([k]) => k));
@@ -106,44 +115,44 @@ const items = [];
 let descCount = 0;
 
 for (let i = 0; i < src.length; i++) {
-  const x = src[i];
-  const isbn = x.isbn || x.isbn13 || null;
+  const c = src[i];
+  const isbn = c.isbn || c.isbn13 || null;
   if (!isbn) continue;
 
-  const prevHit = prevByIsbn.get(isbn) || {};
-  console.log(`[openbd_items] ${i + 1}/${src.length} isbn=${isbn} title=${String(x.title || "").slice(0, 40)}`);
+  console.log(`[openbd_items] ${i + 1}/${src.length} isbn=${isbn} title=${String(c.title || "").slice(0, 40)}`);
 
-  let v = null;
+  const prevHit = prevByIsbn.get(isbn) || {};
+  let ob = null;
   try {
-    v = await googleByIsbn(isbn);
+    ob = await openbdByIsbn(isbn);
   } catch (e) {
-    console.log(`[openbd_items]   skip (fetch failed): ${String(e?.message || e).slice(0, 80)}`);
-    v = null;
+    console.log(`[openbd_items]   openbd skip: ${String(e?.message || e).slice(0, 80)}`);
   }
 
-  await sleep(120); // 呼び出し間隔を少し空ける
+  await sleep(120);
 
-  const description = v?.description || null;
-  if (description) descCount++;
+  const desc = ob ? pickOpenbdText(ob) : null;
+  if (desc) descCount++;
 
+  const sum = ob?.summary || {};
   items.push({
-    workKey: parentWorkKey(x.title || ""),
-    seriesType: classifySeriesType(x.title || ""),
-    title: x.title || null,
-    author: x.author || v?.authors?.[0] || null,
-    publisher: x.publisherName || x.publisher || v?.publisher || null,
+    workKey: parentWorkKey(c.title || ""),
+    seriesType: classifySeriesType(c.title || ""),
+    title: c.title || sum.title || null,
+    author: c.author || sum.author || null,
+    publisher: c.publisherName || sum.publisher || null,
     isbn13: isbn,
     asin: prevHit.asin || null,
     amazonUrl: prevHit.amazonUrl || null,
-    publishedAt: x.salesDate || v?.publishedDate || null,
-    description,
-    image: x.largeImageUrl || x.image || v?.imageLinks?.thumbnail || null,
-    volumeHint: Number.isFinite(x.volumeHint) ? x.volumeHint : volumeHint(x.title || ""),
+    publishedAt: c.salesDate || sum.pubdate || null,
+    description: desc,
+    image: c.largeImageUrl || sum.cover || null,
+    volumeHint: Number.isFinite(c.volumeHint) ? c.volumeHint : volumeHint(c.title || ""),
     _rep: false,
   });
 }
 
-// rep付与
+// rep 付与
 const byWork = new Map();
 for (const it of items) {
   const k = it.workKey || it.title;
