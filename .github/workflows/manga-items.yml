@@ -22,23 +22,27 @@ jobs:
         with:
           node-version: "20"
 
-      # 1) openBDで候補の書誌/説明を埋める
+      # 1) openBDで書誌/説明を埋める
       - name: Build items from openBD
         run: node scripts/manga/openbd_items.mjs
 
-      # 2) 楽天で1巻を逆引きして items_master に追加（あなたの現行フロー）
+      # 2) 楽天で1巻を逆引きして items_master に追加
       - name: Backfill vol1 by Rakuten
         run: node scripts/manga/vol1_backfill_rakuten.mjs
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
 
-      # 3) ★追加：楽天のジャンルID/Nameを raw で付与（新スクリプト）
+      # 3) 楽天のジャンルID/Nameを raw で付与
       - name: Tag by Rakuten genre (raw)
         run: node scripts/manga/rakuten_tags.mjs
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
 
-      # 4) Amazon PA-APIでASIN/URLを埋める（必要なときだけインストール）
+      # 4) 大ジャンル単位に分割して出力（raw）
+      - name: Split works by big genre (raw)
+        run: node scripts/manga/split_by_genre.mjs
+
+      # 5) Amazon PA-APIでASIN/URLを埋める
       - name: Install paapi sdk
         run: npm i --no-save paapi5-nodejs-sdk
 
@@ -49,13 +53,14 @@ jobs:
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
 
-      # 5) コミット&プッシュ（差分があるときだけ）
+      # 6) コミット&プッシュ（差分があるときだけ）
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add data/manga/items_master.json || true
+          git add data/manga/by_genre || true
 
           if git diff --cached --quiet; then
             echo "no changes"
