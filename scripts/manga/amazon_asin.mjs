@@ -66,7 +66,6 @@ async function searchItems(keyword) {
 }
 
 async function searchWithRetry(keyword) {
-  // Too Many Requests だけ粘る（最大4回）
   for (let i = 0; i < 4; i++) {
     const r = await searchItems(keyword);
     if (r.ok) return r;
@@ -74,41 +73,60 @@ async function searchWithRetry(keyword) {
     const msg = String(r.err?.message || r.err);
     if (!msg.includes("Too Many Requests")) return r;
 
-    // 0.8s, 1.6s, 3.2s, 6.4s (+jitter)
     const wait = 800 * (2 ** i) + Math.floor(Math.random() * 250);
     await sleep(wait);
   }
   return { ok: false, err: new Error("Too Many Requests (exhausted retries)") };
 }
 
+function loadOverrides() {
+  try {
+    return JSON.parse(fs.readFileSync("data/overrides.json", "utf8")); // ← fs.promises使わず短く
+  } catch {
+    return {};
+  }
+}
+
+// ---- main ----
 const items = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
+
+let overrides = {};
+try {
+  overrides = JSON.parse(await fs.readFile("data/overrides.json", "utf8"));
+} catch {}
+const ov = overrides?.manga || {};
 
 const targets = items.filter(
   (x) => x.seriesType === "main" && x.volumeHint === 1 && x.isbn13 && !x.asin && !x.amazonUrl
 );
 
 let added = 0,
+  overrideAdded = 0,
   apiErr = 0,
   empty = 0,
   notFound = 0,
-  setBlocked = 0,
-  dbgErr = false;
+  setBlocked = 0;
 
 for (const x of targets) {
   const want13 = digits(x.isbn13);
-  const want10 = isbn13to10(want13);
 
+  // 1) overrides 優先
+  const o = ov[want13];
+  if (o?.asin) {
+    x.asin = String(o.asin).trim();
+    x.amazonUrl = null;
+    overrideAdded++;
+    continue;
+  }
+
+  // 2) PA-API（安全に確定できる場合のみ）
+  const want10 = isbn13to10(want13);
   const r = await searchWithRetry(want13);
 
   if (!r.ok) {
     apiErr++;
-    if (!dbgErr) {
-      console.log(`[amazon_asin] API_ERR example: ${String(r.err?.message || r.err).slice(0, 220)}`);
-      dbgErr = true;
-    }
     continue;
   }
-
   if (!r.list.length) {
     empty++;
     continue;
@@ -125,21 +143,23 @@ for (const x of targets) {
     }
   }
 
-  if (!hit) { notFound++; continue; }
+  if (!hit) {
+    notFound++;
+    continue;
+  }
 
   const title = hit?.ItemInfo?.Title?.DisplayValue || "";
-  if (isSetTitle(title)) { setBlocked++; continue; }
+  if (isSetTitle(title)) {
+    setBlocked++;
+    continue;
+  }
 
   x.asin = hit.ASIN || null;
   x.amazonUrl = hit.DetailPageURL || null;
   if (x.asin || x.amazonUrl) added++;
 }
 
-if (notFound) {
-  const nf = targets.filter(x => !x.asin && !x.amazonUrl).slice(0, 20);
-  console.log("[amazon_asin] not_found examples:");
-  for (const x of nf) console.log(`  - ${x.isbn13} ${String(x.title||"").slice(0, 50)}`);
-}
-
 await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
-console.log(`asin_added=${added} targets=${targets.length} api_err=${apiErr} empty=${empty} not_found=${notFound} set_blocked=${setBlocked}`);
+console.log(
+  `asin_added=${added} override_added=${overrideAdded} targets=${targets.length} api_err=${apiErr} empty=${empty} not_found=${notFound} set_blocked=${setBlocked}`
+);
