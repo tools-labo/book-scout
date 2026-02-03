@@ -32,17 +32,23 @@ jobs:
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
 
-      # 3) 楽天のジャンルID/Nameを raw で付与
-      - name: Tag by Rakuten genre (raw)
+      # 3) 楽天：booksGenreId を items_master に付与（※名前はここでは取れない前提）
+      - name: Tag by Rakuten genre id
         run: node scripts/manga/rakuten_tags.mjs
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
 
-      # 4) 大ジャンル単位に分割して出力（raw）
+      # 4) ★追加：booksGenreId → GenreSearch で「階層ジャンル名」を解決して items_master に付与
+      - name: Resolve Rakuten genre names
+        run: node scripts/manga/rakuten_genre_resolve.mjs
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+
+      # 5) 大ジャンル単位に分割して出力（今はデバッグで階層名をログに出す）
       - name: Split works by big genre (raw)
         run: node scripts/manga/split_by_genre.mjs
 
-      # 5) Amazon PA-APIでASIN/URLを埋める
+      # 6) Amazon PA-APIでASIN/URLを埋める
       - name: Install paapi sdk
         run: npm i --no-save paapi5-nodejs-sdk
 
@@ -53,7 +59,7 @@ jobs:
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
 
-      # 6) コミット&プッシュ（差分があるときだけ）
+      # 7) コミット&プッシュ（差分があるときだけ）
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
@@ -61,6 +67,7 @@ jobs:
 
           git add data/manga/items_master.json || true
           git add data/manga/by_genre || true
+          git add data/manga/rakuten_genre_by_isbn.json data/manga/rakuten_genre_name_by_id.json || true
 
           if git diff --cached --quiet; then
             echo "no changes"
