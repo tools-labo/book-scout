@@ -34,6 +34,7 @@ jobs:
 
           node scripts/manga/wikidata_ids.mjs
           node scripts/manga/anilist_tags.mjs
+          node scripts/manga/apply_anilist_genres.mjs
 
           node scripts/manga/build_indexes.mjs
 
