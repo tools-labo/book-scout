@@ -5,7 +5,7 @@ const outDir = "data/manga/by_genre";
 
 const items = JSON.parse(await fs.readFile(src, "utf8"));
 
-// workKey単位で代表だけ
+// workKey単位で代表だけ作る（_rep優先、次にvolumeHint=1）
 const m = new Map();
 for (const it of items) {
   const k = it.workKey || it.title;
@@ -16,13 +16,19 @@ for (const it of items) {
 }
 const reps = [...m.values()];
 
+// ★デバッグ：楽天ジャンル名の実物を少しだけ出す（最初の5件）
+console.log("[split_by_genre] sample genreNames:");
+for (const x of reps.slice(0, 5)) {
+  console.log(" -", (x.rakutenGenreNames || []).join(" / "));
+}
+
 const norm = (s) => String(s || "").toLowerCase();
 
+// いったん雑に「内容っぽい語」が見えたら拾う（当たらなければotherへ）
 function bucket(x) {
   const names = (x.rakutenGenreNames || []).join(" ");
   const s = norm(names);
 
-  // 大ジャンル（雑でOK）
   if (s.includes("恋愛") || s.includes("ラブ") || s.includes("ロマンス")) return "love";
   if (s.includes("ギャグ") || s.includes("コメディ")) return "gag";
   if (s.includes("ミステリー") || s.includes("サスペンス") || s.includes("ホラー") || s.includes("怪談")) return "mystery";
@@ -40,7 +46,7 @@ for (const x of reps) {
   buckets.set(b, arr);
 }
 
-// いまは軽量化のため “一覧に必要な最小フィールドだけ” 書く
+// 一覧に必要な最小フィールドだけ出力（軽量）
 const pick = (x) => ({
   workKey: x.workKey || x.title,
   title: x.title || "",
