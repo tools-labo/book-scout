@@ -27,13 +27,17 @@ const pickItem = (p) => {
 const splitPath = (s) =>
   String(s || "").split("/").map((x) => x.trim()).filter(Boolean);
 
+// 001001 は「漫画（コミック）」の大分類（booksGenreId）
+const isComicIds = (ids) => (ids || []).some((x) => String(x).startsWith("001001"));
+
 function urlBookByIsbn(isbn13) {
   const u = new URL("https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404");
   u.searchParams.set("format", "json");
   u.searchParams.set("formatVersion", "2");
   u.searchParams.set("applicationId", APP_ID);
   u.searchParams.set("hits", "1");
-  u.searchParams.set("isbnjan", String(isbn13));
+  u.searchParams.set("isbn", String(isbn13)); // ★ここが重要（isbnjan じゃない）
+  u.searchParams.set("size", "9"); // ★コミックに絞る（9=Comic）
   return u.toString();
 }
 
@@ -42,18 +46,22 @@ const items = JSON.parse(await fs.readFile(src, "utf8"));
 let cache = {};
 try { cache = JSON.parse(await fs.readFile(cachePath, "utf8")); } catch {}
 
-let hitCache = 0, fetched = 0, miss = 0;
+let hitCache = 0, fetched = 0, miss = 0, refetchBad = 0;
 
 for (const x of items) {
   const isbn = x?.isbn13;
   if (!isbn) continue;
 
-  // まずキャッシュがあれば復元（API呼ばない）
   const c = cache[isbn];
   if (c?.ids?.length) {
-    x.rakutenGenreIds = c.ids;
-    hitCache++;
-    continue;
+    // 既存キャッシュが漫画じゃないなら捨てて取り直す
+    if (!isComicIds(c.ids)) {
+      refetchBad++;
+    } else {
+      x.rakutenGenreIds = c.ids;
+      hitCache++;
+      continue;
+    }
   }
 
   await sleep(220);
@@ -76,4 +84,4 @@ for (const x of items) {
 
 await fs.writeFile(src, JSON.stringify(items, null, 2));
 await fs.writeFile(cachePath, JSON.stringify(cache, null, 2));
-console.log(`rakuten_tags: cache_hit=${hitCache} fetched=${fetched} miss=${miss}`);
+console.log(`rakuten_tags: cache_hit=${hitCache} fetched=${fetched} refetch_bad_cache=${refetchBad} miss=${miss}`);
