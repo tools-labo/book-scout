@@ -19,7 +19,7 @@ const digits = (s) => String(s || "").replace(/\D/g, "");
 function isbn13to10(isbn13) {
   const s = digits(isbn13);
   if (s.length !== 13 || !s.startsWith("978")) return null;
-  const core = s.slice(3, 12); // 9 digits
+  const core = s.slice(3, 12);
   let sum = 0;
   for (let i = 0; i < 9; i++) sum += (10 - i) * Number(core[i]);
   const r = 11 - (sum % 11);
@@ -30,7 +30,6 @@ function isbn13to10(isbn13) {
 const pickIsbns = (it) => {
   const a = it?.ItemInfo?.ExternalIds?.ISBNs?.DisplayValues || [];
   const b = it?.ItemInfo?.ExternalIds?.EANs?.DisplayValues || [];
-  // 10桁/13桁/混在があるので全部digits化して持つ
   return [...a, ...b].map(digits).filter(Boolean);
 };
 
@@ -48,7 +47,7 @@ const isSetTitle = (t) => {
   );
 };
 
-async function searchByKeyword(keyword) {
+async function searchItems(keyword) {
   const req = new ProductAdvertisingAPIv1.SearchItemsRequest();
   req.PartnerTag = partnerTag;
   req.PartnerType = "Associates";
@@ -66,6 +65,22 @@ async function searchByKeyword(keyword) {
   });
 }
 
+async function searchWithRetry(keyword) {
+  // Too Many Requests だけ粘る（最大4回）
+  for (let i = 0; i < 4; i++) {
+    const r = await searchItems(keyword);
+    if (r.ok) return r;
+
+    const msg = String(r.err?.message || r.err);
+    if (!msg.includes("Too Many Requests")) return r;
+
+    // 0.8s, 1.6s, 3.2s, 6.4s (+jitter)
+    const wait = 800 * (2 ** i) + Math.floor(Math.random() * 250);
+    await sleep(wait);
+  }
+  return { ok: false, err: new Error("Too Many Requests (exhausted retries)") };
+}
+
 const items = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
 
 const targets = items.filter(
@@ -81,8 +96,9 @@ let added = 0,
 
 for (const x of targets) {
   const want13 = digits(x.isbn13);
-  const want10 = isbn13to10(want13); // 978のみ10桁へ
-  const r = await searchByKeyword(want13);
+  const want10 = isbn13to10(want13);
+
+  const r = await searchWithRetry(want13);
 
   if (!r.ok) {
     apiErr++;
@@ -90,17 +106,14 @@ for (const x of targets) {
       console.log(`[amazon_asin] API_ERR example: ${String(r.err?.message || r.err).slice(0, 220)}`);
       dbgErr = true;
     }
-    await sleep(120);
     continue;
   }
 
   if (!r.list.length) {
     empty++;
-    await sleep(120);
     continue;
   }
 
-  // ISBN-13一致 or ISBN-10一致（Xはdigitsで落ちるので10桁側は大文字Xを考慮）
   let hit = null;
   for (const it of r.list) {
     const isbns = pickIsbns(it);
@@ -112,24 +125,14 @@ for (const x of targets) {
     }
   }
 
-  if (!hit) {
-    notFound++;
-    await sleep(120);
-    continue;
-  }
+  if (!hit) { notFound++; continue; }
 
   const title = hit?.ItemInfo?.Title?.DisplayValue || "";
-  if (isSetTitle(title)) {
-    setBlocked++;
-    await sleep(120);
-    continue;
-  }
+  if (isSetTitle(title)) { setBlocked++; continue; }
 
   x.asin = hit.ASIN || null;
   x.amazonUrl = hit.DetailPageURL || null;
   if (x.asin || x.amazonUrl) added++;
-
-  await sleep(120);
 }
 
 await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
