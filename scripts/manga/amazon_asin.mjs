@@ -135,5 +135,11 @@ for (const x of targets) {
   if (x.asin || x.amazonUrl) added++;
 }
 
+if (notFound) {
+  const nf = targets.filter(x => !x.asin && !x.amazonUrl).slice(0, 20);
+  console.log("[amazon_asin] not_found examples:");
+  for (const x of nf) console.log(`  - ${x.isbn13} ${String(x.title||"").slice(0, 50)}`);
+}
+
 await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
 console.log(`asin_added=${added} targets=${targets.length} api_err=${apiErr} empty=${empty} not_found=${notFound} set_blocked=${setBlocked}`);
