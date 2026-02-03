@@ -1,8 +1,5 @@
 import fs from "node:fs/promises";
 
-const cand = JSON.parse(await fs.readFile("data/manga/candidates.json", "utf8"));
-const src = (cand.items || []).slice(0, 30);
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function j(url, tries = 6) {
@@ -13,9 +10,9 @@ async function j(url, tries = 6) {
     const body = await r.text().catch(() => "");
     const retryAfter = Number(r.headers.get("retry-after") || 0) * 1000;
 
-    // 429/5xx は待って再試行（最後の1回は投げる）
+    // 429 / 5xx は待って再試行
     if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
-      const backoff = 800 * (2 ** i);          // 0.8s, 1.6s, 3.2s...
+      const backoff = 800 * (2 ** i); // 0.8s, 1.6s, 3.2s...
       const jitter = Math.floor(Math.random() * 300);
       await sleep(Math.max(retryAfter, backoff) + jitter);
       continue;
@@ -25,13 +22,13 @@ async function j(url, tries = 6) {
   }
   throw new Error(`HTTP 429 (exhausted retries)\nURL: ${url}`);
 }
-const pick1 = (r) => r?.items?.[0]?.volumeInfo || null;
 
-const norm = (s) => (s || "")
-  .toLowerCase()
-  .replace(/[【】\[\]（）()]/g, " ")
-  .replace(/\s+/g, " ")
-  .trim();
+const norm = (s) =>
+  (s || "")
+    .toLowerCase()
+    .replace(/[【】\[\]（）()]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 function volumeHint(title) {
   const t = title || "";
@@ -51,7 +48,7 @@ function baseTitle(title) {
     .trim();
 }
 
-// 親（本編の核）: “系列語/版” 以降を切って同じ親に寄せる
+// 親（本編）寄せキー
 function parentWorkKey(title) {
   const b = baseTitle(title);
   const cut = b.split(
@@ -60,7 +57,6 @@ function parentWorkKey(title) {
   return norm(cut || b);
 }
 
-// 固定カテゴリ
 function classifySeriesType(title) {
   const t = norm(title);
   if (/(color\s*walk|カラー\s*ウォーク|カラーウォーク|画集|イラスト|art\s*book|visual|ビジュアル|原画|設定資料)/i.test(t)) return "art";
@@ -69,99 +65,99 @@ function classifySeriesType(title) {
   return "main";
 }
 
-async function byIsbn(isbn) {
+async function googleByIsbn(isbn) {
   const u = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&maxResults=1`;
-  return pick1(await j(u));
-}
-async function byTitle(title, author) {
-  const q = [title, author].filter(Boolean).join(" ");
-  const u = `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(q)}&maxResults=1`;
-  return pick1(await j(u));
+  const r = await j(u);
+  return r?.items?.[0]?.volumeInfo || null;
 }
 
-// overrides（無ければ空）
-let overrides = {};
-try { overrides = JSON.parse(await fs.readFile("data/overrides.json", "utf8")); } catch {}
-const ovIsbn = overrides.byIsbn || {};
-const ovAsin = overrides.byAsin || {};
-const ovHide = overrides.hide || {};
+function repPick(group) {
+  // 1) main&vol1 があれば必ずそれ
+  const v1 = group.find((x) => x.seriesType === "main" && x.volumeHint === 1);
+  if (v1) return v1;
 
-// 既存items_masterからASIN/amazonUrlを引き継ぐ（消失防止）
+  // 2) mainの最小巻
+  const main = group.filter((x) => x.seriesType === "main");
+  const pool = main.length ? main : group;
+  const withVol = pool
+    .filter((x) => Number.isFinite(x.volumeHint))
+    .sort((a, b) => a.volumeHint - b.volumeHint);
+  return withVol[0] || pool[0];
+}
+
+// ---------------------------
+// main
+// ---------------------------
+
+const N = Number(process.env.ITEMS_MASTER || 30);
+
+// candidates 読み込み（形が違っても耐える）
+const candRaw = JSON.parse(await fs.readFile("data/manga/candidates.json", "utf8"));
+const candList = Array.isArray(candRaw) ? candRaw : candRaw.items || candRaw.Items || [];
+const src = candList.slice(0, N);
+
+// 既存items_masterがあればASIN等を引き継ぐ
 let prev = [];
-try { prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8")); } catch {}
-const prevByIsbn = new Map(prev.map(x => [x.isbn13, x]).filter(([k]) => k));
+try {
+  prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
+} catch {}
+const prevByIsbn = new Map(prev.map((x) => [x.isbn13, x]).filter(([k]) => k));
 
-// items生成
 const items = [];
+let descCount = 0;
+
+// candidates → items（429対策で少し間隔を空ける）
 for (const x of src) {
-  const isbn = x.isbn || null;
+  const isbn = x.isbn || x.isbn13 || null;
   if (!isbn) continue;
 
-  const o = ovIsbn[isbn] || {};
-  if (ovHide[isbn]) continue;
-
-  let v = await byIsbn(isbn);
-  if (!v?.description) v = await byTitle(x.title, x.author);
-
   const prevHit = prevByIsbn.get(isbn) || {};
+  let v = null;
+
+  try {
+    v = await googleByIsbn(isbn);
+  } catch (e) {
+    // ここで落とさない（次のループへ）
+    v = null;
+  }
+
+  // 連続アクセス抑制（429予防）
+  await sleep(140);
+
+  const description = v?.description || null;
+  if (description) descCount++;
+
   items.push({
-    workKey: o.workKey || parentWorkKey(x.title),
-    seriesType: o.seriesType || classifySeriesType(x.title),
-    title: x.title,
+    workKey: parentWorkKey(x.title || ""),
+    seriesType: classifySeriesType(x.title || ""),
+    title: x.title || null,
     author: x.author || v?.authors?.[0] || null,
-    publisher: x.publisher || v?.publisher || null,
+    publisher: x.publisherName || x.publisher || v?.publisher || null,
     isbn13: isbn,
-    asin: o.asin || prevHit.asin || null,
-    amazonUrl: o.amazonUrl || prevHit.amazonUrl || null,
+    asin: prevHit.asin || null,
+    amazonUrl: prevHit.amazonUrl || null,
     publishedAt: x.salesDate || v?.publishedDate || null,
-    description: v?.description || null,
-    image: x.image || v?.imageLinks?.thumbnail || null,
-    volumeHint: (o.forceVolume ?? volumeHint(x.title)) || null,
+    description,
+    image: x.largeImageUrl || x.image || v?.imageLinks?.thumbnail || null,
+    volumeHint: Number.isFinite(x.volumeHint) ? x.volumeHint : volumeHint(x.title || ""),
+    _rep: false,
   });
 }
 
-// ASIN側override
-for (const it of items) {
-  const o = it.asin ? (ovAsin[it.asin] || {}) : {};
-  if (o.workKey) it.workKey = o.workKey;
-  if (o.seriesType) it.seriesType = o.seriesType;
-  if (o.forceVolume != null) it.volumeHint = o.forceVolume;
-  if (o.asin) it.asin = o.asin;
-  if (o.amazonUrl) it.amazonUrl = o.amazonUrl;
-  if (it.asin && ovHide[it.asin]) it._hide = true;
-}
-const items2 = items.filter(x => !x._hide);
-
-// ★代表決定：main優先 → (巻数があるなら最小巻数) → 最古publishedAt → 先頭
-function pickRep(group) {
-  const main = group.filter(x => x.seriesType === "main");
-  const pool = main.length ? main : group;
-
-  const withVol = pool.filter(x => Number.isFinite(x.volumeHint));
-  if (withVol.length) {
-    withVol.sort((a,b) => a.volumeHint - b.volumeHint);
-    return withVol[0];
-  }
-
-  const dated = pool.filter(x => x.publishedAt).slice().sort((a,b) => String(a.publishedAt).localeCompare(String(b.publishedAt)));
-  return dated[0] || pool[0];
-}
-
+// rep付け
 const byWork = new Map();
-for (const it of items2) {
+for (const it of items) {
   const k = it.workKey || it.title;
   const g = byWork.get(k) || [];
   g.push(it);
   byWork.set(k, g);
 }
 
-for (const [wk, g] of byWork) {
-  pickRep(g)._rep = true;
-}
+for (const [, g] of byWork) repPick(g)._rep = true;
 
-await fs.writeFile("data/manga/items_master.json", JSON.stringify(items2, null, 2));
+// 書き込み
+await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2));
 
-const works = items2.filter(x => x._rep).length;
-const desc = items2.filter(x => x.description).length;
-const amazon = items2.filter(x => x.asin || x.amazonUrl).length;
-console.log(`items=${items2.length} works=${works} desc=${desc} amazon=${amazon}`);
+const works = items.filter((x) => x._rep).length;
+const amazon = items.filter((x) => x.asin || x.amazonUrl).length;
+console.log(`items=${items.length} works=${works} desc=${descCount} amazon=${amazon}`);
