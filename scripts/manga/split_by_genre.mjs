@@ -1,41 +1,20 @@
+// scripts/manga/split_by_genre.mjs
 import fs from "node:fs/promises";
 
 const src = "data/manga/items_master.json";
 const outDir = "data/manga/by_genre";
-
-// 出力ファイルを固定（0件でも作る）
-const GENRES = ["shonen", "shojo", "seinen", "josei", "other", "unknown"];
-
 const items = JSON.parse(await fs.readFile(src, "utf8"));
 
-// workKey単位で代表だけ作る（_rep優先、次にvolumeHint=1）
+// workKey単位で代表だけ作る（巻1優先 → _rep）
 const m = new Map();
 for (const it of items) {
   const k = it.workKey || it.title;
   const cur = m.get(k);
   if (!cur) { m.set(k, it); continue; }
-  if (!cur._rep && it._rep) m.set(k, it);
-  else if (cur.volumeHint !== 1 && it.volumeHint === 1) m.set(k, it);
+  if (cur.volumeHint !== 1 && it.volumeHint === 1) m.set(k, it);
+  else if (!cur._rep && it._rep) m.set(k, it);
 }
 const reps = [...m.values()];
-
-const norm = (s) => String(s || "");
-
-function bucket(x) {
-  const p = x.rakutenGenrePathNames || [];
-  if (!p.length) return "unknown";
-
-  const s = norm(p.join(" / "));
-
-  // ここは「含まれてたら分類」なので、まず大枠を拾う
-  if (s.includes("少年")) return "shonen";
-  if (s.includes("少女")) return "shojo";
-  if (s.includes("青年")) return "seinen";
-  if (s.includes("レディース") || s.includes("女性")) return "josei";
-
-  // ジャンル階層はあるが、上のどれにも入らない → other
-  return "other";
-}
 
 const pick = (x) => ({
   workKey: x.workKey || x.title,
@@ -48,30 +27,68 @@ const pick = (x) => ({
   asin: x.asin || null,
   amazonUrl: x.amazonUrl || null,
   rakutenGenreIds: x.rakutenGenreIds || [],
-  rakutenGenrePathNames: x.rakutenGenrePathNames || []
+  rakutenGenrePathNames: x.rakutenGenrePathNames || [],
+  anilistId: x.anilistId || null,
+  anilistGenres: x.anilistGenres || [],
+  anilistTags: x.anilistTags || []
 });
 
-// まず空の箱を用意（unknown を含め、必ずファイルが作られる）
-const buckets = new Map(GENRES.map((g) => [g, []]));
+const norm = (s) => String(s || "").toLowerCase();
+const hasAny = (arr, words) => {
+  const s = norm([...(arr||[])].join(" / "));
+  return words.some(w => s.includes(norm(w)));
+};
 
+function bucket(x) {
+  const g = x.anilistGenres || [];
+  const t = x.anilistTags || [];
+  // まずAniListジャンルで大分類（優先順＝1作品1カテゴリの“主表示”用）
+  if (hasAny(g, ["Action"])) return "action_battle";
+  if (hasAny(g, ["Adventure"])) return "adventure";
+  if (hasAny(g, ["Comedy"])) return "comedy_gag";
+  if (hasAny(g, ["Romance"])) return "romance_lovecom";
+  if (hasAny(g, ["Mystery"])) return "mystery";
+  if (hasAny(g, ["Horror"])) return "horror";
+  if (hasAny(g, ["Sports"])) return "sports";
+  if (hasAny(g, ["Fantasy"])) return "fantasy";
+  if (hasAny(g, ["Sci-Fi"])) return "sci_fi";
+  if (hasAny(g, ["Drama"])) return "drama";
+  if (hasAny(g, ["Slice of Life"])) return "slice_of_life";
+  if (hasAny(g, ["Supernatural"])) return "supernatural";
+  if (hasAny(g, ["Psychological"])) return "psychological";
+  if (hasAny(g, ["Thriller"])) return "thriller";
+  if (hasAny(g, ["Ecchi"])) return "ecchi";
+  // タグで補助（ジャンルが空でも拾える可能性）
+  if (hasAny(t, ["Time Travel", "Historical"])) return "historical";
+  if (hasAny(t, ["Detective"])) return "mystery";
+  if (hasAny(t, ["Isekai"])) return "isekai";
+
+  // AniListが無い/薄い時は楽天パスで最低限
+  const p = x.rakutenGenrePathNames || [];
+  if (!p.length) return "unknown";
+  const s = p.join(" / ");
+  if (s.includes("少年")) return "shonen";
+  if (s.includes("少女")) return "shojo";
+  if (s.includes("青年")) return "seinen";
+  if (s.includes("レディース") || s.includes("女性")) return "josei";
+  return "other";
+}
+
+const buckets = new Map();
 for (const x of reps) {
   const b = bucket(x);
-  buckets.get(b).push(pick(x));
+  const arr = buckets.get(b) || [];
+  arr.push(pick(x));
+  buckets.set(b, arr);
 }
 
 await fs.mkdir(outDir, { recursive: true });
 
 let total = 0;
-for (const g of GENRES) {
-  const arr = buckets.get(g) || [];
+for (const [b, arr] of buckets) {
   total += arr.length;
-  await fs.writeFile(`${outDir}/${g}.json`, JSON.stringify(arr, null, 2));
+  await fs.writeFile(`${outDir}/${b}.json`, JSON.stringify(arr, null, 2));
 }
 
-console.log(
-  `split_by_genre: works=${reps.length} files=${GENRES.length} total_written=${total}`
-);
-for (const g of GENRES) {
-  const arr = buckets.get(g) || [];
-  console.log(`  - ${g}: ${arr.length}`);
-}
+console.log(`split_by_genre: works=${reps.length} files=${buckets.size} total_written=${total}`);
+for (const [b, arr] of buckets) console.log(`  - ${b}: ${arr.length}`);
