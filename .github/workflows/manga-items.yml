@@ -3,13 +3,20 @@ name: Manga items (build)
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 */6 * * *"
+    # JST 03:10 = UTC 18:10
+    - cron: "10 18 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: manga-items
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -18,35 +25,63 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20.20.0"
+          # lockfile が無いので cache は使わない（使うとエラーになる）
+          # cache: npm
 
-      - name: Build manga items
+      # --- build pipeline (order is important) ---
+      - name: openbd -> items_master
+        run: node scripts/manga/openbd_items.mjs
+
+      - name: backfill rakuten (vol1 + rep)
+        run: node scripts/manga/vol1_backfill_rakuten.mjs
+
+      - name: rakuten tags
+        run: node scripts/manga/rakuten_tags.mjs
+
+      - name: rakuten genre resolve (ids -> names)
+        run: node scripts/manga/rakuten_genre_resolve.mjs
+
+      - name: wikidata ids
+        run: node scripts/manga/wikidata_ids.mjs
+
+      - name: anilist tags
+        run: node scripts/manga/anilist_tags.mjs
+
+      - name: apply anilist genres
+        run: node scripts/manga/apply_anilist_genres.mjs
+
+      # ★ Amazon を works/work 生成より前に確定させる（ここが今回の修正ポイント）
+      - name: Install paapi sdk (no-save)
+        run: npm i --no-save paapi5-nodejs-sdk
+
+      - name: amazon asin + amazonUrl
         env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-        run: |
-          node scripts/manga/openbd_items.mjs
-          node scripts/manga/vol1_backfill_rakuten.mjs
-          node scripts/manga/rakuten_tags.mjs
-          node scripts/manga/rakuten_genre_resolve.mjs
+          # 既に Secrets を用意してある前提（無ければ scripts 側で未設定扱いになる）
+          PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
+          PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
+          PAAPI_PARTNER_TAG: ${{ secrets.PAAPI_PARTNER_TAG }}
+          PAAPI_HOST: ${{ secrets.PAAPI_HOST }}
+          PAAPI_REGION: ${{ secrets.PAAPI_REGION }}
+        run: node scripts/manga/amazon_asin.mjs
 
-          node scripts/manga/wikidata_ids.mjs
-          node scripts/manga/anilist_tags.mjs
-          node scripts/manga/apply_anilist_genres.mjs
+      # ★ ここから “派生データ生成” をやる（Amazon反映後の items_master/works を元に作る）
+      - name: build indexes
+        run: node scripts/manga/build_indexes.mjs
 
-          node scripts/manga/build_indexes.mjs
-          node scripts/manga/build_indexes.mjs
-          node scripts/manga/build_work_pages.mjs
+      - name: build work pages
+        run: node scripts/manga/build_work_pages.mjs
 
-          npm i --no-save paapi5-nodejs-sdk
-          node scripts/manga/amazon_asin.mjs
-
-      - name: Commit & Push
+      # --- commit & push if changed ---
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/manga
-          git diff --cached --quiet || git commit -m "build manga items"
-          git push
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "build manga items"
+            git push
+          else
+            echo "no changes"
+          fi
