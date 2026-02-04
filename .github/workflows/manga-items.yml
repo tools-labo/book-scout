@@ -37,6 +37,8 @@ jobs:
           node scripts/manga/apply_anilist_genres.mjs
 
           node scripts/manga/build_indexes.mjs
+          node scripts/manga/build_indexes.mjs
+          node scripts/manga/build_work_pages.mjs
 
           npm i --no-save paapi5-nodejs-sdk
           node scripts/manga/amazon_asin.mjs
