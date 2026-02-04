@@ -3,8 +3,7 @@ name: Manga items (build)
 on:
   workflow_dispatch:
   schedule:
-    # JST 03:10 = UTC 18:10
-    - cron: "10 18 * * *"
+    - cron: "10 18 * * *" # JST 03:10
 
 permissions:
   contents: write
@@ -26,9 +25,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20.20.0"
-          # lockfile が無いので cache は使わない（使うとエラーになる）
 
-      # --- build pipeline (order is important) ---
       - name: openbd -> items_master
         run: node scripts/manga/openbd_items.mjs
 
@@ -56,27 +53,24 @@ jobs:
       - name: apply anilist genres
         run: node scripts/manga/apply_anilist_genres.mjs
 
-      # ★ Amazon を works/work 生成より前に確定させる
       - name: Install paapi sdk (no-save)
         run: npm i --no-save paapi5-nodejs-sdk
 
       - name: amazon asin + amazonUrl
         env:
-          PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
-          PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
-          PAAPI_PARTNER_TAG: ${{ secrets.PAAPI_PARTNER_TAG }}
-          PAAPI_HOST: ${{ secrets.PAAPI_HOST }}
-          PAAPI_REGION: ${{ secrets.PAAPI_REGION }}
+          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+          AMZ_HOST: ${{ secrets.AMZ_HOST }}
+          AMZ_REGION: ${{ secrets.AMZ_REGION }}
         run: node scripts/manga/amazon_asin.mjs
 
-      # --- derived files ---
       - name: build indexes
         run: node scripts/manga/build_indexes.mjs
 
       - name: build work pages
         run: node scripts/manga/build_work_pages.mjs
 
-      # --- commit & push if changed ---
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
