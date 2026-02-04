@@ -329,8 +329,31 @@ function cloneState(s) {
   };
 }
 
-function amazonButtonHTML(w) {
+function amazonPlainUrl(w) {
+  // できれば ASIN から /dp/ASIN にする（クエリが絶対に付かない）
+  const asin = w?.asin;
+  if (asin) return `https://www.amazon.co.jp/dp/${encodeURIComponent(asin)}`;
+
+  // amazonUrl がある場合は、クエリ（tag=... など）を落として使う
   const url = w?.amazonUrl;
+  if (!url) return null;
+
+  try {
+    const u = new URL(url);
+    u.search = ""; // クエリ削除
+    u.hash = "";
+    return u.toString();
+  } catch {
+    // URLとして壊れてる場合は「?」より前を使う（最終手段）
+    return String(url).split("?")[0];
+  }
+}
+
+// ここをスイッチにして、完成時に true に戻す
+const USE_AFFILIATE_AMAZON = false;
+
+function amazonButtonHTML(w) {
+  const url = USE_AFFILIATE_AMAZON ? (w?.amazonUrl || null) : amazonPlainUrl(w);
   if (!url) return `<p style="opacity:.7;">Amazon: 準備中</p>`;
   return `<p><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`;
 }
