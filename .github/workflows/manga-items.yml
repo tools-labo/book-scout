@@ -1,21 +1,20 @@
-name: Manga items (build)
+name: manga items
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "10 18 * * *" # JST 03:10
+    - cron: "15 */6 * * *" # 6時間ごと（好きに変更OK）
 
 permissions:
   contents: write
 
 concurrency:
   group: manga-items
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -24,60 +23,69 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20.20.0"
+          node-version: "20"
 
-      - name: openbd -> items_master
+      - name: Build manga data (openBD)
         run: node scripts/manga/openbd_items.mjs
 
-      - name: backfill rakuten (vol1 + rep)
+      # --- Rakuten (AppIDがある時だけ) ---
+      - name: Backfill vol1 from Rakuten
+        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/vol1_backfill_rakuten.mjs
 
-      - name: rakuten tags
+      - name: Rakuten tags
+        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/rakuten_tags.mjs
 
-      - name: rakuten genre resolve (ids -> names)
+      - name: Rakuten genre resolve
+        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/rakuten_genre_resolve.mjs
 
-      - name: wikidata ids
+      # --- Wikidata / AniList ---
+      - name: Wikidata ids
         run: node scripts/manga/wikidata_ids.mjs
 
-      - name: anilist tags
+      - name: AniList tags
         run: node scripts/manga/anilist_tags.mjs
 
-      - name: apply anilist genres
+      - name: Apply AniList genres
         run: node scripts/manga/apply_anilist_genres.mjs
 
-      - name: Install paapi sdk (no-save)
+      # --- Amazon (PA-APIがある時だけ) ---
+      - name: Install PA-API SDK (temp)
+        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
         run: npm i --no-save paapi5-nodejs-sdk
 
-      - name: amazon asin + amazonUrl
+      - name: Amazon ASIN lookup
+        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-          AMZ_HOST: ${{ secrets.AMZ_HOST }}
-          AMZ_REGION: ${{ secrets.AMZ_REGION }}
         run: node scripts/manga/amazon_asin.mjs
 
-      - name: build indexes
+      # --- Index / work pages ---
+      - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
 
-      - name: build work pages
+      - name: Build work pages
         run: node scripts/manga/build_work_pages.mjs
 
+      # --- Commit (data/manga だけ!!) ---
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          git add data/manga
+
           if [ -n "$(git status --porcelain)" ]; then
-            git add -A
             git commit -m "build manga items"
             git push
           else
