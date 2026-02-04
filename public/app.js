@@ -74,7 +74,6 @@ const DEMO_LABEL = {
   other: "other",
 };
 
-// AniList由来の genreKey を想定（必要に応じて足してOK）
 const GENRE_LABEL = {
   action_battle: "アクション",
   adventure: "冒険",
@@ -96,7 +95,6 @@ const labelGenre = (k) => GENRE_LABEL[k] || k;
 const labelDemo = (k) => DEMO_LABEL[k] || k;
 
 // publisherは works.json 内の publisher文字列から逆引きする
-// （p_xxxxxxxx -> "集英社" みたいな表示名）
 const publisherLabelMap = new Map();
 
 // ---------- Data loading ----------
@@ -120,7 +118,6 @@ async function loadWorks(cat) {
     const works = await j(`${base}/works.json?v=${Date.now()}`);
     cache.works = works;
 
-    // publisher表示名の逆引きテーブルを作る
     for (const wk of Object.keys(works)) {
       const w = works[wk];
       const pubIds = w?.tags?.publisher || [];
@@ -130,7 +127,6 @@ async function loadWorks(cat) {
       }
     }
 
-    // meta は無くても動く（あれば facet一覧に使う）
     try {
       cache.meta = await j(`${base}/index/_meta.json?v=${Date.now()}`);
     } catch {
@@ -165,14 +161,12 @@ async function loadIndexSet(cat, facet, value) {
   }
 }
 
-// workごとの分割JSON（あればそれを優先して使う）
 async function loadWork(cat, workKey) {
   const safe = encodeURIComponent(workKey);
   const url = `./data/${cat}/work/${safe}.json?v=${Date.now()}`;
   try {
     return await j(url);
   } catch {
-    // fallback: works.jsonから読む（分割がまだ無い場合）
     const works = cache.works || {};
     return works[workKey] || null;
   }
@@ -337,10 +331,30 @@ function cloneState(s) {
   };
 }
 
+// ★ここを強化：CSSに潰されない “ボタン見た目” に固定
 function amazonButtonHTML(w) {
-  const url = w?.amazonUrl;
-  if (!url) return `<p style="opacity:.7;">Amazon: 準備中</p>`;
-  return `<p><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`;
+  const url = (w?.amazonUrl || "").trim();
+  if (!url) {
+    return `<div class="d-meta" style="margin:10px 0;opacity:.7;">Amazon: 準備中</div>`;
+  }
+
+  return `
+    <div class="d-meta" style="margin:12px 0;">
+      <a
+        href="${escapeHtml(url)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+          display:inline-block;
+          padding:10px 12px;
+          border:1px solid currentColor;
+          border-radius:10px;
+          text-decoration:none;
+          font-weight:700;
+        "
+      >Amazonで見る</a>
+    </div>
+  `;
 }
 
 function tagsToChips(w) {
@@ -375,12 +389,13 @@ function showWorkDetailHTML(wk, w, state) {
       <a href="${workUrl}" style="display:inline-block;margin:6px 0;">作品ページへ</a>
     </div>
 
+    ${amazonButtonHTML(w)}
+
     <div class="d-meta" style="margin:8px 0;">
       <div style="font-weight:600;margin:6px 0;">タグ</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px;">${chips || '<span style="opacity:.7">（なし）</span>'}</div>
     </div>
 
-    ${amazonButtonHTML(w)}
     <div class="d-desc">${escapeHtml(w.description || "") || '<span class="d-empty">説明文がありません</span>'}</div>
   `;
 }
@@ -395,7 +410,7 @@ function bindTagClicks(detailEl, state) {
       next[f].has(v) ? next[f].delete(v) : next[f].add(v);
 
       setParams({ genre: next.genre, demo: next.demo, publisher: next.publisher }, true);
-      // workページ上でタグを押したら list へ飛ばす
+
       if (location.pathname.endsWith("/work.html") || location.pathname.endsWith("work.html")) {
         const qs = new URLSearchParams();
         qs.set("cat", next.cat);
@@ -485,7 +500,6 @@ function renderList(keys, state) {
       <div class="meta">${escapeHtml([w?.author, w?.publisher].filter(Boolean).join(" / "))}</div>
     `;
     li.addEventListener("click", (e) => {
-      // 作品ページリンククリックは普通に遷移
       if (e.target && e.target.tagName === "A") return;
       view.selectedWorkKey = wk;
       showWorkDetail(wk, state);
@@ -528,7 +542,6 @@ async function refresh() {
 
   const state = getParams();
 
-  // load data if cat changed or not loaded
   if (!cache.works || view._cat !== state.cat) {
     cache.index.clear();
     view._cat = state.cat;
@@ -536,7 +549,6 @@ async function refresh() {
     await loadWorks(state.cat);
   }
 
-  // work page
   if (isWorkPage()) {
     $("status") && ($("status").textContent = `${state.cat}`);
     const back = $("backToList");
@@ -546,7 +558,6 @@ async function refresh() {
     return;
   }
 
-  // list page
   if ($("cat")) $("cat").value = state.cat;
   if ($("q")) $("q").value = state.q;
 
