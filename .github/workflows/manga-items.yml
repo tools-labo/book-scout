@@ -28,7 +28,7 @@ jobs:
 
       # 依存関係（package-lock が無いなら npm install に変えてOK）
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # --- openBD ---
       - name: Build manga data (openBD)
