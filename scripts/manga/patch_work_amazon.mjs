@@ -1,75 +1,92 @@
-// scripts/manga/patch_work_amazon.mjs （全差し替え）
-// works.json の asin / amazonUrl を「素の dp URL」に正規化する
-// 参照元: data/manga/items_master.json（volumeHint=1 の asin を優先）
-
+// scripts/manga/patch_work_amazon.mjs
 import fs from "node:fs/promises";
 
-const CAT = process.env.CAT || "manga";
-const base = `data/${CAT}`;
+const WORKS_PATH = "data/manga/works.json";
+const ITEMS_PATH = "data/manga/items_master.json";
 
-const worksPath = `${base}/works.json`;
-const itemsPath = `${base}/items_master.json`;
-
-const toDpUrl = (asin) => (asin ? `https://www.amazon.co.jp/dp/${asin}` : null);
+const digits = (s) => String(s || "").replace(/\D/g, "");
 
 function extractAsinFromUrl(url) {
   const s = String(url || "");
-  // /dp/ASIN
+  // /dp/ASIN  or /gp/product/ASIN
   let m = s.match(/\/dp\/([A-Z0-9]{10})/i);
   if (m) return m[1].toUpperCase();
-  // /gp/product/ASIN
   m = s.match(/\/gp\/product\/([A-Z0-9]{10})/i);
   if (m) return m[1].toUpperCase();
   return null;
 }
 
-const works = JSON.parse(await fs.readFile(worksPath, "utf8"));
-const items = JSON.parse(await fs.readFile(itemsPath, "utf8"));
+function normalizeAmazonUrl(asin) {
+  if (!asin) return null;
+  return `https://www.amazon.co.jp/dp/${asin}`;
+}
 
-// workKey -> asin（volume 1 / main を優先）
-const asinByWork = new Map();
+// 「代表巻」を選ぶ：基本は1巻、無ければ最小巻、無理ならnull
+function pickRepresentativeItem(items) {
+  const cand = items
+    .filter((x) => x && x.seriesType === "main")
+    .map((x) => ({
+      x,
+      v: Number.isFinite(Number(x.volumeHint)) ? Number(x.volumeHint) : Infinity,
+    }))
+    .filter((o) => o.v !== Infinity)
+    .sort((a, b) => a.v - b.v)
+    .map((o) => o.x);
+
+  // 1巻（asin or amazonUrl があるもの）
+  const vol1 = cand.find((x) => x.volumeHint === 1 && (x.asin || x.amazonUrl));
+  if (vol1) return vol1;
+
+  // 最小巻（asin or amazonUrl があるもの）
+  const first = cand.find((x) => x.asin || x.amazonUrl);
+  if (first) return first;
+
+  return null;
+}
+
+const works = JSON.parse(await fs.readFile(WORKS_PATH, "utf8"));
+const items = JSON.parse(await fs.readFile(ITEMS_PATH, "utf8"));
+
+const byWork = new Map();
 for (const it of items) {
-  if (!it) continue;
-  if (it.seriesType !== "main") continue;
-  if (it.volumeHint !== 1) continue;
-  if (!it.workKey) continue;
-
-  const asin =
-    (it.asin && String(it.asin).trim()) ||
-    extractAsinFromUrl(it.amazonUrl);
-
-  if (asin && !asinByWork.has(it.workKey)) {
-    asinByWork.set(it.workKey, asin);
-  }
+  if (!it?.workKey) continue;
+  if (!byWork.has(it.workKey)) byWork.set(it.workKey, []);
+  byWork.get(it.workKey).push(it);
 }
 
 let updated = 0;
+let cleared = 0;
 
-for (const [wk, w] of Object.entries(works)) {
-  const fromItems = asinByWork.get(wk) || null;
+for (const [workKey, w] of Object.entries(works)) {
+  const arr = byWork.get(workKey) || [];
+  const rep = pickRepresentativeItem(arr);
 
-  // 既存workのasin/amazonUrlからも拾う（保険）
-  const fromWorkAsin = w?.asin ? String(w.asin).trim() : null;
-  const fromWorkUrl = extractAsinFromUrl(w?.amazonUrl);
+  if (!rep) {
+    // 代表が取れないなら消す（ASIN_HEREみたいな壊れURLを出さない）
+    if (w.asin || w.amazonUrl) {
+      w.asin = null;
+      w.amazonUrl = null;
+      cleared++;
+      updated++;
+    }
+    continue;
+  }
 
-  const asin = (fromItems || fromWorkAsin || fromWorkUrl || null);
+  // asin を優先。無ければURLから抜く
+  let asin = (rep.asin || "").trim();
+  if (!asin) asin = extractAsinFromUrl(rep.amazonUrl);
 
+  // asinが確定できないなら出さない
   const nextAsin = asin || null;
-  const nextUrl = asin ? toDpUrl(asin) : null;
+  const nextUrl = asin ? normalizeAmazonUrl(asin) : null;
 
-  const changed =
-    (w?.asin || null) !== nextAsin ||
-    (w?.amazonUrl || null) !== nextUrl;
-
+  const changed = (w.asin || null) !== nextAsin || (w.amazonUrl || null) !== nextUrl;
   if (changed) {
-    works[wk] = {
-      ...w,
-      asin: nextAsin,
-      amazonUrl: nextUrl,
-    };
+    w.asin = nextAsin;
+    w.amazonUrl = nextUrl;
     updated++;
   }
 }
 
-await fs.writeFile(worksPath, JSON.stringify(works, null, 2));
-console.log(`[patch_work_amazon] updated=${updated}`);
+await fs.writeFile(WORKS_PATH, JSON.stringify(works, null, 2));
+console.log(`[patch_work_amazon] updated=${updated} cleared=${cleared}`);
