@@ -80,8 +80,6 @@ jobs:
         run: node scripts/manga/apply_anilist_genres.mjs
 
       # --- Amazon (PA-APIがある時だけ) ---
-      # npm を使うのは「SDKを一時的に入れる」時だけ。
-      # package.json が無い前提なので init するが、最後に必ず消す（コミット事故防止）。
       - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
@@ -120,40 +118,7 @@ jobs:
             echo "Skip: Amazon secrets not set"
           fi
 
-      # ★ デバッグ（vol1のASINカバレッジをログで確認）
-      # 目的：1巻が無い/ASINが取れてない/patchが拾えてない、どれが原因かを確定する
-      - name: Debug: vol1 ASIN coverage
-        run: |
-          node - <<'NODE'
-          const fs = require("fs");
-          const items = JSON.parse(fs.readFileSync("data/manga/items_master.json","utf8"));
-          const vol1 = items.filter(x => x.seriesType==="main" && x.volumeHint===1);
-          const withAsin = vol1.filter(x => x.asin && String(x.asin).trim());
-
-          const byWork = new Map();
-          for (const x of vol1) {
-            const wk = x.workKey;
-            if (!wk) continue;
-            if (!byWork.has(wk)) byWork.set(wk, []);
-            byWork.get(wk).push(x);
-          }
-
-          const missing = [];
-          for (const [wk, arr] of byWork.entries()) {
-            const ok = arr.some(a => a.asin && String(a.asin).trim());
-            if (!ok) missing.push([wk, arr[0]?.title, arr[0]?.isbn13]);
-          }
-
-          console.log("vol1_total=", vol1.length);
-          console.log("vol1_with_asin=", withAsin.length);
-          console.log("works_with_vol1_entry=", byWork.size);
-          console.log("vol1_missing_asin_count=", missing.length);
-          console.log("---- missing (workKey | title | isbn13) ----");
-          missing.slice(0, 50).forEach(x => console.log(x.join(" | ")));
-          NODE
-
-      # ★ Amazon普通リンク問題の本筋：
-      # items_master の amazonUrl/asin を works.json へ反映（works が null のままを防ぐ）
+      # items_master の amazonUrl/asin を works.json へ反映
       - name: Patch works Amazon fields from items_master
         run: node scripts/manga/patch_work_amazon.mjs
 
@@ -174,7 +139,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # 念のため：npm生成物は絶対に残さない
           rm -rf node_modules package-lock.json package.json
 
           git add data/manga
