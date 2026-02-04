@@ -1,9 +1,10 @@
-name: manga items
+name: Manga items (build)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 */6 * * *" # 6時間ごと（好きに変更OK）
+    # JST 03:15 に毎日（必要なら後で調整）
+    - cron: "15 18 * * *"
 
 permissions:
   contents: write
@@ -15,6 +16,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -23,8 +25,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "20.20.0"
 
+      # --- openBD ---
       - name: Build manga data (openBD)
         run: node scripts/manga/openbd_items.mjs
 
@@ -58,6 +61,7 @@ jobs:
         run: node scripts/manga/apply_anilist_genres.mjs
 
       # --- Amazon (PA-APIがある時だけ) ---
+      # npm i --no-save は node_modules を作るので、最後に消す（コミット事故防止）
       - name: Install PA-API SDK (temp)
         if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
         run: npm i --no-save paapi5-nodejs-sdk
@@ -68,7 +72,14 @@ jobs:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+          AMZ_HOST: ${{ secrets.AMZ_HOST }}
+          AMZ_REGION: ${{ secrets.AMZ_REGION }}
         run: node scripts/manga/amazon_asin.mjs
+
+      - name: Cleanup temp node_modules
+        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
+        run: |
+          rm -rf node_modules package-lock.json
 
       # --- Index / work pages ---
       - name: Build indexes
@@ -78,16 +89,19 @@ jobs:
         run: node scripts/manga/build_work_pages.mjs
 
       # --- Commit (data/manga だけ!!) ---
-      - name: Commit and push
+      - name: Commit and push (data/manga only)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # 念のため：絶対に node_modules はコミットしない
+          rm -rf node_modules package-lock.json
+
           git add data/manga
 
-          if [ -n "$(git status --porcelain)" ]; then
+          if [ -n "$(git status --porcelain -- data/manga)" ]; then
             git commit -m "build manga items"
             git push
           else
-            echo "no changes"
+            echo "No changes in data/manga"
           fi
