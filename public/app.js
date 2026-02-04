@@ -18,6 +18,7 @@ const getParams = () => {
   const sp = new URLSearchParams(location.search);
   const cat = sp.get("cat") || "manga";
   const q = sp.get("q") || "";
+  const w = sp.get("w") || ""; // workKey
 
   const parseSet = (key) => {
     const v = sp.get(key);
@@ -28,6 +29,7 @@ const getParams = () => {
   return {
     cat,
     q,
+    w,
     genre: parseSet("g"),
     demo: parseSet("d"),
     publisher: parseSet("p"),
@@ -42,6 +44,11 @@ const setParams = (next, replace = true) => {
   if (next.q != null) {
     const q = String(next.q).trim();
     q ? sp.set("q", q) : sp.delete("q");
+  }
+
+  if (next.w != null) {
+    const w = String(next.w).trim();
+    w ? sp.set("w", w) : sp.delete("w");
   }
 
   const setSet = (key, set) => {
@@ -96,7 +103,7 @@ const publisherLabelMap = new Map();
 const cache = {
   works: null,      // { workKey: workObj }
   meta: null,       // _meta.json
-  index: new Map(), // key: `${facet}/${value}` -> Set(workKey)
+  index: new Map(), // key: `${cat}:${facet}/${value}` -> Set(workKey)
 };
 
 async function j(url) {
@@ -158,11 +165,22 @@ async function loadIndexSet(cat, facet, value) {
   }
 }
 
+// workごとの分割JSON（あればそれを優先して使う）
+async function loadWork(cat, workKey) {
+  const safe = encodeURIComponent(workKey);
+  const url = `./data/${cat}/work/${safe}.json?v=${Date.now()}`;
+  try {
+    return await j(url);
+  } catch {
+    // fallback: works.jsonから読む（分割がまだ無い場合）
+    const works = cache.works || {};
+    return works[workKey] || null;
+  }
+}
+
 // ---------- Filtering ----------
 function intersects(a, b) {
-  // a,b are Set
   const out = new Set();
-  // iterate smaller
   const [s1, s2] = a.size <= b.size ? [a, b] : [b, a];
   for (const x of s1) if (s2.has(x)) out.add(x);
   return out;
@@ -174,7 +192,6 @@ async function applyFilter(cat, state) {
 
   let cur = allKeys;
 
-  // facet: genre
   if (state.genre.size) {
     let union = new Set();
     for (const g of state.genre) {
@@ -184,7 +201,6 @@ async function applyFilter(cat, state) {
     cur = intersects(cur, union);
   }
 
-  // facet: demo
   if (state.demo.size) {
     let union = new Set();
     for (const d of state.demo) {
@@ -194,7 +210,6 @@ async function applyFilter(cat, state) {
     cur = intersects(cur, union);
   }
 
-  // facet: publisher
   if (state.publisher.size) {
     let union = new Set();
     for (const p of state.publisher) {
@@ -204,22 +219,18 @@ async function applyFilter(cat, state) {
     cur = intersects(cur, union);
   }
 
-  // search query
   const qq = (state.q || "").trim().toLowerCase();
   let keys = [...cur];
   if (qq) {
     keys = keys.filter((wk) => (works[wk]?.title || "").toLowerCase().includes(qq));
   }
 
-  // sort: title asc (後で人気順とか入れるなら差し替え)
   keys.sort((a, b) => (works[a]?.title || "").localeCompare(works[b]?.title || "", "ja"));
-
   return keys;
 }
 
 // ---------- UI building ----------
 function ensureFacetsUI() {
-  // 既存HTMLに専用領域が無い前提で、listの上に挿入する
   let wrap = $("facets");
   if (wrap) return wrap;
 
@@ -230,7 +241,6 @@ function ensureFacetsUI() {
   wrap.id = "facets";
   wrap.style.margin = "12px 0";
 
-  // facets title
   const h = document.createElement("div");
   h.innerHTML = `<div style="font-weight:700;margin:8px 0;">絞り込み</div>`;
   wrap.appendChild(h);
@@ -258,11 +268,9 @@ function renderFacetGroup(title, facet, values, selectedSet, labelFn) {
 }
 
 function collectFacetValuesFromMeta(facet) {
-  // metaがあれば meta のキー一覧を使う。無ければ works から拾う。
   if (cache.meta?.facets?.[facet]) {
     return Object.keys(cache.meta.facets[facet]);
   }
-  // fallback: worksから拾う
   const works = cache.works || {};
   const set = new Set();
   for (const wk of Object.keys(works)) {
@@ -276,7 +284,6 @@ function renderFacets(cat, state) {
   const wrap = ensureFacetsUI();
   if (!wrap) return;
 
-  // 値一覧
   const genres = collectFacetValuesFromMeta("genre").sort((a, b) => labelGenre(a).localeCompare(labelGenre(b), "ja"));
   const demos = collectFacetValuesFromMeta("demo").sort((a, b) => labelDemo(a).localeCompare(labelDemo(b), "ja"));
   const pubs = collectFacetValuesFromMeta("publisher").sort((a, b) => {
@@ -305,7 +312,7 @@ function renderFacets(cat, state) {
       next[f].has(v) ? next[f].delete(v) : next[f].add(v);
 
       setParams({ genre: next.genre, demo: next.demo, publisher: next.publisher }, true);
-      await refresh(); // stateはURLから再取得
+      await refresh();
     });
   });
 
@@ -323,37 +330,15 @@ function cloneState(s) {
   return {
     cat: s.cat,
     q: s.q,
+    w: s.w,
     genre: new Set([...s.genre]),
     demo: new Set([...s.demo]),
     publisher: new Set([...s.publisher]),
   };
 }
 
-function amazonPlainUrl(w) {
-  // できれば ASIN から /dp/ASIN にする（クエリが絶対に付かない）
-  const asin = w?.asin;
-  if (asin) return `https://www.amazon.co.jp/dp/${encodeURIComponent(asin)}`;
-
-  // amazonUrl がある場合は、クエリ（tag=... など）を落として使う
-  const url = w?.amazonUrl;
-  if (!url) return null;
-
-  try {
-    const u = new URL(url);
-    u.search = ""; // クエリ削除
-    u.hash = "";
-    return u.toString();
-  } catch {
-    // URLとして壊れてる場合は「?」より前を使う（最終手段）
-    return String(url).split("?")[0];
-  }
-}
-
-// ここをスイッチにして、完成時に true に戻す
-const USE_AFFILIATE_AMAZON = false;
-
 function amazonButtonHTML(w) {
-  const url = USE_AFFILIATE_AMAZON ? (w?.amazonUrl || null) : amazonPlainUrl(w);
+  const url = w?.amazonUrl;
   if (!url) return `<p style="opacity:.7;">Amazon: 準備中</p>`;
   return `<p><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Amazonで見る</a></p>`;
 }
@@ -361,15 +346,12 @@ function amazonButtonHTML(w) {
 function tagsToChips(w) {
   const chips = [];
 
-  // genre chips
   for (const g of (w?.tags?.genre || [])) {
     chips.push({ facet: "genre", value: g, label: labelGenre(g) });
   }
-  // demo chips
   for (const d of (w?.tags?.demo || [])) {
     chips.push({ facet: "demo", value: d, label: labelDemo(d) });
   }
-  // publisher chips
   for (const p of (w?.tags?.publisher || [])) {
     chips.push({ facet: "publisher", value: p, label: w.publisher || publisherLabelMap.get(p) || p });
   }
@@ -379,34 +361,32 @@ function tagsToChips(w) {
     .join(" ");
 }
 
-function showWorkDetail(wk, state) {
-  const d = $("detail");
-  if (!d) return;
-
-  const works = cache.works || {};
-  const w = works[wk];
-
-  if (!w) {
-    d.innerHTML = `<div class="d-title">作品を選ぶと詳細が表示されます</div>`;
-    return;
-  }
-
+function showWorkDetailHTML(wk, w, state) {
   const meta = [w.author, w.publisher, w.publishedAt].filter(Boolean).join(" / ");
   const chips = tagsToChips(w);
 
-  d.innerHTML = `
+  const workUrl = `./work.html?cat=${encodeURIComponent(state.cat)}&w=${encodeURIComponent(wk)}`;
+
+  return `
     <div class="d-title">${escapeHtml(w.title || "")}</div>
     <div class="d-meta">${escapeHtml(meta)}</div>
+
+    <div class="d-meta" style="margin:8px 0;">
+      <a href="${workUrl}" style="display:inline-block;margin:6px 0;">作品ページへ</a>
+    </div>
+
     <div class="d-meta" style="margin:8px 0;">
       <div style="font-weight:600;margin:6px 0;">タグ</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px;">${chips || '<span style="opacity:.7">（なし）</span>'}</div>
     </div>
+
     ${amazonButtonHTML(w)}
     <div class="d-desc">${escapeHtml(w.description || "") || '<span class="d-empty">説明文がありません</span>'}</div>
   `;
+}
 
-  // タグクリック → 該当facetをトグルして即フィルタ
-  d.querySelectorAll("button[data-tag-f][data-tag-v]").forEach((btn) => {
+function bindTagClicks(detailEl, state) {
+  detailEl.querySelectorAll("button[data-tag-f][data-tag-v]").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const f = btn.getAttribute("data-tag-f");
       const v = btn.getAttribute("data-tag-v");
@@ -415,9 +395,39 @@ function showWorkDetail(wk, state) {
       next[f].has(v) ? next[f].delete(v) : next[f].add(v);
 
       setParams({ genre: next.genre, demo: next.demo, publisher: next.publisher }, true);
+      // workページ上でタグを押したら list へ飛ばす
+      if (location.pathname.endsWith("/work.html") || location.pathname.endsWith("work.html")) {
+        const qs = new URLSearchParams();
+        qs.set("cat", next.cat);
+        if (next.q) qs.set("q", next.q);
+        if (next.genre.size) qs.set("g", [...next.genre].join(","));
+        if (next.demo.size) qs.set("d", [...next.demo].join(","));
+        if (next.publisher.size) qs.set("p", [...next.publisher].join(","));
+        location.href = `./list.html?${qs.toString()}`;
+        return;
+      }
       await refresh();
     });
   });
+}
+
+async function showWorkDetail(wk, state) {
+  const d = $("detail");
+  if (!d) return;
+
+  if (!wk) {
+    d.innerHTML = `<div class="d-title">作品を選ぶと詳細が表示されます</div>`;
+    return;
+  }
+
+  const w = await loadWork(state.cat, wk);
+  if (!w) {
+    d.innerHTML = `<div class="d-title">作品が見つかりません</div>`;
+    return;
+  }
+
+  d.innerHTML = showWorkDetailHTML(wk, w, state);
+  bindTagClicks(d, state);
 }
 
 // ---------- List rendering ----------
@@ -426,6 +436,7 @@ let view = {
   shown: 0,
   pageSize: 50,
   selectedWorkKey: null,
+  _cat: null,
 };
 
 function ensureMoreButton() {
@@ -465,23 +476,28 @@ function renderList(keys, state) {
   slice.forEach((wk) => {
     const w = works[wk];
     const li = document.createElement("li");
+    const workUrl = `./work.html?cat=${encodeURIComponent(state.cat)}&w=${encodeURIComponent(wk)}`;
     li.innerHTML = `
-      <div class="title">${escapeHtml(w?.title || wk)}</div>
+      <div class="title">
+        ${escapeHtml(w?.title || wk)}
+        <a href="${workUrl}" style="margin-left:8px;font-size:.9em;">（作品ページ）</a>
+      </div>
       <div class="meta">${escapeHtml([w?.author, w?.publisher].filter(Boolean).join(" / "))}</div>
     `;
-    li.addEventListener("click", () => {
+    li.addEventListener("click", (e) => {
+      // 作品ページリンククリックは普通に遷移
+      if (e.target && e.target.tagName === "A") return;
       view.selectedWorkKey = wk;
       showWorkDetail(wk, state);
     });
     list.appendChild(li);
   });
 
-  // 初回は先頭を詳細表示
   const first = slice[0];
   if (first && !view.selectedWorkKey) {
     view.selectedWorkKey = first;
     showWorkDetail(first, state);
-  } else if (view.selectedWorkKey && works[view.selectedWorkKey]) {
+  } else if (view.selectedWorkKey) {
     showWorkDetail(view.selectedWorkKey, state);
   }
 
@@ -495,6 +511,14 @@ function renderList(keys, state) {
   }
 }
 
+// ---------- Pages ----------
+function isWorkPage() {
+  return (location.pathname.endsWith("/work.html") || location.pathname.endsWith("work.html"));
+}
+function isListPage() {
+  return (location.pathname.endsWith("/list.html") || location.pathname.endsWith("list.html") || location.pathname.endsWith("/"));
+}
+
 // ---------- Main sync ----------
 let lock = false;
 
@@ -504,10 +528,6 @@ async function refresh() {
 
   const state = getParams();
 
-  // UI reflect
-  if ($("cat")) $("cat").value = state.cat;
-  if ($("q")) $("q").value = state.q;
-
   // load data if cat changed or not loaded
   if (!cache.works || view._cat !== state.cat) {
     cache.index.clear();
@@ -516,14 +536,25 @@ async function refresh() {
     await loadWorks(state.cat);
   }
 
-  // facets UI
+  // work page
+  if (isWorkPage()) {
+    $("status") && ($("status").textContent = `${state.cat}`);
+    const back = $("backToList");
+    if (back) back.href = `./list.html?cat=${encodeURIComponent(state.cat)}`;
+    await showWorkDetail(state.w, state);
+    lock = false;
+    return;
+  }
+
+  // list page
+  if ($("cat")) $("cat").value = state.cat;
+  if ($("q")) $("q").value = state.q;
+
   renderFacets(state.cat, state);
 
-  // compute filtered keys
   const keys = await applyFilter(state.cat, state);
   view.keys = keys;
 
-  // paging
   view.shown = Math.min(keys.length, view.pageSize);
   renderList(keys, state);
 
@@ -531,7 +562,6 @@ async function refresh() {
 }
 
 function setup() {
-  // search box
   if ($("q")) {
     $("q").addEventListener("input", async () => {
       setParams({ q: $("q").value }, true);
@@ -539,7 +569,6 @@ function setup() {
     });
   }
 
-  // cat selector (optional)
   if ($("cat")) {
     $("cat").addEventListener("change", async () => {
       setParams({ cat: $("cat").value }, false);
