@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 const WORKS_PATH = "data/manga/works.json";
 const ITEMS_PATH = "data/manga/items_master.json";
 
+// dpリンクだけ許可（クエリ/アフィは後で正規化して落とす）
 const isValidDpUrl = (u) =>
   typeof u === "string" &&
   u.startsWith("https://www.amazon.co.jp/dp/") &&
@@ -11,20 +12,40 @@ const isValidDpUrl = (u) =>
 
 const normalizeDpUrl = (asinOrUrl) => {
   if (!asinOrUrl) return null;
-
   const s = String(asinOrUrl).trim();
 
-  // URLからASIN抜く（/dp/ASIN 形式だけ対応）
-  const m = s.match(/^https:\/\/www\.amazon\.co\.jp\/dp\/([A-Z0-9]{10}|[0-9]{9}X|[0-9]{10})(?:[/?].*)?$/i);
-  if (m) return `https://www.amazon.co.jp/dp/${m[1]}`;
+  // URLからASIN抜く（/dp/ASIN のみ対応）
+  const m = s.match(
+    /^https:\/\/www\.amazon\.co\.jp\/dp\/([A-Z0-9]{10}|[0-9]{9}X|[0-9]{10})(?:[/?].*)?$/i
+  );
+  if (m) return `https://www.amazon.co.jp/dp/${m[1].toUpperCase()}`;
 
   // ASIN単体（ISBN10含む）を dp にする
   const asin = s.toUpperCase().replace(/[^0-9A-Z]/g, "");
-  if (!asin) return null;
   if (/^[A-Z0-9]{10}$/.test(asin)) return `https://www.amazon.co.jp/dp/${asin}`;
 
   return null;
 };
+
+// タイトルから巻数を推定（1巻チェック用）
+// 例: "ONE PIECE 1", "葬送のフリーレン（15）", "○○ 7 -..." などを想定
+function parseVolumeFromTitle(title) {
+  const t = String(title || "").trim();
+
+  // （15） / (15)
+  let m = t.match(/[（(]\s*(\d{1,3})\s*[)）]/);
+  if (m) return Number(m[1]);
+
+  // 末尾の " 114" / " 7" / "　47"（半角/全角スペース混在）
+  m = t.match(/[\s　]+(\d{1,3})\s*$/);
+  if (m) return Number(m[1]);
+
+  // " 7 -" みたいなケース（BORUTO... 7 -TWO...）
+  m = t.match(/[\s　]+(\d{1,3})\s*[-－—]/);
+  if (m) return Number(m[1]);
+
+  return null;
+}
 
 const same = (a, b) => (a ?? null) === (b ?? null);
 
@@ -37,16 +58,26 @@ const main = async () => {
 
   for (const it of items) {
     if (!it || it.seriesType !== "main") continue;
-    if (it.volumeHint !== 1) continue;
+
     const wk = it.workKey;
     if (!wk) continue;
+
+    // 重要：volumeHintが壊れてても「タイトルから巻数を見て 1 だけ許可」
+    const vHint = Number(it.volumeHint);
+    const vTitle = parseVolumeFromTitle(it.title);
+
+    // “1巻っぽい”判定：
+    // - volumeHint が 1、または title から 1 が取れる
+    // - ただし title から 2以上が取れてしまうなら絶対に弾く（巻ズレ防止）
+    if (vTitle != null && vTitle !== 1) continue;
+    if (!(vHint === 1 || vTitle === 1)) continue;
 
     const dp = normalizeDpUrl(it.asin || it.amazonUrl);
     if (!dp) continue; // asin取れてないなら採用しない（巻ズレ防止）
 
-    // 既にあれば維持（どれもvol1なので先勝ちでOK）
     if (!vol1ByWork.has(wk)) {
-      vol1ByWork.set(wk, { asin: String(it.asin || "").trim() || null, amazonUrl: dp });
+      const asin = String(it.asin || "").trim() || null;
+      vol1ByWork.set(wk, { asin, amazonUrl: dp });
     }
   }
 
@@ -57,12 +88,8 @@ const main = async () => {
     const curUrl = w?.amazonUrl ?? null;
     const curAsin = w?.asin ?? null;
 
-    // 1) 壊れURLを掃除
-    const curInvalid =
-      curUrl &&
-      (!isValidDpUrl(curUrl) || curUrl.includes("ASIN_HERE"));
+    const curInvalid = curUrl && (!isValidDpUrl(curUrl) || curUrl.includes("ASIN_HERE"));
 
-    // 2) 正しいvol1があるならそれに統一
     const vol1 = vol1ByWork.get(wk) || null;
 
     if (vol1) {
@@ -78,7 +105,7 @@ const main = async () => {
       continue;
     }
 
-    // 3) vol1が無い作品は「巻ズレ回避」でAmazonリンクを消す（準備中）
+    // vol1が無い作品は「巻ズレ回避」でAmazonリンクを消す
     if (curUrl || curAsin) {
       w.amazonUrl = null;
       w.asin = null;
