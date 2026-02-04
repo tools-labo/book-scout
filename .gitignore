@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# temp
+.tmp/
+.temp/
+.cache/
+
+# build artifacts (必要なら)
+dist/
+build/
