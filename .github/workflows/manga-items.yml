@@ -25,30 +25,50 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "20.20.0"
+
+      # ここで npm ci / npm install はしない（package.json が無い前提のため）
+
+      - name: Sanity check (show repo root)
+        run: |
+          pwd
+          ls -la
+          ls -la scripts/manga || true
 
       # --- openBD ---
       - name: Build manga data (openBD)
         run: node scripts/manga/openbd_items.mjs
 
       # --- Rakuten (AppIDがある時だけ) ---
-      - name: Backfill vol1 from Rakuten
-        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
+      - name: Backfill vol1 from Rakuten (optional)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: node scripts/manga/vol1_backfill_rakuten.mjs
+        run: |
+          if [ -n "${RAKUTEN_APP_ID}" ]; then
+            node scripts/manga/vol1_backfill_rakuten.mjs
+          else
+            echo "Skip: RAKUTEN_APP_ID not set"
+          fi
 
-      - name: Rakuten tags
-        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
+      - name: Rakuten tags (optional)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: node scripts/manga/rakuten_tags.mjs
+        run: |
+          if [ -n "${RAKUTEN_APP_ID}" ]; then
+            node scripts/manga/rakuten_tags.mjs
+          else
+            echo "Skip: RAKUTEN_APP_ID not set"
+          fi
 
-      - name: Rakuten genre resolve
-        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
+      - name: Rakuten genre resolve (optional)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: node scripts/manga/rakuten_genre_resolve.mjs
+        run: |
+          if [ -n "${RAKUTEN_APP_ID}" ]; then
+            node scripts/manga/rakuten_genre_resolve.mjs
+          else
+            echo "Skip: RAKUTEN_APP_ID not set"
+          fi
 
       # --- Wikidata / AniList ---
       - name: Wikidata ids
@@ -61,25 +81,48 @@ jobs:
         run: node scripts/manga/apply_anilist_genres.mjs
 
       # --- Amazon (PA-APIがある時だけ) ---
-      # ここだけ一時的にSDKを入れる（package.json不要）
-      - name: Install PA-API SDK (temp)
-        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
-        run: npm i --no-save paapi5-nodejs-sdk
-
-      - name: Amazon ASIN lookup
-        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
+      # npm を使うのは「SDKを一時的に入れる」時だけ。package.json が無いので init が必要。
+      - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-          # あなたが「作ってない」と言ってたので secrets 参照をやめて固定値にする
-          AMZ_HOST: webservices.amazon.co.jp
-          AMZ_REGION: us-west-2
-        run: node scripts/manga/amazon_asin.mjs
+        run: |
+          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
+            if [ ! -f package.json ]; then
+              npm init -y
+            fi
+          else
+            echo "Skip: Amazon secrets not set"
+          fi
 
-      - name: Cleanup temp node_modules
-        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
-        run: rm -rf node_modules package-lock.json
+      - name: Install PA-API SDK (temp, optional)
+        env:
+          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+        run: |
+          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
+            npm i --no-save paapi5-nodejs-sdk
+          else
+            echo "Skip: Amazon secrets not set"
+          fi
+
+      - name: Amazon ASIN lookup (optional)
+        env:
+          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+        run: |
+          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
+            node scripts/manga/amazon_asin.mjs
+          else
+            echo "Skip: Amazon secrets not set"
+          fi
+
+      - name: Cleanup temp npm artifacts
+        run: |
+          rm -rf node_modules package-lock.json
 
       # --- Index / work pages ---
       - name: Build indexes
@@ -94,7 +137,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # 念のため：絶対に node_modules はコミットしない
           rm -rf node_modules package-lock.json
 
           git add data/manga
