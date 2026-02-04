@@ -27,19 +27,24 @@ jobs:
         with:
           node-version: "20.20.0"
           # lockfile が無いので cache は使わない（使うとエラーになる）
-          # cache: npm
 
       # --- build pipeline (order is important) ---
       - name: openbd -> items_master
         run: node scripts/manga/openbd_items.mjs
 
       - name: backfill rakuten (vol1 + rep)
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/vol1_backfill_rakuten.mjs
 
       - name: rakuten tags
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/rakuten_tags.mjs
 
       - name: rakuten genre resolve (ids -> names)
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/rakuten_genre_resolve.mjs
 
       - name: wikidata ids
@@ -51,13 +56,12 @@ jobs:
       - name: apply anilist genres
         run: node scripts/manga/apply_anilist_genres.mjs
 
-      # ★ Amazon を works/work 生成より前に確定させる（ここが今回の修正ポイント）
+      # ★ Amazon を works/work 生成より前に確定させる
       - name: Install paapi sdk (no-save)
         run: npm i --no-save paapi5-nodejs-sdk
 
       - name: amazon asin + amazonUrl
         env:
-          # 既に Secrets を用意してある前提（無ければ scripts 側で未設定扱いになる）
           PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
           PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
           PAAPI_PARTNER_TAG: ${{ secrets.PAAPI_PARTNER_TAG }}
@@ -65,7 +69,7 @@ jobs:
           PAAPI_REGION: ${{ secrets.PAAPI_REGION }}
         run: node scripts/manga/amazon_asin.mjs
 
-      # ★ ここから “派生データ生成” をやる（Amazon反映後の items_master/works を元に作る）
+      # --- derived files ---
       - name: build indexes
         run: node scripts/manga/build_indexes.mjs
 
