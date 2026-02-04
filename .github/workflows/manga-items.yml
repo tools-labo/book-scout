@@ -3,8 +3,7 @@ name: Manga items (build)
 on:
   workflow_dispatch:
   schedule:
-    # JST 03:15
-    - cron: "15 18 * * *"
+    - cron: "15 18 * * *" # JST 03:15
 
 permissions:
   contents: write
@@ -27,7 +26,6 @@ jobs:
         with:
           node-version: "20.20.0"
 
-      # ここで npm ci / npm install はしない（package.json が無い前提のため）
       - name: Sanity check (show repo root)
         run: |
           pwd
@@ -38,7 +36,7 @@ jobs:
       - name: Build manga data (openBD)
         run: node scripts/manga/openbd_items.mjs
 
-      # --- Rakuten (AppIDがある時だけ) ---
+      # --- Rakuten (optional) ---
       - name: Backfill vol1 from Rakuten (optional)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
@@ -79,9 +77,7 @@ jobs:
       - name: Apply AniList genres
         run: node scripts/manga/apply_anilist_genres.mjs
 
-      # --- Amazon (PA-APIがある時だけ) ---
-      # npm を使うのは「SDKを一時的に入れる」時だけ。
-      # package.json が無い前提なので init するが、最後に必ず消す（コミット事故防止）。
+      # --- Amazon (optional) ---
       - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
@@ -92,38 +88,20 @@ jobs:
             if [ ! -f package.json ]; then
               npm init -y
             fi
-          else
-            echo "Skip: Amazon secrets not set"
-          fi
-
-      - name: Install PA-API SDK (temp, optional)
-        env:
-          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-        run: |
-          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
             npm i --no-save paapi5-nodejs-sdk
-          else
-            echo "Skip: Amazon secrets not set"
-          fi
-
-      - name: Amazon ASIN lookup (optional)
-        env:
-          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-        run: |
-          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
             node scripts/manga/amazon_asin.mjs
           else
             echo "Skip: Amazon secrets not set"
           fi
 
-      # ★ Amazon普通リンク問題の本筋：
-      # items_master の amazonUrl/asin を works.json へ反映（works が null のままを防ぐ）
-      - name: Patch works Amazon fields from items_master
-        run: node scripts/manga/patch_work_amazon.mjs
+      # ★ここが今回の本丸：必ずログで分かるようにする
+      - name: Patch works Amazon fields from items_master (MUST RUN)
+        run: |
+          echo "=== before patch (extract amazonUrl lines) ==="
+          node -e "const w=require('./data/manga/works.json'); console.log('one piece:', w['one piece']?.amazonUrl);"
+          node scripts/manga/patch_work_amazon.mjs
+          echo "=== after patch (extract amazonUrl lines) ==="
+          node -e "const w=require('./data/manga/works.json'); console.log('one piece:', w['one piece']?.amazonUrl);"
 
       - name: Cleanup temp npm artifacts
         run: |
@@ -136,13 +114,12 @@ jobs:
       - name: Build work pages
         run: node scripts/manga/build_work_pages.mjs
 
-      # --- Commit (data/manga だけ!!) ---
+      # --- Commit (data/manga only) ---
       - name: Commit and push (data/manga only)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # 念のため：npm生成物は絶対に残さない
           rm -rf node_modules package-lock.json package.json
 
           git add data/manga
