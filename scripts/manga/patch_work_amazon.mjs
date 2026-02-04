@@ -1,92 +1,96 @@
-// scripts/manga/patch_work_amazon.mjs
+// scripts/manga/patch_work_amazon.mjs （全差し替え）
 import fs from "node:fs/promises";
 
 const WORKS_PATH = "data/manga/works.json";
 const ITEMS_PATH = "data/manga/items_master.json";
 
-const digits = (s) => String(s || "").replace(/\D/g, "");
+const isValidDpUrl = (u) =>
+  typeof u === "string" &&
+  u.startsWith("https://www.amazon.co.jp/dp/") &&
+  !u.includes("ASIN_HERE");
 
-function extractAsinFromUrl(url) {
-  const s = String(url || "");
-  // /dp/ASIN  or /gp/product/ASIN
-  let m = s.match(/\/dp\/([A-Z0-9]{10})/i);
-  if (m) return m[1].toUpperCase();
-  m = s.match(/\/gp\/product\/([A-Z0-9]{10})/i);
-  if (m) return m[1].toUpperCase();
-  return null;
-}
+const normalizeDpUrl = (asinOrUrl) => {
+  if (!asinOrUrl) return null;
 
-function normalizeAmazonUrl(asin) {
+  const s = String(asinOrUrl).trim();
+
+  // URLからASIN抜く（/dp/ASIN 形式だけ対応）
+  const m = s.match(/^https:\/\/www\.amazon\.co\.jp\/dp\/([A-Z0-9]{10}|[0-9]{9}X|[0-9]{10})(?:[/?].*)?$/i);
+  if (m) return `https://www.amazon.co.jp/dp/${m[1]}`;
+
+  // ASIN単体（ISBN10含む）を dp にする
+  const asin = s.toUpperCase().replace(/[^0-9A-Z]/g, "");
   if (!asin) return null;
-  return `https://www.amazon.co.jp/dp/${asin}`;
-}
-
-// 「代表巻」を選ぶ：基本は1巻、無ければ最小巻、無理ならnull
-function pickRepresentativeItem(items) {
-  const cand = items
-    .filter((x) => x && x.seriesType === "main")
-    .map((x) => ({
-      x,
-      v: Number.isFinite(Number(x.volumeHint)) ? Number(x.volumeHint) : Infinity,
-    }))
-    .filter((o) => o.v !== Infinity)
-    .sort((a, b) => a.v - b.v)
-    .map((o) => o.x);
-
-  // 1巻（asin or amazonUrl があるもの）
-  const vol1 = cand.find((x) => x.volumeHint === 1 && (x.asin || x.amazonUrl));
-  if (vol1) return vol1;
-
-  // 最小巻（asin or amazonUrl があるもの）
-  const first = cand.find((x) => x.asin || x.amazonUrl);
-  if (first) return first;
+  if (/^[A-Z0-9]{10}$/.test(asin)) return `https://www.amazon.co.jp/dp/${asin}`;
 
   return null;
-}
+};
 
-const works = JSON.parse(await fs.readFile(WORKS_PATH, "utf8"));
-const items = JSON.parse(await fs.readFile(ITEMS_PATH, "utf8"));
+const same = (a, b) => (a ?? null) === (b ?? null);
 
-const byWork = new Map();
-for (const it of items) {
-  if (!it?.workKey) continue;
-  if (!byWork.has(it.workKey)) byWork.set(it.workKey, []);
-  byWork.get(it.workKey).push(it);
-}
+const main = async () => {
+  const works = JSON.parse(await fs.readFile(WORKS_PATH, "utf8"));
+  const items = JSON.parse(await fs.readFile(ITEMS_PATH, "utf8"));
 
-let updated = 0;
-let cleared = 0;
+  // workKey -> vol1 item（asin優先）
+  const vol1ByWork = new Map();
 
-for (const [workKey, w] of Object.entries(works)) {
-  const arr = byWork.get(workKey) || [];
-  const rep = pickRepresentativeItem(arr);
+  for (const it of items) {
+    if (!it || it.seriesType !== "main") continue;
+    if (it.volumeHint !== 1) continue;
+    const wk = it.workKey;
+    if (!wk) continue;
 
-  if (!rep) {
-    // 代表が取れないなら消す（ASIN_HEREみたいな壊れURLを出さない）
-    if (w.asin || w.amazonUrl) {
-      w.asin = null;
-      w.amazonUrl = null;
-      cleared++;
-      updated++;
+    const dp = normalizeDpUrl(it.asin || it.amazonUrl);
+    if (!dp) continue; // asin取れてないなら採用しない（巻ズレ防止）
+
+    // 既にあれば維持（どれもvol1なので先勝ちでOK）
+    if (!vol1ByWork.has(wk)) {
+      vol1ByWork.set(wk, { asin: String(it.asin || "").trim() || null, amazonUrl: dp });
     }
-    continue;
   }
 
-  // asin を優先。無ければURLから抜く
-  let asin = (rep.asin || "").trim();
-  if (!asin) asin = extractAsinFromUrl(rep.amazonUrl);
+  let updated = 0;
+  let cleared = 0;
 
-  // asinが確定できないなら出さない
-  const nextAsin = asin || null;
-  const nextUrl = asin ? normalizeAmazonUrl(asin) : null;
+  for (const [wk, w] of Object.entries(works)) {
+    const curUrl = w?.amazonUrl ?? null;
+    const curAsin = w?.asin ?? null;
 
-  const changed = (w.asin || null) !== nextAsin || (w.amazonUrl || null) !== nextUrl;
-  if (changed) {
-    w.asin = nextAsin;
-    w.amazonUrl = nextUrl;
-    updated++;
+    // 1) 壊れURLを掃除
+    const curInvalid =
+      curUrl &&
+      (!isValidDpUrl(curUrl) || curUrl.includes("ASIN_HERE"));
+
+    // 2) 正しいvol1があるならそれに統一
+    const vol1 = vol1ByWork.get(wk) || null;
+
+    if (vol1) {
+      const nextUrl = vol1.amazonUrl;
+      const nextAsin = (vol1.asin && String(vol1.asin).trim()) || null;
+
+      const changed = curInvalid || !same(curUrl, nextUrl) || !same(curAsin, nextAsin);
+      if (changed) {
+        w.amazonUrl = nextUrl;
+        w.asin = nextAsin;
+        updated++;
+      }
+      continue;
+    }
+
+    // 3) vol1が無い作品は「巻ズレ回避」でAmazonリンクを消す（準備中）
+    if (curUrl || curAsin) {
+      w.amazonUrl = null;
+      w.asin = null;
+      cleared++;
+    }
   }
-}
 
-await fs.writeFile(WORKS_PATH, JSON.stringify(works, null, 2));
-console.log(`[patch_work_amazon] updated=${updated} cleared=${cleared}`);
+  await fs.writeFile(WORKS_PATH, JSON.stringify(works, null, 2));
+  console.log(`[patch_work_amazon] updated=${updated} cleared=${cleared}`);
+};
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
