@@ -155,7 +155,7 @@ for (const x of targets) {
   }
 
   x.asin = hit.ASIN || null;
-  x.amazonUrl = hit.DetailPageURL || null;
+  x.amazonUrl = null;
   if (x.asin || x.amazonUrl) added++;
 }
 
