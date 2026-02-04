@@ -28,7 +28,6 @@ jobs:
           node-version: "20.20.0"
 
       # ここで npm ci / npm install はしない（package.json が無い前提のため）
-
       - name: Sanity check (show repo root)
         run: |
           pwd
@@ -81,7 +80,8 @@ jobs:
         run: node scripts/manga/apply_anilist_genres.mjs
 
       # --- Amazon (PA-APIがある時だけ) ---
-      # npm を使うのは「SDKを一時的に入れる」時だけ。package.json が無いので init が必要。
+      # npm を使うのは「SDKを一時的に入れる」時だけ。
+      # package.json が無い前提なので init するが、最後に必ず消す（コミット事故防止）。
       - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
@@ -120,9 +120,14 @@ jobs:
             echo "Skip: Amazon secrets not set"
           fi
 
+      # ★ Amazon普通リンク問題の本筋：
+      # items_master の amazonUrl/asin を works.json へ反映（works が null のままを防ぐ）
+      - name: Patch works Amazon fields from items_master
+        run: node scripts/manga/patch_work_amazon.mjs
+
       - name: Cleanup temp npm artifacts
         run: |
-          rm -rf node_modules package-lock.json
+          rm -rf node_modules package-lock.json package.json
 
       # --- Index / work pages ---
       - name: Build indexes
@@ -137,7 +142,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          rm -rf node_modules package-lock.json
+          # 念のため：npm生成物は絶対に残さない
+          rm -rf node_modules package-lock.json package.json
 
           git add data/manga
 
