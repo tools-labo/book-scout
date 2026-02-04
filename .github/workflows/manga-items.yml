@@ -27,25 +27,29 @@ jobs:
         with:
           node-version: "20.20.0"
 
+      # 依存がある場合に備えて入れる（package-lock がある前提）
+      - name: Install dependencies
+        run: npm ci
+
       # --- openBD ---
       - name: Build manga data (openBD)
         run: node scripts/manga/openbd_items.mjs
 
       # --- Rakuten (AppIDがある時だけ) ---
       - name: Backfill vol1 from Rakuten
-        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
+        if: ${{ secrets.RAKUTEN_APP_ID }}
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/vol1_backfill_rakuten.mjs
 
       - name: Rakuten tags
-        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
+        if: ${{ secrets.RAKUTEN_APP_ID }}
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/rakuten_tags.mjs
 
       - name: Rakuten genre resolve
-        if: ${{ secrets.RAKUTEN_APP_ID != '' }}
+        if: ${{ secrets.RAKUTEN_APP_ID }}
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/rakuten_genre_resolve.mjs
@@ -63,11 +67,11 @@ jobs:
       # --- Amazon (PA-APIがある時だけ) ---
       # npm i --no-save は node_modules を作るので、最後に消す（コミット事故防止）
       - name: Install PA-API SDK (temp)
-        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
+        if: ${{ secrets.AMZ_ACCESS_KEY && secrets.AMZ_SECRET_KEY && secrets.AMZ_PARTNER_TAG }}
         run: npm i --no-save paapi5-nodejs-sdk
 
       - name: Amazon ASIN lookup
-        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
+        if: ${{ secrets.AMZ_ACCESS_KEY && secrets.AMZ_SECRET_KEY && secrets.AMZ_PARTNER_TAG }}
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
@@ -76,8 +80,8 @@ jobs:
           AMZ_REGION: ${{ secrets.AMZ_REGION }}
         run: node scripts/manga/amazon_asin.mjs
 
-      - name: Cleanup temp node_modules
-        if: ${{ secrets.AMZ_ACCESS_KEY != '' && secrets.AMZ_SECRET_KEY != '' && secrets.AMZ_PARTNER_TAG != '' }}
+      - name: Cleanup temp node_modules (safety)
+        if: ${{ secrets.AMZ_ACCESS_KEY && secrets.AMZ_SECRET_KEY && secrets.AMZ_PARTNER_TAG }}
         run: |
           rm -rf node_modules package-lock.json
 
