@@ -34,8 +34,10 @@ jobs:
           ls -la scripts/manga || true
           ls -la data/manga || true
 
-      # --- 最新刊（openBD） ---
+      # --- 最新刊（openBD） + 楽天フォールバック用に env を渡す ---
       - name: Build manga data (openBD)
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/openbd_items.mjs
 
       # --- 楽天（任意） ---
@@ -118,7 +120,7 @@ jobs:
           ANILIST_PAGES: "1"
         run: node scripts/manga/anilist_series_master.mjs
 
-      # --- あらすじ必須：series_master.vol1.description を埋める（フォールバック多段） ---
+      # --- あらすじ：series_master 側へ（既存のまま） ---
       - name: Fill synopsis into series_master (required)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
