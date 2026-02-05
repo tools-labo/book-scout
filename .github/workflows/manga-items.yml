@@ -1,3 +1,5 @@
+# .github/workflows/manga-items.yml （全差し替え）
+
 name: Manga items (build)
 
 on:
@@ -79,7 +81,7 @@ jobs:
         run: node scripts/manga/apply_anilist_genres.mjs
 
       # --- Amazon（任意・PA-API） ---
-      # ここは「ASIN取得で最新巻のamazonDpを埋める」用途
+      # 「最新刊のasin/amazonDp を埋める」用途。無ければ完全スキップ。
       - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
@@ -87,9 +89,7 @@ jobs:
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
         run: |
           if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
-            if [ ! -f package.json ]; then
-              npm init -y
-            fi
+            npm init -y
             npm i --no-save paapi5-nodejs-sdk
           else
             echo "Skip: Amazon secrets not set"
@@ -112,6 +112,7 @@ jobs:
           rm -rf node_modules package-lock.json package.json
 
       # --- series_master（積み上げ） ---
+      # 注意：このステップは「既に存在する series_master.json に追記/更新」する想定
       - name: Grow series_master from AniList (paged, safe)
         env:
           ANILIST_PER_PAGE: "100"
@@ -122,7 +123,7 @@ jobs:
       - name: Build list_items.json
         run: node scripts/manga/build_list_items_from_master.mjs
 
-      # --- Index / work pages（既存のままなら残してOK） ---
+      # --- Index / work pages（現状維持） ---
       - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
 
