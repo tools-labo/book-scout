@@ -1,6 +1,9 @@
 {
   "meta": {
-    "cursor": { "page": 1, "perPage": 100 },
+    "cursor": {
+      "page": 2,
+      "perPage": 100
+    },
     "updatedAt": "2026-02-05"
   },
   "items": {
@@ -10,8 +13,15 @@
       "titleNative": "ONE PIECE",
       "titleRomaji": "ONE PIECE",
       "publisher": "集英社",
-      "demo": ["shonen"],
-      "genre": ["action_battle","adventure","comedy_gag","fantasy"],
+      "demo": [
+        "shonen"
+      ],
+      "genre": [
+        "action_battle",
+        "adventure",
+        "comedy_gag",
+        "fantasy"
+      ],
       "vol1": {
         "isbn13": "9784088725093",
         "description": "（1巻説明）",
@@ -20,6 +30,833 @@
       },
       "wikidataId": null,
       "magazines": [],
+      "updatedAt": "2026-02-05"
+    },
+    "207241": {
+      "anilistId": 207241,
+      "seriesKey": "adorable-mission",
+      "titleNative": "アドラブルミッション",
+      "titleRomaji": "Adorable Mission",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [],
+        "format": "ONE_SHOT",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2024,
+          "month": 8,
+          "day": 22
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207242": {
+      "anilistId": 207242,
+      "seriesKey": "kurenai-ni-moyu",
+      "titleNative": "真紅に燃ゆ",
+      "titleRomaji": "Kurenai ni Moyu",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 1982,
+          "month": 7,
+          "day": 1
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207243": {
+      "anilistId": 207243,
+      "seriesKey": "kanojo-tachi",
+      "titleNative": "彼女たち",
+      "titleRomaji": "Kanojo-tachi",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 1982,
+          "month": 12,
+          "day": 1
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207244": {
+      "anilistId": 207244,
+      "seriesKey": "eiyuu-shoujo-to-noroware-no-ginhime",
+      "titleNative": "英雄少女と呪われの銀姫",
+      "titleRomaji": "Eiyuu Shoujo to Noroware no Ginhime",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2026,
+          "month": 1,
+          "day": 19
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207245": {
+      "anilistId": 207245,
+      "seriesKey": "tensei-reijou-wa-haraguro-kishi-ni-kouryaku-sareru",
+      "titleNative": "転生令嬢は腹黒騎士に攻略される",
+      "titleRomaji": "Tensei Reijou wa Haraguro Kishi ni Kouryaku Sareru",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2022,
+          "month": 11,
+          "day": 22
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207246": {
+      "anilistId": 207246,
+      "seriesKey": "danzaisareta-makegumi-reijou-desu-ga-jikan-wo-modoseru-you-ni-natta-no-de-kondokoso-ni-shiawase-ni-narimasu",
+      "titleNative": "断罪された負け組令嬢ですが、時間を戻せるようになったので今度こそ幸せになります",
+      "titleRomaji": "Danzaisareta Makegumi Reijou desu ga, Jikan wo Modoseru you ni Natta no de Kondokoso ni Shiawase ni narimasu",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2024,
+          "month": 5,
+          "day": 21
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207248": {
+      "anilistId": 207248,
+      "seriesKey": "60-ten-no-fuufu-de-iinoni",
+      "titleNative": "60点の夫婦でいいのに",
+      "titleRomaji": "60-ten no Fuufu de Iinoni",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Drama"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2024,
+          "month": 12,
+          "day": 13
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207252": {
+      "anilistId": 207252,
+      "seriesKey": "tanuki-no-ongaeshi",
+      "titleNative": "狸の恩返し",
+      "titleRomaji": "Tanuki no Ongaeshi",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Boys' Love",
+          "Male Protagonist"
+        ],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2022,
+          "month": 7,
+          "day": 16
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207257": {
+      "anilistId": 207257,
+      "seriesKey": "kogareta-ito-wo-musunde-oyasumi",
+      "titleNative": "焦がれた糸を結んでおやすみ",
+      "titleRomaji": "Kogareta Ito wo Musunde Oyasumi",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Boys' Love",
+          "Male Protagonist"
+        ],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2023,
+          "month": 7,
+          "day": 14
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207261": {
+      "anilistId": 207261,
+      "seriesKey": "aozora-tokkanhei",
+      "titleNative": "青空突貫兵",
+      "titleRomaji": "Aozora Tokkanhei",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Action",
+          "Drama"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 1958,
+          "month": null,
+          "day": null
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207264": {
+      "anilistId": 207264,
+      "seriesKey": "dairokuten-maou-nobunaga",
+      "titleNative": "第六天魔王信長",
+      "titleRomaji": "Dairokuten Maou Nobunaga",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Action",
+          "Drama"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2012,
+          "month": 4,
+          "day": 26
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207265": {
+      "anilistId": 207265,
+      "seriesKey": "jitsu-wa-watashi-dekiai-saretemashita-saitei-kareshi-kara-saikyou-kareshi-e",
+      "titleNative": "実は私、溺愛されてました！？ ～最低彼氏から最強彼氏へ～",
+      "titleRomaji": "Jitsu wa Watashi, Dekiai Saretemashita!?: Saitei Kareshi kara Saikyou Kareshi e",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2022,
+          "month": 12,
+          "day": 29
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207267": {
+      "anilistId": 207267,
+      "seriesKey": "ryuu-no-hanayome-wa-oni-no-uso-ni-oboreru",
+      "titleNative": "龍の花嫁は鬼の嘘に溺れる",
+      "titleRomaji": "Ryuu no Hanayome wa Oni no Uso ni Oboreru",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2024,
+          "month": 8,
+          "day": 24
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207268": {
+      "anilistId": 207268,
+      "seriesKey": "shin-kagegari",
+      "titleNative": "新・影狩り",
+      "titleRomaji": "Shin Kagegari",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Action"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2011,
+          "month": 8,
+          "day": 16
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207269": {
+      "anilistId": 207269,
+      "seriesKey": "kagegari",
+      "titleNative": "影狩り",
+      "titleRomaji": "Kagegari",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Action"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 1972,
+          "month": null,
+          "day": null
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207281": {
+      "anilistId": 207281,
+      "seriesKey": "mairimashita-iruma-kun-boku-doumei-provisional-title",
+      "titleNative": "魔入りました！入間くん ”僕同盟” スピンオフ",
+      "titleRomaji": "Mairimashita! Iruma-kun \"Boku Doumei\" (Provisional Title)",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "NOT_YET_RELEASED",
+        "startDate": {
+          "year": 2026,
+          "month": 3,
+          "day": 5
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207282": {
+      "anilistId": 207282,
+      "seriesKey": "stellar-step",
+      "titleNative": "ステラ・ステップ",
+      "titleRomaji": "Stellar Step",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Drama",
+          "Music",
+          "Romance",
+          "Sci-Fi"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2023,
+          "month": 11,
+          "day": 30
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207283": {
+      "anilistId": 207283,
+      "seriesKey": "manga-ban-6",
+      "titleNative": "漫画版　6",
+      "titleRomaji": "Manga-ban: 6",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Drama",
+          "Horror"
+        ],
+        "tags": [],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2024,
+          "month": 6,
+          "day": 26
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207285": {
+      "anilistId": 207285,
+      "seriesKey": "adachi-to-kentarou-no-kakushigoto-dousei-hen",
+      "titleNative": "足立と賢太郎のかくしごと。同棲編",
+      "titleRomaji": "Adachi to Kentarou no Kakushigoto.: Dousei-hen",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Cohabitation",
+          "Male Protagonist",
+          "Boys' Love"
+        ],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2025,
+          "month": 7,
+          "day": 18
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207286": {
+      "anilistId": 207286,
+      "seriesKey": "hatsukare",
+      "titleNative": "初カレ。",
+      "titleRomaji": "Hatsukare.",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance"
+        ],
+        "tags": [
+          "Boys' Love",
+          "Male Protagonist"
+        ],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2024,
+          "month": 11,
+          "day": 29
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207287": {
+      "anilistId": 207287,
+      "seriesKey": "ore-ga-omae-ni-koishite-yan-yo",
+      "titleNative": "俺がおまえに恋してやんよ",
+      "titleRomaji": "Ore ga Omae ni Koishite yan yo",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Boys' Love",
+          "Office",
+          "Male Protagonist"
+        ],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2024,
+          "month": 3,
+          "day": 22
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207290": {
+      "anilistId": 207290,
+      "seriesKey": "melodrama",
+      "titleNative": "Melodrama",
+      "titleRomaji": "Melodrama",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Boys' Love"
+        ],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2025,
+          "month": 4,
+          "day": 25
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207292": {
+      "anilistId": 207292,
+      "seriesKey": "aishiteru-tte-shittete-ne",
+      "titleNative": "愛してるって知っててね",
+      "titleRomaji": "Aishiteru tte Shittete ne",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Boys' Love"
+        ],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2023,
+          "month": 10,
+          "day": 30
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207293": {
+      "anilistId": 207293,
+      "seriesKey": "takumin-to-rui",
+      "titleNative": "タクミンとルイ",
+      "titleRomaji": "Takumin to Rui",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Boys' Love"
+        ],
+        "format": "MANGA",
+        "status": "FINISHED",
+        "startDate": {
+          "year": 2022,
+          "month": 9,
+          "day": 15
+        }
+      },
+      "updatedAt": "2026-02-05"
+    },
+    "207294": {
+      "anilistId": 207294,
+      "seriesKey": "nitou-to-tazuka-no-nichijou-re",
+      "titleNative": "仁藤と田塚の日常 Re",
+      "titleRomaji": "Nitou to Tazuka no Nichijou: Re",
+      "publisher": null,
+      "demo": [],
+      "genre": [],
+      "vol1": {
+        "isbn13": null,
+        "description": null,
+        "image": null,
+        "amazonDp": null
+      },
+      "wikidataId": null,
+      "magazines": [],
+      "anilist": {
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Boys' Love"
+        ],
+        "format": "MANGA",
+        "status": "RELEASING",
+        "startDate": {
+          "year": 2026,
+          "month": 1,
+          "day": 21
+        }
+      },
       "updatedAt": "2026-02-05"
     }
   }
