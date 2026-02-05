@@ -1,7 +1,15 @@
-// scripts/manga/openbd_items.mjs （全差し替え）
+// scripts/manga/openbd_items.mjs
 import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function loadJson(path, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(path, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
 
 async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
@@ -71,15 +79,40 @@ function classifySeriesType(title) {
 }
 
 function pickOpenbdText(x) {
-  const tcs = x?.onix?.CollateralDetail?.TextContent;
+  if (!x) return null;
+
+  // onix -> CollateralDetail
+  const cd = x?.onix?.CollateralDetail;
+
+  // TextContent
+  const tcs = cd?.TextContent;
   if (Array.isArray(tcs)) {
-    const hit = tcs.find((a) => a?.Text) || tcs.find((a) => a?.Text?.[0]);
-    const t = hit?.Text;
-    if (typeof t === "string") return t;
-    if (Array.isArray(t) && typeof t[0] === "string") return t[0];
+    for (const tc of tcs) {
+      const t = tc?.Text;
+      if (typeof t === "string" && t.trim()) return t.trim();
+      if (Array.isArray(t) && typeof t[0] === "string" && t[0].trim()) return t[0].trim();
+      if (t && typeof t === "object") {
+        const v = t?.[0] ?? t?.content ?? t?.text;
+        if (typeof v === "string" && v.trim()) return v.trim();
+      }
+    }
   }
+
+  // OtherText（古いONIX）
+  const other = cd?.OtherText;
+  if (Array.isArray(other)) {
+    for (const ot of other) {
+      const t = ot?.Text;
+      if (typeof t === "string" && t.trim()) return t.trim();
+      if (Array.isArray(t) && typeof t[0] === "string" && t[0].trim()) return t[0].trim();
+    }
+  }
+
+  // summary.description
   const s = x?.summary?.description;
-  return typeof s === "string" ? s : null;
+  if (typeof s === "string" && s.trim()) return s.trim();
+
+  return null;
 }
 
 async function openbdByIsbn(isbn) {
@@ -100,131 +133,58 @@ function repPick(group) {
   return withVol[0] || pool[0];
 }
 
-// ---------------- helpers: load json safely ----------------
-async function loadJson(path, fallback) {
-  try {
-    return JSON.parse(await fs.readFile(path, "utf8"));
-  } catch {
-    return fallback;
+// ---- source selection ----
+function buildSrcFromListItems(listItems) {
+  if (!Array.isArray(listItems)) return [];
+  const out = [];
+  for (const x of listItems) {
+    const isbn = x?.latest?.isbn13 || null;
+    if (!isbn) continue;
+    out.push({
+      isbn13: isbn,
+      title: x?.title || x?.seriesKey || "",
+      author: x?.author || "",
+      publisherName: x?.publisher || "",
+      salesDate: x?.latest?.publishedAt || "",
+      volumeHint: x?.latest?.volume ?? null,
+    });
   }
+  return out;
 }
 
-async function fileExists(path) {
-  try {
-    await fs.stat(path);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-// ---------------- source candidates ----------------
-//
-// 期待する candidate 形（最低限）:
-// { isbn13/isbn, title, author, publisherName/publisher, salesDate/publishedAt, volumeHint, largeImageUrl/image, seriesKey/workKey, asin, amazonDp/amazonUrl }
-async function buildSrcCandidates(limit) {
-  // 1) candidates.json（従来互換）
-  if (await fileExists("data/manga/candidates.json")) {
-    const candRaw = await loadJson("data/manga/candidates.json", []);
-    const candList = Array.isArray(candRaw) ? candRaw : candRaw.items || candRaw.Items || [];
-    return candList.slice(0, limit);
-  }
-
-  // 2) list_items.json（新構造：latest）
-  if (await fileExists("data/manga/list_items.json")) {
-    const listItems = await loadJson("data/manga/list_items.json", []);
-    if (Array.isArray(listItems) && listItems.length) {
-      // なるべく「発売日が新しい順」っぽく並べる（文字列比較の簡易）
-      const sorted = [...listItems].sort((a, b) => {
-        const pa = String(a?.latest?.publishedAt || "");
-        const pb = String(b?.latest?.publishedAt || "");
-        return pb.localeCompare(pa, "ja");
-      });
-
-      const out = [];
-      for (const li of sorted) {
-        const isbn13 = li?.latest?.isbn13 ? String(li.latest.isbn13).trim() : "";
-        if (!isbn13) continue;
-
-        out.push({
-          isbn13,
-          title: li?.title || null,
-          author: li?.author || null,
-          publisherName: li?.publisher || null,
-          salesDate: li?.latest?.publishedAt || null,
-          volumeHint: Number.isFinite(li?.latest?.volume) ? li.latest.volume : null,
-          largeImageUrl: li?.vol1?.image || null,
-          // workKey にシリーズキーを優先（安定）
-          seriesKey: li?.seriesKey || null,
-          // Amazon（最新刊側があれば使う）
-          asin: li?.latest?.asin || null,
-          amazonUrl: li?.latest?.amazonDp || null,
-        });
-        if (out.length >= limit) break;
-      }
-      return out;
-    }
-  }
-
-  // 3) items_master.json（最後の保険）
-  if (await fileExists("data/manga/items_master.json")) {
-    const prev = await loadJson("data/manga/items_master.json", []);
-    if (Array.isArray(prev) && prev.length) {
-      const out = [];
-      const seen = new Set();
-      for (const it of prev) {
-        const isbn13 = it?.isbn13 ? String(it.isbn13).trim() : "";
-        if (!isbn13) continue;
-        if (seen.has(isbn13)) continue;
-        seen.add(isbn13);
-
-        out.push({
-          isbn13,
-          title: it?.title || null,
-          author: it?.author || null,
-          publisherName: it?.publisher || null,
-          salesDate: it?.publishedAt || null,
-          volumeHint: Number.isFinite(it?.volumeHint) ? it.volumeHint : null,
-          largeImageUrl: it?.image || null,
-          seriesKey: it?.workKey || null,
-          asin: it?.asin || null,
-          amazonUrl: it?.amazonUrl || null,
-        });
-        if (out.length >= limit) break;
-      }
-      return out;
-    }
-  }
-
-  // 4) 何もない
-  return [];
+function buildSrcFromPrevItems(prev) {
+  if (!Array.isArray(prev)) return [];
+  return prev
+    .filter((x) => x?.isbn13)
+    .map((x) => ({
+      isbn13: x.isbn13,
+      title: x.title || x.workKey || "",
+      author: x.author || "",
+      publisherName: x.publisher || "",
+      salesDate: x.publishedAt || "",
+      volumeHint: x.volumeHint ?? null,
+    }));
 }
 
 // ---- main ----
 const N = Number(process.env.ITEMS_MASTER || 30);
 
-// 既存 items_master があれば ASIN など引き継ぐ（isbn13キー）
-let prev = [];
-try {
-  prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
-} catch {}
-const prevByIsbn = new Map(prev.map((x) => [x?.isbn13, x]).filter(([k]) => k));
+const listItems = await loadJson("data/manga/list_items.json", null);
+let src = buildSrcFromListItems(listItems);
 
-const src = await buildSrcCandidates(N);
+let prev = await loadJson("data/manga/items_master.json", []);
+if (!src.length) src = buildSrcFromPrevItems(prev);
 
-if (!src.length) {
-  console.log("[openbd_items] src=0 (no candidates.json, no list_items.json, no items_master.json). write empty items_master and exit.");
-  await fs.mkdir("data/manga", { recursive: true });
-  await fs.writeFile("data/manga/items_master.json", JSON.stringify([], null, 2));
-  console.log("items=0 works=0 desc=0 amazon=0");
-  process.exit(0);
-}
+src = src.slice(0, N);
+
+// 既存 items_master があれば ASIN など引き継ぐ
+const prevByIsbn = new Map(prev.map((x) => [x.isbn13, x]).filter(([k]) => k));
 
 const items = [];
 let descCount = 0;
 
 for (let i = 0; i < src.length; i++) {
-  const c = src[i] || {};
+  const c = src[i];
   const isbn = c.isbn || c.isbn13 || null;
   if (!isbn) continue;
 
@@ -233,7 +193,6 @@ for (let i = 0; i < src.length; i++) {
   );
 
   const prevHit = prevByIsbn.get(isbn) || {};
-
   let ob = null;
   try {
     ob = await openbdByIsbn(isbn);
@@ -247,33 +206,26 @@ for (let i = 0; i < src.length; i++) {
   if (desc) descCount++;
 
   const sum = ob?.summary || {};
-
-  // workKey：seriesKey/workKey があれば優先、なければタイトルから推定
-  const wk = (c.seriesKey || c.workKey || "").trim();
-  const finalWorkKey = wk ? norm(wk) : parentWorkKey(c.title || sum.title || "");
-
-  // amazonUrl/asin：既存(items_master)の値を最優先（維持）→ srcにあれば使う
-  const nextAsin = prevHit.asin || c.asin || null;
-  const nextAmazonUrl = prevHit.amazonUrl || c.amazonUrl || null;
+  const title = c.title || sum.title || null;
 
   items.push({
-    workKey: finalWorkKey,
-    seriesType: classifySeriesType(c.title || sum.title || ""),
-    title: c.title || sum.title || null,
+    workKey: parentWorkKey(title || ""),
+    seriesType: classifySeriesType(title || ""),
+    title,
     author: c.author || sum.author || null,
-    publisher: c.publisherName || c.publisher || sum.publisher || null,
+    publisher: c.publisherName || sum.publisher || null,
     isbn13: isbn,
-    asin: nextAsin,
-    amazonUrl: nextAmazonUrl,
-    publishedAt: c.salesDate || c.publishedAt || sum.pubdate || null,
-    description: desc,
-    image: c.largeImageUrl || c.image || sum.cover || null,
-    volumeHint: Number.isFinite(c.volumeHint) ? c.volumeHint : volumeHint(c.title || sum.title || ""),
+    asin: prevHit.asin || null,
+    amazonUrl: prevHit.amazonUrl || null,
+    publishedAt: c.salesDate || sum.pubdate || null,
+    description: desc || null,
+    image: c.largeImageUrl || sum.cover || null,
+    volumeHint: Number.isFinite(c.volumeHint) ? c.volumeHint : volumeHint(title || ""),
     _rep: false,
   });
 }
 
-// rep 付与
+// rep 付与（workKeyごと）
 const byWork = new Map();
 for (const it of items) {
   const k = it.workKey || it.title;
