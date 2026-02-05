@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
@@ -33,11 +33,11 @@ jobs:
           ls -la
           ls -la scripts/manga || true
 
-      # --- openBD ---
+      # --- 最新刊（openBD） ---
       - name: Build manga data (openBD)
         run: node scripts/manga/openbd_items.mjs
 
-      # --- Rakuten (optional) ---
+      # --- 楽天（任意） ---
       - name: Backfill vol1 from Rakuten (optional)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
@@ -68,7 +68,7 @@ jobs:
             echo "Skip: RAKUTEN_APP_ID not set"
           fi
 
-      # --- Wikidata / AniList ---
+      # --- Wikidata / AniList（既存作品にタグ付け） ---
       - name: Wikidata ids
         run: node scripts/manga/wikidata_ids.mjs
 
@@ -78,10 +78,9 @@ jobs:
       - name: Apply AniList genres
         run: node scripts/manga/apply_anilist_genres.mjs
 
-  
-
-      # --- Amazon (optional) ---
-      - name: Prepare temp npm project (Amazon optional)
+      # --- Amazon（任意・PA-API） ---
+      # ここは「ASIN取得で最新巻のamazonDpを埋める」用途
+      - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
@@ -108,30 +107,33 @@ jobs:
             echo "Skip: Amazon secrets not set"
           fi
 
-      - name: Patch works Amazon fields from items_master
-        run: node scripts/manga/patch_work_amazon.mjs
-
       - name: Cleanup temp npm artifacts
         run: |
           rm -rf node_modules package-lock.json package.json
 
+      # --- series_master（積み上げ） ---
+      - name: Grow series_master from AniList (paged, safe)
+        env:
+          ANILIST_PER_PAGE: "100"
+          ANILIST_PAGES: "1"
+        run: node scripts/manga/anilist_series_master.mjs
+
+      # --- list_items 生成（最新刊 × vol1情報） ---
       - name: Build list_items.json
-        run: node scripts/manga/build_list_items.mjs
-        
-      # --- Index / work pages ---
+        run: node scripts/manga/build_list_items_from_master.mjs
+
+      # --- Index / work pages（既存のままなら残してOK） ---
       - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
 
       - name: Build work pages
         run: node scripts/manga/build_work_pages.mjs
 
-      # --- Commit (data/manga only) ---
+      # --- Commit (data/manga だけ) ---
       - name: Commit and push (data/manga only)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          rm -rf node_modules package-lock.json package.json
 
           git add data/manga
 
