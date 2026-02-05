@@ -1,440 +1,169 @@
-// public/app.js（全差し替え：list_items.json 読みの最短版）
-
-const $ = (id) => document.getElementById(id);
-
-const escapeHtml = (s) =>
-  String(s ?? "").replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-  }[c]));
-
-const uniq = (arr) => [...new Set((arr || []).filter(Boolean))];
-
-const clamp3Style = `
-display:-webkit-box;
--webkit-line-clamp:3;
--webkit-box-orient:vertical;
-overflow:hidden;
-`;
-
-// ---------- URL params ----------
-function getParams() {
-  const sp = new URLSearchParams(location.search);
-  return {
-    cat: sp.get("cat") || "manga",
-    q: sp.get("q") || "",
-    // facet filters
-    genre: new Set((sp.get("g") || "").split(",").map(x => x.trim()).filter(Boolean)),
-    demo: new Set((sp.get("d") || "").split(",").map(x => x.trim()).filter(Boolean)),
-    publisher: new Set((sp.get("p") || "").split(",").map(x => x.trim()).filter(Boolean)),
-  };
-}
-
-function setParams(next, replace = true) {
-  const sp = new URLSearchParams(location.search);
-
-  if (next.cat != null) sp.set("cat", next.cat);
-
-  if (next.q != null) {
-    const q = String(next.q).trim();
-    q ? sp.set("q", q) : sp.delete("q");
-  }
-
-  const setSet = (key, set) => {
-    const v = [...set].join(",");
-    v ? sp.set(key, v) : sp.delete(key);
-  };
-
-  if (next.genre) setSet("g", next.genre);
-  if (next.demo) setSet("d", next.demo);
-  if (next.publisher) setSet("p", next.publisher);
-
-  const url = `${location.pathname}?${sp.toString()}`;
-  replace ? history.replaceState(null, "", url) : history.pushState(null, "", url);
-}
-
-// ---------- Labels（最低限：表示は key をそのままでも成立） ----------
-const DEMO_LABEL = { shonen: "少年", shojo: "少女", seinen: "青年", josei: "女性" };
-const GENRE_LABEL = {
-  action_battle: "アクション",
-  adventure: "冒険",
-  comedy_gag: "ギャグ",
-  drama: "ドラマ",
-  mystery: "ミステリー",
-  romance_lovecom: "恋愛/ラブコメ",
-  sports: "スポーツ",
-  fantasy: "ファンタジー",
-  sci_fi: "SF",
-  horror: "ホラー",
-  slice_of_life: "日常",
-  supernatural: "超常",
-};
-
-const labelDemo = (k) => DEMO_LABEL[k] || k;
-const labelGenre = (k) => GENRE_LABEL[k] || k;
-
-// publisherはIDが来る可能性があるので、とりあえずそのまま表示（後で map を入れる）
-const labelPublisher = (k) => k;
-
-// ---------- Data loading ----------
-async function j(url) {
-  const r = await fetch(url, { cache: "no-store" });
+// public/app.js
+async function loadJson(path) {
+  const r = await fetch(path, { cache: "no-store" });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return await r.json();
 }
 
-let cache = {
-  cat: null,
-  list: [], // list_items.json
-};
+function qs() {
+  return new URLSearchParams(location.search);
+}
 
-async function loadList(cat) {
-  $("status") && ($("status").textContent = `読み込み中: data/${cat}/list_items.json`);
+function esc(s) {
+  return String(s ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
 
-  try {
-    const list = await j(`./data/${cat}/list_items.json?v=${Date.now()}`);
-    cache.cat = cat;
-    cache.list = Array.isArray(list) ? list : [];
-    $("status") && ($("status").textContent = `${cat}: items=${cache.list.length}`);
-    return cache.list;
-  } catch (e) {
-    cache.cat = cat;
-    cache.list = [];
-    $("status") && ($("status").textContent = `データがありません（data/${cat}/list_items.json）`);
-    return [];
+function clamp3Lines(text) {
+  // CSSでやる前提（.synopsis に line-clamp を当てる）
+  return text || "（あらすじ準備中）";
+}
+
+function tagChips(tagsObj) {
+  const out = [];
+  for (const k of ["demo", "genre", "publisher"]) {
+    const arr = tagsObj?.[k] || [];
+    for (const v of arr) {
+      out.push(`<span class="chip">${esc(v)}</span>`);
+    }
   }
+  return out.join("");
 }
 
-// ---------- Filtering ----------
-function intersectsTag(item, facetKey, selectedSet) {
-  if (!selectedSet || selectedSet.size === 0) return true;
-  const tags = item?.tags?.[facetKey] || [];
-  for (const t of tags) if (selectedSet.has(t)) return true;
-  return false;
-}
+function renderList(items) {
+  const root = document.getElementById("list");
+  if (!root) return;
 
-function applyFilter(list, state) {
-  const qq = (state.q || "").trim().toLowerCase();
+  root.innerHTML = items
+    .map((it) => {
+      const key = encodeURIComponent(it.seriesKey);
+      const title = it.title || it.seriesKey;
+      const author = it.author || "";
+      const publisher = it.publisher || "";
+      const date = it.latest?.publishedAt || "";
+      const vol = it.latest?.volume ?? "";
+      const img = it.vol1?.image || "";
 
-  return list
-    .filter((it) => {
-      if (qq) {
-        const t = (it?.title || "").toLowerCase();
-        if (!t.includes(qq)) return false;
-      }
-      if (!intersectsTag(it, "genre", state.genre)) return false;
-      if (!intersectsTag(it, "demo", state.demo)) return false;
-      if (!intersectsTag(it, "publisher", state.publisher)) return false;
-      return true;
+      const latestAmz = it.latest?.amazonDp || "";
+      const vol1Amz = it.vol1?.amazonDp || "";
+      const synopsis = clamp3Lines(it.vol1?.description);
+
+      return `
+        <article class="card">
+          <div class="card-row">
+            <div class="thumb">
+              ${
+                img
+                  ? `<a href="${esc(vol1Amz || latestAmz || "#")}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+                  : `<div class="thumb-ph"></div>`
+              }
+            </div>
+
+            <div class="meta">
+              <div class="title">
+                <a href="./work.html?cat=manga&key=${key}">${esc(title)}</a>
+              </div>
+              <div class="sub">
+                <span>${esc(author)}</span>
+                ${publisher ? `<span> / ${esc(publisher)}</span>` : ""}
+              </div>
+              <div class="sub">
+                <span>発売日: ${esc(date)}</span>
+                ${vol ? `<span> / 最新${esc(vol)}巻</span>` : ""}
+              </div>
+
+              <div class="chips">${tagChips(it.tags)}</div>
+
+              <div class="synopsis">${esc(synopsis)}</div>
+
+              <div class="links">
+                ${
+                  vol1Amz
+                    ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>`
+                    : ""
+                }
+                ${
+                  latestAmz
+                    ? `<a class="btn" href="${esc(latestAmz)}" target="_blank" rel="nofollow noopener">Amazon（最新巻）</a>`
+                    : ""
+                }
+              </div>
+
+              ${
+                it.vol1?.needsOverride
+                  ? `<div class="note">※あらすじ要補完（override推奨）</div>`
+                  : ""
+              }
+            </div>
+          </div>
+        </article>
+      `;
     })
-    // “最新刊が新しい順” を基本に（publishedAtが "YYYY年MM月DD日" なので文字列比較は弱いが、まずは volume も併用）
-    .sort((a, b) => {
-      const da = a?.latest?.publishedAt || "";
-      const db = b?.latest?.publishedAt || "";
-      if (da !== db) return db.localeCompare(da, "ja");
-      const va = Number(a?.latest?.volume || 0);
-      const vb = Number(b?.latest?.volume || 0);
-      return vb - va;
-    });
+    .join("");
 }
 
-// ---------- Facets UI（最短：list_itemsから収集してチップ表示） ----------
-function ensureFacetsUI() {
-  let wrap = $("facets");
-  if (wrap) return wrap;
+function renderWork(items) {
+  const detail = document.getElementById("detail");
+  const status = document.getElementById("status");
+  if (!detail) return;
 
-  const list = $("list");
-  if (!list) return null;
-
-  wrap = document.createElement("div");
-  wrap.id = "facets";
-  wrap.style.margin = "12px 0";
-  list.parentNode.insertBefore(wrap, list);
-  return wrap;
-}
-
-function chipHTML(label, active, attrs) {
-  const on = active ? ' style="font-weight:700;border:1px solid currentColor;"' : ' style="opacity:.85"';
-  return `<button type="button" ${attrs}${on}>${escapeHtml(label)}</button>`;
-}
-
-function renderFacetGroup(title, facet, values, selectedSet, labelFn) {
-  const chips = values
-    .map((v) => chipHTML(labelFn(v), selectedSet.has(v), `data-f="${facet}" data-v="${escapeHtml(v)}"`))
-    .join(" ");
-
-  return `
-    <div style="margin:10px 0;">
-      <div style="font-weight:600;margin:6px 0;">${escapeHtml(title)}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">${chips || '<span style="opacity:.7">（なし）</span>'}</div>
-    </div>
-  `;
-}
-
-function collectFacetValues(list, facetKey) {
-  const set = new Set();
-  for (const it of list) {
-    for (const t of (it?.tags?.[facetKey] || [])) set.add(t);
-  }
-  return [...set];
-}
-
-function cloneState(s) {
-  return {
-    cat: s.cat,
-    q: s.q,
-    genre: new Set([...s.genre]),
-    demo: new Set([...s.demo]),
-    publisher: new Set([...s.publisher]),
-  };
-}
-
-function renderFacets(state, list) {
-  const wrap = ensureFacetsUI();
-  if (!wrap) return;
-
-  const genres = collectFacetValues(list, "genre").sort((a, b) => labelGenre(a).localeCompare(labelGenre(b), "ja"));
-  const demos = collectFacetValues(list, "demo").sort((a, b) => labelDemo(a).localeCompare(labelDemo(b), "ja"));
-  const pubs = collectFacetValues(list, "publisher").sort((a, b) => labelPublisher(a).localeCompare(labelPublisher(b), "ja"));
-
-  wrap.innerHTML = `
-    ${renderFacetGroup("ジャンル", "genre", genres, state.genre, labelGenre)}
-    ${renderFacetGroup("区分", "demo", demos, state.demo, labelDemo)}
-    ${renderFacetGroup("出版社", "publisher", pubs, state.publisher, labelPublisher)}
-    <div style="margin:10px 0;">
-      <button type="button" id="clearFacets">絞り込みをクリア</button>
-    </div>
-  `;
-
-  wrap.querySelectorAll("button[data-f][data-v]").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const f = btn.getAttribute("data-f");
-      const v = btn.getAttribute("data-v");
-      const next = cloneState(state);
-      next[f].has(v) ? next[f].delete(v) : next[f].add(v);
-      setParams({ genre: next.genre, demo: next.demo, publisher: next.publisher }, true);
-      await refresh();
-    });
-  });
-
-  wrap.querySelector("#clearFacets")?.addEventListener("click", async () => {
-    const next = cloneState(state);
-    next.genre.clear();
-    next.demo.clear();
-    next.publisher.clear();
-    setParams({ genre: next.genre, demo: next.demo, publisher: next.publisher }, true);
-    await refresh();
-  });
-}
-
-// ---------- List rendering ----------
-let view = { pageSize: 50, shown: 50 };
-
-function ensureMoreButton() {
-  let btn = $("more");
-  if (btn) return btn;
-
-  const list = $("list");
-  if (!list) return null;
-
-  btn = document.createElement("button");
-  btn.id = "more";
-  btn.type = "button";
-  btn.textContent = "さらに表示";
-  btn.style.margin = "12px 0";
-  list.parentNode.insertBefore(btn, list.nextSibling);
-  return btn;
-}
-
-function tagChipsHTML(it) {
-  const chips = [];
-  for (const g of (it?.tags?.genre || [])) chips.push({ facet: "genre", value: g, label: labelGenre(g) });
-  for (const d of (it?.tags?.demo || [])) chips.push({ facet: "demo", value: d, label: labelDemo(d) });
-  for (const p of (it?.tags?.publisher || [])) chips.push({ facet: "publisher", value: p, label: labelPublisher(p) });
-
-  return chips
-    .map((c) => chipHTML(c.label, false, `data-tag-f="${c.facet}" data-tag-v="${escapeHtml(c.value)}"`))
-    .join(" ");
-}
-
-function bindTagClicks(container, state) {
-  container.querySelectorAll("button[data-tag-f][data-tag-v]").forEach((btn) => {
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault();
-      const f = btn.getAttribute("data-tag-f");
-      const v = btn.getAttribute("data-tag-v");
-      const next = cloneState(state);
-      next[f].has(v) ? next[f].delete(v) : next[f].add(v);
-      setParams({ genre: next.genre, demo: next.demo, publisher: next.publisher }, true);
-      await refresh();
-    });
-  });
-}
-
-function renderList(listFiltered, state) {
-  const ul = $("list");
-  if (!ul) return;
-
-  ul.innerHTML = "";
-
-  if (!listFiltered.length) {
-    ul.innerHTML = `<li>該当なし</li>`;
-    const more = $("more");
-    if (more) more.style.display = "none";
+  const key = qs().get("key");
+  if (!key) {
+    detail.innerHTML = `<div class="d-title">作品キーがありません</div>`;
     return;
   }
 
-  const slice = listFiltered.slice(0, view.shown);
+  const it = items.find((x) => x.seriesKey === key);
+  if (!it) {
+    detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
+    return;
+  }
 
-  for (const it of slice) {
-    const seriesKey = it?.seriesKey || "";
-    const seriesUrl = `./work.html?cat=${encodeURIComponent(state.cat)}&w=${encodeURIComponent(seriesKey)}`;
+  if (status) status.textContent = "";
 
-    const title = it?.title || seriesKey;
-    const author = it?.author || "";
-    const publisher = it?.publisher || "";
-    const latestVol = it?.latest?.volume ?? "";
-    const latestDate = it?.latest?.publishedAt || "";
+  const title = it.title || it.seriesKey;
+  const author = it.author || "";
+  const publisher = it.publisher || "";
+  const synopsis = it.vol1?.description || "（あらすじ準備中）";
+  const img = it.vol1?.image || "";
+  const vol1Amz = it.vol1?.amazonDp || "";
+  const latestAmz = it.latest?.amazonDp || "";
 
-    // 1巻（メイン）→ 無ければ準備中
-    const vol1Amazon = it?.vol1?.amazonDp || null;
-    const latestAmazon = it?.latest?.amazonDp || null;
+  detail.innerHTML = `
+    <div class="d-title">${esc(title)}</div>
+    <div class="d-sub">${esc(author)} ${publisher ? " / " + esc(publisher) : ""}</div>
 
-    const img = it?.vol1?.image || it?.latest?.image || null; // latest.imageが無い場合もあるので保険
-    const desc = it?.vol1?.description || "";
-
-    const tagsHTML = tagChipsHTML(it);
-
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <div style="display:flex;gap:10px;align-items:flex-start;">
-        <a href="${seriesUrl}" style="display:block;flex:0 0 auto;">
-          ${img ? `<img src="${escapeHtml(img)}" alt="" style="width:64px;height:96px;object-fit:cover;border-radius:6px;">`
-                : `<div style="width:64px;height:96px;border-radius:6px;background:#eee;"></div>`}
-        </a>
-
-        <div style="flex:1 1 auto;min-width:0;">
-          <div class="title" style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;">
-            <a href="${seriesUrl}" style="color:inherit;text-decoration:none;font-weight:700;">
-              ${escapeHtml(title)}
-            </a>
-            <span style="opacity:.7;">最新 ${escapeHtml(String(latestVol))}巻 / ${escapeHtml(latestDate)}</span>
-          </div>
-
-          <div class="meta" style="margin-top:4px;">
-            ${escapeHtml([author, publisher].filter(Boolean).join(" / "))}
-          </div>
-
-          <div style="margin-top:8px;">
-            <a href="${vol1Amazon ? escapeHtml(vol1Amazon) : "#"}"
-               target="${vol1Amazon ? "_blank" : "_self"}"
-               rel="noopener noreferrer"
-               style="${vol1Amazon ? "" : "pointer-events:none;opacity:.5;"}">
-              Amazon（1巻）で見る
-            </a>
-            ${latestAmazon ? ` <span style="opacity:.6;">|</span>
-              <a href="${escapeHtml(latestAmazon)}" target="_blank" rel="noopener noreferrer">
-                Amazon（最新巻）
-              </a>` : ""}
-          </div>
-
-          <div style="margin-top:8px;">
-            <div class="desc" style="${clamp3Style}">
-              ${desc ? escapeHtml(desc) : '<span style="opacity:.7;">説明文がありません（1巻DBが未整備）</span>'}
-            </div>
-            ${desc ? `<button type="button" class="toggleDesc" style="margin-top:6px;">続きを読む</button>` : ""}
-          </div>
-
-          <div style="margin-top:10px;">
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              ${tagsHTML || '<span style="opacity:.7">（タグなし）</span>'}
-            </div>
-          </div>
-        </div>
+    <div class="d-row">
+      ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
+      <div class="d-links">
+        ${vol1Amz ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
+        ${latestAmz ? `<a class="btn" href="${esc(latestAmz)}" target="_blank" rel="nofollow noopener">Amazon（最新巻）</a>` : ""}
       </div>
-    `;
+    </div>
 
-    // 「続きを読む」トグル
-    const btn = li.querySelector(".toggleDesc");
-    if (btn) {
-      const descEl = li.querySelector(".desc");
-      let open = false;
-      btn.addEventListener("click", () => {
-        open = !open;
-        if (open) {
-          descEl.style.display = "block";
-          descEl.style.overflow = "visible";
-          descEl.style.webkitLineClamp = "unset";
-          descEl.style.webkitBoxOrient = "unset";
-          btn.textContent = "折りたたむ";
-        } else {
-          descEl.setAttribute("style", clamp3Style);
-          btn.textContent = "続きを読む";
-        }
-      });
-    }
+    <div class="chips">${tagChips(it.tags)}</div>
 
-    bindTagClicks(li, state);
-    ul.appendChild(li);
-  }
-
-  const moreBtn = ensureMoreButton();
-  if (moreBtn) {
-    moreBtn.style.display = view.shown < listFiltered.length ? "inline-block" : "none";
-    moreBtn.onclick = () => {
-      view.shown = Math.min(listFiltered.length, view.shown + view.pageSize);
-      renderList(listFiltered, state);
-    };
-  }
+    <div class="d-synopsis">${esc(synopsis)}</div>
+  `;
 }
 
-// ---------- Main ----------
-let lock = false;
+(async function main() {
+  try {
+    const items = await loadJson("./data/manga/list_items.json");
 
-async function refresh() {
-  if (lock) return;
-  lock = true;
+    // list.html は #list がある前提
+    renderList(items);
 
-  const state = getParams();
+    // work.html は #detail がある前提
+    renderWork(items);
 
-  if ($("cat")) $("cat").value = state.cat;
-  if ($("q")) $("q").value = state.q;
-
-  if (cache.cat !== state.cat) {
-    await loadList(state.cat);
-    view.shown = view.pageSize;
+  } catch (e) {
+    const status = document.getElementById("status");
+    if (status) status.textContent = "読み込みに失敗しました";
+    console.error(e);
   }
-
-  const list = cache.list || [];
-  renderFacets(state, list);
-
-  const filtered = applyFilter(list, state);
-  $("status") && ($("status").textContent = `${state.cat}: 表示 ${filtered.length} 件`);
-  renderList(filtered, state);
-
-  lock = false;
-}
-
-function setup() {
-  if ($("q")) {
-    $("q").addEventListener("input", async () => {
-      setParams({ q: $("q").value }, true);
-      await refresh();
-    });
-  }
-
-  if ($("cat")) {
-    $("cat").addEventListener("change", async () => {
-      setParams({ cat: $("cat").value }, false);
-      await refresh();
-    });
-  }
-
-  addEventListener("popstate", refresh);
-}
-
-setup();
-loadList(getParams().cat).then(refresh);
+})();
