@@ -43,8 +43,8 @@ function parseVolHint(title) {
 
 function isBadTitle(title) {
   const t = norm(title);
-  // ズレ源は強めに排除（安全優先）
-  return /(外伝|番外編|スピンオフ|spinoff|episode|ep\.|side|short|アンソロジー|短編集|公式|ガイド|guide|ファンブック|キャラクター|データブック|ムック|画集|イラスト|art|visual|原画|設定資料|総集編|完全版|新装版|愛蔵版)/i.test(
+  // 巻ズレ・別冊・解説系を強めに排除（安全優先）
+  return /(外伝|番外編|スピンオフ|spinoff|episode|ep\.|side|short|アンソロジー|短編集|公式|ガイド|guide|ファンブック|キャラクター|データブック|ムック|画集|イラスト|art|visual|原画|設定資料|総集編|完全版|新装版|愛蔵版|特装版|限定版)/i.test(
     t
   );
 }
@@ -70,7 +70,7 @@ function pickVol1Candidate(seriesTitle, seriesAuthor, items) {
 
   const list = (items || []).map((x) => x?.Item || x).filter(Boolean);
 
-  // 「巻数=1」以外は採用しない（巻ズレ防止）
+  // volume=1 以外は絶対に採用しない（巻ズレ防止）
   const vol1 = list
     .filter((it) => it.title && it.isbn)
     .filter((it) => digits(it.isbn).length === 13)
@@ -86,16 +86,10 @@ function pickVol1Candidate(seriesTitle, seriesAuthor, items) {
     const aa = norm(it.author);
 
     let score = 0;
-
-    // タイトル一致（強）
     if (st && tt.includes(st)) score += 60;
     if (st && tt.startsWith(st)) score += 30;
-
-    // 著者一致（中〜強）
     if (sa && aa.includes(sa)) score += 35;
-
-    // 1巻っぽさ（微）
-    score += 10;
+    score += 10; // vol1限定なので最低加点
 
     if (score > bestScore) {
       bestScore = score;
@@ -103,54 +97,56 @@ function pickVol1Candidate(seriesTitle, seriesAuthor, items) {
     }
   }
 
-  // 一致が弱いものは不採用（誤爆防止）
+  // タイトル一致が弱いものは誤爆の可能性が高いので不採用
   if (!best || bestScore < 60) return null;
   return best;
 }
 
-async function main() {
-  const seriesRaw = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
+function hasVol1(s) {
+  const isbn13 = s?.vol1?.isbn13;
+  return isbn13 && digits(isbn13).length === 13;
+}
 
-  // series_master が { anilistId: {...} } 前提。配列でも落ちないよう吸収。
-  const seriesMap = Array.isArray(seriesRaw)
-    ? Object.fromEntries(
-        seriesRaw.map((x) => [
-          String(x?.anilistId || x?.seriesKey || x?.titleNative || ""),
-          x,
-        ])
-      )
-    : seriesRaw;
+async function main() {
+  const root = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
+
+  // 期待構造: { meta: {...}, items: { [anilistId]: seriesObj } }
+  const itemsMap = root?.items && typeof root.items === "object" ? root.items : null;
+  if (!itemsMap) {
+    throw new Error(
+      `series_master.json format invalid: expected { meta, items }, but got keys=${Object.keys(root || {}).join(",")}`
+    );
+  }
 
   let added = 0;
   let skipped = 0;
   let miss = 0;
 
-  for (const [key, s] of Object.entries(seriesMap)) {
+  for (const [id, s] of Object.entries(itemsMap)) {
     if (!s) continue;
 
-    const hasVol1 = s?.vol1?.isbn13 && digits(s.vol1.isbn13).length === 13;
-    if (hasVol1) {
+    if (hasVol1(s)) {
       skipped++;
       continue;
     }
 
-    const title = s.titleNative || s.titleRomaji || s.title || s.seriesKey || key;
+    const title = s.titleNative || s.titleRomaji || s.title || s.seriesKey || id;
     const author = s.author || "";
 
     let best = null;
 
-    // まず「タイトル + 著者」で検索（精度優先）
+    // 1) title+author（精度優先）
     try {
       const data = await rakutenSearch({ title, author });
       best = pickVol1Candidate(title, author, data?.Items || []);
     } catch (e) {
-      console.log(`[vol1_backfill] key="${key}" rakuten_error=${String(e?.message || e)}`);
+      console.log(`[vol1_backfill] id=${id} rakuten_error=${String(e?.message || e)}`);
       miss++;
       await sleep(250);
       continue;
     }
 
-    // ダメなら「著者なし」で再検索（取りこぼし対策）
+    // 2) ダメなら author なし（取りこぼし対策）
     if (!best) {
       try {
         const data2 = await rakutenSearch({ title, author: "" });
@@ -161,29 +157,28 @@ async function main() {
     }
 
     if (!best) {
-      console.log(`[vol1_backfill] key="${key}" -> no_good_candidate`);
+      console.log(`[vol1_backfill] id=${id} -> no_good_candidate`);
       miss++;
       await sleep(220);
       continue;
     }
 
     const isbn13 = digits(best.isbn);
-    const img =
-      best.largeImageUrl || best.mediumImageUrl || best.smallImageUrl || null;
+    const img = best.largeImageUrl || best.mediumImageUrl || best.smallImageUrl || null;
 
     s.vol1 = {
       ...(s.vol1 || {}),
       isbn13,
       image: s?.vol1?.image || img,
-      // description は別工程（fill_series_synopsis.mjs 等）で埋める
+      // description は fill_series_synopsis.mjs 等で埋める
     };
 
     added++;
-    console.log(`[vol1_backfill] key="${key}" -> "${best.title}" isbn=${isbn13}`);
+    console.log(`[vol1_backfill] id=${id} -> "${best.title}" isbn=${isbn13}`);
     await sleep(220);
   }
 
-  await fs.writeFile(SERIES_PATH, JSON.stringify(seriesMap, null, 2));
+  await fs.writeFile(SERIES_PATH, JSON.stringify(root, null, 2));
   console.log(`vol1_backfill: added=${added} skipped=${skipped} miss=${miss}`);
 }
 
