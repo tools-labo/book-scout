@@ -78,14 +78,7 @@ jobs:
       - name: Apply AniList genres
         run: node scripts/manga/apply_anilist_genres.mjs
 
-      # --- Debug: vol1 coverage (non-fatal) ---
-      - name: Debug vol1 coverage (non-fatal)
-        run: |
-          if [ -f scripts/manga/debug_vol1_coverage.mjs ]; then
-            node scripts/manga/debug_vol1_coverage.mjs || true
-          else
-            echo "Skip: debug_vol1_coverage.mjs not found"
-          fi
+  
 
       # --- Amazon (optional) ---
       - name: Prepare temp npm project (Amazon optional)
