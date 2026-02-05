@@ -1,5 +1,3 @@
-# .github/workflows/manga-items.yml （全差し替え）
-
 name: Manga items (build)
 
 on:
@@ -34,6 +32,7 @@ jobs:
           pwd
           ls -la
           ls -la scripts/manga || true
+          ls -la data/manga || true
 
       # --- 最新刊（openBD） ---
       - name: Build manga data (openBD)
@@ -81,7 +80,6 @@ jobs:
         run: node scripts/manga/apply_anilist_genres.mjs
 
       # --- Amazon（任意・PA-API） ---
-      # 「最新刊のasin/amazonDp を埋める」用途。無ければ完全スキップ。
       - name: Prepare temp npm project (only when Amazon enabled)
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
@@ -89,7 +87,9 @@ jobs:
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
         run: |
           if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
-            npm init -y
+            if [ ! -f package.json ]; then
+              npm init -y
+            fi
             npm i --no-save paapi5-nodejs-sdk
           else
             echo "Skip: Amazon secrets not set"
@@ -112,18 +112,23 @@ jobs:
           rm -rf node_modules package-lock.json package.json
 
       # --- series_master（積み上げ） ---
-      # 注意：このステップは「既に存在する series_master.json に追記/更新」する想定
       - name: Grow series_master from AniList (paged, safe)
         env:
           ANILIST_PER_PAGE: "100"
           ANILIST_PAGES: "1"
         run: node scripts/manga/anilist_series_master.mjs
 
+      # --- あらすじ必須：series_master.vol1.description を埋める（フォールバック多段） ---
+      - name: Fill synopsis into series_master (required)
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+        run: node scripts/manga/fill_series_synopsis.mjs
+
       # --- list_items 生成（最新刊 × vol1情報） ---
       - name: Build list_items.json
         run: node scripts/manga/build_list_items_from_master.mjs
 
-      # --- Index / work pages（現状維持） ---
+      # --- Index / work pages（残すなら） ---
       - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
 
