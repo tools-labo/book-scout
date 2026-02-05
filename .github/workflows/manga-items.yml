@@ -115,6 +115,9 @@ jobs:
         run: |
           rm -rf node_modules package-lock.json package.json
 
+      - name: Build list_items.json
+        run: node scripts/manga/build_list_items.mjs
+        
       # --- Index / work pages ---
       - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
