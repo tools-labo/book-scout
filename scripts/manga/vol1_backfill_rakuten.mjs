@@ -7,103 +7,95 @@ if (!APP_ID) {
   process.exit(0);
 }
 
-const WORKS_PATH = "data/manga/works.json";
-const ITEMS_PATH = "data/manga/items_master.json";
+const SERIES_PATH = "data/manga/series_master.json";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
 const digits = (s) => String(s || "").replace(/\D/g, "");
 
-const normalizeTitle = (s) =>
+const norm = (s) =>
   String(s || "")
-    .replace(/[ 　]/g, "")
-    .replace(/[（）()\[\]【】]/g, "")
-    .toLowerCase();
+    .toLowerCase()
+    .replace(/[【】\[\]（）()]/g, " ")
+    .replace(/[：:・\u3000]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-const normalizeAuthor = (s) =>
-  String(s || "")
-    .replace(/[ 　]/g, "")
-    .replace(/[、,]/g, "")
-    .toLowerCase();
+function parseVolHint(title) {
+  const t = String(title || "")
+    .replace(/１/g, "1")
+    .replace(/２/g, "2")
+    .replace(/３/g, "3")
+    .replace(/４/g, "4")
+    .replace(/５/g, "5")
+    .replace(/６/g, "6")
+    .replace(/７/g, "7")
+    .replace(/８/g, "8")
+    .replace(/９/g, "9")
+    .replace(/０/g, "0");
 
-const isProbablySpinoff = (title) => {
-  const t = String(title || "");
-  return (
-    t.includes("外伝") ||
-    t.includes("スピンオフ") ||
-    t.includes("番外編") ||
-    t.includes("公式") ||
-    t.includes("アンソロジー") ||
-    t.includes("キャラクター") ||
-    t.includes("ファンブック") ||
-    t.includes("設定資料") ||
-    t.includes("小説") || // 漫画本編のvol1を取りたいので一旦除外（必要なら後で緩める）
-    t.includes("総集編")
+  const m =
+    t.match(/[（(]\s*(\d{1,3})\s*[）)]/) ||
+    t.match(/第\s*(\d{1,3})\s*巻/) ||
+    t.match(/(\d{1,3})\s*巻/) ||
+    t.match(/\b(\d{1,3})\b/);
+  return m ? Number(m[1]) : null;
+}
+
+function isBadTitle(title) {
+  const t = norm(title);
+  // ズレ源は強めに排除（安全優先）
+  return /(外伝|番外編|スピンオフ|spinoff|episode|ep\.|side|short|アンソロジー|短編集|公式|ガイド|guide|ファンブック|キャラクター|データブック|ムック|画集|イラスト|art|visual|原画|設定資料|総集編|完全版|新装版|愛蔵版)/i.test(
+    t
   );
-};
+}
 
-const hasVol1Marker = (title) => {
-  // "1", "１", "(1)", "（1）", "第1巻" などをゆるく拾う
-  const t = String(title || "");
-  return (
-    /(?:^|[^0-9])1(?:[^0-9]|$)/.test(t.replace(/１/g, "1")) ||
-    t.includes("（1）") ||
-    t.includes("(1)") ||
-    t.includes("第1巻") ||
-    t.endsWith(" 1") ||
-    t.endsWith("１")
-  );
-};
-
-async function rakutenSearchByTitle(title) {
+async function rakutenSearch({ title, author }) {
   const url =
     "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
     `?applicationId=${encodeURIComponent(APP_ID)}` +
     `&title=${encodeURIComponent(title)}` +
+    (author ? `&author=${encodeURIComponent(author)}` : "") +
     "&format=json" +
     "&hits=30" +
-    "&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,mediumImageUrl";
+    "&elements=title,author,publisherName,isbn,itemUrl,largeImageUrl,mediumImageUrl,smallImageUrl";
 
   const r = await fetch(url, { headers: { "User-Agent": "book-scout-bot" } });
   if (!r.ok) throw new Error(`Rakuten API HTTP ${r.status}`);
   return await r.json();
 }
 
-function pickBestVol1Candidate(workTitle, workAuthor, list) {
-  const wt = normalizeTitle(workTitle);
-  const wa = normalizeAuthor(workAuthor);
+function pickVol1Candidate(seriesTitle, seriesAuthor, items) {
+  const st = norm(seriesTitle);
+  const sa = norm(seriesAuthor);
 
-  const candidates = (list || [])
-    .map((x) => x?.Item || x)
-    .filter(Boolean)
+  const list = (items || []).map((x) => x?.Item || x).filter(Boolean);
+
+  // 「巻数=1」以外は採用しない（巻ズレ防止）
+  const vol1 = list
     .filter((it) => it.title && it.isbn)
     .filter((it) => digits(it.isbn).length === 13)
-    .filter((it) => !isProbablySpinoff(it.title))
-    .filter((it) => hasVol1Marker(it.title));
+    .filter((it) => !isBadTitle(it.title))
+    .map((it) => ({ it, vol: parseVolHint(it.title) }))
+    .filter(({ vol }) => vol === 1);
 
-  // スコア付け：タイトルが作品名に近い + 著者一致が強い
   let best = null;
   let bestScore = -1;
 
-  for (const it of candidates) {
-    const tt = normalizeTitle(it.title);
-    const aa = normalizeAuthor(it.author);
+  for (const { it } of vol1) {
+    const tt = norm(it.title);
+    const aa = norm(it.author);
 
     let score = 0;
 
-    // 作品名含む（強い）
-    if (tt.includes(wt)) score += 50;
+    // タイトル一致（強）
+    if (st && tt.includes(st)) score += 60;
+    if (st && tt.startsWith(st)) score += 30;
 
-    // 作品名の先頭一致（より強い）
-    if (tt.startsWith(wt)) score += 30;
+    // 著者一致（中〜強）
+    if (sa && aa.includes(sa)) score += 35;
 
-    // 著者一致（強い）
-    if (wa && aa.includes(wa)) score += 40;
-
-    // 出版社一致は works 側が空の時もあるので弱め（あれば加点）
-    // ※必要なら後で追加
-
-    // 「外伝」などが入ってたら除外済みなのでここでは無し
+    // 1巻っぽさ（微）
+    score += 10;
 
     if (score > bestScore) {
       bestScore = score;
@@ -111,82 +103,89 @@ function pickBestVol1Candidate(workTitle, workAuthor, list) {
     }
   }
 
+  // 一致が弱いものは不採用（誤爆防止）
+  if (!best || bestScore < 60) return null;
   return best;
 }
 
-const main = async () => {
-  const works = JSON.parse(await fs.readFile(WORKS_PATH, "utf8"));
-  const items = JSON.parse(await fs.readFile(ITEMS_PATH, "utf8"));
+async function main() {
+  const seriesRaw = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
 
-  const existsVol1 = new Set(
-    items
-      .filter((x) => x?.seriesType === "main" && x?.volumeHint === 1 && x?.workKey)
-      .map((x) => x.workKey)
-  );
+  // series_master が { anilistId: {...} } 前提。配列でも落ちないよう吸収。
+  const seriesMap = Array.isArray(seriesRaw)
+    ? Object.fromEntries(
+        seriesRaw.map((x) => [
+          String(x?.anilistId || x?.seriesKey || x?.titleNative || ""),
+          x,
+        ])
+      )
+    : seriesRaw;
 
   let added = 0;
   let skipped = 0;
   let miss = 0;
 
-  for (const [wk, w] of Object.entries(works)) {
-    if (existsVol1.has(wk)) {
+  for (const [key, s] of Object.entries(seriesMap)) {
+    if (!s) continue;
+
+    const hasVol1 = s?.vol1?.isbn13 && digits(s.vol1.isbn13).length === 13;
+    if (hasVol1) {
       skipped++;
       continue;
     }
 
-    // 作品名 + " 1" で検索（雑にやると外伝が混ざるので除外ロジック必須）
-    const q = `${wk} 1`;
+    const title = s.titleNative || s.titleRomaji || s.title || s.seriesKey || key;
+    const author = s.author || "";
 
-    let data;
+    let best = null;
+
+    // まず「タイトル + 著者」で検索（精度優先）
     try {
-      data = await rakutenSearchByTitle(q);
+      const data = await rakutenSearch({ title, author });
+      best = pickVol1Candidate(title, author, data?.Items || []);
     } catch (e) {
-      console.log(`[vol1_backfill] wk="${wk}" rakuten_error=${String(e?.message || e)}`);
+      console.log(`[vol1_backfill] key="${key}" rakuten_error=${String(e?.message || e)}`);
       miss++;
       await sleep(250);
       continue;
     }
 
-    const best = pickBestVol1Candidate(wk, w?.author || "", data?.Items || []);
+    // ダメなら「著者なし」で再検索（取りこぼし対策）
     if (!best) {
-      console.log(`[vol1_backfill] wk="${wk}" -> no_good_candidate`);
+      try {
+        const data2 = await rakutenSearch({ title, author: "" });
+        best = pickVol1Candidate(title, author, data2?.Items || []);
+      } catch {
+        // ignore
+      }
+    }
+
+    if (!best) {
+      console.log(`[vol1_backfill] key="${key}" -> no_good_candidate`);
       miss++;
-      await sleep(200);
+      await sleep(220);
       continue;
     }
 
-    // items_master に追加（本編 vol1）
-    items.push({
-      workKey: wk,
-      seriesType: "main",
-      title: best.title,
-      author: best.author || w?.author || null,
-      publisher: best.publisherName || w?.publisher || null,
-      isbn13: digits(best.isbn),
-      asin: null,
-      amazonUrl: null,
-      publishedAt: null,
-      description: null,
-      image: best.largeImageUrl || best.mediumImageUrl || null,
-      volumeHint: 1,
-      _rep: true,
-      rakutenGenreIds: [],
-      rakutenGenrePathNames: [],
-      anilistId: w?.anilist?.url ? null : null,
-      anilistUrl: w?.anilist?.url || null,
-      anilistGenres: w?.anilist?.genres || [],
-      anilistTags: w?.anilist?.tags || [],
-    });
+    const isbn13 = digits(best.isbn);
+    const img =
+      best.largeImageUrl || best.mediumImageUrl || best.smallImageUrl || null;
 
-    existsVol1.add(wk);
+    s.vol1 = {
+      ...(s.vol1 || {}),
+      isbn13,
+      image: s?.vol1?.image || img,
+      // description は別工程（fill_series_synopsis.mjs 等）で埋める
+    };
+
     added++;
-    console.log(`[vol1_backfill] wk="${wk}" -> "${best.title}" isbn=${digits(best.isbn)}`);
-    await sleep(220); // API負荷を軽く
+    console.log(`[vol1_backfill] key="${key}" -> "${best.title}" isbn=${isbn13}`);
+    await sleep(220);
   }
 
-  await fs.writeFile(ITEMS_PATH, JSON.stringify(items, null, 2));
+  await fs.writeFile(SERIES_PATH, JSON.stringify(seriesMap, null, 2));
   console.log(`vol1_backfill: added=${added} skipped=${skipped} miss=${miss}`);
-};
+}
 
 main().catch((e) => {
   console.error(e);
