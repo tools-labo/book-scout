@@ -36,8 +36,6 @@ jobs:
 
       # --- 最新刊（openBD） ---
       - name: Build manga data (openBD)
-        env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
         run: node scripts/manga/openbd_items.mjs
 
       # --- 楽天（任意） ---
@@ -114,18 +112,13 @@ jobs:
           rm -rf node_modules package-lock.json package.json
 
       # --- series_master（積み上げ） ---
-      # ★ここが重要：TARGET_ONLY=1 を渡す（29件のIDを使って必ずupsertする運用にする）
       - name: Grow series_master from AniList (TARGET_ONLY)
         env:
           ANILIST_PER_PAGE: "100"
           ANILIST_PAGES: "1"
           TARGET_ONLY: "1"
+          DEBUG_KEYS: "1"
         run: node scripts/manga/anilist_series_master.mjs
-
-      # ★検査：29件の targetIds が series_master.items に何件入ってるか表示
-      - name: Check series_master contains targetIds
-        run: |
-          node -e "const fs=require('fs');const list=JSON.parse(fs.readFileSync('data/manga/list_items.json','utf8'));const a=JSON.parse(fs.readFileSync('data/manga/anilist_by_work.json','utf8'));const m=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));const items=m.items||{};const keys=new Set(Object.keys(items));const arr=Array.isArray(list)?list:(list.items||[]);const wk=arr.map(x=>x.workKey||x.seriesKey||x.title||x.latest?.title||'').filter(Boolean);const ids=wk.map(k=>String((a[k]&&((a[k].anilistId)||a[k].anilist?.id||a[k].id))||'').trim()).filter(s=>/^\d+$/.test(s));const miss=ids.filter(id=>!keys.has(id));console.log('targetIds',ids.length,'present',ids.length-miss.length,'missing',miss.length);console.log('missing(sample)',miss.slice(0,10)); if(miss.length) process.exit(1);"
 
       # --- あらすじ必須：series_master.vol1.description を埋める（フォールバック多段） ---
       - name: Fill synopsis into series_master (required)
@@ -136,11 +129,32 @@ jobs:
           DEBUG_KEYS: "1"
         run: node scripts/manga/fill_series_synopsis.mjs
 
+      # --- needsOverride=○ の「キー特定」(overrides用の材料を出す) ---
+      - name: Debug: list missing synopsis (keys for overrides)
+        run: |
+          node -e "const fs=require('fs');
+          const m=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));
+          const items=m.items||{};
+          const miss=[];
+          for(const [id,s] of Object.entries(items)){
+            const d=s?.vol1?.description;
+            if(!d || String(d).trim()===''){
+              miss.push({
+                id,
+                seriesKey:s?.seriesKey||'',
+                title:s?.titleNative||s?.titleRomaji||s?.anilist?.title?.native||s?.anilist?.title?.romaji||''
+              });
+            }
+          }
+          console.log('needsOverrideCount',miss.length);
+          console.log(JSON.stringify(miss,null,2));
+          "
+
       # --- list_items 生成（最新刊 × vol1情報） ---
       - name: Build list_items.json
         run: node scripts/manga/build_list_items_from_master.mjs
 
-      # --- Index / work pages ---
+      # --- Index / work pages（残すなら） ---
       - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
 
