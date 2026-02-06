@@ -1,14 +1,14 @@
-// scripts/manga/fill_series_synopsis.mjs（全差し替え・TARGET_ONLY=「AniList ID」で照合 + 検算ゲート）
+// scripts/manga/fill_series_synopsis.mjs（全差し替え・TARGET_ONLY=workKey→AniList ID 解決版）
 //
 // 目的: series_master の各シリーズに synopsis(=vol1.description) を埋める
 // 優先: overrides > 既存vol1.description > Rakuten(itemCaption by ISBN) > Wikipedia(概要)
 //
 // 環境変数:
 // - RAKUTEN_APP_ID: 楽天API
-// - TARGET_ONLY=1 : list_items.json に載ってる「今のN件」だけ処理（※AniList IDで照合）
+// - TARGET_ONLY=1 : list_items.json に載ってる「今のN件」だけ処理（※workKey→AniList IDで照合）
 // - WIKI_MAX=30   : Wikipedia取得は最大N件まで（暴走防止）
 // - DEBUG_KEYS=1  : 照合のデバッグ出力
-// - STRICT_MATCH=1: TARGET_ONLY時、照合が弱い(一致が少ない/欠損あり)なら exit(1)（デフォルトON）
+// - STRICT_MATCH=1: TARGET_ONLY時、照合が弱い/欠損ありなら exit(1)（デフォルトON）
 //
 // NOTE: workflow 側の検知用マーカー → seriesTitleKeys（文字列として残す）
 import fs from "node:fs/promises";
@@ -29,6 +29,8 @@ const UA = { "User-Agent": "book-scout-bot" };
 const SERIES_PATH = "data/manga/series_master.json";
 const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
 const LIST_ITEMS_PATH = "data/manga/list_items.json";
+const ANILIST_BY_WORK_PATH = "data/manga/anilist_by_work.json";
+const WORKS_PATH = "data/manga/works.json";
 
 const digits = (s) => String(s || "").replace(/\D/g, "");
 const isDigits = (s) => /^\d+$/.test(String(s || "").trim());
@@ -39,6 +41,14 @@ const norm = (s) =>
     .replace(/[【】\[\]（）()]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+
+async function readJson(path, fallback = null) {
+  try {
+    return JSON.parse(await fs.readFile(path, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
 
 async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
@@ -163,27 +173,7 @@ function pickVol1Isbn(s) {
   return v?.isbn13 || v?.isbn || s?.vol1Isbn13 || null;
 }
 
-// --- list_items からターゲット AniList ID を拾う（構造ゆれ吸収） ---
-function pickAnilistIdFromListItem(it) {
-  // いろんな形を許容
-  const cands = [
-    it?.anilistId,
-    it?.anilist?.id,
-    it?.work?.anilistId,
-    it?.work?.anilist?.id,
-    it?.latest?.anilistId,
-    it?.latest?.anilist?.id,
-    it?.series?.anilistId,
-    it?.series?.anilist?.id,
-  ];
-  for (const v of cands) {
-    const s = String(v || "").trim();
-    if (isDigits(s)) return s;
-  }
-  return null;
-}
-
-// --- series_master 側の「このシリーズのAniList ID」を決める（最優先: keyが数字なら key） ---
+// series_master 側の AniList ID を決める（最優先: keyが数字）
 function pickAnilistIdFromSeriesEntry(key, s) {
   const k = String(key || "").trim();
   if (isDigits(k)) return k;
@@ -201,44 +191,7 @@ function pickAnilistIdFromSeriesEntry(key, s) {
   return null;
 }
 
-async function buildTargetSets() {
-  // list_items
-  let listRaw = null;
-  try {
-    listRaw = JSON.parse(await fs.readFile(LIST_ITEMS_PATH, "utf8"));
-  } catch {
-    listRaw = null;
-  }
-  const list = Array.isArray(listRaw) ? listRaw : (listRaw?.items || []);
-  const listItemsCount = Array.isArray(list) ? list.length : 0;
-
-  const targetAnilistIds = new Set();
-  const targetSeriesKeys = new Set();
-  const seriesTitleKeys = new Set(); // ← marker: seriesTitleKeys（grep対策）
-
-  for (const it of list) {
-    const id = pickAnilistIdFromListItem(it);
-    if (id) targetAnilistIds.add(String(id).trim());
-
-    // 旧ロジック互換：タイトルキーも作る（デバッグ用途）
-    const t =
-      it?.seriesKey ||
-      it?.workKey ||
-      it?.series?.title ||
-      it?.title ||
-      it?.latest?.title ||
-      null;
-    if (t) {
-      targetSeriesKeys.add(norm(t));
-      seriesTitleKeys.add(norm(t));
-    }
-  }
-
-  return { listItemsCount, targetAnilistIds, targetSeriesKeys, seriesTitleKeys };
-}
-
 function resolveOverride(overrides, key, seriesId, titleKey) {
-  // overrides は「どのキーで管理してるか揺れる」ので複数候補で引く
   const cands = [
     key,
     seriesId,
@@ -255,16 +208,114 @@ function resolveOverride(overrides, key, seriesId, titleKey) {
   return null;
 }
 
+// list_items から「今の29件」の workKey/title を集める
+function pickWorkKeyFromListItem(it) {
+  const cands = [
+    it?.workKey,
+    it?.seriesKey,
+    it?.work?.key,
+    it?.work?.workKey,
+    it?.series?.key,
+    it?.series?.workKey,
+    it?.series?.seriesKey,
+  ];
+  for (const v of cands) {
+    const s = String(v || "").trim();
+    if (s) return s;
+  }
+  // 最後の手段: タイトル
+  const t = it?.title || it?.latest?.title || it?.series?.title || null;
+  return t ? String(t).trim() : null;
+}
+
+// anilist_by_work / works から workKey→anilistId を引く
+function buildWorkKeyToAnilistId(anilistByWork, works) {
+  const map = new Map();
+
+  // anilist_by_work は { key: {...} } or 配列など揺れるので広く拾う
+  if (anilistByWork && typeof anilistByWork === "object" && !Array.isArray(anilistByWork)) {
+    for (const [k, v] of Object.entries(anilistByWork)) {
+      const id = String(v?.anilistId || v?.anilist?.id || v?.id || "").trim();
+      if (k && isDigits(id)) map.set(String(k).trim(), id);
+    }
+  } else if (Array.isArray(anilistByWork)) {
+    for (const v of anilistByWork) {
+      const k = String(v?.workKey || v?.key || v?.seriesKey || "").trim();
+      const id = String(v?.anilistId || v?.anilist?.id || v?.id || "").trim();
+      if (k && isDigits(id)) map.set(k, id);
+    }
+  }
+
+  // works.json も保険で拾う（配列想定）
+  if (Array.isArray(works)) {
+    for (const w of works) {
+      const k = String(w?.workKey || w?.key || w?.seriesKey || w?.id || "").trim();
+      const id = String(w?.anilistId || w?.anilist?.id || w?.anilistIdStr || "").trim();
+      if (k && isDigits(id) && !map.has(k)) map.set(k, id);
+    }
+  } else if (works && typeof works === "object") {
+    // {items:[...]} などもある
+    const arr = Array.isArray(works.items) ? works.items : null;
+    if (arr) {
+      for (const w of arr) {
+        const k = String(w?.workKey || w?.key || w?.seriesKey || w?.id || "").trim();
+        const id = String(w?.anilistId || w?.anilist?.id || w?.anilistIdStr || "").trim();
+        if (k && isDigits(id) && !map.has(k)) map.set(k, id);
+      }
+    }
+  }
+
+  return map;
+}
+
+async function buildTargetSets() {
+  const listRaw = await readJson(LIST_ITEMS_PATH, null);
+  const list = Array.isArray(listRaw) ? listRaw : (listRaw?.items || []);
+  const listItemsCount = Array.isArray(list) ? list.length : 0;
+
+  const targetWorkKeys = new Set();
+  const targetSeriesKeys = new Set();
+  const seriesTitleKeys = new Set(); // ← marker: seriesTitleKeys（grep対策）
+
+  for (const it of list) {
+    const wk = pickWorkKeyFromListItem(it);
+    if (wk) targetWorkKeys.add(String(wk).trim());
+
+    const t = it?.title || it?.latest?.title || it?.series?.title || it?.workKey || it?.seriesKey || null;
+    if (t) {
+      targetSeriesKeys.add(norm(t));
+      seriesTitleKeys.add(norm(t));
+    }
+  }
+
+  // workKey → anilistId を anilist_by_work / works から解決
+  const anilistByWork = await readJson(ANILIST_BY_WORK_PATH, null);
+  const works = await readJson(WORKS_PATH, null);
+
+  const wk2id = buildWorkKeyToAnilistId(anilistByWork, works);
+
+  const targetAnilistIds = new Set();
+  const missingWorkKeys = [];
+  for (const wk of targetWorkKeys) {
+    const id = wk2id.get(wk);
+    if (id) targetAnilistIds.add(id);
+    else missingWorkKeys.push(wk);
+  }
+
+  return { listItemsCount, targetWorkKeys, missingWorkKeys, targetAnilistIds, targetSeriesKeys, seriesTitleKeys };
+}
+
 (async function main() {
-  const root = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
+  const root = await readJson(SERIES_PATH, {});
   const { list, kind } = unwrapSeriesMaster(root);
 
-  const overridesRaw = JSON.parse(await fs.readFile(OVERRIDE_PATH, "utf8"));
+  const overridesRaw = await readJson(OVERRIDE_PATH, {});
   const overrides = overridesRaw && typeof overridesRaw === "object" ? overridesRaw : {};
 
   const seriesEntries = iterSeries(list);
 
-  const { listItemsCount, targetAnilistIds, targetSeriesKeys, seriesTitleKeys } = await buildTargetSets();
+  const { listItemsCount, targetWorkKeys, missingWorkKeys, targetAnilistIds, targetSeriesKeys, seriesTitleKeys } =
+    await buildTargetSets();
 
   // --- 検算（TARGET_ONLY時の事故防止） ---
   const masterIdSet = new Set();
@@ -279,15 +330,18 @@ function resolveOverride(overrides, key, seriesId, titleKey) {
 
   const targetIdsArr = Array.from(targetAnilistIds);
   const matched = targetIdsArr.filter((id) => masterIdSet.has(id));
-  const missing = targetIdsArr.filter((id) => !masterIdSet.has(id));
+  const missingIds = targetIdsArr.filter((id) => !masterIdSet.has(id));
 
   if (DEBUG_KEYS) {
+    console.log("[fill_series_synopsis] debug targetWorkKeys(sample)=", Array.from(targetWorkKeys).slice(0, 10));
+    console.log("[fill_series_synopsis] debug missingWorkKeys(sample)=", missingWorkKeys.slice(0, 10));
     console.log("[fill_series_synopsis] debug targetAnilistIds(sample)=", targetIdsArr.slice(0, 10));
     console.log("[fill_series_synopsis] debug targetSeriesKeys(sample)=", Array.from(targetSeriesKeys).slice(0, 10));
     console.log("[fill_series_synopsis] debug seriesTitleKeys(sample)=", Array.from(seriesTitleKeys).slice(0, 10)); // marker
     console.log("[fill_series_synopsis] debug masterIdSet(sample)=", Array.from(masterIdSet).slice(0, 10));
-    console.log("[fill_series_synopsis] check targetIds=", targetIdsArr.length, "matched=", matched.length, "missing=", missing.length);
-    if (missing.length) console.log("[fill_series_synopsis] check missing(sample)=", missing.slice(0, 10));
+    console.log("[fill_series_synopsis] check listItems=", listItemsCount, "workKeys=", targetWorkKeys.size, "targetIds=", targetIdsArr.length);
+    console.log("[fill_series_synopsis] check matched=", matched.length, "missingIds=", missingIds.length);
+    if (missingIds.length) console.log("[fill_series_synopsis] check missingIds(sample)=", missingIds.slice(0, 10));
     if (matched.length) {
       const samp = matched.slice(0, 10).map((id) => `${id}->${masterIdToKey.get(id)}`);
       console.log("[fill_series_synopsis] check matched(sample)=", samp);
@@ -295,17 +349,20 @@ function resolveOverride(overrides, key, seriesId, titleKey) {
   }
 
   if (TARGET_ONLY && STRICT_MATCH) {
-    // 最低でも「ある程度」一致してないと意味がないので落とす（ここが今回の反省ポイント）
-    // 基本は全一致を期待。揺れが出ても原因が分かるように missing を出して止める。
+    if (listItemsCount === 0 || targetWorkKeys.size === 0) {
+      console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but list_items has no usable workKey/title");
+      process.exit(1);
+    }
     if (targetIdsArr.length === 0) {
-      console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but targetAnilistIds is empty (list_items lacks anilist id)");
+      console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but could not resolve anilist ids from anilist_by_work/works");
+      console.log("[fill_series_synopsis] HINT: ensure anilist_by_work.json or works.json has workKey->anilistId mapping");
       process.exit(1);
     }
     if (matched.length === 0) {
       console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but matched=0 (series_master has no matching anilist ids)");
       process.exit(1);
     }
-    if (missing.length > 0) {
+    if (missingIds.length > 0) {
       console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but some target ids are missing in series_master");
       process.exit(1);
     }
@@ -322,7 +379,7 @@ function resolveOverride(overrides, key, seriesId, titleKey) {
   let needsOverride = 0;
 
   console.log(
-    `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX} listItems=${listItemsCount} targetAnilistIds=${targetAnilistIds.size}`
+    `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX} listItems=${listItemsCount} targetWorkKeys=${targetWorkKeys.size} targetAnilistIds=${targetAnilistIds.size}`
   );
 
   for (const { key, s } of seriesEntries) {
@@ -340,7 +397,6 @@ function resolveOverride(overrides, key, seriesId, titleKey) {
     const cur = getSynopsis(s);
     const titleKey = norm(pickTitleForQuery(key, s));
 
-    // overrides（あれば常に優先上書き）
     const ov = resolveOverride(overrides, String(key).trim(), keyId, titleKey);
     if (ov) {
       if (ov !== cur) {
@@ -373,14 +429,12 @@ function resolveOverride(overrides, key, seriesId, titleKey) {
       if (!TARGET_ONLY || wikiUsed < WIKI_MAX) {
         const t = String(pickTitleForQuery(key, s) || "").trim();
         if (t) {
-          // まず「漫画」を付けて探す
           const page1 = await wikiSearchTitle(t + " 漫画");
           await sleep(200);
           synopsis = await wikiExtract(page1);
           await sleep(200);
 
           if (!synopsis) {
-            // 次に素のタイトル
             const page2 = await wikiSearchTitle(t);
             await sleep(200);
             synopsis = await wikiExtract(page2);
