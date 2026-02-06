@@ -1,7 +1,8 @@
-// scripts/manga/anilist_series_master.mjs（全差し替え・TARGET_ONLY対応版）
+// scripts/manga/anilist_series_master.mjs（全差し替え・TARGET_ONLY堅牢化版）
 //
 // 目的: series_master.json を「作品単位のマスタ」として積み上げる
-// 重要: TARGET_ONLY=1 のときは list_items(29件) に載ってる作品だけを必ず upsert する
+// 重要: TARGET_ONLY=1 のときは list_items(29件) に載ってる作品だけを必ず upsert し、
+//       29件が series_master に揃ったことをこのスクリプトで保証する（欠けたら exit 1）
 //
 // 入力:
 // - data/manga/list_items.json（29件）
@@ -10,7 +11,6 @@
 // - data/manga/series_master.json（{meta, items:{[anilistId]: seriesObj}}）
 //
 // 環境変数:
-// - ANILIST_PER_PAGE / ANILIST_PAGES : （任意）従来のページング拡張を残したい場合
 // - TARGET_ONLY=1 : 29件だけを確実に入れる
 // - DEBUG_KEYS=1  : デバッグ
 //
@@ -20,8 +20,6 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const TARGET_ONLY = process.env.TARGET_ONLY === "1";
 const DEBUG_KEYS = process.env.DEBUG_KEYS === "1";
-const PER_PAGE = Number(process.env.ANILIST_PER_PAGE || "100");
-const PAGES = Number(process.env.ANILIST_PAGES || "1");
 
 const SERIES_PATH = "data/manga/series_master.json";
 const LIST_ITEMS_PATH = "data/manga/list_items.json";
@@ -62,8 +60,11 @@ async function fetchJson(url, body, tries = 3) {
         signal: ac.signal,
       });
       clearTimeout(to);
+
       const t = await r.text();
       if (r.ok) return JSON.parse(t);
+
+      // 429/5xx はリトライ
       if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
         await sleep(900 + i * 700);
         continue;
@@ -100,15 +101,18 @@ function pickWorkKeyFromListItem(it) {
 }
 
 function buildWorkKeyToAnilistId(anilistByWork) {
+  // ★表記ゆれ吸収：キーは norm(wk) で保存
   const map = new Map();
+
   if (anilistByWork && typeof anilistByWork === "object" && !Array.isArray(anilistByWork)) {
-    for (const [wk, v] of Object.entries(anilistByWork)) {
+    for (const [wkRaw, v] of Object.entries(anilistByWork)) {
+      const wk = norm(wkRaw);
       const id = String(v?.anilistId || v?.anilist?.id || v?.id || "").trim();
-      if (wk && isDigits(id)) map.set(String(wk).trim(), id);
+      if (wk && isDigits(id)) map.set(wk, id);
     }
   } else if (Array.isArray(anilistByWork)) {
     for (const v of anilistByWork) {
-      const wk = String(v?.workKey || v?.key || v?.seriesKey || "").trim();
+      const wk = norm(v?.workKey || v?.key || v?.seriesKey || "");
       const id = String(v?.anilistId || v?.anilist?.id || v?.id || "").trim();
       if (wk && isDigits(id)) map.set(wk, id);
     }
@@ -118,9 +122,10 @@ function buildWorkKeyToAnilistId(anilistByWork) {
 
 const ANILIST_URL = "https://graphql.anilist.co";
 
+// Page + media(id_in) でまとめ取得
 const QUERY_BY_IDS = `
 query ($ids: [Int]) {
-  Page(perPage: 50) {
+  Page(page: 1, perPage: 50) {
     media(id_in: $ids, type: MANGA) {
       id
       title { romaji native english }
@@ -147,46 +152,62 @@ function toSeriesObj(m) {
     const role = String(e?.role || "");
     const name = e?.node?.name?.full || e?.node?.name?.native || "";
     if (!name) continue;
-    // “Story” “Art” など厳密分類は後回し。とりあえず収集しておく
     authors.push({ role, name });
   }
 
   return {
+    anilistId: Number(m.id),
+    seriesKey: null, // 後で必要なら別スクリプトで埋める
+    titleNative: m?.title?.native || null,
+    titleRomaji: m?.title?.romaji || null,
+    publisher: null,
+    demo: [],
+    genre: [],
+    vol1: {
+      description: null,
+      isbn13: null,
+      image: null,
+      amazonDp: null,
+    },
+    wikidataId: null,
+    magazines: [],
     anilist: {
-      id: String(m.id),
       title: m.title || null,
       siteUrl: m.siteUrl || null,
       format: m.format || null,
       status: m.status || null,
       genres: Array.isArray(m.genres) ? m.genres : [],
+      tags: [], // tagsは別工程(anilist_tags)で持ってるなら合わせる
       coverImage: m.coverImage || null,
       startDate: m.startDate || null,
       description: (m.description || "").trim() || null,
       authors,
       studios: m?.studios?.nodes?.map((x) => x?.name).filter(Boolean) || [],
     },
-    // synopsis用の箱（後工程がここを埋める）
-    vol1: {
-      description: null,
-      isbn13: null,
-    },
-    updatedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString().slice(0, 10),
   };
 }
 
 function deepMergeKeep(dst, src) {
-  // dst を優先して保持しつつ、無いところだけ src を埋める（安全寄り）
+  // dstを優先保持し、無いところだけsrcを埋める
   if (!dst || typeof dst !== "object") return src;
   if (!src || typeof src !== "object") return dst;
 
   const out = Array.isArray(dst) ? [...dst] : { ...dst };
   for (const [k, v] of Object.entries(src)) {
     if (v == null) continue;
+
     if (!(k in out) || out[k] == null) {
       out[k] = v;
       continue;
     }
-    if (typeof out[k] === "object" && typeof v === "object" && !Array.isArray(out[k]) && !Array.isArray(v)) {
+
+    if (
+      typeof out[k] === "object" &&
+      typeof v === "object" &&
+      !Array.isArray(out[k]) &&
+      !Array.isArray(v)
+    ) {
       out[k] = deepMergeKeep(out[k], v);
     }
   }
@@ -195,16 +216,35 @@ function deepMergeKeep(dst, src) {
 
 async function upsertByTargetIds(seriesMaster, ids) {
   const uniq = Array.from(new Set(ids)).filter(isDigits);
+
+  // 40ずつ → Page(perPage=50) なので余裕あり
   const chunks = [];
   for (let i = 0; i < uniq.length; i += 40) chunks.push(uniq.slice(i, i + 40));
 
   let added = 0;
   let updated = 0;
+  let apiErr = 0;
+  let missing = 0;
 
   for (const chunk of chunks) {
+    const want = new Set(chunk.map((x) => String(x)));
     const vars = { ids: chunk.map((x) => Number(x)) };
+
     const j = await fetchJson(ANILIST_URL, { query: QUERY_BY_IDS, variables: vars });
+    if (!j || !j.data) {
+      apiErr++;
+      // ここで止める（成功扱いしない）
+      console.log("[anilist_series_master] ERROR: AniList API returned null/invalid response");
+      process.exit(1);
+    }
+
     const media = j?.data?.Page?.media || [];
+    const got = new Set(media.map((m) => String(m?.id || "")).filter(isDigits));
+
+    // 欠けを数える（次工程で死ぬ前にここで止める）
+    for (const id of want) {
+      if (!got.has(id)) missing++;
+    }
 
     for (const m of media) {
       const id = String(m?.id || "").trim();
@@ -217,10 +257,7 @@ async function upsertByTargetIds(seriesMaster, ids) {
         seriesMaster.items[id] = next;
         added++;
       } else {
-        // 既存 vol1.description 等は保持する（消さない）
-        const merged = deepMergeKeep(cur, next);
-        // vol1.description は cur 優先で保持される設計
-        seriesMaster.items[id] = merged;
+        seriesMaster.items[id] = deepMergeKeep(cur, next);
         updated++;
       }
     }
@@ -228,7 +265,16 @@ async function upsertByTargetIds(seriesMaster, ids) {
     await sleep(450);
   }
 
-  return { added, updated };
+  return { added, updated, apiErr, missing, uniqCount: uniq.length };
+}
+
+function assertTargetsPresent(seriesMaster, targetIds) {
+  const miss = [];
+  for (const id of targetIds) {
+    const k = String(id);
+    if (!seriesMaster.items[k]) miss.push(k);
+  }
+  return miss;
 }
 
 async function main() {
@@ -238,10 +284,11 @@ async function main() {
   const anilistByWork = await readJson(ANILIST_BY_WORK_PATH, {});
   const wk2id = buildWorkKeyToAnilistId(anilistByWork);
 
+  // list_itemsから workKey を集める（normして持つ）
   const targetWorkKeys = new Set();
   for (const it of list) {
     const wk = pickWorkKeyFromListItem(it);
-    if (wk) targetWorkKeys.add(String(wk).trim());
+    if (wk) targetWorkKeys.add(norm(wk));
   }
 
   const targetIds = [];
@@ -266,32 +313,41 @@ async function main() {
       : { meta: { createdAt: new Date().toISOString() }, items: {} };
 
   if (!seriesMaster.meta) seriesMaster.meta = {};
-  seriesMaster.meta.updatedAt = new Date().toISOString();
+  seriesMaster.meta.updatedAt = new Date().toISOString().slice(0, 10);
 
-  // --- 1) まず TARGET_ONLY なら target を必ず入れる ---
-  let a1 = { added: 0, updated: 0 };
+  // ★ metaに変なものが混ざってたらここで除去（JIS混入対策）
+  if (seriesMaster.meta.vol1) delete seriesMaster.meta.vol1;
+
+  let result = { added: 0, updated: 0, apiErr: 0, missing: 0, uniqCount: 0 };
+
   if (TARGET_ONLY) {
     if (targetIds.length === 0) {
-      console.log("[anilist_series_master] ERROR: TARGET_ONLY=1 but could not resolve target AniList IDs from anilist_by_work");
+      console.log("[anilist_series_master] ERROR: TARGET_ONLY=1 but could not resolve target AniList IDs (anilist_by_work mismatch)");
       process.exit(1);
     }
-    a1 = await upsertByTargetIds(seriesMaster, targetIds);
-  }
+    if (missingWorkKeys.length > 0) {
+      console.log("[anilist_series_master] ERROR: TARGET_ONLY=1 but some workKeys are missing in anilist_by_work");
+      console.log("[anilist_series_master] missingWorkKeys(sample)=", missingWorkKeys.slice(0, 20));
+      process.exit(1);
+    }
 
-  // --- 2) （任意）従来のページング増殖を残したい場合 ---
-  // TARGET_ONLY=1 のときは暴走防止でやらない（必要なら別ジョブに分離）
-  let added2 = 0;
-  let updated2 = 0;
+    result = await upsertByTargetIds(seriesMaster, targetIds);
 
-  if (!TARGET_ONLY && PAGES > 0) {
-    // ここは “人気ページングで積む” など、従来方式があるなら実装する余地
-    // 今回は安全のため何もしない（将来ここを拡張）
+    // ★ここが肝：29件が揃ったことを保証
+    const missingIds = assertTargetsPresent(seriesMaster, targetIds);
+    if (missingIds.length > 0) {
+      console.log("[anilist_series_master] ERROR: TARGET_ONLY=1 but some target ids are still missing in series_master");
+      console.log("[anilist_series_master] missingIds(sample)=", missingIds.slice(0, 20));
+      process.exit(1);
+    }
+  } else {
+    // 非TARGET運用は今は安全のため何もしない（将来拡張）
   }
 
   await writeJson(SERIES_PATH, seriesMaster);
 
   console.log(
-    `[anilist_series_master] targetOnly=${TARGET_ONLY} listItems=${list.length} targetWorkKeys=${targetWorkKeys.size} targetIds=${targetIds.length} added=${a1.added + added2} updated=${a1.updated + updated2}`
+    `[anilist_series_master] targetOnly=${TARGET_ONLY} listItems=${list.length} targetWorkKeys=${targetWorkKeys.size} targetIds=${targetIds.length} uniqIds=${result.uniqCount} added=${result.added} updated=${result.updated} apiErr=${result.apiErr} missingFromApi=${result.missing}`
   );
 }
 
