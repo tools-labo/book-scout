@@ -3,8 +3,7 @@ name: Manga items (build)
 on:
   workflow_dispatch:
   schedule:
-    # JST 03:15
-    - cron: "15 18 * * *"
+    - cron: "15 18 * * *" # JST 03:15
 
 permissions:
   contents: write
@@ -16,214 +15,57 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20.20.0"
+          node-version: "20"
 
-      - name: Sanity check
-        run: |
-          pwd
-          ls -la
-          ls -la scripts/manga || true
-          ls -la data/manga || true
-
-      # --- 最新刊（openBD） ---
-      - name: Build manga data (openBD)
-        run: node scripts/manga/openbd_items.mjs
-
-      # --- 楽天（任意） ---
-      - name: Backfill vol1 from Rakuten (optional)
+      - name: Build manga data
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: |
-          if [ -n "${RAKUTEN_APP_ID}" ]; then
-            node scripts/manga/vol1_backfill_rakuten.mjs
-          else
-            echo "Skip: RAKUTEN_APP_ID not set"
-          fi
-
-      - name: Rakuten tags (optional)
-        env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: |
-          if [ -n "${RAKUTEN_APP_ID}" ]; then
-            node scripts/manga/rakuten_tags.mjs
-          else
-            echo "Skip: RAKUTEN_APP_ID not set"
-          fi
-
-      - name: Rakuten genre resolve (optional)
-        env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: |
-          if [ -n "${RAKUTEN_APP_ID}" ]; then
-            node scripts/manga/rakuten_genre_resolve.mjs
-          else
-            echo "Skip: RAKUTEN_APP_ID not set"
-          fi
-
-      # --- Wikidata / AniList（既存作品にタグ付け） ---
-      - name: Wikidata ids
-        run: node scripts/manga/wikidata_ids.mjs
-
-      - name: AniList tags
-        run: node scripts/manga/anilist_tags.mjs
-
-      - name: Apply AniList genres
-        run: node scripts/manga/apply_anilist_genres.mjs
-
-      # --- Amazon（任意・PA-API） ---
-      - name: Prepare temp npm project (only when Amazon enabled)
-        env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-        run: |
-          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
-            if [ ! -f package.json ]; then
-              npm init -y
-            fi
-            npm i --no-save paapi5-nodejs-sdk
-          else
-            echo "Skip: Amazon secrets not set"
-          fi
-
-      - name: Amazon ASIN lookup (optional)
-        env:
-          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-        run: |
-          if [ -n "${AMZ_ACCESS_KEY}" ] && [ -n "${AMZ_SECRET_KEY}" ] && [ -n "${AMZ_PARTNER_TAG}" ]; then
-            node scripts/manga/amazon_asin.mjs
-          else
-            echo "Skip: Amazon secrets not set"
-          fi
-
-      - name: Cleanup temp npm artifacts
-        run: |
-          rm -rf node_modules package-lock.json package.json
-
-      # --- series_master（TARGET_ONLYで「29件を必ず入れる」） ---
-      - name: Grow series_master from AniList (TARGET_ONLY)
-        env:
-          ANILIST_PER_PAGE: "100"
-          ANILIST_PAGES: "1"
-          TARGET_ONLY: "1"
-          DEBUG_KEYS: "1"
-        run: node scripts/manga/anilist_series_master.mjs
-
-      # --- あらすじ必須：series_master.vol1.description を埋める（TARGET_ONLYで29件だけ） ---
-      - name: Fill synopsis into series_master (required)
-        env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
           TARGET_ONLY: "1"
           WIKI_MAX: "30"
           DEBUG_KEYS: "1"
-        run: node scripts/manga/fill_series_synopsis.mjs
-
-      # --- needsOverride の「キー(=AniList ID)」特定：29件に限定して抽出 ---
-      - name: Debug: dump overrides keys for missing synopsis (TARGET_ONLY)
         run: |
-          node <<'NODE'
-          const fs = require('fs');
+          set -euo pipefail
 
-          const listRaw = JSON.parse(fs.readFileSync('data/manga/list_items.json','utf8'));
-          const list = Array.isArray(listRaw) ? listRaw : (listRaw?.items || []);
+          node scripts/manga/openbd_items.mjs
 
-          const anilistByWork = JSON.parse(fs.readFileSync('data/manga/anilist_by_work.json','utf8'));
-          const master = JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));
-          const items = master?.items || {};
+          if [ -n "${RAKUTEN_APP_ID:-}" ]; then
+            node scripts/manga/vol1_backfill_rakuten.mjs
+            node scripts/manga/rakuten_tags.mjs
+            node scripts/manga/rakuten_genre_resolve.mjs
+          fi
 
-          const isDigits = (s) => /^\d+$/.test(String(s || '').trim());
+          node scripts/manga/wikidata_ids.mjs
+          node scripts/manga/anilist_tags.mjs
+          node scripts/manga/apply_anilist_genres.mjs
 
-          const pickWorkKey = (it) => {
-            const cands = [
-              it?.workKey, it?.seriesKey, it?.work?.key, it?.work?.workKey,
-              it?.series?.key, it?.series?.workKey, it?.series?.seriesKey,
-            ];
-            for (const v of cands) {
-              const s = String(v || '').trim();
-              if (s) return s;
-            }
-            const t = it?.title || it?.latest?.title || it?.series?.title || null;
-            return t ? String(t).trim() : null;
-          };
+          # 重要：series_master を TARGET_ONLY で確実に29件 upsert（スキーマ維持）
+          node scripts/manga/anilist_series_master.mjs
 
-          const getIdByWorkKey = (wk) => {
-            const v = anilistByWork?.[wk];
-            const id = String(v?.anilistId || v?.anilist?.id || v?.id || '').trim();
-            return isDigits(id) ? id : null;
-          };
+          # synopsis 埋め（needsOverride のID/タイトルをログ出し）
+          node scripts/manga/fill_series_synopsis.mjs
 
-          // 29件の target IDs を作る
-          const targetWorkKeys = [];
-          for (const it of list) {
-            const wk = pickWorkKey(it);
-            if (wk) targetWorkKeys.push(wk);
-          }
+          node scripts/manga/build_list_items_from_master.mjs
+          node scripts/manga/build_indexes.mjs
+          node scripts/manga/build_work_pages.mjs
 
-          const targetIds = [];
-          const unresolved = [];
-          for (const wk of targetWorkKeys) {
-            const id = getIdByWorkKey(wk);
-            if (id) targetIds.push(id);
-            else unresolved.push(wk);
-          }
-
-          // 対象IDだけ見て、description 空のものを抽出
-          const missing = [];
-          for (const id of targetIds) {
-            const s = items[id];
-            const desc = s?.vol1?.description;
-            if (!desc || String(desc).trim() === '') {
-              missing.push({
-                id,
-                seriesKey: s?.seriesKey || null,
-                title: s?.titleNative || s?.titleRomaji || s?.anilist?.title?.native || s?.anilist?.title?.romaji || null,
-              });
-            }
-          }
-
-          console.log('TARGET_ONLY missing synopsis count =', missing.length);
-          console.log('--- Put these keys into data/manga/overrides_synopsis.json (key = id) ---');
-          console.log(JSON.stringify(missing, null, 2));
-
-          if (unresolved.length) {
-            console.log('WARN: some workKeys could not resolve AniList ID (anilist_by_work missing?):');
-            console.log(JSON.stringify(unresolved.slice(0, 30), null, 2));
-          }
-          NODE
-
-      # --- list_items 生成（最新刊 × vol1情報） ---
-      - name: Build list_items.json
-        run: node scripts/manga/build_list_items_from_master.mjs
-
-      # --- Index / work pages（残すなら） ---
-      - name: Build indexes
-        run: node scripts/manga/build_indexes.mjs
-
-      - name: Build work pages
-        run: node scripts/manga/build_work_pages.mjs
-
-      # --- Commit (data/manga だけ) ---
       - name: Commit and push (data/manga only)
         run: |
+          set -euo pipefail
+          git status --porcelain
+          if [ -z "$(git status --porcelain data/manga)" ]; then
+            echo "No changes in data/manga"
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add data/manga
-
-          if [ -n "$(git status --porcelain -- data/manga)" ]; then
-            git commit -m "build manga items"
-            git push
-          else
-            echo "No changes in data/manga"
-          fi
+          git commit -m "build manga items"
+          git push
