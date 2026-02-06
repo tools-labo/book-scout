@@ -1,7 +1,8 @@
-// scripts/manga/fill_series_synopsis.mjs（全差し替え・needsOverride特定ログ版）
+// scripts/manga/fill_series_synopsis.mjs（全差し替え・needsOverrideのTODO出力版）
 //
 // 目的: series_master の各シリーズに synopsis(=vol1.description) を埋める
 // 優先: overrides(idキー) > 既存vol1.description > Rakuten(itemCaption by ISBN) > Wikipedia(概要)
+// 追加: needsOverride が出たら data/manga/overrides_synopsis.todo.json を自動生成
 //
 // 環境変数:
 // - RAKUTEN_APP_ID
@@ -23,6 +24,7 @@ const isDigits = (s) => /^\d+$/.test(String(s || "").trim());
 
 const SERIES_PATH = "data/manga/series_master.json";
 const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
+const TODO_PATH = "data/manga/overrides_synopsis.todo.json";
 const LIST_ITEMS_PATH = "data/manga/list_items.json";
 const ANILIST_BY_WORK_PATH = "data/manga/anilist_by_work.json";
 
@@ -207,8 +209,7 @@ let wikiUsed = 0;
 let updated = 0;
 let filled = 0;
 
-const needsOverride = []; // ← ここに「埋まらなかったID」を貯める
-
+const needsOverride = [];
 const wikiBudget = TARGET_ONLY ? Math.max(0, WIKI_MAX) : Infinity;
 
 for (const id of idsToProcess) {
@@ -287,7 +288,19 @@ console.log(
   `[fill_series_synopsis] seen=${seen} targetOnly=${TARGET_ONLY} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiUsed=${wikiUsed} updated=${updated} filled=${filled} needsOverride=${needsOverride.length}`
 );
 
-// 重要：needsOverride の「特定情報」をログに出す（ここがあなたの疑問点の解消）
 if (needsOverride.length) {
   console.log("[fill_series_synopsis] needsOverride(items)=", JSON.stringify(needsOverride, null, 2));
+
+  // TODOファイル生成：overridesに貼るための下書き
+  const todo = {};
+  for (const x of needsOverride) {
+    todo[x.anilistId] = {
+      title: x.title,
+      seriesKey: x.seriesKey,
+      vol1Isbn13: x.vol1Isbn13,
+      synopsis: ""
+    };
+  }
+  await fs.writeFile(TODO_PATH, JSON.stringify(todo, null, 2));
+  console.log(`[fill_series_synopsis] wrote ${TODO_PATH}`);
 }
