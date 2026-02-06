@@ -10,6 +10,9 @@
 // - DEBUG_KEYS=1  : キー対応のデバッグ出力
 //
 // ログ: kind / entries / targetOnly / target / had / triedRakuten / triedWiki / wikiUsed / filled / updated / needsOverride
+//
+// NOTE: workflow 側の検知用マーカー → seriesTitleKeys（この文字列を残す）
+
 import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -155,12 +158,12 @@ async function buildTargetSets() {
   try {
     raw = JSON.parse(await fs.readFile(p, "utf8"));
   } catch {
-    return { seriesKeySet: new Set(), titleSet: new Set(), rawCount: 0 };
+    return { seriesKeySet: new Set(), seriesTitleKeys: new Set(), rawCount: 0 };
   }
 
   const list = Array.isArray(raw) ? raw : raw?.items || [];
   const seriesKeySet = new Set();
-  const titleSet = new Set();
+  const seriesTitleKeys = new Set(); // ← marker: seriesTitleKeys
 
   for (const c of list) {
     const seriesKey = c?.seriesKey || c?.workKey || c?.key || null;
@@ -172,10 +175,10 @@ async function buildTargetSets() {
       null;
 
     if (seriesKey) seriesKeySet.add(String(seriesKey).trim());
-    if (t) titleSet.add(norm(t));
+    if (t) seriesTitleKeys.add(norm(t));
   }
 
-  return { seriesKeySet, titleSet, rawCount: list.length };
+  return { seriesKeySet, seriesTitleKeys, rawCount: list.length };
 }
 
 // ---- main ----
@@ -190,16 +193,16 @@ const overrides = overridesRaw && typeof overridesRaw === "object" ? overridesRa
 
 const seriesEntries = iterSeries(list);
 
-const { seriesKeySet, titleSet, rawCount } = await buildTargetSets();
+const { seriesKeySet, seriesTitleKeys, rawCount } = await buildTargetSets();
 
 if (DEBUG_KEYS) {
   console.log("[fill_series_synopsis] debug targetSeriesKeys(sample)=", Array.from(seriesKeySet).slice(0, 10));
-  console.log("[fill_series_synopsis] debug targetTitleKeys(sample)=", Array.from(titleSet).slice(0, 10));
+  console.log("[fill_series_synopsis] debug seriesTitleKeys(sample)=", Array.from(seriesTitleKeys).slice(0, 10)); // marker
   console.log("[fill_series_synopsis] debug seriesKeys(sample)=", seriesEntries.slice(0, 10).map((x) => x.key));
 }
 
 console.log(
-  `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX} targetSeriesKeys=${seriesKeySet.size} targetTitleKeys=${titleSet.size} listItems=${rawCount}`
+  `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX} targetSeriesKeys=${seriesKeySet.size} seriesTitleKeys=${seriesTitleKeys.size} listItems=${rawCount}`
 );
 
 let seen = 0;
@@ -224,7 +227,7 @@ for (const { key, s } of seriesEntries) {
     const keyHit = seriesKeySet.has(String(key));
     const titleHits = pickTitleCandidates(key, s)
       .map((t) => norm(t))
-      .some((t) => titleSet.has(t));
+      .some((t) => seriesTitleKeys.has(t));
     isTarget = keyHit || titleHits;
   }
 
@@ -266,7 +269,6 @@ for (const { key, s } of seriesEntries) {
     triedWiki++;
     wikiBudget--;
 
-    // 検索語は「一番それっぽいタイトル」
     const cand = pickTitleCandidates(key, s)[0] || key;
 
     const q1 = String(cand).trim() + " 漫画";
