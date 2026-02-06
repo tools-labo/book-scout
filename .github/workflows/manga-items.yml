@@ -34,12 +34,8 @@ jobs:
           ls -la scripts/manga || true
           ls -la data/manga || true
 
-      # --- 最新刊（openBD + Rakuten caption fallback）---
+      # --- 最新刊（openBD） ---
       - name: Build manga data (openBD)
-        env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-          # 1件だけ構造観測したい時だけ有効化（普段は0のままでOK）
-          # OPENBD_PROBE: "1"
         run: node scripts/manga/openbd_items.mjs
 
       # --- 楽天（任意） ---
@@ -122,25 +118,28 @@ jobs:
           ANILIST_PAGES: "1"
         run: node scripts/manga/anilist_series_master.mjs
 
-      # --- series_master.json 構造検査（あなたが指定したやつ） ---
-      - name: Inspect series_master structure
-        run: |
-          node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));console.log('topKeys',Object.keys(j)); console.log('isArray',Array.isArray(j)); console.log('itemsType', j&&j.items? (Array.isArray(j.items)?'array':'object'):'none'); console.log('itemsLen', j&&j.items&&Array.isArray(j.items)?j.items.length:null);"
+      # --- series_master 構造確認（デバッグ） ---
+      - name: Debug series_master structure (before fill)
+        run: node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));console.log('topKeys',Object.keys(j)); console.log('isArray',Array.isArray(j)); console.log('itemsType', j&&j.items? (Array.isArray(j.items)?'array':'object'):'none'); console.log('itemsLen', j&&j.items&&Array.isArray(j.items)?j.items.length:null);"
 
-      # --- あらすじ（必須）：series_master.vol1.description を埋める ---
+      # --- あらすじ必須：series_master.vol1.description を埋める（フォールバック多段） ---
       - name: Fill synopsis into series_master (required)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-          # いま target=0 で空振りしてるので、まずは動く状態にする（重いので上限付き）
-          TARGET_ONLY: "0"
+          TARGET_ONLY: "1"
           WIKI_MAX: "30"
+          DEBUG_KEYS: "1"
         run: node scripts/manga/fill_series_synopsis.mjs
+
+      # --- series_master 構造確認（デバッグ） ---
+      - name: Debug series_master structure (after fill)
+        run: node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));console.log('topKeys',Object.keys(j)); console.log('isArray',Array.isArray(j)); console.log('itemsType', j&&j.items? (Array.isArray(j.items)?'array':'object'):'none'); console.log('itemsLen', j&&j.items&&Array.isArray(j.items)?j.items.length:null);"
 
       # --- list_items 生成（最新刊 × vol1情報） ---
       - name: Build list_items.json
         run: node scripts/manga/build_list_items_from_master.mjs
 
-      # --- Index / work pages ---
+      # --- Index / work pages（残すなら） ---
       - name: Build indexes
         run: node scripts/manga/build_indexes.mjs
 
