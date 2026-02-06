@@ -111,7 +111,7 @@ jobs:
         run: |
           rm -rf node_modules package-lock.json package.json
 
-      # --- series_master（積み上げ） ---
+      # --- series_master（TARGET_ONLYで「29件を必ず入れる」） ---
       - name: Grow series_master from AniList (TARGET_ONLY)
         env:
           ANILIST_PER_PAGE: "100"
@@ -120,7 +120,7 @@ jobs:
           DEBUG_KEYS: "1"
         run: node scripts/manga/anilist_series_master.mjs
 
-      # --- あらすじ必須：series_master.vol1.description を埋める（フォールバック多段） ---
+      # --- あらすじ必須：series_master.vol1.description を埋める（TARGET_ONLYで29件だけ） ---
       - name: Fill synopsis into series_master (required)
         env:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
@@ -129,26 +129,78 @@ jobs:
           DEBUG_KEYS: "1"
         run: node scripts/manga/fill_series_synopsis.mjs
 
-      # --- needsOverride=○ の「キー特定」(overrides用の材料を出す) ---
-      - name: Debug: list missing synopsis (keys for overrides)
+      # --- needsOverride の「キー(=AniList ID)」特定：29件に限定して抽出 ---
+      - name: Debug: dump overrides keys for missing synopsis (TARGET_ONLY)
         run: |
-          node -e "const fs=require('fs');
-          const m=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));
-          const items=m.items||{};
-          const miss=[];
-          for(const [id,s] of Object.entries(items)){
-            const d=s?.vol1?.description;
-            if(!d || String(d).trim()===''){
-              miss.push({
+          node <<'NODE'
+          const fs = require('fs');
+
+          const listRaw = JSON.parse(fs.readFileSync('data/manga/list_items.json','utf8'));
+          const list = Array.isArray(listRaw) ? listRaw : (listRaw?.items || []);
+
+          const anilistByWork = JSON.parse(fs.readFileSync('data/manga/anilist_by_work.json','utf8'));
+          const master = JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));
+          const items = master?.items || {};
+
+          const isDigits = (s) => /^\d+$/.test(String(s || '').trim());
+
+          const pickWorkKey = (it) => {
+            const cands = [
+              it?.workKey, it?.seriesKey, it?.work?.key, it?.work?.workKey,
+              it?.series?.key, it?.series?.workKey, it?.series?.seriesKey,
+            ];
+            for (const v of cands) {
+              const s = String(v || '').trim();
+              if (s) return s;
+            }
+            const t = it?.title || it?.latest?.title || it?.series?.title || null;
+            return t ? String(t).trim() : null;
+          };
+
+          const getIdByWorkKey = (wk) => {
+            const v = anilistByWork?.[wk];
+            const id = String(v?.anilistId || v?.anilist?.id || v?.id || '').trim();
+            return isDigits(id) ? id : null;
+          };
+
+          // 29件の target IDs を作る
+          const targetWorkKeys = [];
+          for (const it of list) {
+            const wk = pickWorkKey(it);
+            if (wk) targetWorkKeys.push(wk);
+          }
+
+          const targetIds = [];
+          const unresolved = [];
+          for (const wk of targetWorkKeys) {
+            const id = getIdByWorkKey(wk);
+            if (id) targetIds.push(id);
+            else unresolved.push(wk);
+          }
+
+          // 対象IDだけ見て、description 空のものを抽出
+          const missing = [];
+          for (const id of targetIds) {
+            const s = items[id];
+            const desc = s?.vol1?.description;
+            if (!desc || String(desc).trim() === '') {
+              missing.push({
                 id,
-                seriesKey:s?.seriesKey||'',
-                title:s?.titleNative||s?.titleRomaji||s?.anilist?.title?.native||s?.anilist?.title?.romaji||''
+                seriesKey: s?.seriesKey || null,
+                title: s?.titleNative || s?.titleRomaji || s?.anilist?.title?.native || s?.anilist?.title?.romaji || null,
               });
             }
           }
-          console.log('needsOverrideCount',miss.length);
-          console.log(JSON.stringify(miss,null,2));
-          "
+
+          console.log('TARGET_ONLY missing synopsis count =', missing.length);
+          console.log('--- Put these keys into data/manga/overrides_synopsis.json (key = id) ---');
+          console.log(JSON.stringify(missing, null, 2));
+
+          if (unresolved.length) {
+            console.log('WARN: some workKeys could not resolve AniList ID (anilist_by_work missing?):');
+            console.log(JSON.stringify(unresolved.slice(0, 30), null, 2));
+          }
+          NODE
 
       # --- list_items 生成（最新刊 × vol1情報） ---
       - name: Build list_items.json
