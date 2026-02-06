@@ -5,11 +5,10 @@
 // 仕様:
 // - openBD -> description を取得（可能なら）
 // - 取れない場合: 既存items_master.descriptionを保持（消さない）
-// - さらに RAKUTEN_APP_ID があれば Rakuten itemCaption をフォールバックで埋める
-//   * まず isbn 検索
-//   * ダメなら title+author 検索（こちらが現状の勝ち筋）
-// - OPENBD_PROBE=1 で最初の1件だけ観測ログ（openbd/rakuten）
-
+// - RAKUTEN_APP_ID があれば Rakuten itemCaption をフォールバック多段で埋める
+//    1) ISBN検索
+//    2) タイトル(+著者)検索で候補スコアリング
+// - OPENBD_PROBE=1 で最初の1件だけ観測ログを出す
 import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -19,14 +18,7 @@ async function fetchText(url, tries = 3, headers = {}) {
     const ac = new AbortController();
     const to = setTimeout(() => ac.abort(), 15000);
     try {
-      const r = await fetch(url, {
-        cache: "no-store",
-        signal: ac.signal,
-        headers: {
-          "User-Agent": "book-scout-bot",
-          ...headers,
-        },
-      });
+      const r = await fetch(url, { cache: "no-store", signal: ac.signal, headers });
       clearTimeout(to);
       const t = await r.text();
       if (r.ok) return t;
@@ -59,7 +51,10 @@ const norm = (s) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const digits = (s) => String(s || "").replace(/\D/g, "");
+const digits13 = (s) => {
+  const d = String(s || "").replace(/\D/g, "");
+  return d.length === 13 ? d : d.length === 10 ? d : d; // 楽天側は13推奨だが一応返す
+};
 
 function volumeHint(title) {
   const t = title || "";
@@ -135,11 +130,9 @@ function pickOpenbdText(x) {
 
 async function openbdByIsbn(isbn) {
   const u = `https://api.openbd.jp/v1/get?isbn=${encodeURIComponent(isbn)}`;
-  const r = await fetchJson(u, 3);
+  const r = await fetchJson(u);
   const x = Array.isArray(r) ? r[0] : null;
-  // openBDは「見つからない」だと null が入る。{} もあり得るので保険
-  if (!x || (typeof x === "object" && Object.keys(x).length === 0)) return null;
-  return x;
+  return x || null;
 }
 
 function dpFrom(asinOrUrl) {
@@ -155,6 +148,7 @@ function dpFrom(asinOrUrl) {
 }
 
 function repPick(group) {
+  // 最新刊は volumeHint 最大を代表に
   return (
     group
       .filter((x) => Number.isFinite(x.volumeHint))
@@ -162,60 +156,103 @@ function repPick(group) {
   );
 }
 
-// --- Rakuten fallback ---
+// --- Rakuten fallback: itemCaption を取得（ISBN → タイトル+著者） ---
 const APP_ID = process.env.RAKUTEN_APP_ID || "";
+const UA = { "User-Agent": "book-scout-bot" };
 
-async function rakutenCaptionByIsbn(isbn13) {
-  if (!APP_ID) return { cap: null, err: "no_app_id" };
-  const url =
-    "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
-    `?applicationId=${encodeURIComponent(APP_ID)}` +
-    `&isbn=${encodeURIComponent(digits(isbn13))}` +
-    "&format=json" +
-    "&hits=1" +
-    "&elements=isbn,itemCaption";
-  try {
-    const j = await fetchJson(url, 3);
-    const it = j?.Items?.[0]?.Item;
-    const cap = (it?.itemCaption || "").trim();
-    return { cap: cap || null, err: cap ? null : "empty" };
-  } catch (e) {
-    return { cap: null, err: String(e?.message || e).slice(0, 120) };
-  }
+function cleanAuthor(a) {
+  return String(a || "")
+    .replace(/[ 　]/g, " ")
+    .replace(/[、,]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+function cleanTitle(t) {
+  return String(t || "").replace(/\s+/g, " ").trim();
 }
 
-// isbnが当たらない時用：title(+author)検索で itemCaption を拾う（こっちが勝ち筋）
-async function rakutenCaptionByTitle(title, author, expectIsbn13) {
-  if (!APP_ID) return { cap: null, err: "no_app_id" };
-
-  const qTitle = String(title || "").trim();
-  if (!qTitle) return { cap: null, err: "no_title" };
+async function rakutenByIsbn(isbn13) {
+  if (!APP_ID) return null;
 
   const url =
     "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
     `?applicationId=${encodeURIComponent(APP_ID)}` +
-    `&title=${encodeURIComponent(qTitle)}` +
-    (author ? `&author=${encodeURIComponent(String(author).trim())}` : "") +
+    `&isbn=${encodeURIComponent(String(isbn13).replace(/\D/g, ""))}` +
+    "&format=json" +
+    "&hits=3" +
+    "&elements=title,author,isbn,itemCaption";
+  const j = await fetchJson(url, 3, UA);
+  const it = j?.Items?.[0]?.Item;
+  const cap = (it?.itemCaption || "").trim();
+  return cap ? { cap, method: "rakuten_isbn" } : null;
+}
+
+function scoreCandidate(targetTitle, targetAuthor, it) {
+  const tt = norm(targetTitle);
+  const ta = norm(targetAuthor);
+  const ct = norm(it?.title || "");
+  const ca = norm(it?.author || "");
+
+  let s = 0;
+
+  // タイトル類似
+  if (ct && tt && ct.includes(tt)) s += 60;
+  if (ct && tt && tt.includes(ct)) s += 25;
+  if (ct && tt && ct.startsWith(tt)) s += 15;
+
+  // 著者
+  if (ta && ca && ca.includes(ta)) s += 40;
+  if (ta && ca && ta.includes(ca)) s += 15;
+
+  // ISBNの存在
+  const isbn = String(it?.isbn || "").replace(/\D/g, "");
+  if (isbn.length === 13) s += 5;
+
+  // 1巻/最新巻などで変な巻数が混ざるのを少し抑える（軽いペナルティ）
+  const titleRaw = String(it?.title || "");
+  if (/外伝|番外編|スピンオフ|公式|ガイド|ファンブック|設定資料|画集|アンソロジー/i.test(titleRaw)) s -= 30;
+
+  return s;
+}
+
+async function rakutenByTitleAuthor(title, author) {
+  if (!APP_ID) return null;
+
+  const t = cleanTitle(title);
+  if (!t) return null;
+
+  // title検索（authorも付けるとヒット減るので、まずtitleで拾ってスコアリング）
+  const url =
+    "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
+    `?applicationId=${encodeURIComponent(APP_ID)}` +
+    `&title=${encodeURIComponent(t)}` +
     "&format=json" +
     "&hits=10" +
     "&elements=title,author,isbn,itemCaption";
 
-  try {
-    const j = await fetchJson(url, 3);
-    const items = (j?.Items || []).map((x) => x?.Item).filter(Boolean);
+  const j = await fetchJson(url, 3, UA);
+  const items = (j?.Items || []).map((x) => x?.Item).filter(Boolean);
+  if (!items.length) return null;
 
-    const want = digits(expectIsbn13);
-    // 期待ISBN一致があれば最優先
-    let best = items.find((it) => digits(it?.isbn) === want);
+  const a = cleanAuthor(author);
+  let best = null;
+  let bestScore = -1;
 
-    // それでも無ければ、captionがある最初のやつ
-    if (!best) best = items.find((it) => String(it?.itemCaption || "").trim());
-
-    const cap = (best?.itemCaption || "").trim();
-    return { cap: cap || null, err: cap ? null : "empty" };
-  } catch (e) {
-    return { cap: null, err: String(e?.message || e).slice(0, 120) };
+  for (const it of items) {
+    const s = scoreCandidate(t, a, it);
+    if (s > bestScore) {
+      bestScore = s;
+      best = it;
+    }
   }
+
+  const cap = (best?.itemCaption || "").trim();
+  if (!cap) return null;
+
+  // 閾値：低すぎるマッチは捨てる
+  if (bestScore < 35) return null;
+
+  return { cap, method: "rakuten_title" };
 }
 
 // ---- main ----
@@ -230,17 +267,18 @@ let prev = [];
 try {
   prev = JSON.parse(await fs.readFile("data/manga/items_master.json", "utf8"));
 } catch {}
-const prevByIsbn = new Map(
-  prev.map((x) => [x?.isbn13, x]).filter(([k]) => k && typeof k === "string")
-);
+const prevByIsbn = new Map(prev.map((x) => [x?.isbn13, x]).filter(([k]) => k));
 
 const items = [];
 let descCount = 0;
 
-let openbdOk = 0;
-let openbdHasDesc = 0;
-let rakutenTried = 0;
-let rakutenOk = 0;
+// stats
+let openbd_ok = 0;
+let openbd_has_desc = 0;
+let rakuten_tried = 0;
+let rakuten_ok = 0;
+let rakuten_ok_isbn = 0;
+let rakuten_ok_title = 0;
 
 for (let i = 0; i < src.length; i++) {
   const c = src[i] || {};
@@ -250,63 +288,65 @@ for (let i = 0; i < src.length; i++) {
   const title = latest.title || c.title || null;
   if (!isbn || !title) continue;
 
-  console.log(
-    `[openbd_items] ${i + 1}/${src.length} isbn=${isbn} title=${String(title).slice(0, 40)}`
-  );
+  console.log(`[openbd_items] ${i + 1}/${src.length} isbn=${isbn} title=${String(title).slice(0, 40)}`);
 
   const prevHit = prevByIsbn.get(isbn) || {};
 
-  // openBD
+  // ---- openBD ----
   let ob = null;
   try {
     ob = await openbdByIsbn(isbn);
-    if (ob) openbdOk++;
+    if (ob) openbd_ok++;
   } catch (e) {
-    if (PROBE && i === 0) {
-      console.log(`[openbd_probe] openbd_error=${String(e?.message || e).slice(0, 120)}`);
-    }
+    console.log(`[openbd_items]   openbd error: ${String(e?.message || e).slice(0, 80)}`);
   }
 
   if (PROBE && i === 0) {
     const has = !!ob;
+    const keys = ob ? Object.keys(ob).slice(0, 20) : [];
     const sumKeys = ob?.summary ? Object.keys(ob.summary) : [];
     const tc = ob?.onix?.CollateralDetail?.TextContent;
     const tcType = Array.isArray(tc) ? `array(${tc.length})` : typeof tc;
-    console.log(`[openbd_probe] has=${has} summaryKeys=${JSON.stringify(sumKeys)}`);
+    console.log(`[openbd_probe] has=${has} keys=${JSON.stringify(keys)}`);
+    console.log(`[openbd_probe] summaryKeys=${JSON.stringify(sumKeys)}`);
     console.log(`[openbd_probe] TextContentType=${tcType}`);
   }
 
   await sleep(120);
 
   let desc = ob ? pickOpenbdText(ob) : null;
-  if (desc) openbdHasDesc++;
+  if (desc) openbd_has_desc++;
 
-  // Rakuten fallback
-  if (!desc) {
-    rakutenTried++;
+  // ---- Rakuten ----
+  if (!desc && APP_ID) {
+    rakuten_tried++;
 
-    // 1) isbn検索
-    let r1 = await rakutenCaptionByIsbn(isbn);
-
-    // 2) ダメなら title(+author)検索（勝ち筋）
-    if (!r1.cap) {
-      const r2 = await rakutenCaptionByTitle(title, c.author || "", isbn);
-      if (PROBE && i === 0) {
-        console.log(`[openbd_probe] rakuten_isbn_fail=${r1.err}`);
-        console.log(`[openbd_probe] rakuten_title_fail=${r2.err}`);
+    // 1) ISBN
+    try {
+      const r1 = await rakutenByIsbn(isbn);
+      if (r1?.cap) {
+        desc = r1.cap;
+        rakuten_ok++;
+        rakuten_ok_isbn++;
       }
-      if (r2.cap) r1 = r2;
+    } catch {}
+
+    // 2) title(+author) スコアリング
+    if (!desc) {
+      try {
+        const r2 = await rakutenByTitleAuthor(title, c.author || "");
+        if (r2?.cap) {
+          desc = r2.cap;
+          rakuten_ok++;
+          rakuten_ok_title++;
+        }
+      } catch {}
     }
 
-    if (r1.cap) {
-      desc = r1.cap;
-      rakutenOk++;
-    }
-
-    await sleep(220);
+    await sleep(180);
   }
 
-  // 既存保持（消さない）
+  // **重要**：descが取れなくても「既存のdescription」を消さない
   const finalDesc = desc || prevHit.description || null;
   if (finalDesc) descCount++;
 
@@ -329,7 +369,7 @@ for (let i = 0; i < src.length; i++) {
     title: title || sum.title || null,
     author: c.author || sum.author || null,
     publisher: c.publisher || sum.publisher || null,
-    isbn13: isbn,
+    isbn13: String(isbn).replace(/\D/g, ""),
     asin,
     amazonUrl,
     publishedAt: latest.publishedAt || c.publishedAt || sum.pubdate || null,
@@ -343,7 +383,7 @@ for (let i = 0; i < src.length; i++) {
   });
 }
 
-// rep 付与
+// rep 付与（workKeyごと）
 const byWork = new Map();
 for (const it of items) {
   const k = it.workKey || it.title;
@@ -357,8 +397,9 @@ await fs.writeFile("data/manga/items_master.json", JSON.stringify(items, null, 2
 
 const works = items.filter((x) => x._rep).length;
 const amazon = items.filter((x) => x.asin || x.amazonUrl).length;
-
 console.log(`items=${items.length} works=${works} desc=${descCount} amazon=${amazon}`);
 console.log(
-  `[openbd_stats] openbd_ok=${openbdOk} openbd_has_desc=${openbdHasDesc} rakuten_tried=${rakutenTried} rakuten_ok=${rakutenOk}`
+  `[openbd_stats] openbd_ok=${openbd_ok} openbd_has_desc=${openbd_has_desc} ` +
+  `rakuten_tried=${rakuten_tried} rakuten_ok=${rakuten_ok} ` +
+  `rakuten_ok_isbn=${rakuten_ok_isbn} rakuten_ok_title=${rakuten_ok_title}`
 );
