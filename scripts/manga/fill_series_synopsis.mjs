@@ -1,311 +1,192 @@
-// scripts/manga/fill_series_synopsis.mjs
+// scripts/manga/fill_series_synopsis.mjs （全差し替え）
+//
+// 目的: data/manga/series_master.json の各 series に synopsis を埋める
+// 優先: overrides_synopsis.json > 既存 synopsis > Rakuten itemCaption > Wikipedia 概要
+//
+// 出力: series_master.json を更新
+// ログ: updated / filled / needsOverride
 import fs from "node:fs/promises";
 
-const SERIES_PATH = "data/manga/series_master.json";
-const ITEMS_PATH = "data/manga/items_master.json";
-const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const APP_ID = process.env.RAKUTEN_APP_ID || "";
+const UA = { "User-Agent": "book-scout-bot" };
 
-async function loadJson(path, fallback) {
-  try {
-    return JSON.parse(await fs.readFile(path, "utf8"));
-  } catch {
-    return fallback;
-  }
-}
+const digits = (s) => String(s || "").replace(/\D/g, "");
+const norm = (s) =>
+  (s || "")
+    .toLowerCase()
+    .replace(/[【】\[\]（）()]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-async function saveJson(path, obj) {
-  await fs.mkdir(path.split("/").slice(0, -1).join("/"), { recursive: true });
-  await fs.writeFile(path, JSON.stringify(obj, null, 2));
-}
-
-function cleanText(s) {
-  if (!s) return null;
-  let t = String(s);
-
-  // HTML除去（AniListはHTML混じり）
-  t = t.replace(/<br\s*\/?>/gi, "\n");
-  t = t.replace(/<\/p>/gi, "\n");
-  t = t.replace(/<[^>]+>/g, "");
-
-  // 余分な空白整理
-  t = t.replace(/\r/g, "");
-  t = t.replace(/\n{3,}/g, "\n\n");
-  t = t.replace(/[ \t]{2,}/g, " ");
-  t = t.trim();
-
-  return t || null;
-}
-
-function shortenForList(s, maxChars = 320) {
-  if (!s) return null;
-  const t = String(s).trim();
-  if (t.length <= maxChars) return t;
-  return t.slice(0, maxChars).trim() + "…";
-}
-
-async function fetchJson(url, opts = {}, tries = 3) {
+async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
     const ac = new AbortController();
     const to = setTimeout(() => ac.abort(), 15000);
     try {
-      const r = await fetch(url, { ...opts, cache: "no-store", signal: ac.signal });
+      const r = await fetch(url, { cache: "no-store", signal: ac.signal, headers: UA });
       clearTimeout(to);
-      if (r.ok) return await r.json();
+      const t = await r.text();
+      if (r.ok) return JSON.parse(t);
       if ((r.status === 429 || r.status >= 500) && i < tries - 1) {
         await sleep(800 + i * 600);
         continue;
       }
-      const t = await r.text().catch(() => "");
-      throw new Error(`HTTP ${r.status} ${t.slice(0, 120)}`);
+      return null;
     } catch (e) {
       clearTimeout(to);
       if (i < tries - 1) {
         await sleep(800 + i * 600);
         continue;
       }
-      throw e;
+      return null;
     }
   }
   return null;
 }
 
-// ---- sources ----
-async function openbdDescription(isbn13) {
-  if (!isbn13) return null;
-  const url = `https://api.openbd.jp/v1/get?isbn=${encodeURIComponent(isbn13)}`;
-  const arr = await fetchJson(url);
-  const x = Array.isArray(arr) ? arr[0] : null;
-  if (!x) return null;
-
-  // openBDは形が揺れるので広めに拾う
-  const onix = x?.onix;
-  const cd = onix?.CollateralDetail;
-
-  // 1) TextContent
-  const tcs = cd?.TextContent;
-  if (Array.isArray(tcs)) {
-    for (const tc of tcs) {
-      const t = tc?.Text;
-      if (typeof t === "string" && t.trim()) return cleanText(t);
-      if (Array.isArray(t) && typeof t[0] === "string" && t[0].trim()) return cleanText(t[0]);
-      if (t && typeof t === "object") {
-        const v = t?.[0] ?? t?.content ?? t?.text;
-        if (typeof v === "string" && v.trim()) return cleanText(v);
-      }
-    }
-  }
-
-  // 2) OtherText（古いONIX）
-  const other = cd?.OtherText;
-  if (Array.isArray(other)) {
-    for (const ot of other) {
-      const t = ot?.Text;
-      if (typeof t === "string" && t.trim()) return cleanText(t);
-      if (Array.isArray(t) && typeof t[0] === "string" && t[0].trim()) return cleanText(t[0]);
-    }
-  }
-
-  // 3) summary.description
-  const s = x?.summary?.description;
-  if (typeof s === "string" && s.trim()) return cleanText(s);
-
-  return null;
-}
-
-async function rakutenCaption(isbn13, appId) {
-  if (!isbn13 || !appId) return null;
-  // 楽天 Books BookSearch: isbn で引けることが多い
-  const url = `https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&applicationId=${encodeURIComponent(
-    appId
-  )}&isbn=${encodeURIComponent(isbn13)}`;
+// --- Rakuten itemCaption by ISBN ---
+async function rakutenCaptionByIsbn(isbn13) {
+  if (!APP_ID) return null;
+  const url =
+    "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
+    `?applicationId=${encodeURIComponent(APP_ID)}` +
+    `&isbn=${encodeURIComponent(digits(isbn13))}` +
+    "&format=json&hits=1&elements=itemCaption";
   const j = await fetchJson(url);
-  const item = j?.Items?.[0]?.Item;
-  const cap = item?.itemCaption;
-  return cleanText(cap);
+  const cap = (j?.Items?.[0]?.Item?.itemCaption || "").trim();
+  return cap || null;
 }
 
-async function wikipediaExtractJa(queryTitle) {
-  if (!queryTitle) return null;
-  // まず summary で直に引く（タイトル一致する時が一番強い）
-  const t = encodeURIComponent(queryTitle.replace(/ /g, "_"));
-  const url = `https://ja.wikipedia.org/api/rest_v1/page/summary/${t}`;
-  try {
-    const j = await fetchJson(url, {}, 1);
-    const ex = j?.extract;
-    const cleaned = cleanText(ex);
-    if (cleaned) return cleaned;
-  } catch {
-    // ignore
-  }
+// --- Wikipedia (Japanese) ---
+// 1) search title -> best page title
+async function wikiSearchTitle(q) {
+  const url =
+    "https://ja.wikipedia.org/w/api.php" +
+    `?action=query&list=search&srsearch=${encodeURIComponent(q)}` +
+    "&srlimit=5&format=json&origin=*";
+  const j = await fetchJson(url);
+  const hit = j?.query?.search?.[0];
+  return hit?.title || null;
+}
 
-  // 次に検索→最上位→summary
-  const sUrl = `https://ja.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=${encodeURIComponent(
-    queryTitle
-  )}&srlimit=1`;
-  const sj = await fetchJson(sUrl, {}, 1);
-  const title = sj?.query?.search?.[0]?.title;
+// 2) get extract
+async function wikiExtract(title) {
   if (!title) return null;
+  const url =
+    "https://ja.wikipedia.org/w/api.php" +
+    `?action=query&prop=extracts&explaintext=1&exintro=1&titles=${encodeURIComponent(title)}` +
+    "&format=json&origin=*";
+  const j = await fetchJson(url);
+  const pages = j?.query?.pages || {};
+  const firstKey = Object.keys(pages)[0];
+  const ex = pages?.[firstKey]?.extract;
+  const text = (ex || "").trim();
+  if (!text) return null;
 
-  const t2 = encodeURIComponent(String(title).replace(/ /g, "_"));
-  const url2 = `https://ja.wikipedia.org/api/rest_v1/page/summary/${t2}`;
-  const j2 = await fetchJson(url2, {}, 1);
-  const ex2 = j2?.extract;
-  return cleanText(ex2);
+  // 先頭の空行/短すぎるものを軽く除外
+  const lines = text.split("\n").map((x) => x.trim()).filter(Boolean);
+  const joined = lines.join("\n").trim();
+  if (joined.length < 80) return null;
+
+  // 長すぎる場合は丸め（サイト表示用・概要可）
+  return joined.length > 900 ? joined.slice(0, 900).trim() + "…" : joined;
 }
 
-async function anilistDescription(anilistId) {
-  if (!anilistId) return null;
-  const query = `
-    query ($id: Int) {
-      Media(id: $id, type: MANGA) {
-        description(asHtml: true)
-      }
-    }
-  `;
-  const body = JSON.stringify({ query, variables: { id: Number(anilistId) } });
-  const j = await fetchJson("https://graphql.anilist.co", {
-    method: "POST",
-    headers: { "content-type": "application/json", accept: "application/json" },
-    body,
-  });
-  const d = j?.data?.Media?.description;
-  return cleanText(d);
-}
-
-// ---- helpers ----
-function pickVol1IsbnFromItems(items, seriesKey) {
-  if (!Array.isArray(items) || !seriesKey) return null;
-  const cand = items.find(
-    (x) =>
-      (x?.workKey || x?.seriesKey) === seriesKey &&
-      x?.seriesType === "main" &&
-      Number(x?.volumeHint) === 1 &&
-      x?.isbn13
+function pickSeriesTitle(series) {
+  // series_master の中身がどうであれ、ありがちなキーを順番に探す
+  return (
+    series?.title ||
+    series?.name ||
+    series?.workKey ||
+    series?.key ||
+    series?.romanji ||
+    series?.anilist?.title?.romaji ||
+    series?.anilist?.title?.native ||
+    null
   );
-  return cand?.isbn13 || null;
 }
 
-function normKey(s) {
-  return String(s || "").trim();
+function pickVol1Isbn(series) {
+  // ありがちな場所（無ければnull）
+  const v = series?.vol1 || series?.volume1 || series?.firstVolume || null;
+  return v?.isbn13 || v?.isbn || series?.vol1Isbn13 || null;
 }
 
-// ---- main ----
-const main = async () => {
-  const seriesMaster = await loadJson(SERIES_PATH, {});
-  const items = await loadJson(ITEMS_PATH, []);
-  const overrides = await loadJson(OVERRIDE_PATH, {}); // { "<seriesKey or anilistId>": "text" }
+function setSynopsis(series, synopsis) {
+  // 保存場所は vol1.description に寄せる（既存構造を壊さない）
+  if (!series.vol1) series.vol1 = {};
+  series.vol1.description = synopsis;
+}
 
-  const rakutenAppId = process.env.RAKUTEN_APP_ID || "";
+const SERIES_PATH = "data/manga/series_master.json";
+const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
 
-  let updated = 0;
-  let filled = 0;
-  let needsOverride = 0;
+const seriesMaster = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
+const overridesRaw = JSON.parse(await fs.readFile(OVERRIDE_PATH, "utf8"));
+const overrides = overridesRaw && typeof overridesRaw === "object" ? overridesRaw : {};
 
-  for (const [id, s] of Object.entries(seriesMaster)) {
-    const anilistId = s?.anilistId ?? Number(id) ?? null;
-    const seriesKey = normKey(s?.seriesKey) || normKey(s?.titleRomaji) || normKey(s?.titleNative) || normKey(id);
+let updated = 0;
+let filled = 0;
+let needsOverride = 0;
 
-    if (!s.vol1) s.vol1 = {};
-
-    // vol1 isbn補完（あれば保存）
-    if (!s.vol1.isbn13) {
-      const v1 = pickVol1IsbnFromItems(items, seriesKey);
-      if (v1) {
-        s.vol1.isbn13 = v1;
-        updated++;
-      }
-    }
-
-    // すでにdescriptionが入ってるならOK（needsOverrideだけ残ってたら解除）
-    if (s.vol1.description && String(s.vol1.description).trim() && s.vol1.description !== "（あらすじ準備中）") {
-      if (s.vol1.needsOverride) {
-        delete s.vol1.needsOverride;
-        updated++;
-      }
-      continue;
-    }
-
-    // ---- 1) override（最優先）----
-    const ov =
-      overrides?.[seriesKey] ||
-      overrides?.[String(anilistId || "")] ||
-      overrides?.[id] ||
-      null;
-
-    if (ov && String(ov).trim()) {
-      s.vol1.description = shortenForList(cleanText(ov));
-      delete s.vol1.needsOverride;
-      filled++;
+for (const [key, s] of Object.entries(seriesMaster || {})) {
+  const cur = s?.vol1?.description ? String(s.vol1.description).trim() : "";
+  if (cur) {
+    // すでにあるなら overrides があれば上書き、それ以外は維持
+    const ov = overrides[key];
+    if (ov && String(ov).trim() && String(ov).trim() !== cur) {
+      setSynopsis(s, String(ov).trim());
       updated++;
-      continue;
     }
+    continue;
+  }
 
-    // ---- 2) openBD ----
-    let desc = null;
-    if (s.vol1.isbn13) {
-      try {
-        desc = await openbdDescription(s.vol1.isbn13);
-      } catch {
-        desc = null;
+  // overrides 優先
+  const ov = overrides[key];
+  if (ov && String(ov).trim()) {
+    setSynopsis(s, String(ov).trim());
+    filled++;
+    continue;
+  }
+
+  let synopsis = null;
+
+  // 1) Rakuten by ISBN（あるなら強い）
+  const isbn = pickVol1Isbn(s);
+  if (isbn) {
+    synopsis = await rakutenCaptionByIsbn(isbn);
+    await sleep(180);
+  }
+
+  // 2) Wikipedia（概要）
+  if (!synopsis) {
+    const title = pickSeriesTitle(s) || key;
+    const q = String(title || "").trim();
+    if (q) {
+      const pageTitle = await wikiSearchTitle(q + " 漫画");
+      await sleep(200);
+      synopsis = await wikiExtract(pageTitle);
+      await sleep(200);
+
+      // 「漫画」付けがダメなら素のタイトルでもう1回だけ
+      if (!synopsis) {
+        const pageTitle2 = await wikiSearchTitle(q);
+        await sleep(200);
+        synopsis = await wikiExtract(pageTitle2);
+        await sleep(200);
       }
-      await sleep(120);
-    }
-
-    // ---- 3) Rakuten ----
-    if (!desc && s.vol1.isbn13 && rakutenAppId) {
-      try {
-        desc = await rakutenCaption(s.vol1.isbn13, rakutenAppId);
-      } catch {
-        desc = null;
-      }
-      await sleep(150);
-    }
-
-    // ---- 4) Wikipedia(ja) ----
-    if (!desc) {
-      const titleJa = s?.titleNative && /[ぁ-んァ-ヶ一-龠]/.test(String(s.titleNative)) ? s.titleNative : null;
-      const q = titleJa || s?.titleRomaji || s?.title || null;
-      try {
-        desc = await wikipediaExtractJa(q);
-      } catch {
-        desc = null;
-      }
-      await sleep(150);
-    }
-
-    // ---- 5) AniList ----
-    if (!desc && anilistId) {
-      try {
-        desc = await anilistDescription(anilistId);
-      } catch {
-        desc = null;
-      }
-      await sleep(150);
-    }
-
-    if (desc) {
-      s.vol1.description = shortenForList(desc);
-      delete s.vol1.needsOverride;
-      filled++;
-      updated++;
-    } else {
-      // 最後の砦：必ず埋める
-      s.vol1.description = "（あらすじ準備中）";
-      s.vol1.needsOverride = true;
-      needsOverride++;
-      updated++;
     }
   }
 
-  await saveJson(SERIES_PATH, seriesMaster);
-  console.log(
-    `[fill_series_synopsis] updated=${updated} filled=${filled} needsOverride=${needsOverride}`
-  );
-};
+  if (synopsis) {
+    setSynopsis(s, synopsis);
+    filled++;
+  } else {
+    // 最終的にダメなら override 対象
+    needsOverride++;
+  }
+}
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+await fs.writeFile(SERIES_PATH, JSON.stringify(seriesMaster, null, 2));
+console.log(`[fill_series_synopsis] updated=${updated} filled=${filled} needsOverride=${needsOverride}`);
