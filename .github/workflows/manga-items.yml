@@ -118,9 +118,18 @@ jobs:
           ANILIST_PAGES: "1"
         run: node scripts/manga/anilist_series_master.mjs
 
-      # --- series_master 構造確認（デバッグ） ---
-      - name: Debug series_master structure (before fill)
-        run: node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));console.log('topKeys',Object.keys(j)); console.log('isArray',Array.isArray(j)); console.log('itemsType', j&&j.items? (Array.isArray(j.items)?'array':'object'):'none'); console.log('itemsLen', j&&j.items&&Array.isArray(j.items)?j.items.length:null);"
+      # ★ 反映確認（ここが今回の肝）
+      - name: Verify fill_series_synopsis is updated
+        run: |
+          echo "---- head(fill_series_synopsis.mjs) ----"
+          sed -n '1,60p' scripts/manga/fill_series_synopsis.mjs
+          echo "---- grep marker (seriesTitleKeys) ----"
+          if grep -n "seriesTitleKeys" scripts/manga/fill_series_synopsis.mjs; then
+            echo "OK: updated script detected"
+          else
+            echo "ERROR: updated script NOT detected (seriesTitleKeys missing)"
+            exit 1
+          fi
 
       # --- あらすじ必須：series_master.vol1.description を埋める（フォールバック多段） ---
       - name: Fill synopsis into series_master (required)
@@ -130,10 +139,6 @@ jobs:
           WIKI_MAX: "30"
           DEBUG_KEYS: "1"
         run: node scripts/manga/fill_series_synopsis.mjs
-
-      # --- series_master 構造確認（デバッグ） ---
-      - name: Debug series_master structure (after fill)
-        run: node -e "const fs=require('fs');const j=JSON.parse(fs.readFileSync('data/manga/series_master.json','utf8'));console.log('topKeys',Object.keys(j)); console.log('isArray',Array.isArray(j)); console.log('itemsType', j&&j.items? (Array.isArray(j.items)?'array':'object'):'none'); console.log('itemsLen', j&&j.items&&Array.isArray(j.items)?j.items.length:null);"
 
       # --- list_items 生成（最新刊 × vol1情報） ---
       - name: Build list_items.json
