@@ -1,13 +1,15 @@
 // scripts/manga/openbd_items.mjs （全差し替え）
-// 入力: data/manga/list_items.json（最新刊リスト）
-// 出力: data/manga/items_master.json（最新刊アイテム）
+// 入力: data/manga/list_items.json
+// 出力: data/manga/items_master.json
 //
 // 仕様:
 // - openBD -> description を取得（可能なら）
 // - 取れない場合: 既存items_master.descriptionを保持（消さない）
 // - RAKUTEN_APP_ID があれば Rakuten itemCaption をフォールバック多段で埋める
 //    1) ISBN検索
-//    2) タイトル(+著者)検索で候補スコアリング
+//    2) 最新刊タイトル検索
+//    3) 作品名（巻数・記号除去）検索
+//    4) 作品名 + 著者（ヒット過多の時の絞り）
 // - OPENBD_PROBE=1 で最初の1件だけ観測ログを出す
 import fs from "node:fs/promises";
 
@@ -50,11 +52,6 @@ const norm = (s) =>
     .replace(/[【】\[\]（）()]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-
-const digits13 = (s) => {
-  const d = String(s || "").replace(/\D/g, "");
-  return d.length === 13 ? d : d.length === 10 ? d : d; // 楽天側は13推奨だが一応返す
-};
 
 function volumeHint(title) {
   const t = title || "";
@@ -148,7 +145,6 @@ function dpFrom(asinOrUrl) {
 }
 
 function repPick(group) {
-  // 最新刊は volumeHint 最大を代表に
   return (
     group
       .filter((x) => Number.isFinite(x.volumeHint))
@@ -156,35 +152,20 @@ function repPick(group) {
   );
 }
 
-// --- Rakuten fallback: itemCaption を取得（ISBN → タイトル+著者） ---
+// --- Rakuten fallback ---
 const APP_ID = process.env.RAKUTEN_APP_ID || "";
 const UA = { "User-Agent": "book-scout-bot" };
 
-function cleanAuthor(a) {
-  return String(a || "")
-    .replace(/[ 　]/g, " ")
-    .replace(/[、,]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+const digits = (s) => String(s || "").replace(/\D/g, "");
+
 function cleanTitle(t) {
   return String(t || "").replace(/\s+/g, " ").trim();
 }
-
-async function rakutenByIsbn(isbn13) {
-  if (!APP_ID) return null;
-
-  const url =
-    "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
-    `?applicationId=${encodeURIComponent(APP_ID)}` +
-    `&isbn=${encodeURIComponent(String(isbn13).replace(/\D/g, ""))}` +
-    "&format=json" +
-    "&hits=3" +
-    "&elements=title,author,isbn,itemCaption";
-  const j = await fetchJson(url, 3, UA);
-  const it = j?.Items?.[0]?.Item;
-  const cap = (it?.itemCaption || "").trim();
-  return cap ? { cap, method: "rakuten_isbn" } : null;
+function cleanAuthor(a) {
+  return String(a || "")
+    .replace(/[、,]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function scoreCandidate(targetTitle, targetAuthor, it) {
@@ -195,7 +176,7 @@ function scoreCandidate(targetTitle, targetAuthor, it) {
 
   let s = 0;
 
-  // タイトル類似
+  // タイトル一致系
   if (ct && tt && ct.includes(tt)) s += 60;
   if (ct && tt && tt.includes(ct)) s += 25;
   if (ct && tt && ct.startsWith(tt)) s += 15;
@@ -204,55 +185,111 @@ function scoreCandidate(targetTitle, targetAuthor, it) {
   if (ta && ca && ca.includes(ta)) s += 40;
   if (ta && ca && ta.includes(ca)) s += 15;
 
-  // ISBNの存在
-  const isbn = String(it?.isbn || "").replace(/\D/g, "");
+  // ISBN
+  const isbn = digits(it?.isbn || "");
   if (isbn.length === 13) s += 5;
 
-  // 1巻/最新巻などで変な巻数が混ざるのを少し抑える（軽いペナルティ）
-  const titleRaw = String(it?.title || "");
-  if (/外伝|番外編|スピンオフ|公式|ガイド|ファンブック|設定資料|画集|アンソロジー/i.test(titleRaw)) s -= 30;
+  // 付録系の誤爆ペナルティ
+  const raw = String(it?.title || "");
+  if (/外伝|番外編|スピンオフ|公式|ガイド|ファンブック|設定資料|画集|アンソロジー/i.test(raw)) s -= 30;
 
   return s;
 }
 
-async function rakutenByTitleAuthor(title, author) {
-  if (!APP_ID) return null;
-
-  const t = cleanTitle(title);
-  if (!t) return null;
-
-  // title検索（authorも付けるとヒット減るので、まずtitleで拾ってスコアリング）
+async function rakutenSearch(params) {
   const url =
     "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
     `?applicationId=${encodeURIComponent(APP_ID)}` +
-    `&title=${encodeURIComponent(t)}` +
-    "&format=json" +
-    "&hits=10" +
-    "&elements=title,author,isbn,itemCaption";
+    `&format=json&hits=${encodeURIComponent(params.hits || 10)}` +
+    `&elements=${encodeURIComponent(params.elements || "title,author,isbn,itemCaption")}` +
+    (params.isbn ? `&isbn=${encodeURIComponent(digits(params.isbn))}` : "") +
+    (params.title ? `&title=${encodeURIComponent(params.title)}` : "") +
+    (params.author ? `&author=${encodeURIComponent(params.author)}` : "");
 
-  const j = await fetchJson(url, 3, UA);
-  const items = (j?.Items || []).map((x) => x?.Item).filter(Boolean);
-  if (!items.length) return null;
+  return await fetchJson(url, 3, UA);
+}
+
+async function rakutenCaptionFallback({ isbn13, latestTitle, seriesTitle, author }) {
+  if (!APP_ID) return null;
+
+  // 1) ISBN
+  try {
+    const j = await rakutenSearch({
+      isbn: isbn13,
+      hits: 3,
+      elements: "title,author,isbn,itemCaption",
+    });
+    const it = j?.Items?.[0]?.Item;
+    const cap = (it?.itemCaption || "").trim();
+    if (cap) return { cap, method: "rakuten_isbn" };
+  } catch {}
+
+  // 共通: 候補評価
+  const pickFrom = (items, t, a) => {
+    const list = (items || []).map((x) => x?.Item).filter(Boolean);
+    if (!list.length) return null;
+
+    let best = null;
+    let bestScore = -1;
+    for (const it of list) {
+      const s = scoreCandidate(t, a, it);
+      if (s > bestScore) {
+        bestScore = s;
+        best = it;
+      }
+    }
+    const cap = (best?.itemCaption || "").trim();
+    if (!cap) return null;
+    if (bestScore < 35) return null;
+    return { cap, bestScore };
+  };
 
   const a = cleanAuthor(author);
-  let best = null;
-  let bestScore = -1;
 
-  for (const it of items) {
-    const s = scoreCandidate(t, a, it);
-    if (s > bestScore) {
-      bestScore = s;
-      best = it;
+  // 2) 最新刊タイトル検索
+  try {
+    const t = cleanTitle(latestTitle);
+    if (t) {
+      const j = await rakutenSearch({
+        title: t,
+        hits: 10,
+        elements: "title,author,isbn,itemCaption",
+      });
+      const hit = pickFrom(j?.Items, t, a);
+      if (hit?.cap) return { cap: hit.cap, method: "rakuten_title_latest" };
     }
-  }
+  } catch {}
 
-  const cap = (best?.itemCaption || "").trim();
-  if (!cap) return null;
+  // 3) 作品名（巻数除去）検索 ← ここが本命
+  try {
+    const t = cleanTitle(seriesTitle);
+    if (t) {
+      const j = await rakutenSearch({
+        title: t,
+        hits: 10,
+        elements: "title,author,isbn,itemCaption",
+      });
+      const hit = pickFrom(j?.Items, t, a);
+      if (hit?.cap) return { cap: hit.cap, method: "rakuten_title_series" };
+    }
+  } catch {}
 
-  // 閾値：低すぎるマッチは捨てる
-  if (bestScore < 35) return null;
+  // 4) 作品名 + 著者（絞り検索）
+  try {
+    const t = cleanTitle(seriesTitle);
+    if (t && a) {
+      const j = await rakutenSearch({
+        title: t,
+        author: a,
+        hits: 10,
+        elements: "title,author,isbn,itemCaption",
+      });
+      const hit = pickFrom(j?.Items, t, a);
+      if (hit?.cap) return { cap: hit.cap, method: "rakuten_title_series_author" };
+    }
+  } catch {}
 
-  return { cap, method: "rakuten_title" };
+  return null;
 }
 
 // ---- main ----
@@ -277,8 +314,12 @@ let openbd_ok = 0;
 let openbd_has_desc = 0;
 let rakuten_tried = 0;
 let rakuten_ok = 0;
-let rakuten_ok_isbn = 0;
-let rakuten_ok_title = 0;
+const rakuten_ok_by = {
+  isbn: 0,
+  title_latest: 0,
+  title_series: 0,
+  title_series_author: 0,
+};
 
 for (let i = 0; i < src.length; i++) {
   const c = src[i] || {};
@@ -290,7 +331,7 @@ for (let i = 0; i < src.length; i++) {
 
   console.log(`[openbd_items] ${i + 1}/${src.length} isbn=${isbn} title=${String(title).slice(0, 40)}`);
 
-  const prevHit = prevByIsbn.get(isbn) || {};
+  const prevHit = prevByIsbn.get(String(isbn).replace(/\D/g, "")) || prevByIsbn.get(isbn) || {};
 
   // ---- openBD ----
   let ob = null;
@@ -320,29 +361,23 @@ for (let i = 0; i < src.length; i++) {
   // ---- Rakuten ----
   if (!desc && APP_ID) {
     rakuten_tried++;
-
-    // 1) ISBN
     try {
-      const r1 = await rakutenByIsbn(isbn);
-      if (r1?.cap) {
-        desc = r1.cap;
+      const seriesTitle = c.seriesKey ? c.seriesKey : baseTitle(title);
+      const r = await rakutenCaptionFallback({
+        isbn13: isbn,
+        latestTitle: title,
+        seriesTitle,
+        author: c.author || "",
+      });
+      if (r?.cap) {
+        desc = r.cap;
         rakuten_ok++;
-        rakuten_ok_isbn++;
+        if (r.method === "rakuten_isbn") rakuten_ok_by.isbn++;
+        if (r.method === "rakuten_title_latest") rakuten_ok_by.title_latest++;
+        if (r.method === "rakuten_title_series") rakuten_ok_by.title_series++;
+        if (r.method === "rakuten_title_series_author") rakuten_ok_by.title_series_author++;
       }
     } catch {}
-
-    // 2) title(+author) スコアリング
-    if (!desc) {
-      try {
-        const r2 = await rakutenByTitleAuthor(title, c.author || "");
-        if (r2?.cap) {
-          desc = r2.cap;
-          rakuten_ok++;
-          rakuten_ok_title++;
-        }
-      } catch {}
-    }
-
     await sleep(180);
   }
 
@@ -401,5 +436,8 @@ console.log(`items=${items.length} works=${works} desc=${descCount} amazon=${ama
 console.log(
   `[openbd_stats] openbd_ok=${openbd_ok} openbd_has_desc=${openbd_has_desc} ` +
   `rakuten_tried=${rakuten_tried} rakuten_ok=${rakuten_ok} ` +
-  `rakuten_ok_isbn=${rakuten_ok_isbn} rakuten_ok_title=${rakuten_ok_title}`
+  `rakuten_ok_isbn=${rakuten_ok_by.isbn} ` +
+  `rakuten_ok_title_latest=${rakuten_ok_by.title_latest} ` +
+  `rakuten_ok_title_series=${rakuten_ok_by.title_series} ` +
+  `rakuten_ok_title_series_author=${rakuten_ok_by.title_series_author}`
 );
