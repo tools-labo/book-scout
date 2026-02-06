@@ -1,27 +1,30 @@
-// scripts/manga/fill_series_synopsis.mjs （全差し替え・構造ゆれ対応・進捗ログ・対象限定）
+// scripts/manga/fill_series_synopsis.mjs （全差し替え・target=0原因可視化＋構造ゆれ対応）
 //
 // 目的: series_master の各シリーズに synopsis(=vol1.description) を埋める
 // 優先: overrides > 既存vol1.description > Rakuten(itemCaption by ISBN) > Wikipedia(概要)
 //
-// 重要: デフォは「現在サイトで使っているシリーズだけ」を対象にする（works.jsonのkey一致）
-// 進捗: 50件ごとにログ
+// 重要:
+// - series_master は { meta, items: { [key]: seriesObj } } の辞書型が主
+// - 最新29件(list_items)とseries_master.itemsのキーがズレると target=0 になる
+//   → ここをログで可視化し、titleベースの照合も行う
 //
-// ENV:
-//   RAKUTEN_APP_ID            : 楽天API
-//   SYNOPSIS_TARGET_ONLY=1    : 1なら対象限定（デフォ1）
-//   SYNOPSIS_WIKI_MAX=30      : Wikiを叩く最大件数（デフォ30）
-//   SYNOPSIS_LOG_EVERY=50     : 進捗ログ間隔（デフォ50）
+// env:
+// - RAKUTEN_APP_ID: 楽天API
+// - TARGET_ONLY: "1" なら最新29件に関連するシリーズだけ処理（デフォルト1）
+// - WIKI_MAX: Wikipedia フェッチ上限（デフォルト30）
+// - DEBUG_KEYS: "1" ならキー照合ログを濃く出す（普段0でOK）
 import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const APP_ID = process.env.RAKUTEN_APP_ID || "";
 const UA = { "User-Agent": "book-scout-bot" };
 
-const TARGET_ONLY = (process.env.SYNOPSIS_TARGET_ONLY ?? "1") === "1";
-const WIKI_MAX = Number(process.env.SYNOPSIS_WIKI_MAX ?? "30");
-const LOG_EVERY = Number(process.env.SYNOPSIS_LOG_EVERY ?? "50");
+const TARGET_ONLY = (process.env.TARGET_ONLY ?? "1") !== "0";
+const WIKI_MAX = Number(process.env.WIKI_MAX ?? "30");
+const DEBUG_KEYS = process.env.DEBUG_KEYS === "1";
 
 const digits = (s) => String(s || "").replace(/\D/g, "");
+
 const norm = (s) =>
   String(s || "")
     .toLowerCase()
@@ -29,7 +32,7 @@ const norm = (s) =>
     .replace(/\s+/g, " ")
     .trim();
 
-// ---- fetchJson with timeout ----
+// --- fetch helpers ---
 async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
     const ac = new AbortController();
@@ -100,19 +103,16 @@ async function wikiExtract(title) {
 
 // --- series_master 構造ゆれ吸収 ---
 function unwrapSeriesMaster(root) {
-  if (Array.isArray(root)) return { wrapper: null, list: root, kind: "array" };
-
+  if (Array.isArray(root)) return { root, itemsObj: null, listLike: root, kind: "array" };
   if (root && typeof root === "object") {
-    if (Array.isArray(root.items)) return { wrapper: root, list: root.items, kind: "wrapper.items.array" };
-    if (Array.isArray(root.series)) return { wrapper: root, list: root.series, kind: "wrapper.series.array" };
-
+    if (Array.isArray(root.items)) return { root, itemsObj: null, listLike: root.items, kind: "wrapper.items.array" };
     if (root.items && typeof root.items === "object" && !Array.isArray(root.items)) {
-      return { wrapper: root, list: root.items, kind: "wrapper.items.object" };
+      return { root, itemsObj: root.items, listLike: root.items, kind: "wrapper.items.object" };
     }
-    return { wrapper: root, list: root, kind: "object" };
+    if (Array.isArray(root.series)) return { root, itemsObj: null, listLike: root.series, kind: "wrapper.series.array" };
+    return { root, itemsObj: root, listLike: root, kind: "object" };
   }
-
-  return { wrapper: null, list: [], kind: "unknown" };
+  return { root, itemsObj: null, listLike: [], kind: "unknown" };
 }
 
 function iterSeries(listLike) {
@@ -121,7 +121,7 @@ function iterSeries(listLike) {
   }
   if (listLike && typeof listLike === "object") {
     return Object.entries(listLike)
-      .filter(([, v]) => v && typeof v === "object")
+      .filter(([k, v]) => v && typeof v === "object")
       .filter(([k]) => k !== "meta" && k !== "items" && k !== "series")
       .map(([key, s]) => ({ key, s }));
   }
@@ -154,33 +154,32 @@ function pickVol1Isbn(s) {
   return v?.isbn13 || v?.isbn || s?.vol1Isbn13 || null;
 }
 
-function seriesCandidates(key, s) {
-  const arr = [
-    key,
-    s?.title,
-    s?.name,
-    s?.workKey,
-    s?.key,
-    s?.anilist?.title?.native,
-    s?.anilist?.title?.romaji,
-  ]
-    .map((x) => norm(x))
-    .filter(Boolean);
-  // unique
-  return Array.from(new Set(arr));
-}
-
-// ---- target set (works.json) ----
-async function loadTargetKeys() {
-  if (!TARGET_ONLY) return null;
+// --- target keys from list_items.json ---
+async function loadTargetKeysFromListItems() {
+  let raw;
   try {
-    const works = JSON.parse(await fs.readFile("data/manga/works.json", "utf8"));
-    // works.json は辞書っぽい前提：{ "one piece": {...}, ... }
-    if (works && typeof works === "object" && !Array.isArray(works)) {
-      return new Set(Object.keys(works).map(norm).filter(Boolean));
-    }
-  } catch {}
-  return null;
+    raw = JSON.parse(await fs.readFile("data/manga/list_items.json", "utf8"));
+  } catch {
+    return { keys: new Set(), titleKeys: new Set() };
+  }
+  const arr = Array.isArray(raw) ? raw : raw?.items || [];
+  const keys = new Set();
+  const titleKeys = new Set();
+
+  for (const it of arr) {
+    const k = it?.seriesKey || it?.workKey || it?.key || null;
+    if (k) keys.add(norm(k));
+
+    // タイトルでも当てにいく（seriesKeyが無い/ズレてる場合の救済）
+    const t =
+      it?.latest?.title ||
+      it?.title ||
+      it?.latest?.seriesTitle ||
+      it?.seriesTitle ||
+      null;
+    if (t) titleKeys.add(norm(t));
+  }
+  return { keys, titleKeys };
 }
 
 // ---- main ----
@@ -188,7 +187,7 @@ const SERIES_PATH = "data/manga/series_master.json";
 const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
 
 const root = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
-const { list, kind } = unwrapSeriesMaster(root);
+const { listLike, kind } = unwrapSeriesMaster(root);
 
 let overrides = {};
 try {
@@ -198,38 +197,43 @@ try {
   overrides = {};
 }
 
-const targetKeys = await loadTargetKeys();
+const seriesEntries = iterSeries(listLike);
 
-const seriesEntries = iterSeries(list);
+const { keys: targetKeys, titleKeys: targetTitleKeys } = await loadTargetKeysFromListItems();
 
-let totalSeen = 0;
-let totalTarget = 0;
+if (DEBUG_KEYS) {
+  console.log(`[fill_series_synopsis] debug targetKeys(sample)=`, Array.from(targetKeys).slice(0, 5));
+  console.log(`[fill_series_synopsis] debug targetTitleKeys(sample)=`, Array.from(targetTitleKeys).slice(0, 5));
+  console.log(`[fill_series_synopsis] debug seriesKeys(sample)=`, seriesEntries.slice(0, 5).map(e => norm(e.key)));
+}
 
+console.log(
+  `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX} targetKeys=${targetKeys.size} targetTitleKeys=${targetTitleKeys.size}`
+);
+
+let seen = 0;
+let target = 0;
 let had = 0;
 let triedRakuten = 0;
 let triedWiki = 0;
-
 let updated = 0;
 let filled = 0;
 let needsOverride = 0;
-
-let wikiBudgetLeft = WIKI_MAX;
-
-console.log(
-  `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX}`
-);
+let wikiUsed = 0;
 
 for (const { key, s } of seriesEntries) {
   if (!s || typeof s !== "object") continue;
-  totalSeen++;
+  seen++;
 
-  // 対象限定（works.json の key に一致するシリーズだけ処理）
-  if (targetKeys) {
-    const cands = seriesCandidates(key, s);
-    const hit = cands.some((c) => targetKeys.has(c));
-    if (!hit) continue;
+  const keyN = norm(key);
+
+  // targetOnly: list_itemsのseriesKey/workKeyに一致 or title一致のどちらかで対象にする
+  if (TARGET_ONLY) {
+    const titleN = norm(pickTitleForQuery(key, s) || "");
+    const ok = targetKeys.has(keyN) || (titleN && targetTitleKeys.has(titleN));
+    if (!ok) continue;
   }
-  totalTarget++;
+  target++;
 
   const cur = getSynopsis(s);
 
@@ -243,21 +247,11 @@ for (const { key, s } of seriesEntries) {
     } else {
       had++;
     }
-    if (totalTarget % LOG_EVERY === 0) {
-      console.log(
-        `[fill_series_synopsis] progress target=${totalTarget} had=${had} filled=${filled} updated=${updated} needsOverride=${needsOverride} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiLeft=${wikiBudgetLeft}`
-      );
-    }
     continue;
   }
 
   if (cur) {
     had++;
-    if (totalTarget % LOG_EVERY === 0) {
-      console.log(
-        `[fill_series_synopsis] progress target=${totalTarget} had=${had} filled=${filled} updated=${updated} needsOverride=${needsOverride} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiLeft=${wikiBudgetLeft}`
-      );
-    }
     continue;
   }
 
@@ -271,11 +265,9 @@ for (const { key, s } of seriesEntries) {
     await sleep(180);
   }
 
-  // 2) Wikipedia（予算内だけ）
-  if (!synopsis && wikiBudgetLeft > 0) {
+  // 2) Wikipedia（上限あり）
+  if (!synopsis && wikiUsed < WIKI_MAX) {
     triedWiki++;
-    wikiBudgetLeft--;
-
     const t = String(pickTitleForQuery(key, s) || "").trim();
     if (t) {
       const page1 = await wikiSearchTitle(t + " 漫画");
@@ -290,6 +282,7 @@ for (const { key, s } of seriesEntries) {
         await sleep(200);
       }
     }
+    if (synopsis) wikiUsed++;
   }
 
   if (synopsis) {
@@ -298,17 +291,11 @@ for (const { key, s } of seriesEntries) {
   } else {
     needsOverride++;
   }
-
-  if (totalTarget % LOG_EVERY === 0) {
-    console.log(
-      `[fill_series_synopsis] progress target=${totalTarget} had=${had} filled=${filled} updated=${updated} needsOverride=${needsOverride} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiLeft=${wikiBudgetLeft}`
-    );
-  }
 }
 
-// 書き戻し（参照更新なのでrootに反映済み）
+// 書き戻し
 await fs.writeFile(SERIES_PATH, JSON.stringify(root, null, 2));
 
 console.log(
-  `[fill_series_synopsis] done kind=${kind} seen=${totalSeen} target=${totalTarget} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} updated=${updated} filled=${filled} needsOverride=${needsOverride}`
+  `[fill_series_synopsis] done kind=${kind} seen=${seen} target=${target} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiUsed=${wikiUsed} updated=${updated} filled=${filled} needsOverride=${needsOverride}`
 );
