@@ -1,16 +1,35 @@
-// scripts/manga/fill_series_synopsis.mjs （全差し替え・構造ゆれ対応）
+// scripts/manga/fill_series_synopsis.mjs （全差し替え・構造ゆれ対応・進捗ログ・対象限定）
 //
 // 目的: series_master の各シリーズに synopsis(=vol1.description) を埋める
 // 優先: overrides > 既存vol1.description > Rakuten(itemCaption by ISBN) > Wikipedia(概要)
-// ログ: total / had / triedRakuten / triedWiki / filled / updated / needsOverride
+//
+// 重要: デフォは「現在サイトで使っているシリーズだけ」を対象にする（works.jsonのkey一致）
+// 進捗: 50件ごとにログ
+//
+// ENV:
+//   RAKUTEN_APP_ID            : 楽天API
+//   SYNOPSIS_TARGET_ONLY=1    : 1なら対象限定（デフォ1）
+//   SYNOPSIS_WIKI_MAX=30      : Wikiを叩く最大件数（デフォ30）
+//   SYNOPSIS_LOG_EVERY=50     : 進捗ログ間隔（デフォ50）
 import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const APP_ID = process.env.RAKUTEN_APP_ID || "";
 const UA = { "User-Agent": "book-scout-bot" };
 
-const digits = (s) => String(s || "").replace(/\D/g, "");
+const TARGET_ONLY = (process.env.SYNOPSIS_TARGET_ONLY ?? "1") === "1";
+const WIKI_MAX = Number(process.env.SYNOPSIS_WIKI_MAX ?? "30");
+const LOG_EVERY = Number(process.env.SYNOPSIS_LOG_EVERY ?? "50");
 
+const digits = (s) => String(s || "").replace(/\D/g, "");
+const norm = (s) =>
+  String(s || "")
+    .toLowerCase()
+    .replace(/[【】\[\]（）()]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+// ---- fetchJson with timeout ----
 async function fetchJson(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
     const ac = new AbortController();
@@ -81,22 +100,15 @@ async function wikiExtract(title) {
 
 // --- series_master 構造ゆれ吸収 ---
 function unwrapSeriesMaster(root) {
-  // 1) 配列ならそれが本体
   if (Array.isArray(root)) return { wrapper: null, list: root, kind: "array" };
 
-  // 2) {items:[...]} / {series:[...]} など
   if (root && typeof root === "object") {
     if (Array.isArray(root.items)) return { wrapper: root, list: root.items, kind: "wrapper.items.array" };
     if (Array.isArray(root.series)) return { wrapper: root, list: root.series, kind: "wrapper.series.array" };
 
-    // 3) 辞書型（{ key: seriesObj, ... }）
-    // meta/items が混ざるケースもあるので、seriesっぽいオブジェクトだけ抽出して扱う
-    const entries = Object.entries(root);
-    // 典型: { meta:..., items:{...} } の items が辞書
     if (root.items && typeof root.items === "object" && !Array.isArray(root.items)) {
       return { wrapper: root, list: root.items, kind: "wrapper.items.object" };
     }
-    // それ以外は root 自体を辞書として扱う
     return { wrapper: root, list: root, kind: "object" };
   }
 
@@ -104,14 +116,12 @@ function unwrapSeriesMaster(root) {
 }
 
 function iterSeries(listLike) {
-  // listLike が配列 or 辞書 どちらでも回せるイテレータ
   if (Array.isArray(listLike)) {
     return listLike.map((s, idx) => ({ key: s?.key || s?.workKey || s?.title || String(idx), s }));
   }
   if (listLike && typeof listLike === "object") {
-    // meta/items みたいなゴミを弾く（seriesオブジェクトっぽいものだけ）
     return Object.entries(listLike)
-      .filter(([k, v]) => v && typeof v === "object")
+      .filter(([, v]) => v && typeof v === "object")
       .filter(([k]) => k !== "meta" && k !== "items" && k !== "series")
       .map(([key, s]) => ({ key, s }));
   }
@@ -128,7 +138,6 @@ function setSynopsis(s, synopsis) {
 }
 
 function pickTitleForQuery(key, s) {
-  // 検索に使う代表タイトル
   return (
     s?.title ||
     s?.name ||
@@ -145,18 +154,57 @@ function pickVol1Isbn(s) {
   return v?.isbn13 || v?.isbn || s?.vol1Isbn13 || null;
 }
 
+function seriesCandidates(key, s) {
+  const arr = [
+    key,
+    s?.title,
+    s?.name,
+    s?.workKey,
+    s?.key,
+    s?.anilist?.title?.native,
+    s?.anilist?.title?.romaji,
+  ]
+    .map((x) => norm(x))
+    .filter(Boolean);
+  // unique
+  return Array.from(new Set(arr));
+}
+
+// ---- target set (works.json) ----
+async function loadTargetKeys() {
+  if (!TARGET_ONLY) return null;
+  try {
+    const works = JSON.parse(await fs.readFile("data/manga/works.json", "utf8"));
+    // works.json は辞書っぽい前提：{ "one piece": {...}, ... }
+    if (works && typeof works === "object" && !Array.isArray(works)) {
+      return new Set(Object.keys(works).map(norm).filter(Boolean));
+    }
+  } catch {}
+  return null;
+}
+
+// ---- main ----
 const SERIES_PATH = "data/manga/series_master.json";
 const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
 
 const root = JSON.parse(await fs.readFile(SERIES_PATH, "utf8"));
-const { wrapper, list, kind } = unwrapSeriesMaster(root);
+const { list, kind } = unwrapSeriesMaster(root);
 
-const overridesRaw = JSON.parse(await fs.readFile(OVERRIDE_PATH, "utf8"));
-const overrides = overridesRaw && typeof overridesRaw === "object" ? overridesRaw : {};
+let overrides = {};
+try {
+  const overridesRaw = JSON.parse(await fs.readFile(OVERRIDE_PATH, "utf8"));
+  overrides = overridesRaw && typeof overridesRaw === "object" ? overridesRaw : {};
+} catch {
+  overrides = {};
+}
+
+const targetKeys = await loadTargetKeys();
 
 const seriesEntries = iterSeries(list);
 
-let total = 0;
+let totalSeen = 0;
+let totalTarget = 0;
+
 let had = 0;
 let triedRakuten = 0;
 let triedWiki = 0;
@@ -165,9 +213,23 @@ let updated = 0;
 let filled = 0;
 let needsOverride = 0;
 
+let wikiBudgetLeft = WIKI_MAX;
+
+console.log(
+  `[fill_series_synopsis] start kind=${kind} entries=${seriesEntries.length} targetOnly=${TARGET_ONLY} wikiMax=${WIKI_MAX}`
+);
+
 for (const { key, s } of seriesEntries) {
   if (!s || typeof s !== "object") continue;
-  total++;
+  totalSeen++;
+
+  // 対象限定（works.json の key に一致するシリーズだけ処理）
+  if (targetKeys) {
+    const cands = seriesCandidates(key, s);
+    const hit = cands.some((c) => targetKeys.has(c));
+    if (!hit) continue;
+  }
+  totalTarget++;
 
   const cur = getSynopsis(s);
 
@@ -181,11 +243,21 @@ for (const { key, s } of seriesEntries) {
     } else {
       had++;
     }
+    if (totalTarget % LOG_EVERY === 0) {
+      console.log(
+        `[fill_series_synopsis] progress target=${totalTarget} had=${had} filled=${filled} updated=${updated} needsOverride=${needsOverride} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiLeft=${wikiBudgetLeft}`
+      );
+    }
     continue;
   }
 
   if (cur) {
     had++;
+    if (totalTarget % LOG_EVERY === 0) {
+      console.log(
+        `[fill_series_synopsis] progress target=${totalTarget} had=${had} filled=${filled} updated=${updated} needsOverride=${needsOverride} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiLeft=${wikiBudgetLeft}`
+      );
+    }
     continue;
   }
 
@@ -199,9 +271,11 @@ for (const { key, s } of seriesEntries) {
     await sleep(180);
   }
 
-  // 2) Wikipedia（概要）
-  if (!synopsis) {
+  // 2) Wikipedia（予算内だけ）
+  if (!synopsis && wikiBudgetLeft > 0) {
     triedWiki++;
+    wikiBudgetLeft--;
+
     const t = String(pickTitleForQuery(key, s) || "").trim();
     if (t) {
       const page1 = await wikiSearchTitle(t + " 漫画");
@@ -224,11 +298,17 @@ for (const { key, s } of seriesEntries) {
   } else {
     needsOverride++;
   }
+
+  if (totalTarget % LOG_EVERY === 0) {
+    console.log(
+      `[fill_series_synopsis] progress target=${totalTarget} had=${had} filled=${filled} updated=${updated} needsOverride=${needsOverride} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiLeft=${wikiBudgetLeft}`
+    );
+  }
 }
 
-// 書き戻し：wrapper.items が配列/辞書だった場合も反映済み（参照なので）
+// 書き戻し（参照更新なのでrootに反映済み）
 await fs.writeFile(SERIES_PATH, JSON.stringify(root, null, 2));
 
 console.log(
-  `[fill_series_synopsis] kind=${kind} total=${total} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} updated=${updated} filled=${filled} needsOverride=${needsOverride}`
+  `[fill_series_synopsis] done kind=${kind} seen=${totalSeen} target=${totalTarget} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} updated=${updated} filled=${filled} needsOverride=${needsOverride}`
 );
