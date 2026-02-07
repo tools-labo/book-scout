@@ -1,4 +1,15 @@
-// scripts/manga/build_list_items_from_master.mjs
+// scripts/manga/build_list_items_from_master.mjs（全差し替え）
+// 方針:
+// - list_items.json は「表示して良い作品だけ」を出す
+// - “1巻が確定”できない作品は list に入れない（見た目統一）
+//   確定条件: series_master.items[anilistId].vol1.isbn13 && vol1.image
+//
+// 入力:
+// - data/manga/items_master.json（巻単位の候補）
+// - data/manga/series_master.json（作品単位マスタ: { meta, items }）
+// 出力:
+// - data/manga/list_items.json（表示用）
+
 import fs from "node:fs/promises";
 
 const ITEMS = "data/manga/items_master.json";
@@ -35,51 +46,92 @@ function toNum(x) {
   return Number.isFinite(n) ? n : null;
 }
 
+function normKey(s) {
+  return String(s || "").trim();
+}
+
+function isIsbn13(s) {
+  return /^\d{13}$/.test(String(s || "").trim());
+}
+
 // 最新刊判定：volumeHint優先、なければ publishedAt 文字列比較（YYYY年MM月DD日想定）
 function pickLatest(prev, cur) {
   if (!prev) return cur;
+
   const pv = toNum(prev.volumeHint);
   const cv = toNum(cur.volumeHint);
   if (pv != null && cv != null) return cv > pv ? cur : prev;
+
   const pa = String(prev.publishedAt || "");
   const ca = String(cur.publishedAt || "");
   return ca > pa ? cur : prev;
 }
 
-function normKey(s) {
-  return String(s || "").trim();
-}
-
 const main = async () => {
   const items = await loadJson(ITEMS, []);
-  const seriesMaster = await loadJson(SERIES, {});
+  const seriesRoot = await loadJson(SERIES, null);
 
-  // seriesKey -> latest item
+  const seriesItems =
+    seriesRoot &&
+    typeof seriesRoot === "object" &&
+    seriesRoot.items &&
+    typeof seriesRoot.items === "object" &&
+    !Array.isArray(seriesRoot.items)
+      ? seriesRoot.items
+      : {};
+
+  // --- 1) items_master から “シリーズごとの最新巻” を作る ---
+  // seriesKey = workKey を最優先（ここがサイトのキー）
   const latestBySeries = new Map();
 
   for (const it of items) {
     if (!it) continue;
-    if (it.seriesType && it.seriesType !== "main") continue; // 一旦 main のみ
+    if (it.seriesType && it.seriesType !== "main") continue;
+
     const seriesKey = normKey(it.workKey || it.seriesKey || it.title);
     if (!seriesKey) continue;
+
     const prev = latestBySeries.get(seriesKey);
     latestBySeries.set(seriesKey, pickLatest(prev, it));
   }
 
-  // series_master を anilistIdで持ってるので、逆引き index 作る
+  // --- 2) series_master を seriesKey で逆引きできる index にする ---
+  // series_master は anilistId をキーに持つ。中の seriesKey が workKey と一致する想定。
   const masterBySeriesKey = new Map();
-  for (const s of Object.values(seriesMaster)) {
-    const k = normKey(s?.seriesKey || s?.titleRomaji || s?.titleNative);
+  for (const s of Object.values(seriesItems)) {
+    const k = normKey(s?.seriesKey);
     if (!k) continue;
     if (!masterBySeriesKey.has(k)) masterBySeriesKey.set(k, s);
   }
 
+  // --- 3) list_items を組み立て（1巻確定できないものは除外） ---
   const list = [];
 
+  let total = 0;
+  let kept = 0;
+  let skippedNoMaster = 0;
+  let skippedVol1NotConfirmed = 0;
+
   for (const [seriesKey, latest] of latestBySeries.entries()) {
+    total++;
+
     const sm = masterBySeriesKey.get(seriesKey) || null;
+    if (!sm) {
+      skippedNoMaster++;
+      continue;
+    }
 
     const vol1 = sm?.vol1 || {};
+    const vol1Isbn13 = normKey(vol1?.isbn13);
+    const vol1Image = normKey(vol1?.image);
+
+    // “1巻確定” 条件（ここがポリシー）
+    const vol1Confirmed = isIsbn13(vol1Isbn13) && !!vol1Image;
+    if (!vol1Confirmed) {
+      skippedVol1NotConfirmed++;
+      continue;
+    }
+
     const tags = {
       genre: Array.isArray(sm?.genre) ? sm.genre : [],
       demo: Array.isArray(sm?.demo) ? sm.demo : [],
@@ -102,21 +154,30 @@ const main = async () => {
       },
 
       vol1: {
-        description: vol1?.description ?? "（あらすじ準備中）",
-        image: vol1?.image ?? null,
+        // vol1Confirmed のものだけ出すので、準備中文言は使わない
+        description: vol1?.description ?? null,
+        isbn13: vol1Isbn13 || null,
+        image: vol1Image || null,
         amazonDp: vol1?.amazonDp ?? null,
         needsOverride: vol1?.needsOverride ?? false,
       },
 
       tags,
     });
+
+    kept++;
   }
 
   // 表示順：発売日 desc（文字列比較でOK）
-  list.sort((a, b) => String(b?.latest?.publishedAt || "").localeCompare(String(a?.latest?.publishedAt || "")));
+  list.sort((a, b) =>
+    String(b?.latest?.publishedAt || "").localeCompare(String(a?.latest?.publishedAt || ""))
+  );
 
   await saveJson(OUT, list);
-  console.log(`[build_list_items_from_master] series=${list.length}`);
+
+  console.log(
+    `[build_list_items_from_master] totalSeries=${total} kept=${kept} skippedNoMaster=${skippedNoMaster} skippedVol1NotConfirmed=${skippedVol1NotConfirmed}`
+  );
 };
 
 main().catch((e) => {
