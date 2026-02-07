@@ -1,4 +1,4 @@
-// public/app.js
+// public/app.js（全差し替え）
 async function loadJson(path) {
   const r = await fetch(path, { cache: "no-store" });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -18,9 +18,16 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
+function isProbablyJapanese(text) {
+  const s = String(text ?? "");
+  return /[ぁ-んァ-ン一-龯]/.test(s);
+}
+
 function clamp3Lines(text) {
-  // CSSでやる前提（.synopsis に line-clamp を当てる）
-  return text || "（あらすじ準備中）";
+  // 日本語っぽくない（=英語の可能性が高い）場合は出さない
+  if (!text) return "（あらすじ準備中）";
+  if (!isProbablyJapanese(text)) return "（あらすじ準備中）";
+  return text;
 }
 
 function tagChips(tagsObj) {
@@ -50,6 +57,8 @@ function renderList(items) {
 
       const latestAmz = it.latest?.amazonDp || "";
       const vol1Amz = it.vol1?.amazonDp || "";
+
+      // ★英語を出さない
       const synopsis = clamp3Lines(it.vol1?.description);
 
       return `
@@ -128,7 +137,10 @@ function renderWork(items) {
   const title = it.title || it.seriesKey;
   const author = it.author || "";
   const publisher = it.publisher || "";
-  const synopsis = it.vol1?.description || "（あらすじ準備中）";
+
+  // ★英語を出さない
+  const synopsis = clamp3Lines(it.vol1?.description);
+
   const img = it.vol1?.image || "";
   const vol1Amz = it.vol1?.amazonDp || "";
   const latestAmz = it.latest?.amazonDp || "";
