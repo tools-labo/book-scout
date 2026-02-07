@@ -1,8 +1,7 @@
-// public/app.js（全差し替え：work/works を正にして表示、英語あらすじガード付き）
-
+// public/app.js
 async function loadJson(path) {
   const r = await fetch(path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`HTTP ${r.status} for ${path}`);
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${path}`);
   return await r.json();
 }
 
@@ -19,18 +18,26 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
-// 日本語（ひら/カタ/漢字）が1文字でも含まれるか
-function hasJapanese(text) {
-  const s = String(text ?? "");
-  return /[ぁ-んァ-ヶ一-龯]/.test(s);
+function hasJapaneseChars(text) {
+  // ひらがな/カタカナ/漢字が1文字でもあれば日本語扱い
+  return /[ぁ-んァ-ン一-龯]/.test(String(text || ""));
 }
 
-function normalizeSynopsis(text) {
-  const t = String(text ?? "").trim();
-  if (!t) return "（あらすじ準備中）";
-  // 英語など（日本語文字ゼロ）は表示しない
-  if (!hasJapanese(t)) return "（あらすじ準備中）";
-  return t;
+function pickSynopsis(it, work) {
+  // 表示優先：
+  // 1) list_items の vol1.description
+  // 2) works.json 側の vol1.description（build_work_pages で反映されたやつ）
+  // 3) 準備中
+  const s1 = it?.vol1?.description ?? null;
+  const s2 = work?.vol1?.description ?? null;
+
+  const s = (s1 && String(s1).trim()) || (s2 && String(s2).trim()) || "";
+  if (!s) return "（あらすじ準備中）";
+
+  // 英語しか無い場合は出したくない
+  if (!hasJapaneseChars(s)) return "（あらすじ準備中）";
+
+  return s;
 }
 
 function tagChips(tagsObj) {
@@ -42,18 +49,13 @@ function tagChips(tagsObj) {
   return out.join("");
 }
 
-function renderList(listItems, worksByKey, cat) {
+function renderList(items, worksByKey) {
   const root = document.getElementById("list");
   if (!root) return;
 
-  root.innerHTML = listItems
+  root.innerHTML = items
     .map((it) => {
-      const keyRaw = it.seriesKey; // list_itemsのキー（workKeyと一致している想定）
-      const key = encodeURIComponent(keyRaw);
-
-      // works.json（=work出力の元）から最新のvol1.descriptionを引く
-      const w = worksByKey?.get?.(keyRaw) || null;
-
+      const key = encodeURIComponent(it.seriesKey);
       const title = it.title || it.seriesKey;
       const author = it.author || "";
       const publisher = it.publisher || "";
@@ -64,7 +66,8 @@ function renderList(listItems, worksByKey, cat) {
       const latestAmz = it.latest?.amazonDp || "";
       const vol1Amz = it.vol1?.amazonDp || "";
 
-      const synopsis = normalizeSynopsis(w?.vol1?.description ?? it.vol1?.description);
+      const work = worksByKey?.get?.(it.seriesKey) || null;
+      const synopsis = pickSynopsis(it, work);
 
       return `
         <article class="card">
@@ -79,7 +82,7 @@ function renderList(listItems, worksByKey, cat) {
 
             <div class="meta">
               <div class="title">
-                <a href="./work.html?cat=${esc(cat)}&key=${key}">${esc(title)}</a>
+                <a href="./work.html?cat=manga&key=${key}">${esc(title)}</a>
               </div>
               <div class="sub">
                 <span>${esc(author)}</span>
@@ -106,6 +109,12 @@ function renderList(listItems, worksByKey, cat) {
                     : ""
                 }
               </div>
+
+              ${
+                it.vol1?.needsOverride
+                  ? `<div class="note">※あらすじ要補完（override推奨）</div>`
+                  : ""
+              }
             </div>
           </div>
         </article>
@@ -114,24 +123,35 @@ function renderList(listItems, worksByKey, cat) {
     .join("");
 }
 
-function renderWorkDetail(work, cat) {
+function renderWork(items, worksByKey) {
   const detail = document.getElementById("detail");
   const status = document.getElementById("status");
   if (!detail) return;
 
+  const key = qs().get("key");
+  if (!key) {
+    detail.innerHTML = `<div class="d-title">作品キーがありません</div>`;
+    return;
+  }
+
+  const it = items.find((x) => x.seriesKey === key);
+  if (!it) {
+    detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
+    return;
+  }
+
   if (status) status.textContent = "";
 
-  const title = work?.title || work?.seriesKey || "（タイトル不明）";
-  const author = work?.author || "";
-  const publisher = work?.publisher || "";
-  const synopsis = normalizeSynopsis(work?.vol1?.description);
-  const img = work?.vol1?.image || "";
-  const vol1Amz = work?.vol1?.amazonDp || "";
-  const latestAmz = work?.latest?.amazonDp || "";
+  const title = it.title || it.seriesKey;
+  const author = it.author || "";
+  const publisher = it.publisher || "";
 
-  // 戻るリンクをcatに合わせる
-  const back = document.getElementById("backToList");
-  if (back) back.href = `./list.html?cat=${encodeURIComponent(cat)}`;
+  const work = worksByKey?.get?.(it.seriesKey) || null;
+  const synopsis = pickSynopsis(it, work);
+
+  const img = it.vol1?.image || "";
+  const vol1Amz = it.vol1?.amazonDp || "";
+  const latestAmz = it.latest?.amazonDp || "";
 
   detail.innerHTML = `
     <div class="d-title">${esc(title)}</div>
@@ -145,7 +165,7 @@ function renderWorkDetail(work, cat) {
       </div>
     </div>
 
-    <div class="chips">${tagChips(work?.tags)}</div>
+    <div class="chips">${tagChips(it.tags)}</div>
 
     <div class="d-synopsis">${esc(synopsis)}</div>
   `;
@@ -155,33 +175,16 @@ function renderWorkDetail(work, cat) {
   try {
     const cat = qs().get("cat") || "manga";
 
-    // list.html 用：並び順は list_items、あらすじは works.json（1回fetchで済む）
-    const listPromise = loadJson(`./data/${cat}/list_items.json`);
-    const worksPromise = loadJson(`./data/${cat}/works.json`).catch(() => null);
+    // list_items は現状のUIが使ってる基盤
+    const items = await loadJson(`./data/${cat}/list_items.json`);
 
-    // work.html 用：keyがあるなら work/<key>.json を優先
-    const key = qs().get("key");
+    // works.json は synopsisApplied されたあらすじが入ってる
+    const worksObj = await loadJson(`./data/${cat}/works.json`);
+    const worksByKey = new Map(Object.entries(worksObj || {})); // [seriesKey] -> work
 
-    const [listItems, worksObj] = await Promise.all([listPromise, worksPromise]);
+    renderList(items, worksByKey);
+    renderWork(items, worksByKey);
 
-    // list_items.json は配列想定（保険）
-    const list = Array.isArray(listItems) ? listItems : (listItems?.items || []);
-
-    // works.json → Map(workKey -> workObj)
-    const worksByKey = new Map();
-    if (worksObj && typeof worksObj === "object") {
-      for (const [wk, w] of Object.entries(worksObj)) worksByKey.set(wk, w);
-    }
-
-    // list.html は #list がある前提
-    renderList(list, worksByKey, cat);
-
-    // work.html は #detail がある前提
-    if (key) {
-      const workPath = `./data/${cat}/work/${encodeURIComponent(key)}.json`;
-      const work = await loadJson(workPath);
-      renderWorkDetail(work, cat);
-    }
   } catch (e) {
     const status = document.getElementById("status");
     if (status) status.textContent = "読み込みに失敗しました";
