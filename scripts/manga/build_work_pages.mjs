@@ -1,6 +1,13 @@
 // scripts/manga/build_work_pages.mjs（全差し替え）
-// 目的: workページ用JSONを出力する際に、series_master の synopsis を反映する
-// 方針: 表示は vol1.description を使う。ただし「日本語っぽくない」文は出さない（null化）
+// 目的:
+// - works.json(作品ページ用データ) を work/*.json に分割出力する
+// - series_master の vol1.description（= synopsis）を works に反映する
+// - ただし「日本語っぽくない」（英語など）description は表示したくないので null に落とす
+//
+// 参照:
+// - data/manga/works.json（workKey -> workObj）
+// - data/manga/anilist_by_work.json（workKey -> anilistId）
+// - data/manga/series_master.json（items[anilistId].vol1.description）
 
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -10,6 +17,7 @@ const base = `data/${cat}`;
 
 const WORKS_PATH = `${base}/works.json`;
 const SERIES_MASTER_PATH = `${base}/series_master.json`;
+const ANILIST_BY_WORK_PATH = `${base}/anilist_by_work.json`;
 const outDir = `${base}/work`;
 
 function isProbablyJapanese(text) {
@@ -26,33 +34,63 @@ async function readJson(p, fallback) {
   }
 }
 
+function pickAnilistIdFromByWork(byWork, workKey) {
+  const v = byWork?.[workKey];
+  if (!v) return null;
+  const id = String(v?.anilistId ?? v?.anilist?.id ?? v?.id ?? "").trim();
+  return /^\d+$/.test(id) ? id : null;
+}
+
+function ensureVol1(obj) {
+  if (!obj.vol1 || typeof obj.vol1 !== "object") obj.vol1 = {};
+  return obj.vol1;
+}
+
 const works = await readJson(WORKS_PATH, {});
 const seriesMaster = await readJson(SERIES_MASTER_PATH, { items: {} });
-const seriesItems = seriesMaster?.items && typeof seriesMaster.items === "object" ? seriesMaster.items : {};
+const anilistByWork = await readJson(ANILIST_BY_WORK_PATH, {});
+const seriesItems =
+  seriesMaster?.items && typeof seriesMaster.items === "object" ? seriesMaster.items : {};
 
 await fs.mkdir(outDir, { recursive: true });
 
 let n = 0;
 let applied = 0;
+let missingId = 0;
+let missingMaster = 0;
 
 for (const [workKey, w0] of Object.entries(works)) {
-  const w = w0 && typeof w0 === "object" ? structuredClone(w0) : {};
+  // shallow clone（structuredCloneでも良いが、差分増えるの嫌なら浅くで十分）
+  const w = w0 && typeof w0 === "object" ? { ...w0 } : {};
 
-  // works.json 側に anilistId がある想定（無ければ何もしない）
-  const anilistId = String(w?.anilistId ?? "").trim();
-  const s = anilistId && seriesItems[anilistId] ? seriesItems[anilistId] : null;
+  // workKey -> anilistId を必ず anilist_by_work から解決
+  const anilistId = pickAnilistIdFromByWork(anilistByWork, workKey);
 
-  // series_master の vol1.description を優先で反映（ただし日本語っぽくないなら捨てる）
-  const masterDesc = s?.vol1?.description ?? null;
-  const safeDesc = masterDesc && isProbablyJapanese(masterDesc) ? String(masterDesc) : null;
-
-  if (!w.vol1 || typeof w.vol1 !== "object") w.vol1 = {};
-  if (safeDesc) {
-    w.vol1.description = safeDesc;
-    applied++;
+  if (!anilistId) {
+    missingId++;
+    ensureVol1(w);
   } else {
-    // 「英語/空/不明」は表示したくないので null に寄せる（既存があっても日本語判定に通らないなら落とす）
-    w.vol1.description = w.vol1.description && isProbablyJapanese(w.vol1.description) ? w.vol1.description : null;
+    const s = seriesItems[anilistId] || null;
+    if (!s) {
+      missingMaster++;
+      ensureVol1(w);
+    } else {
+      const masterDesc = s?.vol1?.description ?? null;
+      const safeDesc = masterDesc && isProbablyJapanese(masterDesc) ? String(masterDesc) : null;
+
+      const v1 = ensureVol1(w);
+
+      if (safeDesc) {
+        v1.description = safeDesc;
+        applied++;
+      } else {
+        // 既存が英語っぽい場合も落とす（英語を出さない）
+        v1.description = v1.description && isProbablyJapanese(v1.description) ? v1.description : null;
+      }
+
+      // （任意）vol1のisbn/image/amazonDpも master に寄せたいならここでやる
+      // ただし今回は「英語を出さない」が主目的なので触らない
+    }
   }
 
   const file = path.join(outDir, `${encodeURIComponent(workKey)}.json`);
@@ -60,4 +98,6 @@ for (const [workKey, w0] of Object.entries(works)) {
   n++;
 }
 
-console.log(`[build_work_pages] cat=${cat} works=${n} out=${outDir} synopsisApplied=${applied}`);
+console.log(
+  `[build_work_pages] cat=${cat} works=${n} out=${outDir} synopsisApplied=${applied} missingAnilistId=${missingId} missingInMaster=${missingMaster}`
+);
