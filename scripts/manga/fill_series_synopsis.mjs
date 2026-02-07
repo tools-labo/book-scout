@@ -1,15 +1,16 @@
-// scripts/manga/fill_series_synopsis.mjs（全差し替え・TARGET_ONLY=「AniList ID」で照合・overrides構造ゆれ対応）
+// scripts/manga/fill_series_synopsis.mjs（全差し替え・TARGET_ONLY=workKey→AniListID照合・AniList description fallback）
 //
 // 目的: series_master の各シリーズに synopsis(=vol1.description) を埋める
-// 優先: overrides > 既存vol1.description > Rakuten(itemCaption by ISBN) > Wikipedia(概要)
+// 優先: overrides > 既存vol1.description > AniList description > Rakuten(itemCaption by ISBN) > Wikipedia(概要)
 //
 // 環境変数:
 // - RAKUTEN_APP_ID: 楽天API
-// - TARGET_ONLY=1 : list_items.json の作品だけ処理（AniList IDで照合）
+// - TARGET_ONLY=1 : list_items.json に載ってる作品だけ処理（workKey→anilist_by_work→anilistId で照合）
 // - WIKI_MAX=30   : Wikipedia取得は最大N件まで（暴走防止）
-// - DEBUG_KEYS=1  : キー対応のデバッグ出力
+// - DEBUG_KEYS=1  : デバッグ出力
 //
 // NOTE: workflow 側の検知用マーカー → seriesTitleKeys（文字列として残す）
+
 import fs from "node:fs/promises";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -19,8 +20,15 @@ const TARGET_ONLY = process.env.TARGET_ONLY === "1";
 const WIKI_MAX = Number(process.env.WIKI_MAX || "30");
 const DEBUG_KEYS = process.env.DEBUG_KEYS === "1";
 
+const SERIES_PATH = "data/manga/series_master.json";
+const LIST_ITEMS_PATH = "data/manga/list_items.json";
+const ANILIST_BY_WORK_PATH = "data/manga/anilist_by_work.json";
+const OVERRIDES_PATH = "data/manga/overrides_synopsis.json";
+const TODO_PATH = "data/manga/overrides_synopsis.todo.json";
+
 const UA = { "User-Agent": "book-scout-bot" };
 const digits = (s) => String(s || "").replace(/\D/g, "");
+const isDigits = (s) => /^\d+$/.test(String(s || "").trim());
 
 const norm = (s) =>
   String(s || "")
@@ -29,14 +37,28 @@ const norm = (s) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const SERIES_PATH = "data/manga/series_master.json";
-const LIST_ITEMS_PATH = "data/manga/list_items.json";
-const ANILIST_BY_WORK_PATH = "data/manga/anilist_by_work.json";
-
-const OVERRIDE_PATH = "data/manga/overrides_synopsis.json";
-const TODO_PATH = "data/manga/overrides_synopsis.todo.json";
-
-const isDigits = (s) => /^\d+$/.test(String(s || "").trim());
+function stripHtmlToText(html) {
+  const s = String(html || "");
+  if (!s.trim()) return "";
+  // <br>系を改行に
+  let t = s.replace(/<\s*br\s*\/?\s*>/gi, "\n");
+  // 斜体などは中身だけ残す
+  t = t.replace(/<\/?i>/gi, "");
+  // 残りタグ除去
+  t = t.replace(/<[^>]+>/g, "");
+  // 代表的なエンティティだけ最低限
+  t = t
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+  // 空行/空白整理
+  t = t.replace(/\r/g, "");
+  t = t.replace(/[ \t]+\n/g, "\n");
+  t = t.replace(/\n{3,}/g, "\n\n").trim();
+  return t;
+}
 
 async function readJson(path, fallback) {
   try {
@@ -45,6 +67,7 @@ async function readJson(path, fallback) {
     return fallback;
   }
 }
+
 async function writeJson(path, obj) {
   await fs.writeFile(path, JSON.stringify(obj, null, 2));
 }
@@ -78,109 +101,51 @@ async function fetchJson(url, tries = 3) {
 // --- Rakuten itemCaption by ISBN ---
 async function rakutenCaptionByIsbn(isbn13) {
   if (!APP_ID) return null;
+  const isbn = digits(isbn13);
+  if (isbn.length !== 13) return null;
+
   const url =
     "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404" +
     `?applicationId=${encodeURIComponent(APP_ID)}` +
-    `&isbn=${encodeURIComponent(digits(isbn13))}` +
-    "&format=json&hits=1&elements=itemCaption";
+    `&isbn=${encodeURIComponent(isbn)}` +
+    `&format=json`;
+
   const j = await fetchJson(url);
-  const cap = (j?.Items?.[0]?.Item?.itemCaption || "").trim();
+  const items = j?.Items || [];
+  const it = items?.[0]?.Item || null;
+  const cap = it?.itemCaption ? String(it.itemCaption).trim() : "";
   return cap || null;
 }
 
-// --- Wikipedia (Japanese) ---
-async function wikiSearchTitle(q) {
-  const url =
-    "https://ja.wikipedia.org/w/api.php" +
-    `?action=query&list=search&srsearch=${encodeURIComponent(q)}` +
-    "&srlimit=5&format=json&origin=*";
-  const j = await fetchJson(url);
-  return j?.query?.search?.[0]?.title || null;
-}
+// --- Wikipedia summary ---
+async function wikiSummaryByTitle(title) {
+  const t = String(title || "").trim();
+  if (!t) return null;
 
-async function wikiExtract(title) {
-  if (!title) return null;
+  // ja Wikipedia の summary API
   const url =
-    "https://ja.wikipedia.org/w/api.php" +
-    `?action=query&prop=extracts&explaintext=1&exintro=1&titles=${encodeURIComponent(title)}` +
-    "&format=json&origin=*";
+    "https://ja.wikipedia.org/api/rest_v1/page/summary/" +
+    encodeURIComponent(t);
+
   const j = await fetchJson(url);
-  const pages = j?.query?.pages || {};
-  const firstKey = Object.keys(pages)[0];
-  const ex = (pages?.[firstKey]?.extract || "").trim();
+  // extract の中身が概要
+  const ex = j?.extract ? String(j.extract).trim() : "";
+  // disambiguationっぽいときは弾く
   if (!ex) return null;
-
-  const lines = ex.split("\n").map((x) => x.trim()).filter(Boolean);
-  const joined = lines.join("\n").trim();
-  if (joined.length < 80) return null;
-
-  return joined.length > 900 ? joined.slice(0, 900).trim() + "…" : joined;
-}
-
-// --- series_master 構造ゆれ吸収 ---
-function unwrapSeriesMaster(root) {
-  if (Array.isArray(root)) return { wrapper: null, list: root, kind: "array" };
-  if (root && typeof root === "object") {
-    if (Array.isArray(root.items)) return { wrapper: root, list: root.items, kind: "wrapper.items.array" };
-    if (Array.isArray(root.series)) return { wrapper: root, list: root.series, kind: "wrapper.series.array" };
-    if (root.items && typeof root.items === "object" && !Array.isArray(root.items)) {
-      return { wrapper: root, list: root.items, kind: "wrapper.items.object" };
-    }
-    return { wrapper: root, list: root, kind: "object" };
-  }
-  return { wrapper: null, list: [], kind: "unknown" };
-}
-
-function iterSeries(listLike) {
-  if (Array.isArray(listLike)) {
-    return listLike.map((s, idx) => ({ key: String(s?.anilistId || s?.key || s?.workKey || idx), s }));
-  }
-  if (listLike && typeof listLike === "object") {
-    return Object.entries(listLike)
-      .filter(([_, v]) => v && typeof v === "object")
-      .map(([key, s]) => ({ key: String(key), s }));
-  }
-  return [];
-}
-
-function getSynopsis(s) {
-  const cur = s?.vol1?.description;
-  return cur ? String(cur).trim() : "";
-}
-function setSynopsis(s, synopsis) {
-  if (!s.vol1) s.vol1 = {};
-  s.vol1.description = synopsis;
-}
-
-// --- overrides: string / {synopsis} 両対応 ---
-function readOverrideSynopsis(overrides, key) {
-  const v = overrides?.[key];
-  if (!v) return "";
-  if (typeof v === "string") return v.trim();
-  if (typeof v === "object") return String(v.synopsis || "").trim();
-  return "";
-}
-
-function pickTitle(s) {
-  return (
-    s?.titleNative ||
-    s?.titleRomaji ||
-    s?.title ||
-    s?.name ||
-    s?.seriesKey ||
-    s?.anilist?.title?.native ||
-    s?.anilist?.title?.romaji ||
-    ""
-  );
-}
-
-function pickVol1Isbn(s) {
-  const v = s?.vol1 || s?.volume1 || s?.firstVolume || null;
-  return v?.isbn13 || v?.isbn || s?.vol1Isbn13 || null;
+  if (j?.type === "disambiguation") return null;
+  return ex || null;
 }
 
 function pickWorkKeyFromListItem(it) {
-  const cands = [it?.workKey, it?.seriesKey, it?.work?.key, it?.work?.workKey, it?.series?.key];
+  const cands = [
+    it?.workKey,
+    it?.seriesKey,
+    it?.work?.key,
+    it?.work?.workKey,
+    it?.series?.key,
+    it?.series?.workKey,
+    it?.series?.seriesKey,
+  ];
   for (const v of cands) {
     const s = String(v || "").trim();
     if (s) return s;
@@ -196,14 +161,20 @@ function buildWorkKeyToAnilistId(anilistByWork) {
       const id = String(v?.anilistId || v?.anilist?.id || v?.id || "").trim();
       if (wk && isDigits(id)) map.set(String(wk).trim(), id);
     }
+  } else if (Array.isArray(anilistByWork)) {
+    for (const v of anilistByWork) {
+      const wk = String(v?.workKey || v?.key || v?.seriesKey || "").trim();
+      const id = String(v?.anilistId || v?.anilist?.id || v?.id || "").trim();
+      if (wk && isDigits(id)) map.set(wk, id);
+    }
   }
   return map;
 }
 
-// --- TARGET_ONLY 用の targetIds を作る（list_items + anilist_by_work から） ---
-async function buildTargetIds() {
+async function buildTargetSets() {
   const listRaw = await readJson(LIST_ITEMS_PATH, []);
   const list = Array.isArray(listRaw) ? listRaw : (listRaw?.items || []);
+
   const anilistByWork = await readJson(ANILIST_BY_WORK_PATH, {});
   const wk2id = buildWorkKeyToAnilistId(anilistByWork);
 
@@ -221,148 +192,192 @@ async function buildTargetIds() {
     else missingWorkKeys.push(wk);
   }
 
+  // marker: seriesTitleKeys（grep対策）
+  const seriesTitleKeys = new Set();
+
+  // “タイトルキー”としては、workKey をそのまま/正規化したもの両方を持つ（Wiki検索の候補）
+  for (const wk of targetWorkKeys) {
+    seriesTitleKeys.add(norm(wk));
+  }
+
   if (DEBUG_KEYS) {
     console.log("[fill_series_synopsis] debug targetWorkKeys(sample)=", Array.from(targetWorkKeys).slice(0, 10));
     console.log("[fill_series_synopsis] debug targetIds(sample)=", targetIds.slice(0, 10));
     console.log("[fill_series_synopsis] debug missingWorkKeys(sample)=", missingWorkKeys.slice(0, 10));
+    console.log("[fill_series_synopsis] debug seriesTitleKeys(sample)=", Array.from(seriesTitleKeys).slice(0, 10));
   }
 
-  if (TARGET_ONLY && targetIds.length === 0) {
-    console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but targetIds is empty (anilist_by_work resolution failed)");
-    process.exit(1);
-  }
-
-  return { listItemsCount: list.length, targetWorkKeysCount: targetWorkKeys.size, targetIds: Array.from(new Set(targetIds)) };
+  return { listItemsCount: list.length, targetWorkKeys, targetIds, missingWorkKeys, seriesTitleKeys };
 }
 
-const root = await readJson(SERIES_PATH, {});
-const { list, kind } = unwrapSeriesMaster(root);
-const seriesEntries = iterSeries(list);
+async function main() {
+  const root = await readJson(SERIES_PATH, null);
+  const seriesMaster =
+    root && typeof root === "object" && root.items && typeof root.items === "object" && !Array.isArray(root.items)
+      ? root
+      : { meta: { createdAt: new Date().toISOString() }, items: {} };
 
-const overrides = await readJson(OVERRIDE_PATH, {});
-const todoExisting = await readJson(TODO_PATH, {});
+  const items = seriesMaster.items || {};
+  const allIds = Object.keys(items);
 
-const { listItemsCount, targetIds } = await buildTargetIds();
-const targetIdSet = new Set(targetIds.map((x) => String(x)));
+  const { listItemsCount, targetWorkKeys, targetIds, missingWorkKeys, seriesTitleKeys } = await buildTargetSets();
 
-if (DEBUG_KEYS) {
-  const seriesTitleKeys = new Set(); // ← marker: seriesTitleKeys（grep対策）
-  for (const { _, s } of seriesEntries.map((x) => ({ _: x.key, s: x.s }))) {
-    const t = pickTitle(s);
-    if (t) seriesTitleKeys.add(norm(t));
-  }
-  console.log("[fill_series_synopsis] debug seriesTitleKeys(sample)=", Array.from(seriesTitleKeys).slice(0, 10)); // marker
-}
+  const masterIdSet = new Set(allIds);
 
-let seen = 0;
-let had = 0;
-let triedRakuten = 0;
-let triedWiki = 0;
-let wikiUsed = 0;
-let updated = 0;
-let filled = 0;
-
-const needsOverrideItems = [];
-
-for (const { key, s } of seriesEntries) {
-  if (!s || typeof s !== "object") continue;
-
-  const id = String(s?.anilistId ?? key ?? "").trim();
-  if (TARGET_ONLY && !targetIdSet.has(id)) continue;
-
-  seen++;
-
-  const cur = getSynopsis(s);
-
-  // overrides があれば優先上書き（既にcurがあっても）
-  const ov = readOverrideSynopsis(overrides, id);
-  if (ov) {
-    if (ov !== cur) {
-      setSynopsis(s, ov);
-      updated++;
-    } else {
-      had++;
+  // TARGET_ONLY=1 なら、対象IDが series_master 側に揃っているかチェック
+  if (TARGET_ONLY) {
+    if (targetIds.length === 0) {
+      console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but targetIds is empty");
+      process.exit(1);
     }
-    continue;
+    const miss = targetIds.filter((id) => !masterIdSet.has(String(id)));
+    if (miss.length) {
+      console.log("[fill_series_synopsis] ERROR: TARGET_ONLY=1 but some target ids are missing in series_master");
+      console.log("[fill_series_synopsis] missingIds(sample)=", miss.slice(0, 10));
+      process.exit(1);
+    }
   }
 
-  if (cur) {
-    had++;
-    continue;
-  }
+  const overrides = await readJson(OVERRIDES_PATH, {});
+  const todo = {};
 
-  let synopsis = null;
+  let seen = 0;
+  let target = 0;
+  let had = 0;
+  let triedRakuten = 0;
+  let triedWiki = 0;
+  let wikiUsed = 0;
+  let updated = 0;
+  let filled = 0;
+  const needsOverride = [];
 
-  // 1) Rakuten（ISBNがある時だけ）
-  const isbn = pickVol1Isbn(s);
-  if (APP_ID && isbn) {
-    triedRakuten++;
-    synopsis = await rakutenCaptionByIsbn(isbn);
-    await sleep(180);
-  }
+  // 処理対象ID
+  const targetIdSet = new Set(TARGET_ONLY ? targetIds.map(String) : allIds.map(String));
 
-  // 2) Wikipedia（概要）
-  // TARGET_ONLY のときは WIKI_MAX 件まで
-  if (!synopsis) {
-    if (!TARGET_ONLY || triedWiki < WIKI_MAX) {
-      triedWiki++;
-      const t = String(pickTitle(s) || "").trim();
-      if (t) {
-        const page1 = await wikiSearchTitle(t + " 漫画");
-        await sleep(200);
-        synopsis = await wikiExtract(page1);
-        await sleep(200);
+  // Wikiの暴走防止（TARGET_ONLY時はWIKI_MAXが効く）
+  let wikiBudget = TARGET_ONLY ? Math.max(0, WIKI_MAX) : 999999;
 
-        if (!synopsis) {
-          const page2 = await wikiSearchTitle(t);
-          await sleep(200);
-          synopsis = await wikiExtract(page2);
-          await sleep(200);
-        }
+  for (const id of allIds) {
+    if (!targetIdSet.has(String(id))) continue;
 
-        if (synopsis) wikiUsed++;
+    const s = items[id];
+    if (!s || typeof s !== "object") continue;
+
+    seen++;
+    target++;
+
+    const seriesKey = s.seriesKey || s.titleNative || s?.anilist?.title?.native || s?.anilist?.title?.romaji || "";
+    const title = s.titleNative || s?.anilist?.title?.native || s?.anilist?.title?.romaji || seriesKey || "";
+
+    // 1) overrides
+    const ov = overrides?.[id]?.synopsis;
+    const ovText = typeof ov === "string" ? ov.trim() : "";
+    if (ovText) {
+      const cur = s?.vol1?.description ? String(s.vol1.description).trim() : "";
+      if (cur !== ovText) {
+        s.vol1 = s.vol1 || {};
+        s.vol1.description = ovText;
+        updated++;
+      } else {
+        had++;
       }
+      continue;
     }
-  }
 
-  if (synopsis) {
-    setSynopsis(s, synopsis);
-    filled++;
-  } else {
-    needsOverrideItems.push({
-      anilistId: id,
-      title: pickTitle(s) || null,
-      seriesKey: s?.seriesKey || null,
-      vol1Isbn13: isbn || null,
+    // 2) existing
+    const curDesc = s?.vol1?.description ? String(s.vol1.description).trim() : "";
+    if (curDesc) {
+      had++;
+      continue;
+    }
+
+    // 3) AniList description fallback（今回の4件はこれがある）
+    const aniDescRaw = s?.anilist?.description || "";
+    const aniDesc = stripHtmlToText(aniDescRaw);
+    if (aniDesc) {
+      s.vol1 = s.vol1 || {};
+      s.vol1.description = aniDesc;
+      filled++;
+      updated++;
+      continue;
+    }
+
+    // 4) Rakuten by ISBN（isbn13がある場合のみ）
+    const isbn13 = s?.vol1?.isbn13 || null;
+    if (isbn13) {
+      triedRakuten++;
+      const cap = await rakutenCaptionByIsbn(isbn13);
+      if (cap) {
+        s.vol1 = s.vol1 || {};
+        s.vol1.description = cap;
+        filled++;
+        updated++;
+        continue;
+      }
+      await sleep(250);
+    }
+
+    // 5) Wikipedia（残っていて、予算がある場合）
+    if (wikiBudget > 0) {
+      triedWiki++;
+      wikiBudget--;
+
+      // 検索は「日本語タイトル優先」→ダメなら seriesKey でもう一回
+      const q1 = String(s?.anilist?.title?.native || title || "").trim();
+      const q2 = String(seriesKey || "").trim();
+
+      let w = await wikiSummaryByTitle(q1);
+      if (!w && q2 && q2 !== q1) w = await wikiSummaryByTitle(q2);
+
+      if (w) {
+        s.vol1 = s.vol1 || {};
+        s.vol1.description = w;
+        wikiUsed++;
+        filled++;
+        updated++;
+        continue;
+      }
+      await sleep(200);
+    }
+
+    // それでも無理 → needsOverride
+    needsOverride.push({
+      anilistId: String(id),
+      title: String(title || ""),
+      seriesKey: String(seriesKey || ""),
+      vol1Isbn13: s?.vol1?.isbn13 ?? null,
     });
+
+    // TODO には下書き用の箱を作る
+    todo[id] = {
+      title: String(title || ""),
+      seriesKey: String(seriesKey || ""),
+      vol1Isbn13: s?.vol1?.isbn13 ?? null,
+      synopsis: "",
+    };
   }
+
+  // 保存
+  if (updated > 0) {
+    seriesMaster.meta = seriesMaster.meta || {};
+    seriesMaster.meta.updatedAt = new Date().toISOString().slice(0, 10);
+    await writeJson(SERIES_PATH, seriesMaster);
+  }
+
+  if (needsOverride.length > 0) {
+    await writeJson(TODO_PATH, todo);
+    console.log(`[fill_series_synopsis] wrote ${TODO_PATH}`);
+  }
+
+  console.log(
+    `[fill_series_synopsis] seen=${seen} targetOnly=${TARGET_ONLY} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiUsed=${wikiUsed} updated=${updated} filled=${filled} needsOverride=${needsOverride.length} listItems=${listItemsCount}`
+  );
+
+  if (DEBUG_KEYS && needsOverride.length) {
+    console.log("[fill_series_synopsis] needsOverride(items)=", needsOverride);
+  }
+
+  // ここは落とさない。todoを吐いた上で続行（CIを止めない）
 }
 
-// 書き戻し
-await writeJson(SERIES_PATH, root);
-
-// todo 生成（既存があればマージ、synopsisは空のまま）
-if (needsOverrideItems.length) {
-  const nextTodo = (todoExisting && typeof todoExisting === "object") ? { ...todoExisting } : {};
-  for (const it of needsOverrideItems) {
-    const k = String(it.anilistId);
-    if (!nextTodo[k]) {
-      nextTodo[k] = { title: it.title, seriesKey: it.seriesKey, vol1Isbn13: it.vol1Isbn13, synopsis: "" };
-    } else {
-      // 既存があるなら synopsis は保持しつつ、周辺情報だけ補完
-      if (!nextTodo[k].title) nextTodo[k].title = it.title;
-      if (!nextTodo[k].seriesKey) nextTodo[k].seriesKey = it.seriesKey;
-      if (!nextTodo[k].vol1Isbn13) nextTodo[k].vol1Isbn13 = it.vol1Isbn13;
-      if (typeof nextTodo[k].synopsis !== "string") nextTodo[k].synopsis = "";
-    }
-  }
-  await writeJson(TODO_PATH, nextTodo);
-  console.log("[fill_series_synopsis] needsOverride(items)=", JSON.stringify(needsOverrideItems, null, 2));
-  console.log(`[fill_series_synopsis] wrote ${TODO_PATH}`);
-}
-
-const needsOverride = needsOverrideItems.length;
-
-console.log(
-  `[fill_series_synopsis] seen=${seen} targetOnly=${TARGET_ONLY} had=${had} triedRakuten=${triedRakuten} triedWiki=${triedWiki} wikiUsed=${wikiUsed} updated=${updated} filled=${filled} needsOverride=${needsOverride} listItems=${listItemsCount}`
-);
+await main();
