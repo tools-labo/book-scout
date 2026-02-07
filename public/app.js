@@ -1,7 +1,7 @@
 // public/app.js
 async function loadJson(path) {
   const r = await fetch(path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`HTTP ${r.status}: ${path}`);
+  if (!r.ok) throw new Error(`HTTP ${r.status} for ${path}`);
   return await r.json();
 }
 
@@ -18,26 +18,8 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
-function hasJapaneseChars(text) {
-  // ひらがな/カタカナ/漢字が1文字でもあれば日本語扱い
-  return /[ぁ-んァ-ン一-龯]/.test(String(text || ""));
-}
-
-function pickSynopsis(it, work) {
-  // 表示優先：
-  // 1) list_items の vol1.description
-  // 2) works.json 側の vol1.description（build_work_pages で反映されたやつ）
-  // 3) 準備中
-  const s1 = it?.vol1?.description ?? null;
-  const s2 = work?.vol1?.description ?? null;
-
-  const s = (s1 && String(s1).trim()) || (s2 && String(s2).trim()) || "";
-  if (!s) return "（あらすじ準備中）";
-
-  // 英語しか無い場合は出したくない
-  if (!hasJapaneseChars(s)) return "（あらすじ準備中）";
-
-  return s;
+function clamp3Lines(text) {
+  return text || "（あらすじ準備中）";
 }
 
 function tagChips(tagsObj) {
@@ -49,7 +31,48 @@ function tagChips(tagsObj) {
   return out.join("");
 }
 
-function renderList(items, worksByKey) {
+// list_items.json に足りない synopsis/image を works.json から補完する
+function mergeWorksIntoListItems(listItems, worksObj) {
+  if (!Array.isArray(listItems) || !worksObj || typeof worksObj !== "object") return listItems;
+
+  // works.json は { [workKey]: {workKey,title,description,image,amazonUrl,...} } 想定
+  const wmap = worksObj;
+
+  return listItems.map((it) => {
+    const key =
+      it?.seriesKey ||
+      it?.workKey ||
+      it?.title ||
+      it?.latest?.title ||
+      "";
+
+    const w = wmap[key];
+    if (!w) return it;
+
+    // vol1.description が無い/空の時だけ works.json の description を使う
+    const curDesc = it?.vol1?.description;
+    const nextDesc = (typeof curDesc === "string" && curDesc.trim()) ? curDesc : (w.description || null);
+
+    const curImg = it?.vol1?.image;
+    const nextImg = curImg || w.image || null;
+
+    // Amazonリンクも一応補完（vol1/latest が無い場合の保険）
+    const curVol1Amz = it?.vol1?.amazonDp;
+    const nextVol1Amz = curVol1Amz || w.amazonUrl || null;
+
+    return {
+      ...it,
+      vol1: {
+        ...(it.vol1 || {}),
+        description: nextDesc,
+        image: nextImg,
+        amazonDp: nextVol1Amz,
+      },
+    };
+  });
+}
+
+function renderList(items) {
   const root = document.getElementById("list");
   if (!root) return;
 
@@ -61,13 +84,12 @@ function renderList(items, worksByKey) {
       const publisher = it.publisher || "";
       const date = it.latest?.publishedAt || "";
       const vol = it.latest?.volume ?? "";
-      const img = it.vol1?.image || "";
 
+      // ここは vol1 優先。mergeWorksIntoListItems で vol1.description に入る想定
+      const img = it.vol1?.image || "";
       const latestAmz = it.latest?.amazonDp || "";
       const vol1Amz = it.vol1?.amazonDp || "";
-
-      const work = worksByKey?.get?.(it.seriesKey) || null;
-      const synopsis = pickSynopsis(it, work);
+      const synopsis = clamp3Lines(it.vol1?.description);
 
       return `
         <article class="card">
@@ -123,7 +145,7 @@ function renderList(items, worksByKey) {
     .join("");
 }
 
-function renderWork(items, worksByKey) {
+function renderWork(items) {
   const detail = document.getElementById("detail");
   const status = document.getElementById("status");
   if (!detail) return;
@@ -146,9 +168,7 @@ function renderWork(items, worksByKey) {
   const author = it.author || "";
   const publisher = it.publisher || "";
 
-  const work = worksByKey?.get?.(it.seriesKey) || null;
-  const synopsis = pickSynopsis(it, work);
-
+  const synopsis = it.vol1?.description || "（あらすじ準備中）";
   const img = it.vol1?.image || "";
   const vol1Amz = it.vol1?.amazonDp || "";
   const latestAmz = it.latest?.amazonDp || "";
@@ -175,15 +195,21 @@ function renderWork(items, worksByKey) {
   try {
     const cat = qs().get("cat") || "manga";
 
-    // list_items は現状のUIが使ってる基盤
-    const items = await loadJson(`./data/${cat}/list_items.json`);
+    // 1) まず list_items を読む（今のUIの基礎）
+    let items = await loadJson(`./data/${cat}/list_items.json`);
 
-    // works.json は synopsisApplied されたあらすじが入ってる
-    const worksObj = await loadJson(`./data/${cat}/works.json`);
-    const worksByKey = new Map(Object.entries(worksObj || {})); // [seriesKey] -> work
+    // 2) works.json を読む（Rakuten/OpenBDで取れた description が入ってる）
+    //    ※ここが今回の肝。読み込めなければそのまま動く（安全）
+    try {
+      const worksObj = await loadJson(`./data/${cat}/works.json`);
+      items = mergeWorksIntoListItems(items, worksObj);
+    } catch (e) {
+      // works.json が無い/読めない場合でもUIは動かす
+      console.warn("works.json not loaded:", e);
+    }
 
-    renderList(items, worksByKey);
-    renderWork(items, worksByKey);
+    renderList(items);
+    renderWork(items);
 
   } catch (e) {
     const status = document.getElementById("status");
