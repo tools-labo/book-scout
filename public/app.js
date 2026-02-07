@@ -1,7 +1,11 @@
-// public/app.js
+// public/app.js（全差し替え版）
+// - list_items.json を基本に描画
+// - vol1.description がプレースホルダ（「（あらすじ準備中）」等）なら works.json の description を採用
+// - works.json が無い/読めない場合でも list だけで動く（フェイルセーフ）
+
 async function loadJson(path) {
   const r = await fetch(path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`HTTP ${r.status} for ${path}`);
+  if (!r.ok) throw new Error(`HTTP ${r.status} ${path}`);
   return await r.json();
 }
 
@@ -18,13 +22,42 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
-// 改行を <br> にしたいので、escapeした後で \n を <br> に変換する
-function escWithBr(s) {
-  return esc(s).replaceAll("\n", "<br>");
+function isPlaceholderSynopsis(s) {
+  const t = String(s ?? "").trim();
+  return (
+    t === "" ||
+    t === "（あらすじ準備中）" ||
+    t === "(あらすじ準備中)" ||
+    t === "あらすじ準備中"
+  );
 }
 
-function clamp3Lines(text) {
-  return text || "（あらすじ準備中）";
+function hasRealSynopsis(s) {
+  const t = String(s ?? "").trim();
+  return t.length > 0 && !isPlaceholderSynopsis(t);
+}
+
+function pickSynopsis(listItem, workObj) {
+  const a = listItem?.vol1?.description;
+  if (hasRealSynopsis(a)) return a;
+
+  // works.json は root に description を持つ想定（貼ってくれた例）
+  const b = workObj?.description;
+  if (hasRealSynopsis(b)) return b;
+
+  return "（あらすじ準備中）";
+}
+
+function pickImage(listItem, workObj) {
+  return listItem?.vol1?.image || workObj?.image || "";
+}
+
+function pickVol1Amazon(listItem, workObj) {
+  return listItem?.vol1?.amazonDp || workObj?.amazonUrl || "";
+}
+
+function pickLatestAmazon(listItem) {
+  return listItem?.latest?.amazonDp || "";
 }
 
 function tagChips(tagsObj) {
@@ -36,116 +69,32 @@ function tagChips(tagsObj) {
   return out.join("");
 }
 
-function normKey(s) {
-  return String(s ?? "")
-    .trim()
-    .replace(/\s+/g, " ")
-    .replaceAll("　", " ");
+function buildWorksMap(worksRaw) {
+  // works.json: { [workKey]: {...} } 想定
+  if (!worksRaw || typeof worksRaw !== "object") return new Map();
+  return new Map(Object.entries(worksRaw));
 }
 
-function pickKeyCandidates(it) {
-  const cands = [
-    it?.seriesKey,
-    it?.workKey,
-    it?.work?.key,
-    it?.series?.key,
-    it?.title,
-    it?.latest?.title,
-  ]
-    .filter(Boolean)
-    .map((x) => normKey(x));
-
-  // decodeURIComponent っぽいものも候補に入れる（失敗しても無視）
-  const decoded = [];
-  for (const k of cands) {
-    try {
-      const d = normKey(decodeURIComponent(k));
-      if (d && d !== k) decoded.push(d);
-    } catch {}
-  }
-
-  return Array.from(new Set([...cands, ...decoded])).filter(Boolean);
-}
-
-// list_items.json に足りない synopsis/image を works.json から補完する
-function mergeWorksIntoListItems(listItems, worksObj) {
-  if (!Array.isArray(listItems) || !worksObj || typeof worksObj !== "object") return listItems;
-
-  const wmap = worksObj; // works.json は { [workKey]: {...} } 想定
-
-  let mergedDesc = 0;
-  let mergedImg = 0;
-  let miss = 0;
-
-  const out = listItems.map((it) => {
-    const candidates = pickKeyCandidates(it);
-
-    let w = null;
-    for (const k of candidates) {
-      if (wmap[k]) {
-        w = wmap[k];
-        break;
-      }
-    }
-    if (!w) {
-      miss++;
-      return it;
-    }
-
-    const curDesc = it?.vol1?.description;
-    const curDescOk = typeof curDesc === "string" ? curDesc.trim().length > 0 : !!curDesc;
-
-    // works.json の description はトップレベル想定（あなたの貼った通り）
-    const wDesc = (typeof w.description === "string" && w.description.trim())
-      ? w.description
-      : null;
-
-    const nextDesc = curDescOk ? curDesc : wDesc;
-
-    const curImg = it?.vol1?.image;
-    const wImg = w.image || null;
-    const nextImg = curImg || wImg;
-
-    const curVol1Amz = it?.vol1?.amazonDp;
-    const wAmz = w.amazonUrl || null;
-    const nextVol1Amz = curVol1Amz || wAmz;
-
-    if (!curDescOk && wDesc) mergedDesc++;
-    if (!curImg && wImg) mergedImg++;
-
-    return {
-      ...it,
-      vol1: {
-        ...(it.vol1 || {}),
-        description: nextDesc,
-        image: nextImg,
-        amazonDp: nextVol1Amz,
-      },
-    };
-  });
-
-  console.log("[mergeWorksIntoListItems] items=", listItems.length, "miss=", miss, "descMerged=", mergedDesc, "imgMerged=", mergedImg);
-  return out;
-}
-
-function renderList(items) {
+function renderList(items, worksMap, cat) {
   const root = document.getElementById("list");
   if (!root) return;
 
   root.innerHTML = items
     .map((it) => {
-      const key = encodeURIComponent(it.seriesKey);
-      const title = it.title || it.seriesKey;
+      const seriesKey = it.seriesKey;
+      const key = encodeURIComponent(seriesKey);
+      const workObj = worksMap.get(seriesKey) || null;
+
+      const title = it.title || seriesKey;
       const author = it.author || "";
       const publisher = it.publisher || "";
       const date = it.latest?.publishedAt || "";
       const vol = it.latest?.volume ?? "";
 
-      const img = it.vol1?.image || "";
-      const latestAmz = it.latest?.amazonDp || "";
-      const vol1Amz = it.vol1?.amazonDp || "";
-
-      const synopsis = clamp3Lines(it.vol1?.description);
+      const img = pickImage(it, workObj);
+      const vol1Amz = pickVol1Amazon(it, workObj);
+      const latestAmz = pickLatestAmazon(it);
+      const synopsis = pickSynopsis(it, workObj);
 
       return `
         <article class="card">
@@ -153,14 +102,16 @@ function renderList(items) {
             <div class="thumb">
               ${
                 img
-                  ? `<a href="${esc(vol1Amz || latestAmz || "#")}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+                  ? `<a href="${esc(vol1Amz || latestAmz || "#")}" target="_blank" rel="nofollow noopener"><img src="${esc(
+                      img
+                    )}" alt="${esc(title)}"/></a>`
                   : `<div class="thumb-ph"></div>`
               }
             </div>
 
             <div class="meta">
               <div class="title">
-                <a href="./work.html?cat=manga&key=${key}">${esc(title)}</a>
+                <a href="./work.html?cat=${esc(cat)}&key=${key}">${esc(title)}</a>
               </div>
               <div class="sub">
                 <span>${esc(author)}</span>
@@ -173,8 +124,7 @@ function renderList(items) {
 
               <div class="chips">${tagChips(it.tags)}</div>
 
-              <!-- 改行対応 -->
-              <div class="synopsis">${escWithBr(synopsis)}</div>
+              <div class="synopsis">${esc(synopsis)}</div>
 
               <div class="links">
                 ${
@@ -202,7 +152,7 @@ function renderList(items) {
     .join("");
 }
 
-function renderWork(items) {
+function renderWork(items, worksMap, cat) {
   const detail = document.getElementById("detail");
   const status = document.getElementById("status");
   if (!detail) return;
@@ -221,13 +171,18 @@ function renderWork(items) {
 
   if (status) status.textContent = "";
 
+  const workObj = worksMap.get(it.seriesKey) || null;
+
   const title = it.title || it.seriesKey;
   const author = it.author || "";
   const publisher = it.publisher || "";
-  const synopsis = it.vol1?.description || "（あらすじ準備中）";
-  const img = it.vol1?.image || "";
-  const vol1Amz = it.vol1?.amazonDp || "";
-  const latestAmz = it.latest?.amazonDp || "";
+  const synopsis = pickSynopsis(it, workObj);
+  const img = pickImage(it, workObj);
+  const vol1Amz = pickVol1Amazon(it, workObj);
+  const latestAmz = pickLatestAmazon(it);
+
+  const back = document.getElementById("backToList");
+  if (back) back.setAttribute("href", `./list.html?cat=${encodeURIComponent(cat)}`);
 
   detail.innerHTML = `
     <div class="d-title">${esc(title)}</div>
@@ -243,28 +198,33 @@ function renderWork(items) {
 
     <div class="chips">${tagChips(it.tags)}</div>
 
-    <div class="d-synopsis">${escWithBr(synopsis)}</div>
+    <div class="d-synopsis">${esc(synopsis)}</div>
   `;
 }
 
 (async function main() {
+  const status = document.getElementById("status");
+
   try {
     const cat = qs().get("cat") || "manga";
+    const base = `./data/${cat}`;
 
-    let items = await loadJson(`./data/${cat}/list_items.json`);
+    // list_items は必須
+    const items = await loadJson(`${base}/list_items.json`);
 
+    // works は任意（無くても動く）
+    let worksMap = new Map();
     try {
-      const worksObj = await loadJson(`./data/${cat}/works.json`);
-      items = mergeWorksIntoListItems(items, worksObj);
+      const works = await loadJson(`${base}/works.json`);
+      worksMap = buildWorksMap(works);
     } catch (e) {
-      console.warn("works.json not loaded:", e);
+      // works.json が無い/読めない場合は list_items だけで描画
+      console.warn("works.json load skipped:", e?.message || e);
     }
 
-    renderList(items);
-    renderWork(items);
-
+    renderList(items, worksMap, cat);
+    renderWork(items, worksMap, cat);
   } catch (e) {
-    const status = document.getElementById("status");
     if (status) status.textContent = "読み込みに失敗しました";
     console.error(e);
   }
