@@ -18,6 +18,11 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
+// 改行を <br> にしたいので、escapeした後で \n を <br> に変換する
+function escWithBr(s) {
+  return esc(s).replaceAll("\n", "<br>");
+}
+
 function clamp3Lines(text) {
   return text || "（あらすじ準備中）";
 }
@@ -31,34 +36,82 @@ function tagChips(tagsObj) {
   return out.join("");
 }
 
+function normKey(s) {
+  return String(s ?? "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .replaceAll("　", " ");
+}
+
+function pickKeyCandidates(it) {
+  const cands = [
+    it?.seriesKey,
+    it?.workKey,
+    it?.work?.key,
+    it?.series?.key,
+    it?.title,
+    it?.latest?.title,
+  ]
+    .filter(Boolean)
+    .map((x) => normKey(x));
+
+  // decodeURIComponent っぽいものも候補に入れる（失敗しても無視）
+  const decoded = [];
+  for (const k of cands) {
+    try {
+      const d = normKey(decodeURIComponent(k));
+      if (d && d !== k) decoded.push(d);
+    } catch {}
+  }
+
+  return Array.from(new Set([...cands, ...decoded])).filter(Boolean);
+}
+
 // list_items.json に足りない synopsis/image を works.json から補完する
 function mergeWorksIntoListItems(listItems, worksObj) {
   if (!Array.isArray(listItems) || !worksObj || typeof worksObj !== "object") return listItems;
 
-  // works.json は { [workKey]: {workKey,title,description,image,amazonUrl,...} } 想定
-  const wmap = worksObj;
+  const wmap = worksObj; // works.json は { [workKey]: {...} } 想定
 
-  return listItems.map((it) => {
-    const key =
-      it?.seriesKey ||
-      it?.workKey ||
-      it?.title ||
-      it?.latest?.title ||
-      "";
+  let mergedDesc = 0;
+  let mergedImg = 0;
+  let miss = 0;
 
-    const w = wmap[key];
-    if (!w) return it;
+  const out = listItems.map((it) => {
+    const candidates = pickKeyCandidates(it);
 
-    // vol1.description が無い/空の時だけ works.json の description を使う
+    let w = null;
+    for (const k of candidates) {
+      if (wmap[k]) {
+        w = wmap[k];
+        break;
+      }
+    }
+    if (!w) {
+      miss++;
+      return it;
+    }
+
     const curDesc = it?.vol1?.description;
-    const nextDesc = (typeof curDesc === "string" && curDesc.trim()) ? curDesc : (w.description || null);
+    const curDescOk = typeof curDesc === "string" ? curDesc.trim().length > 0 : !!curDesc;
+
+    // works.json の description はトップレベル想定（あなたの貼った通り）
+    const wDesc = (typeof w.description === "string" && w.description.trim())
+      ? w.description
+      : null;
+
+    const nextDesc = curDescOk ? curDesc : wDesc;
 
     const curImg = it?.vol1?.image;
-    const nextImg = curImg || w.image || null;
+    const wImg = w.image || null;
+    const nextImg = curImg || wImg;
 
-    // Amazonリンクも一応補完（vol1/latest が無い場合の保険）
     const curVol1Amz = it?.vol1?.amazonDp;
-    const nextVol1Amz = curVol1Amz || w.amazonUrl || null;
+    const wAmz = w.amazonUrl || null;
+    const nextVol1Amz = curVol1Amz || wAmz;
+
+    if (!curDescOk && wDesc) mergedDesc++;
+    if (!curImg && wImg) mergedImg++;
 
     return {
       ...it,
@@ -70,6 +123,9 @@ function mergeWorksIntoListItems(listItems, worksObj) {
       },
     };
   });
+
+  console.log("[mergeWorksIntoListItems] items=", listItems.length, "miss=", miss, "descMerged=", mergedDesc, "imgMerged=", mergedImg);
+  return out;
 }
 
 function renderList(items) {
@@ -85,10 +141,10 @@ function renderList(items) {
       const date = it.latest?.publishedAt || "";
       const vol = it.latest?.volume ?? "";
 
-      // ここは vol1 優先。mergeWorksIntoListItems で vol1.description に入る想定
       const img = it.vol1?.image || "";
       const latestAmz = it.latest?.amazonDp || "";
       const vol1Amz = it.vol1?.amazonDp || "";
+
       const synopsis = clamp3Lines(it.vol1?.description);
 
       return `
@@ -117,7 +173,8 @@ function renderList(items) {
 
               <div class="chips">${tagChips(it.tags)}</div>
 
-              <div class="synopsis">${esc(synopsis)}</div>
+              <!-- 改行対応 -->
+              <div class="synopsis">${escWithBr(synopsis)}</div>
 
               <div class="links">
                 ${
@@ -167,7 +224,6 @@ function renderWork(items) {
   const title = it.title || it.seriesKey;
   const author = it.author || "";
   const publisher = it.publisher || "";
-
   const synopsis = it.vol1?.description || "（あらすじ準備中）";
   const img = it.vol1?.image || "";
   const vol1Amz = it.vol1?.amazonDp || "";
@@ -187,7 +243,7 @@ function renderWork(items) {
 
     <div class="chips">${tagChips(it.tags)}</div>
 
-    <div class="d-synopsis">${esc(synopsis)}</div>
+    <div class="d-synopsis">${escWithBr(synopsis)}</div>
   `;
 }
 
@@ -195,16 +251,12 @@ function renderWork(items) {
   try {
     const cat = qs().get("cat") || "manga";
 
-    // 1) まず list_items を読む（今のUIの基礎）
     let items = await loadJson(`./data/${cat}/list_items.json`);
 
-    // 2) works.json を読む（Rakuten/OpenBDで取れた description が入ってる）
-    //    ※ここが今回の肝。読み込めなければそのまま動く（安全）
     try {
       const worksObj = await loadJson(`./data/${cat}/works.json`);
       items = mergeWorksIntoListItems(items, worksObj);
     } catch (e) {
-      // works.json が無い/読めない場合でもUIは動かす
       console.warn("works.json not loaded:", e);
     }
 
