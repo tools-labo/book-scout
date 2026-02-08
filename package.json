@@ -1,0 +1,10 @@
+{
+  "name": "book-scout",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "manga:lane2": "node scripts/manga/lane2_vol1_from_isbn_list.mjs && node scripts/manga/build_list_from_vol1.mjs"
+  },
+  "dependencies": {}
+}
