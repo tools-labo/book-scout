@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-08T12:40:10.861Z",
+  "updatedAt": "2026-02-08T12:50:20.739Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -7,8 +7,7 @@
       "ndl": {
         "query": "ブルーロック 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
-        "candidates": [],
-        "dropped": 24
+        "candidates": []
       },
       "paapi": {
         "triedIsbns": [],
@@ -27,14 +26,14 @@
           {
             "query": "ブルーロック 1",
             "ok": false,
-            "status": 401,
-            "body": "{\"__type\":\"com.amazon.paapi5#InvalidSignatureException\",\"Errors\":[{\"Code\":\"InvalidSignature\",\"Message\":\"The request has not been correctly signed. If you are using an AWS SDK, requests are signed for you automatically; otherwise, go to https://webservices.amazon.co.jp/paapi5/documentation/sending-request.html#signing.\"}]}"
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
           },
           {
             "query": "ブルーロック （1）",
             "ok": false,
-            "status": 401,
-            "body": "{\"__type\":\"com.amazon.paapi5#InvalidSignatureException\",\"Errors\":[{\"Code\":\"InvalidSignature\",\"Message\":\"The request has not been correctly signed. If you are using an AWS SDK, requests are signed for you automatically; otherwise, go to https://webservices.amazon.co.jp/paapi5/documentation/sending-request.html#signing.\"}]}"
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
           }
         ]
       }
@@ -45,8 +44,7 @@
       "ndl": {
         "query": "黄泉のツガイ 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
-        "candidates": [],
-        "dropped": 24
+        "candidates": []
       },
       "paapi": {
         "triedIsbns": [],
@@ -65,14 +63,14 @@
           {
             "query": "黄泉のツガイ 1",
             "ok": false,
-            "status": 401,
-            "body": "{\"__type\":\"com.amazon.paapi5#InvalidSignatureException\",\"Errors\":[{\"Code\":\"InvalidSignature\",\"Message\":\"The request has not been correctly signed. If you are using an AWS SDK, requests are signed for you automatically; otherwise, go to https://webservices.amazon.co.jp/paapi5/documentation/sending-request.html#signing.\"}]}"
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
           },
           {
             "query": "黄泉のツガイ （1）",
             "ok": false,
-            "status": 401,
-            "body": "{\"__type\":\"com.amazon.paapi5#InvalidSignatureException\",\"Errors\":[{\"Code\":\"InvalidSignature\",\"Message\":\"The request has not been correctly signed. If you are using an AWS SDK, requests are signed for you automatically; otherwise, go to https://webservices.amazon.co.jp/paapi5/documentation/sending-request.html#signing.\"}]}"
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
           }
         ]
       }
@@ -83,8 +81,7 @@
       "ndl": {
         "query": "葬送のフリーレン 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
-        "candidates": [],
-        "dropped": 24
+        "candidates": []
       },
       "paapi": {
         "triedIsbns": [],
@@ -103,14 +100,14 @@
           {
             "query": "葬送のフリーレン 1",
             "ok": false,
-            "status": 401,
-            "body": "{\"__type\":\"com.amazon.paapi5#InvalidSignatureException\",\"Errors\":[{\"Code\":\"InvalidSignature\",\"Message\":\"The request has not been correctly signed. If you are using an AWS SDK, requests are signed for you automatically; otherwise, go to https://webservices.amazon.co.jp/paapi5/documentation/sending-request.html#signing.\"}]}"
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
           },
           {
             "query": "葬送のフリーレン （1）",
             "ok": false,
-            "status": 401,
-            "body": "{\"__type\":\"com.amazon.paapi5#InvalidSignatureException\",\"Errors\":[{\"Code\":\"InvalidSignature\",\"Message\":\"The request has not been correctly signed. If you are using an AWS SDK, requests are signed for you automatically; otherwise, go to https://webservices.amazon.co.jp/paapi5/documentation/sending-request.html#signing.\"}]}"
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
           }
         ]
       }
