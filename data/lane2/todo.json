@@ -1,24 +1,33 @@
 {
-  "updatedAt": "2026-02-08T12:50:20.739Z",
+  "updatedAt": "2026-02-08T12:56:44.813Z",
   "total": 3,
   "items": [
     {
       "seriesKey": "ブルーロック",
       "author": "金城 宗幸",
-      "reason": "not_confirmed(ndl_candidates_not_verified_by_paapi; paapi_search_no_verified_candidate)",
-      "best": null
+      "reason": "not_confirmed(ndlCandidates=0, ndlIsbns=0, paapiGetItemsMatched=0)",
+      "best": {
+        "source": "none",
+        "triedIsbns": []
+      }
     },
     {
       "seriesKey": "黄泉のツガイ",
       "author": "荒川弘",
-      "reason": "not_confirmed(ndl_candidates_not_verified_by_paapi; paapi_search_no_verified_candidate)",
-      "best": null
+      "reason": "not_confirmed(ndlCandidates=0, ndlIsbns=0, paapiGetItemsMatched=0)",
+      "best": {
+        "source": "none",
+        "triedIsbns": []
+      }
     },
     {
       "seriesKey": "葬送のフリーレン",
       "author": "山田鐘人",
-      "reason": "not_confirmed(ndl_candidates_not_verified_by_paapi; paapi_search_no_verified_candidate)",
-      "best": null
+      "reason": "not_confirmed(ndlCandidates=0, ndlIsbns=0, paapiGetItemsMatched=0)",
+      "best": {
+        "source": "none",
+        "triedIsbns": []
+      }
     }
   ]
 }

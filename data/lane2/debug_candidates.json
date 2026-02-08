@@ -1,113 +1,101 @@
 {
-  "updatedAt": "2026-02-08T12:50:20.739Z",
+  "updatedAt": "2026-02-08T12:56:44.813Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
-      "step": "ndl_then_paapi",
+      "step": "todo",
       "ndl": {
         "query": "ブルーロック 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
-        "candidates": []
+        "candidates": [],
+        "dropped": 30,
+        "error": null
       },
       "paapi": {
         "triedIsbns": [],
-        "getitems": {}
-      }
-    },
-    {
-      "seriesKey": "ブルーロック",
-      "step": "paapi_search",
-      "search": {
-        "tried": [
+        "getitemsErr": null,
+        "searchTries": [
           "ブルーロック 1",
           "ブルーロック （1）"
         ],
-        "results": [
+        "searchResults": [
           {
             "query": "ブルーロック 1",
-            "ok": false,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "found": false
           },
           {
             "query": "ブルーロック （1）",
-            "ok": false,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "found": false
           }
         ]
       }
     },
     {
       "seriesKey": "黄泉のツガイ",
-      "step": "ndl_then_paapi",
+      "step": "todo",
       "ndl": {
         "query": "黄泉のツガイ 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
-        "candidates": []
+        "candidates": [],
+        "dropped": 30,
+        "error": null
       },
       "paapi": {
         "triedIsbns": [],
-        "getitems": {}
-      }
-    },
-    {
-      "seriesKey": "黄泉のツガイ",
-      "step": "paapi_search",
-      "search": {
-        "tried": [
+        "getitemsErr": null,
+        "searchTries": [
           "黄泉のツガイ 1",
           "黄泉のツガイ （1）"
         ],
-        "results": [
+        "searchResults": [
           {
             "query": "黄泉のツガイ 1",
-            "ok": false,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "found": false
           },
           {
             "query": "黄泉のツガイ （1）",
-            "ok": false,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "found": false
           }
         ]
       }
     },
     {
       "seriesKey": "葬送のフリーレン",
-      "step": "ndl_then_paapi",
+      "step": "todo",
       "ndl": {
         "query": "葬送のフリーレン 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
-        "candidates": []
+        "candidates": [],
+        "dropped": 30,
+        "error": null
       },
       "paapi": {
         "triedIsbns": [],
-        "getitems": {}
-      }
-    },
-    {
-      "seriesKey": "葬送のフリーレン",
-      "step": "paapi_search",
-      "search": {
-        "tried": [
+        "getitemsErr": null,
+        "searchTries": [
           "葬送のフリーレン 1",
           "葬送のフリーレン （1）"
         ],
-        "results": [
+        "searchResults": [
           {
             "query": "葬送のフリーレン 1",
-            "ok": false,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "found": false
           },
           {
             "query": "葬送のフリーレン （1）",
-            "ok": false,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "found": false
           }
         ]
       }
