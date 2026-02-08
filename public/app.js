@@ -1,11 +1,7 @@
-// public/app.js（全差し替え版）
-// - list_items.json を基本に描画
-// - vol1.description がプレースホルダ（「（あらすじ準備中）」等）なら works.json の description を採用
-// - works.json が無い/読めない場合でも list だけで動く（フェイルセーフ）
-
-async function loadJson(path) {
-  const r = await fetch(path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`HTTP ${r.status} ${path}`);
+// public/app.js
+async function loadJson(url) {
+  const r = await fetch(url, { cache: "no-store" });
+  if (!r.ok) throw new Error(`HTTP ${r.status} for ${url}`);
   return await r.json();
 }
 
@@ -22,42 +18,8 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
-function isPlaceholderSynopsis(s) {
-  const t = String(s ?? "").trim();
-  return (
-    t === "" ||
-    t === "（あらすじ準備中）" ||
-    t === "(あらすじ準備中)" ||
-    t === "あらすじ準備中"
-  );
-}
-
-function hasRealSynopsis(s) {
-  const t = String(s ?? "").trim();
-  return t.length > 0 && !isPlaceholderSynopsis(t);
-}
-
-function pickSynopsis(listItem, workObj) {
-  const a = listItem?.vol1?.description;
-  if (hasRealSynopsis(a)) return a;
-
-  // works.json は root に description を持つ想定（貼ってくれた例）
-  const b = workObj?.description;
-  if (hasRealSynopsis(b)) return b;
-
-  return "（あらすじ準備中）";
-}
-
-function pickImage(listItem, workObj) {
-  return listItem?.vol1?.image || workObj?.image || "";
-}
-
-function pickVol1Amazon(listItem, workObj) {
-  return listItem?.vol1?.amazonDp || workObj?.amazonUrl || "";
-}
-
-function pickLatestAmazon(listItem) {
-  return listItem?.latest?.amazonDp || "";
+function clamp3Lines(text) {
+  return text && String(text).trim() ? String(text) : "（あらすじ準備中）";
 }
 
 function tagChips(tagsObj) {
@@ -69,56 +31,92 @@ function tagChips(tagsObj) {
   return out.join("");
 }
 
-function buildWorksMap(worksRaw) {
-  // works.json: { [workKey]: {...} } 想定
-  if (!worksRaw || typeof worksRaw !== "object") return new Map();
-  return new Map(Object.entries(worksRaw));
+function isVol1Confirmed(it) {
+  // “確定したものしか出さない”判定
+  const img = it?.vol1?.image;
+  const dp = it?.vol1?.amazonDp;
+  return Boolean(img && dp);
 }
 
-function renderList(items, worksMap, cat) {
+function getCat() {
+  return qs().get("cat") || "manga";
+}
+
+function getDataUrl(cat) {
+  return `./data/${encodeURIComponent(cat)}/list_items.json`;
+}
+
+function getOnlyConfirmed() {
+  // デフォは 1（確定分のみ表示）
+  const v = qs().get("onlyConfirmed");
+  if (v == null) return true;
+  return v !== "0";
+}
+
+function setBackLink(cat) {
+  const a = document.getElementById("backToList");
+  if (a) a.href = `./list.html?cat=${encodeURIComponent(cat)}`;
+}
+
+function renderList(items, cat) {
   const root = document.getElementById("list");
   if (!root) return;
 
-  root.innerHTML = items
-    .map((it) => {
-      const seriesKey = it.seriesKey;
-      const key = encodeURIComponent(seriesKey);
-      const workObj = worksMap.get(seriesKey) || null;
+  const onlyConfirmed = getOnlyConfirmed();
+  const shown = onlyConfirmed ? items.filter(isVol1Confirmed) : items;
 
-      const title = it.title || seriesKey;
+  const hint = document.getElementById("hint");
+  if (hint) {
+    hint.innerHTML = `
+      <div class="hint">
+        表示: ${onlyConfirmed ? "1巻確定のみ" : "全件"}　
+        <a class="hint-link" href="./list.html?cat=${encodeURIComponent(cat)}&onlyConfirmed=${onlyConfirmed ? "0" : "1"}">
+          ${onlyConfirmed ? "全件を表示" : "1巻確定のみ"}
+        </a>
+      </div>
+    `;
+  }
+
+  root.innerHTML = shown
+    .map((it) => {
+      const keyEnc = encodeURIComponent(it.seriesKey);
+      const title = it.title || it.seriesKey;
+
       const author = it.author || "";
       const publisher = it.publisher || "";
+
       const date = it.latest?.publishedAt || "";
       const vol = it.latest?.volume ?? "";
 
-      const img = pickImage(it, workObj);
-      const vol1Amz = pickVol1Amazon(it, workObj);
-      const latestAmz = pickLatestAmazon(it);
-      const synopsis = pickSynopsis(it, workObj);
+      const img = it.vol1?.image || "";
+      const vol1Amz = it.vol1?.amazonDp || "";
+      const latestAmz = it.latest?.amazonDp || "";
+      const synopsis = clamp3Lines(it.vol1?.description);
+
+      // 書影リンクは「1巻が確定している時だけ」1巻へ
+      const imgHtml = img
+        ? vol1Amz
+          ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+          : `<img src="${esc(img)}" alt="${esc(title)}"/>`
+        : `<div class="thumb-ph"></div>`;
 
       return `
         <article class="card">
           <div class="card-row">
-            <div class="thumb">
-              ${
-                img
-                  ? `<a href="${esc(vol1Amz || latestAmz || "#")}" target="_blank" rel="nofollow noopener"><img src="${esc(
-                      img
-                    )}" alt="${esc(title)}"/></a>`
-                  : `<div class="thumb-ph"></div>`
-              }
-            </div>
+            <div class="thumb">${imgHtml}</div>
 
             <div class="meta">
               <div class="title">
-                <a href="./work.html?cat=${esc(cat)}&key=${key}">${esc(title)}</a>
+                <a href="./work.html?cat=${encodeURIComponent(cat)}&key=${keyEnc}">${esc(title)}</a>
               </div>
+
               <div class="sub">
                 <span>${esc(author)}</span>
                 ${publisher ? `<span> / ${esc(publisher)}</span>` : ""}
               </div>
+
               <div class="sub">
-                <span>発売日: ${esc(date)}</span>
+                ${date ? `<span>発売日: ${esc(date)}</span>` : ""}
                 ${vol ? `<span> / 最新${esc(vol)}巻</span>` : ""}
               </div>
 
@@ -138,26 +136,27 @@ function renderList(items, worksMap, cat) {
                     : ""
                 }
               </div>
-
-              ${
-                it.vol1?.needsOverride
-                  ? `<div class="note">※あらすじ要補完（override推奨）</div>`
-                  : ""
-              }
             </div>
           </div>
         </article>
       `;
     })
     .join("");
+
+  if (!shown.length) {
+    root.innerHTML = `<div class="empty">表示できる作品がありません（1巻確定のみ表示中）。</div>`;
+  }
 }
 
-function renderWork(items, worksMap, cat) {
+function renderWork(items, cat) {
   const detail = document.getElementById("detail");
   const status = document.getElementById("status");
   if (!detail) return;
 
-  const key = qs().get("key");
+  setBackLink(cat);
+
+  const keyRaw = qs().get("key");
+  const key = keyRaw ? decodeURIComponent(keyRaw) : "";
   if (!key) {
     detail.innerHTML = `<div class="d-title">作品キーがありません</div>`;
     return;
@@ -171,25 +170,28 @@ function renderWork(items, worksMap, cat) {
 
   if (status) status.textContent = "";
 
-  const workObj = worksMap.get(it.seriesKey) || null;
-
   const title = it.title || it.seriesKey;
   const author = it.author || "";
   const publisher = it.publisher || "";
-  const synopsis = pickSynopsis(it, workObj);
-  const img = pickImage(it, workObj);
-  const vol1Amz = pickVol1Amazon(it, workObj);
-  const latestAmz = pickLatestAmazon(it);
 
-  const back = document.getElementById("backToList");
-  if (back) back.setAttribute("href", `./list.html?cat=${encodeURIComponent(cat)}`);
+  const synopsis = clamp3Lines(it.vol1?.description);
+  const img = it.vol1?.image || "";
+
+  const vol1Amz = it.vol1?.amazonDp || "";
+  const latestAmz = it.latest?.amazonDp || "";
+
+  const imgHtml = img
+    ? vol1Amz
+      ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img class="d-img" src="${esc(img)}" alt="${esc(title)}"/></a>`
+      : `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>`
+    : "";
 
   detail.innerHTML = `
     <div class="d-title">${esc(title)}</div>
     <div class="d-sub">${esc(author)} ${publisher ? " / " + esc(publisher) : ""}</div>
 
     <div class="d-row">
-      ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
+      ${imgHtml}
       <div class="d-links">
         ${vol1Amz ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
         ${latestAmz ? `<a class="btn" href="${esc(latestAmz)}" target="_blank" rel="nofollow noopener">Amazon（最新巻）</a>` : ""}
@@ -203,29 +205,26 @@ function renderWork(items, worksMap, cat) {
 }
 
 (async function main() {
-  const status = document.getElementById("status");
+  const cat = getCat();
+  const url = getDataUrl(cat);
 
   try {
-    const cat = qs().get("cat") || "manga";
-    const base = `./data/${cat}`;
+    const items = await loadJson(url);
 
-    // list_items は必須
-    const items = await loadJson(`${base}/list_items.json`);
+    renderList(items, cat);
+    renderWork(items, cat);
 
-    // works は任意（無くても動く）
-    let worksMap = new Map();
-    try {
-      const works = await loadJson(`${base}/works.json`);
-      worksMap = buildWorksMap(works);
-    } catch (e) {
-      // works.json が無い/読めない場合は list_items だけで描画
-      console.warn("works.json load skipped:", e?.message || e);
-    }
-
-    renderList(items, worksMap, cat);
-    renderWork(items, worksMap, cat);
   } catch (e) {
-    if (status) status.textContent = "読み込みに失敗しました";
+    const status = document.getElementById("status");
+    if (status) {
+      status.innerHTML = `
+        <div class="status-error">
+          読み込みに失敗しました。<br/>
+          参照先: <code>${esc(url)}</code><br/>
+          <small>※ public/data/${esc(cat)}/list_items.json を配置すると表示されます</small>
+        </div>
+      `;
+    }
     console.error(e);
   }
 })();
