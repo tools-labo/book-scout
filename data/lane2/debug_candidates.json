@@ -1,55 +1,160 @@
 {
-  "updatedAt": "2026-02-08T13:45:32.495Z",
+  "updatedAt": "2026-02-08T13:52:57.587Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
       "ndl": {
-        "query": {
-          "title": "ブルーロック",
-          "creator": "金城 宗幸"
-        },
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&cnt=20&title=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF&creator=%E9%87%91%E5%9F%8E+%E5%AE%97%E5%B9%B8",
-        "returned": 0,
-        "candidates": []
+        "query": "ブルーロック 1",
+        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
+        "returned": 20,
+        "candidates": [],
+        "dropped": 20
       },
-      "paapi": null,
-      "decided": {
-        "step": "todo",
-        "reason": "ndl_no_isbn"
+      "paapiSearch": {
+        "tried": [
+          "ブルーロック 1",
+          "ブルーロック （1）"
+        ],
+        "results": [
+          {
+            "query": "ブルーロック 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ブルーロック 1",
+              "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
+              "isbn13": null,
+              "asin": "B08LDJ1L3N",
+              "score": 60
+            }
+          },
+          {
+            "query": "ブルーロック （1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ブルーロック （1）",
+              "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
+              "isbn13": null,
+              "asin": "B08LDJ1L3N",
+              "score": 60
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "ブルーロック 1",
+          "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
+          "isbn13": null,
+          "asin": "B08LDJ1L3N",
+          "score": 60
+        }
       }
     },
     {
       "seriesKey": "黄泉のツガイ",
       "ndl": {
-        "query": {
-          "title": "黄泉のツガイ",
-          "creator": "荒川弘"
-        },
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&cnt=20&title=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4&creator=%E8%8D%92%E5%B7%9D%E5%BC%98",
-        "returned": 0,
-        "candidates": []
+        "query": "黄泉のツガイ 1",
+        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
+        "returned": 20,
+        "candidates": [],
+        "dropped": 20
       },
-      "paapi": null,
-      "decided": {
-        "step": "todo",
-        "reason": "ndl_no_isbn"
+      "paapiSearch": {
+        "tried": [
+          "黄泉のツガイ 1",
+          "黄泉のツガイ （1）"
+        ],
+        "results": [
+          {
+            "query": "黄泉のツガイ 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "黄泉のツガイ 1",
+              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+              "isbn13": null,
+              "asin": "4757579624",
+              "score": 60
+            }
+          },
+          {
+            "query": "黄泉のツガイ （1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "黄泉のツガイ （1）",
+              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+              "isbn13": null,
+              "asin": "4757579624",
+              "score": 60
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "黄泉のツガイ 1",
+          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+          "isbn13": null,
+          "asin": "4757579624",
+          "score": 60
+        }
       }
     },
     {
       "seriesKey": "葬送のフリーレン",
       "ndl": {
-        "query": {
-          "title": "葬送のフリーレン",
-          "creator": "山田鐘人"
-        },
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&cnt=20&title=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3&creator=%E5%B1%B1%E7%94%B0%E9%90%98%E4%BA%BA",
-        "returned": 0,
-        "candidates": []
+        "query": "葬送のフリーレン 1",
+        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
+        "returned": 20,
+        "candidates": [],
+        "dropped": 20
       },
-      "paapi": null,
-      "decided": {
-        "step": "todo",
-        "reason": "ndl_no_isbn"
+      "paapiSearch": {
+        "tried": [
+          "葬送のフリーレン 1",
+          "葬送のフリーレン （1）"
+        ],
+        "results": [
+          {
+            "query": "葬送のフリーレン 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "葬送のフリーレン 1",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": null,
+              "asin": "4098501805",
+              "score": 60
+            }
+          },
+          {
+            "query": "葬送のフリーレン （1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "葬送のフリーレン （1）",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": null,
+              "asin": "4098501805",
+              "score": 60
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "葬送のフリーレン 1",
+          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+          "isbn13": null,
+          "asin": "4098501805",
+          "score": 60
+        }
       }
     }
   ]
