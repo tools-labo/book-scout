@@ -9,29 +9,13 @@
 <body>
   <header class="header">
     <h1><a href="./index.html" style="color:inherit;text-decoration:none;">BOOKスカウト</a></h1>
-    <p class="sub">好みで絞って、作品がサクッと分かる。</p>
+    <p class="sub">シリーズ一覧（1巻が確定した作品を優先表示）</p>
   </header>
 
   <main class="wrap">
-    <section class="controls">
-      <input id="q" type="search" placeholder="作品名で検索（例：ワンピ / 呪術）" />
-      <select id="cat">
-        <option value="manga">マンガ</option>
-        <option value="light-novel">ラノベ</option>
-        <option value="novel">一般小説</option>
-      </select>
-    </section>
-
-    <section class="grid">
-      <div>
-        <div id="status" class="status"></div>
-        <ul id="list" class="list"></ul>
-      </div>
-
-      <aside id="detail" class="detail">
-        <div class="d-title">作品を選ぶと詳細が表示されます</div>
-      </aside>
-    </section>
+    <div id="status" class="status"></div>
+    <div id="hint"></div>
+    <section id="list" class="list"></section>
   </main>
 
   <script src="./app.js"></script>
