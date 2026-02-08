@@ -18,24 +18,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
-    env:
-      AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-      AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-      AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          # lockfile無し運用なので cache は付けない（setup-nodeのlockfileエラー回避）
+          node-version: 20
 
-      - name: Install (safe)
+      - name: Install
         run: npm install
 
       - name: Run lane2
-        run: npm run lane2
+        env:
+          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+        run: |
+          set -euo pipefail
+          npm run lane2
 
       - name: Commit outputs
         run: |
