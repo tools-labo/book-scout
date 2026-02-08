@@ -20,12 +20,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # public/ と data/ を Pages artifact に載せるだけ（ビルドなし）
+      # public/ を公開ルートにするため、data/ を public/data に同期
+      - name: Prepare site root
+        run: |
+          set -euo pipefail
+          rm -rf public/data
+          mkdir -p public/data
+          if [ -d data ]; then
+            cp -R data/* public/data/ || true
+          fi
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: public
 
       - id: deployment
         uses: actions/deploy-pages@v4
