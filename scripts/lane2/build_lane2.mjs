@@ -1,6 +1,6 @@
 // scripts/lane2/build_lane2.mjs
-import fs from "node:fs/promises";
 import crypto from "node:crypto";
+import { loadJson, saveJson, nowIso, norm } from "./util.mjs";
 
 const SEEDS_PATH = "data/lane2/seeds.json";
 const OUT_SERIES = "data/lane2/series.json";
@@ -11,35 +11,19 @@ const AMAZON_ACCESS_KEY = process.env.AMAZON_ACCESS_KEY || "";
 const AMAZON_SECRET_KEY = process.env.AMAZON_SECRET_KEY || "";
 const AMAZON_PARTNER_TAG = process.env.AMAZON_PARTNER_TAG || "";
 
-function nowIso() {
-  return new Date().toISOString();
-}
-
-async function loadJson(path, fallback) {
-  try {
-    return JSON.parse(await fs.readFile(path, "utf8"));
-  } catch {
-    return fallback;
-  }
-}
-async function saveJson(path, obj) {
-  await fs.mkdir(path.split("/").slice(0, -1).join("/"), { recursive: true });
-  await fs.writeFile(path, JSON.stringify(obj, null, 2));
-}
-
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-function norm(s) {
-  return String(s ?? "").trim();
+function hasPaapi() {
+  return !!(AMAZON_ACCESS_KEY && AMAZON_SECRET_KEY && AMAZON_PARTNER_TAG);
 }
 
 function isLikelySingleEpisode(title) {
   const t = norm(title);
   return (
     /第\s*\d+\s*話/.test(t) ||
-    ((/\(\s*\d+\s*\)\s*$/.test(t) && /話/.test(t)) ?? false) ||
+    (/(\(\s*\d+\s*\)\s*$)/.test(t) && /話/.test(t)) ||
     /分冊|単話|話売り|Kindle版|電子版/.test(t)
   );
 }
@@ -50,107 +34,116 @@ function isVol1Like(title) {
     /（\s*1\s*）/.test(t) ||
     /第\s*1\s*巻/.test(t) ||
     /Vol\.?\s*1/i.test(t) ||
+    // “ 1 ” が他の数字とくっついてないこと（雑だけど強め）
     /(^|[^0-9])1([^0-9]|$)/.test(t)
   );
 }
 
-function pickBestCandidate(cands) {
+function scoreCandidate({ seriesKey, title, isbn13 }) {
+  let score = 0;
+  const t = norm(title);
+  if (!t) return 0;
+
+  // “シリーズ名が含まれる”を強めに評価
+  if (t.includes(seriesKey)) score += 60;
+
+  // ISBNが取れてるのは超重要
+  if (isbn13) score += 80;
+
+  // 1巻っぽさ
+  if (isVol1Like(t)) score += 30;
+
+  // ノイズを落とす
+  if (isLikelySingleEpisode(t)) score -= 80;
+  if (/FULL\s*COLOR/i.test(t)) score -= 25;
+  if (/総集編|公式ファンブック|特装版|限定版|ガイド|画集/.test(t)) score -= 60;
+  if (/OpenSearch/i.test(t) || /国立国会図書館サーチ/i.test(t)) score -= 200; // ←今回の事故タイトルを確実に落とす
+
+  return score;
+}
+
+function pickBest(cands) {
   if (!cands.length) return null;
   cands.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
   return cands[0];
 }
 
-function scoreCandidate({ title, isbn13 }) {
-  let score = 0;
-  const t = norm(title);
-  if (!t) return 0;
-
-  if (isbn13) score += 80;
-  if (isVol1Like(t)) score += 30;
-
-  // 「上」=巻1の可能性があるので弱い加点
-  if (/\b(上|前編)\b/.test(t)) score += 5;
-
-  // 単話っぽいのは大きく減点
-  if (isLikelySingleEpisode(t)) score -= 60;
-
-  // 派生版/別冊系を落とす
-  if (/FULL\s*COLOR/i.test(t)) score -= 15;
-  if (/総集編|公式ファンブック|特装版|限定版|ガイド|画集/.test(t)) score -= 40;
-
-  return score;
-}
-
 /**
  * -----------------------
- * NDL Search (open) - SAFE
+ * NDL OpenSearch（申請不要枠）
+ * 重要：entry/item単位で title と ISBN を結び付ける
  * -----------------------
- * Atom(OpenSearch)を entry 単位でパースして title と ISBN を同じ entry から取得
- * ※ これが「同じISBNが全作品につく」バグを根絶する
  */
+function extractIsbn13sFromText(s) {
+  return [...String(s || "").matchAll(/97[89]\d{10}/g)].map((m) => m[0]);
+}
+
+// Atom(<entry>) / RSS(<item>) 両対応の“雑だけど安全寄り”パース
+function parseEntriesFromOpenSearchXml(xml) {
+  const out = [];
+
+  const entryBlocks = [...xml.matchAll(/<entry\b[^>]*>([\s\S]*?)<\/entry>/g)].map((m) => m[1]);
+  const itemBlocks = [...xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+
+  const blocks = entryBlocks.length ? entryBlocks : itemBlocks;
+
+  for (const b of blocks) {
+    const titleMatch = b.match(/<title>([\s\S]*?)<\/title>/i);
+    const titleRaw = titleMatch ? titleMatch[1] : "";
+    const title = titleRaw
+      .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .trim();
+
+    // identifierっぽいところ全体からISBN拾う
+    const isbn13s = extractIsbn13sFromText(b);
+    const uniq = [...new Set(isbn13s)];
+
+    out.push({ title, isbn13s: uniq });
+  }
+
+  return out;
+}
+
 async function ndlSearchOpen({ seriesKey }) {
   const q = encodeURIComponent(`${seriesKey} 1`);
   const url = `https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=${q}`;
 
-  const r = await fetch(url, {
-    headers: { "user-agent": "tools-labo/book-scout lane2" },
-  });
+  const r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2" } });
   if (!r.ok) throw new Error(`NDL HTTP ${r.status}`);
+
   const xml = await r.text();
+  const entries = parseEntriesFromOpenSearchXml(xml);
 
-  // entry単位で切る（Atom想定）
-  const entries = [...xml.matchAll(/<entry\b[^>]*>[\s\S]*?<\/entry>/g)].map(
-    (m) => m[0]
-  );
-
-  const cands = [];
+  const candidates = [];
   for (const e of entries) {
-    // entry title
-    const tm = e.match(/<title>([\s\S]*?)<\/title>/i);
-    let title = tm ? tm[1] : "";
-    title = title
-      .replaceAll("&amp;", "&")
-      .replaceAll("&lt;", "<")
-      .replaceAll("&gt;", ">")
-      .replaceAll("&quot;", '"')
-      .replaceAll("&#39;", "'")
-      .trim();
+    // entryごとにISBN紐付け（複数あるなら最初の1つを候補にするが、スコアで落とす）
+    const isbn13 = e.isbn13s[0] || null;
+    const title = e.title;
 
     if (!title) continue;
 
-    // entry内の ISBN13（97[89]...）を抽出
-    const im = e.match(/97[89]\d{10}/);
-    const isbn13 = im ? im[0] : null;
-
-    // entryのlink（あれば）
-    const lm = e.match(/<link[^>]+href="([^"]+)"/i);
-    const detailUrl = lm ? lm[1] : null;
-
-    const score = scoreCandidate({ title, isbn13 });
-
-    cands.push({
+    const score = scoreCandidate({ seriesKey, title, isbn13 });
+    candidates.push({
       source: "ndl_open",
       title,
       isbn13,
       score,
-      detailUrl,
-      reason: isbn13 ? "isbn_from_entry" : "no_isbn_in_entry",
+      reason: isbn13 ? "isbn_in_same_entry" : "no_isbn_in_entry",
     });
   }
 
-  // 参考：feed全体で拾えるISBN（デバッグ用）
-  const rawIsbns = [
-    ...new Set([...xml.matchAll(/97[89]\d{10}/g)].map((m) => m[0])),
-  ].slice(0, 10);
-
-  return { query: `${seriesKey} 1`, url, candidates: cands, rawIsbns };
+  return { query: `${seriesKey} 1`, url, candidates, entriesSample: entries.slice(0, 5) };
 }
 
 /**
  * -----------------------
- * Amazon PA-API (SearchItems)
+ * Amazon PA-API（SearchItems）
+ * - “ISBNで検索して一致確認”に使う
+ * - 画像もここで取れる（PA-API経由なのでクリーン）
  * -----------------------
- * 漏れがあった時のISBN拾い（確定後の画像はGetItemsでやる想定）
  */
 function awsHmac(key, data) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest();
@@ -173,7 +166,7 @@ function amzDate() {
 }
 
 async function paapiSearchItems({ keywords }) {
-  if (!AMAZON_ACCESS_KEY || !AMAZON_SECRET_KEY || !AMAZON_PARTNER_TAG) {
+  if (!hasPaapi()) {
     return { skipped: true, reason: "missing_paapi_secrets" };
   }
 
@@ -200,7 +193,6 @@ async function paapiSearchItems({ keywords }) {
   const { amzDate: xAmzDate, dateStamp } = amzDate();
   const method = "POST";
   const canonicalUri = "/paapi5/searchitems";
-  const canonicalQuerystring = "";
   const canonicalHeaders =
     `content-encoding:amz-1.0\ncontent-type:application/json; charset=utf-8\nhost:${host}\nx-amz-date:${xAmzDate}\nx-amz-target:com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems\n`;
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
@@ -209,7 +201,7 @@ async function paapiSearchItems({ keywords }) {
   const canonicalRequest = [
     method,
     canonicalUri,
-    canonicalQuerystring,
+    "",
     canonicalHeaders,
     signedHeaders,
     payloadHash,
@@ -228,10 +220,7 @@ async function paapiSearchItems({ keywords }) {
   const kRegion = awsHmac(kDate, region);
   const kService = awsHmac(kRegion, service);
   const kSigning = awsHmac(kService, "aws4_request");
-  const signature = crypto
-    .createHmac("sha256", kSigning)
-    .update(stringToSign, "utf8")
-    .digest("hex");
+  const signature = crypto.createHmac("sha256", kSigning).update(stringToSign, "utf8").digest("hex");
 
   const authorizationHeader =
     `${algorithm} Credential=${AMAZON_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
@@ -250,7 +239,9 @@ async function paapiSearchItems({ keywords }) {
   });
 
   const text = await r.text();
-  if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 800) };
+  if (!r.ok) {
+    return { error: true, status: r.status, body: text.slice(0, 800) };
+  }
   return { ok: true, json: JSON.parse(text) };
 }
 
@@ -263,55 +254,50 @@ function extractIsbn13FromPaapiItem(item) {
   return null;
 }
 
-async function amazonFallback({ seriesKey }) {
-  const tries = [`${seriesKey} 1`, `${seriesKey} （1）`];
-  const all = [];
-
-  for (const keywords of tries) {
-    const res = await paapiSearchItems({ keywords });
-    if (res?.skipped) return { skipped: true, reason: res.reason };
-    if (res?.error) {
-      all.push({ query: keywords, error: true, status: res.status, body: res.body });
-      continue;
-    }
-
-    const items = res?.json?.SearchResult?.Items || [];
-    for (const it of items) {
-      const title = it?.ItemInfo?.Title?.DisplayValue || "";
-      const asin = it?.ASIN || null;
-      const isbn13 = extractIsbn13FromPaapiItem(it);
-      const image = it?.Images?.Primary?.Large?.URL || null;
-      const amazonDp = it?.DetailPageURL || null;
-
-      const score = scoreCandidate({ title, isbn13 }) + (image ? 5 : 0);
-      all.push({
-        source: "amazon_paapi_search",
-        query: keywords,
-        title,
-        asin,
-        isbn13,
-        image,
-        amazonDp,
-        score,
-        reason: "paapi_search",
-      });
-    }
-
-    await sleep(800);
-  }
-
-  const filtered = all.filter((c) => !isLikelySingleEpisode(c.title));
-  return { candidates: filtered.length ? filtered : all, tried: tries };
+function dpUrlFromDetailPageURL(url) {
+  return url || null;
 }
 
 /**
- * -----------------------
- * MAIN
- * -----------------------
- * 誤confirmed潰しの要点：
- * - NDLは「entry内でISBNが取れた」＋「タイトルが1巻っぽい」を必須にする
- *   （これで“適当なISBN拾って全部confirmed”が消える）
+ * 安全策（誤confirmed潰し）
+ * - NDLで得たISBNを Amazon PA-API で “ISBN検索” し直す
+ * - PA-API側でも同じISBNが出たら「確定」とする
  */
+async function verifyByAmazonIsbn({ seriesKey, isbn13 }) {
+  const res = await paapiSearchItems({ keywords: isbn13 });
+  if (res?.skipped) return { skipped: true, reason: res.reason };
+  if (res?.error) return { error: true, status: res.status, body: res.body };
+
+  const items = res?.json?.SearchResult?.Items || [];
+  const cands = [];
+
+  for (const it of items) {
+    const title = it?.ItemInfo?.Title?.DisplayValue || "";
+    const gotIsbn = extractIsbn13FromPaapiItem(it);
+    const image = it?.Images?.Primary?.Large?.URL || null;
+    const amazonDp = dpUrlFromDetailPageURL(it?.DetailPageURL || null);
+
+    // 一致確認：ISBNが同じ かつ シリーズ名が入ってる（強制）
+    if (gotIsbn !== isbn13) continue;
+    if (!title.includes(seriesKey)) continue;
+
+    // 1巻っぽさも見る（完璧じゃないが誤確定を下げる）
+    const score = scoreCandidate({ seriesKey, title, isbn13: gotIsbn }) + (image ? 5 : 0);
+
+    cands.push({
+      source: "amazon_paapi_isbn_verify",
+      title,
+      isbn13: gotIsbn,
+      image,
+      amazonDp,
+      score,
+    });
+  }
+
+  const best = pickBest(cands);
+  return { ok: true, candidates: cands, best };
+}
+
 async function main() {
   const seeds = await loadJson(SEEDS_PATH, { items: [] });
   const seedItems = Array.isArray(seeds?.items) ? seeds.items : [];
@@ -324,90 +310,69 @@ async function main() {
     const seriesKey = norm(s?.seriesKey);
     if (!seriesKey) continue;
 
-    // 1) NDL(open)
-    let ndl = null;
+    const author = norm(s?.author) || null;
+
+    // 1) NDL(Open)候補
+    let ndl;
     try {
       ndl = await ndlSearchOpen({ seriesKey });
     } catch (e) {
       ndl = { error: true, message: String(e?.message || e) };
     }
 
-    const ndlCands = ndl?.candidates || [];
-    const ndlBest = pickBestCandidate(ndlCands);
+    const ndlCands = Array.isArray(ndl?.candidates) ? ndl.candidates : [];
+    const ndlFiltered = ndlCands.filter((c) => !!c.isbn13 && !isLikelySingleEpisode(c.title));
+    const ndlBest = pickBest(ndlFiltered);
 
-    // ★誤confirmed潰し：NDLは「ISBNあり」かつ「1巻っぽいタイトル」を必須
-    const ndlOk =
-      !!ndlBest?.isbn13 &&
-      isVol1Like(ndlBest.title) &&
-      !isLikelySingleEpisode(ndlBest.title) &&
-      (ndlBest.score ?? 0) >= 110;
+    // NDLで“ISBN候補”が取れても、Amazonで一致確認できない限り確定しない（安全策）
+    if (ndlBest?.isbn13) {
+      const verify = await verifyByAmazonIsbn({ seriesKey, isbn13: ndlBest.isbn13 });
 
-    if (ndlOk) {
-      confirmed.push({
+      if (verify?.ok && verify?.best) {
+        confirmed.push({
+          seriesKey,
+          author,
+          vol1: {
+            title: verify.best.title,
+            isbn13: ndlBest.isbn13,
+            image: verify.best.image ?? null,
+            amazonDp: verify.best.amazonDp ?? null,
+            source: "ndl_open+amazon_verify",
+          },
+        });
+        debug.push({ seriesKey, ndlBest, ndl, amazonVerify: verify });
+        await sleep(350);
+        continue;
+      }
+
+      // PA-APIが無い or 確認失敗 → todoへ（安全優先）
+      todo.push({
         seriesKey,
-        author: norm(s?.author) || null,
-        vol1: {
-          title: ndlBest.title,
-          isbn13: ndlBest.isbn13,
-          image: null,    // 確定ISBN → PA-API GetItemsで後段
-          amazonDp: null, // 同上
+        author,
+        reason: verify?.skipped
+          ? `ndl_has_isbn_but_paapi_skipped(${verify.reason})`
+          : `ndl_has_isbn_but_not_verified`,
+        best: {
           source: "ndl_open",
+          score: ndlBest.score ?? null,
+          title: ndlBest.title ?? null,
+          isbn13: ndlBest.isbn13 ?? null,
         },
       });
-      debug.push({ seriesKey, ndl });
-      await sleep(300);
+      debug.push({ seriesKey, ndlBest, ndl, amazonVerify: verify });
+      await sleep(350);
       continue;
     }
 
-    // 2) 漏れは Amazon PA-API SearchItems で ISBN拾い
-    const amz = await amazonFallback({ seriesKey });
-    const amzCands = amz?.candidates || [];
-    const amzBest = pickBestCandidate(amzCands);
-
-    const best = amzBest || ndlBest || null;
-    const bestScore = best?.score ?? 0;
-
-    const amzOk =
-      !!best?.isbn13 &&
-      isVol1Like(best.title) &&
-      !isLikelySingleEpisode(best.title) &&
-      bestScore >= 110;
-
-    if (amzOk) {
-      confirmed.push({
-        seriesKey,
-        author: norm(s?.author) || null,
-        vol1: {
-          title: best.title,
-          isbn13: best.isbn13,
-          image: null, // 確定ISBN → PA-API GetItemsで後段
-          amazonDp: best.amazonDp || null,
-          source: best.source,
-        },
-      });
-      debug.push({ seriesKey, ndl, amazon: { tried: amz?.tried, best: amzBest } });
-    } else {
-      todo.push({
-        seriesKey,
-        author: norm(s?.author) || null,
-        reason: best
-          ? `not_confirmed(score=${bestScore}, isbn13=${!!best?.isbn13})`
-          : "no_candidate",
-        best: best
-          ? {
-              source: best.source,
-              score: bestScore,
-              title: best.title || null,
-              asin: best.asin || null,
-              isbn13: best.isbn13 || null,
-              query: best.query || (ndl?.query ?? null),
-            }
-          : null,
-      });
-      debug.push({ seriesKey, ndl, amazon: amz });
-    }
-
-    await sleep(400);
+    // 2) NDLですらISBN候補が無い → todo
+    todo.push({
+      seriesKey,
+      author,
+      reason: ndl?.error ? `ndl_error(${ndl.message})` : "ndl_no_isbn_candidate",
+      best: null,
+    });
+    debug.push({ seriesKey, ndl });
+    await sleep(350);
   }
 
   const outSeries = {
@@ -417,6 +382,7 @@ async function main() {
     todo: todo.length,
     items: confirmed,
   };
+
   const outTodo = {
     updatedAt: nowIso(),
     total: todo.length,
