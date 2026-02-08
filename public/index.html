@@ -5,15 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト</title>
   <link rel="stylesheet" href="./style.css" />
-  <meta http-equiv="refresh" content="0; url=./list.html?cat=manga" />
 </head>
 <body>
-  <main class="wrap" style="padding:24px 16px;">
-    <h1 style="margin:0 0 8px;">BOOKスカウト</h1>
-    <p style="margin:0 0 16px;">リストページへ移動します…</p>
-    <p style="margin:0;">
-      <a href="./list.html?cat=manga">移動しない場合はこちら</a>
-    </p>
+  <header class="header">
+    <h1>BOOKスカウト</h1>
+    <p class="sub">まずは「表示が動く土台」を固める</p>
+  </header>
+
+  <main class="wrap">
+    <div class="home">
+      <a class="btn" href="./list.html?cat=manga">マンガ一覧へ</a>
+      <div class="home-note">
+        ※ データは <code>public/data/manga/list_items.json</code> を参照します
+      </div>
+    </div>
   </main>
 </body>
 </html>
