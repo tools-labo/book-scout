@@ -1,15 +1,22 @@
-name: Manga Items (lane2)
+# .github/workflows/manga-items.yml
+name: Lane2 - Confirm Vol1 ISBN (NDL open + Amazon PA-API)
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *" # 6時間ごと（様子見）
 
 permissions:
   contents: write
 
+concurrency:
+  group: lane2-vol1
+  cancel-in-progress: true
+
 jobs:
-  build:
+  lane2:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -18,23 +25,25 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install deps (no lock)
-        run: npm install
-
-      - name: Build lane2 (vol1 confirmed)
+      - name: Run lane2 (NDL open + PA-API)
         env:
-          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-        run: npm run manga:lane2
-
-      - name: Commit & push
+          # Amazon PA-API（使うなら入れる / 未設定でもNDLだけで動く）
+          AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
+          AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
         run: |
           set -euo pipefail
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes"
+          node scripts/lane2/build_lane2.mjs
+
+      - name: Commit outputs
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/manga
-          git commit -m "build lane2 vol1"
+          git add data/lane2
+          git commit -m "lane2: update vol1 series"
           git push
