@@ -1,4 +1,4 @@
-name: Manga Items
+name: Manga Items (lane2)
 
 on:
   workflow_dispatch:
@@ -12,52 +12,29 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install deps
-        shell: bash
+      - name: Install deps (no lock)
+        run: npm install
+
+      - name: Build lane2 (vol1 confirmed)
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+        run: npm run manga:lane2
+
+      - name: Commit & push
         run: |
           set -euo pipefail
-          npm ci
-
-      - name: Build manga data (lane2 base)
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          # ここは「今ある scripts に合わせて」順に実行
-          node scripts/manga/openbd_items.mjs
-          node scripts/manga/vol1_backfill.mjs
-          node scripts/manga/anilist_tags.mjs
-          node scripts/manga/apply_anilist_genres.mjs
-          node scripts/manga/anilist_series_master.mjs
-          node scripts/manga/fill_series_synopsis.mjs
-          node scripts/manga/build_list_items_from_master.mjs
-          node scripts/manga/build_work_pages.mjs
-          node scripts/manga/build_indexes.mjs
-
-      - name: Commit & push data changes
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          git status --porcelain
-
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit."
+            echo "No changes"
             exit 0
           fi
-
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add data/manga || true
-          git commit -m "build manga items"
+          git add data/manga
+          git commit -m "build lane2 vol1"
           git push
