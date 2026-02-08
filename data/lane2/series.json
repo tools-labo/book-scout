@@ -1,7 +1,41 @@
 {
-  "updatedAt": "2026-02-08T10:58:32.691Z",
+  "updatedAt": "2026-02-08T11:00:25.239Z",
   "total": 3,
-  "confirmed": 0,
-  "todo": 3,
-  "items": []
+  "confirmed": 3,
+  "todo": 0,
+  "items": [
+    {
+      "seriesKey": "ブルーロック",
+      "author": "金城 宗幸",
+      "vol1": {
+        "title": "open 20 ブルーロック 1 - 国立国会図書館サーチ OpenSearch",
+        "isbn13": "9784087473315",
+        "image": null,
+        "amazonDp": null,
+        "source": "ndl_open"
+      }
+    },
+    {
+      "seriesKey": "黄泉のツガイ",
+      "author": "荒川弘",
+      "vol1": {
+        "title": "open 20 黄泉のツガイ 1 - 国立国会図書館サーチ OpenSearch",
+        "isbn13": "9784087473315",
+        "image": null,
+        "amazonDp": null,
+        "source": "ndl_open"
+      }
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "author": "山田鐘人",
+      "vol1": {
+        "title": "open 20 葬送のフリーレン 1 - 国立国会図書館サーチ OpenSearch",
+        "isbn13": "9784087473315",
+        "image": null,
+        "amazonDp": null,
+        "source": "ndl_open"
+      }
+    }
+  ]
 }
