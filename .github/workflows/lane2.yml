@@ -1,48 +1,43 @@
 # .github/workflows/lane2.yml
-name: Lane2 - Confirm Vol1 ISBN (NDL open + Amazon PA-API)
+name: Lane2 (Vol1 bootstrap)
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 */6 * * *" # 6時間ごと（様子見）
 
 permissions:
   contents: write
 
-concurrency:
-  group: lane2-vol1
-  cancel-in-progress: true
-
 jobs:
   lane2:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+
+    env:
+      AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+      AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+      AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
 
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
 
-      - name: Run lane2 (NDL open + PA-API)
-        env:
-          AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
-          AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
-          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+      - name: Install
+        run: npm install
+
+      - name: Run lane2
+        run: npm run lane2
+
+      - name: Commit data
         run: |
           set -euo pipefail
-          node scripts/lane2/build_lane2.mjs
-
-      - name: Commit outputs
-        run: |
-          set -euo pipefail
-          if git diff --quiet; then
-            echo "No changes."
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/lane2
-          git commit -m "lane2: update vol1 series"
+          git add data/lane2/*.json
+          git commit -m "lane2: bootstrap"
           git push
