@@ -42,12 +42,13 @@ function getCat() {
   return qs().get("cat") || "manga";
 }
 
+// ★ここが重要：data/ を参照
 function getDataUrl(cat) {
   return `./data/${encodeURIComponent(cat)}/list_items.json`;
 }
 
 function getOnlyConfirmed() {
-  // デフォは 1（確定分のみ表示）
+  // デフォ 1（確定分のみ表示）
   const v = qs().get("onlyConfirmed");
   if (v == null) return true;
   return v !== "0";
@@ -210,10 +211,8 @@ function renderWork(items, cat) {
 
   try {
     const items = await loadJson(url);
-
     renderList(items, cat);
     renderWork(items, cat);
-
   } catch (e) {
     const status = document.getElementById("status");
     if (status) {
@@ -221,7 +220,7 @@ function renderWork(items, cat) {
         <div class="status-error">
           読み込みに失敗しました。<br/>
           参照先: <code>${esc(url)}</code><br/>
-          <small>※ public/data/${esc(cat)}/list_items.json を配置すると表示されます</small>
+          <small>※ data/${esc(cat)}/list_items.json を生成すると表示されます</small>
         </div>
       `;
     }
