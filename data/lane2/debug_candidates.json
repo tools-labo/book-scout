@@ -1,634 +1,436 @@
 {
-  "updatedAt": "2026-02-08T12:14:41.265Z",
+  "updatedAt": "2026-02-08T12:21:47.643Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
-      "author": "金城 宗幸",
       "ndl": {
         "query": "ブルーロック 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
-        "candidates": [
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "あ--(いまなんつった? ; 288)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_1000397"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "……あ--(いまなんつった? ; 44)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_129472"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000121-I000000095"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "ああ言えばこう食う",
-            "isbn13": "9784087473315",
-            "score": 80,
-            "reason": "isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003013622"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "鳴呼落合先生 : 演説",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_122363"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "鳴呼落合先生 : 演説",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_122364"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "ああ､小野さつき訓導 : 野外写生指導中の殉職",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111709"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーカイブズ・ニューズレター",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007716905"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーカイブズの構造認識と編成記述",
-            "isbn13": "9784784217366",
-            "score": 80,
-            "reason": "isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I025379684"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000136-I1970304959940703008"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーガマ",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000000032692"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーガマ資料による仏伝の研究",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001039550"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_1007189"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111061"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111062"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111063"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーキュメントセットラー",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000001-I2611B10199877"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "アーキュメントセットラー : 社会編",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000126-I220000004"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "嗚呼　郷土愛",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000113-ISPL1732351"
-          },
-          {
-            "source": "ndl_open",
-            "query": "ブルーロック 1",
-            "title": "嗚呼　郷土愛/有名人の巻",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000113-ISPL1732625"
-          }
+        "rawIsbns": [
+          "9784087473315",
+          "9784784217366",
+          "9784306071865",
+          "9784579205622",
+          "9784093567145",
+          "9784874353998",
+          "9784866440125",
+          "9784903470825",
+          "9784582807561",
+          "9784621060803",
+          "9784846000318",
+          "9784594070519",
+          "9784579213924",
+          "9784418143214",
+          "9784540950872",
+          "9784770502148",
+          "9784047279452",
+          "9784779126581",
+          "9784894790476",
+          "9784255940113",
+          "9784121017864",
+          "9784121800039",
+          "9784062002455",
+          "9784418175024"
+        ],
+        "rawTitles": [
+          "open 20 ブルーロック 1 - 国立国会図書館サーチ OpenSearch",
+          "あ--(いまなんつった? ; 288)",
+          "……あ--(いまなんつった? ; 44)",
+          "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+          "ああ言えばこう食う",
+          "鳴呼落合先生 : 演説",
+          "鳴呼落合先生 : 演説",
+          "ああ､小野さつき訓導 : 野外写生指導中の殉職",
+          "アーカイブズ・ニューズレター",
+          "アーカイブズの構造認識と編成記述",
+          "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
+          "アーガマ",
+          "アーガマ資料による仏伝の研究",
+          "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
+          "ああ、北四番丁",
+          "ああ、北四番丁",
+          "ああ、北四番丁",
+          "アーキュメントセットラー",
+          "アーキュメントセットラー : 社会編",
+          "嗚呼　郷土愛"
         ]
       },
-      "amazon": {
-        "error": true,
-        "status": 400,
-        "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
-      },
-      "picked": {
-        "ndlBest": {
-          "source": "ndl_open",
-          "query": "ブルーロック 1",
-          "title": "ああ言えばこう食う",
-          "isbn13": "9784087473315",
-          "score": 80,
-          "reason": "isbn_in_item",
-          "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003013622"
-        },
-        "amazonBest": null,
-        "ndlIsbn": "9784087473315",
-        "paapiIsbn": null,
-        "match": false
+      "paapi": {
+        "skipped": null,
+        "byIsbn": {
+          "9784087473315": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784784217366": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784306071865": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784579205622": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784093567145": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784874353998": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784866440125": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784903470825": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784582807561": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784621060803": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784846000318": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784594070519": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          }
+        }
       }
     },
     {
       "seriesKey": "黄泉のツガイ",
-      "author": "荒川弘",
       "ndl": {
         "query": "黄泉のツガイ 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
-        "candidates": [
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "あ--(いまなんつった? ; 288)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_1000397"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "……あ--(いまなんつった? ; 44)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_129472"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000121-I000000095"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "ああ言えばこう食う",
-            "isbn13": "9784087473315",
-            "score": 80,
-            "reason": "isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003013622"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "鳴呼落合先生 : 演説",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_122363"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "鳴呼落合先生 : 演説",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_122364"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "ああ､小野さつき訓導 : 野外写生指導中の殉職",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111709"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーカイブズ・ニューズレター",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007716905"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーカイブズの構造認識と編成記述",
-            "isbn13": "9784784217366",
-            "score": 80,
-            "reason": "isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I025379684"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000136-I1970304959940703008"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーガマ",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000000032692"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーガマ資料による仏伝の研究",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001039550"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_1007189"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111061"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111062"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111063"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーキュメントセットラー",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000001-I2611B10199877"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "アーキュメントセットラー : 社会編",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000126-I220000004"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "嗚呼　郷土愛",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000113-ISPL1732351"
-          },
-          {
-            "source": "ndl_open",
-            "query": "黄泉のツガイ 1",
-            "title": "嗚呼　郷土愛/有名人の巻",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000113-ISPL1732625"
-          }
+        "rawIsbns": [
+          "9784087473315",
+          "9784784217366",
+          "9784306071865",
+          "9784579205622",
+          "9784093567145",
+          "9784874353998",
+          "9784866440125",
+          "9784903470825",
+          "9784582807561",
+          "9784621060803",
+          "9784846000318",
+          "9784594070519",
+          "9784579213924",
+          "9784418143214",
+          "9784540950872",
+          "9784770502148",
+          "9784047279452",
+          "9784779126581",
+          "9784894790476",
+          "9784255940113",
+          "9784121017864",
+          "9784121800039",
+          "9784062002455",
+          "9784418175024"
+        ],
+        "rawTitles": [
+          "open 20 黄泉のツガイ 1 - 国立国会図書館サーチ OpenSearch",
+          "あ--(いまなんつった? ; 288)",
+          "……あ--(いまなんつった? ; 44)",
+          "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+          "ああ言えばこう食う",
+          "鳴呼落合先生 : 演説",
+          "鳴呼落合先生 : 演説",
+          "ああ､小野さつき訓導 : 野外写生指導中の殉職",
+          "アーカイブズ・ニューズレター",
+          "アーカイブズの構造認識と編成記述",
+          "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
+          "アーガマ",
+          "アーガマ資料による仏伝の研究",
+          "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
+          "ああ、北四番丁",
+          "ああ、北四番丁",
+          "ああ、北四番丁",
+          "アーキュメントセットラー",
+          "アーキュメントセットラー : 社会編",
+          "嗚呼　郷土愛"
         ]
       },
-      "amazon": {
-        "error": true,
-        "status": 400,
-        "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
-      },
-      "picked": {
-        "ndlBest": {
-          "source": "ndl_open",
-          "query": "黄泉のツガイ 1",
-          "title": "ああ言えばこう食う",
-          "isbn13": "9784087473315",
-          "score": 80,
-          "reason": "isbn_in_item",
-          "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003013622"
-        },
-        "amazonBest": null,
-        "ndlIsbn": "9784087473315",
-        "paapiIsbn": null,
-        "match": false
+      "paapi": {
+        "skipped": null,
+        "byIsbn": {
+          "9784087473315": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784784217366": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784306071865": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784579205622": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784093567145": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784874353998": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784866440125": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784903470825": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784582807561": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784621060803": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784846000318": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784594070519": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          }
+        }
       }
     },
     {
       "seriesKey": "葬送のフリーレン",
-      "author": "山田鐘人",
       "ndl": {
         "query": "葬送のフリーレン 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
-        "candidates": [
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "あ--(いまなんつった? ; 288)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_1000397"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "……あ--(いまなんつった? ; 44)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_129472"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000121-I000000095"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "ああ言えばこう食う",
-            "isbn13": "9784087473315",
-            "score": 80,
-            "reason": "isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003013622"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "鳴呼落合先生 : 演説",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_122363"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "鳴呼落合先生 : 演説",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_122364"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "ああ､小野さつき訓導 : 野外写生指導中の殉職",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111709"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーカイブズ・ニューズレター",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007716905"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーカイブズの構造認識と編成記述",
-            "isbn13": "9784784217366",
-            "score": 80,
-            "reason": "isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I025379684"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000136-I1970304959940703008"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーガマ",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000000032692"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーガマ資料による仏伝の研究",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001039550"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_1007189"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111061"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111062"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "ああ、北四番丁",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R000000054-I010_111063"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーキュメントセットラー",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000001-I2611B10199877"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "アーキュメントセットラー : 社会編",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000126-I220000004"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "嗚呼　郷土愛",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000113-ISPL1732351"
-          },
-          {
-            "source": "ndl_open",
-            "query": "葬送のフリーレン 1",
-            "title": "嗚呼　郷土愛/有名人の巻",
-            "isbn13": null,
-            "score": 0,
-            "reason": "no_isbn_in_item",
-            "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000113-ISPL1732625"
-          }
+        "rawIsbns": [
+          "9784087473315",
+          "9784784217366",
+          "9784306071865",
+          "9784579205622",
+          "9784093567145",
+          "9784874353998",
+          "9784866440125",
+          "9784903470825",
+          "9784582807561",
+          "9784621060803",
+          "9784846000318",
+          "9784594070519",
+          "9784579213924",
+          "9784418143214",
+          "9784540950872",
+          "9784770502148",
+          "9784047279452",
+          "9784779126581",
+          "9784894790476",
+          "9784255940113",
+          "9784121017864",
+          "9784121800039",
+          "9784062002455",
+          "9784418175024"
+        ],
+        "rawTitles": [
+          "open 20 葬送のフリーレン 1 - 国立国会図書館サーチ OpenSearch",
+          "あ--(いまなんつった? ; 288)",
+          "……あ--(いまなんつった? ; 44)",
+          "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+          "ああ言えばこう食う",
+          "鳴呼落合先生 : 演説",
+          "鳴呼落合先生 : 演説",
+          "ああ､小野さつき訓導 : 野外写生指導中の殉職",
+          "アーカイブズ・ニューズレター",
+          "アーカイブズの構造認識と編成記述",
+          "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
+          "アーガマ",
+          "アーガマ資料による仏伝の研究",
+          "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
+          "ああ、北四番丁",
+          "ああ、北四番丁",
+          "ああ、北四番丁",
+          "アーキュメントセットラー",
+          "アーキュメントセットラー : 社会編",
+          "嗚呼　郷土愛"
         ]
       },
-      "amazon": {
-        "error": true,
-        "status": 400,
-        "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
-      },
-      "picked": {
-        "ndlBest": {
-          "source": "ndl_open",
-          "query": "葬送のフリーレン 1",
-          "title": "ああ言えばこう食う",
-          "isbn13": "9784087473315",
-          "score": 80,
-          "reason": "isbn_in_item",
-          "detailUrl": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003013622"
-        },
-        "amazonBest": null,
-        "ndlIsbn": "9784087473315",
-        "paapiIsbn": null,
-        "match": false
+      "paapi": {
+        "skipped": null,
+        "byIsbn": {
+          "9784087473315": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784784217366": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784306071865": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784579205622": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784093567145": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784874353998": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784866440125": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784903470825": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784582807561": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784621060803": {
+            "ok": false,
+            "error": {
+              "status": 429,
+              "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            }
+          },
+          "9784846000318": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          },
+          "9784594070519": {
+            "ok": false,
+            "error": {
+              "status": 400,
+              "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+            }
+          }
+        }
       }
     }
   ]
