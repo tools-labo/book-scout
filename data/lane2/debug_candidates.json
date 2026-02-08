@@ -1,74 +1,4334 @@
 {
-  "updatedAt": "2026-02-08T11:17:52.863Z",
+  "updatedAt": "2026-02-08T11:30:24.225Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
+      "ndlBest": {
+        "source": "ndl_open",
+        "title": "ああ言えばこう食う",
+        "isbn13": "9784087473315",
+        "score": 80,
+        "reason": "isbn_in_same_entry"
+      },
       "ndl": {
         "query": "ブルーロック 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
-        "candidates": [],
-        "rawIsbns": [
-          "9784087473315",
-          "9784784217366",
-          "9784306071865",
-          "9784579205622",
-          "9784093567145",
-          "9784874353998",
-          "9784866440125",
-          "9784903470825",
-          "9784582807561",
-          "9784621060803"
+        "candidates": [
+          {
+            "source": "ndl_open",
+            "title": "あ--(いまなんつった? ; 288)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "……あ--(いまなんつった? ; 44)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ言えばこう食う",
+            "isbn13": "9784087473315",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ､小野さつき訓導 : 野外写生指導中の殉職",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーカイブズ・ニューズレター",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーカイブズの構造認識と編成記述",
+            "isbn13": "9784784217366",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーガマ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーガマ資料による仏伝の研究",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキュメントセットラー",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキュメントセットラー : 社会編",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼　郷土愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼　郷土愛/有名人の巻",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ曲阜　孔子之聖蹟",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫!疑獄市政 : 東京市政の醜状を暴露して五百万市民の憤起を促す",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーク灯も雪洞もついた 夜桜で賑ふ福井市",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫々－首壇物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼軍縮",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーケード第2期工事の完工式",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーケード連絡協議会の開催について",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ結婚」若返り",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ好食大論争",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼故落合直文君 : 明治３７年１月１０日追悼会席上談話",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼こからし",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（一）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（九）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（五）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（三）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（二）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（八）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（四）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ五・一五事件 : 天照民族健在なれ : 皇道宣揚運動",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王騎士物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ佐賀城一鯱の門復元によせて",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ山岳部",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼！柴田瀧男くん！",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ酒徒帰らず",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ十五畷",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「アースワーク研究会」による市民農園「プチファーム」の運営",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アースワークの地平 : 環境芸術から都市空間まで",
+            "isbn13": "9784306071865",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ生活が苦しい」 / どこの主婦の声も訴える / 団結の誇り輝き第六回駅伝大会 / 人間連帯の美しさ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ青春頓馬の記",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼青春よ我にまた」旧制高校記の旅",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーそう --(いまなんつった? ; 111)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ壮烈！突撃二勇士 野路、新貝両氏の戦功 映画となって近く上映 出身地だロケーション",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ大君わが大君」乙女子等が唱え奉る歌山々に谺する秋",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "吁々大権は干犯され先帝の遺業は傷けらる : 日支郵便約定成立の真相",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ旅よ［色紙］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼玉置明善佐水会長逝く",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーダおばさんのおかしの本",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠信楠子亡墓 拓本",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠臣楠公の銅像（二重橋前）The Bronze Statue of Masashige Kusunoki Great Patriot in front of the Imperial Palace (Greater Tokyo)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠烈生命線に散る大和魂(満蒙編)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼忠臣楠氏旗",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼朝鮮」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「あゝ朝鮮」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼朝鮮",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼 樗牛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "幼婷さんの北京的点心 : ぎょうざ、肉まん、ワンタン、めんetc",
+            "isbn13": "9784579205622",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストが語るジョジョ--(特集人間賛歌―謎めく美しき世界 : 荒木飛呂彦)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストが語る羽生結弦歴代プログラムの美--(Book in book)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストマイバッグ : 全国自治体の環境活動マップ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーディ･パルワン. 1",
+            "isbn13": null,
+            "score": 30,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ東京の一大惨話史大震災大火災",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートオブシンプルフード : 『美味しい革命』からのノート、レッスン、レシピ",
+            "isbn13": "9784093567145",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ART of TEA : 紅茶人生をもっとアートにしたいのです",
+            "isbn13": "9784874353998",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「アート」「音楽」「食」のアートフェスティバル文化で復興する街--(Scope)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔アートスポット〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートにおける追悼の営みと記憶の継承 : 東日本大震災被災地にみる拡散宗教性",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートによる「生きる力の取戻し」と「仕事の復興」--(震災特集)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートの力で仙台を覚醒せよ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートの力とは、--(アートで発信する「仙台の今」 ; 4)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "『アートプロジェクトとレジリエンス』 : 南三陸町の現場から--(復興推進活動事例集)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アート求めて街巡り ： 地図付き手引き制作 ： 社団法人RAF : 石巻アートめぐりの手引き",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートワーク、大地を溶解した瑠璃の世界--(この人の仕事場が見たい ; 6)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼、なつかしの軌道っこ 仙台鉄道ものがたり : 仙台と加美町を結んでいた仙台鉄道の記憶",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ涙のワークボーイ［原稿］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "Ānandagarbha造『金剛界大曼荼羅儀軌一切金剛出現』『金剛薩埵出現と名づくる成就法』『金剛薩埵成就法』和訳",
+            "isbn13": "9784866440125",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "Ānandagarbha造『Tattvāloka』「金剛界品」金剛界大曼荼羅和訳",
+            "isbn13": "9784903470825",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "阿難陀懺悔婬欲成道圖",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーなんでっ!--（いまなんつった? ; 175)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼日本未来記",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーヌパープ キッティクン氏 : バンコク-仙台線 : 就航を機に、130年余り続く友好関係をより豊かなものにしてまいりましょう。--(クローズアップインタビュー)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーネスト・サトウ神道論",
+            "isbn13": "9784582807561",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼萩の家先生",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼萩の家先生",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼賣淫國",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼賣淫國」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あぁ、万事塞翁がお・ん・な : 神戸松迺家女四代ものがたり",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーバンNEXT",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ美くに三国はきみが墓どころ［色紙］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ比丘尼椿の花椿の花かかえて退国す美しき歌声あとに残して%改行%（八百比丘尼4）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、松島のカキづくし",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュカントリークッキング : 自然とともに生きるアーミッシュの人々の素敵なメニュー",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュの食卓",
+            "isbn13": "9784621060803",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュの謎 : 宗教・社会・生活",
+            "isbn13": "9784846000318",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュ料理",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ宮城県",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ無情",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫無情と後の巌窟王",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アームストロング砲佐賀藩製造についての疑問/文献史料を中心にして",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドを食べるだけでみるみる若返る! : 50代でも30代の肌が手に入る",
+            "isbn13": "9784594070519",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドだから、おいしい : しっとり、カリッと、サクッと。",
+            "isbn13": "9784579213924",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドのチカラ : 美容と健康、ダイエットに効く!",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドミルク完全レシピ : やせて美肌に!",
+            "isbn13": "9784418143214",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ : インドの生命科学",
+            "isbn13": "9784540950872",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ・カフェ : インドの医食同源にもとづく、お手軽レシピ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ食事法理論とレシピ : 食事で変わる心と体",
+            "isbn13": "9784770502148",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ治療院のデトックスレシピ",
+            "isbn13": "9784047279452",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダの驚きの果実アムラの真実",
+            "isbn13": "9784779126581",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダの食事療法 : 至福の体質別レシピ",
+            "isbn13": "9784894790476",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ四年目の夏来る　/原爆患者看護の思い出",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーリオオーリオのつくり方 : アルポルト",
+            "isbn13": "9784255940113",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーりカンパーイ！--（いまなんつった? ; 133)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーリヤ学会会報",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ＲＣ構造物に発生したつらら状物質に関する研究 : 築館町近郊の被害調査（その1）",
+            "isbn13": null,
+            "score": 30,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール・デコの建築 : 合理性と官能性の造形",
+            "isbn13": "9784121017864",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール・フランセ--(会員社訪問 ; 10)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アールベルグ･スキー術 : 及び諾威式競技スキー術の綜合的解説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール、ホー会社製特超高速度輪転折畳機付印刷機(一時間十二万枚印刷)/編輯局の一部/印刷工塲の一部(大阪毎日新聞社)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーロン収容所 : 西欧ヒューマニズムの限界",
+            "isbn13": "9784121800039",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ我が戦友・小野田寛郎少尉/ブラジル永住を決めた心のうち",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーヴイング･フイツシヤー博士の｢全額準備｣(百パーセント･マネー)提唱案",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ秋田の校長先生[草稿]",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼二月二十六日",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "藹々先生書観音并賛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "藍 : 藍の会作品集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合袴",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相預り申金子証文之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛汗クラブ 校長さんも草取り 女の先生はるかさんに襷がけ 小山村に汗の凱歌",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相誤書之覚(天満御宮寄進之事ニ付)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改売渡申添証文之事（御堂建立之樫木壱本）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申一札証文之事（年貢諸役銀立替拝借ニ付改一札）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申究一札之事（成福寺トノ火葬所出入訴訟費用分担ニ付）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申合之事（村方出入ニ付内済証文）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申極証文之事（田頭村庵室ニ付）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申規録証文之事（田頭村庵室ノ儀ニ付規録証文）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申土目録之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改書上帳",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改村方〆リ定証文之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛のある生活を求めて : ディスクドッグ愛好者の育成と技術向上、そして東北への普及を目指す｢ディスクドッグ東北｣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛謂編　上",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育会設置",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育研究所紀要 教養部",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育調査資料",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育無限－土佐婦人会80周年記念誌－",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛-裁く者-",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「愛市連盟」結成の前提 各学区単位に壮年団を",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相色メ申証文之事(白崎村彦次郎と茂左衛門申分つのるニ付一札)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "（愛岩山初穂銀、岩大火焼商売躰之方より差紙趣、組内酒屋・豆腐屋等取調申越べく達）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あ、いいんだ--（いまなんつった? ; 164)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アイウエオ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アイウエオヱバナシ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あいうえおの起源 : 日本語の謎は解かれた",
+            "isbn13": "9784062002455",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あいうえ築地の河岸ことば",
+            "isbn13": "9784418175024",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "會討御沙汰書",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "會討出陣詠百首和謌",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔相浦英三葉書〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦紀道書簡",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦紀道書簡",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦吉右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦吉右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦金左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦金左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清大夫",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦谷の戦国時代を物語る仏像・神像",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦佐一郎",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦作兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦三兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦茂十",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦茂十",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔相浦秀剛年賀状〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          }
+        ],
+        "entriesSample": [
+          {
+            "title": "あ--(いまなんつった? ; 288)",
+            "isbn13s": []
+          },
+          {
+            "title": "……あ--(いまなんつった? ; 44)",
+            "isbn13s": []
+          },
+          {
+            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+            "isbn13s": []
+          },
+          {
+            "title": "ああ言えばこう食う",
+            "isbn13s": [
+              "9784087473315"
+            ]
+          },
+          {
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13s": []
+          }
         ]
       },
-      "amazon": {
+      "amazonVerify": {
         "skipped": true,
         "reason": "missing_paapi_secrets"
       }
     },
     {
       "seriesKey": "黄泉のツガイ",
+      "ndlBest": {
+        "source": "ndl_open",
+        "title": "ああ言えばこう食う",
+        "isbn13": "9784087473315",
+        "score": 80,
+        "reason": "isbn_in_same_entry"
+      },
       "ndl": {
         "query": "黄泉のツガイ 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
-        "candidates": [],
-        "rawIsbns": [
-          "9784087473315",
-          "9784784217366",
-          "9784306071865",
-          "9784579205622",
-          "9784093567145",
-          "9784874353998",
-          "9784866440125",
-          "9784903470825",
-          "9784582807561",
-          "9784621060803"
+        "candidates": [
+          {
+            "source": "ndl_open",
+            "title": "あ--(いまなんつった? ; 288)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "……あ--(いまなんつった? ; 44)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ言えばこう食う",
+            "isbn13": "9784087473315",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ､小野さつき訓導 : 野外写生指導中の殉職",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーカイブズ・ニューズレター",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーカイブズの構造認識と編成記述",
+            "isbn13": "9784784217366",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーガマ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーガマ資料による仏伝の研究",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキュメントセットラー",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキュメントセットラー : 社会編",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼　郷土愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼　郷土愛/有名人の巻",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ曲阜　孔子之聖蹟",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫!疑獄市政 : 東京市政の醜状を暴露して五百万市民の憤起を促す",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーク灯も雪洞もついた 夜桜で賑ふ福井市",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫々－首壇物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼軍縮",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーケード第2期工事の完工式",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーケード連絡協議会の開催について",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ結婚」若返り",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ好食大論争",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼故落合直文君 : 明治３７年１月１０日追悼会席上談話",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼こからし",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（一）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（九）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（五）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（三）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（二）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（八）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（四）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ五・一五事件 : 天照民族健在なれ : 皇道宣揚運動",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王騎士物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ佐賀城一鯱の門復元によせて",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ山岳部",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼！柴田瀧男くん！",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ酒徒帰らず",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ十五畷",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「アースワーク研究会」による市民農園「プチファーム」の運営",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アースワークの地平 : 環境芸術から都市空間まで",
+            "isbn13": "9784306071865",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ生活が苦しい」 / どこの主婦の声も訴える / 団結の誇り輝き第六回駅伝大会 / 人間連帯の美しさ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ青春頓馬の記",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼青春よ我にまた」旧制高校記の旅",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーそう --(いまなんつった? ; 111)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ壮烈！突撃二勇士 野路、新貝両氏の戦功 映画となって近く上映 出身地だロケーション",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ大君わが大君」乙女子等が唱え奉る歌山々に谺する秋",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "吁々大権は干犯され先帝の遺業は傷けらる : 日支郵便約定成立の真相",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ旅よ［色紙］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼玉置明善佐水会長逝く",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーダおばさんのおかしの本",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠信楠子亡墓 拓本",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠臣楠公の銅像（二重橋前）The Bronze Statue of Masashige Kusunoki Great Patriot in front of the Imperial Palace (Greater Tokyo)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠烈生命線に散る大和魂(満蒙編)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼忠臣楠氏旗",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼朝鮮」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「あゝ朝鮮」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼朝鮮",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼 樗牛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "幼婷さんの北京的点心 : ぎょうざ、肉まん、ワンタン、めんetc",
+            "isbn13": "9784579205622",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストが語るジョジョ--(特集人間賛歌―謎めく美しき世界 : 荒木飛呂彦)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストが語る羽生結弦歴代プログラムの美--(Book in book)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストマイバッグ : 全国自治体の環境活動マップ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーディ･パルワン. 1",
+            "isbn13": null,
+            "score": 30,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ東京の一大惨話史大震災大火災",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートオブシンプルフード : 『美味しい革命』からのノート、レッスン、レシピ",
+            "isbn13": "9784093567145",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ART of TEA : 紅茶人生をもっとアートにしたいのです",
+            "isbn13": "9784874353998",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「アート」「音楽」「食」のアートフェスティバル文化で復興する街--(Scope)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔アートスポット〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートにおける追悼の営みと記憶の継承 : 東日本大震災被災地にみる拡散宗教性",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートによる「生きる力の取戻し」と「仕事の復興」--(震災特集)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートの力で仙台を覚醒せよ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートの力とは、--(アートで発信する「仙台の今」 ; 4)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "『アートプロジェクトとレジリエンス』 : 南三陸町の現場から--(復興推進活動事例集)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アート求めて街巡り ： 地図付き手引き制作 ： 社団法人RAF : 石巻アートめぐりの手引き",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートワーク、大地を溶解した瑠璃の世界--(この人の仕事場が見たい ; 6)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼、なつかしの軌道っこ 仙台鉄道ものがたり : 仙台と加美町を結んでいた仙台鉄道の記憶",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ涙のワークボーイ［原稿］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "Ānandagarbha造『金剛界大曼荼羅儀軌一切金剛出現』『金剛薩埵出現と名づくる成就法』『金剛薩埵成就法』和訳",
+            "isbn13": "9784866440125",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "Ānandagarbha造『Tattvāloka』「金剛界品」金剛界大曼荼羅和訳",
+            "isbn13": "9784903470825",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "阿難陀懺悔婬欲成道圖",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーなんでっ!--（いまなんつった? ; 175)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼日本未来記",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーヌパープ キッティクン氏 : バンコク-仙台線 : 就航を機に、130年余り続く友好関係をより豊かなものにしてまいりましょう。--(クローズアップインタビュー)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーネスト・サトウ神道論",
+            "isbn13": "9784582807561",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼萩の家先生",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼萩の家先生",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼賣淫國",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼賣淫國」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あぁ、万事塞翁がお・ん・な : 神戸松迺家女四代ものがたり",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーバンNEXT",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ美くに三国はきみが墓どころ［色紙］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ比丘尼椿の花椿の花かかえて退国す美しき歌声あとに残して%改行%（八百比丘尼4）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、松島のカキづくし",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュカントリークッキング : 自然とともに生きるアーミッシュの人々の素敵なメニュー",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュの食卓",
+            "isbn13": "9784621060803",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュの謎 : 宗教・社会・生活",
+            "isbn13": "9784846000318",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュ料理",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ宮城県",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ無情",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫無情と後の巌窟王",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アームストロング砲佐賀藩製造についての疑問/文献史料を中心にして",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドを食べるだけでみるみる若返る! : 50代でも30代の肌が手に入る",
+            "isbn13": "9784594070519",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドだから、おいしい : しっとり、カリッと、サクッと。",
+            "isbn13": "9784579213924",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドのチカラ : 美容と健康、ダイエットに効く!",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドミルク完全レシピ : やせて美肌に!",
+            "isbn13": "9784418143214",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ : インドの生命科学",
+            "isbn13": "9784540950872",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ・カフェ : インドの医食同源にもとづく、お手軽レシピ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ食事法理論とレシピ : 食事で変わる心と体",
+            "isbn13": "9784770502148",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ治療院のデトックスレシピ",
+            "isbn13": "9784047279452",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダの驚きの果実アムラの真実",
+            "isbn13": "9784779126581",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダの食事療法 : 至福の体質別レシピ",
+            "isbn13": "9784894790476",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ四年目の夏来る　/原爆患者看護の思い出",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーリオオーリオのつくり方 : アルポルト",
+            "isbn13": "9784255940113",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーりカンパーイ！--（いまなんつった? ; 133)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーリヤ学会会報",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ＲＣ構造物に発生したつらら状物質に関する研究 : 築館町近郊の被害調査（その1）",
+            "isbn13": null,
+            "score": 30,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール・デコの建築 : 合理性と官能性の造形",
+            "isbn13": "9784121017864",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール・フランセ--(会員社訪問 ; 10)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アールベルグ･スキー術 : 及び諾威式競技スキー術の綜合的解説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール、ホー会社製特超高速度輪転折畳機付印刷機(一時間十二万枚印刷)/編輯局の一部/印刷工塲の一部(大阪毎日新聞社)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーロン収容所 : 西欧ヒューマニズムの限界",
+            "isbn13": "9784121800039",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ我が戦友・小野田寛郎少尉/ブラジル永住を決めた心のうち",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーヴイング･フイツシヤー博士の｢全額準備｣(百パーセント･マネー)提唱案",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ秋田の校長先生[草稿]",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼二月二十六日",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "藹々先生書観音并賛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "藍 : 藍の会作品集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合袴",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相預り申金子証文之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛汗クラブ 校長さんも草取り 女の先生はるかさんに襷がけ 小山村に汗の凱歌",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相誤書之覚(天満御宮寄進之事ニ付)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改売渡申添証文之事（御堂建立之樫木壱本）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申一札証文之事（年貢諸役銀立替拝借ニ付改一札）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申究一札之事（成福寺トノ火葬所出入訴訟費用分担ニ付）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申合之事（村方出入ニ付内済証文）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申極証文之事（田頭村庵室ニ付）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申規録証文之事（田頭村庵室ノ儀ニ付規録証文）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申土目録之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改書上帳",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改村方〆リ定証文之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛のある生活を求めて : ディスクドッグ愛好者の育成と技術向上、そして東北への普及を目指す｢ディスクドッグ東北｣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛謂編　上",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育会設置",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育研究所紀要 教養部",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育調査資料",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育無限－土佐婦人会80周年記念誌－",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛-裁く者-",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「愛市連盟」結成の前提 各学区単位に壮年団を",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相色メ申証文之事(白崎村彦次郎と茂左衛門申分つのるニ付一札)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "（愛岩山初穂銀、岩大火焼商売躰之方より差紙趣、組内酒屋・豆腐屋等取調申越べく達）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あ、いいんだ--（いまなんつった? ; 164)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アイウエオ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アイウエオヱバナシ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あいうえおの起源 : 日本語の謎は解かれた",
+            "isbn13": "9784062002455",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あいうえ築地の河岸ことば",
+            "isbn13": "9784418175024",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "會討御沙汰書",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "會討出陣詠百首和謌",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔相浦英三葉書〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦紀道書簡",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦紀道書簡",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦吉右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦吉右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦金左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦金左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清大夫",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦谷の戦国時代を物語る仏像・神像",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦佐一郎",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦作兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦三兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦茂十",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦茂十",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔相浦秀剛年賀状〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          }
+        ],
+        "entriesSample": [
+          {
+            "title": "あ--(いまなんつった? ; 288)",
+            "isbn13s": []
+          },
+          {
+            "title": "……あ--(いまなんつった? ; 44)",
+            "isbn13s": []
+          },
+          {
+            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+            "isbn13s": []
+          },
+          {
+            "title": "ああ言えばこう食う",
+            "isbn13s": [
+              "9784087473315"
+            ]
+          },
+          {
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13s": []
+          }
         ]
       },
-      "amazon": {
+      "amazonVerify": {
         "skipped": true,
         "reason": "missing_paapi_secrets"
       }
     },
     {
       "seriesKey": "葬送のフリーレン",
+      "ndlBest": {
+        "source": "ndl_open",
+        "title": "ああ言えばこう食う",
+        "isbn13": "9784087473315",
+        "score": 80,
+        "reason": "isbn_in_same_entry"
+      },
       "ndl": {
         "query": "葬送のフリーレン 1",
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=open&count=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
-        "candidates": [],
-        "rawIsbns": [
-          "9784087473315",
-          "9784784217366",
-          "9784306071865",
-          "9784579205622",
-          "9784093567145",
-          "9784874353998",
-          "9784866440125",
-          "9784903470825",
-          "9784582807561",
-          "9784621060803"
+        "candidates": [
+          {
+            "source": "ndl_open",
+            "title": "あ--(いまなんつった? ; 288)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "……あ--(いまなんつった? ; 44)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ言えばこう食う",
+            "isbn13": "9784087473315",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ､小野さつき訓導 : 野外写生指導中の殉職",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーカイブズ・ニューズレター",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーカイブズの構造認識と編成記述",
+            "isbn13": "9784784217366",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼瓦全の僕 : 卅七八年戰役從軍回想録",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーガマ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーガマ資料による仏伝の研究",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキエイド牡鹿・雄勝地区の活動--(作品17題)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、北四番丁",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキュメントセットラー",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーキュメントセットラー : 社会編",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼　郷土愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼　郷土愛/有名人の巻",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ曲阜　孔子之聖蹟",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫!疑獄市政 : 東京市政の醜状を暴露して五百万市民の憤起を促す",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーク灯も雪洞もついた 夜桜で賑ふ福井市",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫々－首壇物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼軍縮",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーケード第2期工事の完工式",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーケード連絡協議会の開催について",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ結婚」若返り",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ好食大論争",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼故落合直文君 : 明治３７年１月１０日追悼会席上談話",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼こからし",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（一）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（九）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（五）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（三）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（二）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（八）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼古賀連隊長（四）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ五・一五事件 : 天照民族健在なれ : 皇道宣揚運動",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王騎士物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーサー王物語",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ佐賀城一鯱の門復元によせて",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ山岳部",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼！柴田瀧男くん！",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ酒徒帰らず",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ十五畷",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「アースワーク研究会」による市民農園「プチファーム」の運営",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アースワークの地平 : 環境芸術から都市空間まで",
+            "isbn13": "9784306071865",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ生活が苦しい」 / どこの主婦の声も訴える / 団結の誇り輝き第六回駅伝大会 / 人間連帯の美しさ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ青春頓馬の記",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼青春よ我にまた」旧制高校記の旅",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーそう --(いまなんつった? ; 111)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ壮烈！突撃二勇士 野路、新貝両氏の戦功 映画となって近く上映 出身地だロケーション",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「ああ大君わが大君」乙女子等が唱え奉る歌山々に谺する秋",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "吁々大権は干犯され先帝の遺業は傷けらる : 日支郵便約定成立の真相",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ旅よ［色紙］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼玉置明善佐水会長逝く",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーダおばさんのおかしの本",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠信楠子亡墓 拓本",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠臣楠公の銅像（二重橋前）The Bronze Statue of Masashige Kusunoki Great Patriot in front of the Imperial Palace (Greater Tokyo)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼忠烈生命線に散る大和魂(満蒙編)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼忠臣楠氏旗",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼朝鮮」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「あゝ朝鮮」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼朝鮮",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼 樗牛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "幼婷さんの北京的点心 : ぎょうざ、肉まん、ワンタン、めんetc",
+            "isbn13": "9784579205622",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストが語るジョジョ--(特集人間賛歌―謎めく美しき世界 : 荒木飛呂彦)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストが語る羽生結弦歴代プログラムの美--(Book in book)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーティストマイバッグ : 全国自治体の環境活動マップ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーディ･パルワン. 1",
+            "isbn13": null,
+            "score": 30,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ東京の一大惨話史大震災大火災",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートオブシンプルフード : 『美味しい革命』からのノート、レッスン、レシピ",
+            "isbn13": "9784093567145",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ART of TEA : 紅茶人生をもっとアートにしたいのです",
+            "isbn13": "9784874353998",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「アート」「音楽」「食」のアートフェスティバル文化で復興する街--(Scope)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔アートスポット〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートにおける追悼の営みと記憶の継承 : 東日本大震災被災地にみる拡散宗教性",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートによる「生きる力の取戻し」と「仕事の復興」--(震災特集)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートの力で仙台を覚醒せよ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートの力とは、--(アートで発信する「仙台の今」 ; 4)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "『アートプロジェクトとレジリエンス』 : 南三陸町の現場から--(復興推進活動事例集)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アート求めて街巡り ： 地図付き手引き制作 ： 社団法人RAF : 石巻アートめぐりの手引き",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アートワーク、大地を溶解した瑠璃の世界--(この人の仕事場が見たい ; 6)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼、なつかしの軌道っこ 仙台鉄道ものがたり : 仙台と加美町を結んでいた仙台鉄道の記憶",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ涙のワークボーイ［原稿］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "Ānandagarbha造『金剛界大曼荼羅儀軌一切金剛出現』『金剛薩埵出現と名づくる成就法』『金剛薩埵成就法』和訳",
+            "isbn13": "9784866440125",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "Ānandagarbha造『Tattvāloka』「金剛界品」金剛界大曼荼羅和訳",
+            "isbn13": "9784903470825",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "阿難陀懺悔婬欲成道圖",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーなんでっ!--（いまなんつった? ; 175)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼日本未来記",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーヌパープ キッティクン氏 : バンコク-仙台線 : 就航を機に、130年余り続く友好関係をより豊かなものにしてまいりましょう。--(クローズアップインタビュー)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーネスト・サトウ神道論",
+            "isbn13": "9784582807561",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼萩の家先生",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "鳴呼萩の家先生",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼賣淫國",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「嗚呼賣淫國」",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あぁ、万事塞翁がお・ん・な : 神戸松迺家女四代ものがたり",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーバンNEXT",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ美くに三国はきみが墓どころ［色紙］",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ比丘尼椿の花椿の花かかえて退国す美しき歌声あとに残して%改行%（八百比丘尼4）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ、松島のカキづくし",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュカントリークッキング : 自然とともに生きるアーミッシュの人々の素敵なメニュー",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュの食卓",
+            "isbn13": "9784621060803",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュの謎 : 宗教・社会・生活",
+            "isbn13": "9784846000318",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーミッシュ料理",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ宮城県",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ無情",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "噫無情と後の巌窟王",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アームストロング砲佐賀藩製造についての疑問/文献史料を中心にして",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドを食べるだけでみるみる若返る! : 50代でも30代の肌が手に入る",
+            "isbn13": "9784594070519",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドだから、おいしい : しっとり、カリッと、サクッと。",
+            "isbn13": "9784579213924",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドのチカラ : 美容と健康、ダイエットに効く!",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーモンドミルク完全レシピ : やせて美肌に!",
+            "isbn13": "9784418143214",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ : インドの生命科学",
+            "isbn13": "9784540950872",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ・カフェ : インドの医食同源にもとづく、お手軽レシピ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ食事法理論とレシピ : 食事で変わる心と体",
+            "isbn13": "9784770502148",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダ治療院のデトックスレシピ",
+            "isbn13": "9784047279452",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダの驚きの果実アムラの真実",
+            "isbn13": "9784779126581",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーユルヴェーダの食事療法 : 至福の体質別レシピ",
+            "isbn13": "9784894790476",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ四年目の夏来る　/原爆患者看護の思い出",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーリオオーリオのつくり方 : アルポルト",
+            "isbn13": "9784255940113",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あーりカンパーイ！--（いまなんつった? ; 133)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーリヤ学会会報",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ＲＣ構造物に発生したつらら状物質に関する研究 : 築館町近郊の被害調査（その1）",
+            "isbn13": null,
+            "score": 30,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール・デコの建築 : 合理性と官能性の造形",
+            "isbn13": "9784121017864",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール・フランセ--(会員社訪問 ; 10)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アールベルグ･スキー術 : 及び諾威式競技スキー術の綜合的解説",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アール、ホー会社製特超高速度輪転折畳機付印刷機(一時間十二万枚印刷)/編輯局の一部/印刷工塲の一部(大阪毎日新聞社)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーロン収容所 : 西欧ヒューマニズムの限界",
+            "isbn13": "9784121800039",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ我が戦友・小野田寛郎少尉/ブラジル永住を決めた心のうち",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アーヴイング･フイツシヤー博士の｢全額準備｣(百パーセント･マネー)提唱案",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "ああ秋田の校長先生[草稿]",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あゝ集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "嗚呼二月二十六日",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合駕江ノ嶋詣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "藹々先生書観音并賛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "藍 : 藍の会作品集",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相合袴",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相預り申金子証文之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛汗クラブ 校長さんも草取り 女の先生はるかさんに襷がけ 小山村に汗の凱歌",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相誤書之覚(天満御宮寄進之事ニ付)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改売渡申添証文之事（御堂建立之樫木壱本）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申一札証文之事（年貢諸役銀立替拝借ニ付改一札）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申究一札之事（成福寺トノ火葬所出入訴訟費用分担ニ付）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申合之事（村方出入ニ付内済証文）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申極証文之事（田頭村庵室ニ付）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申規録証文之事（田頭村庵室ノ儀ニ付規録証文）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改申土目録之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改書上帳",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相改村方〆リ定証文之事",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛のある生活を求めて : ディスクドッグ愛好者の育成と技術向上、そして東北への普及を目指す｢ディスクドッグ東北｣",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛謂編　上",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育会設置",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育研究所紀要 教養部",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育調査資料",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛育無限－土佐婦人会80周年記念誌－",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "愛-裁く者-",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "「愛市連盟」結成の前提 各学区単位に壮年団を",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相色メ申証文之事(白崎村彦次郎と茂左衛門申分つのるニ付一札)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "（愛岩山初穂銀、岩大火焼商売躰之方より差紙趣、組内酒屋・豆腐屋等取調申越べく達）",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あ、いいんだ--（いまなんつった? ; 164)",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アイウエオ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "アイウエオヱバナシ",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あいうえおの起源 : 日本語の謎は解かれた",
+            "isbn13": "9784062002455",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "あいうえ築地の河岸ことば",
+            "isbn13": "9784418175024",
+            "score": 80,
+            "reason": "isbn_in_same_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "會討御沙汰書",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "會討出陣詠百首和謌",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔相浦英三葉書〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦紀道書簡",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦紀道書簡",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦吉右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦吉右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦金左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦金左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清五左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦清大夫",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦谷の戦国時代を物語る仏像・神像",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎左衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦五郎右衛門",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦権兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦佐一郎",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦作兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦三兵衛",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦茂十",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "相浦茂十",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          },
+          {
+            "source": "ndl_open",
+            "title": "〔相浦秀剛年賀状〕",
+            "isbn13": null,
+            "score": 0,
+            "reason": "no_isbn_in_entry"
+          }
+        ],
+        "entriesSample": [
+          {
+            "title": "あ--(いまなんつった? ; 288)",
+            "isbn13s": []
+          },
+          {
+            "title": "……あ--(いまなんつった? ; 44)",
+            "isbn13s": []
+          },
+          {
+            "title": "ああ、あれが食べたい！　－現代日本人の食文化の一端を探る",
+            "isbn13s": []
+          },
+          {
+            "title": "ああ言えばこう食う",
+            "isbn13s": [
+              "9784087473315"
+            ]
+          },
+          {
+            "title": "鳴呼落合先生 : 演説",
+            "isbn13s": []
+          }
         ]
       },
-      "amazon": {
+      "amazonVerify": {
         "skipped": true,
         "reason": "missing_paapi_secrets"
       }

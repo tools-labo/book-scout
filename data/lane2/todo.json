@@ -1,24 +1,39 @@
 {
-  "updatedAt": "2026-02-08T11:17:52.862Z",
+  "updatedAt": "2026-02-08T11:30:24.224Z",
   "total": 3,
   "items": [
     {
       "seriesKey": "ブルーロック",
       "author": "金城 宗幸",
-      "reason": "no_candidate",
-      "best": null
+      "reason": "ndl_has_isbn_but_paapi_skipped(missing_paapi_secrets)",
+      "best": {
+        "source": "ndl_open",
+        "score": 80,
+        "title": "ああ言えばこう食う",
+        "isbn13": "9784087473315"
+      }
     },
     {
       "seriesKey": "黄泉のツガイ",
       "author": "荒川弘",
-      "reason": "no_candidate",
-      "best": null
+      "reason": "ndl_has_isbn_but_paapi_skipped(missing_paapi_secrets)",
+      "best": {
+        "source": "ndl_open",
+        "score": 80,
+        "title": "ああ言えばこう食う",
+        "isbn13": "9784087473315"
+      }
     },
     {
       "seriesKey": "葬送のフリーレン",
       "author": "山田鐘人",
-      "reason": "no_candidate",
-      "best": null
+      "reason": "ndl_has_isbn_but_paapi_skipped(missing_paapi_secrets)",
+      "best": {
+        "source": "ndl_open",
+        "score": 80,
+        "title": "ああ言えばこう食う",
+        "isbn13": "9784087473315"
+      }
     }
   ]
 }
