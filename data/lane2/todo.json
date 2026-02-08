@@ -1,41 +1,62 @@
 {
-  "updatedAt": "2026-02-08T12:04:48.682Z",
+  "updatedAt": "2026-02-08T12:14:41.263Z",
   "total": 3,
   "items": [
     {
       "seriesKey": "ブルーロック",
       "author": "金城 宗幸",
-      "reason": "not_confirmed(score=0, ndlIsbn=true, paapiIsbn=false, match=false)",
+      "reason": "not_confirmed(score=80, ndlIsbn=true, paapiIsbn=false, match=false)",
       "best": {
-        "score": 0,
-        "title": null,
+        "score": 80,
+        "title": "ああ言えばこう食う",
         "asin": null,
-        "isbn13": null,
-        "query": "ブルーロック 1"
+        "isbn13": "9784087473315",
+        "query": "ブルーロック 1",
+        "ndlIsbn": "9784087473315",
+        "paapiIsbn": null,
+        "paapiError": {
+          "status": 400,
+          "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+        },
+        "paapiSkipped": null
       }
     },
     {
       "seriesKey": "黄泉のツガイ",
       "author": "荒川弘",
-      "reason": "not_confirmed(score=0, ndlIsbn=true, paapiIsbn=false, match=false)",
+      "reason": "not_confirmed(score=80, ndlIsbn=true, paapiIsbn=false, match=false)",
       "best": {
-        "score": 0,
-        "title": null,
+        "score": 80,
+        "title": "ああ言えばこう食う",
         "asin": null,
-        "isbn13": null,
-        "query": "黄泉のツガイ 1"
+        "isbn13": "9784087473315",
+        "query": "黄泉のツガイ 1",
+        "ndlIsbn": "9784087473315",
+        "paapiIsbn": null,
+        "paapiError": {
+          "status": 400,
+          "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+        },
+        "paapiSkipped": null
       }
     },
     {
       "seriesKey": "葬送のフリーレン",
       "author": "山田鐘人",
-      "reason": "not_confirmed(score=0, ndlIsbn=true, paapiIsbn=false, match=false)",
+      "reason": "not_confirmed(score=80, ndlIsbn=true, paapiIsbn=false, match=false)",
       "best": {
-        "score": 0,
-        "title": null,
+        "score": 80,
+        "title": "ああ言えばこう食う",
         "asin": null,
-        "isbn13": null,
-        "query": "葬送のフリーレン 1"
+        "isbn13": "9784087473315",
+        "query": "葬送のフリーレン 1",
+        "ndlIsbn": "9784087473315",
+        "paapiIsbn": null,
+        "paapiError": {
+          "status": 400,
+          "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, DetailPageURL, Images.Primary.Large] provided in the request for Resources is invalid.\"}]}"
+        },
+        "paapiSkipped": null
       }
     }
   ]
