@@ -1,4 +1,4 @@
-# .github/workflows/manga-items.yml
+# .github/workflows/lane2.yml
 name: Lane2 - Confirm Vol1 ISBN (NDL open + Amazon PA-API)
 
 on:
@@ -27,7 +27,6 @@ jobs:
 
       - name: Run lane2 (NDL open + PA-API)
         env:
-          # Amazon PA-API（使うなら入れる / 未設定でもNDLだけで動く）
           AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
           AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
           AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
