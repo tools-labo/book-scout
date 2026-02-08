@@ -1,12 +1,9 @@
-// public/app.js
 async function loadJson(p) {
   const r = await fetch(p, { cache: "no-store" });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return await r.json();
 }
-function qs() {
-  return new URLSearchParams(location.search);
-}
+function qs() { return new URLSearchParams(location.search); }
 function esc(s) {
   return String(s ?? "")
     .replaceAll("&", "&amp;")
@@ -26,48 +23,31 @@ function renderList(data) {
     return;
   }
 
-  root.innerHTML = items
-    .map((it) => {
-      const key = encodeURIComponent(it.seriesKey);
-      const title = it.vol1?.title || it.seriesKey;
-      const author = it.author || "";
-      const img = it.vol1?.image || "";
-      const vol1Amz = it.vol1?.amazonDp || "#";
-      const isbn = it.vol1?.isbn13 || "";
+  root.innerHTML = items.map((it) => {
+    const key = encodeURIComponent(it.seriesKey);
+    const title = it.vol1?.title || it.seriesKey;
+    const author = it.author || "";
+    const img = it.vol1?.image || "";
+    const vol1Amz = it.vol1?.amazonDp || "#";
+    const isbn = it.vol1?.isbn13 || "";
 
-      return `
-        <article class="card">
-          <div class="card-row">
-            <div class="thumb">
-              ${
-                img
-                  ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
-                  : `<div class="thumb-ph"></div>`
-              }
-            </div>
-
-            <div class="meta">
-              <div class="title">
-                <a href="./work.html?key=${key}">${esc(it.seriesKey)}</a>
-              </div>
-              <div class="sub">
-                ${author ? `<span>${esc(author)}</span>` : ""}
-                ${isbn ? `<span> / ISBN: ${esc(isbn)}</span>` : ""}
-              </div>
-
-              <div class="links">
-                ${
-                  vol1Amz && vol1Amz !== "#"
-                    ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>`
-                    : ""
-                }
-              </div>
+    return `
+      <article class="card">
+        <div class="card-row">
+          <div class="thumb">
+            ${img ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
+          </div>
+          <div class="meta">
+            <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
+            <div class="sub">
+              ${author ? `<span>${esc(author)}</span>` : ""}
+              ${isbn ? `<span> / ISBN: ${esc(isbn)}</span>` : ""}
             </div>
           </div>
-        </article>
-      `;
-    })
-    .join("");
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
 function renderWork(data) {
@@ -96,15 +76,12 @@ function renderWork(data) {
   detail.innerHTML = `
     <div class="d-title">${esc(it.seriesKey)}</div>
     <div class="d-sub">${esc(author)} ${isbn ? " / ISBN: " + esc(isbn) : ""}</div>
-
     <div class="d-row">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
         ${vol1Amz ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
       </div>
     </div>
-
-    <div class="d-note">※あらすじはレーン②確定後に別レーンで追加します（英語は表示しません）</div>
   `;
 }
 
