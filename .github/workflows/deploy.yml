@@ -1,9 +1,9 @@
 name: Deploy Pages
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,52 +11,21 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # dist を作って public と data をまとめて載せる
-      - name: Prepare dist
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -rf dist
-          mkdir -p dist
-
-          # public を dist 直下へ
-          if [ -d public ]; then
-            cp -R public/* dist/
-          fi
-
-          # data を dist/data へ
-          mkdir -p dist/data
-          if [ -d data ]; then
-            cp -R data/* dist/data/
-          fi
-
-          # 確認（任意）
-          echo "=== dist top ==="
-          ls -la dist || true
-          echo "=== dist/data ==="
-          ls -la dist/data || true
-
+      # public/ と data/ を Pages artifact に載せるだけ（ビルドなし）
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: .
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/deploy-pages@v4
-        id: deployment
+      - id: deployment
+        uses: actions/deploy-pages@v4
