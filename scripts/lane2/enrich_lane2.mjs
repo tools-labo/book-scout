@@ -11,6 +11,7 @@ const OUT_DEBUG = "data/lane2/debug_enrich.json";
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
+const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ★追加：ISBN13→ASIN 解決キャッシュ
 
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
@@ -47,10 +48,21 @@ function toHalfWidth(s) {
     .replace(/[　]/g, " ");
 }
 
-function extractAsinFromAmazonDp(amazonDp) {
+// dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
+function parseAmazonDpId(amazonDp) {
   const u = String(amazonDp ?? "");
-  const m = u.match(/\/dp\/([A-Z0-9]{10})/i);
-  return m ? m[1].toUpperCase() : null;
+  const m = u.match(/\/dp\/([A-Z0-9]{10,13})/i);
+  if (!m) return { asin: null, isbn13FromDp: null };
+
+  const id = m[1].toUpperCase();
+
+  // 10桁（ASIN or ISBN10）はそのまま “ItemId” として使えることが多い（書籍はISBN10=ASINが多い）
+  if (/^[A-Z0-9]{10}$/.test(id)) return { asin: id, isbn13FromDp: null };
+
+  // 13桁数字は ISBN13
+  if (/^\d{13}$/.test(id)) return { asin: null, isbn13FromDp: id };
+
+  return { asin: null, isbn13FromDp: null };
 }
 
 /* -----------------------
@@ -138,6 +150,22 @@ async function paapiGetItems({ itemIds, resources }) {
   });
 }
 
+// ★追加：SearchItems（ISBN13→ASIN解決用）
+async function paapiSearchItems({ keywords, resources, itemCount = 10 }) {
+  return paapiRequest({
+    target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems",
+    pathUri: "/paapi5/searchitems",
+    bodyObj: {
+      Keywords: keywords,
+      SearchIndex: "Books",
+      ItemCount: itemCount,
+      PartnerTag: AMZ_PARTNER_TAG,
+      PartnerType: "Associates",
+      Resources: resources,
+    },
+  });
+}
+
 function extractTitle(item) {
   return item?.ItemInfo?.Title?.DisplayValue || "";
 }
@@ -175,7 +203,6 @@ function extractContributors(item) {
     .filter((x) => x.name);
 }
 
-// 出版日っぽいフィールドを “あるだけ拾う”
 function extractReleaseDate(item) {
   const ci = item?.ItemInfo?.ContentInfo;
   const pi = item?.ItemInfo?.ProductInfo;
@@ -192,8 +219,6 @@ function extractReleaseDate(item) {
   return candidates.length ? candidates[0] : null;
 }
 
-// PA-API由来説明文（取れた時だけ）
-// ※今は invalid_resource が多いので “取れたらラッキー” 扱い
 function extractDescriptionFromPaapi(item) {
   const ers = item?.EditorialReviews?.EditorialReview;
   if (!Array.isArray(ers) || !ers.length) return null;
@@ -215,14 +240,11 @@ function isInvalidResourceError(rawBody) {
 }
 
 async function getItemWithResourceProbe({ asin, debugSteps }) {
-  // まず確実に通る最小セット
   const base = ["ItemInfo.Title", "ItemInfo.ByLineInfo", "ItemInfo.ExternalIds", "Images.Primary.Large"];
 
-  // “欲しいもの”候補（JPで有効かは環境次第なので probe）
   const optionalCandidates = [
     "ItemInfo.ContentInfo",
     "ItemInfo.ProductInfo",
-    // EditorialReviews は root / sub ともに invalid になりがち。probeで判定
     "EditorialReviews",
     "EditorialReviews.EditorialReview",
   ];
@@ -230,7 +252,6 @@ async function getItemWithResourceProbe({ asin, debugSteps }) {
   let okJson = null;
   let okResources = base.slice();
 
-  // 429は指数バックオフ
   async function callWithRetry(resources, label) {
     let wait = 900;
     for (let i = 0; i < 4; i++) {
@@ -289,17 +310,74 @@ async function getItemWithResourceProbe({ asin, debugSteps }) {
   }
 
   const item = okJson?.ItemsResult?.Items?.[0] || null;
+
+  // ★GetItemsが OK でも Items が空のことがある → no_item
   if (!item) return { ok: false, reason: "no_item", raw: okJson };
 
   return { ok: true, item, usedResources: okResources };
 }
 
+// ★追加：ISBN13→ASIN解決（SearchItemsでEAN一致のASINを拾う）
+async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
+  const key = norm(isbn13);
+  if (!/^97[89]\d{10}$/.test(key)) return { ok: false, reason: "invalid_isbn13" };
+
+  if (cache[key]) {
+    debugSteps.paapiResolve = { cached: true, asin: cache[key] };
+    return { ok: true, asin: cache[key], cached: true };
+  }
+
+  const resources = ["ItemInfo.ExternalIds", "ItemInfo.Title"]; // 軽めで十分
+  let wait = 900;
+
+  for (let i = 0; i < 4; i++) {
+    const res = await paapiSearchItems({ keywords: key, resources, itemCount: 10 });
+
+    if (res?.skipped) {
+      debugSteps.paapiResolve = { cached: false, ok: false, skipped: true, reason: res.reason };
+      return { ok: false, reason: `paapi_skipped(${res.reason})` };
+    }
+
+    if (res?.error && res.status === 429) {
+      debugSteps.retries = debugSteps.retries || [];
+      debugSteps.retries.push({ label: "paapi_search_isbn13", attempt: i + 1, status: 429, waitMs: wait });
+      await sleep(wait);
+      wait *= 2;
+      continue;
+    }
+
+    if (!res?.ok) {
+      debugSteps.paapiResolve = { cached: false, ok: false, status: res?.status ?? "unknown", body: res?.body ?? null };
+      return { ok: false, reason: `paapi_search_error(${res?.status ?? "unknown"})` };
+    }
+
+    const items = res?.json?.SearchResult?.Items || [];
+    // EAN一致を最優先で拾う
+    const hit =
+      items.find((it) => {
+        const e = extractIsbn13(it);
+        return e === key;
+      }) || null;
+
+    const asin = hit?.ASIN || null;
+    debugSteps.paapiResolve = { cached: false, ok: true, found: !!asin, returned: items.length, asin };
+
+    if (asin) {
+      cache[key] = asin;
+      return { ok: true, asin, cached: false };
+    }
+
+    // 見つからなければ終了（これ以上は無駄撃ちになりがち）
+    return { ok: false, reason: "asin_not_found_by_isbn13" };
+  }
+
+  return { ok: false, reason: "paapi_search_retry_exhausted" };
+}
+
 /* -----------------------
  * openBD（ISBN→説明文/発売日など）
  * ----------------------- */
-
 function stripHtml(s) {
-  // AniListなどで <br> が混ざるので最低限剥がす
   const x = String(s ?? "");
   return x
     .replace(/<br\s*\/?>/gi, "\n")
@@ -312,7 +390,7 @@ function stripHtml(s) {
 async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
   if (!isbn13) return { ok: false, reason: "no_isbn13" };
 
-  if (cache[isbn13]) {
+  if (Object.prototype.hasOwnProperty.call(cache, isbn13)) {
     debugSteps.openbd = { cached: true };
     return { ok: true, data: cache[isbn13], cached: true };
   }
@@ -339,24 +417,18 @@ async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
     return { ok: false, reason: "openbd_json_parse_error" };
   }
 
-  // openBDは配列で返る。存在しないと null が入ることがある
   const first = Array.isArray(json) ? json[0] : null;
-  if (!first) {
-    cache[isbn13] = null;
-    debugSteps.openbd = { cached: false, ok: true, found: false };
-    return { ok: true, data: null, found: false };
-  }
 
-  // そのまま保存（後でスキーマ変えても困らない）
-  cache[isbn13] = first;
-  debugSteps.openbd = { cached: false, ok: true, found: true };
-  return { ok: true, data: first, found: true };
+  // 存在しない場合は null をキャッシュする（無駄撃ち防止）
+  cache[isbn13] = first ?? null;
+
+  debugSteps.openbd = { cached: false, ok: true, found: !!first };
+  return { ok: true, data: first ?? null, found: !!first };
 }
 
 function extractFromOpenBd(openbdObj) {
   if (!openbdObj) return { description: null, pubdate: null, publisher: null };
 
-  // openBD: summary + onix
   const summary = openbdObj?.summary || null;
   const onix = openbdObj?.onix || null;
 
@@ -379,12 +451,11 @@ function extractFromOpenBd(openbdObj) {
 /* -----------------------
  * AniList（シリーズ→ジャンル/タグ/説明）
  * ----------------------- */
-
 async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
-  if (cache[key]) {
+  if (Object.prototype.hasOwnProperty.call(cache, key)) {
     debugSteps.anilist = { cached: true };
     return { ok: true, data: cache[key], cached: true };
   }
@@ -444,9 +515,6 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
     return { ok: true, data: null, found: false };
   }
 
-  // ベスト候補を選ぶ（当てずっぽうを避けつつ、強めの一致を優先）
-  // - native/romaji/english/synonyms のどれかに seriesKey が含まれる
-  // - format が NOVEL 等を避けたいが、AniListはMANGAに絞ってるのでここは軽く
   const s0 = normLoose(toHalfWidth(key));
   function scoreMedia(m) {
     let score = 0;
@@ -462,12 +530,10 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
     if (titles.some((t) => t === s0)) score += 1000;
     if (titles.some((t) => t.includes(s0))) score += 300;
 
-    // formatが MANGA / ONE_SHOT に寄ってる方を少し優先
     const fmt = String(m?.format || "");
     if (fmt === "MANGA") score += 40;
     if (fmt === "ONE_SHOT") score += 10;
 
-    // ジャンル/タグがちゃんと埋まってる方を少し優先
     if (Array.isArray(m?.genres) && m.genres.length) score += 10;
     if (Array.isArray(m?.tags) && m.tags.length) score += 10;
 
@@ -478,7 +544,7 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
   const best = withScore[0]?.m || null;
 
-  cache[key] = best;
+  cache[key] = best ?? null;
   debugSteps.anilist = { cached: false, ok: true, found: !!best, pickedScore: withScore[0]?.score ?? null };
   return { ok: true, data: best, found: !!best };
 }
@@ -510,6 +576,7 @@ async function main() {
 
   const cacheOpenbd = (await loadJson(CACHE_OPENBD, {})) || {};
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
+  const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
 
   const enriched = [];
   const debug = [];
@@ -520,7 +587,7 @@ async function main() {
   for (const x of items) {
     const seriesKey = norm(x?.seriesKey);
     const author = norm(x?.author);
-    const lane2Title = x?.vol1?.title ?? null; // lane2（NDL由来の時は“作品名だけ”になりがち）
+    const lane2Title = x?.vol1?.title ?? null;
     const isbn13 = x?.vol1?.isbn13 ?? null;
     const amazonDp = x?.vol1?.amazonDp ?? null;
 
@@ -539,16 +606,37 @@ async function main() {
       output: null,
     };
 
-    const asin = extractAsinFromAmazonDp(amazonDp);
+    // 0) dp から asin / isbn13 を取得
+    const parsed = parseAmazonDpId(amazonDp);
+    let asin = parsed.asin;
+    const isbn13FromDp = parsed.isbn13FromDp;
+
+    // 0.5) dpがISBN13だったら、SearchItemsでASIN解決（EAN一致）
     if (!asin) {
-      one.reason = "no_asin_in_amazonDp";
+      const targetIsbn13 = isbn13FromDp || isbn13 || null;
+      if (targetIsbn13) {
+        const stepResolve = {};
+        const rr = await resolveAsinByIsbn13({ isbn13: targetIsbn13, cache: cachePaapi, debugSteps: stepResolve });
+        one.steps.resolveAsinByIsbn13 = {
+          ok: !!rr.ok,
+          reason: rr.ok ? null : rr.reason,
+          isbn13: targetIsbn13,
+          raw: stepResolve.paapiResolve || null,
+          retries: stepResolve.retries || null,
+        };
+        if (rr.ok) asin = rr.asin;
+      }
+    }
+
+    if (!asin) {
+      one.reason = "no_asin_resolved";
       debug.push(one);
       ng++;
       await sleep(350);
       continue;
     }
 
-    // 1) PA-API（タイトル正、書影、出版社、発売日など）
+    // 1) PA-API GetItems（タイトル正、書影、出版社、発売日など）
     const stepPa = {};
     const got = await getItemWithResourceProbe({ asin, debugSteps: stepPa });
     one.steps.getItemByAsin = {
@@ -575,12 +663,15 @@ async function main() {
     const paIsbn13 = extractIsbn13(item) || null;
     const paReleaseDate = extractReleaseDate(item) || null;
 
-    // 最終タイトルは PA-API を正（ここが “タイトルがおかしい” の解消点）
     const finalTitle = paTitle || lane2Title || seriesKey || null;
 
     // 2) openBD（説明文の本命、pubdate補強）
     const stepOpenbd = {};
-    const ob = await fetchOpenBdByIsbn13({ isbn13: paIsbn13 || isbn13, cache: cacheOpenbd, debugSteps: stepOpenbd });
+    const ob = await fetchOpenBdByIsbn13({
+      isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
+      cache: cacheOpenbd,
+      debugSteps: stepOpenbd,
+    });
     one.steps.openbd = stepOpenbd.openbd || null;
 
     const obx = ob?.ok ? extractFromOpenBd(ob.data) : { description: null, pubdate: null, publisher: null };
@@ -592,39 +683,33 @@ async function main() {
 
     const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [], description: null };
 
-    // 説明文の優先順位：openBD → AniList → PA-API（取れたら）
     const paDesc = extractDescriptionFromPaapi(item) || null;
     const finalDescription = obx.description || anx.description || paDesc || null;
     const descriptionSource = obx.description ? "openbd" : anx.description ? "anilist" : paDesc ? "paapi" : null;
 
-    // releaseDate の優先順位：
-    // - PA-APIの releaseDate（今のログで取れてる）
-    // - openBD の pubdate（YYYYMMDD/YYY-MM-DD/などの可能性あり）→そのまま文字列として残す
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
 
     const out = {
       seriesKey,
       author,
       vol1: {
-        title: finalTitle,          // ★表示の正
-        titleLane2: lane2Title,     // ★監査用（NDL由来が見える）
-        isbn13: paIsbn13 || isbn13 || null,
+        title: finalTitle,
+        titleLane2: lane2Title,
+        isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
         asin,
         image: extractImage(item) || null,
         amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
         publisher: extractPublisher(item),
         contributors: extractContributors(item),
 
-        releaseDate: finalReleaseDate, // ISOっぽい/文字列混在OK（後で整形）
+        releaseDate: finalReleaseDate,
         description: finalDescription,
         descriptionSource,
 
-        // AniList 由来（シリーズ属性）
         anilistId: anx.id,
         genres: anx.genres,
         tags: anx.tags,
 
-        // enrich由来の説明
         source: "enrich(paapi+openbd+anilist)",
       },
     };
@@ -635,7 +720,6 @@ async function main() {
     enriched.push(out);
     ok++;
 
-    // 叩きすぎ防止（PA-APIが主に厳しいので長め）
     await sleep(1000);
   }
 
@@ -654,9 +738,9 @@ async function main() {
     items: debug,
   });
 
-  // キャッシュ保存
   await saveJson(CACHE_OPENBD, cacheOpenbd);
   await saveJson(CACHE_ANILIST, cacheAniList);
+  await saveJson(CACHE_PAAPI, cachePaapi);
 
   console.log(`[lane2:enrich] total=${items.length} enriched=${enriched.length}`);
 }
