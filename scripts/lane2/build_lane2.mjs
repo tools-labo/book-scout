@@ -36,9 +36,16 @@ function norm(s) {
 function normLoose(s) {
   return norm(s).replace(/\s+/g, "");
 }
+
+/**
+ * ✅ 半角化（重要）
+ * - 全角数字/括弧/全角スペース
+ * - ★全角英字(Ａ-Ｚａ-ｚ)も半角化 → EPISODE / FULL COLOR 事故が消える
+ */
 function toHalfWidth(s) {
   return String(s ?? "")
     .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+    .replace(/[Ａ-Ｚａ-ｚ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ")
@@ -54,7 +61,7 @@ function titleHasSeries(title, seriesKey) {
 }
 
 /**
- * ✅ vol1判定（誤爆防止のため「単なる 1 」は採用しない）
+ * ✅ vol1判定（誤爆防止：単なる「1」だけは採用しない）
  * - (1) / （1） / 第1巻 / 1巻
  */
 function isVol1Like(title) {
@@ -69,8 +76,7 @@ function isVol1Like(title) {
 }
 
 /**
- * ✅ 派生・周辺本を弾く（今回の事故の本丸）
- * 追加：ポスター/画集/イラストブック等を明示的に除外
+ * ✅ 派生・周辺本を弾く
  */
 function isDerivedEdition(title) {
   const raw = toHalfWidth(norm(title));
@@ -82,10 +88,10 @@ function isDerivedEdition(title) {
   // 作品外の本（キャラブック/ガイド等）
   if (/ファンブック|副読本|ガイド|ムック|設定資料|資料集|キャラクターブック|bible|図録|公式/.test(raw)) return true;
 
-  // ★グッズ・周辺物（ポスター事故を確実に潰す）
+  // グッズ・周辺物（ポスター事故対策）
   if (/ポスター|ポスターコレクション|カレンダー|ポストカード|カード|シール|クリアファイル|グッズ/.test(raw)) return true;
 
-  // ★画集・イラスト系（画集(Vol.1) 事故を潰す）
+  // 画集・イラスト系（画集(Vol.1)事故対策）
   if (/画集|原画集|イラストブック|イラスト集|アートブック|設定画|設定集/.test(raw)) return true;
 
   // 外伝/派生
@@ -108,10 +114,6 @@ function isDerivedEdition(title) {
 
 /**
  * ✅ “本線1巻” 判定（最終ガード）
- * - シリーズ名を含む
- * - vol1っぽい
- * - 派生ワードを含まない
- * - 「シリーズ名-EPISODE…」みたいな直後派生も弾く
  */
 function isMainlineVol1(title, seriesKey) {
   const t = toHalfWidth(norm(title));
@@ -132,23 +134,16 @@ function isMainlineVol1(title, seriesKey) {
   return true;
 }
 
-/**
- * ✅ スコアは “補助” に落とす。
- * 最終確定は isMainlineVol1 をパスしたものだけ。
- */
 function scoreCandidate({ title, isbn13, seriesKey }) {
   let score = 0;
   const t = norm(title);
   if (!t) return 0;
 
-  if (isbn13) score += 80;
+  if (isbn13) score += 120; // ★ISBN13ありを強めに優遇（紙を勝たせる）
   if (seriesKey && titleHasSeries(t, seriesKey)) score += 40;
   if (isVol1Like(t)) score += 25;
 
-  // 派生は容赦なく減点（ここで勝てないようにする）
   if (isDerivedEdition(t)) score -= 1000;
-
-  // 本線1巻は大加点（同点崩し）
   if (seriesKey && isMainlineVol1(t, seriesKey)) score += 500;
 
   return score;
@@ -163,12 +158,15 @@ function pickBest(cands, seriesKey) {
     const sb = b.score ?? 0;
     if (sb !== sa) return sb - sa;
 
-    // 同点なら mainline を優先
     const am = seriesKey && isMainlineVol1(a.title || "", seriesKey) ? 1 : 0;
     const bm = seriesKey && isMainlineVol1(b.title || "", seriesKey) ? 1 : 0;
     if (bm !== am) return bm - am;
 
-    // 短いタイトル優先
+    // ★ISBN13あり優先
+    const ai = a.isbn13 ? 1 : 0;
+    const bi = b.isbn13 ? 1 : 0;
+    if (bi !== ai) return bi - ai;
+
     const la = (a.title || "").length;
     const lb = (b.title || "").length;
     if (la !== lb) return la - lb;
@@ -356,11 +354,19 @@ function extractImage(item) {
   return item?.Images?.Primary?.Large?.URL || null;
 }
 
+/**
+ * ✅ PA-API検索（紙を取りに行く）
+ * - (1) / （1） / 1 に加えて
+ * - 「コミックス」「単行本」「(少年〜コミックス)」みたいな“紙寄せ”ワードを追加
+ */
 async function paapiSearchMainlineVol1({ seriesKey }) {
   const tries = [
     `${seriesKey} (1)`,
     `${seriesKey}（1）`,
     `${seriesKey} 1`,
+    `${seriesKey} 1 コミックス`,
+    `${seriesKey} 1 単行本`,
+    `${seriesKey} 1 (コミックス)`,
   ];
 
   const results = [];
@@ -381,11 +387,11 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
       const asin = it?.ASIN || null;
 
       if (!titleHasSeries(title, seriesKey)) continue;
-
-      // ★ここで “本線1巻以外” を候補に入れない（事故防止）
       if (!isMainlineVol1(title, seriesKey)) continue;
 
-      const score = scoreCandidate({ title, isbn13, seriesKey }) + (asin ? 5 : 0);
+      // ★ISBN13が取れないものは候補に入れるが弱くする（紙がいれば必ず負ける）
+      const score = scoreCandidate({ title, isbn13, seriesKey }) + (asin ? 5 : 0) + (isbn13 ? 200 : -200);
+
       cands.push({ source: "paapi_search", query: q, title, isbn13, asin, score });
     }
 
@@ -428,7 +434,6 @@ async function main() {
 
     const ndlBest = pickBest(ndl?.candidates || [], seriesKey);
 
-    // NDLで本線1巻が取れたら、それを “優先採用” して PA-APIで画像/ISBN補完だけする（失敗しても確定は維持）
     if (ndlBest) {
       const pa = await paapiSearchItems({ keywords: ndlBest.isbn13 || `${seriesKey} (1)` });
       one.paapiProbe = pa;
@@ -439,10 +444,7 @@ async function main() {
 
       if (pa?.ok) {
         const items = pa?.json?.SearchResult?.Items || [];
-        const hit = items.find((it) => {
-          const t = extractTitle(it);
-          return isMainlineVol1(t, seriesKey);
-        });
+        const hit = items.find((it) => isMainlineVol1(extractTitle(it), seriesKey));
         if (hit) {
           asin = hit.ASIN || null;
           image = extractImage(hit) || null;
