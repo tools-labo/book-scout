@@ -39,7 +39,8 @@ function normLoose(s) {
 
 function isLikelySingleEpisode(title) {
   const t = norm(title);
-  return /第\s*\d+\s*話/.test(t) || /分冊|単話|話売り|Kindle版|電子版|デジタル版/.test(t);
+  // Kindle/電子/デジタルは「単話判定」から外す（1巻本体もあるため）
+  return /第\s*\d+\s*話/.test(t) || /分冊|単話|話売り/.test(t);
 }
 function isVol1Like(title) {
   const t = norm(title);
