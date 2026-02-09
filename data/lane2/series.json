@@ -1,9 +1,20 @@
 {
-  "updatedAt": "2026-02-09T04:49:38.818Z",
+  "updatedAt": "2026-02-09T04:57:27.866Z",
   "total": 3,
-  "confirmed": 2,
-  "todo": 1,
+  "confirmed": 3,
+  "todo": 0,
   "items": [
+    {
+      "seriesKey": "ブルーロック",
+      "author": "金城 宗幸",
+      "vol1": {
+        "title": "ブルーロック(1) (少年マガジンコミックス)",
+        "isbn13": "9784065134009",
+        "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
+        "source": "seed_hint(id10_getitems)+mainline_guard"
+      }
+    },
     {
       "seriesKey": "黄泉のツガイ",
       "author": "荒川弘",

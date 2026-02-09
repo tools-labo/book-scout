@@ -1,343 +1,123 @@
 {
-  "updatedAt": "2026-02-09T04:49:38.820Z",
-  "derivedWords": {
-    "updatedAt": "2026-02-09T00:00:00.000Z",
-    "sets": [
-      "全巻",
-      "巻セット",
-      "セット",
-      "BOX",
-      "ボックス",
-      "まとめ買い"
-    ],
-    "nonMain": [
-      "ファンブック",
-      "副読本",
-      "ガイド",
-      "ムック",
-      "設定資料",
-      "資料集",
-      "キャラクターブック",
-      "図録",
-      "公式"
-    ],
-    "spinoff": [
-      "EPISODE",
-      "外伝",
-      "番外編",
-      "スピンオフ",
-      "SIDE STORY",
-      "サイドストーリー"
-    ],
-    "novel": [
-      "小説",
-      "ノベライズ",
-      "文庫"
-    ],
-    "color": [
-      "FULL COLOR",
-      "フルカラー",
-      "カラー",
-      "SELECTION"
-    ],
-    "langDeluxe": [
-      "バイリンガル",
-      "BILINGUAL",
-      "デラックス",
-      "DELUXE",
-      "英語版",
-      "翻訳"
-    ],
-    "serialDigital": [
-      "単話",
-      "分冊",
-      "話売り"
-    ],
-    "artPoster": [
-      "ポスター",
-      "ポスターコレクション",
-      "画集",
-      "原画集",
-      "イラストブック"
-    ]
-  },
+  "updatedAt": "2026-02-09T04:57:27.867Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
-      "ndl": {
-        "query": "ブルーロック 1",
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?cnt=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
-        "returned": 20,
-        "candidates": [],
-        "dropped": 20,
-        "titleSamples": [
-          "あ",
-          "唖",
-          "あ",
-          "鴉",
-          "亞"
-        ]
+      "seedHint": {
+        "vol1Isbn10": "4065134005",
+        "vol1Isbn13": "9784065134009",
+        "vol1Asin": null
       },
-      "paapiSearch": {
-        "tried": [
-          "ブルーロック (1)",
-          "ブルーロック（1）",
-          "ブルーロック 1",
-          "ブルーロック 1 コミックス",
-          "ブルーロック 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ブルーロック (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック (1)",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 570
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック (1)",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック (1)",
-                "title": "ブルーロック－ＥＰＩＳＯＤＥ　凪－（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0BH8TRYKR",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック (1)",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック（1）",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 570
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック（1）",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック（1）",
-                "title": "ブルーロック－ＥＰＩＳＯＤＥ　凪－（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0BH8TRYKR",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック（1）",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 570
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1",
-                "title": "ブルーロック－ＥＰＩＳＯＤＥ　凪－（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0BH8TRYKR",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1 コミックス",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 570
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1 (コミックス)",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 570
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 (コミックス)",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 (コミックス)",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 570
-              }
-            ]
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "ブルーロック (1)",
-          "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-          "isbn13": null,
-          "asin": "B07K43H7TS",
-          "score": 570
-        }
-      },
-      "paapiGet": {
+      "seedHintResult": {
         "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B07K43H7TS",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B07K43H7TS?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51wNTyPO+JL._SL500_.jpg",
-                      "Width": 378
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "講談社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "金城宗幸",
-                        "Role": "著",
-                        "RoleType": "author"
-                      },
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "ノ村優介",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "講談社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
+        "confirmed": {
+          "seriesKey": "ブルーロック",
+          "author": "金城 宗幸",
+          "vol1": {
+            "title": "ブルーロック(1) (少年マガジンコミックス)",
+            "isbn13": "9784065134009",
+            "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+            "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
+            "source": "seed_hint(id10_getitems)+mainline_guard"
           }
+        },
+        "debug": {
+          "used": true,
+          "hintAsin": null,
+          "hintIsbn10": "4065134005",
+          "hintIsbn13": "9784065134009",
+          "paapiGet10": {
+            "ok": true,
+            "json": {
+              "ItemsResult": {
+                "Items": [
+                  {
+                    "ASIN": "4065134005",
+                    "DetailPageURL": "https://www.amazon.co.jp/dp/4065134005?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                    "Images": {
+                      "Primary": {
+                        "Large": {
+                          "Height": 500,
+                          "URL": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+                          "Width": 336
+                        }
+                      }
+                    },
+                    "ItemInfo": {
+                      "ByLineInfo": {
+                        "Brand": {
+                          "DisplayValue": "講談社",
+                          "Label": "Brand",
+                          "Locale": "ja_JP"
+                        },
+                        "Contributors": [
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "金城 宗幸",
+                            "Role": "原著",
+                            "RoleType": "original_author"
+                          },
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "ノ村 優介",
+                            "Role": "著",
+                            "RoleType": "author"
+                          }
+                        ],
+                        "Manufacturer": {
+                          "DisplayValue": "講談社",
+                          "Label": "Manufacturer",
+                          "Locale": "ja_JP"
+                        }
+                      },
+                      "ExternalIds": {
+                        "EANs": {
+                          "DisplayValues": [
+                            "9784065134009"
+                          ],
+                          "Label": "EAN",
+                          "Locale": "en_US"
+                        },
+                        "ISBNs": {
+                          "DisplayValues": [
+                            "4065134005"
+                          ],
+                          "Label": "ISBN",
+                          "Locale": "en_US"
+                        }
+                      },
+                      "Title": {
+                        "DisplayValue": "ブルーロック(1) (少年マガジンコミックス)",
+                        "Label": "Title",
+                        "Locale": "ja_JP"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "resolvedBy": "getitems10",
+          "title": "ブルーロック(1) (少年マガジンコミックス)",
+          "isbn13": "9784065134009",
+          "asin": "4065134005"
         }
       }
     },
     {
       "seriesKey": "黄泉のツガイ",
       "ndl": {
-        "query": "黄泉のツガイ 1",
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?cnt=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
-        "returned": 20,
+        "url": "https://iss.ndl.go.jp/api/opensearch?title=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4&creator=%E8%8D%92%E5%B7%9D%E5%BC%98&cnt=50",
+        "mode": "title_creator",
+        "returned": 13,
         "candidates": [],
-        "dropped": 20,
+        "dropped": 13,
         "titleSamples": [
-          "あ",
-          "唖",
-          "あ",
-          "鴉",
-          "亞"
+          "黄泉のツガイ（12）",
+          "黄泉のツガイ",
+          "黄泉のツガイ",
+          "黄泉のツガイ",
+          "黄泉のツガイ"
         ]
       },
       "paapiSearch": {
@@ -369,14 +149,6 @@
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
                 "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ (1)",
-                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
-                "isbn13": null,
-                "asin": "B0G2XY3YDD",
-                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -416,14 +188,6 @@
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
                 "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ（1）",
-                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
-                "isbn13": null,
-                "asin": "B0G2XY3YDD",
-                "score": 570
               }
             ]
           },
@@ -447,14 +211,6 @@
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
                 "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
-                "isbn13": null,
-                "asin": "B0G2XY3YDD",
-                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -607,17 +363,17 @@
     {
       "seriesKey": "葬送のフリーレン",
       "ndl": {
-        "query": "葬送のフリーレン 1",
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?cnt=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
-        "returned": 20,
+        "url": "https://iss.ndl.go.jp/api/opensearch?title=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3&creator=%E5%B1%B1%E7%94%B0%E9%90%98%E4%BA%BA&cnt=50",
+        "mode": "title_creator",
+        "returned": 47,
         "candidates": [],
-        "dropped": 20,
+        "dropped": 47,
         "titleSamples": [
-          "あ",
-          "唖",
-          "あ",
-          "鴉",
-          "亞"
+          "小説アニメ葬送のフリーレン",
+          "小説アニメ葬送のフリーレン",
+          "小説アニメ葬送のフリーレン",
+          "小説アニメ葬送のフリーレン",
+          "小説アニメ葬送のフリーレン"
         ]
       },
       "paapiSearch": {
