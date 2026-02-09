@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T04:57:27.867Z",
+  "updatedAt": "2026-02-09T05:11:56.800Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -18,7 +18,7 @@
             "isbn13": "9784065134009",
             "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
             "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
-            "source": "seed_hint(id10_getitems)+mainline_guard"
+            "source": "seed_hint(getitems10)+mainline_guard"
           }
         },
         "debug": {
@@ -26,6 +26,10 @@
           "hintAsin": null,
           "hintIsbn10": "4065134005",
           "hintIsbn13": "9784065134009",
+          "resolvedBy": "getitems10",
+          "title": "ブルーロック(1) (少年マガジンコミックス)",
+          "isbn13": "9784065134009",
+          "asin": "4065134005",
           "paapiGet10": {
             "ok": true,
             "json": {
@@ -96,11 +100,7 @@
                 ]
               }
             }
-          },
-          "resolvedBy": "getitems10",
-          "title": "ブルーロック(1) (少年マガジンコミックス)",
-          "isbn13": "9784065134009",
-          "asin": "4065134005"
+          }
         }
       }
     },
@@ -110,15 +110,40 @@
         "url": "https://iss.ndl.go.jp/api/opensearch?title=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4&creator=%E8%8D%92%E5%B7%9D%E5%BC%98&cnt=50",
         "mode": "title_creator",
         "returned": 13,
-        "candidates": [],
-        "dropped": 13,
+        "candidates": [
+          {
+            "source": "ndl_opensearch",
+            "title": "黄泉のツガイ",
+            "isbn13": "9784757579620",
+            "volume": 1,
+            "score": 160
+          }
+        ],
+        "dropped": 12,
         "titleSamples": [
           "黄泉のツガイ（12）",
           "黄泉のツガイ",
           "黄泉のツガイ",
           "黄泉のツガイ",
           "黄泉のツガイ"
+        ],
+        "volumeSamples": [
+          1,
+          10,
+          11,
+          2,
+          3
         ]
+      },
+      "ndlBestRejected": {
+        "reason": "final_title_guard_failed",
+        "best": {
+          "source": "ndl_opensearch",
+          "title": "黄泉のツガイ",
+          "isbn13": "9784757579620",
+          "volume": 1,
+          "score": 160
+        }
       },
       "paapiSearch": {
         "tried": [
@@ -366,15 +391,47 @@
         "url": "https://iss.ndl.go.jp/api/opensearch?title=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3&creator=%E5%B1%B1%E7%94%B0%E9%90%98%E4%BA%BA&cnt=50",
         "mode": "title_creator",
         "returned": 47,
-        "candidates": [],
-        "dropped": 47,
+        "candidates": [
+          {
+            "source": "ndl_opensearch",
+            "title": "葬送のフリーレン",
+            "isbn13": null,
+            "volume": 1,
+            "score": 80
+          },
+          {
+            "source": "ndl_opensearch",
+            "title": "葬送のフリーレン",
+            "isbn13": "9784098501809",
+            "volume": 1,
+            "score": 160
+          }
+        ],
+        "dropped": 45,
         "titleSamples": [
           "小説アニメ葬送のフリーレン",
           "小説アニメ葬送のフリーレン",
           "小説アニメ葬送のフリーレン",
           "小説アニメ葬送のフリーレン",
           "小説アニメ葬送のフリーレン"
+        ],
+        "volumeSamples": [
+          1,
+          2,
+          3,
+          4,
+          5
         ]
+      },
+      "ndlBestRejected": {
+        "reason": "final_title_guard_failed",
+        "best": {
+          "source": "ndl_opensearch",
+          "title": "葬送のフリーレン",
+          "isbn13": "9784098501809",
+          "volume": 1,
+          "score": 160
+        }
       },
       "paapiSearch": {
         "tried": [
