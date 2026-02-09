@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T05:20:59.335Z",
+  "updatedAt": "2026-02-09T05:46:12.840Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -101,6 +101,18 @@
               }
             }
           }
+        }
+      },
+      "path": "seed_hint",
+      "confirmed": {
+        "seriesKey": "ブルーロック",
+        "author": "金城 宗幸",
+        "vol1": {
+          "title": "ブルーロック(1) (少年マガジンコミックス)",
+          "isbn13": "9784065134009",
+          "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
+          "source": "seed_hint(getitems10)+mainline_guard"
         }
       }
     },
@@ -240,6 +252,18 @@
             "SearchURL": "https://www.amazon.co.jp/s?k=9784757579620&i=stripbooks&rh=p_n_availability%3A2227306051&tag=book-scout-22&linkCode=osi",
             "TotalResultCount": 2
           }
+        }
+      },
+      "path": "ndl",
+      "confirmed": {
+        "seriesKey": "黄泉のツガイ",
+        "author": "荒川弘",
+        "vol1": {
+          "title": "黄泉のツガイ",
+          "isbn13": "9784757579620",
+          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+          "source": "ndl(opensearch)+paapi_probe+ndl_guard"
         }
       }
     },
@@ -457,6 +481,18 @@
             "SearchURL": "https://www.amazon.co.jp/s?k=9784098501809&i=stripbooks&rh=p_n_availability%3A2227306051&tag=book-scout-22&linkCode=osi",
             "TotalResultCount": 4
           }
+        }
+      },
+      "path": "ndl",
+      "confirmed": {
+        "seriesKey": "葬送のフリーレン",
+        "author": "山田鐘人",
+        "vol1": {
+          "title": "葬送のフリーレン",
+          "isbn13": "9784098501809",
+          "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+          "source": "ndl(opensearch)+paapi_probe+ndl_guard"
         }
       }
     }
