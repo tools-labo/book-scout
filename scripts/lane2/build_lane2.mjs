@@ -38,9 +38,7 @@ function normLoose(s) {
 }
 
 /**
- * ✅ 半角化（重要）
- * - 全角数字/括弧/全角スペース
- * - ★全角英字(Ａ-Ｚａ-ｚ)も半角化 → EPISODE / FULL COLOR 事故が消える
+ * ✅ 半角化 + 余分な空白
  */
 function toHalfWidth(s) {
   return String(s ?? "")
@@ -53,6 +51,26 @@ function toHalfWidth(s) {
     .trim();
 }
 
+/**
+ * ✅ キリル等の “見た目同じ” をラテンに寄せる（FULL CОLОR 対策）
+ * 例: キリル О( U+041E ) → 'O'
+ */
+function normalizeWeirdLatin(s) {
+  const t = String(s ?? "");
+  const map = new Map([
+    ["О", "O"], ["о", "o"], // Cyrillic O
+    ["А", "A"], ["а", "a"], // Cyrillic A
+    ["В", "B"], ["Е", "E"], ["е", "e"],
+    ["К", "K"], ["М", "M"], ["Н", "H"],
+    ["Р", "P"], ["С", "C"], ["Т", "T"],
+    ["Х", "X"], ["х", "x"],
+    ["Ι", "I"], ["і", "i"], // Greek-ish / Ukrainian i (just in case)
+  ]);
+  let out = "";
+  for (const ch of t) out += map.get(ch) ?? ch;
+  return out;
+}
+
 function titleHasSeries(title, seriesKey) {
   const t = normLoose(title);
   const s = normLoose(seriesKey);
@@ -62,7 +80,6 @@ function titleHasSeries(title, seriesKey) {
 
 /**
  * ✅ vol1判定（誤爆防止：単なる「1」だけは採用しない）
- * - (1) / （1） / 第1巻 / 1巻
  */
 function isVol1Like(title) {
   const t = toHalfWidth(norm(title));
@@ -76,61 +93,50 @@ function isVol1Like(title) {
 }
 
 /**
- * ✅ 派生・周辺本を弾く
+ * ✅ 派生・周辺本を弾く（weird latin normalize を噛ませる）
  */
 function isDerivedEdition(title) {
-  const raw = toHalfWidth(norm(title));
+  const raw0 = toHalfWidth(norm(title));
+  const raw = normalizeWeirdLatin(raw0);
   const t = raw.toLowerCase();
 
-  // セット類
   if (/全巻|巻セット|セット|box|ボックス|まとめ買い/.test(raw)) return true;
 
-  // 作品外の本（キャラブック/ガイド等）
   if (/ファンブック|副読本|ガイド|ムック|設定資料|資料集|キャラクターブック|bible|図録|公式/.test(raw)) return true;
 
-  // グッズ・周辺物（ポスター事故対策）
   if (/ポスター|ポスターコレクション|カレンダー|ポストカード|カード|シール|クリアファイル|グッズ/.test(raw)) return true;
 
-  // 画集・イラスト系（画集(Vol.1)事故対策）
   if (/画集|原画集|イラストブック|イラスト集|アートブック|設定画|設定集/.test(raw)) return true;
 
-  // 外伝/派生
   if (/episode|外伝|番外編|スピンオフ|side\s*story/.test(t)) return true;
 
-  // 小説
   if (/小説|ノベライズ|文庫/.test(raw)) return true;
 
-  // フルカラー
+  // ★ここが今回の事故：FULL CОLОR みたいな混在でも弾く
   if (/full\s*color|フルカラー|カラー|selection/.test(t)) return true;
 
-  // 多言語/デラックス
   if (/バイリンガル|bilingual|デラックス|deluxe|英語版|翻訳/.test(raw)) return true;
 
-  // 電子単話
   if (/単話|分冊|話売り|第\s*\d+\s*話/.test(raw)) return true;
 
   return false;
 }
 
-/**
- * ✅ “本線1巻” 判定（最終ガード）
- */
 function isMainlineVol1(title, seriesKey) {
-  const t = toHalfWidth(norm(title));
-  const s = toHalfWidth(norm(seriesKey));
+  const t0 = toHalfWidth(norm(title));
+  const t = normalizeWeirdLatin(t0);
+  const s = normalizeWeirdLatin(toHalfWidth(norm(seriesKey)));
   if (!t || !s) return false;
 
   if (!titleHasSeries(t, s)) return false;
   if (!isVol1Like(t)) return false;
   if (isDerivedEdition(t)) return false;
 
-  // シリーズ名の直後が EPISODE/外伝 なら本線じゃない
   const idx = t.indexOf(s);
   if (idx >= 0) {
     const rest = t.slice(idx + s.length);
     if (/^\s*[-ー–—]\s*(episode|外伝)/i.test(rest)) return false;
   }
-
   return true;
 }
 
@@ -139,7 +145,7 @@ function scoreCandidate({ title, isbn13, seriesKey }) {
   const t = norm(title);
   if (!t) return 0;
 
-  if (isbn13) score += 120; // ★ISBN13ありを強めに優遇（紙を勝たせる）
+  if (isbn13) score += 120;
   if (seriesKey && titleHasSeries(t, seriesKey)) score += 40;
   if (isVol1Like(t)) score += 25;
 
@@ -162,7 +168,6 @@ function pickBest(cands, seriesKey) {
     const bm = seriesKey && isMainlineVol1(b.title || "", seriesKey) ? 1 : 0;
     if (bm !== am) return bm - am;
 
-    // ★ISBN13あり優先
     const ai = a.isbn13 ? 1 : 0;
     const bi = b.isbn13 ? 1 : 0;
     if (bi !== ai) return bi - ai;
@@ -355,10 +360,36 @@ function extractImage(item) {
 }
 
 /**
- * ✅ PA-API検索（紙を取りに行く）
- * - (1) / （1） / 1 に加えて
- * - 「コミックス」「単行本」「(少年〜コミックス)」みたいな“紙寄せ”ワードを追加
+ * ✅ Amazon商品ページHTMLから ISBN-13 を拾う（最終保険）
+ * - 取得量は1ASINにつき1回だけ
+ * - 見つからなければ null
  */
+async function fetchIsbn13FromAmazonHtml(dpUrl) {
+  if (!dpUrl) return null;
+
+  const r = await fetch(dpUrl, {
+    headers: {
+      "user-agent": "Mozilla/5.0 (compatible; tools-labo/book-scout lane2)",
+      "accept-language": "ja-JP,ja;q=0.9,en;q=0.6",
+    },
+  });
+  if (!r.ok) return null;
+  const html = await r.text();
+
+  // パターン: ISBN-13 : 978xxxxxxxxxx
+  const m1 = html.match(/ISBN-13\s*[:：]\s*(97[89][0-9\- ]{10,})/i);
+  if (m1?.[1]) {
+    const v = m1[1].replace(/[^0-9]/g, "");
+    if (/^97[89]\d{10}$/.test(v)) return v;
+  }
+
+  // 予備：97[89]が孤立して出るケース
+  const m2 = html.match(/(97[89]\d{10})/);
+  if (m2?.[1] && /^97[89]\d{10}$/.test(m2[1])) return m2[1];
+
+  return null;
+}
+
 async function paapiSearchMainlineVol1({ seriesKey }) {
   const tries = [
     `${seriesKey} (1)`,
@@ -389,8 +420,10 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
       if (!titleHasSeries(title, seriesKey)) continue;
       if (!isMainlineVol1(title, seriesKey)) continue;
 
-      // ★ISBN13が取れないものは候補に入れるが弱くする（紙がいれば必ず負ける）
-      const score = scoreCandidate({ title, isbn13, seriesKey }) + (asin ? 5 : 0) + (isbn13 ? 200 : -200);
+      const score =
+        scoreCandidate({ title, isbn13, seriesKey }) +
+        (asin ? 5 : 0) +
+        (isbn13 ? 200 : -200);
 
       cands.push({ source: "paapi_search", query: q, title, isbn13, asin, score });
     }
@@ -423,7 +456,7 @@ async function main() {
 
     const one = { seriesKey };
 
-    // 1) NDL（本線1巻だけ候補化）
+    // 1) NDL
     let ndl;
     try {
       ndl = await ndlOpensearch({ seriesKey });
@@ -452,6 +485,21 @@ async function main() {
         }
       }
 
+      const amazonDp = dpFromAsinOrIsbn(asin || isbn13);
+
+      // ★NDLルートでもISBN13が無いならHTML保険（ほぼ起きないが一応）
+      if (!isbn13 && amazonDp) {
+        const htmlIsbn = await fetchIsbn13FromAmazonHtml(amazonDp);
+        if (htmlIsbn) isbn13 = htmlIsbn;
+      }
+
+      if (!isbn13) {
+        todo.push({ seriesKey, author, reason: "ndl_confirmed_but_no_isbn13", best: ndlBest });
+        debug.push(one);
+        await sleep(600);
+        continue;
+      }
+
       confirmed.push({
         seriesKey,
         author,
@@ -459,8 +507,8 @@ async function main() {
           title: ndlBest.title,
           isbn13,
           image,
-          amazonDp: dpFromAsinOrIsbn(asin || isbn13),
-          source: "ndl(mainline_guard)+paapi_probe",
+          amazonDp,
+          source: "ndl(mainline_guard)+paapi_probe+html_isbn_fallback",
         },
       });
       debug.push(one);
@@ -468,7 +516,7 @@ async function main() {
       continue;
     }
 
-    // 2) NDLで取れない → PA-API（本線1巻だけ候補化）
+    // 2) PA-API
     const paSearch = await paapiSearchMainlineVol1({ seriesKey });
     one.paapiSearch = paSearch;
 
@@ -502,16 +550,27 @@ async function main() {
 
     const item = get?.json?.ItemsResult?.Items?.[0] || null;
     const title = extractTitle(item) || b.title || "";
-    const isbn13 = extractIsbn13(item) || b.isbn13 || null;
+    let isbn13 = extractIsbn13(item) || b.isbn13 || null;
 
-    // 最終ガード（本線1巻のみ確定）
-    if (!isMainlineVol1(title, seriesKey) || !isbn13) {
-      todo.push({
-        seriesKey,
-        author,
-        reason: !isbn13 ? "paapi_getitems_no_ean" : "final_guard_failed",
-        best: b,
-      });
+    const image = extractImage(item) || null;
+    const amazonDp = dpFromAsinOrIsbn(b.asin);
+
+    // ✅ 本線ガードは維持
+    if (!isMainlineVol1(title, seriesKey)) {
+      todo.push({ seriesKey, author, reason: "final_guard_failed", best: b });
+      debug.push(one);
+      await sleep(600);
+      continue;
+    }
+
+    // ★ここが本命：ISBN13が取れない（Kindle等）ならHTMLから補完
+    if (!isbn13 && amazonDp) {
+      const htmlIsbn = await fetchIsbn13FromAmazonHtml(amazonDp);
+      if (htmlIsbn) isbn13 = htmlIsbn;
+    }
+
+    if (!isbn13) {
+      todo.push({ seriesKey, author, reason: "no_isbn13_even_after_html_fallback", best: b });
       debug.push(one);
       await sleep(600);
       continue;
@@ -523,9 +582,9 @@ async function main() {
       vol1: {
         title,
         isbn13,
-        image: extractImage(item) || null,
-        amazonDp: dpFromAsinOrIsbn(b.asin),
-        source: "paapi(mainline_guard)",
+        image,
+        amazonDp,
+        source: "paapi(mainline_guard)+html_isbn_fallback",
       },
     });
     debug.push(one);
