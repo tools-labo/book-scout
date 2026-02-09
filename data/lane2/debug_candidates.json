@@ -1,248 +1,25 @@
 {
-  "updatedAt": "2026-02-09T04:14:49.744Z",
+  "updatedAt": "2026-02-09T04:32:12.394Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
-      "ndl": {
-        "query": "ブルーロック 1",
-        "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
-        "returned": 20,
-        "candidates": [],
-        "dropped": 20,
-        "titleSamples": [
-          "鴉",
-          "亞",
-          "あ : 小森典詩作品集",
-          "哇 : 志摩聡句帖",
-          "あ : やぶにらみ秋田経営風土記"
-        ]
+      "seedHint": {
+        "vol1Isbn13": "9784065134009",
+        "vol1Asin": null
       },
-      "paapiSearch": {
-        "tried": [
-          "ブルーロック (1)",
-          "ブルーロック（1）",
-          "ブルーロック 1",
-          "ブルーロック 1 コミックス",
-          "ブルーロック 1 単行本",
-          "ブルーロック 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ブルーロック (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック (1)",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 370
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック (1)",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 370
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック (1)",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 370
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック（1）",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 370
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック（1）",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 370
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック（1）",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 370
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 370
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 370
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1 コミックス",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 370
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 370
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 370
-              }
-            ]
-          },
-          {
-            "query": "ブルーロック 1 単行本",
-            "ok": true,
-            "returned": 5,
-            "best": null,
-            "candidatesAll": []
-          },
-          {
-            "query": "ブルーロック 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1 (コミックス)",
-              "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B07K43H7TS",
-              "score": 370
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 (コミックス)",
-                "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B07K43H7TS",
-                "score": 370
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 (コミックス)",
-                "title": "ブルーロック　ＦＵＬＬ　ＣОＬОＲ　ＳＥＬＥＣＴＩОＮ（１）　潔　世一 (週刊少年マガジンコミックス)",
-                "isbn13": null,
-                "asin": "B0FPLY2C78",
-                "score": 370
-              }
-            ]
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "ブルーロック (1)",
-          "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-          "isbn13": null,
-          "asin": "B07K43H7TS",
-          "score": 370
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B07K43H7TS",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B07K43H7TS?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51wNTyPO+JL._SL500_.jpg",
-                      "Width": 378
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "講談社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "金城宗幸",
-                        "Role": "著",
-                        "RoleType": "author"
-                      },
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "ノ村優介",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "講談社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "ブルーロック（１） (週刊少年マガジンコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
+      "seedHintResult": {
+        "used": true,
+        "ok": false,
+        "reason": "paapi_getitems_error(400)",
+        "debug": {
+          "used": true,
+          "hint": "9784065134009",
+          "hintAsin": null,
+          "hintIsbn13": "9784065134009",
+          "paapiGet": {
+            "error": true,
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [9784065134009] provided in the request for ItemIds is invalid.\"}]}"
           }
         }
       }
@@ -283,7 +60,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -292,7 +69,15 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
-                "score": 890
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "黄泉のツガイ (1)",
+                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
+                "isbn13": null,
+                "asin": "B0G2XY3YDD",
+                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -300,7 +85,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
-                "score": 370
+                "score": 570
               }
             ]
           },
@@ -314,7 +99,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -323,7 +108,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
-                "score": 890
+                "score": 650
               },
               {
                 "source": "paapi_search",
@@ -331,7 +116,15 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
-                "score": 370
+                "score": 570
+              },
+              {
+                "source": "paapi_search",
+                "query": "黄泉のツガイ（1）",
+                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
+                "isbn13": null,
+                "asin": "B0G2XY3YDD",
+                "score": 570
               }
             ]
           },
@@ -345,7 +138,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -354,7 +147,15 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
-                "score": 890
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "黄泉のツガイ 1",
+                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
+                "isbn13": null,
+                "asin": "B0G2XY3YDD",
+                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -362,7 +163,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
-                "score": 370
+                "score": 570
               }
             ]
           },
@@ -376,7 +177,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -385,7 +186,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
-                "score": 370
+                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -393,7 +194,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
-                "score": 890
+                "score": 650
               }
             ]
           },
@@ -414,7 +215,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -423,7 +224,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
-                "score": 370
+                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -431,7 +232,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
-                "score": 890
+                "score": 650
               }
             ]
           }
@@ -442,7 +243,7 @@
           "title": "黄泉のツガイ(1) (ガンガンコミックス)",
           "isbn13": "9784757579620",
           "asin": "4757579624",
-          "score": 890
+          "score": 650
         }
       },
       "paapiGet": {
@@ -544,10 +345,10 @@
             "best": {
               "source": "paapi_search",
               "query": "葬送のフリーレン (1)",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 890
+              "title": "ポスターコレクション 葬送のフリーレン (1)",
+              "isbn13": "9784099431358",
+              "asin": "4099431355",
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -556,7 +357,7 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
-                "score": 890
+                "score": 650
               },
               {
                 "source": "paapi_search",
@@ -564,7 +365,15 @@
                 "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
                 "isbn13": null,
                 "asin": "B08FDH57JT",
-                "score": 370
+                "score": 570
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン (1)",
+                "title": "ポスターコレクション 葬送のフリーレン (1)",
+                "isbn13": "9784099431358",
+                "asin": "4099431355",
+                "score": 650
               }
             ]
           },
@@ -575,10 +384,10 @@
             "best": {
               "source": "paapi_search",
               "query": "葬送のフリーレン（1）",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 890
+              "title": "ポスターコレクション 葬送のフリーレン (1)",
+              "isbn13": "9784099431358",
+              "asin": "4099431355",
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -587,7 +396,7 @@
                 "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
                 "isbn13": null,
                 "asin": "B08FDH57JT",
-                "score": 370
+                "score": 570
               },
               {
                 "source": "paapi_search",
@@ -595,7 +404,15 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
-                "score": 890
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン（1）",
+                "title": "ポスターコレクション 葬送のフリーレン (1)",
+                "isbn13": "9784099431358",
+                "asin": "4099431355",
+                "score": 650
               }
             ]
           },
@@ -609,7 +426,7 @@
               "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
               "isbn13": "9784098501809",
               "asin": "4098501805",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -618,7 +435,7 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
-                "score": 890
+                "score": 650
               },
               {
                 "source": "paapi_search",
@@ -626,7 +443,15 @@
                 "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
                 "isbn13": null,
                 "asin": "B08FDH57JT",
-                "score": 370
+                "score": 570
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1",
+                "title": "葬送のフリーレン 画集 (Vol.1) (原画集・イラストブック)",
+                "isbn13": "9784091990822",
+                "asin": "4091990827",
+                "score": 650
               }
             ]
           },
@@ -640,7 +465,7 @@
               "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
               "isbn13": "9784098501809",
               "asin": "4098501805",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -649,7 +474,7 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
-                "score": 890
+                "score": 650
               },
               {
                 "source": "paapi_search",
@@ -657,7 +482,7 @@
                 "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
                 "isbn13": null,
                 "asin": "B08FDH57JT",
-                "score": 370
+                "score": 570
               }
             ]
           },
@@ -678,7 +503,7 @@
               "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
               "isbn13": "9784098501809",
               "asin": "4098501805",
-              "score": 890
+              "score": 650
             },
             "candidatesAll": [
               {
@@ -687,7 +512,7 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
-                "score": 890
+                "score": 650
               },
               {
                 "source": "paapi_search",
@@ -695,7 +520,7 @@
                 "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
                 "isbn13": null,
                 "asin": "B08FDH57JT",
-                "score": 370
+                "score": 570
               }
             ]
           }
@@ -703,10 +528,10 @@
         "best": {
           "source": "paapi_search",
           "query": "葬送のフリーレン (1)",
-          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-          "isbn13": "9784098501809",
-          "asin": "4098501805",
-          "score": 890
+          "title": "ポスターコレクション 葬送のフリーレン (1)",
+          "isbn13": "9784099431358",
+          "asin": "4099431355",
+          "score": 650
         }
       },
       "paapiGet": {
@@ -715,14 +540,14 @@
           "ItemsResult": {
             "Items": [
               {
-                "ASIN": "4098501805",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "ASIN": "4099431355",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/4099431355?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
                 "Images": {
                   "Primary": {
                     "Large": {
                       "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
-                      "Width": 319
+                      "URL": "https://m.media-amazon.com/images/I/51EL6-T2ZtL._SL500_.jpg",
+                      "Width": 354
                     }
                   }
                 },
@@ -737,14 +562,14 @@
                       {
                         "Locale": "ja_JP",
                         "Name": "山田 鐘人",
-                        "Role": "原著",
-                        "RoleType": "original_author"
+                        "Role": "著",
+                        "RoleType": "author"
                       },
                       {
                         "Locale": "ja_JP",
-                        "Name": "アベツカサ",
-                        "Role": "イラスト",
-                        "RoleType": "illustrator"
+                        "Name": "アベ ツカサ",
+                        "Role": "著",
+                        "RoleType": "author"
                       }
                     ],
                     "Manufacturer": {
@@ -756,21 +581,21 @@
                   "ExternalIds": {
                     "EANs": {
                       "DisplayValues": [
-                        "9784098501809"
+                        "9784099431358"
                       ],
                       "Label": "EAN",
                       "Locale": "en_US"
                     },
                     "ISBNs": {
                       "DisplayValues": [
-                        "4098501805"
+                        "4099431355"
                       ],
                       "Label": "ISBN",
                       "Locale": "en_US"
                     }
                   },
                   "Title": {
-                    "DisplayValue": "葬送のフリーレン (1) (少年サンデーコミックス)",
+                    "DisplayValue": "ポスターコレクション 葬送のフリーレン (1)",
                     "Label": "Title",
                     "Locale": "ja_JP"
                   }

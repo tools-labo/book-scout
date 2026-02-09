@@ -1,19 +1,12 @@
 {
-  "updatedAt": "2026-02-09T04:14:49.743Z",
+  "updatedAt": "2026-02-09T04:32:12.393Z",
   "total": 1,
   "items": [
     {
       "seriesKey": "ブルーロック",
       "author": "金城 宗幸",
-      "reason": "paapi_getitems_no_ean",
-      "best": {
-        "source": "paapi_search",
-        "query": "ブルーロック (1)",
-        "title": "ブルーロック（１） (週刊少年マガジンコミックス)",
-        "isbn13": null,
-        "asin": "B07K43H7TS",
-        "score": 370
-      }
+      "reason": "paapi_getitems_error(400)",
+      "best": null
     }
   ]
 }
