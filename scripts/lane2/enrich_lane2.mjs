@@ -31,16 +31,15 @@ function sleep(ms) {
 function norm(s) {
   return String(s ?? "").trim();
 }
-function dpFromAsin(asin) {
-  const a = norm(asin);
-  if (!a) return null;
-  if (/^[A-Z0-9]{10}$/i.test(a)) return `https://www.amazon.co.jp/dp/${a.toUpperCase()}`;
-  if (/^\d{10}$/.test(a)) return `https://www.amazon.co.jp/dp/${a}`;
-  return null;
+
+function extractAsinFromAmazonDp(amazonDp) {
+  const u = String(amazonDp ?? "");
+  const m = u.match(/\/dp\/([A-Z0-9]{10})/i);
+  return m ? m[1].toUpperCase() : null;
 }
 
 /* -----------------------
- * Amazon PA-API
+ * Amazon PA-API（公式APIのみ）
  * ----------------------- */
 function awsHmac(key, data) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest();
@@ -59,12 +58,7 @@ function amzDate() {
   return { amzDate: `${y}${m}${day}T${hh}${mm}${ss}Z`, dateStamp: `${y}${m}${day}` };
 }
 
-function isInvalidResourcesError(bodyText) {
-  const s = String(bodyText || "");
-  return s.includes("ValidationException") && s.includes("InvalidParameterValue") && s.includes("Resources");
-}
-
-async function paapiRequest({ target, pathUri, bodyObj, retry = 0 }) {
+async function paapiRequest({ target, pathUri, bodyObj }) {
   if (!AMZ_ACCESS_KEY || !AMZ_SECRET_KEY || !AMZ_PARTNER_TAG) {
     return { skipped: true, reason: "missing_paapi_secrets" };
   }
@@ -84,15 +78,7 @@ async function paapiRequest({ target, pathUri, bodyObj, retry = 0 }) {
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = awsHash(body);
 
-  const canonicalRequest = [
-    method,
-    canonicalUri,
-    canonicalQuerystring,
-    canonicalHeaders,
-    signedHeaders,
-    payloadHash,
-  ].join("\n");
-
+  const canonicalRequest = [method, canonicalUri, canonicalQuerystring, canonicalHeaders, signedHeaders, payloadHash].join("\n");
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
   const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
@@ -120,28 +106,9 @@ async function paapiRequest({ target, pathUri, bodyObj, retry = 0 }) {
   });
 
   const text = await r.text();
-
-  // 429: 指数バックオフでリトライ
-  if (r.status === 429 && retry < 5) {
-    const wait = 1200 * Math.pow(2, retry); // 1.2s, 2.4s, 4.8s, 9.6s, 19.2s
-    await sleep(wait);
-    return paapiRequest({ target, pathUri, bodyObj, retry: retry + 1 });
-  }
-
-  if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1600) };
+  if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1800) };
   return { ok: true, json: JSON.parse(text) };
 }
-
-// まずは lane2 で実績ある最小セットだけ（成功優先）
-const RESOURCES_MIN = [
-  "ItemInfo.Title",
-  "ItemInfo.ExternalIds",
-  "ItemInfo.ByLineInfo",
-  "Images.Primary.Large",
-];
-
-// 将来拡張用（いまは使わない：無効で落ちたため）
-// const RESOURCES_FULL = [...RESOURCES_MIN, "ItemInfo.ContentInfo", "EditorialReviews"];
 
 async function paapiGetItems({ itemIds, resources }) {
   return paapiRequest({
@@ -149,21 +116,6 @@ async function paapiGetItems({ itemIds, resources }) {
     pathUri: "/paapi5/getitems",
     bodyObj: {
       ItemIds: itemIds,
-      PartnerTag: AMZ_PARTNER_TAG,
-      PartnerType: "Associates",
-      Resources: resources,
-    },
-  });
-}
-
-async function paapiSearchItems({ keywords, resources }) {
-  return paapiRequest({
-    target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems",
-    pathUri: "/paapi5/searchitems",
-    bodyObj: {
-      Keywords: keywords,
-      SearchIndex: "Books",
-      ItemCount: 10,
       PartnerTag: AMZ_PARTNER_TAG,
       PartnerType: "Associates",
       Resources: resources,
@@ -190,69 +142,147 @@ function extractIsbn13(item) {
   }
   return null;
 }
+
+function extractPublisher(item) {
+  const brand = item?.ItemInfo?.ByLineInfo?.Brand?.DisplayValue || null;
+  const manufacturer = item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || null;
+  return { brand, manufacturer };
+}
 function extractContributors(item) {
   const arr = item?.ItemInfo?.ByLineInfo?.Contributors;
   if (!Array.isArray(arr)) return [];
   return arr
-    .map((c) => ({
-      name: norm(c?.Name),
-      role: norm(c?.Role),
-      roleType: norm(c?.RoleType),
+    .map((x) => ({
+      name: x?.Name ?? null,
+      role: x?.Role ?? null,
+      roleType: x?.RoleType ?? null,
     }))
     .filter((x) => x.name);
 }
-function extractPublisher(item) {
-  const brand = item?.ItemInfo?.ByLineInfo?.Brand?.DisplayValue || "";
-  const manu = item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || "";
-  return { brand: norm(brand) || null, manufacturer: norm(manu) || null };
+
+// 出版日っぽいフィールドを “あるだけ拾う”
+function extractReleaseDate(item) {
+  // どれが取れるかは Resources 次第なので、候補を広めに
+  const ci = item?.ItemInfo?.ContentInfo;
+  const pi = item?.ItemInfo?.ProductInfo;
+
+  const candidates = [
+    ci?.PublicationDate?.DisplayValue,
+    ci?.ReleaseDate?.DisplayValue,
+    pi?.ReleaseDate?.DisplayValue,
+    pi?.PublicationDate?.DisplayValue,
+  ]
+    .map((x) => (x == null ? null : String(x).trim()))
+    .filter(Boolean);
+
+  return candidates.length ? candidates[0] : null;
 }
 
-/**
- * isbn13 -> SearchItems で ASIN を引く
- * 目的は GetItems を叩ける ASIN を得ること
- */
-async function findAsinByIsbn13(isbn13) {
-  const q = norm(isbn13);
-  if (!q) return { ok: false, reason: "missing_isbn13" };
+// 説明文（EditorialReviews）の取り出し（取れた時だけ）
+function extractDescription(item) {
+  const ers = item?.EditorialReviews?.EditorialReview;
+  if (!Array.isArray(ers) || !ers.length) return null;
 
-  const s = await paapiSearchItems({ keywords: q, resources: RESOURCES_MIN });
-  if (s?.skipped) return { ok: false, reason: `paapi_skipped(${s.reason})`, raw: s };
-  if (s?.error) return { ok: false, reason: `paapi_search_error(${s.status})`, raw: s };
+  // まずは “日本語っぽい/長い” を優先して拾う（安全側）
+  const texts = ers
+    .map((x) => x?.Content ?? x?.DisplayValue ?? null)
+    .map((x) => (x == null ? null : String(x).trim()))
+    .filter(Boolean);
 
-  const items = s?.json?.SearchResult?.Items || [];
-  const hit =
-    items.find((it) => extractIsbn13(it) === q) ||
-    items.find((it) => !!it?.ASIN) ||
-    null;
+  if (!texts.length) return null;
 
-  return hit?.ASIN ? { ok: true, asin: hit.ASIN, raw: s } : { ok: false, reason: "no_asin_found", raw: s };
+  texts.sort((a, b) => b.length - a.length);
+  return texts[0] || null;
 }
 
-/**
- * ASIN -> GetItems（Resources エラーはフォールバック）
- */
-async function getItemByAsin(asin) {
-  const a = norm(asin);
-  if (!a) return { ok: false, reason: "missing_asin" };
+function isInvalidResourceError(rawBody) {
+  const s = String(rawBody ?? "");
+  return s.includes("InvalidParameterValue") && s.includes("provided in the request for Resources is invalid");
+}
 
-  // まず最小セットで GetItems（成功優先）
-  let g = await paapiGetItems({ itemIds: [a], resources: RESOURCES_MIN });
+async function getItemWithResourceProbe({ asin, debugSteps }) {
+  // まず確実に通る最小セット
+  const base = [
+    "ItemInfo.Title",
+    "ItemInfo.ByLineInfo",
+    "ItemInfo.ExternalIds",
+    "Images.Primary.Large",
+  ];
 
-  // もし Resources が原因で落ちるなら（保険：今後 resources 増やした時も落ちない）
-  if (g?.error && g.status === 400 && isInvalidResourcesError(g.body)) {
-    g = await paapiGetItems({ itemIds: [a], resources: RESOURCES_MIN });
+  // “欲しいもの”候補（JPで有効かは環境次第なので probe）
+  // ※ここは「一個ずつ足して試す」方式
+  const optionalCandidates = [
+    "ItemInfo.ContentInfo",
+    "ItemInfo.ProductInfo",
+    // EditorialReviews は root or sub のどちらが許されるか環境で違う可能性があるので両方試す
+    "EditorialReviews",
+    "EditorialReviews.EditorialReview",
+  ];
+
+  let okJson = null;
+  let okResources = base.slice();
+
+  // 429はここで指数バックオフ
+  async function callWithRetry(resources, label) {
+    let wait = 900;
+    for (let i = 0; i < 4; i++) {
+      const res = await paapiGetItems({ itemIds: [asin], resources });
+      if (res?.ok) return { ok: true, res };
+      if (res?.skipped) return { ok: false, skipped: true, res };
+
+      if (res?.error && res.status === 429) {
+        debugSteps.retries = debugSteps.retries || [];
+        debugSteps.retries.push({ label, attempt: i + 1, status: 429, waitMs: wait });
+        await sleep(wait);
+        wait *= 2;
+        continue;
+      }
+      return { ok: false, res };
+    }
+    return { ok: false, res: { error: true, status: 429, body: "retry_exhausted" } };
   }
 
-  if (g?.skipped) return { ok: false, reason: `paapi_skipped(${g.reason})`, raw: g };
-  if (g?.error) return { ok: false, reason: `paapi_getitems_error(${g.status})`, raw: g };
+  // まず base で取得
+  {
+    const got = await callWithRetry(okResources, "base");
+    debugSteps.base = got?.res ?? null;
+    if (!got?.ok) return { ok: false, reason: got?.skipped ? `paapi_skipped(${got.res.reason})` : `paapi_getitems_error(${got?.res?.status ?? "unknown"})`, raw: got?.res };
+    okJson = got.res.json;
+  }
 
-  const item = g?.json?.ItemsResult?.Items?.[0] || null;
-  return item ? { ok: true, item, raw: g } : { ok: false, reason: "no_item_returned", raw: g };
+  // optional を 1個ずつ追加して試す（InvalidResourceなら捨てる）
+  debugSteps.probe = [];
+  for (const opt of optionalCandidates) {
+    const trial = okResources.concat([opt]);
+    const got = await callWithRetry(trial, `probe:${opt}`);
+
+    if (got?.ok) {
+      // 成功：採用
+      okResources = trial;
+      okJson = got.res.json;
+      debugSteps.probe.push({ resource: opt, adopted: true });
+      await sleep(650);
+      continue;
+    }
+
+    // 無効 resource は捨てて次へ
+    if (got?.res?.error && got.res.status === 400 && isInvalidResourceError(got.res.body)) {
+      debugSteps.probe.push({ resource: opt, adopted: false, reason: "invalid_resource" });
+      await sleep(650);
+      continue;
+    }
+
+    // それ以外の失敗は “採用せず次へ” に倒す（enrich 全体が止まるよりマシ）
+    debugSteps.probe.push({ resource: opt, adopted: false, reason: `error(${got?.res?.status ?? "unknown"})` });
+    await sleep(650);
+  }
+
+  const item = okJson?.ItemsResult?.Items?.[0] || null;
+  if (!item) return { ok: false, reason: "no_item", raw: okJson };
+
+  return { ok: true, item, usedResources: okResources };
 }
 
-/* -----------------------
- * main
- * ----------------------- */
 async function main() {
   const series = await loadJson(IN_SERIES, { items: [] });
   const items = Array.isArray(series?.items) ? series.items : [];
@@ -260,23 +290,15 @@ async function main() {
   const enriched = [];
   const debug = [];
 
-  // build の直後に enrich なので、ここは少し間を空ける（429回避）
-  await sleep(1200);
+  let ok = 0;
+  let ng = 0;
 
-  for (const it of items) {
-    const seriesKey = norm(it?.seriesKey);
-    const author = norm(it?.author) || null;
-
-    const vol1 = it?.vol1 || {};
-    const lane2Title = norm(vol1?.title) || null;
-    const isbn13 = norm(vol1?.isbn13) || null;
-
-    let asin = null;
-
-    // lane2 の amazonDp が dp/XXXX ならそれを ASIN とみなす（10桁）
-    const dp = norm(vol1?.amazonDp);
-    const m = dp.match(/\/dp\/([A-Z0-9]{10})/i);
-    if (m) asin = m[1].toUpperCase();
+  for (const x of items) {
+    const seriesKey = norm(x?.seriesKey);
+    const author = norm(x?.author);
+    const lane2Title = x?.vol1?.title ?? null;
+    const isbn13 = x?.vol1?.isbn13 ?? null;
+    const amazonDp = x?.vol1?.amazonDp ?? null;
 
     const one = {
       seriesKey,
@@ -284,8 +306,8 @@ async function main() {
       input: {
         lane2Title,
         isbn13,
-        amazonDp: dp || null,
-        source: norm(vol1?.source) || null,
+        amazonDp,
+        source: x?.vol1?.source ?? null,
       },
       steps: {},
       ok: false,
@@ -293,73 +315,69 @@ async function main() {
       output: null,
     };
 
-    // ASINがなければ ISBN13 で引く
-    if (!asin && isbn13) {
-      const r = await findAsinByIsbn13(isbn13);
-      one.steps.findAsinByIsbn13 = r;
-      if (r?.ok) asin = r.asin;
-    }
-
+    const asin = extractAsinFromAmazonDp(amazonDp);
     if (!asin) {
-      one.reason = "cannot_resolve_asin";
+      one.reason = "no_asin_in_amazonDp";
       debug.push(one);
-      await sleep(900);
+      ng++;
+      await sleep(350);
       continue;
     }
 
-    // GetItems（最終タイトルをここで再取得）
-    const g = await getItemByAsin(asin);
-    one.steps.getItemByAsin = { ok: g.ok, reason: g.reason || null, asin, raw: g.raw };
+    const step = {};
+    const got = await getItemWithResourceProbe({ asin, debugSteps: step });
+    one.steps.getItemByAsin = {
+      ok: !!got.ok,
+      reason: got.ok ? null : got.reason,
+      asin,
+      raw: got.ok ? { usedResources: got.usedResources } : got.raw,
+      probe: step.probe || null,
+      retries: step.retries || null,
+    };
 
-    if (!g.ok) {
-      one.reason = g.reason || "getitems_failed";
+    if (!got.ok) {
+      one.ok = false;
+      one.reason = got.reason;
       debug.push(one);
-      await sleep(900);
+      ng++;
+      await sleep(650);
       continue;
     }
 
-    const itemObj = g.item;
-    const finalTitle = norm(extractTitle(itemObj)) || lane2Title || null;
+    const item = got.item;
 
-    const isbn13FromPa = extractIsbn13(itemObj);
-    const finalIsbn13 = isbn13FromPa || isbn13 || null;
+    const paTitle = extractTitle(item) || null;
+    const paIsbn13 = extractIsbn13(item) || null;
 
-    const image = extractImage(itemObj) || null;
-    const contributors = extractContributors(itemObj);
-    const pub = extractPublisher(itemObj);
+    // ここが重要：最終タイトルは PA-API 正
+    const finalTitle = paTitle || lane2Title || seriesKey || null;
 
     const out = {
       seriesKey,
       author,
       vol1: {
-        // 表示用（PA-APIから再取得したタイトル）
-        title: finalTitle,
-
-        // 監査用（lane2側のタイトル）
-        titleLane2: lane2Title,
-
-        isbn13: finalIsbn13,
+        title: finalTitle,          // ★正
+        titleLane2: lane2Title,     // ★監査用
+        isbn13: paIsbn13 || isbn13 || null,
         asin,
-        image,
-        amazonDp: dpFromAsin(asin),
-        publisher: pub,
-        contributors,
-
-        // ※説明文・発売日は PA-API Resources が確定してから追加（いまは成功優先）
-        releaseDate: null,
-        description: null,
-
-        source: "enrich(paapi_getitems_by_asin)",
+        image: extractImage(item) || null,
+        amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
+        publisher: extractPublisher(item),
+        contributors: extractContributors(item),
+        releaseDate: extractReleaseDate(item),     // 取れた時だけ入る
+        description: extractDescription(item),     // 取れた時だけ入る
+        source: "enrich(paapi_getitems_probe_by_asin)",
       },
     };
 
     one.ok = true;
     one.output = out;
-    enriched.push(out);
     debug.push(one);
+    enriched.push(out);
+    ok++;
 
-    // 429回避
-    await sleep(1100);
+    // 安全な間隔
+    await sleep(900);
   }
 
   await saveJson(OUT_ENRICHED, {
@@ -372,8 +390,8 @@ async function main() {
   await saveJson(OUT_DEBUG, {
     updatedAt: nowIso(),
     total: items.length,
-    ok: enriched.length,
-    ng: items.length - enriched.length,
+    ok,
+    ng,
     items: debug,
   });
 
