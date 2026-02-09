@@ -217,5 +217,92 @@
       "cover": "",
       "author": "山田,鐘人 アベ,ツカサ"
     }
+  },
+  "9784757579620": {
+    "onix": {
+      "CollateralDetail": {},
+      "RecordReference": "9784757579620",
+      "NotificationType": "03",
+      "ProductIdentifier": {
+        "ProductIDType": "15",
+        "IDValue": "9784757579620"
+      },
+      "DescriptiveDetail": {
+        "TitleDetail": {
+          "TitleType": "01",
+          "TitleElement": {
+            "TitleElementLevel": "01",
+            "TitleText": {
+              "collationkey": "ヨミ ノ ツガイ",
+              "content": "黄泉のツガイ. 1"
+            }
+          }
+        },
+        "Contributor": [
+          {
+            "SequenceNumber": "1",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "荒川, 弘, 1973-",
+              "collationkey": "アラカワ, ヒロム, 1973-"
+            }
+          }
+        ],
+        "Collection": {
+          "CollectionType": "10",
+          "TitleDetail": {
+            "TitleType": "01",
+            "TitleElement": [
+              {
+                "TitleElementLevel": "02",
+                "PartNumber": "",
+                "TitleText": {
+                  "collationkey": "",
+                  "content": "ガンガンコミックス"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "PublishingDetail": {
+        "Imprint": {
+          "ImprintName": "スクウェア・エニックス"
+        },
+        "PublishingDate": [
+          {
+            "PublishingDateRole": "11",
+            "Date": "202206"
+          }
+        ]
+      },
+      "ProductSupply": {
+        "SupplyDetail": {
+          "ProductAvailability": "99",
+          "Price": [
+            {
+              "PriceType": "01",
+              "CurrencyCode": "JPY",
+              "PriceAmount": "445"
+            }
+          ]
+        }
+      }
+    },
+    "hanmoto": {
+      "datemodified": "2024-12-01 17:08:53",
+      "datecreated": "2022-04-12 10:20:20",
+      "datekoukai": "2022-04-12"
+    },
+    "summary": {
+      "isbn": "9784757579620",
+      "title": "黄泉のツガイ. 1",
+      "volume": "",
+      "series": "ガンガンコミックス",
+      "publisher": "スクウェア・エニックス",
+      "pubdate": "202206",
+      "cover": "",
+      "author": "荒川,弘,1973-"
+    }
   }
 }

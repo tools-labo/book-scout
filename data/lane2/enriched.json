@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-09T14:22:20.000Z",
+  "updatedAt": "2026-02-09T14:33:53.016Z",
   "total": 3,
-  "enriched": 2,
+  "enriched": 3,
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -51,6 +51,52 @@
           "Anti-Hero",
           "Fitness",
           "Foreign"
+        ],
+        "source": "enrich(paapi+openbd+anilist)"
+      }
+    },
+    {
+      "seriesKey": "黄泉のツガイ",
+      "author": "荒川弘",
+      "vol1": {
+        "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+        "titleLane2": "黄泉のツガイ",
+        "isbn13": "9784757579620",
+        "asin": "4757579624",
+        "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+        "publisher": {
+          "brand": "スクウェア・エニックス(SQUARE ENIX)",
+          "manufacturer": "スクウェア・エニックス"
+        },
+        "contributors": [
+          {
+            "name": "荒川 弘",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2022-06-10T00:00:01Z",
+        "description": "In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village while locked in a cage. Why is Asa a prisoner? And what other secrets does Yuru’s otherwise idyllic home hide?\n\n(Source: Square Enix)\n\nNote: Won 2nd place in the 2023 Next Manga Award in the Print Manga Category.",
+        "descriptionSource": "anilist",
+        "anilistId": 136899,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Shounen",
+          "Twins",
+          "Youkai",
+          "Anachronism",
+          "Urban Fantasy",
+          "Male Protagonist",
+          "Conspiracy",
+          "Archery",
+          "Rural",
+          "Tragedy"
         ],
         "source": "enrich(paapi+openbd+anilist)"
       }

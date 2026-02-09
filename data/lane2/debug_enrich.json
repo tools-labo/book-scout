@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-02-09T14:22:20.001Z",
+  "updatedAt": "2026-02-09T14:33:53.017Z",
   "total": 3,
-  "ok": 2,
-  "ng": 1,
+  "ok": 3,
+  "ng": 0,
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -48,25 +48,13 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         }
       },
       "ok": true,
@@ -134,17 +122,31 @@
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
-        "getItemByAsin": {
-          "ok": false,
-          "reason": "no_item",
-          "asin": "9784757579",
+        "resolveAsinByIsbn13": {
+          "ok": true,
+          "reason": null,
+          "isbn13": "9784757579620",
           "raw": {
-            "Errors": [
-              {
-                "__type": "com.amazon.paapi5#ErrorData",
-                "Code": "InvalidParameterValue",
-                "Message": "The ItemIds 9784757579 provided in the request is invalid."
-              }
+            "cached": false,
+            "ok": true,
+            "found": true,
+            "returned": 2,
+            "asin": "4757579624"
+          },
+          "retries": null
+        },
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4757579624",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
             ]
           },
           "probe": [
@@ -169,23 +171,85 @@
           ],
           "retries": [
             {
-              "label": "probe:EditorialReviews",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:EditorialReviews",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 2,
               "status": 429,
               "waitMs": 1800
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
             }
           ]
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
         }
       },
-      "ok": false,
-      "reason": "no_item",
-      "output": null
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "黄泉のツガイ",
+        "author": "荒川弘",
+        "vol1": {
+          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+          "titleLane2": "黄泉のツガイ",
+          "isbn13": "9784757579620",
+          "asin": "4757579624",
+          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+          "publisher": {
+            "brand": "スクウェア・エニックス(SQUARE ENIX)",
+            "manufacturer": "スクウェア・エニックス"
+          },
+          "contributors": [
+            {
+              "name": "荒川 弘",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2022-06-10T00:00:01Z",
+          "description": "In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village while locked in a cage. Why is Asa a prisoner? And what other secrets does Yuru’s otherwise idyllic home hide?\n\n(Source: Square Enix)\n\nNote: Won 2nd place in the 2023 Next Manga Award in the Print Manga Category.",
+          "descriptionSource": "anilist",
+          "anilistId": 136899,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ],
+          "tags": [
+            "Shounen",
+            "Twins",
+            "Youkai",
+            "Anachronism",
+            "Urban Fantasy",
+            "Male Protagonist",
+            "Conspiracy",
+            "Archery",
+            "Rural",
+            "Tragedy"
+          ],
+          "source": "enrich(paapi+openbd+anilist)"
+        }
+      }
     },
     {
       "seriesKey": "葬送のフリーレン",
@@ -241,15 +305,10 @@
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         }
       },
       "ok": true,
