@@ -126,33 +126,22 @@ function isMainlineVol1ByTitle(title, seriesKey) {
  * - NDLはタイトルに(1)が入らないことがあるので、volume===1 を優先して許可
  * - ただし派生・別媒体(小説/アニメ等)はタイトルで落とす
  * - タイトルは「シリーズ名を含む or 逆包含」まで許容（NDL側の省略対策）
- * - ISBN13が無い候補は「確定」には使わない（後段でprobeしても取れないことが多い）
+ * - ISBN13が無い候補は「確定」には使わない
  */
 function isNdlMainlineVol1({ title, seriesKey, volume, isbn13 }) {
   const t = toHalfWidth(norm(title));
   const s = toHalfWidth(norm(seriesKey));
   if (!t || !s) return false;
 
-  // まず派生は問答無用で落とす
   if (isDerivedEdition(t)) return false;
-
-  // タイトルに「小説/アニメ」等が混ざってる場合の安全弁（派生関数にもあるが明示）
   if (/小説|アニメ|ノベライズ|文庫/.test(t.toLowerCase())) return false;
 
-  // タイトルは緩く（NDLは省略・無印があり得る）
   const okTitle = titleHasSeries(t, s) || normLoose(s).includes(normLoose(t));
   if (!okTitle) return false;
 
-  // 巻数は volume が取れてたらそれを最優先
-  if (volume === 1) {
-    // 確定ルートに使うならISBN13は欲しい
-    return !!isbn13;
-  }
+  if (volume === 1) return !!isbn13;
 
-  // volumeが無い/取れない場合だけ、タイトル巻数で判定
   if (!isVol1Like(t)) return false;
-
-  // タイトル巻数ルートも「確定」はISBN13必須にする（統合キーが崩れるのを防ぐ）
   return !!isbn13;
 }
 
@@ -166,7 +155,6 @@ function isVol1FromTitleOrVolume(title, volume) {
 
 /**
  * スコアは “補助”
- * 最終確定は guard を通したものだけ
  */
 function scoreCandidate({ title, isbn13, seriesKey, volume }) {
   let score = 0;
@@ -454,7 +442,6 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
 
       if (!titleHasSeries(title, seriesKey)) continue;
 
-      // ★事故防止：本線1巻だけ
       if (!isMainlineVol1ByTitle(title, seriesKey)) continue;
 
       const score = scoreCandidate({ title, isbn13, seriesKey, volume: null }) + (asin ? 5 : 0);
@@ -617,7 +604,7 @@ async function main() {
         : { ok: false, reason: r.reason, debug: r.debug };
 
       if (r?.ok) {
-        confirmed.push({
+        const out = {
           seriesKey,
           author,
           vol1: {
@@ -627,7 +614,12 @@ async function main() {
             amazonDp: dpFromAsinOrIsbn(r.asin || r.isbn13),
             source: r.debug?.resolvedBy ? `seed_hint(${r.debug.resolvedBy})+mainline_guard` : "seed_hint+mainline_guard",
           },
-        });
+        };
+        confirmed.push(out);
+
+        one.path = "seed_hint";
+        one.confirmed = out;
+
         debug.push(one);
         await sleep(600);
         continue;
@@ -657,7 +649,6 @@ async function main() {
     const ndlBest = pickBest(ndlCandidates, seriesKey);
 
     if (ndlBest) {
-      // ★ここが修正点：NDLは title(1) を要求しない
       if (!isNdlMainlineVol1({ title: ndlBest.title, seriesKey, volume: ndlBest.volume, isbn13: ndlBest.isbn13 })) {
         one.ndlBestRejected = { reason: "ndl_final_guard_failed", best: ndlBest };
       } else {
@@ -695,7 +686,7 @@ async function main() {
           continue;
         }
 
-        confirmed.push({
+        const out = {
           seriesKey,
           author,
           vol1: {
@@ -705,7 +696,12 @@ async function main() {
             amazonDp: dpFromAsinOrIsbn(asin || isbn13),
             source: "ndl(opensearch)+paapi_probe+ndl_guard",
           },
-        });
+        };
+        confirmed.push(out);
+
+        one.path = "ndl";
+        one.confirmed = out;
+
         debug.push(one);
         await sleep(600);
         continue;
@@ -759,7 +755,7 @@ async function main() {
       continue;
     }
 
-    confirmed.push({
+    const out = {
       seriesKey,
       author,
       vol1: {
@@ -769,7 +765,12 @@ async function main() {
         amazonDp: dpFromAsinOrIsbn(b.asin),
         source: "paapi(mainline_guard)",
       },
-    });
+    };
+    confirmed.push(out);
+
+    one.path = "paapi";
+    one.confirmed = out;
+
     debug.push(one);
     await sleep(600);
   }
