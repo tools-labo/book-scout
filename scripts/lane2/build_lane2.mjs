@@ -340,7 +340,14 @@ function extractIsbn13(item) {
 }
 
 async function paapiSearchVol1({ seriesKey, author }) {
-  const tries = [`${seriesKey} 1`, `${seriesKey} （1）`];
+  // ブルーロックみたいに原作1巻が上位に来ないケースがあるので、クエリを増やす
+  const tries = [
+    `${seriesKey} 1`,
+    `${seriesKey} （1）`,
+    `${seriesKey} 1 コミックス`,
+    author ? `${seriesKey} 1 ${author}` : null,
+  ].filter(Boolean);
+
   const results = [];
 
   for (const q of tries) {
@@ -352,34 +359,38 @@ async function paapiSearchVol1({ seriesKey, author }) {
     }
 
     const items = res?.json?.SearchResult?.Items || [];
-    const cands = [];
+    const candidatesAll = [];
+    let best = null;
 
     for (const it of items) {
       const title = extractTitle(it);
+      const isbn13 = extractIsbn13(it); // ここは取れればラッキー
       const asin = it?.ASIN || null;
 
       if (!title || !asin) continue;
 
-      // シリーズ名必須
+      // シリーズ名は必須（誤確定の主因なのでここは固定）
       if (!normLoose(title).includes(normLoose(seriesKey))) continue;
 
-      // 単話/セット/派生は落とす
-      if (isLikelySingleEpisode(title) || isBoxSetLike(title) || isDerivativeLike(title)) continue;
+      // 明確な派生だけ落とす（ブルーロックは派生が多い）
+      // ※「Kindle/電子/デジタル」は落とさない（GetItemsでEAN取るため）
+      if (isLikelySingleEpisode(title)) continue;
+      if (/小説|novel|episode\s*凪|エピソード\s*凪|ファンブック|劇場版|キャラクターブック/i.test(title)) continue;
+      if (/総集編|公式ファンブック|特装版|限定版|ガイド|画集/i.test(title)) continue;
 
-      // 1巻らしさ必須
+      // 1巻っぽさは強めに要求（誤確定を抑える）
       if (!isVol1Like(title)) continue;
 
-      // ISBN13はSearchItemsだと取れないことがあるので、ISBN10(数値ASIN)から推定も持つ
-      const isbn13 = extractIsbn13(it);
-      const isbn13Guess = !isbn13 && /^\d{10}$/.test(String(asin)) ? isbn10to13(asin) : null;
+      // スコア：ASINがある時点でGetItemsに進めるので、ISBN13は必須にしない
+      const score = scoreCandidate({ title, isbn13, seriesKey, author, creator: null }) + 10;
 
-      const score = scoreCandidate({ title, isbn13: isbn13 || isbn13Guess, seriesKey, author, creator: null }) + 5;
+      const cand = { source: "paapi_search", query: q, title, asin, isbn13, score };
+      candidatesAll.push(cand);
 
-      cands.push({ source: "paapi_search", query: q, title, asin, isbn13, isbn13Guess, score });
+      if (!best || cand.score > best.score) best = cand;
     }
 
-    const best = pickBest(cands);
-    results.push({ query: q, ok: true, returned: items.length, best, candidatesAll: cands });
+    results.push({ query: q, ok: true, returned: items.length, best, candidatesAll });
     await sleep(900);
   }
 
