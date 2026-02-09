@@ -41,7 +41,9 @@ function toHalfWidth(s) {
     .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
-    .replace(/[　]/g, " ");
+    .replace(/[　]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function titleHasSeries(title, seriesKey) {
@@ -50,52 +52,64 @@ function titleHasSeries(title, seriesKey) {
   if (!t || !s) return false;
   return t.includes(s);
 }
-function isVol1Like(title) {
-  const t = toHalfWidth(norm(title));
-  return /\(\s*1\s*\)/.test(t) || /第\s*1\s*巻/.test(t) || /\b1\b/.test(t);
-}
 
 /**
- * ここが今回のキモ：ブルーロック事故の “派生” を全部弾く
- * - バイリンガル/デラックス/英語版/翻訳版
- * - 小説/ノベライズ
- * - フルカラー/カラー版
- * - EPISODE/外伝/スピンオフ
- * - ファンブック/副読本/ガイド/ムック/キャラブック/設定資料
- * - セット/全巻/BOX
- * - 電子の単話/分冊/話売り
+ * ✅ vol1判定（誤爆防止のため「単なる 1 」は採用しない）
+ * - (1) / （1） / 第1巻 / 1巻
  */
-function isDerivedEdition(title) {
-  const t = toHalfWidth(norm(title)).toLowerCase();
+function isVol1Like(title) {
+  const t = toHalfWidth(norm(title));
+  if (!t) return false;
 
-  // セット類
-  if (/全巻|巻セット|セット|box|ボックス|まとめ買い/.test(t)) return true;
-
-  // 作品外の本（キャラブック/ガイド等）
-  if (/ファンブック|副読本|ガイド|ムック|設定資料|資料集|キャラクターブック|bible|図録|公式/.test(t)) return true;
-
-  // 外伝/派生
-  if (/episode|外伝|番外編|スピンオフ|side\s*story/.test(t)) return true;
-
-  // 小説
-  if (/小説|ノベライズ|文庫/.test(t)) return true;
-
-  // フルカラー
-  if (/full\s*color|フルカラー|カラー|selection/.test(t)) return true;
-
-  // 多言語/デラックス
-  if (/バイリンガル|bilingual|デラックス|deluxe|英語版|翻訳/.test(t)) return true;
-
-  // 電子単話
-  if (/単話|分冊|話売り|第\s*\d+\s*話/.test(t)) return true;
+  if (/\(\s*1\s*\)/.test(t)) return true;
+  if (/第\s*1\s*巻/.test(t)) return true;
+  if (/(^|[^\d])1巻([^\d]|$)/.test(t)) return true;
 
   return false;
 }
 
 /**
- * “本線1巻” 判定
+ * ✅ 派生・周辺本を弾く（今回の事故の本丸）
+ * 追加：ポスター/画集/イラストブック等を明示的に除外
+ */
+function isDerivedEdition(title) {
+  const raw = toHalfWidth(norm(title));
+  const t = raw.toLowerCase();
+
+  // セット類
+  if (/全巻|巻セット|セット|box|ボックス|まとめ買い/.test(raw)) return true;
+
+  // 作品外の本（キャラブック/ガイド等）
+  if (/ファンブック|副読本|ガイド|ムック|設定資料|資料集|キャラクターブック|bible|図録|公式/.test(raw)) return true;
+
+  // ★グッズ・周辺物（ポスター事故を確実に潰す）
+  if (/ポスター|ポスターコレクション|カレンダー|ポストカード|カード|シール|クリアファイル|グッズ/.test(raw)) return true;
+
+  // ★画集・イラスト系（画集(Vol.1) 事故を潰す）
+  if (/画集|原画集|イラストブック|イラスト集|アートブック|設定画|設定集/.test(raw)) return true;
+
+  // 外伝/派生
+  if (/episode|外伝|番外編|スピンオフ|side\s*story/.test(t)) return true;
+
+  // 小説
+  if (/小説|ノベライズ|文庫/.test(raw)) return true;
+
+  // フルカラー
+  if (/full\s*color|フルカラー|カラー|selection/.test(t)) return true;
+
+  // 多言語/デラックス
+  if (/バイリンガル|bilingual|デラックス|deluxe|英語版|翻訳/.test(raw)) return true;
+
+  // 電子単話
+  if (/単話|分冊|話売り|第\s*\d+\s*話/.test(raw)) return true;
+
+  return false;
+}
+
+/**
+ * ✅ “本線1巻” 判定（最終ガード）
  * - シリーズ名を含む
- * - 1巻っぽい
+ * - vol1っぽい
  * - 派生ワードを含まない
  * - 「シリーズ名-EPISODE…」みたいな直後派生も弾く
  */
@@ -103,6 +117,7 @@ function isMainlineVol1(title, seriesKey) {
   const t = toHalfWidth(norm(title));
   const s = toHalfWidth(norm(seriesKey));
   if (!t || !s) return false;
+
   if (!titleHasSeries(t, s)) return false;
   if (!isVol1Like(t)) return false;
   if (isDerivedEdition(t)) return false;
@@ -113,11 +128,12 @@ function isMainlineVol1(title, seriesKey) {
     const rest = t.slice(idx + s.length);
     if (/^\s*[-ー–—]\s*(episode|外伝)/i.test(rest)) return false;
   }
+
   return true;
 }
 
 /**
- * スコアは “補助” に落とす。
+ * ✅ スコアは “補助” に落とす。
  * 最終確定は isMainlineVol1 をパスしたものだけ。
  */
 function scoreCandidate({ title, isbn13, seriesKey }) {
@@ -129,10 +145,10 @@ function scoreCandidate({ title, isbn13, seriesKey }) {
   if (seriesKey && titleHasSeries(t, seriesKey)) score += 40;
   if (isVol1Like(t)) score += 25;
 
-  // ★派生は容赦なく減点（ここで勝てないようにする）
+  // 派生は容赦なく減点（ここで勝てないようにする）
   if (isDerivedEdition(t)) score -= 1000;
 
-  // ★本線1巻は大加点（同点崩し）
+  // 本線1巻は大加点（同点崩し）
   if (seriesKey && isMainlineVol1(t, seriesKey)) score += 500;
 
   return score;
@@ -198,7 +214,6 @@ async function ndlOpensearch({ seriesKey }) {
 
     if (title && titleSamples.length < 5) titleSamples.push(title);
 
-    // item内のISBN13拾い
     const isbn13 = (block.match(/(97[89]\d{10})/g) || [])[0] || null;
 
     if (!title) {
@@ -415,13 +430,13 @@ async function main() {
 
     // NDLで本線1巻が取れたら、それを “優先採用” して PA-APIで画像/ISBN補完だけする（失敗しても確定は維持）
     if (ndlBest) {
-      // 画像・EAN補完を取りにいく（titleガードは既に通ってる）
       const pa = await paapiSearchItems({ keywords: ndlBest.isbn13 || `${seriesKey} (1)` });
       one.paapiProbe = pa;
 
       let image = null;
       let isbn13 = ndlBest.isbn13 || null;
       let asin = null;
+
       if (pa?.ok) {
         const items = pa?.json?.SearchResult?.Items || [];
         const hit = items.find((it) => {
@@ -457,7 +472,12 @@ async function main() {
 
     const b = paSearch?.best;
     if (!b?.asin) {
-      todo.push({ seriesKey, author, reason: paSearch?.skipped ? `paapi_skipped(${paSearch.reason})` : "no_mainline_vol1_candidate", best: b || null });
+      todo.push({
+        seriesKey,
+        author,
+        reason: paSearch?.skipped ? `paapi_skipped(${paSearch.reason})` : "no_mainline_vol1_candidate",
+        best: b || null,
+      });
       debug.push(one);
       await sleep(600);
       continue;
@@ -467,7 +487,12 @@ async function main() {
     one.paapiGet = get;
 
     if (!get?.ok) {
-      todo.push({ seriesKey, author, reason: get?.skipped ? `paapi_skipped(${get.reason})` : `paapi_getitems_error(${get?.status ?? "unknown"})`, best: b });
+      todo.push({
+        seriesKey,
+        author,
+        reason: get?.skipped ? `paapi_skipped(${get.reason})` : `paapi_getitems_error(${get?.status ?? "unknown"})`,
+        best: b,
+      });
       debug.push(one);
       await sleep(600);
       continue;
@@ -479,7 +504,12 @@ async function main() {
 
     // 最終ガード（本線1巻のみ確定）
     if (!isMainlineVol1(title, seriesKey) || !isbn13) {
-      todo.push({ seriesKey, author, reason: !isbn13 ? "paapi_getitems_no_ean" : "final_guard_failed", best: b });
+      todo.push({
+        seriesKey,
+        author,
+        reason: !isbn13 ? "paapi_getitems_no_ean" : "final_guard_failed",
+        best: b,
+      });
       debug.push(one);
       await sleep(600);
       continue;
