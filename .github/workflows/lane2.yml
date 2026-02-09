@@ -1,10 +1,10 @@
 # .github/workflows/lane2.yml
-name: Lane2 - Confirm Vol1 ISBN (NDL open + Amazon PA-API)
+name: Lane2 - Confirm Vol1 (NDL + Amazon PA-API)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 */6 * * *"
+    - cron: "17 */6 * * *" # 6時間ごと（様子見）
 
 permissions:
   contents: write
@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install
+        run: npm install
+
       - name: Run lane2
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
@@ -32,7 +35,7 @@ jobs:
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
         run: |
           set -euo pipefail
-          node scripts/lane2/build_lane2.mjs
+          npm run lane2
 
       - name: Commit outputs
         run: |
