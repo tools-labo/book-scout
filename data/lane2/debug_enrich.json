@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T15:37:13.800Z",
+  "updatedAt": "2026-02-09T20:07:53.189Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,20 +48,7 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
@@ -131,20 +118,10 @@
       "input": {
         "lane2Title": "黄泉のツガイ",
         "isbn13": "9784757579620",
-        "amazonDp": "https://www.amazon.co.jp/dp/9784757579620",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
-        "resolveAsinByIsbn13": {
-          "ok": true,
-          "reason": null,
-          "isbn13": "9784757579620",
-          "raw": {
-            "cached": true,
-            "asin": "4757579624"
-          },
-          "retries": null
-        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -181,10 +158,16 @@
           ],
           "retries": [
             {
-              "label": "base",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             },
             {
               "label": "probe:EditorialReviews",
@@ -256,23 +239,10 @@
       "input": {
         "lane2Title": "葬送のフリーレン",
         "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
-        "resolveAsinByIsbn13": {
-          "ok": true,
-          "reason": null,
-          "isbn13": "9784098501809",
-          "raw": {
-            "cached": false,
-            "ok": true,
-            "found": true,
-            "returned": 4,
-            "asin": "4098501805"
-          },
-          "retries": null
-        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -309,16 +279,16 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:ItemInfo.ContentInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
               "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 2,
+              "attempt": 1,
               "status": 429,
-              "waitMs": 1800
+              "waitMs": 900
             }
           ]
         },
