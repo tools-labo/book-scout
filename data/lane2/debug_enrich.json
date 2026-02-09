@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T14:33:53.017Z",
+  "updatedAt": "2026-02-09T15:37:13.800Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,7 +48,20 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
           "cached": true
@@ -127,10 +140,7 @@
           "reason": null,
           "isbn13": "9784757579620",
           "raw": {
-            "cached": false,
-            "ok": true,
-            "found": true,
-            "returned": 2,
+            "cached": true,
             "asin": "4757579624"
           },
           "retries": null
@@ -171,19 +181,13 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "base",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -191,15 +195,10 @@
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         }
       },
       "ok": true,
@@ -257,10 +256,23 @@
       "input": {
         "lane2Title": "葬送のフリーレン",
         "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
+        "resolveAsinByIsbn13": {
+          "ok": true,
+          "reason": null,
+          "isbn13": "9784098501809",
+          "raw": {
+            "cached": false,
+            "ok": true,
+            "found": true,
+            "returned": 4,
+            "asin": "4098501805"
+          },
+          "retries": null
+        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -297,10 +309,16 @@
           ],
           "retries": [
             {
-              "label": "probe:EditorialReviews.EditorialReview",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
