@@ -39,8 +39,7 @@ function normLoose(s) {
 
 function isLikelySingleEpisode(title) {
   const t = norm(title);
-  // Kindle/電子/デジタルは「単話判定」から外す（1巻本体もあるため）
-  return /第\s*\d+\s*話/.test(t) || /分冊|単話|話売り/.test(t);
+  return /第\s*\d+\s*話/.test(t) || /分冊|単話|話売り|Kindle版|電子版/i.test(t);
 }
 function isVol1Like(title) {
   const t = norm(title);
@@ -51,25 +50,16 @@ function isVol1Like(title) {
     /(^|[^0-9])1([^0-9]|$)/.test(t)
   );
 }
-function isBoxSetLike(title) {
-  const t = norm(title);
-  return /セット|全巻|まとめ|1-\d+巻|新品セット/.test(t);
-}
-function isDerivativeLike(title) {
-  const t = norm(title);
-  return /小説|文庫|ファンブック|ガイド|画集|キャラクターブック|ＥＰＩＳＯＤＥ|スピンオフ|FULL\s*COLOR|フルカラー|バイリンガル/.test(
-    t
-  );
-}
 
 function scoreCandidate({ title, isbn13, seriesKey, author, creator }) {
   let score = 0;
   const t = norm(title);
   if (!t) return 0;
 
+  // ISBNが同一item内で取れてる時点で強い
   if (isbn13) score += 70;
 
-  // シリーズ名を含む（必須級）
+  // シリーズ名を含む（強い）
   if (seriesKey && normLoose(t).includes(normLoose(seriesKey))) score += 30;
 
   // 1巻っぽい
@@ -83,98 +73,65 @@ function scoreCandidate({ title, isbn13, seriesKey, author, creator }) {
   }
 
   // ノイズ抑制
-  if (isLikelySingleEpisode(t)) score -= 80;
-  if (isBoxSetLike(t)) score -= 60;
-  if (isDerivativeLike(t)) score -= 45;
+  if (isLikelySingleEpisode(t)) score -= 60;
+  if (/総集編|公式ファンブック|特装版|限定版|ガイド|画集|FULL\s*COLOR/i.test(t)) score -= 30;
 
   return score;
 }
-
 function pickBest(cands) {
   if (!cands.length) return null;
   cands.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
   return cands[0];
 }
-
 function dpFromAsin(asin) {
   if (!asin) return null;
   const a = String(asin).trim().toUpperCase();
-  if (!/^[A-Z0-9]{10}$/.test(a)) return null;
+  // PA-APIのASINは10桁英数(B0..等)だが、日本の紙ISBN10っぽい数字がASINに来るケースもある。
+  // dpは素直に入れる（Amazon側が解釈する）。
+  if (!/^[A-Z0-9]{10}$/.test(a) && !/^[0-9]{10}$/.test(a)) return null;
   return `https://www.amazon.co.jp/dp/${a}`;
-}
-
-function isbn10to13(isbn10) {
-  const x = String(isbn10 ?? "").replace(/[^0-9X]/gi, "");
-  if (!/^\d{9}[\dX]$/.test(x)) return null;
-  const base = "978" + x.slice(0, 9);
-  let sum = 0;
-  for (let i = 0; i < 12; i++) {
-    const n = Number(base[i]);
-    sum += i % 2 === 0 ? n : n * 3;
-  }
-  const check = (10 - (sum % 10)) % 10;
-  return base + String(check);
 }
 
 /**
  * -----------------------
  * NDL Search OpenSearch
  * -----------------------
- * 重要：
- * - NDLの例は q= ではなく title= を使っている  [oai_citation:1‡国立国会図書館サーチ（NDLサーチ）](https://ndlsearch.ndl.go.jp/en/help/api/specifications)
- * - dpid は iss-ndl-opac に固定（提供DBを絞る）
+ * 「提供DB固定」+「item内結合」だけ採用（誤confirmed潰し）
  */
 async function ndlOpensearch({ seriesKey, author }) {
   const dpid = "iss-ndl-opac";
-  const cnt = 30;
-
-  // q は効かない/ノイズが出るケースがあるので title を使う
-  const title = encodeURIComponent(seriesKey);
-  const url = `https://ndlsearch.ndl.go.jp/api/opensearch?dpid=${encodeURIComponent(
-    dpid
-  )}&cnt=${cnt}&title=${title}`;
+  const q = encodeURIComponent(`${seriesKey} 1`);
+  const url = `https://ndlsearch.ndl.go.jp/api/opensearch?dpid=${encodeURIComponent(dpid)}&cnt=20&q=${q}`;
 
   const r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2" } });
   if (!r.ok) throw new Error(`NDL HTTP ${r.status}`);
+
   const xml = await r.text();
 
-  const itemBlocks = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].map((m) => m[1]);
+  // itemごとに切って、そのitem内からtitle/creator/isbnを取る
+  const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
 
   const cands = [];
   let dropped = 0;
-  const titleSamples = [];
 
-  for (const block of itemBlocks) {
+  for (const block of items) {
     const t = (block.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? "")
       .replace(/&amp;/g, "&")
       .trim();
 
-    if (titleSamples.length < 5 && t) titleSamples.push(t);
+    const creator = (block.match(/<(dc:creator|creator)>([\s\S]*?)<\/\1>/i)?.[2] ?? "").trim();
 
-    const creator =
-      (block.match(/<(dc:creator|creator)>([\s\S]*?)<\/\1>/i)?.[2] ?? "").trim() || null;
+    // ISBNは「そのitem内」で拾う（全体から拾って当てるのは禁止）
+    const isbn13 = (block.match(/(97[89]\d{10})/g) || [])[0] || null;
 
-    // item内ISBN（13桁）だけ拾う
-    const isbn13 = (block.match(/97[89]\d{10}/g) || [])[0] || null;
-
-    // 基本条件
-    if (!t) {
-      dropped++;
-      continue;
-    }
-    if (isLikelySingleEpisode(t) || isBoxSetLike(t) || isDerivativeLike(t)) {
+    if (!t || isLikelySingleEpisode(t)) {
       dropped++;
       continue;
     }
 
-    // “シリーズ名を含む” を必須
-    if (!normLoose(t).includes(normLoose(seriesKey))) {
-      dropped++;
-      continue;
-    }
-
-    // 1巻っぽさも必須（NDLは巻表記が揺れるので、ここは厳しすぎると落ちる。最低限）
-    if (!isVol1Like(t) && !/１|1/.test(t)) {
+    // シリーズ名を含まない候補は危ないので落とす（誤confirmed対策）
+    const hasSeries = normLoose(t).includes(normLoose(seriesKey));
+    if (!hasSeries) {
       dropped++;
       continue;
     }
@@ -184,29 +141,20 @@ async function ndlOpensearch({ seriesKey, author }) {
     cands.push({
       source: "ndl_opensearch",
       title: t,
-      creator,
+      creator: creator || null,
       isbn13,
       score,
+      detailUrl: null,
     });
   }
 
-  return {
-    query: { title: seriesKey },
-    url,
-    returned: itemBlocks.length,
-    candidates: cands,
-    dropped,
-    titleSamples,
-  };
+  return { query: `${seriesKey} 1`, url, returned: items.length, candidates: cands, dropped };
 }
 
 /**
  * -----------------------
- * Amazon PA-API
+ * Amazon PA-API (Signer + Requests)
  * -----------------------
- * 方針：
- * - SearchItemsで候補ASINを決める
- * - そのASINを GetItems で取り直して ISBN/画像を確定
  */
 function awsHmac(key, data) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest();
@@ -225,7 +173,7 @@ function amzDate() {
   return { amzDate: `${y}${m}${day}T${hh}${mm}${ss}Z`, dateStamp: `${y}${m}${day}` };
 }
 
-function signedFetch({ target, uri, bodyObj }) {
+function signedPaapiRequest({ target, uri, bodyObj }) {
   if (!AMZ_ACCESS_KEY || !AMZ_SECRET_KEY || !AMZ_PARTNER_TAG) {
     return { skipped: true, reason: "missing_paapi_secrets" };
   }
@@ -234,10 +182,10 @@ function signedFetch({ target, uri, bodyObj }) {
   const region = "us-west-2";
   const service = "ProductAdvertisingAPI";
   const endpoint = `https://${host}${uri}`;
+
   const body = JSON.stringify(bodyObj);
 
   const { amzDate: xAmzDate, dateStamp } = amzDate();
-
   const method = "POST";
   const canonicalUri = uri;
   const canonicalQuerystring = "";
@@ -246,14 +194,7 @@ function signedFetch({ target, uri, bodyObj }) {
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = awsHash(body);
 
-  const canonicalRequest = [
-    method,
-    canonicalUri,
-    canonicalQuerystring,
-    canonicalHeaders,
-    signedHeaders,
-    payloadHash,
-  ].join("\n");
+  const canonicalRequest = [method, canonicalUri, canonicalQuerystring, canonicalHeaders, signedHeaders, payloadHash].join("\n");
 
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
@@ -268,8 +209,10 @@ function signedFetch({ target, uri, bodyObj }) {
   const authorizationHeader =
     `${algorithm} Credential=${AMZ_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
 
-  return fetch(endpoint, {
-    method: "POST",
+  return {
+    skipped: false,
+    endpoint,
+    body,
     headers: {
       "content-encoding": "amz-1.0",
       "content-type": "application/json; charset=utf-8",
@@ -278,12 +221,11 @@ function signedFetch({ target, uri, bodyObj }) {
       "x-amz-target": target,
       Authorization: authorizationHeader,
     },
-    body,
-  });
+  };
 }
 
 async function paapiSearchItems({ keywords }) {
-  const req = {
+  const signed = signedPaapiRequest({
     target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems",
     uri: "/paapi5/searchitems",
     bodyObj: {
@@ -292,55 +234,124 @@ async function paapiSearchItems({ keywords }) {
       ItemCount: 10,
       PartnerTag: AMZ_PARTNER_TAG,
       PartnerType: "Associates",
-      Resources: ["ItemInfo.Title", "ItemInfo.ExternalIds", "ItemInfo.ByLineInfo", "Images.Primary.Large"],
+      Resources: [
+        "ItemInfo.Title",
+        "ItemInfo.ExternalIds",
+        "ItemInfo.ByLineInfo",
+        "Images.Primary.Large",
+      ],
     },
-  };
+  });
 
-  const r = await signedFetch(req);
-  if (r?.skipped) return r;
+  if (signed?.skipped) return signed;
 
+  const r = await fetch(signed.endpoint, { method: "POST", headers: signed.headers, body: signed.body });
   const text = await r.text();
   if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1200) };
   return { ok: true, json: JSON.parse(text) };
 }
 
-async function paapiGetItems({ asin }) {
-  const req = {
+async function paapiGetItems({ asins }) {
+  const list = Array.isArray(asins) ? asins.filter(Boolean) : [];
+  if (!list.length) return { error: true, status: 400, body: "missing asins" };
+
+  const signed = signedPaapiRequest({
     target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
     uri: "/paapi5/getitems",
     bodyObj: {
-      ItemIds: [asin],
+      ItemIds: list,
+      ItemIdType: "ASIN",
       PartnerTag: AMZ_PARTNER_TAG,
       PartnerType: "Associates",
-      Resources: ["ItemInfo.Title", "ItemInfo.ExternalIds", "ItemInfo.ByLineInfo", "Images.Primary.Large"],
+      Resources: [
+        "ItemInfo.Title",
+        "ItemInfo.ExternalIds",
+        "ItemInfo.ByLineInfo",
+        "Images.Primary.Large",
+        "DetailPageURL",
+      ],
     },
-  };
+  });
 
-  const r = await signedFetch(req);
-  if (r?.skipped) return r;
+  if (signed?.skipped) return signed;
 
+  const r = await fetch(signed.endpoint, { method: "POST", headers: signed.headers, body: signed.body });
   const text = await r.text();
   if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1200) };
   return { ok: true, json: JSON.parse(text) };
 }
 
-function extractTitle(item) {
-  return item?.ItemInfo?.Title?.DisplayValue || "";
-}
 function extractIsbn13(item) {
+  // SearchItems側は ExternalIds.ISBN が入るケースがある
   const vals = item?.ItemInfo?.ExternalIds?.ISBN?.DisplayValues;
   if (Array.isArray(vals) && vals.length) {
     const v = String(vals[0]).replace(/[^0-9]/g, "");
     if (/^97[89]\d{10}$/.test(v)) return v;
   }
-  // EANが入るケースもある
-  const ean = item?.ItemInfo?.ExternalIds?.EANs?.DisplayValues?.[0];
-  if (ean && /^97[89]\d{10}$/.test(String(ean).replace(/[^0-9]/g, ""))) return String(ean).replace(/[^0-9]/g, "");
   return null;
+}
+function extractEan13FromGet(item) {
+  // GetItems側は ExternalIds.EANs に13桁が入る（ログでもここが確定根拠）
+  const vals = item?.ItemInfo?.ExternalIds?.EANs?.DisplayValues;
+  if (Array.isArray(vals) && vals.length) {
+    const v = String(vals[0]).replace(/[^0-9]/g, "");
+    if (/^97[89]\d{10}$/.test(v)) return v;
+  }
+  return null;
+}
+function extractTitle(item) {
+  return item?.ItemInfo?.Title?.DisplayValue || "";
+}
+function extractAuthor(item) {
+  const c = item?.ItemInfo?.ByLineInfo?.Contributors;
+  if (Array.isArray(c) && c.length) return c.map((x) => x?.Name).filter(Boolean).join("/");
+  const a = item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue;
+  return a || null;
+}
+function extractImage(item) {
+  return item?.Images?.Primary?.Large?.URL || null;
+}
+
+async function paapiFindByIsbn13(isbn13) {
+  const res = await paapiSearchItems({ keywords: isbn13 });
+  if (res?.skipped) return { skipped: true, reason: res.reason };
+  if (res?.error) return { error: true, status: res.status, body: res.body };
+
+  const items = res?.json?.SearchResult?.Items || [];
+  for (const it of items) {
+    const got = extractIsbn13(it);
+    if (got === isbn13) {
+      const asin = it?.ASIN || null;
+      const title = extractTitle(it);
+      const image = it?.Images?.Primary?.Large?.URL || null;
+      return {
+        ok: true,
+        asin,
+        title,
+        isbn13: got,
+        image,
+        amazonDp: dpFromAsin(asin),
+      };
+    }
+  }
+  return { ok: true, miss: true, returned: items.length };
+}
+
+/**
+ * -----------------------
+ * PA-API Search Vol1 (ASINを拾う)
+ * -----------------------
+ * SearchItemsでISBN13が取れないケースがある（Kindle/紙の混在や表示都合）。
+ * そこで「ASINを拾って GetItems でEAN(=ISBN13)確定」に進めるため、
+ * best は asin を必須にし、isbn13 は任意にする。
+ */
+function isExcludedDerivedTitle(title) {
+  const t = norm(title);
+  // ここは“強めに”落とす（ブルーロックは派生が多い）
+  return /小説|novel|episode\s*凪|エピソード\s*凪|ファンブック|劇場版|キャラクターブック/i.test(t);
 }
 
 async function paapiSearchVol1({ seriesKey, author }) {
-  // ブルーロックみたいに原作1巻が上位に来ないケースがあるので、クエリを増やす
   const tries = [
     `${seriesKey} 1`,
     `${seriesKey} （1）`,
@@ -364,27 +375,28 @@ async function paapiSearchVol1({ seriesKey, author }) {
 
     for (const it of items) {
       const title = extractTitle(it);
-      const isbn13 = extractIsbn13(it); // ここは取れればラッキー
+      const isbn13 = extractIsbn13(it); // 取れればラッキー
       const asin = it?.ASIN || null;
 
       if (!title || !asin) continue;
 
-      // シリーズ名は必須（誤確定の主因なのでここは固定）
+      // シリーズ名は必須（誤確定の主因なので固定）
       if (!normLoose(title).includes(normLoose(seriesKey))) continue;
 
-      // 明確な派生だけ落とす（ブルーロックは派生が多い）
-      // ※「Kindle/電子/デジタル」は落とさない（GetItemsでEAN取るため）
+      // 明確な単話は落とす
       if (isLikelySingleEpisode(title)) continue;
-      if (/小説|novel|episode\s*凪|エピソード\s*凪|ファンブック|劇場版|キャラクターブック/i.test(title)) continue;
+
+      // 露骨な派生だけ落とす（誤confirmed防止）
+      if (isExcludedDerivedTitle(title)) continue;
       if (/総集編|公式ファンブック|特装版|限定版|ガイド|画集/i.test(title)) continue;
 
-      // 1巻っぽさは強めに要求（誤確定を抑える）
+      // 1巻っぽさは要求（ここを緩めると誤確定の温床）
       if (!isVol1Like(title)) continue;
 
       // スコア：ASINがある時点でGetItemsに進めるので、ISBN13は必須にしない
       const score = scoreCandidate({ title, isbn13, seriesKey, author, creator: null }) + 10;
 
-      const cand = { source: "paapi_search", query: q, title, asin, isbn13, score };
+      const cand = { source: "paapi_search", query: q, title, asin, isbn13: isbn13 || null, score };
       candidatesAll.push(cand);
 
       if (!best || cand.score > best.score) best = cand;
@@ -400,6 +412,15 @@ async function paapiSearchVol1({ seriesKey, author }) {
   return { tried: tries, results, best };
 }
 
+/**
+ * -----------------------
+ * main
+ * -----------------------
+ * “誤confirmed潰し”のルール：
+ * 1) NDL候補は item内結合（title/creator/isbnが同じitem）だけを採用
+ * 2) NDL採用時は、PA-APIで ISBN一致を確認できたら confirmed（画像もそこで取る）
+ * 3) NDLが取れない場合は、PA-API検索で ASIN を拾い、GetItems の EAN(=ISBN13) で確定してから confirmed
+ */
 async function main() {
   const seeds = await loadJson(SEEDS_PATH, { items: [] });
   const seedItems = Array.isArray(seeds?.items) ? seeds.items : [];
@@ -415,7 +436,7 @@ async function main() {
 
     const one = { seriesKey };
 
-    // 1) NDL（title=で引く）
+    // 1) NDL
     let ndl;
     try {
       ndl = await ndlOpensearch({ seriesKey, author });
@@ -426,62 +447,35 @@ async function main() {
 
     const ndlBest = pickBest(ndl?.candidates || []);
 
-    // 2) NDLでISBNが取れたら、そのISBNでPA-API “GetItems”に行きたいが、
-    //    PA-APIはISBNでGetItemsできないので、まずSearchItemsでISBNをKeywordsにしてASINを拾う
+    // 2) NDL→PAAPI(ISBN一致で確認＆画像取得)
     if (ndlBest?.isbn13) {
-      const paS = await paapiSearchItems({ keywords: ndlBest.isbn13 });
-      one.paapiSearchByIsbn = paS;
+      const pa = await paapiFindByIsbn13(ndlBest.isbn13);
+      one.paapiByIsbn = pa;
 
-      if (paS?.ok) {
-        const items = paS?.json?.SearchResult?.Items || [];
-        const exact = items.find((it) => extractIsbn13(it) === ndlBest.isbn13);
-        const asin = exact?.ASIN || null;
-
-        if (asin) {
-          const paG = await paapiGetItems({ asin });
-          one.paapiGetByAsin = paG;
-
-          if (paG?.ok) {
-            const got = paG?.json?.ItemsResult?.Items?.[0];
-            const title = extractTitle(got);
-            const isbn13 = extractIsbn13(got) || ndlBest.isbn13;
-            const image = got?.Images?.Primary?.Large?.URL || null;
-
-            // 最終安全：シリーズ名+1巻らしさ
-            const titleOk =
-              normLoose(title).includes(normLoose(seriesKey)) &&
-              isVol1Like(title) &&
-              !isLikelySingleEpisode(title) &&
-              !isBoxSetLike(title) &&
-              !isDerivativeLike(title);
-
-            if (isbn13 === ndlBest.isbn13 && titleOk) {
-              confirmed.push({
-                seriesKey,
-                author,
-                vol1: {
-                  title: title || ndlBest.title,
-                  isbn13,
-                  image,
-                  amazonDp: dpFromAsin(asin),
-                  source: "ndl+paapi(getitems)",
-                },
-              });
-              debug.push(one);
-              await sleep(700);
-              continue;
-            }
-          }
-        }
+      if (pa?.ok && !pa?.miss && pa?.isbn13 === ndlBest.isbn13) {
+        confirmed.push({
+          seriesKey,
+          author,
+          vol1: {
+            title: pa.title || ndlBest.title,
+            isbn13: ndlBest.isbn13,
+            image: pa.image || null,
+            amazonDp: pa.amazonDp || null,
+            source: "ndl+paapi",
+          },
+        });
+        debug.push(one);
+        await sleep(600);
+        continue;
       }
 
       // NDLはあるがPA-APIで確証取れない → todo（誤confirmed防止）
       todo.push({
         seriesKey,
         author,
-        reason: paS?.skipped
-          ? `ndl_has_isbn_but_paapi_skipped(${paS.reason})`
-          : "ndl_has_isbn_but_paapi_no_match",
+        reason: pa?.skipped
+          ? `ndl_has_isbn_but_paapi_skipped(${pa.reason})`
+          : `ndl_has_isbn_but_paapi_no_match`,
         best: {
           source: "ndl_opensearch",
           score: ndlBest.score ?? null,
@@ -490,51 +484,56 @@ async function main() {
         },
       });
       debug.push(one);
-      await sleep(700);
+      await sleep(600);
       continue;
     }
 
-    // 3) NDLでISBNが取れない → PA-API検索 → ベストASIN → GetItemsでISBN/画像確定
+    // 3) NDLダメ → PA-API検索でASIN拾う → GetItems(EAN=ISBN13)で確定
     const paSearch = await paapiSearchVol1({ seriesKey, author });
     one.paapiSearch = paSearch;
 
     const b = paSearch?.best;
     if (b?.asin) {
-      const paG = await paapiGetItems({ asin: b.asin });
-      one.paapiGet = paG;
+      const paGet = await paapiGetItems({ asins: [b.asin] });
+      one.paapiGet = paGet;
 
-      if (paG?.ok) {
-        const got = paG?.json?.ItemsResult?.Items?.[0];
-        const title = extractTitle(got);
-        const isbn13 = extractIsbn13(got) || b.isbn13Guess || null;
-        const image = got?.Images?.Primary?.Large?.URL || null;
+      if (paGet?.ok) {
+        const item = paGet?.json?.ItemsResult?.Items?.[0] || null;
+        const gotTitle = item ? extractTitle(item) : null;
+        const gotIsbn13 = item ? extractEan13FromGet(item) : null;
+        const gotImage = item ? extractImage(item) : null;
+        const gotDp = item?.DetailPageURL || dpFromAsin(b.asin) || null;
 
-        const titleOk =
-          normLoose(title).includes(normLoose(seriesKey)) &&
-          isVol1Like(title) &&
-          !isLikelySingleEpisode(title) &&
-          !isBoxSetLike(title) &&
-          !isDerivativeLike(title);
+        // 確定条件：EANが取れていて、タイトルにシリーズ名が含まれていて、1巻っぽい、派生除外
+        if (gotIsbn13 && gotTitle) {
+          const titleOk =
+            normLoose(gotTitle).includes(normLoose(seriesKey)) &&
+            isVol1Like(gotTitle) &&
+            !isLikelySingleEpisode(gotTitle) &&
+            !isExcludedDerivedTitle(gotTitle) &&
+            !/総集編|公式ファンブック|特装版|限定版|ガイド|画集/i.test(gotTitle);
 
-        if (isbn13 && titleOk) {
-          confirmed.push({
-            seriesKey,
-            author,
-            vol1: {
-              title,
-              isbn13,
-              image,
-              amazonDp: dpFromAsin(b.asin),
-              source: "paapi(getitems)",
-            },
-          });
-          debug.push(one);
-          await sleep(700);
-          continue;
+          if (titleOk) {
+            confirmed.push({
+              seriesKey,
+              author,
+              vol1: {
+                title: gotTitle,
+                isbn13: String(gotIsbn13),
+                image: gotImage || null,
+                amazonDp: gotDp,
+                source: "paapi_search+getitems",
+              },
+            });
+            debug.push(one);
+            await sleep(600);
+            continue;
+          }
         }
       }
     }
 
+    // だめならtodo
     todo.push({
       seriesKey,
       author,
@@ -546,13 +545,12 @@ async function main() {
             title: b.title ?? null,
             asin: b.asin ?? null,
             isbn13: b.isbn13 ?? null,
-            isbn13Guess: b.isbn13Guess ?? null,
             query: b.query ?? null,
           }
         : { source: "none", score: 0, title: null, asin: null, isbn13: null, query: null },
     });
     debug.push(one);
-    await sleep(700);
+    await sleep(600);
   }
 
   await saveJson(OUT_SERIES, {
