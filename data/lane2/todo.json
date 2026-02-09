@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T03:36:38.575Z",
+  "updatedAt": "2026-02-09T03:45:20.871Z",
   "total": 3,
   "items": [
     {
@@ -7,12 +7,12 @@
       "author": "金城 宗幸",
       "reason": "no_confirmed_isbn",
       "best": {
-        "source": "paapi_search",
-        "score": 65,
-        "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-        "asin": "B08LDJ1L3N",
+        "source": "none",
+        "score": 0,
+        "title": null,
+        "asin": null,
         "isbn13": null,
-        "query": "ブルーロック 1"
+        "query": null
       }
     },
     {
@@ -21,9 +21,9 @@
       "reason": "no_confirmed_isbn",
       "best": {
         "source": "paapi_search",
-        "score": 65,
-        "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-        "asin": "4757579624",
+        "score": 70,
+        "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+        "asin": "B09Y8YB5DP",
         "isbn13": null,
         "query": "黄泉のツガイ 1"
       }
@@ -33,12 +33,12 @@
       "author": "山田鐘人",
       "reason": "no_confirmed_isbn",
       "best": {
-        "source": "paapi_search",
-        "score": 65,
-        "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-        "asin": "4098501805",
+        "source": "none",
+        "score": 0,
+        "title": null,
+        "asin": null,
         "isbn13": null,
-        "query": "葬送のフリーレン 1"
+        "query": null
       }
     }
   ]

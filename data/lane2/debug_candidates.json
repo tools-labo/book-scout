@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T03:36:38.576Z",
+  "updatedAt": "2026-02-09T03:45:20.872Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -8,7 +8,14 @@
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF%201",
         "returned": 20,
         "candidates": [],
-        "dropped": 20
+        "dropped": 20,
+        "titleSamples": [
+          "鴉",
+          "亞",
+          "あ : 小森典詩作品集",
+          "哇 : 志摩聡句帖",
+          "あ : やぶにらみ秋田経営風土記"
+        ]
       },
       "paapiSearch": {
         "tried": [
@@ -22,204 +29,32 @@
             "query": "ブルーロック 1",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1",
-              "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-              "asin": "B08LDJ1L3N",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1",
-                "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-                "asin": "B08LDJ1L3N",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1",
-                "title": "バイリンガル版デラックス ブルーロック 1 BLUELOCK (KODANSHA BILINGUAL COMICS)",
-                "asin": "4065405912",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1",
-                "title": "ブルーロック FULL COLOR SELECTION(1) 潔 世一 (KCデラックス)",
-                "asin": "4065407036",
-                "isbn13": null,
-                "score": 35
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           },
           {
             "query": "ブルーロック （1）",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック （1）",
-              "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-              "asin": "B08LDJ1L3N",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック （1）",
-                "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-                "asin": "B08LDJ1L3N",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック （1）",
-                "title": "バイリンガル版デラックス ブルーロック 1 BLUELOCK (KODANSHA BILINGUAL COMICS)",
-                "asin": "4065405912",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック （1）",
-                "title": "ブルーロック コミック 1-10巻セット",
-                "asin": "B08GFY4L8Z",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           },
           {
             "query": "ブルーロック 1 コミックス",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1 コミックス",
-              "title": "バイリンガル版デラックス ブルーロック 1 BLUELOCK (KODANSHA BILINGUAL COMICS)",
-              "asin": "4065405912",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "バイリンガル版デラックス ブルーロック 1 BLUELOCK (KODANSHA BILINGUAL COMICS)",
-                "asin": "4065405912",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-                "asin": "B08LDJ1L3N",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック コミック 1-10巻セット",
-                "asin": "B08GFY4L8Z",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 コミックス",
-                "title": "ブルーロック 1-12巻 新品セット",
-                "asin": "B08R44PV9Z",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           },
           {
             "query": "ブルーロック 1 金城 宗幸",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ブルーロック 1 金城 宗幸",
-              "title": "ブルーロック　コミック　新品　1-36巻セット (講談社)",
-              "asin": "B0G38DBPQ2",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 金城 宗幸",
-                "title": "ブルーロック　コミック　新品　1-36巻セット (講談社)",
-                "asin": "B0G38DBPQ2",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 金城 宗幸",
-                "title": "ブルーロック(1) (少年マガジンコミックス)",
-                "asin": "4065134005",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 金城 宗幸",
-                "title": "ブルーロック FULL COLOR SELECTION　コミック　新品　1-3巻セット (講談社)",
-                "asin": "B0G38FMSFR",
-                "isbn13": null,
-                "score": 35
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 金城 宗幸",
-                "title": "ブルーロック FULL COLOR SELECTION(1) 潔 世一 (KCデラックス)",
-                "asin": "4065407036",
-                "isbn13": null,
-                "score": 35
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 金城 宗幸",
-                "title": "ブルーロック FULL COLOR SELECTION　コミック　新品　1-2巻セット (講談社)",
-                "asin": "B0FWQ54PFV",
-                "isbn13": null,
-                "score": 35
-              },
-              {
-                "source": "paapi_search",
-                "query": "ブルーロック 1 金城 宗幸",
-                "title": "バイリンガル版デラックス ブルーロック 1 BLUELOCK (KODANSHA BILINGUAL COMICS)",
-                "asin": "4065405912",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           }
         ],
-        "best": {
-          "source": "paapi_search",
-          "query": "ブルーロック 1",
-          "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-          "asin": "B08LDJ1L3N",
-          "isbn13": null,
-          "score": 65
-        }
-      },
-      "paapiGet": {
-        "error": true,
-        "status": 400,
-        "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, ItemInfo.ByLineInfo, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+        "best": null
       }
     },
     {
@@ -229,7 +64,14 @@
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E9%BB%84%E6%B3%89%E3%81%AE%E3%83%84%E3%82%AC%E3%82%A4%201",
         "returned": 20,
         "candidates": [],
-        "dropped": 20
+        "dropped": 20,
+        "titleSamples": [
+          "鴉",
+          "亞",
+          "あ : 小森典詩作品集",
+          "哇 : 志摩聡句帖",
+          "あ : やぶにらみ秋田経営風土記"
+        ]
       },
       "paapiSearch": {
         "tried": [
@@ -246,51 +88,19 @@
             "best": {
               "source": "paapi_search",
               "query": "黄泉のツガイ 1",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "asin": "4757579624",
+              "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+              "asin": "B09Y8YB5DP",
               "isbn13": null,
-              "score": 65
+              "score": 70
             },
             "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "asin": "4757579624",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
-                "asin": "B0G2XY3YDD",
-                "isbn13": null,
-                "score": 65
-              },
               {
                 "source": "paapi_search",
                 "query": "黄泉のツガイ 1",
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "asin": "B09Y8YB5DP",
                 "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "黄泉のツガイ コミック 1-11巻セット (スクウェア・エニックス)",
-                "asin": "B0G22391T3",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "[韓国語版] 黄泉のツガイ 1～9巻セット [5～9初回限定特典] (韓国版 黄泉のツガイ)",
-                "asin": "B0G2Y1KHYQ",
-                "isbn13": null,
-                "score": 65
+                "score": 70
               }
             ]
           },
@@ -301,83 +111,19 @@
             "best": {
               "source": "paapi_search",
               "query": "黄泉のツガイ （1）",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "asin": "4757579624",
+              "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+              "asin": "B09Y8YB5DP",
               "isbn13": null,
-              "score": 65
+              "score": 70
             },
             "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "asin": "4757579624",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
-                "asin": "B0G2XY3YDD",
-                "isbn13": null,
-                "score": 65
-              },
               {
                 "source": "paapi_search",
                 "query": "黄泉のツガイ （1）",
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "asin": "B09Y8YB5DP",
                 "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "[韓国語版] 黄泉のツガイ 1～9巻セット [5～9初回限定特典] (韓国版 黄泉のツガイ)",
-                "asin": "B0G2Y1KHYQ",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "黄泉のツガイ コミック 1-11巻セット (スクウェア・エニックス)",
-                "asin": "B0G22391T3",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "黄泉のツガイ　コミック　1-6巻セット",
-                "asin": "B0CS5W2XGN",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "黄泉のツガイ　コミック　1-8巻セット (スクウェア・エニックス)",
-                "asin": "B0DGRSX3ZF",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "黄泉のツガイ　コミック　1-2巻セット",
-                "asin": "B0BFCCL1B3",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ （1）",
-                "title": "黄泉のツガイ　コミック　1-5巻セット",
-                "asin": "B0CJ1Y2LGL",
-                "isbn13": null,
-                "score": 65
+                "score": 70
               }
             ]
           },
@@ -391,7 +137,7 @@
               "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
               "asin": "B09Y8YB5DP",
               "isbn13": null,
-              "score": 65
+              "score": 70
             },
             "candidatesAll": [
               {
@@ -400,15 +146,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "asin": "B09Y8YB5DP",
                 "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 コミックス",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "asin": "4757579624",
-                "isbn13": null,
-                "score": 65
+                "score": 70
               }
             ]
           },
@@ -422,7 +160,7 @@
               "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
               "asin": "B09Y8YB5DP",
               "isbn13": null,
-              "score": 65
+              "score": 70
             },
             "candidatesAll": [
               {
@@ -431,47 +169,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "asin": "B09Y8YB5DP",
                 "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 荒川弘",
-                "title": "[韓国語版] 黄泉のツガイ 9 (初回限定ポストカード1種贈呈) (韓国版 黄泉のツガイ)",
-                "asin": "B0G2XY3YDD",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 荒川弘",
-                "title": "黄泉のツガイ コミック 1-11巻セット (スクウェア・エニックス)",
-                "asin": "B0G22391T3",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 荒川弘",
-                "title": "[韓国語版] 黄泉のツガイ 1～9巻セット [5～9初回限定特典] (韓国版 黄泉のツガイ)",
-                "asin": "B0G2Y1KHYQ",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 荒川弘",
-                "title": "黄泉のツガイ　コミック　1-10巻セット (スクウェア・エニックス)",
-                "asin": "B0FH89ZWDD",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 荒川弘",
-                "title": "黄泉のツガイ　コミック　1-9巻セット (スクウェア・エニックス)",
-                "asin": "B0F1F389P9",
-                "isbn13": null,
-                "score": 65
+                "score": 70
               }
             ]
           }
@@ -479,16 +177,60 @@
         "best": {
           "source": "paapi_search",
           "query": "黄泉のツガイ 1",
-          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-          "asin": "4757579624",
+          "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+          "asin": "B09Y8YB5DP",
           "isbn13": null,
-          "score": 65
+          "score": 70
         }
       },
       "paapiGet": {
-        "error": true,
-        "status": 400,
-        "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, ItemInfo.ByLineInfo, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+        "ok": true,
+        "json": {
+          "ItemsResult": {
+            "Items": [
+              {
+                "ASIN": "B09Y8YB5DP",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B09Y8YB5DP?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
+                      "Width": 318
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "スクウェア・エニックス(SQUARE ENIX)",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    },
+                    "Contributors": [
+                      {
+                        "Locale": "ja_JP",
+                        "Name": "荒川弘",
+                        "Role": "著",
+                        "RoleType": "author"
+                      }
+                    ],
+                    "Manufacturer": {
+                      "DisplayValue": "スクウェア・エニックス",
+                      "Label": "Manufacturer",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
+              }
+            ]
+          }
+        }
       }
     },
     {
@@ -498,7 +240,14 @@
         "url": "https://ndlsearch.ndl.go.jp/api/opensearch?dpid=iss-ndl-opac&cnt=20&q=%E8%91%AC%E9%80%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E3%83%AC%E3%83%B3%201",
         "returned": 20,
         "candidates": [],
-        "dropped": 20
+        "dropped": 20,
+        "titleSamples": [
+          "鴉",
+          "亞",
+          "あ : 小森典詩作品集",
+          "哇 : 志摩聡句帖",
+          "あ : やぶにらみ秋田経営風土記"
+        ]
       },
       "paapiSearch": {
         "tried": [
@@ -512,204 +261,32 @@
             "query": "葬送のフリーレン 1",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン 1",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "asin": "4098501805",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "asin": "4098501805",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン 1-3巻 新品セット",
-                "asin": "B08R44135N",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン コミック 1-15巻セット (小学館)",
-                "asin": "B0G87FN9WZ",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "TVアニメ『葬送のフリーレン』副読本 1 フリーレン&ヒンメルがわかる魔法: 少年サンデーグラフィック",
-                "asin": "4091990886",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン　コミック　1-5巻セット",
-                "asin": "B09BHHR5CM",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           },
           {
             "query": "葬送のフリーレン （1）",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン （1）",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "asin": "4098501805",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン （1）",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "asin": "4098501805",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン （1）",
-                "title": "葬送のフリーレン 1-3巻 新品セット",
-                "asin": "B08R44135N",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン （1）",
-                "title": "葬送のフリーレン コミック 1-15巻セット (小学館)",
-                "asin": "B0G87FN9WZ",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン （1）",
-                "title": "ポスターコレクション 葬送のフリーレン (1)",
-                "asin": "4099431355",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン （1）",
-                "title": "葬送のフリーレン　コミック　1-5巻セット",
-                "asin": "B09BHHR5CM",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン （1）",
-                "title": "葬送のフリーレン　コミック　1-14巻セット (小学館)",
-                "asin": "B0F23F8TQ7",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           },
           {
             "query": "葬送のフリーレン 1 コミックス",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン 1 コミックス",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "asin": "4098501805",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 コミックス",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "asin": "4098501805",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 コミックス",
-                "title": "葬送のフリーレン　1-15巻セット",
-                "asin": "B0G2W77P5M",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 コミックス",
-                "title": "葬送のフリーレン 1-3巻 新品セット",
-                "asin": "B08R44135N",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           },
           {
             "query": "葬送のフリーレン 1 山田鐘人",
             "ok": true,
             "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン 1 山田鐘人",
-              "title": "ポスターコレクション 葬送のフリーレン (1)",
-              "asin": "4099431355",
-              "isbn13": null,
-              "score": 65
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 山田鐘人",
-                "title": "ポスターコレクション 葬送のフリーレン (1)",
-                "asin": "4099431355",
-                "isbn13": null,
-                "score": 65
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 山田鐘人",
-                "title": "TVアニメ『葬送のフリーレン』副読本1フリーレン＆ヒンメルがわかる魔法 ～少年サンデーグラフィック～",
-                "asin": "B0G4CV67P7",
-                "isbn13": null,
-                "score": 65
-              }
-            ]
+            "best": null,
+            "candidatesAll": []
           }
         ],
-        "best": {
-          "source": "paapi_search",
-          "query": "葬送のフリーレン 1",
-          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-          "asin": "4098501805",
-          "isbn13": null,
-          "score": 65
-        }
-      },
-      "paapiGet": {
-        "error": true,
-        "status": 400,
-        "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ExternalIds, ItemInfo.ByLineInfo, Images.Primary.Large, DetailPageURL] provided in the request for Resources is invalid.\"}]}"
+        "best": null
       }
     }
   ]
