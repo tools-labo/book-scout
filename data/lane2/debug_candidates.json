@@ -1,26 +1,107 @@
 {
-  "updatedAt": "2026-02-09T04:32:12.394Z",
+  "updatedAt": "2026-02-09T04:39:13.112Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
       "seedHint": {
+        "vol1Isbn10": "4065134005",
         "vol1Isbn13": "9784065134009",
         "vol1Asin": null
       },
       "seedHintResult": {
         "used": true,
-        "ok": false,
-        "reason": "paapi_getitems_error(400)",
+        "ok": true,
+        "confirmed": {
+          "seriesKey": "ブルーロック",
+          "author": "金城 宗幸",
+          "vol1": {
+            "title": "ブルーロック(1) (少年マガジンコミックス)",
+            "isbn13": "9784065134009",
+            "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+            "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
+            "source": "seed_hint(id10_getitems)+mainline_guard"
+          }
+        },
         "debug": {
           "used": true,
-          "hint": "9784065134009",
           "hintAsin": null,
+          "hintIsbn10": "4065134005",
           "hintIsbn13": "9784065134009",
-          "paapiGet": {
-            "error": true,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [9784065134009] provided in the request for ItemIds is invalid.\"}]}"
-          }
+          "paapiGet10": {
+            "ok": true,
+            "json": {
+              "ItemsResult": {
+                "Items": [
+                  {
+                    "ASIN": "4065134005",
+                    "DetailPageURL": "https://www.amazon.co.jp/dp/4065134005?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                    "Images": {
+                      "Primary": {
+                        "Large": {
+                          "Height": 500,
+                          "URL": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+                          "Width": 336
+                        }
+                      }
+                    },
+                    "ItemInfo": {
+                      "ByLineInfo": {
+                        "Brand": {
+                          "DisplayValue": "講談社",
+                          "Label": "Brand",
+                          "Locale": "ja_JP"
+                        },
+                        "Contributors": [
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "金城 宗幸",
+                            "Role": "原著",
+                            "RoleType": "original_author"
+                          },
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "ノ村 優介",
+                            "Role": "著",
+                            "RoleType": "author"
+                          }
+                        ],
+                        "Manufacturer": {
+                          "DisplayValue": "講談社",
+                          "Label": "Manufacturer",
+                          "Locale": "ja_JP"
+                        }
+                      },
+                      "ExternalIds": {
+                        "EANs": {
+                          "DisplayValues": [
+                            "9784065134009"
+                          ],
+                          "Label": "EAN",
+                          "Locale": "en_US"
+                        },
+                        "ISBNs": {
+                          "DisplayValues": [
+                            "4065134005"
+                          ],
+                          "Label": "ISBN",
+                          "Locale": "en_US"
+                        }
+                      },
+                      "Title": {
+                        "DisplayValue": "ブルーロック(1) (少年マガジンコミックス)",
+                        "Label": "Title",
+                        "Locale": "ja_JP"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "resolvedBy": "getitems10",
+          "title": "ブルーロック(1) (少年マガジンコミックス)",
+          "isbn13": "9784065134009",
+          "asin": "4065134005"
         }
       }
     },
@@ -345,9 +426,9 @@
             "best": {
               "source": "paapi_search",
               "query": "葬送のフリーレン (1)",
-              "title": "ポスターコレクション 葬送のフリーレン (1)",
-              "isbn13": "9784099431358",
-              "asin": "4099431355",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": "9784098501809",
+              "asin": "4098501805",
               "score": 650
             },
             "candidatesAll": [
@@ -366,14 +447,6 @@
                 "isbn13": null,
                 "asin": "B08FDH57JT",
                 "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン (1)",
-                "title": "ポスターコレクション 葬送のフリーレン (1)",
-                "isbn13": "9784099431358",
-                "asin": "4099431355",
-                "score": 650
               }
             ]
           },
@@ -384,9 +457,9 @@
             "best": {
               "source": "paapi_search",
               "query": "葬送のフリーレン（1）",
-              "title": "ポスターコレクション 葬送のフリーレン (1)",
-              "isbn13": "9784099431358",
-              "asin": "4099431355",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": "9784098501809",
+              "asin": "4098501805",
               "score": 650
             },
             "candidatesAll": [
@@ -404,14 +477,6 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン（1）",
-                "title": "ポスターコレクション 葬送のフリーレン (1)",
-                "isbn13": "9784099431358",
-                "asin": "4099431355",
                 "score": 650
               }
             ]
@@ -444,14 +509,6 @@
                 "isbn13": null,
                 "asin": "B08FDH57JT",
                 "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン 画集 (Vol.1) (原画集・イラストブック)",
-                "isbn13": "9784091990822",
-                "asin": "4091990827",
-                "score": 650
               }
             ]
           },
@@ -528,9 +585,9 @@
         "best": {
           "source": "paapi_search",
           "query": "葬送のフリーレン (1)",
-          "title": "ポスターコレクション 葬送のフリーレン (1)",
-          "isbn13": "9784099431358",
-          "asin": "4099431355",
+          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+          "isbn13": "9784098501809",
+          "asin": "4098501805",
           "score": 650
         }
       },
@@ -540,14 +597,14 @@
           "ItemsResult": {
             "Items": [
               {
-                "ASIN": "4099431355",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/4099431355?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "ASIN": "4098501805",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
                 "Images": {
                   "Primary": {
                     "Large": {
                       "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51EL6-T2ZtL._SL500_.jpg",
-                      "Width": 354
+                      "URL": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+                      "Width": 319
                     }
                   }
                 },
@@ -562,14 +619,14 @@
                       {
                         "Locale": "ja_JP",
                         "Name": "山田 鐘人",
-                        "Role": "著",
-                        "RoleType": "author"
+                        "Role": "原著",
+                        "RoleType": "original_author"
                       },
                       {
                         "Locale": "ja_JP",
-                        "Name": "アベ ツカサ",
-                        "Role": "著",
-                        "RoleType": "author"
+                        "Name": "アベツカサ",
+                        "Role": "イラスト",
+                        "RoleType": "illustrator"
                       }
                     ],
                     "Manufacturer": {
@@ -581,21 +638,21 @@
                   "ExternalIds": {
                     "EANs": {
                       "DisplayValues": [
-                        "9784099431358"
+                        "9784098501809"
                       ],
                       "Label": "EAN",
                       "Locale": "en_US"
                     },
                     "ISBNs": {
                       "DisplayValues": [
-                        "4099431355"
+                        "4098501805"
                       ],
                       "Label": "ISBN",
                       "Locale": "en_US"
                     }
                   },
                   "Title": {
-                    "DisplayValue": "ポスターコレクション 葬送のフリーレン (1)",
+                    "DisplayValue": "葬送のフリーレン (1) (少年サンデーコミックス)",
                     "Label": "Title",
                     "Locale": "ja_JP"
                   }
