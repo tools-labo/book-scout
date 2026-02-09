@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-08T19:36:28.999Z",
+  "updatedAt": "2026-02-09T03:10:05.754Z",
   "total": 3,
   "items": [
     {
@@ -8,10 +8,11 @@
       "reason": "no_confirmed_isbn",
       "best": {
         "source": "paapi_search",
-        "score": 60,
-        "title": "ブルーロック 1-11巻 新品セット (講談社コミックス)",
-        "asin": "B08LDJ1L3N",
+        "score": 130,
+        "title": "バイリンガル版デラックス ブルーロック 1 BLUELOCK (KODANSHA BILINGUAL COMICS)",
+        "asin": "4065405912",
         "isbn13": null,
+        "isbn13Guess": "9784065405918",
         "query": "ブルーロック 1"
       }
     },
@@ -21,10 +22,11 @@
       "reason": "no_confirmed_isbn",
       "best": {
         "source": "paapi_search",
-        "score": 60,
+        "score": 130,
         "title": "黄泉のツガイ(1) (ガンガンコミックス)",
         "asin": "4757579624",
         "isbn13": null,
+        "isbn13Guess": "9784757579620",
         "query": "黄泉のツガイ 1"
       }
     },
@@ -34,10 +36,11 @@
       "reason": "no_confirmed_isbn",
       "best": {
         "source": "paapi_search",
-        "score": 60,
+        "score": 130,
         "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
         "asin": "4098501805",
         "isbn13": null,
+        "isbn13Guess": "9784098501809",
         "query": "葬送のフリーレン 1"
       }
     }
