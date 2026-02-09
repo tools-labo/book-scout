@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T05:11:56.800Z",
+  "updatedAt": "2026-02-09T05:20:59.335Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -135,198 +135,14 @@
           3
         ]
       },
-      "ndlBestRejected": {
-        "reason": "final_title_guard_failed",
-        "best": {
-          "source": "ndl_opensearch",
-          "title": "黄泉のツガイ",
-          "isbn13": "9784757579620",
-          "volume": 1,
-          "score": 160
-        }
-      },
-      "paapiSearch": {
-        "tried": [
-          "黄泉のツガイ (1)",
-          "黄泉のツガイ（1）",
-          "黄泉のツガイ 1",
-          "黄泉のツガイ 1 コミックス",
-          "黄泉のツガイ 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "黄泉のツガイ (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "黄泉のツガイ (1)",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "isbn13": "9784757579620",
-              "asin": "4757579624",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ (1)",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "isbn13": "9784757579620",
-                "asin": "4757579624",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ (1)",
-                "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
-                "isbn13": null,
-                "asin": "B09Y8YB5DP",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "黄泉のツガイ（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "黄泉のツガイ（1）",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "isbn13": "9784757579620",
-              "asin": "4757579624",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ（1）",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "isbn13": "9784757579620",
-                "asin": "4757579624",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ（1）",
-                "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
-                "isbn13": null,
-                "asin": "B09Y8YB5DP",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "黄泉のツガイ 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "黄泉のツガイ 1",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "isbn13": "9784757579620",
-              "asin": "4757579624",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "isbn13": "9784757579620",
-                "asin": "4757579624",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1",
-                "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
-                "isbn13": null,
-                "asin": "B09Y8YB5DP",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "黄泉のツガイ 1 コミックス",
-            "ok": true,
-            "returned": 6,
-            "best": {
-              "source": "paapi_search",
-              "query": "黄泉のツガイ 1 コミックス",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "isbn13": "9784757579620",
-              "asin": "4757579624",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 コミックス",
-                "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
-                "isbn13": null,
-                "asin": "B09Y8YB5DP",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 コミックス",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "isbn13": "9784757579620",
-                "asin": "4757579624",
-                "score": 650
-              }
-            ]
-          },
-          {
-            "query": "黄泉のツガイ 1 (コミックス)",
-            "ok": true,
-            "returned": 6,
-            "best": {
-              "source": "paapi_search",
-              "query": "黄泉のツガイ 1 (コミックス)",
-              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-              "isbn13": "9784757579620",
-              "asin": "4757579624",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 (コミックス)",
-                "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
-                "isbn13": null,
-                "asin": "B09Y8YB5DP",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "黄泉のツガイ 1 (コミックス)",
-                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-                "isbn13": "9784757579620",
-                "asin": "4757579624",
-                "score": 650
-              }
-            ]
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "黄泉のツガイ (1)",
-          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-          "isbn13": "9784757579620",
-          "asin": "4757579624",
-          "score": 650
-        }
-      },
-      "paapiGet": {
+      "paapiProbe": {
         "ok": true,
         "json": {
-          "ItemsResult": {
+          "SearchResult": {
             "Items": [
               {
                 "ASIN": "4757579624",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/4757579624?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/4757579624?tag=book-scout-22&linkCode=osi&th=1&psc=1",
                 "Images": {
                   "Primary": {
                     "Large": {
@@ -379,8 +195,50 @@
                     "Locale": "ja_JP"
                   }
                 }
+              },
+              {
+                "ASIN": "B09Y8YB5DP",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B09Y8YB5DP?tag=book-scout-22&linkCode=osi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
+                      "Width": 318
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "スクウェア・エニックス(SQUARE ENIX)",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    },
+                    "Contributors": [
+                      {
+                        "Locale": "ja_JP",
+                        "Name": "荒川弘",
+                        "Role": "著",
+                        "RoleType": "author"
+                      }
+                    ],
+                    "Manufacturer": {
+                      "DisplayValue": "スクウェア・エニックス",
+                      "Label": "Manufacturer",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
               }
-            ]
+            ],
+            "SearchURL": "https://www.amazon.co.jp/s?k=9784757579620&i=stripbooks&rh=p_n_availability%3A2227306051&tag=book-scout-22&linkCode=osi",
+            "TotalResultCount": 2
           }
         }
       }
@@ -423,198 +281,46 @@
           5
         ]
       },
-      "ndlBestRejected": {
-        "reason": "final_title_guard_failed",
-        "best": {
-          "source": "ndl_opensearch",
-          "title": "葬送のフリーレン",
-          "isbn13": "9784098501809",
-          "volume": 1,
-          "score": 160
-        }
-      },
-      "paapiSearch": {
-        "tried": [
-          "葬送のフリーレン (1)",
-          "葬送のフリーレン（1）",
-          "葬送のフリーレン 1",
-          "葬送のフリーレン 1 コミックス",
-          "葬送のフリーレン 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "葬送のフリーレン (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン (1)",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン (1)",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "isbn13": "9784098501809",
-                "asin": "4098501805",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン (1)",
-                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
-                "isbn13": null,
-                "asin": "B08FDH57JT",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "葬送のフリーレン（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン（1）",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン（1）",
-                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
-                "isbn13": null,
-                "asin": "B08FDH57JT",
-                "score": 570
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン（1）",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "isbn13": "9784098501809",
-                "asin": "4098501805",
-                "score": 650
-              }
-            ]
-          },
-          {
-            "query": "葬送のフリーレン 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン 1",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "isbn13": "9784098501809",
-                "asin": "4098501805",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1",
-                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
-                "isbn13": null,
-                "asin": "B08FDH57JT",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "葬送のフリーレン 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン 1 コミックス",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 コミックス",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "isbn13": "9784098501809",
-                "asin": "4098501805",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 コミックス",
-                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
-                "isbn13": null,
-                "asin": "B08FDH57JT",
-                "score": 570
-              }
-            ]
-          },
-          {
-            "query": "葬送のフリーレン 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "葬送のフリーレン 1 (コミックス)",
-              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-              "isbn13": "9784098501809",
-              "asin": "4098501805",
-              "score": 650
-            },
-            "candidatesAll": [
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 (コミックス)",
-                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                "isbn13": "9784098501809",
-                "asin": "4098501805",
-                "score": 650
-              },
-              {
-                "source": "paapi_search",
-                "query": "葬送のフリーレン 1 (コミックス)",
-                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
-                "isbn13": null,
-                "asin": "B08FDH57JT",
-                "score": 570
-              }
-            ]
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "葬送のフリーレン (1)",
-          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-          "isbn13": "9784098501809",
-          "asin": "4098501805",
-          "score": 650
-        }
-      },
-      "paapiGet": {
+      "paapiProbe": {
         "ok": true,
         "json": {
-          "ItemsResult": {
+          "SearchResult": {
             "Items": [
               {
+                "ASIN": "B0G2W77P5M",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B0G2W77P5M?tag=book-scout-22&linkCode=osi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/51WfxvH+yvL._SL500_.jpg",
+                      "Width": 500
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "小学館",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    },
+                    "Manufacturer": {
+                      "DisplayValue": "小学館",
+                      "Label": "Manufacturer",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "葬送のフリーレン　1-15巻セット",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
+              },
+              {
                 "ASIN": "4098501805",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=osi&th=1&psc=1",
                 "Images": {
                   "Primary": {
                     "Large": {
@@ -673,8 +379,83 @@
                     "Locale": "ja_JP"
                   }
                 }
+              },
+              {
+                "ASIN": "B08FDH57JT",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B08FDH57JT?tag=book-scout-22&linkCode=osi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
+                      "Width": 318
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "小学館",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    },
+                    "Contributors": [
+                      {
+                        "Locale": "ja_JP",
+                        "Name": "山田鐘人",
+                        "Role": "著",
+                        "RoleType": "author"
+                      },
+                      {
+                        "Locale": "ja_JP",
+                        "Name": "アベツカサ",
+                        "Role": "著",
+                        "RoleType": "author"
+                      }
+                    ],
+                    "Manufacturer": {
+                      "DisplayValue": "小学館",
+                      "Label": "Manufacturer",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "葬送のフリーレン（１） (少年サンデーコミックス)",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
+              },
+              {
+                "ASIN": "B08R44135N",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B08R44135N?tag=book-scout-22&linkCode=osi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/611UdEodRTL._SL500_.jpg",
+                      "Width": 500
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "小学館",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "葬送のフリーレン 1-3巻 新品セット",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
               }
-            ]
+            ],
+            "SearchURL": "https://www.amazon.co.jp/s?k=9784098501809&i=stripbooks&rh=p_n_availability%3A2227306051&tag=book-scout-22&linkCode=osi",
+            "TotalResultCount": 4
           }
         }
       }
