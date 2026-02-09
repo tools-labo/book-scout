@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-02-09T13:22:06.984Z",
+  "updatedAt": "2026-02-09T13:31:07.767Z",
   "total": 3,
-  "ok": 0,
-  "ng": 3,
+  "ok": 3,
+  "ng": 0,
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -15,19 +15,115 @@
       },
       "steps": {
         "getItemByAsin": {
-          "ok": false,
-          "reason": "paapi_getitems_error(400)",
+          "ok": true,
+          "reason": null,
           "asin": "4065134005",
           "raw": {
-            "error": true,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ByLineInfo, ItemInfo.ExternalIds, Images.Primary.Large, ItemInfo.ContentInfo, EditorialReviews] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "json": {
+              "ItemsResult": {
+                "Items": [
+                  {
+                    "ASIN": "4065134005",
+                    "DetailPageURL": "https://www.amazon.co.jp/dp/4065134005?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                    "Images": {
+                      "Primary": {
+                        "Large": {
+                          "Height": 500,
+                          "URL": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+                          "Width": 336
+                        }
+                      }
+                    },
+                    "ItemInfo": {
+                      "ByLineInfo": {
+                        "Brand": {
+                          "DisplayValue": "講談社",
+                          "Label": "Brand",
+                          "Locale": "ja_JP"
+                        },
+                        "Contributors": [
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "金城 宗幸",
+                            "Role": "原著",
+                            "RoleType": "original_author"
+                          },
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "ノ村 優介",
+                            "Role": "著",
+                            "RoleType": "author"
+                          }
+                        ],
+                        "Manufacturer": {
+                          "DisplayValue": "講談社",
+                          "Label": "Manufacturer",
+                          "Locale": "ja_JP"
+                        }
+                      },
+                      "ExternalIds": {
+                        "EANs": {
+                          "DisplayValues": [
+                            "9784065134009"
+                          ],
+                          "Label": "EAN",
+                          "Locale": "en_US"
+                        },
+                        "ISBNs": {
+                          "DisplayValues": [
+                            "4065134005"
+                          ],
+                          "Label": "ISBN",
+                          "Locale": "en_US"
+                        }
+                      },
+                      "Title": {
+                        "DisplayValue": "ブルーロック(1) (少年マガジンコミックス)",
+                        "Label": "Title",
+                        "Locale": "ja_JP"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
           }
         }
       },
-      "ok": false,
-      "reason": "paapi_getitems_error(400)",
-      "output": null
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "ブルーロック",
+        "author": "金城 宗幸",
+        "vol1": {
+          "title": "ブルーロック(1) (少年マガジンコミックス)",
+          "titleLane2": "ブルーロック(1) (少年マガジンコミックス)",
+          "isbn13": "9784065134009",
+          "asin": "4065134005",
+          "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
+          "publisher": {
+            "brand": "講談社",
+            "manufacturer": "講談社"
+          },
+          "contributors": [
+            {
+              "name": "金城 宗幸",
+              "role": "原著",
+              "roleType": "original_author"
+            },
+            {
+              "name": "ノ村 優介",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": null,
+          "description": null,
+          "source": "enrich(paapi_getitems_by_asin)"
+        }
+      }
     },
     {
       "seriesKey": "黄泉のツガイ",
@@ -40,19 +136,104 @@
       },
       "steps": {
         "getItemByAsin": {
-          "ok": false,
-          "reason": "paapi_getitems_error(400)",
+          "ok": true,
+          "reason": null,
           "asin": "4757579624",
           "raw": {
-            "error": true,
-            "status": 400,
-            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ByLineInfo, ItemInfo.ExternalIds, Images.Primary.Large, ItemInfo.ContentInfo, EditorialReviews] provided in the request for Resources is invalid.\"}]}"
+            "ok": true,
+            "json": {
+              "ItemsResult": {
+                "Items": [
+                  {
+                    "ASIN": "4757579624",
+                    "DetailPageURL": "https://www.amazon.co.jp/dp/4757579624?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                    "Images": {
+                      "Primary": {
+                        "Large": {
+                          "Height": 500,
+                          "URL": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+                          "Width": 319
+                        }
+                      }
+                    },
+                    "ItemInfo": {
+                      "ByLineInfo": {
+                        "Brand": {
+                          "DisplayValue": "スクウェア・エニックス(SQUARE ENIX)",
+                          "Label": "Brand",
+                          "Locale": "ja_JP"
+                        },
+                        "Contributors": [
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "荒川 弘",
+                            "Role": "著",
+                            "RoleType": "author"
+                          }
+                        ],
+                        "Manufacturer": {
+                          "DisplayValue": "スクウェア・エニックス",
+                          "Label": "Manufacturer",
+                          "Locale": "ja_JP"
+                        }
+                      },
+                      "ExternalIds": {
+                        "EANs": {
+                          "DisplayValues": [
+                            "9784757579620"
+                          ],
+                          "Label": "EAN",
+                          "Locale": "en_US"
+                        },
+                        "ISBNs": {
+                          "DisplayValues": [
+                            "4757579624"
+                          ],
+                          "Label": "ISBN",
+                          "Locale": "en_US"
+                        }
+                      },
+                      "Title": {
+                        "DisplayValue": "黄泉のツガイ(1) (ガンガンコミックス)",
+                        "Label": "Title",
+                        "Locale": "ja_JP"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
           }
         }
       },
-      "ok": false,
-      "reason": "paapi_getitems_error(400)",
-      "output": null
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "黄泉のツガイ",
+        "author": "荒川弘",
+        "vol1": {
+          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+          "titleLane2": "黄泉のツガイ",
+          "isbn13": "9784757579620",
+          "asin": "4757579624",
+          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+          "publisher": {
+            "brand": "スクウェア・エニックス(SQUARE ENIX)",
+            "manufacturer": "スクウェア・エニックス"
+          },
+          "contributors": [
+            {
+              "name": "荒川 弘",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": null,
+          "description": null,
+          "source": "enrich(paapi_getitems_by_asin)"
+        }
+      }
     },
     {
       "seriesKey": "葬送のフリーレン",
@@ -65,19 +246,115 @@
       },
       "steps": {
         "getItemByAsin": {
-          "ok": false,
-          "reason": "paapi_getitems_error(429)",
+          "ok": true,
+          "reason": null,
           "asin": "4098501805",
           "raw": {
-            "error": true,
-            "status": 429,
-            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            "ok": true,
+            "json": {
+              "ItemsResult": {
+                "Items": [
+                  {
+                    "ASIN": "4098501805",
+                    "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                    "Images": {
+                      "Primary": {
+                        "Large": {
+                          "Height": 500,
+                          "URL": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+                          "Width": 319
+                        }
+                      }
+                    },
+                    "ItemInfo": {
+                      "ByLineInfo": {
+                        "Brand": {
+                          "DisplayValue": "小学館",
+                          "Label": "Brand",
+                          "Locale": "ja_JP"
+                        },
+                        "Contributors": [
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "山田 鐘人",
+                            "Role": "原著",
+                            "RoleType": "original_author"
+                          },
+                          {
+                            "Locale": "ja_JP",
+                            "Name": "アベツカサ",
+                            "Role": "イラスト",
+                            "RoleType": "illustrator"
+                          }
+                        ],
+                        "Manufacturer": {
+                          "DisplayValue": "小学館",
+                          "Label": "Manufacturer",
+                          "Locale": "ja_JP"
+                        }
+                      },
+                      "ExternalIds": {
+                        "EANs": {
+                          "DisplayValues": [
+                            "9784098501809"
+                          ],
+                          "Label": "EAN",
+                          "Locale": "en_US"
+                        },
+                        "ISBNs": {
+                          "DisplayValues": [
+                            "4098501805"
+                          ],
+                          "Label": "ISBN",
+                          "Locale": "en_US"
+                        }
+                      },
+                      "Title": {
+                        "DisplayValue": "葬送のフリーレン (1) (少年サンデーコミックス)",
+                        "Label": "Title",
+                        "Locale": "ja_JP"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
           }
         }
       },
-      "ok": false,
-      "reason": "paapi_getitems_error(429)",
-      "output": null
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "葬送のフリーレン",
+        "author": "山田鐘人",
+        "vol1": {
+          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+          "titleLane2": "葬送のフリーレン",
+          "isbn13": "9784098501809",
+          "asin": "4098501805",
+          "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+          "publisher": {
+            "brand": "小学館",
+            "manufacturer": "小学館"
+          },
+          "contributors": [
+            {
+              "name": "山田 鐘人",
+              "role": "原著",
+              "roleType": "original_author"
+            },
+            {
+              "name": "アベツカサ",
+              "role": "イラスト",
+              "roleType": "illustrator"
+            }
+          ],
+          "releaseDate": null,
+          "description": null,
+          "source": "enrich(paapi_getitems_by_asin)"
+        }
+      }
     }
   ]
 }
