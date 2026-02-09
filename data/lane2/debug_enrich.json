@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T13:31:07.767Z",
+  "updatedAt": "2026-02-09T13:40:30.483Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -19,76 +19,36 @@
           "reason": null,
           "asin": "4065134005",
           "raw": {
-            "ok": true,
-            "json": {
-              "ItemsResult": {
-                "Items": [
-                  {
-                    "ASIN": "4065134005",
-                    "DetailPageURL": "https://www.amazon.co.jp/dp/4065134005?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                    "Images": {
-                      "Primary": {
-                        "Large": {
-                          "Height": 500,
-                          "URL": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
-                          "Width": 336
-                        }
-                      }
-                    },
-                    "ItemInfo": {
-                      "ByLineInfo": {
-                        "Brand": {
-                          "DisplayValue": "講談社",
-                          "Label": "Brand",
-                          "Locale": "ja_JP"
-                        },
-                        "Contributors": [
-                          {
-                            "Locale": "ja_JP",
-                            "Name": "金城 宗幸",
-                            "Role": "原著",
-                            "RoleType": "original_author"
-                          },
-                          {
-                            "Locale": "ja_JP",
-                            "Name": "ノ村 優介",
-                            "Role": "著",
-                            "RoleType": "author"
-                          }
-                        ],
-                        "Manufacturer": {
-                          "DisplayValue": "講談社",
-                          "Label": "Manufacturer",
-                          "Locale": "ja_JP"
-                        }
-                      },
-                      "ExternalIds": {
-                        "EANs": {
-                          "DisplayValues": [
-                            "9784065134009"
-                          ],
-                          "Label": "EAN",
-                          "Locale": "en_US"
-                        },
-                        "ISBNs": {
-                          "DisplayValues": [
-                            "4065134005"
-                          ],
-                          "Label": "ISBN",
-                          "Locale": "en_US"
-                        }
-                      },
-                      "Title": {
-                        "DisplayValue": "ブルーロック(1) (少年マガジンコミックス)",
-                        "Label": "Title",
-                        "Locale": "ja_JP"
-                      }
-                    }
-                  }
-                ]
-              }
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
             }
-          }
+          ],
+          "retries": null
         }
       },
       "ok": true,
@@ -119,9 +79,9 @@
               "roleType": "author"
             }
           ],
-          "releaseDate": null,
+          "releaseDate": "2018-11-16T00:00:01Z",
           "description": null,
-          "source": "enrich(paapi_getitems_by_asin)"
+          "source": "enrich(paapi_getitems_probe_by_asin)"
         }
       }
     },
@@ -140,70 +100,55 @@
           "reason": null,
           "asin": "4757579624",
           "raw": {
-            "ok": true,
-            "json": {
-              "ItemsResult": {
-                "Items": [
-                  {
-                    "ASIN": "4757579624",
-                    "DetailPageURL": "https://www.amazon.co.jp/dp/4757579624?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                    "Images": {
-                      "Primary": {
-                        "Large": {
-                          "Height": 500,
-                          "URL": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
-                          "Width": 319
-                        }
-                      }
-                    },
-                    "ItemInfo": {
-                      "ByLineInfo": {
-                        "Brand": {
-                          "DisplayValue": "スクウェア・エニックス(SQUARE ENIX)",
-                          "Label": "Brand",
-                          "Locale": "ja_JP"
-                        },
-                        "Contributors": [
-                          {
-                            "Locale": "ja_JP",
-                            "Name": "荒川 弘",
-                            "Role": "著",
-                            "RoleType": "author"
-                          }
-                        ],
-                        "Manufacturer": {
-                          "DisplayValue": "スクウェア・エニックス",
-                          "Label": "Manufacturer",
-                          "Locale": "ja_JP"
-                        }
-                      },
-                      "ExternalIds": {
-                        "EANs": {
-                          "DisplayValues": [
-                            "9784757579620"
-                          ],
-                          "Label": "EAN",
-                          "Locale": "en_US"
-                        },
-                        "ISBNs": {
-                          "DisplayValues": [
-                            "4757579624"
-                          ],
-                          "Label": "ISBN",
-                          "Locale": "en_US"
-                        }
-                      },
-                      "Title": {
-                        "DisplayValue": "黄泉のツガイ(1) (ガンガンコミックス)",
-                        "Label": "Title",
-                        "Locale": "ja_JP"
-                      }
-                    }
-                  }
-                ]
-              }
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
             }
-          }
+          ],
+          "retries": [
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 3,
+              "status": 429,
+              "waitMs": 3600
+            }
+          ]
         }
       },
       "ok": true,
@@ -229,9 +174,9 @@
               "roleType": "author"
             }
           ],
-          "releaseDate": null,
+          "releaseDate": "2022-06-10T00:00:01Z",
           "description": null,
-          "source": "enrich(paapi_getitems_by_asin)"
+          "source": "enrich(paapi_getitems_probe_by_asin)"
         }
       }
     },
@@ -250,76 +195,43 @@
           "reason": null,
           "asin": "4098501805",
           "raw": {
-            "ok": true,
-            "json": {
-              "ItemsResult": {
-                "Items": [
-                  {
-                    "ASIN": "4098501805",
-                    "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                    "Images": {
-                      "Primary": {
-                        "Large": {
-                          "Height": 500,
-                          "URL": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
-                          "Width": 319
-                        }
-                      }
-                    },
-                    "ItemInfo": {
-                      "ByLineInfo": {
-                        "Brand": {
-                          "DisplayValue": "小学館",
-                          "Label": "Brand",
-                          "Locale": "ja_JP"
-                        },
-                        "Contributors": [
-                          {
-                            "Locale": "ja_JP",
-                            "Name": "山田 鐘人",
-                            "Role": "原著",
-                            "RoleType": "original_author"
-                          },
-                          {
-                            "Locale": "ja_JP",
-                            "Name": "アベツカサ",
-                            "Role": "イラスト",
-                            "RoleType": "illustrator"
-                          }
-                        ],
-                        "Manufacturer": {
-                          "DisplayValue": "小学館",
-                          "Label": "Manufacturer",
-                          "Locale": "ja_JP"
-                        }
-                      },
-                      "ExternalIds": {
-                        "EANs": {
-                          "DisplayValues": [
-                            "9784098501809"
-                          ],
-                          "Label": "EAN",
-                          "Locale": "en_US"
-                        },
-                        "ISBNs": {
-                          "DisplayValues": [
-                            "4098501805"
-                          ],
-                          "Label": "ISBN",
-                          "Locale": "en_US"
-                        }
-                      },
-                      "Title": {
-                        "DisplayValue": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                        "Label": "Title",
-                        "Locale": "ja_JP"
-                      }
-                    }
-                  }
-                ]
-              }
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
             }
-          }
+          ],
+          "retries": [
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         }
       },
       "ok": true,
@@ -350,9 +262,9 @@
               "roleType": "illustrator"
             }
           ],
-          "releaseDate": null,
+          "releaseDate": "2020-08-18T00:00:01Z",
           "description": null,
-          "source": "enrich(paapi_getitems_by_asin)"
+          "source": "enrich(paapi_getitems_probe_by_asin)"
         }
       }
     }

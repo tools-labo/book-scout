@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-09T13:31:07.765Z",
+  "updatedAt": "2026-02-09T13:40:30.482Z",
   "total": 3,
   "enriched": 3,
   "items": [
@@ -29,9 +29,9 @@
             "roleType": "author"
           }
         ],
-        "releaseDate": null,
+        "releaseDate": "2018-11-16T00:00:01Z",
         "description": null,
-        "source": "enrich(paapi_getitems_by_asin)"
+        "source": "enrich(paapi_getitems_probe_by_asin)"
       }
     },
     {
@@ -55,9 +55,9 @@
             "roleType": "author"
           }
         ],
-        "releaseDate": null,
+        "releaseDate": "2022-06-10T00:00:01Z",
         "description": null,
-        "source": "enrich(paapi_getitems_by_asin)"
+        "source": "enrich(paapi_getitems_probe_by_asin)"
       }
     },
     {
@@ -86,9 +86,9 @@
             "roleType": "illustrator"
           }
         ],
-        "releaseDate": null,
+        "releaseDate": "2020-08-18T00:00:01Z",
         "description": null,
-        "source": "enrich(paapi_getitems_by_asin)"
+        "source": "enrich(paapi_getitems_probe_by_asin)"
       }
     }
   ]
