@@ -1,0 +1,83 @@
+{
+  "updatedAt": "2026-02-09T13:22:06.984Z",
+  "total": 3,
+  "ok": 0,
+  "ng": 3,
+  "items": [
+    {
+      "seriesKey": "ブルーロック",
+      "author": "金城 宗幸",
+      "input": {
+        "lane2Title": "ブルーロック(1) (少年マガジンコミックス)",
+        "isbn13": "9784065134009",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
+        "source": "seed_hint(getitems10)+mainline_guard"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": false,
+          "reason": "paapi_getitems_error(400)",
+          "asin": "4065134005",
+          "raw": {
+            "error": true,
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ByLineInfo, ItemInfo.ExternalIds, Images.Primary.Large, ItemInfo.ContentInfo, EditorialReviews] provided in the request for Resources is invalid.\"}]}"
+          }
+        }
+      },
+      "ok": false,
+      "reason": "paapi_getitems_error(400)",
+      "output": null
+    },
+    {
+      "seriesKey": "黄泉のツガイ",
+      "author": "荒川弘",
+      "input": {
+        "lane2Title": "黄泉のツガイ",
+        "isbn13": "9784757579620",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+        "source": "ndl(opensearch)+paapi_probe+ndl_guard"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": false,
+          "reason": "paapi_getitems_error(400)",
+          "asin": "4757579624",
+          "raw": {
+            "error": true,
+            "status": 400,
+            "body": "{\"__type\":\"com.amazon.paapi5#ValidationException\",\"Errors\":[{\"Code\":\"InvalidParameterValue\",\"Message\":\"The value [ItemInfo.Title, ItemInfo.ByLineInfo, ItemInfo.ExternalIds, Images.Primary.Large, ItemInfo.ContentInfo, EditorialReviews] provided in the request for Resources is invalid.\"}]}"
+          }
+        }
+      },
+      "ok": false,
+      "reason": "paapi_getitems_error(400)",
+      "output": null
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "author": "山田鐘人",
+      "input": {
+        "lane2Title": "葬送のフリーレン",
+        "isbn13": "9784098501809",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "source": "ndl(opensearch)+paapi_probe+ndl_guard"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": false,
+          "reason": "paapi_getitems_error(429)",
+          "asin": "4098501805",
+          "raw": {
+            "error": true,
+            "status": 429,
+            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+          }
+        }
+      },
+      "ok": false,
+      "reason": "paapi_getitems_error(429)",
+      "output": null
+    }
+  ]
+}
