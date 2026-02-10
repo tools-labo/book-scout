@@ -13,24 +13,14 @@ function esc(s) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 }
-
-function chips(arr, cls = "chip") {
-  if (!Array.isArray(arr) || !arr.length) return "";
-  return `<div class="chips">${arr.map((x) => `<span class="${cls}">${esc(x)}</span>`).join("")}</div>`;
+function joinNonEmpty(parts, sep = " / ") {
+  return parts.filter((x) => x != null && String(x).trim()).join(sep);
 }
 
-function pubText(it) {
-  const d = it.releaseDate ? `発売: ${esc(it.releaseDate)}` : "";
-  const p = it.publisher?.brand ? `出版社: ${esc(it.publisher.brand)}` : "";
-  if (!d && !p) return "";
-  if (d && p) return `${d} / ${p}`;
-  return d || p;
-}
-
-function magazineText(it) {
-  const mags = it.serializedIn;
-  if (!Array.isArray(mags) || !mags.length) return "";
-  return `連載: ${esc(mags.join(" / "))}`;
+function renderChips(arr, cls = "chip") {
+  const xs = Array.isArray(arr) ? arr.filter(Boolean) : [];
+  if (!xs.length) return "";
+  return `<div class="chips">${xs.map((x) => `<span class="${cls}">${esc(x)}</span>`).join("")}</div>`;
 }
 
 function renderList(data) {
@@ -39,7 +29,7 @@ function renderList(data) {
 
   const items = data?.items || [];
   if (!items.length) {
-    root.innerHTML = `<div class="status">表示できる作品がありません（1巻確定が0件）</div>`;
+    root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
     return;
   }
 
@@ -49,49 +39,42 @@ function renderList(data) {
     const author = it.author || "";
     const img = it.image || "";
     const vol1Amz = it.amazonDp || "#";
-    const isbn = it.isbn13 || "";
 
-    const mags = magazineText(it);
-    const pub = pubText(it);
+    const releaseDate = it.releaseDate || "";
+    const publisher = it.publisher?.brand || it.publisher?.manufacturer || "";
+    const magazine = it.magazine || "";
 
-    const genresHtml = chips(it.genres, "chip chip-genre");
-    const tagsHtml = chips(it.tags, "chip chip-tag");
+    const metaLine = joinNonEmpty([
+      author,
+      magazine ? `連載誌: ${magazine}` : null,
+      releaseDate ? `発売日: ${releaseDate}` : null,
+      publisher ? `出版社: ${publisher}` : null,
+    ], " / ");
+
+    const genres = Array.isArray(it.genres) ? it.genres : [];
+    const tags = Array.isArray(it.tags) ? it.tags : [];
 
     const desc = it.description || "";
-    const descHtml = desc
-      ? `
-        <details class="synopsis">
-          <summary>あらすじ</summary>
-          <div class="synopsis-body">${esc(desc)}</div>
-        </details>
-      `
-      : "";
 
     return `
       <article class="card">
         <div class="card-row">
           <div class="thumb">
-            ${
-              img
-                ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
-                : `<div class="thumb-ph"></div>`
-            }
+            ${img ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
           </div>
           <div class="meta">
             <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
+            ${metaLine ? `<div class="sub">${esc(metaLine)}</div>` : ""}
 
-            <div class="sub">
-              ${author ? `<span>${esc(author)}</span>` : ""}
-              ${isbn ? `<span>${author ? " / " : ""}ISBN: ${esc(isbn)}</span>` : ""}
-            </div>
+            ${genres.length ? `<div class="sec"><div class="sec-h">ジャンル</div>${renderChips(genres)}</div>` : ""}
+            ${tags.length ? `<div class="sec"><div class="sec-h">タグ</div>${renderChips(tags)}</div>` : ""}
 
-            ${mags ? `<div class="kvs">${mags}</div>` : ""}
-            ${pub ? `<div class="kvs">${pub}</div>` : ""}
-
-            ${genresHtml ? `<div class="kvs-label">ジャンル</div>${genresHtml}` : ""}
-            ${tagsHtml ? `<div class="kvs-label">タグ</div>${tagsHtml}` : ""}
-
-            ${descHtml}
+            ${desc ? `
+              <details class="desc">
+                <summary>あらすじ</summary>
+                <div class="desc-body">${esc(desc).replaceAll("\n", "<br>")}</div>
+              </details>
+            ` : ""}
           </div>
         </div>
       </article>
@@ -122,33 +105,42 @@ function renderWork(data) {
   const vol1Amz = it.amazonDp || "";
   const isbn = it.isbn13 || "";
 
-  const mags = magazineText(it);
-  const pub = pubText(it);
+  const releaseDate = it.releaseDate || "";
+  const publisher = it.publisher?.brand || it.publisher?.manufacturer || "";
+  const magazine = it.magazine || "";
 
-  const genresHtml = chips(it.genres, "chip chip-genre");
-  const tagsHtml = chips(it.tags, "chip chip-tag");
+  const metaLine = joinNonEmpty([
+    author,
+    magazine ? `連載誌: ${magazine}` : null,
+    releaseDate ? `発売日: ${releaseDate}` : null,
+    publisher ? `出版社: ${publisher}` : null,
+    isbn ? `ISBN: ${isbn}` : null,
+  ], " / ");
 
+  const genres = Array.isArray(it.genres) ? it.genres : [];
+  const tags = Array.isArray(it.tags) ? it.tags : [];
   const desc = it.description || "";
 
   detail.innerHTML = `
     <div class="d-title">${esc(it.seriesKey)}</div>
-    <div class="d-sub">
-      ${author ? esc(author) : ""}
-      ${isbn ? `${author ? " / " : ""}ISBN: ${esc(isbn)}` : ""}
-    </div>
-
-    ${(mags || pub) ? `<div class="d-kvs">${mags ? `<div>${mags}</div>` : ""}${pub ? `<div>${pub}</div>` : ""}</div>` : ""}
+    ${metaLine ? `<div class="d-sub">${esc(metaLine)}</div>` : ""}
 
     <div class="d-row">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
         ${vol1Amz ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
-        ${genresHtml ? `<div class="d-sec"><div class="kvs-label">ジャンル</div>${genresHtml}</div>` : ""}
-        ${tagsHtml ? `<div class="d-sec"><div class="kvs-label">タグ</div>${tagsHtml}</div>` : ""}
       </div>
     </div>
 
-    ${desc ? `<div class="d-desc"><div class="kvs-label">あらすじ</div><div class="d-desc-body">${esc(desc)}</div></div>` : ""}
+    ${genres.length ? `<div class="sec"><div class="sec-h">ジャンル</div>${renderChips(genres)}</div>` : ""}
+    ${tags.length ? `<div class="sec"><div class="sec-h">タグ</div>${renderChips(tags)}</div>` : ""}
+
+    ${desc ? `
+      <div class="sec">
+        <div class="sec-h">あらすじ</div>
+        <div class="d-desc">${esc(desc).replaceAll("\n", "<br>")}</div>
+      </div>
+    ` : ""}
   `;
 }
 
