@@ -75,9 +75,7 @@ function isDerivedEdition(title) {
   if (/全巻|巻セット|セット|box|ボックス|まとめ買い/.test(t)) return true;
 
   if (
-    /ファンブック|副読本|ガイド|ムック|設定資料|資料集|キャラクターブック|bible|図録|公式/.test(
-      t
-    )
+    /ファンブック|副読本|ガイド|ムック|設定資料|資料集|キャラクターブック|bible|図録|公式/.test(t)
   )
     return true;
 
@@ -211,6 +209,20 @@ function dpFromAsinOrIsbn(asinOrIsbn) {
   return null;
 }
 
+// ★dpは「ASIN優先」で正規化
+function dpPreferAsin({ asin, isbn13, isbn10 }) {
+  if (asin && /^[A-Z0-9]{10}$/i.test(String(asin))) {
+    return `https://www.amazon.co.jp/dp/${String(asin).toUpperCase()}`;
+  }
+  if (isbn10 && /^\d{10}$/.test(String(isbn10))) {
+    return `https://www.amazon.co.jp/dp/${String(isbn10)}`;
+  }
+  if (isbn13 && /^\d{13}$/.test(String(isbn13))) {
+    return `https://www.amazon.co.jp/dp/${String(isbn13)}`;
+  }
+  return null;
+}
+
 /* -----------------------
  * NDL OpenSearch（公式APIのみ）
  * ----------------------- */
@@ -331,7 +343,14 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = awsHash(body);
 
-  const canonicalRequest = [method, canonicalUri, canonicalQuerystring, canonicalHeaders, signedHeaders, payloadHash].join("\n");
+  const canonicalRequest = [
+    method,
+    canonicalUri,
+    canonicalQuerystring,
+    canonicalHeaders,
+    signedHeaders,
+    payloadHash,
+  ].join("\n");
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
   const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
@@ -340,7 +359,10 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
   const kRegion = awsHmac(kDate, region);
   const kService = awsHmac(kRegion, service);
   const kSigning = awsHmac(kService, "aws4_request");
-  const signature = crypto.createHmac("sha256", kSigning).update(stringToSign, "utf8").digest("hex");
+  const signature = crypto
+    .createHmac("sha256", kSigning)
+    .update(stringToSign, "utf8")
+    .digest("hex");
 
   const authorizationHeader =
     `${algorithm} Credential=${AMZ_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
@@ -441,7 +463,6 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
       const asin = it?.ASIN || null;
 
       if (!titleHasSeries(title, seriesKey)) continue;
-
       if (!isMainlineVol1ByTitle(title, seriesKey)) continue;
 
       const score = scoreCandidate({ title, isbn13, seriesKey, volume: null }) + (asin ? 5 : 0);
@@ -498,7 +519,15 @@ async function resolveBySeedHint({ seedHint, seriesKey }) {
         debug.title = title;
         debug.isbn13 = isbn13;
         debug.asin = seedHint.vol1Asin;
-        return { ok: true, item, title, isbn13, asin: seedHint.vol1Asin, image: extractImage(item) || null, debug };
+        return {
+          ok: true,
+          item,
+          title,
+          isbn13,
+          asin: seedHint.vol1Asin,
+          image: extractImage(item) || null,
+          debug,
+        };
       }
     } else if (pa?.skipped) {
       return { ok: false, reason: `paapi_skipped(${pa.reason})`, debug };
@@ -594,9 +623,12 @@ async function main() {
               vol1: {
                 title: r.title,
                 isbn13: r.isbn13,
+                asin: r.asin || null, // ★保持
                 image: r.image,
-                amazonDp: dpFromAsinOrIsbn(r.asin || r.isbn13),
-                source: r.debug?.resolvedBy ? `seed_hint(${r.debug.resolvedBy})+mainline_guard` : "seed_hint+mainline_guard",
+                amazonDp: dpPreferAsin({ asin: r.asin, isbn13: r.isbn13, isbn10: seedHint.vol1Isbn10 }),
+                source: r.debug?.resolvedBy
+                  ? `seed_hint(${r.debug.resolvedBy})+mainline_guard`
+                  : "seed_hint+mainline_guard",
               },
             },
             debug: r.debug,
@@ -610,9 +642,12 @@ async function main() {
           vol1: {
             title: r.title,
             isbn13: r.isbn13,
+            asin: r.asin || null, // ★保持
             image: r.image,
-            amazonDp: dpFromAsinOrIsbn(r.asin || r.isbn13),
-            source: r.debug?.resolvedBy ? `seed_hint(${r.debug.resolvedBy})+mainline_guard` : "seed_hint+mainline_guard",
+            amazonDp: dpPreferAsin({ asin: r.asin, isbn13: r.isbn13, isbn10: seedHint.vol1Isbn10 }),
+            source: r.debug?.resolvedBy
+              ? `seed_hint(${r.debug.resolvedBy})+mainline_guard`
+              : "seed_hint+mainline_guard",
           },
         };
         confirmed.push(out);
@@ -645,7 +680,6 @@ async function main() {
     }
 
     const ndlCandidates = [...(ndl?.candidates || []), ...(ndlTitleOnly?.candidates || [])];
-
     const ndlBest = pickBest(ndlCandidates, seriesKey);
 
     if (ndlBest) {
@@ -692,8 +726,9 @@ async function main() {
           vol1: {
             title: ndlBest.title,
             isbn13,
+            asin: asin || null, // ★保持
             image,
-            amazonDp: dpFromAsinOrIsbn(asin || isbn13),
+            amazonDp: dpPreferAsin({ asin, isbn13 }), // ★asin優先
             source: "ndl(opensearch)+paapi_probe+ndl_guard",
           },
         };
@@ -761,8 +796,9 @@ async function main() {
       vol1: {
         title,
         isbn13,
+        asin: b.asin || null, // ★保持
         image: extractImage(item) || null,
-        amazonDp: dpFromAsinOrIsbn(b.asin),
+        amazonDp: dpPreferAsin({ asin: b.asin, isbn13 }), // ★asin優先
         source: "paapi(mainline_guard)",
       },
     };
