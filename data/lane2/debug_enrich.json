@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T04:43:49.719Z",
+  "updatedAt": "2026-02-10T04:52:21.950Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -28,40 +28,42 @@
               "ItemInfo.ProductInfo"
             ]
           },
-          "probe": [
-            {
-              "resource": "ItemInfo.ContentInfo",
-              "adopted": true
-            },
-            {
-              "resource": "ItemInfo.ProductInfo",
-              "adopted": true
-            },
-            {
-              "resource": "EditorialReviews",
-              "adopted": false,
-              "reason": "invalid_resource"
-            },
-            {
-              "resource": "EditorialReviews.EditorialReview",
-              "adopted": false,
-              "reason": "invalid_resource"
-            }
-          ],
-          "retries": [
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
         },
-        "anilist": {
-          "cached": true
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "step": {
+            "wikiSearch": {
+              "ok": true,
+              "found": true,
+              "pickedScore": 1510,
+              "title": "ブルーロック",
+              "sample": [
+                {
+                  "title": "ブルーロック",
+                  "score": 1510
+                },
+                {
+                  "title": "カントリーロック",
+                  "score": 40
+                },
+                {
+                  "title": "ハードロック",
+                  "score": 0
+                }
+              ]
+            },
+            "wikiSummary": {
+              "ok": true,
+              "got": true,
+              "title": "ブルーロック"
+            }
+          }
         }
       },
       "ok": true,
@@ -93,29 +95,13 @@
             }
           ],
           "releaseDate": "2018-11-16T00:00:01Z",
-          "description": "After a disastrous defeat at the 2018 World Cup, Japan's team struggles to regroup. But what's missing? An absolute Ace Striker, who can guide them to the win. The Japan Football Union is hell-bent on creating a striker who hungers for goals and thirsts for victory, and who can be the decisive instrument in turning around a losing match...and to do so, they've gathered 300 of Japan's best and brightest youth players. Who will emerge to lead the team...and will they be able to out-muscle and out-ego everyone who stands in their way?\n\n(Source: Kodansha USA)\n\nNote: Winner of the 45th Kodansha Manga Award in the Shounen Category in 2021.",
-          "descriptionSource": "anilist",
-          "anilistId": 106130,
-          "genres": [
-            "Action",
-            "Drama",
-            "Sports"
-          ],
-          "tags": [
-            "Football",
-            "Male Protagonist",
-            "Battle Royale",
-            "Athletics",
-            "Primarily Male Cast",
-            "Primarily Teen Cast",
-            "Ensemble Cast",
-            "Shounen",
-            "Super Power",
-            "Anti-Hero",
-            "Fitness",
-            "Foreign"
-          ],
-          "source": "enrich(paapi+openbd+anilist)"
+          "description": "『ブルーロック』（BLUELOCK）は、原作：金城宗幸、作画：ノ村優介による日本の漫画。『週刊少年マガジン』（講談社）において、2018年35号から連載中。2021年5月には、第45回講談社漫画賞の少年部門を受賞した。2025年10月時点で世界累計部数は5000万部を突破している。スピンオフ作品として、『別冊少年マガジン』（同社）において三宮宏太が漫画を担当する『ブルーロック-EPISODE 凪-』 が2022年7月号から2025年8月号まで連載された。同作の部数は2025年2月時点で200万部を突破している。",
+          "descriptionSource": "wikipedia",
+          "openbdSummary": null,
+          "wikiSummary": "『ブルーロック』（BLUELOCK）は、原作：金城宗幸、作画：ノ村優介による日本の漫画。『週刊少年マガジン』（講談社）において、2018年35号から連載中。2021年5月には、第45回講談社漫画賞の少年部門を受賞した。2025年10月時点で世界累計部数は5000万部を突破している。スピンオフ作品として、『別冊少年マガジン』（同社）において三宮宏太が漫画を担当する『ブルーロック-EPISODE 凪-』 が2022年7月号から2025年8月号まで連載された。同作の部数は2025年2月時点で200万部を突破している。",
+          "genres": [],
+          "tags": [],
+          "source": "enrich(paapi+openbd+wikipedia)"
         }
       }
     },
@@ -143,40 +129,42 @@
               "ItemInfo.ProductInfo"
             ]
           },
-          "probe": [
-            {
-              "resource": "ItemInfo.ContentInfo",
-              "adopted": true
-            },
-            {
-              "resource": "ItemInfo.ProductInfo",
-              "adopted": true
-            },
-            {
-              "resource": "EditorialReviews",
-              "adopted": false,
-              "reason": "invalid_resource"
-            },
-            {
-              "resource": "EditorialReviews.EditorialReview",
-              "adopted": false,
-              "reason": "invalid_resource"
-            }
-          ],
-          "retries": [
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
         },
-        "anilist": {
-          "cached": true
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "step": {
+            "wikiSearch": {
+              "ok": true,
+              "found": true,
+              "pickedScore": 1510,
+              "title": "黄泉のツガイ",
+              "sample": [
+                {
+                  "title": "黄泉のツガイ",
+                  "score": 1510
+                },
+                {
+                  "title": "荒川弘",
+                  "score": 160
+                },
+                {
+                  "title": "ボンズ (アニメ制作会社)",
+                  "score": 160
+                }
+              ]
+            },
+            "wikiSummary": {
+              "ok": true,
+              "got": true,
+              "title": "黄泉のツガイ"
+            }
+          }
         }
       },
       "ok": true,
@@ -203,28 +191,13 @@
             }
           ],
           "releaseDate": "2022-06-10T00:00:01Z",
-          "description": "In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village while locked in a cage. Why is Asa a prisoner? And what other secrets does Yuru’s otherwise idyllic home hide?\n\n(Source: Square Enix)\n\nNote: Won 2nd place in the 2023 Next Manga Award in the Print Manga Category.",
-          "descriptionSource": "anilist",
-          "anilistId": 136899,
-          "genres": [
-            "Action",
-            "Adventure",
-            "Comedy",
-            "Fantasy"
-          ],
-          "tags": [
-            "Shounen",
-            "Twins",
-            "Youkai",
-            "Anachronism",
-            "Urban Fantasy",
-            "Male Protagonist",
-            "Conspiracy",
-            "Archery",
-            "Rural",
-            "Tragedy"
-          ],
-          "source": "enrich(paapi+openbd+anilist)"
+          "description": "『黄泉のツガイ』（よみのツガイ）は、荒川弘による日本の漫画作品。『月刊少年ガンガン』（スクウェア・エニックス）にて、2022年1月号から連載中。謎と怪奇が交錯する新感覚ツガイバトル漫画。",
+          "descriptionSource": "wikipedia",
+          "openbdSummary": null,
+          "wikiSummary": "『黄泉のツガイ』（よみのツガイ）は、荒川弘による日本の漫画作品。『月刊少年ガンガン』（スクウェア・エニックス）にて、2022年1月号から連載中。謎と怪奇が交錯する新感覚ツガイバトル漫画。",
+          "genres": [],
+          "tags": [],
+          "source": "enrich(paapi+openbd+wikipedia)"
         }
       }
     },
@@ -234,10 +207,20 @@
       "input": {
         "lane2Title": "葬送のフリーレン",
         "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
+        "resolveAsinByIsbn13": {
+          "ok": true,
+          "reason": null,
+          "isbn13": "9784098501809",
+          "raw": {
+            "cached": true,
+            "asin": "4098501805"
+          },
+          "retries": null
+        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -252,58 +235,42 @@
               "ItemInfo.ProductInfo"
             ]
           },
-          "probe": [
-            {
-              "resource": "ItemInfo.ContentInfo",
-              "adopted": true
-            },
-            {
-              "resource": "ItemInfo.ProductInfo",
-              "adopted": true
-            },
-            {
-              "resource": "EditorialReviews",
-              "adopted": false,
-              "reason": "invalid_resource"
-            },
-            {
-              "resource": "EditorialReviews.EditorialReview",
-              "adopted": false,
-              "reason": "invalid_resource"
-            }
-          ],
-          "retries": [
-            {
-              "label": "base",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
-            },
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
         },
-        "anilist": {
-          "cached": true
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "step": {
+            "wikiSearch": {
+              "ok": true,
+              "found": true,
+              "pickedScore": 1510,
+              "title": "葬送のフリーレン",
+              "sample": [
+                {
+                  "title": "葬送のフリーレン",
+                  "score": 1510
+                },
+                {
+                  "title": "アベツカサ",
+                  "score": 160
+                },
+                {
+                  "title": "山田鐘人",
+                  "score": 160
+                }
+              ]
+            },
+            "wikiSummary": {
+              "ok": true,
+              "got": true,
+              "title": "葬送のフリーレン"
+            }
+          }
         }
       },
       "ok": true,
@@ -335,29 +302,13 @@
             }
           ],
           "releaseDate": "2020-08-18T00:00:01Z",
-          "description": "The adventure is over but life goes on for an elf mage just beginning to learn what living is all about.\n\nElf mage Frieren and her courageous fellow adventurers have defeated the Demon King and brought peace to the land. With the great struggle over, they all go their separate ways to live a quiet life. But as an elf, Frieren, nearly immortal, will long outlive the rest of her former party. How will she come to terms with the mortality of her friends? How can she find fulfillment in her own life, and can she learn to understand what life means to the humans around her? Frieren begins a new journey to find the answer.\n\n(Source: VIZ Media)\n\nNotes:\n\n- Winner of the Grand Prize at the 14th Manga Taisho Awards.\n\n- Nominated for the 25th Annual Tezuka Osamu Cultural Prize.\n\n- Placed 3rd at the 7th Annual Next Manga Award.",
-          "descriptionSource": "anilist",
-          "anilistId": 118586,
-          "genres": [
-            "Adventure",
-            "Drama",
-            "Fantasy"
-          ],
-          "tags": [
-            "Magic",
-            "Travel",
-            "Elf",
-            "Philosophy",
-            "Female Protagonist",
-            "Time Skip",
-            "Demons",
-            "Iyashikei",
-            "Medieval",
-            "Kuudere",
-            "Episodic",
-            "Tragedy"
-          ],
-          "source": "enrich(paapi+openbd+anilist)"
+          "description": "『葬送のフリーレン』（そうそうのフリーレン）は、原作：山田鐘人、作画：アベツカサによる日本の漫画。『週刊少年サンデー』（小学館）において、2020年22・23合併号から連載中。",
+          "descriptionSource": "wikipedia",
+          "openbdSummary": null,
+          "wikiSummary": "『葬送のフリーレン』（そうそうのフリーレン）は、原作：山田鐘人、作画：アベツカサによる日本の漫画。『週刊少年サンデー』（小学館）において、2020年22・23合併号から連載中。",
+          "genres": [],
+          "tags": [],
+          "source": "enrich(paapi+openbd+wikipedia)"
         }
       }
     }
