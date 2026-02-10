@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T04:12:16.753Z",
+  "updatedAt": "2026-02-10T04:43:40.654Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -309,182 +309,9 @@
         ]
       },
       "paapiProbe": {
-        "ok": true,
-        "json": {
-          "SearchResult": {
-            "Items": [
-              {
-                "ASIN": "B0G2W77P5M",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B0G2W77P5M?tag=book-scout-22&linkCode=osi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51WfxvH+yvL._SL500_.jpg",
-                      "Width": 500
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "小学館",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Manufacturer": {
-                      "DisplayValue": "小学館",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "葬送のフリーレン　1-15巻セット",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              },
-              {
-                "ASIN": "4098501805",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=osi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
-                      "Width": 319
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "小学館",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "山田 鐘人",
-                        "Role": "原著",
-                        "RoleType": "original_author"
-                      },
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "アベツカサ",
-                        "Role": "イラスト",
-                        "RoleType": "illustrator"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "小学館",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "ExternalIds": {
-                    "EANs": {
-                      "DisplayValues": [
-                        "9784098501809"
-                      ],
-                      "Label": "EAN",
-                      "Locale": "en_US"
-                    },
-                    "ISBNs": {
-                      "DisplayValues": [
-                        "4098501805"
-                      ],
-                      "Label": "ISBN",
-                      "Locale": "en_US"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "葬送のフリーレン (1) (少年サンデーコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              },
-              {
-                "ASIN": "B08FDH57JT",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B08FDH57JT?tag=book-scout-22&linkCode=osi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
-                      "Width": 318
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "小学館",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "山田鐘人",
-                        "Role": "著",
-                        "RoleType": "author"
-                      },
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "アベツカサ",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "小学館",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "葬送のフリーレン（１） (少年サンデーコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              },
-              {
-                "ASIN": "B08R44135N",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B08R44135N?tag=book-scout-22&linkCode=osi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/611UdEodRTL._SL500_.jpg",
-                      "Width": 500
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "小学館",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "葬送のフリーレン 1-3巻 新品セット",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ],
-            "SearchURL": "https://www.amazon.co.jp/s?k=9784098501809&i=stripbooks&rh=p_n_availability%3A2227306051&tag=book-scout-22&linkCode=osi",
-            "TotalResultCount": 4
-          }
-        }
+        "error": true,
+        "status": 429,
+        "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
       },
       "path": "ndl",
       "confirmed": {
@@ -493,9 +320,9 @@
         "vol1": {
           "title": "葬送のフリーレン",
           "isbn13": "9784098501809",
-          "asin": "4098501805",
-          "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
-          "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+          "asin": null,
+          "image": null,
+          "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
           "source": "ndl(opensearch)+paapi_probe+ndl_guard"
         }
       }
