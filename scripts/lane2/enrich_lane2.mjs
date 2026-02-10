@@ -7,13 +7,12 @@ const IN_SERIES = "data/lane2/series.json";
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_DEBUG = "data/lane2/debug_enrich.json";
 
-// cache
+// 軽キャッシュ（Actionsでも効く：リポジトリに残る）
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
-const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`;
-const CACHE_WIKIDATA = `${CACHE_DIR}/wikidata.json`;
-const CACHE_WIKIPEDIA = `${CACHE_DIR}/wikipedia.json`;
+const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ISBN13→ASIN
+const CACHE_WIKIDATA = `${CACHE_DIR}/wikidata.json`; // ★追加：Wikidata
 
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
@@ -39,6 +38,19 @@ function sleep(ms) {
 function norm(s) {
   return String(s ?? "").trim();
 }
+function uniq(arr) {
+  const out = [];
+  const seen = new Set();
+  for (const x of arr || []) {
+    const v = norm(x);
+    if (!v) continue;
+    const k = v.toLowerCase();
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(v);
+  }
+  return out;
+}
 function normLoose(s) {
   return norm(s).replace(/\s+/g, "");
 }
@@ -49,6 +61,7 @@ function toHalfWidth(s) {
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
 }
+
 function stripHtml(s) {
   const x = String(s ?? "");
   return x
@@ -59,7 +72,29 @@ function stripHtml(s) {
     .trim();
 }
 
+// -----------------------
+// 表示用：ジャンル辞書（辞書に無いものは非表示）
+// -----------------------
+const GENRE_JA = {
+  Action: "アクション",
+  Adventure: "冒険",
+  Comedy: "コメディ",
+  Drama: "ドラマ",
+  Fantasy: "ファンタジー",
+  Horror: "ホラー",
+  Mystery: "ミステリー",
+  Psychological: "心理",
+  Romance: "恋愛",
+  "Sci-Fi": "SF",
+  "Slice of Life": "日常",
+  Sports: "スポーツ",
+  Supernatural: "超常",
+  Thriller: "サスペンス",
+};
+
+// -----------------------
 // dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
+// -----------------------
 function parseAmazonDpId(amazonDp) {
   const u = String(amazonDp ?? "");
   const m = u.match(/\/dp\/([A-Z0-9]{10,13})/i);
@@ -69,11 +104,12 @@ function parseAmazonDpId(amazonDp) {
 
   if (/^[A-Z0-9]{10}$/.test(id)) return { asin: id, isbn13FromDp: null };
   if (/^\d{13}$/.test(id)) return { asin: null, isbn13FromDp: id };
+
   return { asin: null, isbn13FromDp: null };
 }
 
 /* -----------------------
- * Amazon PA-API
+ * Amazon PA-API（公式APIのみ）
  * ----------------------- */
 function awsHmac(key, data) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest();
@@ -91,7 +127,6 @@ function amzDate() {
   const ss = String(d.getUTCSeconds()).padStart(2, "0");
   return { amzDate: `${y}${m}${day}T${hh}${mm}${ss}Z`, dateStamp: `${y}${m}${day}` };
 }
-
 async function paapiRequest({ target, pathUri, bodyObj }) {
   if (!AMZ_ACCESS_KEY || !AMZ_SECRET_KEY || !AMZ_PARTNER_TAG) {
     return { skipped: true, reason: "missing_paapi_secrets" };
@@ -143,20 +178,13 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
   if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1800) };
   return { ok: true, json: JSON.parse(text) };
 }
-
 async function paapiGetItems({ itemIds, resources }) {
   return paapiRequest({
     target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
     pathUri: "/paapi5/getitems",
-    bodyObj: {
-      ItemIds: itemIds,
-      PartnerTag: AMZ_PARTNER_TAG,
-      PartnerType: "Associates",
-      Resources: resources,
-    },
+    bodyObj: { ItemIds: itemIds, PartnerTag: AMZ_PARTNER_TAG, PartnerType: "Associates", Resources: resources },
   });
 }
-
 async function paapiSearchItems({ keywords, resources, itemCount = 10 }) {
   return paapiRequest({
     target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems",
@@ -200,17 +228,12 @@ function extractContributors(item) {
   const arr = item?.ItemInfo?.ByLineInfo?.Contributors;
   if (!Array.isArray(arr)) return [];
   return arr
-    .map((x) => ({
-      name: x?.Name ?? null,
-      role: x?.Role ?? null,
-      roleType: x?.RoleType ?? null,
-    }))
+    .map((x) => ({ name: x?.Name ?? null, role: x?.Role ?? null, roleType: x?.RoleType ?? null }))
     .filter((x) => x.name);
 }
 function extractReleaseDate(item) {
   const ci = item?.ItemInfo?.ContentInfo;
   const pi = item?.ItemInfo?.ProductInfo;
-
   const candidates = [
     ci?.PublicationDate?.DisplayValue,
     ci?.ReleaseDate?.DisplayValue,
@@ -219,9 +242,9 @@ function extractReleaseDate(item) {
   ]
     .map((x) => (x == null ? null : String(x).trim()))
     .filter(Boolean);
-
   return candidates.length ? candidates[0] : null;
 }
+
 function isInvalidResourceError(rawBody) {
   const s = String(rawBody ?? "");
   return s.includes("InvalidParameterValue") && s.includes("provided in the request for Resources is invalid");
@@ -240,7 +263,6 @@ async function getItemWithResourceProbe({ asin, debugSteps }) {
       const res = await paapiGetItems({ itemIds: [asin], resources });
       if (res?.ok) return { ok: true, res };
       if (res?.skipped) return { ok: false, skipped: true, res };
-
       if (res?.error && res.status === 429) {
         debugSteps.retries = debugSteps.retries || [];
         debugSteps.retries.push({ label, attempt: i + 1, status: 429, waitMs: wait });
@@ -253,6 +275,7 @@ async function getItemWithResourceProbe({ asin, debugSteps }) {
     return { ok: false, res: { error: true, status: 429, body: "retry_exhausted" } };
   }
 
+  // base
   {
     const got = await callWithRetry(okResources, "base");
     debugSteps.base = got?.res ?? null;
@@ -266,6 +289,7 @@ async function getItemWithResourceProbe({ asin, debugSteps }) {
     okJson = got.res.json;
   }
 
+  // optional probe
   debugSteps.probe = [];
   for (const opt of optionalCandidates) {
     const trial = okResources.concat([opt]);
@@ -278,19 +302,18 @@ async function getItemWithResourceProbe({ asin, debugSteps }) {
       await sleep(650);
       continue;
     }
-
     if (got?.res?.error && got.res.status === 400 && isInvalidResourceError(got.res.body)) {
       debugSteps.probe.push({ resource: opt, adopted: false, reason: "invalid_resource" });
       await sleep(650);
       continue;
     }
-
     debugSteps.probe.push({ resource: opt, adopted: false, reason: `error(${got?.res?.status ?? "unknown"})` });
     await sleep(650);
   }
 
   const item = okJson?.ItemsResult?.Items?.[0] || null;
   if (!item) return { ok: false, reason: "no_item", raw: okJson };
+
   return { ok: true, item, usedResources: okResources };
 }
 
@@ -341,6 +364,7 @@ async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
       cache[key] = asin;
       return { ok: true, asin, cached: false };
     }
+
     return { ok: false, reason: "asin_not_found_by_isbn13" };
   }
 
@@ -348,7 +372,7 @@ async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
 }
 
 /* -----------------------
- * openBD
+ * openBD（ISBN→日本語あらすじ等）
  * ----------------------- */
 async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
   if (!isbn13) return { ok: false, reason: "no_isbn13" };
@@ -386,7 +410,6 @@ async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
   debugSteps.openbd = { cached: false, ok: true, found: !!first };
   return { ok: true, data: first ?? null, found: !!first };
 }
-
 function extractFromOpenBd(openbdObj) {
   if (!openbdObj) return { description: null, pubdate: null, publisher: null };
 
@@ -410,7 +433,7 @@ function extractFromOpenBd(openbdObj) {
 }
 
 /* -----------------------
- * AniList（genres/tags のみ使う：あらすじは使わない）
+ * AniList（ジャンルだけ使う：辞書で日本語化、辞書外は捨てる）
  * ----------------------- */
 async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
@@ -430,7 +453,7 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
           synonyms
           format
           genres
-          tags { name rank isGeneralSpoiler }
+          description(asHtml: false)
         }
       }
     }
@@ -493,8 +516,6 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
     if (fmt === "ONE_SHOT") score += 10;
 
     if (Array.isArray(m?.genres) && m.genres.length) score += 10;
-    if (Array.isArray(m?.tags) && m.tags.length) score += 10;
-
     return score;
   }
 
@@ -506,251 +527,186 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   debugSteps.anilist = { cached: false, ok: true, found: !!best, pickedScore: withScore[0]?.score ?? null };
   return { ok: true, data: best, found: !!best };
 }
-
-function extractFromAniList(media) {
-  if (!media) return { id: null, genres: [], tags: [] };
-
+function extractGenresFromAniList(media) {
   const genres = Array.isArray(media?.genres) ? media.genres.filter(Boolean) : [];
-  const tags =
-    Array.isArray(media?.tags)
-      ? media.tags
-          .filter((t) => t && t.name && !t.isGeneralSpoiler)
-          .sort((a, b) => (b.rank ?? 0) - (a.rank ?? 0))
-          .slice(0, 24)
-          .map((t) => t.name)
-      : [];
-
-  return { id: media?.id ?? null, genres, tags };
+  // ★辞書にあるものだけ日本語化
+  const ja = genres.map((g) => GENRE_JA[g]).filter(Boolean);
+  return uniq(ja).slice(0, 6);
 }
 
 /* -----------------------
- * 辞書翻訳（辞書にないものは非表示）
+ * Wikidata（日本語ラベルだけで：連載誌 + タグ）
+ * スクレイピングなし：Wikidata APIのみ
  * ----------------------- */
-const GENRE_JA = {
-  Action: "アクション",
-  Adventure: "冒険",
-  Comedy: "コメディ",
-  Drama: "ドラマ",
-  Fantasy: "ファンタジー",
-  Horror: "ホラー",
-  Mystery: "ミステリー",
-  Psychological: "心理",
-  Romance: "恋愛",
-  "Sci-Fi": "SF",
-  "Slice of Life": "日常",
-  Sports: "スポーツ",
-  Supernatural: "超常",
-  Thriller: "サスペンス",
-};
+async function wikidataSearchJa({ q }) {
+  const url = `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(
+    q
+  )}&language=ja&uselang=ja&format=json&limit=7&origin=*`;
+  const r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikidata" } });
+  if (!r.ok) throw new Error(`wikidata_search_http_${r.status}`);
+  return await r.json();
+}
 
-const TAG_JA = {
-  Shounen: "少年",
-  Seinen: "青年",
-  "Male Protagonist": "男性主人公",
-  "Female Protagonist": "女性主人公",
-  "Battle Royale": "バトルロイヤル",
-  Football: "サッカー",
-  Athletics: "競技",
-  Magic: "魔法",
-  Demons: "悪魔",
-  Elf: "エルフ",
-  Travel: "旅",
-  Tragedy: "悲劇",
-  Iyashikei: "癒し",
-  Philosophy: "哲学",
-  "Time Skip": "時間経過",
-  "Primarily Male Cast": "男多め",
-  "Primarily Teen Cast": "10代中心",
-  "Ensemble Cast": "群像劇",
-  "Urban Fantasy": "現代ファンタジー",
-  Twins: "双子",
-  Youkai: "妖怪",
-  Conspiracy: "陰謀",
-  Rural: "田舎",
-};
+async function wikidataGetEntities({ ids }) {
+  const url = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${encodeURIComponent(
+    ids.join("|")
+  )}&props=labels|claims|sitelinks&languages=ja&format=json&origin=*`;
+  const r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikidata" } });
+  if (!r.ok) throw new Error(`wikidata_get_http_${r.status}`);
+  return await r.json();
+}
 
-function translateByDict(arr, dict, max) {
-  if (!Array.isArray(arr)) return [];
-  const out = [];
-  for (const x of arr) {
-    const k = norm(x);
-    const ja = dict[k];
-    if (ja) out.push(ja);
-    if (max && out.length >= max) break;
+function pickBestWikidataEntity({ searchJson, seriesKey }) {
+  const list = Array.isArray(searchJson?.search) ? searchJson.search : [];
+  if (!list.length) return null;
+
+  const s0 = normLoose(toHalfWidth(seriesKey));
+  function score(it) {
+    let sc = 0;
+    const label = norm(it?.label);
+    const desc = norm(it?.description);
+
+    const l0 = normLoose(toHalfWidth(label));
+    if (l0 === s0) sc += 1000;
+    if (l0.includes(s0) || s0.includes(l0)) sc += 300;
+
+    // 作品っぽいdescを少しだけ優遇
+    if (/漫画|マンガ|作品|コミック|comic|manga/i.test(desc)) sc += 30;
+    return sc;
   }
-  return out;
+
+  const withScore = list.map((it) => ({ it, score: score(it) }));
+  withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  return withScore[0]?.it || null;
 }
 
-/* -----------------------
- * Wikipedia(ja) / Wikidata（連載誌・タグ補完）
- * ----------------------- */
+function extractEntityIdsFromClaims(claims, prop) {
+  const arr = claims?.[prop];
+  if (!Array.isArray(arr)) return [];
+  const ids = [];
+  for (const c of arr) {
+    const v = c?.mainsnak?.datavalue?.value;
+    const id = v?.id;
+    if (typeof id === "string" && /^Q\d+$/.test(id)) ids.push(id);
+  }
+  return ids;
+}
 
-// ja Wikipedia search -> title
-async function wikipediaSearchJa({ seriesKey, cache, debugSteps }) {
+function isJapaneseLabel(s) {
+  const x = norm(s);
+  if (!x) return false;
+  // ひらがな/カタカナ/漢字が含まれるなら「日本語っぽい」扱いでOK
+  return /[\u3040-\u30ff\u3400-\u9fff]/.test(x);
+}
+
+function cleanWdTag(s) {
+  const x = norm(s);
+  if (!x) return null;
+  if (x.length > 24) return null;
+  if (/^Q\d+$/.test(x)) return null;
+
+  // 露骨に汎用すぎるのは落とす（ノイズ対策）
+  const ng = [
+    "漫画", "日本の漫画", "作品", "日本の作品", "コミック", "物語",
+    "フィクション", "シリーズ", "出版", "出版社"
+  ];
+  if (ng.includes(x)) return null;
+
+  if (!isJapaneseLabel(x)) return null;
+  return x;
+}
+
+async function fetchWikidataBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
-  const c = cache[key];
-  if (c && c.title) {
-    debugSteps.wikipediaSearch = { cached: true };
-    return { ok: true, title: c.title, cached: true };
-  }
-
-  const url = `https://ja.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srlimit=5&srsearch=${encodeURIComponent(key + " 漫画")}`;
-  let r;
-  try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikipedia" } });
-  } catch (e) {
-    debugSteps.wikipediaSearch = { cached: false, ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "wikipedia_fetch_error" };
-  }
-
-  if (!r.ok) {
-    debugSteps.wikipediaSearch = { cached: false, ok: false, status: r.status };
-    return { ok: false, reason: `wikipedia_http_${r.status}` };
-  }
-
-  const json = await r.json().catch(() => null);
-  const hit = json?.query?.search?.[0]?.title || null;
-
-  cache[key] = cache[key] || {};
-  cache[key].title = hit;
-
-  debugSteps.wikipediaSearch = { cached: false, ok: true, found: !!hit, title: hit };
-  return { ok: true, title: hit, found: !!hit };
-}
-
-// title -> wikibase_item(QID)
-async function wikipediaGetWikibaseItem({ title, debugSteps }) {
-  if (!title) return { ok: false, reason: "no_title" };
-
-  const url = `https://ja.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageprops&titles=${encodeURIComponent(title)}`;
-  let r;
-  try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikipedia" } });
-  } catch (e) {
-    debugSteps.wikipediaPageprops = { ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "wikipedia_fetch_error" };
-  }
-  if (!r.ok) {
-    debugSteps.wikipediaPageprops = { ok: false, status: r.status };
-    return { ok: false, reason: `wikipedia_http_${r.status}` };
-  }
-
-  const json = await r.json().catch(() => null);
-  const pages = json?.query?.pages || {};
-  const firstKey = Object.keys(pages)[0];
-  const qid = pages?.[firstKey]?.pageprops?.wikibase_item || null;
-
-  debugSteps.wikipediaPageprops = { ok: true, qid };
-  return { ok: true, qid, found: !!qid };
-}
-
-// wikipedia summary（ja）
-async function wikipediaSummaryJa({ title, cache, seriesKey, debugSteps }) {
-  if (!title) return { ok: false, reason: "no_title" };
-  const key = norm(seriesKey);
-  if (cache[key]?.summary != null) {
-    debugSteps.wikipediaSummary = { cached: true };
-    return { ok: true, summary: cache[key].summary, cached: true };
-  }
-
-  const url = `https://ja.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
-  let r;
-  try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikipedia" } });
-  } catch (e) {
-    debugSteps.wikipediaSummary = { cached: false, ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "wikipedia_fetch_error" };
-  }
-  if (!r.ok) {
-    debugSteps.wikipediaSummary = { cached: false, ok: false, status: r.status };
-    return { ok: false, reason: `wikipedia_http_${r.status}` };
-  }
-
-  const json = await r.json().catch(() => null);
-  const extract = norm(json?.extract || "") || null;
-
-  cache[key] = cache[key] || {};
-  cache[key].summary = extract;
-
-  debugSteps.wikipediaSummary = { cached: false, ok: true, found: !!extract };
-  return { ok: true, summary: extract, found: !!extract };
-}
-
-// Wikidata entity fetch
-async function wikidataEntity({ qid, cache, debugSteps }) {
-  if (!qid) return { ok: false, reason: "no_qid" };
-  if (cache[qid]) {
+  if (Object.prototype.hasOwnProperty.call(cache, key)) {
     debugSteps.wikidata = { cached: true };
-    return { ok: true, data: cache[qid], cached: true };
+    return { ok: true, data: cache[key], cached: true };
   }
 
-  const url = `https://www.wikidata.org/wiki/Special:EntityData/${encodeURIComponent(qid)}.json`;
-  let r;
+  let searchJson;
   try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikidata" } });
+    searchJson = await wikidataSearchJa({ q: key });
   } catch (e) {
     debugSteps.wikidata = { cached: false, ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "wikidata_fetch_error" };
-  }
-  if (!r.ok) {
-    debugSteps.wikidata = { cached: false, ok: false, status: r.status };
-    return { ok: false, reason: `wikidata_http_${r.status}` };
+    cache[key] = null;
+    return { ok: false, reason: "wikidata_search_error" };
   }
 
-  const json = await r.json().catch(() => null);
-  cache[qid] = json ?? null;
+  const best = pickBestWikidataEntity({ searchJson, seriesKey: key });
+  if (!best?.id) {
+    debugSteps.wikidata = { cached: false, ok: true, found: false };
+    cache[key] = null;
+    return { ok: true, data: null, found: false };
+  }
 
-  debugSteps.wikidata = { cached: false, ok: true, found: !!json };
-  return { ok: true, data: json, found: !!json };
-}
+  let entJson;
+  try {
+    entJson = await wikidataGetEntities({ ids: [best.id] });
+  } catch (e) {
+    debugSteps.wikidata = { cached: false, ok: false, error: String(e?.message || e) };
+    cache[key] = null;
+    return { ok: false, reason: "wikidata_get_error" };
+  }
 
-// serialize in magazine: claims P1433 (published in) の ja label
-function extractMagazineJaFromWikidata(entityJson, qid) {
-  const ent = entityJson?.entities?.[qid];
+  const ent = entJson?.entities?.[best.id] || null;
+  if (!ent) {
+    debugSteps.wikidata = { cached: false, ok: true, found: false };
+    cache[key] = null;
+    return { ok: true, data: null, found: false };
+  }
+
+  // 取りたいプロパティ
+  // - 連載誌: P1433
+  // - タグ候補: P136(ジャンル), P921(主題), P840(舞台), P4110(架空世界の舞台 など作品によって), P31(インスタンス)はノイズ出やすいので使わない
   const claims = ent?.claims || {};
-  const p1433 = claims?.P1433;
-  if (!Array.isArray(p1433) || !p1433.length) return [];
+  const magIds = extractEntityIdsFromClaims(claims, "P1433");
+  const tagIds = uniq([
+    ...extractEntityIdsFromClaims(claims, "P136"),
+    ...extractEntityIdsFromClaims(claims, "P921"),
+    ...extractEntityIdsFromClaims(claims, "P840"),
+    ...extractEntityIdsFromClaims(claims, "P2579"), // studied by（たまに主題が混じる）
+  ]);
 
-  const ids = [];
-  for (const c of p1433) {
-    const id = c?.mainsnak?.datavalue?.value?.id || null;
-    if (id) ids.push(id);
+  const needIds = uniq([...magIds, ...tagIds]).filter((x) => /^Q\d+$/.test(x));
+  let labels = {};
+  if (needIds.length) {
+    // wbgetentities は複数 ids をまとめて取れる
+    try {
+      const chunk = [];
+      // URL長対策：最大40個くらいで分割
+      for (let i = 0; i < needIds.length; i += 40) chunk.push(needIds.slice(i, i + 40));
+      for (const ids of chunk) {
+        const jj = await wikidataGetEntities({ ids });
+        const ents = jj?.entities || {};
+        for (const [id, e] of Object.entries(ents)) {
+          const lab = e?.labels?.ja?.value || null;
+          if (lab) labels[id] = lab;
+        }
+        await sleep(200);
+      }
+    } catch {
+      // ラベル取得失敗でも致命ではない
+    }
   }
-  if (!ids.length) return [];
 
-  const out = [];
-  for (const id of ids) {
-    const e = entityJson?.entities?.[id];
-    const ja = e?.labels?.ja?.value || null;
-    if (ja) out.push(ja);
-  }
-  // 重複除去 + 最大2
-  return [...new Set(out)].slice(0, 2);
-}
+  const magazine = magIds.map((id) => labels[id]).map(cleanWdTag).filter(Boolean)[0] || null;
 
-// tags fallback: Wikidata P136(genre) ja label を「タグ」として少しだけ補完
-function extractGenreJaFromWikidata(entityJson, qid) {
-  const ent = entityJson?.entities?.[qid];
-  const claims = ent?.claims || {};
-  const p136 = claims?.P136;
-  if (!Array.isArray(p136) || !p136.length) return [];
+  const tags = tagIds
+    .map((id) => labels[id])
+    .map(cleanWdTag)
+    .filter(Boolean);
 
-  const ids = [];
-  for (const c of p136) {
-    const id = c?.mainsnak?.datavalue?.value?.id || null;
-    if (id) ids.push(id);
-  }
-  if (!ids.length) return [];
+  const out = {
+    qid: best.id,
+    magazine,
+    tags: uniq(tags).slice(0, 12),
+  };
 
-  const out = [];
-  for (const id of ids) {
-    const e = entityJson?.entities?.[id];
-    const ja = e?.labels?.ja?.value || null;
-    if (ja) out.push(ja);
-  }
-  return [...new Set(out)];
+  cache[key] = out;
+  debugSteps.wikidata = { cached: false, ok: true, found: true, qid: best.id, magazine: !!magazine, tags: out.tags.length };
+  return { ok: true, data: out, found: true };
 }
 
 /* -----------------------
@@ -764,7 +720,6 @@ async function main() {
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
   const cacheWikidata = (await loadJson(CACHE_WIKIDATA, {})) || {};
-  const cacheWikipedia = (await loadJson(CACHE_WIKIPEDIA, {})) || {};
 
   const enriched = [];
   const debug = [];
@@ -794,7 +749,7 @@ async function main() {
     let asin = parsed.asin;
     const isbn13FromDp = parsed.isbn13FromDp;
 
-    // 0.5) dpがISBN13だったら、SearchItemsでASIN解決（EAN一致）
+    // 0.5) dpがISBN13だったら SearchItems で ASIN 解決（EAN一致）
     if (!asin) {
       const targetIsbn13 = isbn13FromDp || isbn13 || null;
       if (targetIsbn13) {
@@ -819,7 +774,7 @@ async function main() {
       continue;
     }
 
-    // 1) PA-API GetItems
+    // 1) PA-API GetItems（タイトル正、書影、出版社、発売日など）
     const stepPa = {};
     const got = await getItemWithResourceProbe({ asin, debugSteps: stepPa });
     one.steps.getItemByAsin = {
@@ -848,7 +803,7 @@ async function main() {
 
     const finalTitle = paTitle || lane2Title || seriesKey || null;
 
-    // 2) openBD（あらすじ本命）
+    // 2) openBD（日本語あらすじ本命）
     const stepOpenbd = {};
     const ob = await fetchOpenBdByIsbn13({
       isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
@@ -856,73 +811,28 @@ async function main() {
       debugSteps: stepOpenbd,
     });
     one.steps.openbd = stepOpenbd.openbd || null;
+
     const obx = ob?.ok ? extractFromOpenBd(ob.data) : { description: null, pubdate: null, publisher: null };
 
-    // 3) Wikipedia(ja) summary（openBD無い時のみ）
-    const stepWiki = {};
-    let wikiTitle = null;
-    let wikiSummary = null;
-
-    const wSearch = await wikipediaSearchJa({ seriesKey, cache: cacheWikipedia, debugSteps: stepWiki });
-    if (wSearch?.ok && wSearch.title) {
-      wikiTitle = wSearch.title;
-
-      const wSum = await wikipediaSummaryJa({
-        title: wikiTitle,
-        cache: cacheWikipedia,
-        seriesKey,
-        debugSteps: stepWiki,
-      });
-      if (wSum?.ok) wikiSummary = wSum.summary || null;
-    }
-    one.steps.wikipedia = stepWiki;
-
-    // 4) Wikidata（連載誌）
-    const stepWk = {};
-    let magazines = [];
-    let wikidataQid = null;
-
-    if (wikiTitle) {
-      const pp = await wikipediaGetWikibaseItem({ title: wikiTitle, debugSteps: stepWk });
-      if (pp?.ok && pp.qid) {
-        wikidataQid = pp.qid;
-        const wd = await wikidataEntity({ qid: wikidataQid, cache: cacheWikidata, debugSteps: stepWk });
-        if (wd?.ok && wd.data) {
-          magazines = extractMagazineJaFromWikidata(wd.data, wikidataQid);
-        }
-      }
-    }
-    one.steps.wikidata = stepWk;
-
-    // 5) AniList（ジャンル/タグの元）
+    // 3) AniList（ジャンルだけ：辞書にあるものだけ）
     const stepAni = {};
     const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList, debugSteps: stepAni });
     one.steps.anilist = stepAni.anilist || null;
-    const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
 
-    // 6) ジャンル/タグ：辞書にないものは出さない
-    const genresJa = translateByDict(anx.genres, GENRE_JA, 6);
-    let tagsJa = translateByDict(anx.tags, TAG_JA, 12);
+    const genresJa = an?.ok ? extractGenresFromAniList(an.data) : [];
 
-    // タグが少なすぎるときのみ Wikidata で補完（jaラベルのみ / 最大+6）
-    if (tagsJa.length < 4 && wikidataQid) {
-      const wd = cacheWikidata[wikidataQid] || null;
-      const extra = wd ? extractGenreJaFromWikidata(wd, wikidataQid) : [];
-      // extraはすでにjaラベルなので「変な翻訳」は起きにくい。ノイズ削減で最大6。
-      for (const t of extra) {
-        if (tagsJa.length >= 10) break;
-        const v = norm(t);
-        if (!v) continue;
-        if (tagsJa.includes(v)) continue;
-        tagsJa.push(v);
-      }
-    }
+    // 4) Wikidata（連載誌 + タグ：日本語ラベルだけ）
+    const stepWd = {};
+    const wd = await fetchWikidataBySeriesKey({ seriesKey, cache: cacheWikidata, debugSteps: stepWd });
+    one.steps.wikidata = stepWd.wikidata || null;
 
-    // 7) あらすじ：openBD → Wikipedia(ja) → null（英語は出さない）
-    const finalDescription = obx.description || wikiSummary || null;
-    const descriptionSource = obx.description ? "openbd" : wikiSummary ? "wikipedia" : null;
+    const wdMagazine = wd?.ok ? wd.data?.magazine || null : null;
+    const wdTags = wd?.ok ? (Array.isArray(wd.data?.tags) ? wd.data.tags : []) : [];
 
-    // 8) 発売日：PA優先、なければopenBD pubdate
+    // あらすじ：英語は表示しない方針 → openBDのみ採用（無ければ null）
+    const finalDescription = obx.description || null;
+    const descriptionSource = obx.description ? "openbd" : null;
+
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
 
     const out = {
@@ -935,7 +845,6 @@ async function main() {
         asin,
         image: extractImage(item) || null,
         amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
-
         publisher: extractPublisher(item),
         contributors: extractContributors(item),
 
@@ -943,17 +852,20 @@ async function main() {
         description: finalDescription,
         descriptionSource,
 
-        // 連載誌（掲載誌）
-        serializedIn: magazines, // ["週刊少年マガジン"] など（取れた時だけ）
-        wikidataQid,
+        // ★日本語化済みジャンル（辞書内だけ）
+        genres: genresJa,
 
-        // 表示用（日本語化済みを入れる）
-        genresJa,
-        tagsJa,
+        // ★日本語ラベルだけのタグ（翻訳しない）
+        tags: uniq(wdTags).slice(0, 12),
 
-        // 監査用
-        anilistId: anx.id,
-        source: "enrich(paapi+openbd+wikipedia+wikidata+anilist)",
+        // ★連載誌（日本語ラベルだけ）
+        magazine: wdMagazine,
+
+        meta: {
+          wikidataQid: wd?.ok ? wd.data?.qid || null : null,
+        },
+
+        source: "enrich(paapi+openbd+anilist_genre+wikidata_tags)",
       },
     };
 
@@ -963,7 +875,7 @@ async function main() {
     enriched.push(out);
     ok++;
 
-    await sleep(1000);
+    await sleep(900);
   }
 
   await saveJson(OUT_ENRICHED, {
@@ -985,7 +897,6 @@ async function main() {
   await saveJson(CACHE_ANILIST, cacheAniList);
   await saveJson(CACHE_PAAPI, cachePaapi);
   await saveJson(CACHE_WIKIDATA, cacheWikidata);
-  await saveJson(CACHE_WIKIPEDIA, cacheWikipedia);
 
   console.log(`[lane2:enrich] total=${items.length} enriched=${enriched.length}`);
 }
