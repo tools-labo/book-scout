@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T04:05:55.098Z",
+  "updatedAt": "2026-02-10T04:12:24.418Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -50,16 +50,22 @@
           ],
           "retries": [
             {
-              "label": "base",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:ItemInfo.ContentInfo",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
@@ -181,13 +187,13 @@
           ],
           "retries": [
             {
-              "label": "base",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:ItemInfo.ContentInfo",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -300,12 +306,6 @@
               "attempt": 1,
               "status": 429,
               "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
             }
           ]
         },
