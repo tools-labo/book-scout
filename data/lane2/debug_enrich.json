@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T04:52:21.950Z",
+  "updatedAt": "2026-02-10T04:57:09.528Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -34,36 +34,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "step": {
-            "wikiSearch": {
-              "ok": true,
-              "found": true,
-              "pickedScore": 1510,
-              "title": "ブルーロック",
-              "sample": [
-                {
-                  "title": "ブルーロック",
-                  "score": 1510
-                },
-                {
-                  "title": "カントリーロック",
-                  "score": 40
-                },
-                {
-                  "title": "ハードロック",
-                  "score": 0
-                }
-              ]
-            },
-            "wikiSummary": {
-              "ok": true,
-              "got": true,
-              "title": "ブルーロック"
-            }
-          }
+          "cached": true
         }
       },
       "ok": true,
@@ -135,36 +106,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "step": {
-            "wikiSearch": {
-              "ok": true,
-              "found": true,
-              "pickedScore": 1510,
-              "title": "黄泉のツガイ",
-              "sample": [
-                {
-                  "title": "黄泉のツガイ",
-                  "score": 1510
-                },
-                {
-                  "title": "荒川弘",
-                  "score": 160
-                },
-                {
-                  "title": "ボンズ (アニメ制作会社)",
-                  "score": 160
-                }
-              ]
-            },
-            "wikiSummary": {
-              "ok": true,
-              "got": true,
-              "title": "黄泉のツガイ"
-            }
-          }
+          "cached": true
         }
       },
       "ok": true,
@@ -207,20 +149,10 @@
       "input": {
         "lane2Title": "葬送のフリーレン",
         "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
-        "resolveAsinByIsbn13": {
-          "ok": true,
-          "reason": null,
-          "isbn13": "9784098501809",
-          "raw": {
-            "cached": true,
-            "asin": "4098501805"
-          },
-          "retries": null
-        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -241,36 +173,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "step": {
-            "wikiSearch": {
-              "ok": true,
-              "found": true,
-              "pickedScore": 1510,
-              "title": "葬送のフリーレン",
-              "sample": [
-                {
-                  "title": "葬送のフリーレン",
-                  "score": 1510
-                },
-                {
-                  "title": "アベツカサ",
-                  "score": 160
-                },
-                {
-                  "title": "山田鐘人",
-                  "score": 160
-                }
-              ]
-            },
-            "wikiSummary": {
-              "ok": true,
-              "got": true,
-              "title": "葬送のフリーレン"
-            }
-          }
+          "cached": true
         }
       },
       "ok": true,
