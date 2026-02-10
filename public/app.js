@@ -17,13 +17,8 @@ function esc(s) {
 /**
  * works.json の項目が string / object / array どれでも来うる前提で
  * 表示用の「人間が読める文字列」へ正規化する。
- *
- * 例:
- * - "講談社" -> "講談社"
- * - { name:"講談社" } -> "講談社"
- * - { ja:"講談社" } -> "講談社"
- * - { publisher:"講談社" } -> "講談社"
- * - ["講談社","集英社"] -> "講談社 / 集英社"
+ * - object はよくあるキーから拾う。拾えなければ空（=非表示）。
+ * - これで "[object Object]" を絶対に出さない。
  */
 function toText(v) {
   if (v == null) return "";
@@ -32,25 +27,15 @@ function toText(v) {
 
   if (Array.isArray(v)) {
     const xs = v.map(toText).filter(Boolean);
-    // 重複排除（順序は維持）
     const seen = new Set();
     const uniq = xs.filter(x => (seen.has(x) ? false : (seen.add(x), true)));
     return uniq.join(" / ");
   }
 
   if (typeof v === "object") {
-    // よくあるキーを優先順で拾う（必要なら増やす）
     const keys = [
-      "name",
-      "ja",
-      "jp",
-      "label",
-      "value",
-      "text",
-      "title",
-      "publisher",
-      "company",
-      "display",
+      "name", "ja", "jp", "label", "value", "text", "title",
+      "publisher", "company", "display",
     ];
     for (const k of keys) {
       if (v[k] != null) {
@@ -58,7 +43,6 @@ function toText(v) {
         if (t) return t;
       }
     }
-    // それでも取れない場合は空にする（[object Object] を出さない）
     return "";
   }
 
@@ -108,13 +92,34 @@ const TAG_JA = {
   Rural: "田舎",
 };
 
+/**
+ * 既に日本語が入っている場合はそのまま通す。
+ * 英語が来た場合だけ辞書変換して、辞書外は非表示。
+ */
 function mapGenres(genres) {
   if (!Array.isArray(genres)) return [];
-  return genres.map((g) => GENRE_JA[g]).filter(Boolean);
+  return genres
+    .map((g) => {
+      const s = toText(g);
+      if (!s) return null;
+      // すでに日本語（=辞書変換不要）なら通す
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+      // 英語なら辞書変換（辞書外は落とす）
+      return GENRE_JA[s] || null;
+    })
+    .filter(Boolean);
 }
+
 function mapTags(tags) {
   if (!Array.isArray(tags)) return [];
-  return tags.map((t) => TAG_JA[t]).filter(Boolean);
+  return tags
+    .map((t) => {
+      const s = toText(t);
+      if (!s) return null;
+      if (TAG_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+      return TAG_JA[s] || null;
+    })
+    .filter(Boolean);
 }
 
 function pills(list) {
@@ -133,8 +138,10 @@ function renderList(data) {
   }
 
   root.innerHTML = items.map((it) => {
-    const key = encodeURIComponent(it.seriesKey);
-    const title = toText(it.title) || toText(it.seriesKey);
+    const seriesKey = toText(it.seriesKey);
+    const key = encodeURIComponent(seriesKey);
+    const title = seriesKey || toText(it.title) || "(無題)";
+
     const author = toText(it.author);
     const img = toText(it.image);
     const amz = toText(it.amazonDp) || "#";
@@ -192,13 +199,15 @@ function renderWork(data) {
   }
 
   const items = data?.items || [];
-  const it = items.find((x) => x.seriesKey === key);
+  const it = items.find((x) => toText(x.seriesKey) === key);
   if (!it) {
     detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
     return;
   }
 
-  const title = toText(it.title) || toText(it.seriesKey);
+  const seriesKey = toText(it.seriesKey);
+  const title = seriesKey || toText(it.title) || "(無題)";
+
   const author = toText(it.author);
   const img = toText(it.image);
   const amz = toText(it.amazonDp);
