@@ -33,7 +33,45 @@ function toDateOnly(iso) {
 
 function clampArray(arr, max) {
   if (!Array.isArray(arr)) return [];
-  return arr.slice(0, max).filter((x) => x != null && String(x).trim());
+  return arr
+    .map((x) => String(x ?? "").trim())
+    .filter(Boolean)
+    .slice(0, max);
+}
+
+function isJaLikeText(s) {
+  const t = norm(s);
+  if (!t) return false;
+  // ひらがな/カタカナ/漢字が少しでも入ってたら “日本語っぽい” とみなす（安全側）
+  return /[ぁ-ゖァ-ヺ一-龯]/.test(t);
+}
+
+/**
+ * 説明文は「openBD / Wikipedia だけ」採用
+ * - enrich 側が openbdSummary/wikiSummary を直接出している場合はそれを優先
+ * - enrich 側が description + descriptionSource 形式の場合も考慮
+ * - それ以外（anilist等）は必ず捨てる
+ */
+function pickJaDescription(v) {
+  const openbdSummary = norm(v?.openbdSummary || v?.openbd?.summary || v?.openbd?.summaryText || "");
+  if (openbdSummary && isJaLikeText(openbdSummary)) {
+    return { text: openbdSummary, source: "openbd", openbdSummary, wikiSummary: null };
+  }
+
+  const wikiSummary = norm(v?.wikiSummary || v?.wikipediaSummary || "");
+  if (wikiSummary && isJaLikeText(wikiSummary)) {
+    return { text: wikiSummary, source: "wikipedia", openbdSummary: null, wikiSummary };
+  }
+
+  // 互換：descriptionSource が openbd / wikipedia のときだけ採用
+  const ds = norm(v?.descriptionSource).toLowerCase();
+  const desc = norm(v?.description || "");
+  if ((ds === "openbd" || ds === "wikipedia") && desc && isJaLikeText(desc)) {
+    return { text: desc, source: ds, openbdSummary: ds === "openbd" ? desc : null, wikiSummary: ds === "wikipedia" ? desc : null };
+  }
+
+  // anilist 等は表示しない（= null）
+  return { text: null, source: null, openbdSummary: null, wikiSummary: null };
 }
 
 async function main() {
@@ -46,6 +84,8 @@ async function main() {
 
     const v = x?.vol1 || {};
     const title = norm(v?.title) || seriesKey || null;
+
+    const descPicked = pickJaDescription(v);
 
     return {
       seriesKey,
@@ -65,11 +105,15 @@ async function main() {
       contributors: Array.isArray(v?.contributors) ? v.contributors : [],
       releaseDate: toDateOnly(v?.releaseDate),
 
-      // 説明（長文はUI側で折りたたみ）
-      description: v?.description || null,
-      descriptionSource: v?.descriptionSource || null,
+      // ★説明文：openBD / Wikipedia のみ（英語は落とす）
+      description: descPicked.text,
+      descriptionSource: descPicked.source,
 
-      // ジャンル・タグ（多いので上位だけ使う想定）
+      // ★フロントが扱いやすいように分離して保持
+      openbdSummary: descPicked.openbdSummary,
+      wikiSummary: descPicked.wikiSummary,
+
+      // ジャンル・タグ（翻訳はフロントの辞書で。辞書に無いものはフロントで非表示）
       genres: Array.isArray(v?.genres) ? v.genres : [],
       tags: clampArray(v?.tags, 12),
 
@@ -78,11 +122,13 @@ async function main() {
         titleLane2: v?.titleLane2 || null,
         anilistId: v?.anilistId || null,
         source: v?.source || null,
+        // 監査のため「元のdescriptionSource」を残す（あくまで監査用）
+        rawDescriptionSource: v?.descriptionSource || null,
       },
     };
   });
 
-  // 並びは一旦 seriesKey で安定化（あとで releaseDate desc とかに変えられる）
+  // 並びは seriesKey で安定化
   works.sort((a, b) => String(a.seriesKey).localeCompare(String(b.seriesKey), "ja"));
 
   await saveJson(OUT_WORKS, {
