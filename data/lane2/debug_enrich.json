@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T08:10:03.238Z",
+  "updatedAt": "2026-02-10T15:53:56.310Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -49,12 +49,6 @@
             }
           ],
           "retries": [
-            {
-              "label": "base",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
             {
               "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
@@ -140,20 +134,10 @@
       "input": {
         "lane2Title": "黄泉のツガイ",
         "isbn13": "9784757579620",
-        "amazonDp": "https://www.amazon.co.jp/dp/9784757579620",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
-        "resolveAsinByIsbn13": {
-          "ok": true,
-          "reason": null,
-          "isbn13": "9784757579620",
-          "raw": {
-            "cached": true,
-            "asin": "4757579624"
-          },
-          "retries": null
-        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -190,7 +174,19 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -263,20 +259,10 @@
       "input": {
         "lane2Title": "葬送のフリーレン",
         "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
-        "resolveAsinByIsbn13": {
-          "ok": true,
-          "reason": null,
-          "isbn13": "9784098501809",
-          "raw": {
-            "cached": true,
-            "asin": "4098501805"
-          },
-          "retries": null
-        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -313,19 +299,7 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
-            },
-            {
-              "label": "probe:EditorialReviews",
+              "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
