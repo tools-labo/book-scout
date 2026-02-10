@@ -24,54 +24,23 @@ function norm(s) {
   return String(s ?? "").trim();
 }
 
-// "2018-11-16T00:00:01Z" -> "2018-11-16"
-function toDateOnly(iso) {
-  const s = norm(iso);
-  const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
-  return m ? m[1] : null;
+// "2018-11-16T00:00:01Z" / "20180610" / "2022-06-10" -> "YYYY-MM-DD" or null
+function toDateOnly(v) {
+  const s = norm(v);
+  if (!s) return null;
+  const m1 = s.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (m1) return m1[1];
+  const m2 = s.match(/^(\d{4})(\d{2})(\d{2})$/);
+  if (m2) return `${m2[1]}-${m2[2]}-${m2[3]}`;
+  return null;
 }
 
 function clampArray(arr, max) {
   if (!Array.isArray(arr)) return [];
   return arr
-    .map((x) => String(x ?? "").trim())
+    .map((x) => norm(x))
     .filter(Boolean)
     .slice(0, max);
-}
-
-function isJaLikeText(s) {
-  const t = norm(s);
-  if (!t) return false;
-  // ひらがな/カタカナ/漢字が少しでも入ってたら “日本語っぽい” とみなす（安全側）
-  return /[ぁ-ゖァ-ヺ一-龯]/.test(t);
-}
-
-/**
- * 説明文は「openBD / Wikipedia だけ」採用
- * - enrich 側が openbdSummary/wikiSummary を直接出している場合はそれを優先
- * - enrich 側が description + descriptionSource 形式の場合も考慮
- * - それ以外（anilist等）は必ず捨てる
- */
-function pickJaDescription(v) {
-  const openbdSummary = norm(v?.openbdSummary || v?.openbd?.summary || v?.openbd?.summaryText || "");
-  if (openbdSummary && isJaLikeText(openbdSummary)) {
-    return { text: openbdSummary, source: "openbd", openbdSummary, wikiSummary: null };
-  }
-
-  const wikiSummary = norm(v?.wikiSummary || v?.wikipediaSummary || "");
-  if (wikiSummary && isJaLikeText(wikiSummary)) {
-    return { text: wikiSummary, source: "wikipedia", openbdSummary: null, wikiSummary };
-  }
-
-  // 互換：descriptionSource が openbd / wikipedia のときだけ採用
-  const ds = norm(v?.descriptionSource).toLowerCase();
-  const desc = norm(v?.description || "");
-  if ((ds === "openbd" || ds === "wikipedia") && desc && isJaLikeText(desc)) {
-    return { text: desc, source: ds, openbdSummary: ds === "openbd" ? desc : null, wikiSummary: ds === "wikipedia" ? desc : null };
-  }
-
-  // anilist 等は表示しない（= null）
-  return { text: null, source: null, openbdSummary: null, wikiSummary: null };
 }
 
 async function main() {
@@ -85,13 +54,14 @@ async function main() {
     const v = x?.vol1 || {};
     const title = norm(v?.title) || seriesKey || null;
 
-    const descPicked = pickJaDescription(v);
+    const publisherBrand = norm(v?.publisher?.brand) || null;
+    const publisherManufacturer = norm(v?.publisher?.manufacturer) || null;
 
     return {
       seriesKey,
       author: author || null,
 
-      // “表示の核”
+      // 表示の核
       title,
       asin: v?.asin || null,
       isbn13: v?.isbn13 || null,
@@ -101,34 +71,33 @@ async function main() {
       image: v?.image || null,
 
       // 出版情報
-      publisher: v?.publisher || null,
-      contributors: Array.isArray(v?.contributors) ? v.contributors : [],
+      publisher: {
+        brand: publisherBrand,
+        manufacturer: publisherManufacturer,
+      },
       releaseDate: toDateOnly(v?.releaseDate),
 
-      // ★説明文：openBD / Wikipedia のみ（英語は落とす）
-      description: descPicked.text,
-      descriptionSource: descPicked.source,
+      // 連載誌（掲載誌）
+      serializedIn: clampArray(v?.serializedIn, 2), // 0なら非表示
+      wikidataQid: v?.wikidataQid || null,
 
-      // ★フロントが扱いやすいように分離して保持
-      openbdSummary: descPicked.openbdSummary,
-      wikiSummary: descPicked.wikiSummary,
+      // あらすじ（日本語だけ / 無ければnull）
+      description: norm(v?.description) || null,
+      descriptionSource: v?.descriptionSource || null,
 
-      // ジャンル・タグ（翻訳はフロントの辞書で。辞書に無いものはフロントで非表示）
-      genres: Array.isArray(v?.genres) ? v.genres : [],
-      tags: clampArray(v?.tags, 12),
+      // 日本語化済み
+      genres: clampArray(v?.genresJa, 6),
+      tags: clampArray(v?.tagsJa, 12),
 
-      // 参照元の監査用
+      // 監査用
       meta: {
         titleLane2: v?.titleLane2 || null,
         anilistId: v?.anilistId || null,
         source: v?.source || null,
-        // 監査のため「元のdescriptionSource」を残す（あくまで監査用）
-        rawDescriptionSource: v?.descriptionSource || null,
       },
     };
   });
 
-  // 並びは seriesKey で安定化
   works.sort((a, b) => String(a.seriesKey).localeCompare(String(b.seriesKey), "ja"));
 
   await saveJson(OUT_WORKS, {
