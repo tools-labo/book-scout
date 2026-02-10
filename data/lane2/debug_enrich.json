@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T06:20:19.194Z",
+  "updatedAt": "2026-02-10T06:41:38.290Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,21 +48,23 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
           "cached": true
         },
-        "anilist": {
+        "wiki": {
           "cached": true
         },
-        "wikidata": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "qid": "Q62414782",
-          "magazine": true,
-          "tags": 3
+        "anilist": {
+          "cached": true
         }
       },
       "ok": true,
@@ -94,23 +96,35 @@
             }
           ],
           "releaseDate": "2018-11-16T00:00:01Z",
-          "description": null,
-          "descriptionSource": null,
+          "synopsis": null,
+          "synopsisSource": null,
+          "magazine": null,
+          "wikiTitle": "ブルーロック",
+          "anilistId": 106130,
           "genres": [
-            "アクション",
-            "ドラマ",
-            "スポーツ"
+            "Action",
+            "Drama",
+            "Sports"
           ],
           "tags": [
-            "スポ根",
-            "サッカー",
-            "ハイスクール"
+            "Football",
+            "Male Protagonist",
+            "Battle Royale",
+            "Athletics",
+            "Primarily Male Cast",
+            "Primarily Teen Cast",
+            "Ensemble Cast",
+            "Shounen",
+            "Super Power",
+            "Anti-Hero",
+            "Fitness",
+            "Foreign",
+            "Augmented Reality",
+            "Language Barrier",
+            "Suicide",
+            "Revenge"
           ],
-          "magazine": "週刊少年マガジン",
-          "meta": {
-            "wikidataQid": "Q62414782"
-          },
-          "source": "enrich(paapi+openbd+anilist_genre+wikidata_tags)"
+          "source": "enrich(paapi+openbd+wiki+anilist)"
         }
       }
     },
@@ -170,34 +184,17 @@
               "attempt": 1,
               "status": 429,
               "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
             }
           ]
         },
         "openbd": {
           "cached": true
         },
-        "anilist": {
+        "wiki": {
           "cached": true
         },
-        "wikidata": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "qid": "Q111944796",
-          "magazine": true,
-          "tags": 2
+        "anilist": {
+          "cached": true
         }
       },
       "ok": true,
@@ -224,23 +221,29 @@
             }
           ],
           "releaseDate": "2022-06-10T00:00:01Z",
-          "description": null,
-          "descriptionSource": null,
+          "synopsis": null,
+          "synopsisSource": null,
+          "magazine": null,
+          "wikiTitle": "黄泉のツガイ",
+          "anilistId": 136899,
           "genres": [
-            "アクション",
-            "冒険",
-            "コメディ",
-            "ファンタジー"
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
           ],
           "tags": [
-            "アドベンチャー",
-            "スーパーナチュラルアニメおよび漫画"
+            "Shounen",
+            "Twins",
+            "Youkai",
+            "Anachronism",
+            "Urban Fantasy",
+            "Male Protagonist",
+            "Conspiracy",
+            "Archery",
+            "Rural"
           ],
-          "magazine": "月刊少年ガンガン",
-          "meta": {
-            "wikidataQid": "Q111944796"
-          },
-          "source": "enrich(paapi+openbd+anilist_genre+wikidata_tags)"
+          "source": "enrich(paapi+openbd+wiki+anilist)"
         }
       }
     },
@@ -288,21 +291,23 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
           "cached": true
         },
-        "anilist": {
+        "wiki": {
           "cached": true
         },
-        "wikidata": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "qid": "Q98642652",
-          "magazine": true,
-          "tags": 3
+        "anilist": {
+          "cached": true
         }
       },
       "ok": true,
@@ -334,23 +339,35 @@
             }
           ],
           "releaseDate": "2020-08-18T00:00:01Z",
-          "description": null,
-          "descriptionSource": null,
+          "synopsis": null,
+          "synopsisSource": null,
+          "magazine": null,
+          "wikiTitle": "葬送のフリーレン",
+          "anilistId": 118586,
           "genres": [
-            "冒険",
-            "ドラマ",
-            "ファンタジー"
+            "Adventure",
+            "Drama",
+            "Fantasy"
           ],
           "tags": [
-            "アドベンチャー",
-            "ファンタジー",
-            "ドラマ"
+            "Magic",
+            "Travel",
+            "Elf",
+            "Philosophy",
+            "Female Protagonist",
+            "Demons",
+            "Iyashikei",
+            "Medieval",
+            "Kuudere",
+            "Episodic",
+            "Spearplay",
+            "Heterosexual",
+            "Shounen",
+            "Fairy Tale",
+            "Food",
+            "Dungeon"
           ],
-          "magazine": "週刊少年サンデー",
-          "meta": {
-            "wikidataQid": "Q98642652"
-          },
-          "source": "enrich(paapi+openbd+anilist_genre+wikidata_tags)"
+          "source": "enrich(paapi+openbd+wiki+anilist)"
         }
       }
     }
