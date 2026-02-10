@@ -4,9 +4,11 @@ async function loadJson(p) {
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return await r.json();
 }
+
 function qs() {
   return new URLSearchParams(location.search);
 }
+
 function esc(s) {
   return String(s ?? "")
     .replaceAll("&", "&amp;")
@@ -16,17 +18,29 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
-function joinIf(arr, sep = " / ") {
-  if (!Array.isArray(arr)) return "";
-  const xs = arr.map((x) => String(x ?? "").trim()).filter(Boolean);
-  return xs.join(sep);
+// works.json の1件を「フロントで使いやすい形」に正規化
+function normWork(it) {
+  if (!it) return null;
+  return {
+    seriesKey: it.seriesKey || "",
+    title: it.title || it.seriesKey || "",
+    author: it.author || "",
+    image: it.image || "",
+    amazonDp: it.amazonDp || "",
+    isbn13: it.isbn13 || "",
+    releaseDate: it.releaseDate || "",
+    publisher: it.publisher || "",
+    description: it.description || "",
+    genres: Array.isArray(it.genres) ? it.genres : [],
+    tags: Array.isArray(it.tags) ? it.tags : [],
+  };
 }
 
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
 
-  const items = data?.items || [];
+  const items = Array.isArray(data?.items) ? data.items.map(normWork).filter(Boolean) : [];
   if (!items.length) {
     root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
     return;
@@ -35,39 +49,33 @@ function renderList(data) {
   root.innerHTML = items
     .map((it) => {
       const key = encodeURIComponent(it.seriesKey);
-      const title = it.title || it.seriesKey || "";
+      const title = it.title || it.seriesKey;
       const author = it.author || "";
       const img = it.image || "";
-      const vol1Amz = it.amazonDp || "";
-      const isbn = it.isbn13 || "";
-      const release = it.releaseDate || "";
-      const pub = it.publisher?.brand || it.publisher?.manufacturer || "";
+      const amz = it.amazonDp || "#";
 
-      const subBits = [];
-      if (author) subBits.push(esc(author));
-      if (isbn) subBits.push(`ISBN: ${esc(isbn)}`);
-      if (release) subBits.push(`発売: ${esc(release)}`);
-      if (pub) subBits.push(`出版社: ${esc(pub)}`);
-
+      // 「日本語化方針」：genre/tags/英語はここでは出さない（後で日本語だけに整えたら出す）
       return `
-      <article class="card">
-        <div class="card-row">
-          <div class="thumb">
-            ${
-              img
-                ? `<a href="${esc(vol1Amz || "#")}" target="_blank" rel="nofollow noopener">
-                    <img src="${esc(img)}" alt="${esc(title)}"/>
-                  </a>`
-                : `<div class="thumb-ph"></div>`
-            }
+        <article class="card">
+          <div class="card-row">
+            <div class="thumb">
+              ${
+                img
+                  ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener">
+                       <img src="${esc(img)}" alt="${esc(title)}"/>
+                     </a>`
+                  : `<div class="thumb-ph"></div>`
+              }
+            </div>
+            <div class="meta">
+              <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
+              <div class="sub">
+                ${author ? `<span>${esc(author)}</span>` : ""}
+              </div>
+            </div>
           </div>
-          <div class="meta">
-            <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
-            <div class="sub">${subBits.join(" / ")}</div>
-          </div>
-        </div>
-      </article>
-    `;
+        </article>
+      `;
     })
     .join("");
 }
@@ -82,53 +90,49 @@ function renderWork(data) {
     return;
   }
 
-  const items = data?.items || [];
+  const items = Array.isArray(data?.items) ? data.items.map(normWork).filter(Boolean) : [];
   const it = items.find((x) => x.seriesKey === key);
   if (!it) {
     detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
     return;
   }
 
-  const title = it.title || it.seriesKey || "";
+  const title = it.title || it.seriesKey;
   const author = it.author || "";
   const img = it.image || "";
-  const vol1Amz = it.amazonDp || "";
+  const amz = it.amazonDp || "";
   const isbn = it.isbn13 || "";
-  const release = it.releaseDate || "";
-  const pub = it.publisher?.brand || it.publisher?.manufacturer || "";
-  const desc = it.description || ""; // openBD → wiki のみが入る想定
-  const descSrc = it.descriptionSource || ""; // "openbd" or "wikipedia"
+  const rel = it.releaseDate || "";
+  const pub = it.publisher || "";
+  const desc = it.description || "";
 
-  const headerBits = [];
-  if (author) headerBits.push(esc(author));
-  if (isbn) headerBits.push(`ISBN: ${esc(isbn)}`);
-  if (release) headerBits.push(`発売: ${esc(release)}`);
-  if (pub) headerBits.push(`出版社: ${esc(pub)}`);
-
-  const descLabel =
-    descSrc === "openbd" ? "あらすじ（openBD）" : descSrc === "wikipedia" ? "あらすじ（Wikipedia）" : "あらすじ";
-
+  // 日本語化方針：
+  // - 英語あらすじは出さない（パイプライン側で description を日本語ソース限定にする）
+  // - genre/tagsも日本語のみになったらここに表示を足す
   detail.innerHTML = `
     <div class="d-title">${esc(it.seriesKey)}</div>
-    <div class="d-sub">${headerBits.join(" / ")}</div>
+    <div class="d-sub">
+      ${author ? esc(author) : ""}
+      ${isbn ? ` / ISBN: ${esc(isbn)}` : ""}
+      ${rel ? ` / 発売: ${esc(rel)}` : ""}
+      ${pub ? ` / 出版社: ${esc(pub)}` : ""}
+    </div>
 
     <div class="d-row">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
-        ${
-          vol1Amz
-            ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>`
-            : ""
-        }
+        ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
       </div>
     </div>
 
     ${
       desc
-        ? `<div class="d-note">
-            <div class="d-label">${esc(descLabel)}</div>
-            <div class="d-desc">${esc(desc).replaceAll("\n", "<br>")}</div>
-          </div>`
+        ? `
+          <div class="d-note">
+            <div style="margin-bottom:6px;">あらすじ</div>
+            <div style="white-space:pre-wrap; line-height:1.6;">${esc(desc)}</div>
+          </div>
+        `
         : ""
     }
   `;
@@ -136,7 +140,7 @@ function renderWork(data) {
 
 (async function main() {
   try {
-    // ★ series.json ではなく works.json
+    // ★works.json を読む
     const data = await loadJson("./data/lane2/works.json");
     renderList(data);
     renderWork(data);
