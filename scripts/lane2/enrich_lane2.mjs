@@ -7,11 +7,13 @@ const IN_SERIES = "data/lane2/series.json";
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_DEBUG = "data/lane2/debug_enrich.json";
 
-// 軽キャッシュ（Actionsでも効く：リポジトリに残る）
+// cache
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
-const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;
-const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ISBN13→ASIN 解決キャッシュ
+const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
+const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`;
+const CACHE_WIKIDATA = `${CACHE_DIR}/wikidata.json`;
+const CACHE_WIKIPEDIA = `${CACHE_DIR}/wikipedia.json`;
 
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
@@ -47,10 +49,14 @@ function toHalfWidth(s) {
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
 }
-function isJaLikeText(s) {
-  const t = norm(s);
-  if (!t) return false;
-  return /[ぁ-ゖァ-ヺ一-龯]/.test(t);
+function stripHtml(s) {
+  const x = String(s ?? "");
+  return x
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 // dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
@@ -63,12 +69,11 @@ function parseAmazonDpId(amazonDp) {
 
   if (/^[A-Z0-9]{10}$/.test(id)) return { asin: id, isbn13FromDp: null };
   if (/^\d{13}$/.test(id)) return { asin: null, isbn13FromDp: id };
-
   return { asin: null, isbn13FromDp: null };
 }
 
 /* -----------------------
- * Amazon PA-API（公式APIのみ）
+ * Amazon PA-API
  * ----------------------- */
 function awsHmac(key, data) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest();
@@ -152,7 +157,6 @@ async function paapiGetItems({ itemIds, resources }) {
   });
 }
 
-// ISBN13→ASIN解決用
 async function paapiSearchItems({ keywords, resources, itemCount = 10 }) {
   return paapiRequest({
     target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems",
@@ -218,41 +222,78 @@ function extractReleaseDate(item) {
 
   return candidates.length ? candidates[0] : null;
 }
-
-async function getItemSafe({ asin, debugSteps }) {
-  // EditorialReviews は使わない（英語＆invalidが多い）
-  const resources = [
-    "ItemInfo.Title",
-    "ItemInfo.ByLineInfo",
-    "ItemInfo.ExternalIds",
-    "Images.Primary.Large",
-    "ItemInfo.ContentInfo",
-    "ItemInfo.ProductInfo",
-  ];
-
-  let wait = 900;
-  for (let i = 0; i < 4; i++) {
-    const res = await paapiGetItems({ itemIds: [asin], resources });
-    if (res?.ok) {
-      const item = res?.json?.ItemsResult?.Items?.[0] || null;
-      if (!item) return { ok: false, reason: "no_item", raw: res?.json };
-      return { ok: true, item, usedResources: resources };
-    }
-    if (res?.skipped) return { ok: false, reason: `paapi_skipped(${res.reason})`, raw: res };
-
-    if (res?.error && res.status === 429) {
-      debugSteps.retries = debugSteps.retries || [];
-      debugSteps.retries.push({ label: "paapi_getitems", attempt: i + 1, status: 429, waitMs: wait });
-      await sleep(wait);
-      wait *= 2;
-      continue;
-    }
-    return { ok: false, reason: `paapi_getitems_error(${res?.status ?? "unknown"})`, raw: res };
-  }
-  return { ok: false, reason: "paapi_getitems_retry_exhausted", raw: { status: 429 } };
+function isInvalidResourceError(rawBody) {
+  const s = String(rawBody ?? "");
+  return s.includes("InvalidParameterValue") && s.includes("provided in the request for Resources is invalid");
 }
 
-// ISBN13→ASIN解決（SearchItemsでEAN一致）
+async function getItemWithResourceProbe({ asin, debugSteps }) {
+  const base = ["ItemInfo.Title", "ItemInfo.ByLineInfo", "ItemInfo.ExternalIds", "Images.Primary.Large"];
+  const optionalCandidates = ["ItemInfo.ContentInfo", "ItemInfo.ProductInfo", "EditorialReviews", "EditorialReviews.EditorialReview"];
+
+  let okJson = null;
+  let okResources = base.slice();
+
+  async function callWithRetry(resources, label) {
+    let wait = 900;
+    for (let i = 0; i < 4; i++) {
+      const res = await paapiGetItems({ itemIds: [asin], resources });
+      if (res?.ok) return { ok: true, res };
+      if (res?.skipped) return { ok: false, skipped: true, res };
+
+      if (res?.error && res.status === 429) {
+        debugSteps.retries = debugSteps.retries || [];
+        debugSteps.retries.push({ label, attempt: i + 1, status: 429, waitMs: wait });
+        await sleep(wait);
+        wait *= 2;
+        continue;
+      }
+      return { ok: false, res };
+    }
+    return { ok: false, res: { error: true, status: 429, body: "retry_exhausted" } };
+  }
+
+  {
+    const got = await callWithRetry(okResources, "base");
+    debugSteps.base = got?.res ?? null;
+    if (!got?.ok) {
+      return {
+        ok: false,
+        reason: got?.skipped ? `paapi_skipped(${got.res.reason})` : `paapi_getitems_error(${got?.res?.status ?? "unknown"})`,
+        raw: got?.res,
+      };
+    }
+    okJson = got.res.json;
+  }
+
+  debugSteps.probe = [];
+  for (const opt of optionalCandidates) {
+    const trial = okResources.concat([opt]);
+    const got = await callWithRetry(trial, `probe:${opt}`);
+
+    if (got?.ok) {
+      okResources = trial;
+      okJson = got.res.json;
+      debugSteps.probe.push({ resource: opt, adopted: true });
+      await sleep(650);
+      continue;
+    }
+
+    if (got?.res?.error && got.res.status === 400 && isInvalidResourceError(got.res.body)) {
+      debugSteps.probe.push({ resource: opt, adopted: false, reason: "invalid_resource" });
+      await sleep(650);
+      continue;
+    }
+
+    debugSteps.probe.push({ resource: opt, adopted: false, reason: `error(${got?.res?.status ?? "unknown"})` });
+    await sleep(650);
+  }
+
+  const item = okJson?.ItemsResult?.Items?.[0] || null;
+  if (!item) return { ok: false, reason: "no_item", raw: okJson };
+  return { ok: true, item, usedResources: okResources };
+}
+
 async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
   const key = norm(isbn13);
   if (!/^97[89]\d{10}$/.test(key)) return { ok: false, reason: "invalid_isbn13" };
@@ -300,7 +341,6 @@ async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
       cache[key] = asin;
       return { ok: true, asin, cached: false };
     }
-
     return { ok: false, reason: "asin_not_found_by_isbn13" };
   }
 
@@ -308,18 +348,8 @@ async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
 }
 
 /* -----------------------
- * openBD（公式APIのみ）
+ * openBD
  * ----------------------- */
-function stripHtml(s) {
-  const x = String(s ?? "");
-  return x
-    .replace(/<br\s*\/?>/gi, "\n")
-    .replace(/<\/p>/gi, "\n")
-    .replace(/<[^>]+>/g, "")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-}
-
 async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
   if (!isbn13) return { ok: false, reason: "no_isbn13" };
 
@@ -351,19 +381,19 @@ async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
   }
 
   const first = Array.isArray(json) ? json[0] : null;
-
   cache[isbn13] = first ?? null;
+
   debugSteps.openbd = { cached: false, ok: true, found: !!first };
   return { ok: true, data: first ?? null, found: !!first };
 }
 
 function extractFromOpenBd(openbdObj) {
-  if (!openbdObj) return { summary: null, pubdate: null, publisher: null };
+  if (!openbdObj) return { description: null, pubdate: null, publisher: null };
 
   const summary = openbdObj?.summary || null;
   const onix = openbdObj?.onix || null;
 
-  const raw =
+  const description =
     summary?.description ||
     summary?.content ||
     onix?.CollateralDetail?.TextContent?.[0]?.Text ||
@@ -372,174 +402,355 @@ function extractFromOpenBd(openbdObj) {
   const pubdate = summary?.pubdate || null;
   const publisher = summary?.publisher || null;
 
-  const text = raw ? stripHtml(raw) : null;
-
   return {
-    summary: text && isJaLikeText(text) ? text : null,
+    description: description ? stripHtml(description) : null,
     pubdate: pubdate ? String(pubdate).trim() : null,
     publisher: publisher ? String(publisher).trim() : null,
   };
 }
 
 /* -----------------------
- * Wikipedia（公式APIのみ、スクレイピングなし）
- * - まず search (MediaWiki API)
- * - 次に REST summary API
+ * AniList（genres/tags のみ使う：あらすじは使わない）
  * ----------------------- */
-function wikiBadTitle(title) {
-  const t = String(title || "");
-  if (!t) return true;
-  // 一覧/曖昧さ回避/カテゴリ/テンプレ/年号…っぽいのは落とす（安全側）
-  if (/一覧|曖昧さ回避|Category:|Template:|Portal:|Help:|年の/.test(t)) return true;
-  return false;
-}
-
-function scoreWikiHit({ seriesKey, hit }) {
-  const s = normLoose(toHalfWidth(seriesKey));
-  const t = normLoose(toHalfWidth(hit?.title || ""));
-  const snip = normLoose(toHalfWidth(stripHtml(hit?.snippet || "")));
-
-  let score = 0;
-  if (t === s) score += 1000;
-  if (t.includes(s)) score += 350;
-  if (snip.includes(s)) score += 120;
-
-  // 漫画/作品っぽさを少し加点（過学習しない）
-  if (/(漫画|コミック|作品|連載)/.test(`${hit?.title || ""} ${hit?.snippet || ""}`)) score += 40;
-
-  // 悪いタイトルは大きく減点
-  if (wikiBadTitle(hit?.title)) score -= 1000;
-
-  return score;
-}
-
-async function wikiSearchTitle({ seriesKey, debugSteps }) {
-  const q = norm(seriesKey);
-  if (!q) return { ok: false, reason: "no_seriesKey" };
-
-  // MediaWiki API（CORS用 origin=*、公式）
-  const params = new URLSearchParams();
-  params.set("action", "query");
-  params.set("list", "search");
-  params.set("srsearch", q);
-  params.set("format", "json");
-  params.set("origin", "*");
-  params.set("srlimit", "10");
-
-  const url = `https://ja.wikipedia.org/w/api.php?${params.toString()}`;
-
-  let r;
-  try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wiki" } });
-  } catch (e) {
-    debugSteps.wikiSearch = { ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "wiki_search_fetch_error" };
-  }
-
-  if (!r.ok) {
-    debugSteps.wikiSearch = { ok: false, status: r.status };
-    return { ok: false, reason: `wiki_search_http_${r.status}` };
-  }
-
-  let json;
-  try {
-    json = await r.json();
-  } catch {
-    debugSteps.wikiSearch = { ok: false, reason: "json_parse_error" };
-    return { ok: false, reason: "wiki_search_json_parse_error" };
-  }
-
-  const hits = json?.query?.search;
-  if (!Array.isArray(hits) || !hits.length) {
-    debugSteps.wikiSearch = { ok: true, found: false };
-    return { ok: true, found: false, title: null, url };
-  }
-
-  const ranked = hits
-    .map((h) => ({ h, score: scoreWikiHit({ seriesKey, hit: h }) }))
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-
-  const best = ranked[0]?.h || null;
-  const title = best?.title || null;
-
-  debugSteps.wikiSearch = {
-    ok: true,
-    found: !!title,
-    pickedScore: ranked[0]?.score ?? null,
-    title,
-    sample: ranked.slice(0, 3).map((x) => ({ title: x.h?.title, score: x.score })),
-  };
-
-  if (!title || wikiBadTitle(title)) return { ok: true, found: false, title: null, url };
-  return { ok: true, found: true, title, url };
-}
-
-async function wikiFetchSummaryByTitle({ title, debugSteps }) {
-  const t = norm(title);
-  if (!t) return { ok: false, reason: "no_title" };
-
-  const url = `https://ja.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(t)}`;
-
-  let r;
-  try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wiki" } });
-  } catch (e) {
-    debugSteps.wikiSummary = { ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "wiki_summary_fetch_error" };
-  }
-
-  if (!r.ok) {
-    debugSteps.wikiSummary = { ok: false, status: r.status };
-    return { ok: false, reason: `wiki_summary_http_${r.status}` };
-  }
-
-  let json;
-  try {
-    json = await r.json();
-  } catch {
-    debugSteps.wikiSummary = { ok: false, reason: "json_parse_error" };
-    return { ok: false, reason: "wiki_summary_json_parse_error" };
-  }
-
-  // REST summaryの本文は extract
-  const extract = norm(json?.extract || "");
-  const summary = extract && isJaLikeText(extract) ? extract : null;
-
-  debugSteps.wikiSummary = { ok: true, got: !!summary, title: json?.title || t };
-
-  return {
-    ok: true,
-    summary,
-    pageTitle: json?.title || t,
-  };
-}
-
-async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
+async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
-    debugSteps.wiki = { cached: true };
+    debugSteps.anilist = { cached: true };
     return { ok: true, data: cache[key], cached: true };
   }
 
-  const step = {};
-  const s = await wikiSearchTitle({ seriesKey: key, debugSteps: step });
-  if (!s?.ok || !s?.found || !s.title) {
-    cache[key] = null;
-    debugSteps.wiki = { cached: false, ok: true, found: false, step };
-    return { ok: true, found: false, data: null };
+  const query = `
+    query ($search: String) {
+      Page(perPage: 10) {
+        media(search: $search, type: MANGA) {
+          id
+          title { romaji english native }
+          synonyms
+          format
+          genres
+          tags { name rank isGeneralSpoiler }
+        }
+      }
+    }
+  `;
+
+  let r;
+  try {
+    r = await fetch("https://graphql.anilist.co", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json",
+        "user-agent": "tools-labo/book-scout lane2 anilist",
+      },
+      body: JSON.stringify({ query, variables: { search: key } }),
+    });
+  } catch (e) {
+    debugSteps.anilist = { cached: false, ok: false, error: String(e?.message || e) };
+    return { ok: false, reason: "anilist_fetch_error" };
   }
 
-  const sum = await wikiFetchSummaryByTitle({ title: s.title, debugSteps: step });
-  const out = sum?.ok
-    ? { title: sum.pageTitle || s.title, summary: sum.summary || null }
-    : null;
+  if (!r.ok) {
+    const text = await r.text().catch(() => "");
+    debugSteps.anilist = { cached: false, ok: false, status: r.status, body: text.slice(0, 300) };
+    return { ok: false, reason: `anilist_http_${r.status}` };
+  }
 
-  cache[key] = out ?? null;
-  debugSteps.wiki = { cached: false, ok: true, found: !!(out && out.summary), step };
+  let json;
+  try {
+    json = await r.json();
+  } catch {
+    debugSteps.anilist = { cached: false, ok: false, reason: "json_parse_error" };
+    return { ok: false, reason: "anilist_json_parse_error" };
+  }
 
-  return { ok: true, found: !!(out && out.summary), data: out };
+  const list = json?.data?.Page?.media;
+  if (!Array.isArray(list)) {
+    cache[key] = null;
+    debugSteps.anilist = { cached: false, ok: true, found: false };
+    return { ok: true, data: null, found: false };
+  }
+
+  const s0 = normLoose(toHalfWidth(key));
+  function scoreMedia(m) {
+    let score = 0;
+    const titles = [
+      m?.title?.native,
+      m?.title?.romaji,
+      m?.title?.english,
+      ...(Array.isArray(m?.synonyms) ? m.synonyms : []),
+    ]
+      .filter(Boolean)
+      .map((t) => normLoose(toHalfWidth(t)));
+
+    if (titles.some((t) => t === s0)) score += 1000;
+    if (titles.some((t) => t.includes(s0))) score += 300;
+
+    const fmt = String(m?.format || "");
+    if (fmt === "MANGA") score += 40;
+    if (fmt === "ONE_SHOT") score += 10;
+
+    if (Array.isArray(m?.genres) && m.genres.length) score += 10;
+    if (Array.isArray(m?.tags) && m.tags.length) score += 10;
+
+    return score;
+  }
+
+  const withScore = list.map((m) => ({ m, score: scoreMedia(m) }));
+  withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  const best = withScore[0]?.m || null;
+
+  cache[key] = best ?? null;
+  debugSteps.anilist = { cached: false, ok: true, found: !!best, pickedScore: withScore[0]?.score ?? null };
+  return { ok: true, data: best, found: !!best };
+}
+
+function extractFromAniList(media) {
+  if (!media) return { id: null, genres: [], tags: [] };
+
+  const genres = Array.isArray(media?.genres) ? media.genres.filter(Boolean) : [];
+  const tags =
+    Array.isArray(media?.tags)
+      ? media.tags
+          .filter((t) => t && t.name && !t.isGeneralSpoiler)
+          .sort((a, b) => (b.rank ?? 0) - (a.rank ?? 0))
+          .slice(0, 24)
+          .map((t) => t.name)
+      : [];
+
+  return { id: media?.id ?? null, genres, tags };
+}
+
+/* -----------------------
+ * 辞書翻訳（辞書にないものは非表示）
+ * ----------------------- */
+const GENRE_JA = {
+  Action: "アクション",
+  Adventure: "冒険",
+  Comedy: "コメディ",
+  Drama: "ドラマ",
+  Fantasy: "ファンタジー",
+  Horror: "ホラー",
+  Mystery: "ミステリー",
+  Psychological: "心理",
+  Romance: "恋愛",
+  "Sci-Fi": "SF",
+  "Slice of Life": "日常",
+  Sports: "スポーツ",
+  Supernatural: "超常",
+  Thriller: "サスペンス",
+};
+
+const TAG_JA = {
+  Shounen: "少年",
+  Seinen: "青年",
+  "Male Protagonist": "男性主人公",
+  "Female Protagonist": "女性主人公",
+  "Battle Royale": "バトルロイヤル",
+  Football: "サッカー",
+  Athletics: "競技",
+  Magic: "魔法",
+  Demons: "悪魔",
+  Elf: "エルフ",
+  Travel: "旅",
+  Tragedy: "悲劇",
+  Iyashikei: "癒し",
+  Philosophy: "哲学",
+  "Time Skip": "時間経過",
+  "Primarily Male Cast": "男多め",
+  "Primarily Teen Cast": "10代中心",
+  "Ensemble Cast": "群像劇",
+  "Urban Fantasy": "現代ファンタジー",
+  Twins: "双子",
+  Youkai: "妖怪",
+  Conspiracy: "陰謀",
+  Rural: "田舎",
+};
+
+function translateByDict(arr, dict, max) {
+  if (!Array.isArray(arr)) return [];
+  const out = [];
+  for (const x of arr) {
+    const k = norm(x);
+    const ja = dict[k];
+    if (ja) out.push(ja);
+    if (max && out.length >= max) break;
+  }
+  return out;
+}
+
+/* -----------------------
+ * Wikipedia(ja) / Wikidata（連載誌・タグ補完）
+ * ----------------------- */
+
+// ja Wikipedia search -> title
+async function wikipediaSearchJa({ seriesKey, cache, debugSteps }) {
+  const key = norm(seriesKey);
+  if (!key) return { ok: false, reason: "no_seriesKey" };
+
+  const c = cache[key];
+  if (c && c.title) {
+    debugSteps.wikipediaSearch = { cached: true };
+    return { ok: true, title: c.title, cached: true };
+  }
+
+  const url = `https://ja.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srlimit=5&srsearch=${encodeURIComponent(key + " 漫画")}`;
+  let r;
+  try {
+    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikipedia" } });
+  } catch (e) {
+    debugSteps.wikipediaSearch = { cached: false, ok: false, error: String(e?.message || e) };
+    return { ok: false, reason: "wikipedia_fetch_error" };
+  }
+
+  if (!r.ok) {
+    debugSteps.wikipediaSearch = { cached: false, ok: false, status: r.status };
+    return { ok: false, reason: `wikipedia_http_${r.status}` };
+  }
+
+  const json = await r.json().catch(() => null);
+  const hit = json?.query?.search?.[0]?.title || null;
+
+  cache[key] = cache[key] || {};
+  cache[key].title = hit;
+
+  debugSteps.wikipediaSearch = { cached: false, ok: true, found: !!hit, title: hit };
+  return { ok: true, title: hit, found: !!hit };
+}
+
+// title -> wikibase_item(QID)
+async function wikipediaGetWikibaseItem({ title, debugSteps }) {
+  if (!title) return { ok: false, reason: "no_title" };
+
+  const url = `https://ja.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageprops&titles=${encodeURIComponent(title)}`;
+  let r;
+  try {
+    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikipedia" } });
+  } catch (e) {
+    debugSteps.wikipediaPageprops = { ok: false, error: String(e?.message || e) };
+    return { ok: false, reason: "wikipedia_fetch_error" };
+  }
+  if (!r.ok) {
+    debugSteps.wikipediaPageprops = { ok: false, status: r.status };
+    return { ok: false, reason: `wikipedia_http_${r.status}` };
+  }
+
+  const json = await r.json().catch(() => null);
+  const pages = json?.query?.pages || {};
+  const firstKey = Object.keys(pages)[0];
+  const qid = pages?.[firstKey]?.pageprops?.wikibase_item || null;
+
+  debugSteps.wikipediaPageprops = { ok: true, qid };
+  return { ok: true, qid, found: !!qid };
+}
+
+// wikipedia summary（ja）
+async function wikipediaSummaryJa({ title, cache, seriesKey, debugSteps }) {
+  if (!title) return { ok: false, reason: "no_title" };
+  const key = norm(seriesKey);
+  if (cache[key]?.summary != null) {
+    debugSteps.wikipediaSummary = { cached: true };
+    return { ok: true, summary: cache[key].summary, cached: true };
+  }
+
+  const url = `https://ja.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+  let r;
+  try {
+    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikipedia" } });
+  } catch (e) {
+    debugSteps.wikipediaSummary = { cached: false, ok: false, error: String(e?.message || e) };
+    return { ok: false, reason: "wikipedia_fetch_error" };
+  }
+  if (!r.ok) {
+    debugSteps.wikipediaSummary = { cached: false, ok: false, status: r.status };
+    return { ok: false, reason: `wikipedia_http_${r.status}` };
+  }
+
+  const json = await r.json().catch(() => null);
+  const extract = norm(json?.extract || "") || null;
+
+  cache[key] = cache[key] || {};
+  cache[key].summary = extract;
+
+  debugSteps.wikipediaSummary = { cached: false, ok: true, found: !!extract };
+  return { ok: true, summary: extract, found: !!extract };
+}
+
+// Wikidata entity fetch
+async function wikidataEntity({ qid, cache, debugSteps }) {
+  if (!qid) return { ok: false, reason: "no_qid" };
+  if (cache[qid]) {
+    debugSteps.wikidata = { cached: true };
+    return { ok: true, data: cache[qid], cached: true };
+  }
+
+  const url = `https://www.wikidata.org/wiki/Special:EntityData/${encodeURIComponent(qid)}.json`;
+  let r;
+  try {
+    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wikidata" } });
+  } catch (e) {
+    debugSteps.wikidata = { cached: false, ok: false, error: String(e?.message || e) };
+    return { ok: false, reason: "wikidata_fetch_error" };
+  }
+  if (!r.ok) {
+    debugSteps.wikidata = { cached: false, ok: false, status: r.status };
+    return { ok: false, reason: `wikidata_http_${r.status}` };
+  }
+
+  const json = await r.json().catch(() => null);
+  cache[qid] = json ?? null;
+
+  debugSteps.wikidata = { cached: false, ok: true, found: !!json };
+  return { ok: true, data: json, found: !!json };
+}
+
+// serialize in magazine: claims P1433 (published in) の ja label
+function extractMagazineJaFromWikidata(entityJson, qid) {
+  const ent = entityJson?.entities?.[qid];
+  const claims = ent?.claims || {};
+  const p1433 = claims?.P1433;
+  if (!Array.isArray(p1433) || !p1433.length) return [];
+
+  const ids = [];
+  for (const c of p1433) {
+    const id = c?.mainsnak?.datavalue?.value?.id || null;
+    if (id) ids.push(id);
+  }
+  if (!ids.length) return [];
+
+  const out = [];
+  for (const id of ids) {
+    const e = entityJson?.entities?.[id];
+    const ja = e?.labels?.ja?.value || null;
+    if (ja) out.push(ja);
+  }
+  // 重複除去 + 最大2
+  return [...new Set(out)].slice(0, 2);
+}
+
+// tags fallback: Wikidata P136(genre) ja label を「タグ」として少しだけ補完
+function extractGenreJaFromWikidata(entityJson, qid) {
+  const ent = entityJson?.entities?.[qid];
+  const claims = ent?.claims || {};
+  const p136 = claims?.P136;
+  if (!Array.isArray(p136) || !p136.length) return [];
+
+  const ids = [];
+  for (const c of p136) {
+    const id = c?.mainsnak?.datavalue?.value?.id || null;
+    if (id) ids.push(id);
+  }
+  if (!ids.length) return [];
+
+  const out = [];
+  for (const id of ids) {
+    const e = entityJson?.entities?.[id];
+    const ja = e?.labels?.ja?.value || null;
+    if (ja) out.push(ja);
+  }
+  return [...new Set(out)];
 }
 
 /* -----------------------
@@ -550,8 +761,10 @@ async function main() {
   const items = Array.isArray(series?.items) ? series.items : [];
 
   const cacheOpenbd = (await loadJson(CACHE_OPENBD, {})) || {};
-  const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
+  const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
+  const cacheWikidata = (await loadJson(CACHE_WIKIDATA, {})) || {};
+  const cacheWikipedia = (await loadJson(CACHE_WIKIPEDIA, {})) || {};
 
   const enriched = [];
   const debug = [];
@@ -569,12 +782,7 @@ async function main() {
     const one = {
       seriesKey,
       author,
-      input: {
-        lane2Title,
-        isbn13,
-        amazonDp,
-        source: x?.vol1?.source ?? null,
-      },
+      input: { lane2Title, isbn13, amazonDp, source: x?.vol1?.source ?? null },
       steps: {},
       ok: false,
       reason: null,
@@ -611,14 +819,15 @@ async function main() {
       continue;
     }
 
-    // 1) PA-API GetItems（タイトル正、書影、出版社、発売日など）
+    // 1) PA-API GetItems
     const stepPa = {};
-    const got = await getItemSafe({ asin, debugSteps: stepPa });
+    const got = await getItemWithResourceProbe({ asin, debugSteps: stepPa });
     one.steps.getItemByAsin = {
       ok: !!got.ok,
       reason: got.ok ? null : got.reason,
       asin,
       raw: got.ok ? { usedResources: got.usedResources } : got.raw,
+      probe: stepPa.probe || null,
       retries: stepPa.retries || null,
     };
 
@@ -639,7 +848,7 @@ async function main() {
 
     const finalTitle = paTitle || lane2Title || seriesKey || null;
 
-    // 2) openBD（説明文の本命）
+    // 2) openBD（あらすじ本命）
     const stepOpenbd = {};
     const ob = await fetchOpenBdByIsbn13({
       isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
@@ -647,21 +856,73 @@ async function main() {
       debugSteps: stepOpenbd,
     });
     one.steps.openbd = stepOpenbd.openbd || null;
-    const obx = ob?.ok ? extractFromOpenBd(ob.data) : { summary: null, pubdate: null, publisher: null };
+    const obx = ob?.ok ? extractFromOpenBd(ob.data) : { description: null, pubdate: null, publisher: null };
 
-    // 3) Wikipedia（openBDが無い場合の日本語あらすじ）
+    // 3) Wikipedia(ja) summary（openBD無い時のみ）
     const stepWiki = {};
-    const wk = await fetchWikiBySeriesKey({ seriesKey, cache: cacheWiki, debugSteps: stepWiki });
-    one.steps.wiki = stepWiki.wiki || null;
+    let wikiTitle = null;
+    let wikiSummary = null;
 
-    const wikiSummary = wk?.ok && wk?.data?.summary && isJaLikeText(wk.data.summary) ? wk.data.summary : null;
+    const wSearch = await wikipediaSearchJa({ seriesKey, cache: cacheWikipedia, debugSteps: stepWiki });
+    if (wSearch?.ok && wSearch.title) {
+      wikiTitle = wSearch.title;
 
-    // ★説明文は openBD → wiki のみ（英語は出さない）
-    const openbdSummary = obx.summary || null;
-    const finalDescription = openbdSummary || wikiSummary || null;
-    const descriptionSource = openbdSummary ? "openbd" : wikiSummary ? "wikipedia" : null;
+      const wSum = await wikipediaSummaryJa({
+        title: wikiTitle,
+        cache: cacheWikipedia,
+        seriesKey,
+        debugSteps: stepWiki,
+      });
+      if (wSum?.ok) wikiSummary = wSum.summary || null;
+    }
+    one.steps.wikipedia = stepWiki;
 
-    // 日付は PA優先、次にopenBD pubdate（※wikiは使わない）
+    // 4) Wikidata（連載誌）
+    const stepWk = {};
+    let magazines = [];
+    let wikidataQid = null;
+
+    if (wikiTitle) {
+      const pp = await wikipediaGetWikibaseItem({ title: wikiTitle, debugSteps: stepWk });
+      if (pp?.ok && pp.qid) {
+        wikidataQid = pp.qid;
+        const wd = await wikidataEntity({ qid: wikidataQid, cache: cacheWikidata, debugSteps: stepWk });
+        if (wd?.ok && wd.data) {
+          magazines = extractMagazineJaFromWikidata(wd.data, wikidataQid);
+        }
+      }
+    }
+    one.steps.wikidata = stepWk;
+
+    // 5) AniList（ジャンル/タグの元）
+    const stepAni = {};
+    const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList, debugSteps: stepAni });
+    one.steps.anilist = stepAni.anilist || null;
+    const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
+
+    // 6) ジャンル/タグ：辞書にないものは出さない
+    const genresJa = translateByDict(anx.genres, GENRE_JA, 6);
+    let tagsJa = translateByDict(anx.tags, TAG_JA, 12);
+
+    // タグが少なすぎるときのみ Wikidata で補完（jaラベルのみ / 最大+6）
+    if (tagsJa.length < 4 && wikidataQid) {
+      const wd = cacheWikidata[wikidataQid] || null;
+      const extra = wd ? extractGenreJaFromWikidata(wd, wikidataQid) : [];
+      // extraはすでにjaラベルなので「変な翻訳」は起きにくい。ノイズ削減で最大6。
+      for (const t of extra) {
+        if (tagsJa.length >= 10) break;
+        const v = norm(t);
+        if (!v) continue;
+        if (tagsJa.includes(v)) continue;
+        tagsJa.push(v);
+      }
+    }
+
+    // 7) あらすじ：openBD → Wikipedia(ja) → null（英語は出さない）
+    const finalDescription = obx.description || wikiSummary || null;
+    const descriptionSource = obx.description ? "openbd" : wikiSummary ? "wikipedia" : null;
+
+    // 8) 発売日：PA優先、なければopenBD pubdate
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
 
     const out = {
@@ -674,22 +935,25 @@ async function main() {
         asin,
         image: extractImage(item) || null,
         amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
+
         publisher: extractPublisher(item),
         contributors: extractContributors(item),
 
         releaseDate: finalReleaseDate,
-
-        // ★日本語あらすじのみ
         description: finalDescription,
         descriptionSource,
-        openbdSummary: openbdSummary || null,
-        wikiSummary: wikiSummary || null,
 
-        // ★英語由来は出さない（辞書翻訳前提のため）
-        genres: [],
-        tags: [],
+        // 連載誌（掲載誌）
+        serializedIn: magazines, // ["週刊少年マガジン"] など（取れた時だけ）
+        wikidataQid,
 
-        source: "enrich(paapi+openbd+wikipedia)",
+        // 表示用（日本語化済みを入れる）
+        genresJa,
+        tagsJa,
+
+        // 監査用
+        anilistId: anx.id,
+        source: "enrich(paapi+openbd+wikipedia+wikidata+anilist)",
       },
     };
 
@@ -718,8 +982,10 @@ async function main() {
   });
 
   await saveJson(CACHE_OPENBD, cacheOpenbd);
-  await saveJson(CACHE_WIKI, cacheWiki);
+  await saveJson(CACHE_ANILIST, cacheAniList);
   await saveJson(CACHE_PAAPI, cachePaapi);
+  await saveJson(CACHE_WIKIDATA, cacheWikidata);
+  await saveJson(CACHE_WIKIPEDIA, cacheWikipedia);
 
   console.log(`[lane2:enrich] total=${items.length} enriched=${enriched.length}`);
 }
