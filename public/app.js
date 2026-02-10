@@ -4,11 +4,7 @@ async function loadJson(p) {
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return await r.json();
 }
-
-function qs() {
-  return new URLSearchParams(location.search);
-}
-
+function qs() { return new URLSearchParams(location.search); }
 function esc(s) {
   return String(s ?? "")
     .replaceAll("&", "&amp;")
@@ -18,66 +14,89 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
-// works.json の1件を「フロントで使いやすい形」に正規化
-function normWork(it) {
-  if (!it) return null;
-  return {
-    seriesKey: it.seriesKey || "",
-    title: it.title || it.seriesKey || "",
-    author: it.author || "",
-    image: it.image || "",
-    amazonDp: it.amazonDp || "",
-    isbn13: it.isbn13 || "",
-    releaseDate: it.releaseDate || "",
-    publisher: it.publisher || "",
-    description: it.description || "",
-    genres: Array.isArray(it.genres) ? it.genres : [],
-    tags: Array.isArray(it.tags) ? it.tags : [],
-  };
+function chips(arr, cls = "chip") {
+  if (!Array.isArray(arr) || !arr.length) return "";
+  return `<div class="chips">${arr.map((x) => `<span class="${cls}">${esc(x)}</span>`).join("")}</div>`;
+}
+
+function pubText(it) {
+  const d = it.releaseDate ? `発売: ${esc(it.releaseDate)}` : "";
+  const p = it.publisher?.brand ? `出版社: ${esc(it.publisher.brand)}` : "";
+  if (!d && !p) return "";
+  if (d && p) return `${d} / ${p}`;
+  return d || p;
+}
+
+function magazineText(it) {
+  const mags = it.serializedIn;
+  if (!Array.isArray(mags) || !mags.length) return "";
+  return `連載: ${esc(mags.join(" / "))}`;
 }
 
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
 
-  const items = Array.isArray(data?.items) ? data.items.map(normWork).filter(Boolean) : [];
+  const items = data?.items || [];
   if (!items.length) {
-    root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
+    root.innerHTML = `<div class="status">表示できる作品がありません（1巻確定が0件）</div>`;
     return;
   }
 
-  root.innerHTML = items
-    .map((it) => {
-      const key = encodeURIComponent(it.seriesKey);
-      const title = it.title || it.seriesKey;
-      const author = it.author || "";
-      const img = it.image || "";
-      const amz = it.amazonDp || "#";
+  root.innerHTML = items.map((it) => {
+    const key = encodeURIComponent(it.seriesKey);
+    const title = it.title || it.seriesKey;
+    const author = it.author || "";
+    const img = it.image || "";
+    const vol1Amz = it.amazonDp || "#";
+    const isbn = it.isbn13 || "";
 
-      // 「日本語化方針」：genre/tags/英語はここでは出さない（後で日本語だけに整えたら出す）
-      return `
-        <article class="card">
-          <div class="card-row">
-            <div class="thumb">
-              ${
-                img
-                  ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener">
-                       <img src="${esc(img)}" alt="${esc(title)}"/>
-                     </a>`
-                  : `<div class="thumb-ph"></div>`
-              }
-            </div>
-            <div class="meta">
-              <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
-              <div class="sub">
-                ${author ? `<span>${esc(author)}</span>` : ""}
-              </div>
-            </div>
+    const mags = magazineText(it);
+    const pub = pubText(it);
+
+    const genresHtml = chips(it.genres, "chip chip-genre");
+    const tagsHtml = chips(it.tags, "chip chip-tag");
+
+    const desc = it.description || "";
+    const descHtml = desc
+      ? `
+        <details class="synopsis">
+          <summary>あらすじ</summary>
+          <div class="synopsis-body">${esc(desc)}</div>
+        </details>
+      `
+      : "";
+
+    return `
+      <article class="card">
+        <div class="card-row">
+          <div class="thumb">
+            ${
+              img
+                ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+                : `<div class="thumb-ph"></div>`
+            }
           </div>
-        </article>
-      `;
-    })
-    .join("");
+          <div class="meta">
+            <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
+
+            <div class="sub">
+              ${author ? `<span>${esc(author)}</span>` : ""}
+              ${isbn ? `<span>${author ? " / " : ""}ISBN: ${esc(isbn)}</span>` : ""}
+            </div>
+
+            ${mags ? `<div class="kvs">${mags}</div>` : ""}
+            ${pub ? `<div class="kvs">${pub}</div>` : ""}
+
+            ${genresHtml ? `<div class="kvs-label">ジャンル</div>${genresHtml}` : ""}
+            ${tagsHtml ? `<div class="kvs-label">タグ</div>${tagsHtml}` : ""}
+
+            ${descHtml}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
 function renderWork(data) {
@@ -90,7 +109,7 @@ function renderWork(data) {
     return;
   }
 
-  const items = Array.isArray(data?.items) ? data.items.map(normWork).filter(Boolean) : [];
+  const items = data?.items || [];
   const it = items.find((x) => x.seriesKey === key);
   if (!it) {
     detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
@@ -100,47 +119,41 @@ function renderWork(data) {
   const title = it.title || it.seriesKey;
   const author = it.author || "";
   const img = it.image || "";
-  const amz = it.amazonDp || "";
+  const vol1Amz = it.amazonDp || "";
   const isbn = it.isbn13 || "";
-  const rel = it.releaseDate || "";
-  const pub = it.publisher || "";
+
+  const mags = magazineText(it);
+  const pub = pubText(it);
+
+  const genresHtml = chips(it.genres, "chip chip-genre");
+  const tagsHtml = chips(it.tags, "chip chip-tag");
+
   const desc = it.description || "";
 
-  // 日本語化方針：
-  // - 英語あらすじは出さない（パイプライン側で description を日本語ソース限定にする）
-  // - genre/tagsも日本語のみになったらここに表示を足す
   detail.innerHTML = `
     <div class="d-title">${esc(it.seriesKey)}</div>
     <div class="d-sub">
       ${author ? esc(author) : ""}
-      ${isbn ? ` / ISBN: ${esc(isbn)}` : ""}
-      ${rel ? ` / 発売: ${esc(rel)}` : ""}
-      ${pub ? ` / 出版社: ${esc(pub)}` : ""}
+      ${isbn ? `${author ? " / " : ""}ISBN: ${esc(isbn)}` : ""}
     </div>
+
+    ${(mags || pub) ? `<div class="d-kvs">${mags ? `<div>${mags}</div>` : ""}${pub ? `<div>${pub}</div>` : ""}</div>` : ""}
 
     <div class="d-row">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
-        ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
+        ${vol1Amz ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
+        ${genresHtml ? `<div class="d-sec"><div class="kvs-label">ジャンル</div>${genresHtml}</div>` : ""}
+        ${tagsHtml ? `<div class="d-sec"><div class="kvs-label">タグ</div>${tagsHtml}</div>` : ""}
       </div>
     </div>
 
-    ${
-      desc
-        ? `
-          <div class="d-note">
-            <div style="margin-bottom:6px;">あらすじ</div>
-            <div style="white-space:pre-wrap; line-height:1.6;">${esc(desc)}</div>
-          </div>
-        `
-        : ""
-    }
+    ${desc ? `<div class="d-desc"><div class="kvs-label">あらすじ</div><div class="d-desc-body">${esc(desc)}</div></div>` : ""}
   `;
 }
 
 (async function main() {
   try {
-    // ★works.json を読む
     const data = await loadJson("./data/lane2/works.json");
     renderList(data);
     renderWork(data);
