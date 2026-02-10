@@ -19,14 +19,18 @@ async function saveJson(p, obj) {
   await fs.mkdir(path.dirname(p), { recursive: true });
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
+
 function norm(s) {
   return String(s ?? "").trim();
 }
+
+// "2018-11-16T00:00:01Z" -> "2018-11-16"
 function toDateOnly(iso) {
   const s = norm(iso);
   const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
   return m ? m[1] : null;
 }
+
 function clampArray(arr, max) {
   if (!Array.isArray(arr)) return [];
   return arr.slice(0, max).filter((x) => x != null && String(x).trim());
@@ -43,33 +47,38 @@ async function main() {
     const v = x?.vol1 || {};
     const title = norm(v?.title) || seriesKey || null;
 
+    const pub = v?.publisher || null;
+    const publisherText =
+      pub?.brand || pub?.manufacturer || null;
+
     return {
       seriesKey,
       author: author || null,
 
       title,
       asin: v?.asin || null,
-      isbn13: v?.isbn13 || null,
 
       amazonDp: v?.amazonDp || null,
       image: v?.image || null,
 
-      publisher: v?.publisher || null,
-      contributors: Array.isArray(v?.contributors) ? v.contributors : [],
       releaseDate: toDateOnly(v?.releaseDate),
+      publisher: publisherText,
 
-      // ★日本語あらすじ（openBDのみ / 無いならnull）
-      description: v?.description || null,
-
-      // ★表示したい要素
+      // ★連載誌
       magazine: v?.magazine || null,
+
+      // ★日本語優先の“あらすじ”
+      synopsis: v?.synopsis || null,
+      synopsisSource: v?.synopsisSource || null,
+
       genres: Array.isArray(v?.genres) ? v.genres : [],
-      tags: clampArray(v?.tags, 12),
+      tags: clampArray(v?.tags, 20),
 
       meta: {
         titleLane2: v?.titleLane2 || null,
+        anilistId: v?.anilistId || null,
+        wikiTitle: v?.wikiTitle || null,
         source: v?.source || null,
-        wikidataQid: v?.meta?.wikidataQid || null,
       },
     };
   });
