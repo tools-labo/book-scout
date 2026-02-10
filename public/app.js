@@ -13,14 +13,62 @@ function esc(s) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 }
-function joinNonEmpty(parts, sep = " / ") {
-  return parts.filter((x) => x != null && String(x).trim()).join(sep);
+
+const GENRE_JA = {
+  Action: "アクション",
+  Adventure: "冒険",
+  Comedy: "コメディ",
+  Drama: "ドラマ",
+  Fantasy: "ファンタジー",
+  Horror: "ホラー",
+  Mystery: "ミステリー",
+  Psychological: "心理",
+  Romance: "恋愛",
+  "Sci-Fi": "SF",
+  "Slice of Life": "日常",
+  Sports: "スポーツ",
+  Supernatural: "超常",
+  Thriller: "サスペンス",
+};
+
+const TAG_JA = {
+  Shounen: "少年",
+  Seinen: "青年",
+  "Male Protagonist": "男性主人公",
+  "Female Protagonist": "女性主人公",
+  "Battle Royale": "バトルロイヤル",
+  Football: "サッカー",
+  Athletics: "競技",
+  Magic: "魔法",
+  Demons: "悪魔",
+  Elf: "エルフ",
+  Travel: "旅",
+  Tragedy: "悲劇",
+  Iyashikei: "癒し",
+  Philosophy: "哲学",
+  "Time Skip": "時間経過",
+  "Primarily Male Cast": "男多め",
+  "Primarily Teen Cast": "10代中心",
+  "Ensemble Cast": "群像劇",
+  "Urban Fantasy": "現代ファンタジー",
+  Twins: "双子",
+  Youkai: "妖怪",
+  Conspiracy: "陰謀",
+  Rural: "田舎",
+};
+
+function mapGenres(genres) {
+  if (!Array.isArray(genres)) return [];
+  return genres.map((g) => GENRE_JA[g]).filter(Boolean);
+}
+function mapTags(tags) {
+  if (!Array.isArray(tags)) return [];
+  return tags.map((t) => TAG_JA[t]).filter(Boolean);
 }
 
-function renderChips(arr, cls = "chip") {
-  const xs = Array.isArray(arr) ? arr.filter(Boolean) : [];
-  if (!xs.length) return "";
-  return `<div class="chips">${xs.map((x) => `<span class="${cls}">${esc(x)}</span>`).join("")}</div>`;
+function pills(list) {
+  if (!list.length) return "";
+  return `<div class="pills">${list.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
 }
 
 function renderList(data) {
@@ -29,7 +77,7 @@ function renderList(data) {
 
   const items = data?.items || [];
   if (!items.length) {
-    root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
+    root.innerHTML = `<div class="status">表示できる作品がありません（1巻確定が0件）</div>`;
     return;
   }
 
@@ -38,41 +86,41 @@ function renderList(data) {
     const title = it.title || it.seriesKey;
     const author = it.author || "";
     const img = it.image || "";
-    const vol1Amz = it.amazonDp || "#";
+    const amz = it.amazonDp || "#";
 
-    const releaseDate = it.releaseDate || "";
-    const publisher = it.publisher?.brand || it.publisher?.manufacturer || "";
+    const release = it.releaseDate || "";
+    const publisher = it.publisher || "";
     const magazine = it.magazine || "";
 
-    const metaLine = joinNonEmpty([
-      author,
-      magazine ? `連載誌: ${magazine}` : null,
-      releaseDate ? `発売日: ${releaseDate}` : null,
-      publisher ? `出版社: ${publisher}` : null,
-    ], " / ");
+    const genresJa = mapGenres(it.genres);
+    const tagsJa = mapTags(it.tags).slice(0, 10);
 
-    const genres = Array.isArray(it.genres) ? it.genres : [];
-    const tags = Array.isArray(it.tags) ? it.tags : [];
+    const synopsis = it.synopsis || "";
 
-    const desc = it.description || "";
+    const metaParts = [
+      author ? esc(author) : null,
+      release ? `発売日: ${esc(release)}` : null,
+      publisher ? `出版社: ${esc(publisher)}` : null,
+      magazine ? `連載誌: ${esc(magazine)}` : null,
+    ].filter(Boolean).join(" / ");
 
     return `
       <article class="card">
         <div class="card-row">
           <div class="thumb">
-            ${img ? `<a href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
+            ${img ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
           </div>
           <div class="meta">
             <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
-            ${metaLine ? `<div class="sub">${esc(metaLine)}</div>` : ""}
+            ${metaParts ? `<div class="sub">${metaParts}</div>` : ""}
 
-            ${genres.length ? `<div class="sec"><div class="sec-h">ジャンル</div>${renderChips(genres)}</div>` : ""}
-            ${tags.length ? `<div class="sec"><div class="sec-h">タグ</div>${renderChips(tags)}</div>` : ""}
+            ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
+            ${tagsJa.length ? `<div class="sub">タグ:</div>${pills(tagsJa)}` : ""}
 
-            ${desc ? `
-              <details class="desc">
+            ${synopsis ? `
+              <details class="syn">
                 <summary>あらすじ</summary>
-                <div class="desc-body">${esc(desc).replaceAll("\n", "<br>")}</div>
+                <div class="syn-body">${esc(synopsis)}</div>
               </details>
             ` : ""}
           </div>
@@ -102,44 +150,41 @@ function renderWork(data) {
   const title = it.title || it.seriesKey;
   const author = it.author || "";
   const img = it.image || "";
-  const vol1Amz = it.amazonDp || "";
-  const isbn = it.isbn13 || "";
+  const amz = it.amazonDp || "";
 
-  const releaseDate = it.releaseDate || "";
-  const publisher = it.publisher?.brand || it.publisher?.manufacturer || "";
+  const release = it.releaseDate || "";
+  const publisher = it.publisher || "";
   const magazine = it.magazine || "";
 
-  const metaLine = joinNonEmpty([
-    author,
-    magazine ? `連載誌: ${magazine}` : null,
-    releaseDate ? `発売日: ${releaseDate}` : null,
-    publisher ? `出版社: ${publisher}` : null,
-    isbn ? `ISBN: ${isbn}` : null,
-  ], " / ");
+  const genresJa = mapGenres(it.genres);
+  const tagsJa = mapTags(it.tags);
 
-  const genres = Array.isArray(it.genres) ? it.genres : [];
-  const tags = Array.isArray(it.tags) ? it.tags : [];
-  const desc = it.description || "";
+  const synopsis = it.synopsis || "";
+
+  const metaParts = [
+    author ? esc(author) : null,
+    release ? `発売日: ${esc(release)}` : null,
+    publisher ? `出版社: ${esc(publisher)}` : null,
+    magazine ? `連載誌: ${esc(magazine)}` : null,
+  ].filter(Boolean).join(" / ");
 
   detail.innerHTML = `
     <div class="d-title">${esc(it.seriesKey)}</div>
-    ${metaLine ? `<div class="d-sub">${esc(metaLine)}</div>` : ""}
+    ${metaParts ? `<div class="d-sub">${metaParts}</div>` : ""}
 
     <div class="d-row">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
-        ${vol1Amz ? `<a class="btn" href="${esc(vol1Amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
+        ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
       </div>
     </div>
 
-    ${genres.length ? `<div class="sec"><div class="sec-h">ジャンル</div>${renderChips(genres)}</div>` : ""}
-    ${tags.length ? `<div class="sec"><div class="sec-h">タグ</div>${renderChips(tags)}</div>` : ""}
+    ${genresJa.length ? `<div class="d-sub" style="margin-top:12px;">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
+    ${tagsJa.length ? `<div class="d-sub" style="margin-top:8px;">タグ:</div>${pills(tagsJa)}` : ""}
 
-    ${desc ? `
-      <div class="sec">
-        <div class="sec-h">あらすじ</div>
-        <div class="d-desc">${esc(desc).replaceAll("\n", "<br>")}</div>
-      </div>
+    ${synopsis ? `
+      <div class="d-sub" style="margin-top:14px;">あらすじ</div>
+      <div class="d-text">${esc(synopsis)}</div>
     ` : ""}
   `;
 }
