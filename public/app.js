@@ -14,6 +14,57 @@ function esc(s) {
     .replaceAll("'", "&#39;");
 }
 
+/**
+ * works.json の項目が string / object / array どれでも来うる前提で
+ * 表示用の「人間が読める文字列」へ正規化する。
+ *
+ * 例:
+ * - "講談社" -> "講談社"
+ * - { name:"講談社" } -> "講談社"
+ * - { ja:"講談社" } -> "講談社"
+ * - { publisher:"講談社" } -> "講談社"
+ * - ["講談社","集英社"] -> "講談社 / 集英社"
+ */
+function toText(v) {
+  if (v == null) return "";
+  if (typeof v === "string") return v.trim();
+  if (typeof v === "number" || typeof v === "boolean") return String(v);
+
+  if (Array.isArray(v)) {
+    const xs = v.map(toText).filter(Boolean);
+    // 重複排除（順序は維持）
+    const seen = new Set();
+    const uniq = xs.filter(x => (seen.has(x) ? false : (seen.add(x), true)));
+    return uniq.join(" / ");
+  }
+
+  if (typeof v === "object") {
+    // よくあるキーを優先順で拾う（必要なら増やす）
+    const keys = [
+      "name",
+      "ja",
+      "jp",
+      "label",
+      "value",
+      "text",
+      "title",
+      "publisher",
+      "company",
+      "display",
+    ];
+    for (const k of keys) {
+      if (v[k] != null) {
+        const t = toText(v[k]);
+        if (t) return t;
+      }
+    }
+    // それでも取れない場合は空にする（[object Object] を出さない）
+    return "";
+  }
+
+  return "";
+}
+
 const GENRE_JA = {
   Action: "アクション",
   Adventure: "冒険",
@@ -83,19 +134,19 @@ function renderList(data) {
 
   root.innerHTML = items.map((it) => {
     const key = encodeURIComponent(it.seriesKey);
-    const title = it.title || it.seriesKey;
-    const author = it.author || "";
-    const img = it.image || "";
-    const amz = it.amazonDp || "#";
+    const title = toText(it.title) || toText(it.seriesKey);
+    const author = toText(it.author);
+    const img = toText(it.image);
+    const amz = toText(it.amazonDp) || "#";
 
-    const release = it.releaseDate || "";
-    const publisher = it.publisher || "";
-    const magazine = it.magazine || "";
+    const release = toText(it.releaseDate);
+    const publisher = toText(it.publisher);
+    const magazine = toText(it.magazine);
 
     const genresJa = mapGenres(it.genres);
     const tagsJa = mapTags(it.tags).slice(0, 10);
 
-    const synopsis = it.synopsis || "";
+    const synopsis = toText(it.synopsis);
 
     const metaParts = [
       author ? esc(author) : null,
@@ -111,7 +162,7 @@ function renderList(data) {
             ${img ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
           </div>
           <div class="meta">
-            <div class="title"><a href="./work.html?key=${key}">${esc(it.seriesKey)}</a></div>
+            <div class="title"><a href="./work.html?key=${key}">${esc(title)}</a></div>
             ${metaParts ? `<div class="sub">${metaParts}</div>` : ""}
 
             ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
@@ -147,19 +198,19 @@ function renderWork(data) {
     return;
   }
 
-  const title = it.title || it.seriesKey;
-  const author = it.author || "";
-  const img = it.image || "";
-  const amz = it.amazonDp || "";
+  const title = toText(it.title) || toText(it.seriesKey);
+  const author = toText(it.author);
+  const img = toText(it.image);
+  const amz = toText(it.amazonDp);
 
-  const release = it.releaseDate || "";
-  const publisher = it.publisher || "";
-  const magazine = it.magazine || "";
+  const release = toText(it.releaseDate);
+  const publisher = toText(it.publisher);
+  const magazine = toText(it.magazine);
 
   const genresJa = mapGenres(it.genres);
   const tagsJa = mapTags(it.tags);
 
-  const synopsis = it.synopsis || "";
+  const synopsis = toText(it.synopsis);
 
   const metaParts = [
     author ? esc(author) : null,
@@ -169,7 +220,7 @@ function renderWork(data) {
   ].filter(Boolean).join(" / ");
 
   detail.innerHTML = `
-    <div class="d-title">${esc(it.seriesKey)}</div>
+    <div class="d-title">${esc(title)}</div>
     ${metaParts ? `<div class="d-sub">${metaParts}</div>` : ""}
 
     <div class="d-row">
