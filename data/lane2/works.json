@@ -1,0 +1,82 @@
+{
+  "updatedAt": "2026-02-11T16:08:57.756Z",
+  "total": 3,
+  "items": [
+    {
+      "seriesKey": "ベルセルク",
+      "title": "ベルセルク 1",
+      "asin": "4592842014",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592842014",
+      "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+      "releaseDate": "2007-07-01T00:00:01Z",
+      "publisher": {
+        "brand": "白泉社",
+        "manufacturer": "白泉社"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy",
+        "Horror",
+        "Psychological"
+      ],
+      "meta": {
+        "titleLane2": "ベルセルク 1",
+        "anilistId": 30002,
+        "wikiTitle": "ベルセルク",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "バガボンド",
+      "title": "バガボンド(1)(モーニングKC)",
+      "asin": "4063286193",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063286193",
+      "image": "https://m.media-amazon.com/images/I/51j0Z8IC3eL._SL500_.jpg",
+      "releaseDate": "1999-03-23T00:00:01Z",
+      "publisher": {
+        "brand": "講談社",
+        "manufacturer": "講談社"
+      },
+      "magazine": "週刊モーニング",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama"
+      ],
+      "meta": {
+        "titleLane2": "バガボンド(1)(モーニングKC)",
+        "anilistId": 30656,
+        "wikiTitle": "バガボンド",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "ダンダダン",
+      "title": "ダンダダン 1 (ジャンプコミックス)",
+      "asin": "4088825993",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088825993",
+      "image": "https://m.media-amazon.com/images/I/51tm2JOPR-L._SL500_.jpg",
+      "releaseDate": "2021-08-04T00:00:01Z",
+      "publisher": {
+        "brand": "集英社",
+        "manufacturer": "集英社"
+      },
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Sci-Fi",
+        "Supernatural"
+      ],
+      "meta": {
+        "titleLane2": "ダンダダン 1 (ジャンプコミックス)",
+        "anilistId": 132029,
+        "wikiTitle": "ダンダダン",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    }
+  ]
+}

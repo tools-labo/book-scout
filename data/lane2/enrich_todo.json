@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-11T16:08:57.756Z",
+  "total": 3,
+  "items": [
+    {
+      "seriesKey": "ダンダダン",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Urban Fantasy,Youkai,Ghost,Super Power,Aliens"
+      }
+    },
+    {
+      "seriesKey": "バガボンド",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Samurai,Seinen,Swordplay,Historical,Philosophy"
+      }
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Seinen,Revenge,Male Protagonist,Demons,Cosmic Horror"
+      }
+    }
+  ]
+}
