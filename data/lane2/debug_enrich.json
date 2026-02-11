@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T02:12:36.638Z",
+  "updatedAt": "2026-02-11T02:32:31.461Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,20 +48,7 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
@@ -86,10 +73,6 @@
           "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
           "publisher": "講談社",
-          "publisherRaw": {
-            "brand": "講談社",
-            "manufacturer": "講談社"
-          },
           "contributors": [
             {
               "name": "金城 宗幸",
@@ -128,7 +111,6 @@
             "Foreign",
             "Augmented Reality",
             "Language Barrier",
-            "Suicide",
             "Revenge"
           ],
           "tags": [
@@ -148,10 +130,8 @@
             "言語の壁",
             "復讐"
           ],
-          "tags_missing_en": [
-            "Suicide"
-          ],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
+          "tags_missing_en": [],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
         }
       }
     },
@@ -161,24 +141,156 @@
       "input": {
         "lane2Title": "黄泉のツガイ",
         "isbn13": "9784757579620",
-        "amazonDp": "https://www.amazon.co.jp/dp/9784757579620",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+        "source": "ndl(opensearch)+paapi_probe+ndl_guard"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4757579624",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": [
+            {
+              "label": "base",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "base",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            },
+            {
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
+        },
+        "openbd": {
+          "cached": true
+        },
+        "wiki": {
+          "cached": true
+        },
+        "anilist": {
+          "cached": true
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "黄泉のツガイ",
+        "author": "荒川弘",
+        "vol1": {
+          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+          "titleLane2": "黄泉のツガイ",
+          "isbn13": "9784757579620",
+          "asin": "4757579624",
+          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+          "publisher": "スクウェア・エニックス(SQUARE ENIX)",
+          "contributors": [
+            {
+              "name": "荒川 弘",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2022-06-10T00:00:01Z",
+          "synopsis": null,
+          "synopsisSource": null,
+          "magazine": null,
+          "wikiTitle": "黄泉のツガイ",
+          "anilistId": 136899,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+          ],
+          "tags_en": [
+            "Shounen",
+            "Twins",
+            "Youkai",
+            "Urban Fantasy",
+            "Male Protagonist",
+            "Conspiracy",
+            "Archery",
+            "Rural"
+          ],
+          "tags": [
+            "少年",
+            "双子",
+            "妖怪",
+            "現代ファンタジー",
+            "男性主人公",
+            "陰謀",
+            "弓術",
+            "田舎"
+          ],
+          "tags_missing_en": [],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        }
+      }
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "author": "山田鐘人",
+      "input": {
+        "lane2Title": "葬送のフリーレン",
+        "isbn13": "9784098501809",
+        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
         "resolveAsinByIsbn13": {
           "ok": true,
           "reason": null,
-          "isbn13": "9784757579620",
+          "isbn13": "9784098501809",
           "raw": {
             "cached": true,
-            "asin": "4757579624"
+            "asin": "4098501805"
           },
           "retries": null
         },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
-          "asin": "4757579624",
+          "asin": "4098501805",
           "raw": {
             "usedResources": [
               "ItemInfo.Title",
@@ -217,132 +329,12 @@
               "waitMs": 900
             },
             {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 2,
               "status": 429,
-              "waitMs": 900
+              "waitMs": 1800
             }
           ]
-        },
-        "openbd": {
-          "cached": true
-        },
-        "wiki": {
-          "cached": true
-        },
-        "anilist": {
-          "cached": true
-        }
-      },
-      "ok": true,
-      "reason": null,
-      "output": {
-        "seriesKey": "黄泉のツガイ",
-        "author": "荒川弘",
-        "vol1": {
-          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
-          "titleLane2": "黄泉のツガイ",
-          "isbn13": "9784757579620",
-          "asin": "4757579624",
-          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
-          "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
-          "publisher": "スクウェア・エニックス(SQUARE ENIX)",
-          "publisherRaw": {
-            "brand": "スクウェア・エニックス(SQUARE ENIX)",
-            "manufacturer": "スクウェア・エニックス"
-          },
-          "contributors": [
-            {
-              "name": "荒川 弘",
-              "role": "著",
-              "roleType": "author"
-            }
-          ],
-          "releaseDate": "2022-06-10T00:00:01Z",
-          "synopsis": null,
-          "synopsisSource": null,
-          "magazine": null,
-          "wikiTitle": "黄泉のツガイ",
-          "anilistId": 136899,
-          "genres": [
-            "Action",
-            "Adventure",
-            "Comedy",
-            "Fantasy"
-          ],
-          "tags_en": [
-            "Shounen",
-            "Twins",
-            "Youkai",
-            "Anachronism",
-            "Urban Fantasy",
-            "Male Protagonist",
-            "Conspiracy",
-            "Archery",
-            "Rural"
-          ],
-          "tags": [
-            "少年",
-            "双子",
-            "妖怪",
-            "現代ファンタジー",
-            "男性主人公",
-            "陰謀",
-            "弓術",
-            "田舎"
-          ],
-          "tags_missing_en": [
-            "Anachronism"
-          ],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
-        }
-      }
-    },
-    {
-      "seriesKey": "葬送のフリーレン",
-      "author": "山田鐘人",
-      "input": {
-        "lane2Title": "葬送のフリーレン",
-        "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
-        "source": "ndl(opensearch)+paapi_probe+ndl_guard"
-      },
-      "steps": {
-        "getItemByAsin": {
-          "ok": true,
-          "reason": null,
-          "asin": "4098501805",
-          "raw": {
-            "usedResources": [
-              "ItemInfo.Title",
-              "ItemInfo.ByLineInfo",
-              "ItemInfo.ExternalIds",
-              "Images.Primary.Large",
-              "ItemInfo.ContentInfo",
-              "ItemInfo.ProductInfo"
-            ]
-          },
-          "probe": [
-            {
-              "resource": "ItemInfo.ContentInfo",
-              "adopted": true
-            },
-            {
-              "resource": "ItemInfo.ProductInfo",
-              "adopted": true
-            },
-            {
-              "resource": "EditorialReviews",
-              "adopted": false,
-              "reason": "invalid_resource"
-            },
-            {
-              "resource": "EditorialReviews.EditorialReview",
-              "adopted": false,
-              "reason": "invalid_resource"
-            }
-          ],
-          "retries": null
         },
         "openbd": {
           "cached": true
@@ -367,10 +359,6 @@
           "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
           "publisher": "小学館",
-          "publisherRaw": {
-            "brand": "小学館",
-            "manufacturer": "小学館"
-          },
           "contributors": [
             {
               "name": "山田 鐘人",
@@ -406,7 +394,6 @@
             "Kuudere",
             "Episodic",
             "Spearplay",
-            "Heterosexual",
             "Shounen",
             "Fairy Tale",
             "Food",
@@ -429,10 +416,8 @@
             "食",
             "ダンジョン"
           ],
-          "tags_missing_en": [
-            "Heterosexual"
-          ],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
+          "tags_missing_en": [],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
         }
       }
     }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T02:12:36.637Z",
+  "updatedAt": "2026-02-11T02:32:31.460Z",
   "total": 3,
   "enriched": 3,
   "items": [
@@ -14,10 +14,6 @@
         "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
         "publisher": "講談社",
-        "publisherRaw": {
-          "brand": "講談社",
-          "manufacturer": "講談社"
-        },
         "contributors": [
           {
             "name": "金城 宗幸",
@@ -56,7 +52,6 @@
           "Foreign",
           "Augmented Reality",
           "Language Barrier",
-          "Suicide",
           "Revenge"
         ],
         "tags": [
@@ -76,10 +71,8 @@
           "言語の壁",
           "復讐"
         ],
-        "tags_missing_en": [
-          "Suicide"
-        ],
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
+        "tags_missing_en": [],
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
       }
     },
     {
@@ -93,10 +86,6 @@
         "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
         "publisher": "スクウェア・エニックス(SQUARE ENIX)",
-        "publisherRaw": {
-          "brand": "スクウェア・エニックス(SQUARE ENIX)",
-          "manufacturer": "スクウェア・エニックス"
-        },
         "contributors": [
           {
             "name": "荒川 弘",
@@ -120,7 +109,6 @@
           "Shounen",
           "Twins",
           "Youkai",
-          "Anachronism",
           "Urban Fantasy",
           "Male Protagonist",
           "Conspiracy",
@@ -137,10 +125,8 @@
           "弓術",
           "田舎"
         ],
-        "tags_missing_en": [
-          "Anachronism"
-        ],
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
+        "tags_missing_en": [],
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
       }
     },
     {
@@ -154,10 +140,6 @@
         "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
         "publisher": "小学館",
-        "publisherRaw": {
-          "brand": "小学館",
-          "manufacturer": "小学館"
-        },
         "contributors": [
           {
             "name": "山田 鐘人",
@@ -193,7 +175,6 @@
           "Kuudere",
           "Episodic",
           "Spearplay",
-          "Heterosexual",
           "Shounen",
           "Fairy Tale",
           "Food",
@@ -216,10 +197,8 @@
           "食",
           "ダンジョン"
         ],
-        "tags_missing_en": [
-          "Heterosexual"
-        ],
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
+        "tags_missing_en": [],
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
       }
     }
   ]
