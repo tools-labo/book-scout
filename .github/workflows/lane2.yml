@@ -19,7 +19,7 @@ on:
       seed_add:
         description: "How many seeds to add (ignored in fix_mode)"
         required: true
-        default: "100"
+        default: "20"
       seed_max_pages:
         description: "Seedgen max pages (ignored in fix_mode)"
         required: true
