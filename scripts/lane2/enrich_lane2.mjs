@@ -14,6 +14,11 @@ const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
 const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ISBN13→ASIN 解決キャッシュ
 const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;   // Wikipedia（あらすじ/掲載誌）
 
+// タグ辞書（手で育てる）
+const TAG_JA_MAP = "data/lane2/tag_ja_map.json";   // { map: { "Foo":"日本語" } }
+const TAG_HIDE = "data/lane2/tag_hide.json";       // { hide: ["Suicide", ...] } 無ければ空扱い
+const TAG_TODO = "data/lane2/tags_todo.json";      // { tags: [] } 無ければ生成
+
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
 const AMZ_PARTNER_TAG = process.env.AMZ_PARTNER_TAG || "";
@@ -47,6 +52,18 @@ function toHalfWidth(s) {
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
+}
+function uniq(arr) {
+  const out = [];
+  const seen = new Set();
+  for (const x of arr || []) {
+    const s = norm(x);
+    if (!s) continue;
+    if (seen.has(s)) continue;
+    seen.add(s);
+    out.push(s);
+  }
+  return out;
 }
 
 // dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
@@ -413,7 +430,7 @@ function extractFromOpenBd(openbdObj) {
 }
 
 /* -----------------------
- * AniList（ジャンル/タグだけ：説明は使わない）
+ * AniList（ジャンル/タグだけ）
  * ----------------------- */
 async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
@@ -527,10 +544,11 @@ function extractFromAniList(media) {
 }
 
 /* -----------------------
- * Wikipedia（MediaWiki API：あらすじ節 / 掲載誌）
- *  - 検索ヒットの誤爆（作者ページ等）を防ぐため、5件からスコアでbestを選ぶ
- *  - sectionが無い場合は lead を採用（wiki_lead）
- *  - キャッシュも「タイトルがそれっぽい」時だけ再利用
+ * Wikipedia（MediaWiki API）
+ * 重要：検索誤爆対策
+ *  - タイトル一致/包含を強く優遇
+ *  - ページHTML内に「漫画」「作品」等があると加点
+ *  - 作品っぽくない（人物/企業等）を減点
  * ----------------------- */
 async function wikiApi(params) {
   const base = "https://ja.wikipedia.org/w/api.php";
@@ -539,7 +557,6 @@ async function wikiApi(params) {
   if (!r.ok) throw new Error(`wiki_http_${r.status}`);
   return await r.json();
 }
-
 function normalizeWikiText(s) {
   return String(s ?? "")
     .replace(/\[\d+\]/g, "")
@@ -547,23 +564,14 @@ function normalizeWikiText(s) {
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
-
 function extractMagazineFromInfoboxHtml(html) {
   const h = String(html ?? "");
   const m =
     h.match(/<th[^>]*>\s*掲載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/) ||
     h.match(/<th[^>]*>\s*連載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
-
   if (!m) return null;
-
-  const td = m[1];
-  const text = stripHtml(td)
-    .replace(/\s+/g, " ")
-    .trim();
-
-  return text || null;
+  return stripHtml(m[1]).replace(/\s+/g, " ").trim() || null;
 }
-
 function wikiTitleLooksOk({ wikiTitle, seriesKey }) {
   const t = normLoose(toHalfWidth(wikiTitle ?? ""));
   const k = normLoose(toHalfWidth(seriesKey ?? ""));
@@ -575,18 +583,16 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
-  // ★キャッシュ再利用は「中身があり」「タイトルが作品っぽい」時だけ
+  // キャッシュは「タイトルが作品一致」な時だけ再利用
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
     const c = cache[key];
-    const hasUseful = !!(c?.synopsis || c?.magazine);
-    const titleOk = wikiTitleLooksOk({ wikiTitle: c?.title, seriesKey: key });
-    if (hasUseful && titleOk) {
+    if (c && wikiTitleLooksOk({ wikiTitle: c?.title, seriesKey: key })) {
       debugSteps.wiki = { cached: true };
       return { ok: true, data: c, cached: true };
     }
   }
 
-  // 1) 検索（ページ特定）※snippetも取ってスコアリング
+  // 1) 検索（5件）
   let search;
   try {
     search = await wikiApi({
@@ -610,26 +616,75 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
   }
 
   const k0 = normLoose(toHalfWidth(key));
-  function scoreHit(h) {
-    const t = normLoose(toHalfWidth(h?.title ?? ""));
-    const sn = stripHtml(h?.snippet ?? "");
-    const sn0 = normLoose(toHalfWidth(sn));
-
+  function baseScore(hit) {
+    const t0 = normLoose(toHalfWidth(hit?.title ?? ""));
+    const sn = stripHtml(hit?.snippet ?? "");
     let score = 0;
-    if (t === k0) score += 10000;      // 完全一致
-    if (t.includes(k0)) score += 3000; // タイトル包含
-    if (sn0.includes(k0)) score += 800;// snippetに作品名
 
-    // 人物ページっぽい雑な減点（強すぎない）
-    if (/(漫画家|作家|声優|人物)/.test(sn)) score -= 200;
+    if (t0 === k0) score += 20000;
+    if (t0.includes(k0)) score += 6000;
+    if (k0.includes(t0) && t0.length >= 3) score += 1200;
+
+    if (sn.includes(key)) score += 600;
+
+    // 人物ページを強めに落とす（黄泉のツガイで荒川弘が来てた問題）
+    if (/(漫画家|作家|声優|人物|日本の|生年|出身|代表作)/.test(sn)) score -= 2500;
+
     return score;
   }
 
-  const scored = results
-    .map((h) => ({ h, score: scoreHit(h) }))
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  // 2) 上位3件だけ HTML/lead を軽く見て「作品っぽさ」を加点
+  const top = results
+    .map((h) => ({ h, score: baseScore(h) }))
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .slice(0, 3);
 
+  async function enrichHit(x) {
+    const pageid = x.h?.pageid;
+    if (!pageid) return x;
+
+    let html = "";
+    let lead = "";
+    try {
+      const p = await wikiApi({ action: "parse", pageid: String(pageid), prop: "text", redirects: "1" });
+      html = p?.parse?.text?.["*"] ?? "";
+    } catch {}
+    try {
+      const q = await wikiApi({
+        action: "query",
+        prop: "extracts",
+        pageids: String(pageid),
+        exintro: "1",
+        explaintext: "1",
+        redirects: "1",
+      });
+      lead = q?.query?.pages?.[String(pageid)]?.extract ?? "";
+    } catch {}
+
+    const text = stripHtml(html);
+    let bonus = 0;
+
+    // 作品ページっぽい単語
+    if (/(漫画|作品|連載|週刊|月刊|コミックス|単行本|登場人物|あらすじ)/.test(text)) bonus += 2500;
+    if (/(漫画|作品|連載|コミックス)/.test(lead)) bonus += 1200;
+
+    // 人物ページっぽい単語
+    if (/(漫画家|日本の|人物|出生|出身|受賞歴|代表作)/.test(lead)) bonus -= 3000;
+
+    return { ...x, score: x.score + bonus, _html: html, _lead: lead };
+  }
+
+  const scored = [];
+  for (const t of top) scored.push(await enrichHit(t));
+  // 残り2件はbaseScoreのみで足す
+  const rest = results
+    .filter((h) => !top.some((t) => t.h?.pageid === h?.pageid))
+    .map((h) => ({ h, score: baseScore(h) }));
+  scored.push(...rest);
+
+  scored.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
   const bestHit = scored[0]?.h || null;
+
   if (!bestHit?.pageid) {
     debugSteps.wiki = { cached: false, ok: true, found: false };
     cache[key] = null;
@@ -639,14 +694,10 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
   const pageid = bestHit.pageid;
   const title = bestHit.title || null;
 
-  // 2) sections 取得（あらすじ/ストーリー/物語 を探す）
+  // sections
   let sectionsJson;
   try {
-    sectionsJson = await wikiApi({
-      action: "parse",
-      pageid: String(pageid),
-      prop: "sections",
-    });
+    sectionsJson = await wikiApi({ action: "parse", pageid: String(pageid), prop: "sections" });
   } catch (e) {
     debugSteps.wiki = { cached: false, ok: false, error: String(e?.message || e) };
     cache[key] = null;
@@ -661,22 +712,17 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
 
   const sectionIndex = sec?.index != null ? String(sec.index) : null;
 
-  // 3) infobox（掲載誌）取り用：ページHTMLを一回取る（あらすじ節が無くても掲載誌は欲しい）
+  // page html
   let pageHtml = null;
   try {
-    const p = await wikiApi({
-      action: "parse",
-      pageid: String(pageid),
-      prop: "text",
-      redirects: "1",
-    });
+    const p = await wikiApi({ action: "parse", pageid: String(pageid), prop: "text", redirects: "1" });
     pageHtml = p?.parse?.text?.["*"] ?? null;
   } catch {
     pageHtml = null;
   }
   const magazine = extractMagazineFromInfoboxHtml(pageHtml);
 
-  // 4) あらすじ節（wiki_section）
+  // section text
   let synopsisSection = null;
   if (sectionIndex != null) {
     try {
@@ -687,15 +733,13 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
         section: sectionIndex,
         redirects: "1",
       });
-      const html = secHtml?.parse?.text?.["*"] ?? "";
-      const text = normalizeWikiText(stripHtml(html));
-      synopsisSection = text || null;
+      synopsisSection = normalizeWikiText(stripHtml(secHtml?.parse?.text?.["*"] ?? "")) || null;
     } catch {
       synopsisSection = null;
     }
   }
 
-  // 5) lead（wiki_lead）：sectionが無い/取れない時の保険
+  // lead fallback
   let synopsisLead = null;
   try {
     const q = await wikiApi({
@@ -706,8 +750,7 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
       explaintext: "1",
       redirects: "1",
     });
-    const ex = q?.query?.pages?.[String(pageid)]?.extract ?? null;
-    synopsisLead = ex ? normalizeWikiText(String(ex)) : null;
+    synopsisLead = normalizeWikiText(q?.query?.pages?.[String(pageid)]?.extract ?? "") || null;
   } catch {
     synopsisLead = null;
   }
@@ -728,10 +771,48 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
     synopsisSource,
     hasMagazine: !!magazine,
     sectionIndex,
-    hitScores: scored.map((x) => ({ title: x.h?.title ?? null, pageid: x.h?.pageid ?? null, score: x.score })).slice(0, 5),
+    hitScores: scored.slice(0, 5).map((x) => ({ title: x.h?.title ?? null, pageid: x.h?.pageid ?? null, score: x.score })),
   };
 
   return { ok: true, data: out, found: true };
+}
+
+/* -----------------------
+ * tagdict（翻訳＋除外＋todo蓄積）
+ * ----------------------- */
+function loadTagMap(tagMapJson) {
+  const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
+  // 余計な空白を防ぐ
+  const out = {};
+  for (const [k, v] of Object.entries(m)) {
+    const kk = norm(k);
+    const vv = norm(v);
+    if (!kk || !vv) continue;
+    out[kk] = vv;
+  }
+  return out;
+}
+function loadHideSet(hideJson) {
+  const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : Array.isArray(hideJson?.tags) ? hideJson.tags : [];
+  return new Set(arr.map((x) => norm(x)).filter(Boolean));
+}
+
+function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
+  const outJa = [];
+  const missing = [];
+
+  for (const t of uniq(tagsEn)) {
+    if (hideSet.has(t)) continue;
+
+    const ja = tagMap[t];
+    if (ja) {
+      outJa.push(ja);
+    } else {
+      missing.push(t);
+      todoSet.add(t);
+    }
+  }
+  return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
 }
 
 /* -----------------------
@@ -745,6 +826,14 @@ async function main() {
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
+
+  // tagdict
+  const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: "", map: {} });
+  const tagMap = loadTagMap(tagMapJson);
+  const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
+  const hideSet = loadHideSet(hideJson);
+  const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
+  const todoSet = new Set((todoJson?.tags || []).map((x) => norm(x)).filter(Boolean));
 
   const enriched = [];
   const debug = [];
@@ -804,7 +893,7 @@ async function main() {
       continue;
     }
 
-    // 1) PA-API GetItems（タイトル正、書影、出版社、発売日など）
+    // 1) PA-API GetItems
     const stepPa = {};
     const got = await getItemWithResourceProbe({ asin, debugSteps: stepPa });
     one.steps.getItemByAsin = {
@@ -844,7 +933,7 @@ async function main() {
 
     const obx = ob?.ok ? extractFromOpenBd(ob.data) : { synopsis: null, pubdate: null, publisherText: null };
 
-    // 3) Wiki（あらすじ節/掲載誌：openBDが無い時のあらすじ、掲載誌は常に補助）
+    // 3) Wiki（openBDが無い時のあらすじ、掲載誌は常に補助）
     const stepWiki = {};
     const wk = await fetchWikiBySeriesKey({ seriesKey, cache: cacheWiki, debugSteps: stepWiki });
     one.steps.wiki = stepWiki.wiki || null;
@@ -854,14 +943,27 @@ async function main() {
     const magazine = wk?.ok ? wk?.data?.magazine ?? null : null;
     const wikiTitle = wk?.ok ? wk?.data?.title ?? null : null;
 
-    // 4) AniList（ジャンル/タグのみ）
+    // 4) AniList（ジャンル/タグ）
     const stepAni = {};
     const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList, debugSteps: stepAni });
     one.steps.anilist = stepAni.anilist || null;
 
     const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
 
-    // --- 最終 “あらすじ” の決定（英語説明は使わない）
+    // タグ翻訳＋除外＋todo
+    const tagStep = {};
+    const applied = applyTagDict({
+      tagsEn: anx.tags,
+      tagMap,
+      hideSet,
+      todoSet,
+    });
+    tagStep.total = (anx.tags || []).length;
+    tagStep.hidden = uniq(anx.tags).filter((t) => hideSet.has(t)).length;
+    tagStep.missing = applied.tags_missing_en.length;
+    one.steps.tagdict = tagStep;
+
+    // --- 最終 “あらすじ”
     const finalSynopsis = obx.synopsis || wikiSynopsis || null;
     const synopsisSource = obx.synopsis ? "openbd" : wikiSynopsis ? (wikiSynopsisSource || "wiki") : null;
 
@@ -881,20 +983,21 @@ async function main() {
         contributors: extractContributors(item),
         releaseDate: finalReleaseDate,
 
-        // ★日本語優先の“あらすじ”
         synopsis: finalSynopsis,
         synopsisSource,
 
-        // ★掲載誌（連載誌）
         magazine,
         wikiTitle,
 
-        // ジャンル/タグ（翻訳は後段 or フロント）
         anilistId: anx.id,
         genres: anx.genres,
-        tags: anx.tags,
 
-        source: "enrich(paapi+openbd+wiki+anilist)",
+        // tags は “日本語” を出す。英語は tags_en に残す
+        tags_en: uniq(anx.tags),
+        tags: applied.tags,
+        tags_missing_en: applied.tags_missing_en,
+
+        source: "enrich(paapi+openbd+wiki+anilist+tagdict+hide)",
       },
     };
 
@@ -906,6 +1009,13 @@ async function main() {
 
     await sleep(1000);
   }
+
+  // tags_todo.json を毎回生成（空でもOK）
+  await saveJson(TAG_TODO, {
+    version: 1,
+    updatedAt: nowIso(),
+    tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
+  });
 
   await saveJson(OUT_ENRICHED, {
     updatedAt: nowIso(),
