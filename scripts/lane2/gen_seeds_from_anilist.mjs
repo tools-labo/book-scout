@@ -56,8 +56,9 @@ function looksJapanese(s) {
 async function main() {
   // ★今回「新規に足す」最大数
   // LANE2_SEED_ADD を最優先。互換で LANE2_SEED_LIMIT も読む。
+  // ★0 を許可（= 追加しない）
   const addRaw = process.env.LANE2_SEED_ADD || process.env.LANE2_SEED_LIMIT || "100";
-  const addLimit = Math.max(1, Number(addRaw) || 100);
+  const addLimit = Math.max(0, Number(addRaw) || 0);
 
   // seedgen が掘る最大ページ数
   const maxPages = Number(process.env.LANE2_SEED_MAX_PAGES || 20);
@@ -75,6 +76,18 @@ async function main() {
     if (seen.has(k)) continue;
     seen.add(k);
     items.push({ seriesKey: k });
+  }
+
+  // ★追加なし
+  if (addLimit === 0) {
+    await saveJson(OUT, {
+      updatedAt: new Date().toISOString(),
+      total: items.length,
+      addedThisRun: 0,
+      items,
+    });
+    console.log(`[seedgen] added 0/0 (total ${items.length}) -> ${OUT}`);
+    return;
   }
 
   let added = 0;
