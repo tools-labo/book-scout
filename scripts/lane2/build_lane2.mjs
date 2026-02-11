@@ -6,6 +6,7 @@ import crypto from "node:crypto";
 const SEEDS_PATH = "data/lane2/seeds.json";
 const OUT_SERIES = "data/lane2/series.json";
 const OUT_TODO = "data/lane2/todo.json";
+const OUT_REVIEW = "data/lane2/review.json"; // ★要確認レーン
 const OUT_DEBUG = "data/lane2/debug_candidates.json";
 
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
@@ -87,6 +88,51 @@ function isDerivedEdition(title) {
   if (/ポスター|画集|原画集|イラストブック|設定集|ビジュアルブック/.test(t)) return true;
 
   return false;
+}
+
+/**
+ * ★シリーズ名の直後に「別作品っぽいサブタイトル」が付くのを検知して review に送る
+ * 例：東京卍リベンジャーズ ~場地圭介からの手紙~(1)
+ */
+function detectSuspiciousSubtitle({ title, seriesKey }) {
+  const t = toHalfWidth(norm(title));
+  const s = toHalfWidth(norm(seriesKey));
+  if (!t || !s) return { suspicious: false, reason: null };
+
+  const idx = t.indexOf(s);
+  if (idx < 0) return { suspicious: false, reason: null };
+
+  // シリーズ名以降
+  let rest = t.slice(idx + s.length);
+
+  // よくある「巻表記」「括弧内レーベル」などを軽く落とす（雑でOK）
+  // ※ここは「弾く」ではなく「隔離」なので、過度に精密化しない
+  rest = rest
+    .replace(/\(\s*1\s*\)/g, " ")
+    .replace(/第\s*1\s*巻/g, " ")
+    .replace(/\b1\b/g, " ")
+    .replace(/\([^)]*\)/g, " ") // (少年マガジンKC) 等
+    .replace(/（[^）]*）/g, " ") // 全角括弧も
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!rest) return { suspicious: false, reason: null };
+
+  // 強い区切り・明らかな別題
+  if (/[~～]/.test(rest)) return { suspicious: true, reason: "subtitle_tilde" };
+  if (/[：:]/.test(rest)) return { suspicious: true, reason: "subtitle_colon" };
+  if (/[「『【]/.test(rest)) return { suspicious: true, reason: "subtitle_quotes" };
+  if (/[-ー–—]/.test(rest)) return { suspicious: true, reason: "subtitle_dash" };
+
+  // よくある派生ワード（既存の derived に入ってない/弱いものも含める）
+  if (/(からの手紙|アンソロジー|公式アンソロジー|ノベル|小説版|特装版|限定版|キャラブック|設定資料|ガイド|ムック|ファンブック)/.test(rest)) {
+    return { suspicious: true, reason: "subtitle_keyword" };
+  }
+
+  // サブタイトルが長いほど別作品の可能性が上がる（雑な安全弁）
+  if (rest.length >= 10) return { suspicious: true, reason: "subtitle_long" };
+
+  return { suspicious: false, reason: null };
 }
 
 /**
@@ -350,12 +396,10 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
 /* -----------------------
  * seed hint（任意）
  * ----------------------- */
-
 function parseSeedHint(seed) {
   const vol1Isbn10 = norm(seed?.vol1Isbn10 || "");
   const vol1Isbn13 = norm(seed?.vol1Isbn13 || "");
   const vol1Asin = norm(seed?.vol1Asin || "");
-
   return {
     vol1Isbn10: vol1Isbn10 || null,
     vol1Isbn13: vol1Isbn13 || null,
@@ -474,11 +518,14 @@ async function main() {
   // 既存の積み上げを読む
   const prevSeries = await loadJson(OUT_SERIES, { items: [] });
   const prevTodo = await loadJson(OUT_TODO, { items: [] });
+  const prevReview = await loadJson(OUT_REVIEW, { items: [] });
 
   const prevConfirmedMap = mapBySeriesKey(prevSeries?.items);
   const prevTodoMap = mapBySeriesKey(prevTodo?.items);
+  const prevReviewMap = mapBySeriesKey(prevReview?.items);
 
-  const known = new Set([...prevConfirmedMap.keys(), ...prevTodoMap.keys()]);
+  // ★review も「既処理」として扱う（毎回拾い直しを防ぐ）
+  const known = new Set([...prevConfirmedMap.keys(), ...prevTodoMap.keys(), ...prevReviewMap.keys()]);
 
   // 今回やる seeds（未処理だけ + 上限）
   const pendingSeeds = [];
@@ -492,6 +539,7 @@ async function main() {
 
   const confirmedNew = [];
   const todoNew = [];
+  const reviewNew = [];
   const debug = [];
 
   for (const s of pendingSeeds) {
@@ -510,6 +558,30 @@ async function main() {
       one.seedHintResult = r?.ok ? { ok: true, debug: r.debug } : { ok: false, reason: r.reason, debug: r.debug };
 
       if (r?.ok) {
+        // ★サブタイトル疑いが強ければ review へ
+        const sub = detectSuspiciousSubtitle({ title: r.title, seriesKey });
+        if (sub.suspicious) {
+          const out = {
+            seriesKey,
+            author,
+            reason: `suspicious_subtitle(${sub.reason})`,
+            vol1: {
+              title: r.title,
+              isbn13: r.isbn13,
+              asin: r.asin || null,
+              image: r.image,
+              amazonDp: dpPreferAsin({ asin: r.asin, isbn13: r.isbn13, isbn10: seedHint.vol1Isbn10 }),
+              source: r.debug?.resolvedBy ? `seed_hint(${r.debug.resolvedBy})+mainline_guard` : "seed_hint+mainline_guard",
+            },
+          };
+          reviewNew.push(out);
+          one.path = "seed_hint_review";
+          one.review = out;
+          debug.push(one);
+          await sleep(600);
+          continue;
+        }
+
         const out = {
           seriesKey,
           author,
@@ -547,6 +619,32 @@ async function main() {
       debug.push(one);
       await sleep(600);
       continue;
+    }
+
+    // ★サブタイトル疑いが強ければ review へ
+    {
+      const sub = detectSuspiciousSubtitle({ title: b.title || "", seriesKey });
+      if (sub.suspicious) {
+        const out = {
+          seriesKey,
+          author,
+          reason: `suspicious_subtitle(${sub.reason})`,
+          vol1: {
+            title: b.title,
+            isbn13: b.isbn13 || null,
+            asin: b.asin || null,
+            image: b.image || null,
+            amazonDp: dpPreferAsin({ asin: b.asin, isbn13: b.isbn13 || null }),
+            source: "paapi_search(mainline_guard)",
+          },
+        };
+        reviewNew.push(out);
+        one.path = "paapi_search_review";
+        one.review = out;
+        debug.push(one);
+        await sleep(600);
+        continue;
+      }
     }
 
     // ★best に ISBN13 があれば GetItems せず確定（429回避）
@@ -591,6 +689,32 @@ async function main() {
     const title = extractTitle(item) || b.title || "";
     const isbn13 = extractIsbn13(item) || b.isbn13 || null;
 
+    // ★GetItems 後もサブタイトル疑いチェック（より確実なタイトルで判定）
+    {
+      const sub = detectSuspiciousSubtitle({ title, seriesKey });
+      if (sub.suspicious) {
+        const out = {
+          seriesKey,
+          author,
+          reason: `suspicious_subtitle(${sub.reason})`,
+          vol1: {
+            title,
+            isbn13: isbn13 || null,
+            asin: b.asin || null,
+            image: extractImage(item) || b.image || null,
+            amazonDp: dpPreferAsin({ asin: b.asin, isbn13: isbn13 || null }),
+            source: "paapi_getitems(mainline_guard)",
+          },
+        };
+        reviewNew.push(out);
+        one.path = "paapi_getitems_review";
+        one.review = out;
+        debug.push(one);
+        await sleep(600);
+        continue;
+      }
+    }
+
     if (!isMainlineVol1ByTitle(title, seriesKey) || !isbn13) {
       todoNew.push({
         seriesKey,
@@ -634,15 +758,22 @@ async function main() {
     if (!k) continue;
     if (!prevTodoMap.has(k)) prevTodoMap.set(k, x);
   }
+  for (const x of reviewNew) {
+    const k = norm(x?.seriesKey);
+    if (!k) continue;
+    if (!prevReviewMap.has(k)) prevReviewMap.set(k, x);
+  }
 
   const confirmedAll = Array.from(prevConfirmedMap.values());
   const todoAll = Array.from(prevTodoMap.values());
+  const reviewAll = Array.from(prevReviewMap.values());
 
   await saveJson(OUT_SERIES, {
     updatedAt: nowIso(),
     total: seedItemsAll.length,
     confirmed: confirmedAll.length,
     todo: todoAll.length,
+    review: reviewAll.length,
     processedThisRun: pendingSeeds.length,
     buildLimit: BUILD_LIMIT,
     items: confirmedAll,
@@ -655,6 +786,13 @@ async function main() {
     items: todoAll,
   });
 
+  await saveJson(OUT_REVIEW, {
+    updatedAt: nowIso(),
+    total: reviewAll.length,
+    addedThisRun: reviewNew.length,
+    items: reviewAll,
+  });
+
   // debug は毎回上書き（肥大化防止）
   await saveJson(OUT_DEBUG, {
     updatedAt: nowIso(),
@@ -663,7 +801,7 @@ async function main() {
   });
 
   console.log(
-    `[lane2] seeds=${seedItemsAll.length} pending=${pendingSeeds.length} (+confirmed ${confirmedNew.length}, +todo ${todoNew.length}) total_confirmed=${confirmedAll.length} total_todo=${todoAll.length}`
+    `[lane2] seeds=${seedItemsAll.length} pending=${pendingSeeds.length} (+confirmed ${confirmedNew.length}, +todo ${todoNew.length}, +review ${reviewNew.length}) total_confirmed=${confirmedAll.length} total_todo=${todoAll.length} total_review=${reviewAll.length}`
   );
 }
 
