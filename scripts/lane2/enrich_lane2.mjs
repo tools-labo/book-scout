@@ -7,12 +7,16 @@ const IN_SERIES = "data/lane2/series.json";
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_DEBUG = "data/lane2/debug_enrich.json";
 
+// ★追加：タグ辞書/未翻訳蓄積
+const TAG_JA_MAP = "data/lane2/tag_ja_map.json";
+const TAGS_TODO = "data/lane2/tags_todo.json";
+
 // 軽キャッシュ（Actionsでも効く：リポジトリに残る）
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
 const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ISBN13→ASIN 解決キャッシュ
-const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;   // ★追加：Wikipedia（あらすじ/掲載誌）
+const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;   // Wikipedia（あらすじ/掲載誌）
 
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
@@ -47,6 +51,19 @@ function toHalfWidth(s) {
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
+}
+
+function uniq(arr) {
+  const out = [];
+  const seen = new Set();
+  for (const x of arr || []) {
+    const s = norm(x);
+    if (!s) continue;
+    if (seen.has(s)) continue;
+    seen.add(s);
+    out.push(s);
+  }
+  return out;
 }
 
 // dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
@@ -187,6 +204,14 @@ function extractPublisher(item) {
   const manufacturer = item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || null;
   return { brand, manufacturer };
 }
+function pickPublisherText(pubObj, openbdPublisherText) {
+  const brand = norm(pubObj?.brand);
+  const manufacturer = norm(pubObj?.manufacturer);
+  const ob = norm(openbdPublisherText);
+  // brand/manufacturer は表記が綺麗なことが多いので優先
+  return brand || manufacturer || ob || null;
+}
+
 function extractContributors(item) {
   const arr = item?.ItemInfo?.ByLineInfo?.Contributors;
   if (!Array.isArray(arr)) return [];
@@ -549,7 +574,6 @@ function normalizeWikiText(s) {
 function extractMagazineFromInfoboxHtml(html) {
   // action=parse の text（HTML）から infobox の「掲載誌」を拾う（あれば）
   const h = String(html ?? "");
-  // 「掲載誌」th の次の td を狙う（多少雑でもOK、取れなければ null）
   const m =
     h.match(/<th[^>]*>\s*掲載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/) ||
     h.match(/<th[^>]*>\s*連載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
@@ -558,7 +582,7 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const td = m[1];
   const text = stripHtml(td)
-    .replace(/\s*（[^）]*）\s*/g, (x) => x) // そのまま残す（雑誌名の括弧が意味あることが多い）
+    .replace(/\s*（[^）]*）\s*/g, (x) => x)
     .replace(/\s+/g, " ")
     .trim();
 
@@ -674,6 +698,35 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
 }
 
 /* -----------------------
+ * タグ翻訳（C1：英語タグを保持し、翻訳済みだけ表示に回す）
+ * ----------------------- */
+function translateTags({ tagsEn, tagMap }) {
+  const en = uniq(tagsEn);
+  const map = tagMap || {};
+  const ja = [];
+  const missing = [];
+
+  for (const t of en) {
+    const j = norm(map[t]);
+    if (j) ja.push(j);
+    else missing.push(t);
+  }
+
+  return {
+    tags_en: en,
+    tags: uniq(ja),              // 表示用（翻訳できた分だけ）
+    tags_missing_en: uniq(missing) // 未翻訳の“フラグ兼リスト”
+  };
+}
+
+function mergeTodoList({ todoArr, missingArr }) {
+  const set = new Set(Array.isArray(todoArr) ? todoArr.map(norm).filter(Boolean) : []);
+  for (const t of missingArr || []) set.add(norm(t));
+  // 見やすさ重視：A-Zソート（差分が安定）
+  return Array.from(set).sort((a, b) => a.localeCompare(b));
+}
+
+/* -----------------------
  * main
  * ----------------------- */
 async function main() {
@@ -685,11 +738,19 @@ async function main() {
   const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
 
+  // ★追加：辞書＆todo
+  const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: null, map: {} });
+  const tagMap = tagMapJson?.map || {};
+  const todoJson = await loadJson(TAGS_TODO, { version: 1, updatedAt: null, tags: [] });
+
   const enriched = [];
   const debug = [];
 
   let ok = 0;
   let ng = 0;
+
+  // todo更新用（最後にまとめて保存）
+  let todoTags = Array.isArray(todoJson?.tags) ? todoJson.tags.slice() : [];
 
   for (const x of items) {
     const seriesKey = norm(x?.seriesKey);
@@ -805,6 +866,17 @@ async function main() {
 
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
 
+    // ★出版社を文字列化（[object Object] 防止）
+    const pubObj = extractPublisher(item);
+    const publisherText = pickPublisherText(pubObj, obx.publisherText);
+
+    // ★タグ翻訳＆missing
+    const tagX = translateTags({ tagsEn: anx.tags, tagMap });
+    // 未翻訳をtodoに蓄積（あなたが翻訳したら手動で消す運用）
+    if (tagX.tags_missing_en.length) {
+      todoTags = mergeTodoList({ todoArr: todoTags, missingArr: tagX.tags_missing_en });
+    }
+
     const out = {
       seriesKey,
       author,
@@ -815,7 +887,12 @@ async function main() {
         asin,
         image: extractImage(item) || null,
         amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
-        publisher: extractPublisher(item),
+
+        // ★文字列で固定（UIがラク）
+        publisher: publisherText,
+        // もし将来必要なら生データも残せる（今は不要なら消してOK）
+        publisherRaw: pubObj,
+
         contributors: extractContributors(item),
         releaseDate: finalReleaseDate,
 
@@ -824,15 +901,19 @@ async function main() {
         synopsisSource,
 
         // ★掲載誌（連載誌）
-        magazine,         // 例：「週刊少年マガジン」
-        wikiTitle,        // 出典用（UIで小さく「Wikipedia: xxx」リンクを出すなら使う）
+        magazine,
+        wikiTitle,
 
-        // ジャンル/タグ（翻訳はフロントで辞書適用＆辞書外は非表示）
+        // ジャンル（英語）
         anilistId: anx.id,
-        genres: anx.genres,
-        tags: anx.tags,
+        genres: uniq(anx.genres),
 
-        source: "enrich(paapi+openbd+wiki+anilist)",
+        // ★タグ：C1（英語原本 + 翻訳済みだけ表示 + 未翻訳フラグ）
+        tags_en: tagX.tags_en,
+        tags: tagX.tags,
+        tags_missing_en: tagX.tags_missing_en,
+
+        source: "enrich(paapi+openbd+wiki+anilist+tagdict)",
       },
     };
 
@@ -859,6 +940,16 @@ async function main() {
     ng,
     items: debug,
   });
+
+  // ★todo更新を書き戻し
+  await saveJson(TAGS_TODO, {
+    version: todoJson?.version ?? 1,
+    updatedAt: nowIso(),
+    tags: todoTags,
+  });
+
+  // 辞書はこのスクリプトでは“育てない”（あなたが手動で追記）
+  // ただし updatedAt を変えないために、ここでは保存しない
 
   await saveJson(CACHE_OPENBD, cacheOpenbd);
   await saveJson(CACHE_ANILIST, cacheAniList);
