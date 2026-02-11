@@ -17,6 +17,14 @@
     <section id="list" class="grid"></section>
   </main>
 
-  <script src="./app.js"></script>
+  <!-- ★ ?v=990 が付いている時だけ app.js も ?v=990 で読み込む -->
+  <script>
+    (function () {
+      const v = new URLSearchParams(location.search).get("v");
+      const s = document.createElement("script");
+      s.src = "./app.js" + (v ? ("?v=" + encodeURIComponent(v)) : "");
+      document.body.appendChild(s);
+    })();
+  </script>
 </body>
 </html>
