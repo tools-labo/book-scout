@@ -54,13 +54,15 @@ function looksJapanese(s) {
 }
 
 async function main() {
-  // 今回「新規に足す」最大数（デフォ100）
-  const addLimit = Math.max(1, Number(process.env.LANE2_SEED_LIMIT || 100));
+  // ★今回「新規に足す」最大数
+  // LANE2_SEED_ADD を最優先。互換で LANE2_SEED_LIMIT も読む。
+  const addRaw = process.env.LANE2_SEED_ADD || process.env.LANE2_SEED_LIMIT || "100";
+  const addLimit = Math.max(1, Number(addRaw) || 100);
 
-  // JP縛りで間引かれるので、少し多めにページを掘れる上限
+  // seedgen が掘る最大ページ数
   const maxPages = Number(process.env.LANE2_SEED_MAX_PAGES || 20);
 
-  // 既存seedsを読み、Setに入れておく（★ここがA案の肝：上書きしない）
+  // 既存seedsを読み、Setに入れておく（上書きしない）
   const prev = await loadJson(OUT, { updatedAt: "", items: [] });
   const prevItems = Array.isArray(prev?.items) ? prev.items : [];
 
@@ -72,7 +74,7 @@ async function main() {
     if (!k) continue;
     if (seen.has(k)) continue;
     seen.add(k);
-    items.push({ seriesKey: k }); // 既存はそのまま保持（author等はここでは触らない）
+    items.push({ seriesKey: k });
   }
 
   let added = 0;
@@ -82,13 +84,9 @@ async function main() {
 
     for (const m of list) {
       if (m?.countryOfOrigin !== "JP") continue;
-
-      // ONE_SHOT は除外（lane2の「1巻」判定と混ざりやすい）
       if (String(m?.format || "").toUpperCase() === "ONE_SHOT") continue;
 
       const native = norm(m?.title?.native);
-
-      // nativeが日本語っぽいものだけ採用（英語化が嫌ならromajiは使わない）
       const key = looksJapanese(native) ? native : null;
 
       if (!key) continue;
@@ -102,8 +100,6 @@ async function main() {
     }
 
     if (added >= addLimit) break;
-
-    // AniListに優しい間隔
     await sleep(250);
   }
 
