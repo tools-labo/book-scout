@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-02-11T16:08:57.756Z",
-  "total": 3,
+  "updatedAt": "2026-02-11T19:32:35.113Z",
+  "total": 6,
   "items": [
     {
       "seriesKey": "ベルセルク",
@@ -75,6 +75,80 @@
         "titleLane2": "ダンダダン 1 (ジャンプコミックス)",
         "anilistId": 132029,
         "wikiTitle": "ダンダダン",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "【推しの子】",
+      "title": "【推しの子】 1 (ヤングジャンプコミックス)",
+      "asin": "4088916506",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088916506",
+      "image": "https://m.media-amazon.com/images/I/41DDVHgT3bL._SL500_.jpg",
+      "releaseDate": "2020-07-17T00:00:01Z",
+      "publisher": {
+        "brand": "集英社",
+        "manufacturer": "集英社"
+      },
+      "magazine": "週刊ヤングジャンプ ヤンジャン! 少年ジャンプ+",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Psychological",
+        "Supernatural"
+      ],
+      "meta": {
+        "titleLane2": "【推しの子】 1 (ヤングジャンプコミックス)",
+        "anilistId": 117195,
+        "wikiTitle": "【推しの子】",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "title": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+      "asin": "4757559208",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757559208",
+      "image": "https://m.media-amazon.com/images/I/41HRSm+u0DL._SL500_.jpg",
+      "releaseDate": "2018-11-24T00:00:01Z",
+      "publisher": {
+        "brand": "スクウェア・エニックス(SQUARE ENIX)",
+        "manufacturer": "スクウェア・エニックス"
+      },
+      "magazine": "ヤングガンガン",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "meta": {
+        "titleLane2": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+        "anilistId": 101583,
+        "wikiTitle": "その着せ替え人形は恋をする",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+      "asin": "4098501805",
+      "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+      "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+      "releaseDate": "2020-08-18T00:00:01Z",
+      "publisher": {
+        "brand": "小学館",
+        "manufacturer": "小学館"
+      },
+      "magazine": "週刊少年サンデー",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "meta": {
+        "titleLane2": "葬送のフリーレン (1) (少年サンデーコミックス)",
+        "anilistId": 118586,
+        "wikiTitle": "葬送のフリーレン",
         "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
       }
     }

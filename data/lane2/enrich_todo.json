@@ -1,8 +1,30 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-11T16:08:57.756Z",
-  "total": 3,
+  "updatedAt": "2026-02-11T19:32:35.112Z",
+  "total": 6,
   "items": [
+    {
+      "seriesKey": "【推しの子】",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Revenge,Idol,Acting,Seinen,Male Protagonist"
+      }
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Cosplay,Otaku Culture,Fashion,Female Protagonist,Male Protagonist"
+      }
+    },
     {
       "seriesKey": "ダンダダン",
       "needs": [
@@ -38,6 +60,17 @@
         "synopsis": "openbd_not_found",
         "magazine": "wiki_magazine_missing",
         "tags_ja_map": "missing:Seinen,Revenge,Male Protagonist,Demons,Cosmic Horror"
+      }
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Magic,Travel,Elf,Philosophy,Female Protagonist"
       }
     }
   ]

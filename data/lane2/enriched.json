@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-11T16:08:57.756Z",
-  "total": 3,
-  "enriched": 3,
+  "updatedAt": "2026-02-11T19:32:35.113Z",
+  "total": 6,
+  "enriched": 6,
   "items": [
     {
       "seriesKey": "ベルセルク",
@@ -300,6 +300,257 @@
           "Amnesia",
           "Circus",
           "Nudity"
+        ],
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "【推しの子】",
+      "author": "",
+      "vol1": {
+        "title": "【推しの子】 1 (ヤングジャンプコミックス)",
+        "titleLane2": "【推しの子】 1 (ヤングジャンプコミックス)",
+        "isbn13": "9784088916507",
+        "asin": "4088916506",
+        "image": "https://m.media-amazon.com/images/I/41DDVHgT3bL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088916506",
+        "publisher": {
+          "brand": "集英社",
+          "manufacturer": "集英社"
+        },
+        "contributors": [
+          {
+            "name": "赤坂 アカ × 横槍 メンゴ",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2020-07-17T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": "週刊ヤングジャンプ ヤンジャン! 少年ジャンプ+",
+        "wikiTitle": "【推しの子】",
+        "anilistId": 117195,
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Revenge",
+          "Idol",
+          "Acting",
+          "Seinen",
+          "Male Protagonist",
+          "Twins",
+          "Female Protagonist",
+          "Detective",
+          "Work",
+          "Urban Fantasy",
+          "Otaku Culture",
+          "Female Harem",
+          "Suicide",
+          "Love Triangle",
+          "Anti-Hero",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Bullying",
+          "Denpa",
+          "Urban",
+          "Educational",
+          "Tsundere",
+          "Primarily Female Cast",
+          "Filmmaking",
+          "Pregnancy",
+          "Incest",
+          "VTuber",
+          "Cosplay"
+        ],
+        "tags": [],
+        "tags_missing_en": [
+          "Revenge",
+          "Idol",
+          "Acting",
+          "Seinen",
+          "Male Protagonist",
+          "Twins",
+          "Female Protagonist",
+          "Detective",
+          "Work",
+          "Urban Fantasy",
+          "Otaku Culture",
+          "Female Harem",
+          "Suicide",
+          "Love Triangle",
+          "Anti-Hero",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Bullying",
+          "Denpa",
+          "Urban",
+          "Educational",
+          "Tsundere",
+          "Primarily Female Cast",
+          "Filmmaking",
+          "Pregnancy",
+          "Incest",
+          "VTuber",
+          "Cosplay"
+        ],
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "author": "",
+      "vol1": {
+        "title": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+        "titleLane2": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+        "isbn13": "9784757559202",
+        "asin": "4757559208",
+        "image": "https://m.media-amazon.com/images/I/41HRSm+u0DL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757559208",
+        "publisher": {
+          "brand": "スクウェア・エニックス(SQUARE ENIX)",
+          "manufacturer": "スクウェア・エニックス"
+        },
+        "contributors": [
+          {
+            "name": "福田 晋一",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2018-11-24T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": "ヤングガンガン",
+        "wikiTitle": "その着せ替え人形は恋をする",
+        "anilistId": 101583,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Cosplay",
+          "Otaku Culture",
+          "Fashion",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Gyaru",
+          "Primarily Teen Cast",
+          "Makeup",
+          "Heterosexual",
+          "Seinen",
+          "Photography",
+          "Educational",
+          "Crossdressing",
+          "School",
+          "Primarily Female Cast",
+          "Drawing",
+          "Nudity",
+          "Unrequited Love"
+        ],
+        "tags": [],
+        "tags_missing_en": [
+          "Cosplay",
+          "Otaku Culture",
+          "Fashion",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Gyaru",
+          "Primarily Teen Cast",
+          "Makeup",
+          "Heterosexual",
+          "Seinen",
+          "Photography",
+          "Educational",
+          "Crossdressing",
+          "School",
+          "Primarily Female Cast",
+          "Drawing",
+          "Nudity",
+          "Unrequited Love"
+        ],
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "author": "",
+      "vol1": {
+        "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+        "titleLane2": "葬送のフリーレン (1) (少年サンデーコミックス)",
+        "isbn13": "9784098501809",
+        "asin": "4098501805",
+        "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "publisher": {
+          "brand": "小学館",
+          "manufacturer": "小学館"
+        },
+        "contributors": [
+          {
+            "name": "山田 鐘人",
+            "role": "原著",
+            "roleType": "original_author"
+          },
+          {
+            "name": "アベツカサ",
+            "role": "イラスト",
+            "roleType": "illustrator"
+          }
+        ],
+        "releaseDate": "2020-08-18T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": "週刊少年サンデー",
+        "wikiTitle": "葬送のフリーレン",
+        "anilistId": 118586,
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Magic",
+          "Travel",
+          "Elf",
+          "Philosophy",
+          "Female Protagonist",
+          "Demons",
+          "Iyashikei",
+          "Medieval",
+          "Kuudere",
+          "Episodic",
+          "Spearplay",
+          "Heterosexual",
+          "Shounen",
+          "Fairy Tale",
+          "Food",
+          "Dungeon"
+        ],
+        "tags": [],
+        "tags_missing_en": [
+          "Magic",
+          "Travel",
+          "Elf",
+          "Philosophy",
+          "Female Protagonist",
+          "Demons",
+          "Iyashikei",
+          "Medieval",
+          "Kuudere",
+          "Episodic",
+          "Spearplay",
+          "Heterosexual",
+          "Shounen",
+          "Fairy Tale",
+          "Food",
+          "Dungeon"
         ],
         "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
       }
