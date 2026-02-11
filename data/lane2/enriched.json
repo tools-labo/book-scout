@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-11T12:59:21.775Z",
-  "total": 13,
-  "enriched": 13,
+  "updatedAt": "2026-02-11T13:55:18.353Z",
+  "total": 16,
+  "enriched": 16,
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -1143,6 +1143,247 @@
           "Torture",
           "Crossdressing",
           "Nudity"
+        ],
+        "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
+      }
+    },
+    {
+      "seriesKey": "終末のワルキューレ",
+      "author": "",
+      "vol1": {
+        "title": "終末のワルキューレ禁伝 神々の黙示録 (1) (ゼノンコミックス)",
+        "titleLane2": "終末のワルキューレ禁伝 神々の黙示録 (1) (ゼノンコミックス)",
+        "isbn13": "9784867206997",
+        "asin": "4867206997",
+        "image": "https://m.media-amazon.com/images/I/51JzuyGnjgL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4867206997",
+        "publisher": {
+          "brand": "コアミックス",
+          "manufacturer": "コアミックス"
+        },
+        "contributors": [
+          {
+            "name": "終末のワルキューレ",
+            "role": "著",
+            "roleType": "author"
+          },
+          {
+            "name": "成瀬乙彦",
+            "role": "著",
+            "roleType": "author"
+          },
+          {
+            "name": "岡本一兵",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2024-11-20T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": "月刊コミックゼノン",
+        "wikiTitle": "終末のワルキューレ",
+        "anilistId": 107098,
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Mythology",
+          "Gods",
+          "Death Game",
+          "Survival",
+          "Historical",
+          "Super Power",
+          "Seinen",
+          "Female Protagonist",
+          "Primarily Adult Cast",
+          "Cultivation",
+          "Gore",
+          "Samurai",
+          "Wrestling",
+          "Assassins",
+          "Cheerleading"
+        ],
+        "tags": [
+          "超能力",
+          "女性主人公"
+        ],
+        "tags_missing_en": [
+          "Mythology",
+          "Gods",
+          "Death Game",
+          "Survival",
+          "Historical",
+          "Seinen",
+          "Primarily Adult Cast",
+          "Cultivation",
+          "Gore",
+          "Samurai",
+          "Wrestling",
+          "Assassins",
+          "Cheerleading"
+        ],
+        "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
+      }
+    },
+    {
+      "seriesKey": "アオハライド",
+      "author": "",
+      "vol1": {
+        "title": "アオハライド 1",
+        "titleLane2": "アオハライド 1",
+        "isbn13": "9784086016025",
+        "asin": "4086016028",
+        "image": "https://m.media-amazon.com/images/I/51xtR-tgd8L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4086016028",
+        "publisher": {
+          "brand": "集英社",
+          "manufacturer": "集英社"
+        },
+        "contributors": [
+          {
+            "name": "阿部 暁子",
+            "role": "著",
+            "roleType": "author"
+          },
+          {
+            "name": "咲坂 伊緒",
+            "role": "イラスト",
+            "roleType": "illustrator"
+          },
+          {
+            "name": "咲坂 伊緒",
+            "role": "原著",
+            "roleType": "original_author"
+          }
+        ],
+        "releaseDate": "2011-12-27T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": "別冊マーガレット",
+        "wikiTitle": "アオハライド",
+        "anilistId": 54294,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "School",
+          "Love Triangle",
+          "Heterosexual",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "Unrequited Love",
+          "Tomboy",
+          "Coming of Age",
+          "Kuudere",
+          "Tsundere"
+        ],
+        "tags": [
+          "女性主人公",
+          "10代中心",
+          "クーデレ"
+        ],
+        "tags_missing_en": [
+          "Shoujo",
+          "School",
+          "Love Triangle",
+          "Unrequited Love",
+          "Tomboy",
+          "Coming of Age",
+          "Tsundere"
+        ],
+        "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "author": "",
+      "vol1": {
+        "title": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+        "titleLane2": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+        "isbn13": "9784065127445",
+        "asin": "4065127440",
+        "image": "https://m.media-amazon.com/images/I/51ZA6L9TuwL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065127440",
+        "publisher": {
+          "brand": "講談社",
+          "manufacturer": "講談社"
+        },
+        "contributors": [
+          {
+            "name": "伏瀬",
+            "role": "原著",
+            "roleType": "original_author"
+          },
+          {
+            "name": "柴",
+            "role": "著",
+            "roleType": "author"
+          },
+          {
+            "name": "みっつばー",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2018-09-28T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": "月刊少年シリウス",
+        "wikiTitle": "転生したらスライムだった件",
+        "anilistId": 86399,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Isekai",
+          "Kingdom Management",
+          "Politics",
+          "Medieval",
+          "War",
+          "Magic",
+          "Shounen",
+          "Economics",
+          "Monster Girl",
+          "Primarily Adult Cast",
+          "Male Protagonist",
+          "Demons",
+          "Dragons",
+          "Goblin",
+          "Agender",
+          "Rural",
+          "Yuri"
+        ],
+        "tags": [
+          "中世",
+          "魔法",
+          "少年",
+          "男性主人公",
+          "悪魔",
+          "田舎"
+        ],
+        "tags_missing_en": [
+          "Isekai",
+          "Kingdom Management",
+          "Politics",
+          "War",
+          "Economics",
+          "Monster Girl",
+          "Primarily Adult Cast",
+          "Dragons",
+          "Goblin",
+          "Agender",
+          "Yuri"
         ],
         "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
       }

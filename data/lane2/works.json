@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-02-11T12:59:21.775Z",
-  "total": 13,
+  "updatedAt": "2026-02-11T13:55:18.353Z",
+  "total": 16,
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -461,6 +461,98 @@
         "titleLane2": "キングダム 完全版 1 (愛蔵版コミックス)",
         "anilistId": 46765,
         "wikiTitle": "キングダム",
+        "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
+      }
+    },
+    {
+      "seriesKey": "終末のワルキューレ",
+      "title": "終末のワルキューレ禁伝 神々の黙示録 (1) (ゼノンコミックス)",
+      "asin": "4867206997",
+      "amazonDp": "https://www.amazon.co.jp/dp/4867206997",
+      "image": "https://m.media-amazon.com/images/I/51JzuyGnjgL._SL500_.jpg",
+      "releaseDate": "2024-11-20T00:00:01Z",
+      "publisher": {
+        "brand": "コアミックス",
+        "manufacturer": "コアミックス"
+      },
+      "magazine": "月刊コミックゼノン",
+      "genres": [
+        "Action",
+        "Drama",
+        "Fantasy",
+        "Supernatural"
+      ],
+      "tags": [
+        "超能力",
+        "女性主人公"
+      ],
+      "meta": {
+        "titleLane2": "終末のワルキューレ禁伝 神々の黙示録 (1) (ゼノンコミックス)",
+        "anilistId": 107098,
+        "wikiTitle": "終末のワルキューレ",
+        "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
+      }
+    },
+    {
+      "seriesKey": "アオハライド",
+      "title": "アオハライド 1",
+      "asin": "4086016028",
+      "amazonDp": "https://www.amazon.co.jp/dp/4086016028",
+      "image": "https://m.media-amazon.com/images/I/51xtR-tgd8L._SL500_.jpg",
+      "releaseDate": "2011-12-27T00:00:01Z",
+      "publisher": {
+        "brand": "集英社",
+        "manufacturer": "集英社"
+      },
+      "magazine": "別冊マーガレット",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "女性主人公",
+        "10代中心",
+        "クーデレ"
+      ],
+      "meta": {
+        "titleLane2": "アオハライド 1",
+        "anilistId": 54294,
+        "wikiTitle": "アオハライド",
+        "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "title": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+      "asin": "4065127440",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065127440",
+      "image": "https://m.media-amazon.com/images/I/51ZA6L9TuwL._SL500_.jpg",
+      "releaseDate": "2018-09-28T00:00:01Z",
+      "publisher": {
+        "brand": "講談社",
+        "manufacturer": "講談社"
+      },
+      "magazine": "月刊少年シリウス",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "中世",
+        "魔法",
+        "少年",
+        "男性主人公",
+        "悪魔",
+        "田舎"
+      ],
+      "meta": {
+        "titleLane2": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+        "anilistId": 86399,
+        "wikiTitle": "転生したらスライムだった件",
         "source": "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)"
       }
     }

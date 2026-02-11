@@ -1711,5 +1711,293 @@
       "cover": "",
       "author": "あいだいろ"
     }
+  },
+  "9784867206997": {
+    "onix": {
+      "CollateralDetail": {},
+      "RecordReference": "9784867206997",
+      "NotificationType": "03",
+      "ProductIdentifier": {
+        "ProductIDType": "15",
+        "IDValue": "9784867206997"
+      },
+      "DescriptiveDetail": {
+        "TitleDetail": {
+          "TitleType": "01",
+          "TitleElement": {
+            "TitleElementLevel": "01",
+            "TitleText": {
+              "collationkey": "シュウマツノワルキューレキンデン カミガミノアポカリプス",
+              "content": "終末のワルキューレ禁伝 神々の黙示録"
+            }
+          }
+        },
+        "Contributor": [
+          {
+            "SequenceNumber": "1",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "終末のワルキューレ",
+              "collationkey": "シュウマツノワルキューレ"
+            }
+          },
+          {
+            "SequenceNumber": "2",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "成瀬乙彦",
+              "collationkey": "ナルセオツヒコ"
+            }
+          },
+          {
+            "SequenceNumber": "3",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "岡本一兵",
+              "collationkey": "オカモトイッペイ"
+            }
+          }
+        ],
+        "Collection": {
+          "CollectionType": "10",
+          "TitleDetail": {
+            "TitleType": "01",
+            "TitleElement": [
+              {
+                "TitleElementLevel": "02",
+                "PartNumber": "",
+                "TitleText": {
+                  "collationkey": "",
+                  "content": "ゼノンコミックス"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "PublishingDetail": {
+        "Imprint": {
+          "ImprintName": "コアミックス"
+        },
+        "PublishingDate": []
+      },
+      "ProductSupply": {
+        "SupplyDetail": {
+          "ProductAvailability": "99",
+          "Price": [
+            {
+              "PriceType": "01",
+              "CurrencyCode": "JPY",
+              "PriceAmount": "690"
+            }
+          ]
+        }
+      }
+    },
+    "hanmoto": {
+      "datemodified": "2024-10-24 10:18:58",
+      "datecreated": "2024-07-24 16:09:34",
+      "datekoukai": "2024-07-24"
+    },
+    "summary": {
+      "isbn": "9784867206997",
+      "title": "終末のワルキューレ禁伝 神々の黙示録",
+      "volume": "",
+      "series": "ゼノンコミックス",
+      "publisher": "コアミックス",
+      "pubdate": "",
+      "cover": "",
+      "author": "終末のワルキューレ 成瀬乙彦 岡本一兵"
+    }
+  },
+  "9784086016025": {
+    "onix": {
+      "CollateralDetail": {},
+      "RecordReference": "9784086016025",
+      "NotificationType": "03",
+      "ProductIdentifier": {
+        "ProductIDType": "15",
+        "IDValue": "9784086016025"
+      },
+      "DescriptiveDetail": {
+        "TitleDetail": {
+          "TitleType": "01",
+          "TitleElement": {
+            "TitleElementLevel": "01",
+            "TitleText": {
+              "collationkey": "アオハライド",
+              "content": "アオハライド 1"
+            }
+          }
+        },
+        "Contributor": [
+          {
+            "SequenceNumber": "1",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "阿部, 暁子",
+              "collationkey": "アベ, アキコ"
+            }
+          },
+          {
+            "SequenceNumber": "2",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "咲坂, 伊緒",
+              "collationkey": "サキサカ, イオ"
+            }
+          }
+        ],
+        "Collection": {
+          "CollectionType": "10",
+          "TitleDetail": {
+            "TitleType": "01",
+            "TitleElement": [
+              {
+                "TitleElementLevel": "02",
+                "PartNumber": "あ19-8",
+                "TitleText": {
+                  "collationkey": "",
+                  "content": "コバルト文庫 = COBALT-SERIES"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "PublishingDetail": {
+        "Imprint": {
+          "ImprintName": "集英社"
+        },
+        "PublishingDate": [
+          {
+            "PublishingDateRole": "11",
+            "Date": "201201"
+          }
+        ]
+      },
+      "ProductSupply": {
+        "SupplyDetail": {
+          "ProductAvailability": "99",
+          "Price": [
+            {
+              "PriceType": "01",
+              "CurrencyCode": "JPY",
+              "PriceAmount": "476"
+            }
+          ]
+        }
+      }
+    },
+    "hanmoto": {
+      "datecreated": "2016-01-23 01:06:18",
+      "dateshuppan": "2012-01",
+      "datemodified": "2016-01-23 01:06:18"
+    },
+    "summary": {
+      "isbn": "9784086016025",
+      "title": "アオハライド 1",
+      "volume": "あ19-8",
+      "series": "コバルト文庫 = COBALT-SERIES",
+      "publisher": "集英社",
+      "pubdate": "201201",
+      "cover": "",
+      "author": "阿部,暁子 咲坂,伊緒"
+    }
+  },
+  "9784065127445": {
+    "onix": {
+      "CollateralDetail": {},
+      "RecordReference": "9784065127445",
+      "NotificationType": "03",
+      "ProductIdentifier": {
+        "ProductIDType": "15",
+        "IDValue": "9784065127445"
+      },
+      "DescriptiveDetail": {
+        "TitleDetail": {
+          "TitleType": "01",
+          "TitleElement": {
+            "TitleElementLevel": "01",
+            "TitleText": {
+              "collationkey": "テンスラ ニッキ",
+              "content": "転スラ日記 = TENSURA diary : 転生したらスライムだった件. 1"
+            }
+          }
+        },
+        "Contributor": [
+          {
+            "SequenceNumber": "1",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "伏瀬, 1975-",
+              "collationkey": "フセ, 1975-"
+            }
+          },
+          {
+            "SequenceNumber": "2",
+            "ContributorRole": [],
+            "PersonName": {
+              "content": "柴",
+              "collationkey": "シバ"
+            }
+          }
+        ],
+        "Collection": {
+          "CollectionType": "10",
+          "TitleDetail": {
+            "TitleType": "01",
+            "TitleElement": [
+              {
+                "TitleElementLevel": "02",
+                "PartNumber": "",
+                "TitleText": {
+                  "collationkey": "",
+                  "content": "シリウスKC"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "PublishingDetail": {
+        "Imprint": {
+          "ImprintName": "講談社"
+        },
+        "PublishingDate": [
+          {
+            "PublishingDateRole": "11",
+            "Date": "201809"
+          }
+        ]
+      },
+      "ProductSupply": {
+        "SupplyDetail": {
+          "ProductAvailability": "99",
+          "Price": [
+            {
+              "PriceType": "01",
+              "CurrencyCode": "JPY",
+              "PriceAmount": "630"
+            }
+          ]
+        }
+      }
+    },
+    "hanmoto": {
+      "datemodified": "2025-09-03 11:19:24",
+      "datecreated": "2018-09-10 10:52:12",
+      "datekoukai": "2018-09-10"
+    },
+    "summary": {
+      "isbn": "9784065127445",
+      "title": "転スラ日記 = TENSURA diary : 転生したらスライムだった件. 1",
+      "volume": "",
+      "series": "シリウスKC",
+      "publisher": "講談社",
+      "pubdate": "201809",
+      "cover": "",
+      "author": "伏瀬,1975- 柴"
+    }
   }
 }

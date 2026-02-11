@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-02-11T12:58:08.803Z",
-  "total": 300,
-  "confirmed": 13,
-  "todo": 26,
-  "review": 10,
+  "updatedAt": "2026-02-11T13:53:45.055Z",
+  "total": 400,
+  "confirmed": 16,
+  "todo": 40,
+  "review": 13,
   "processedThisRun": 20,
   "buildLimit": 20,
   "items": [
@@ -160,6 +160,42 @@
         "asin": "4087927865",
         "image": "https://m.media-amazon.com/images/I/51qP1djrNhL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4087927865",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "終末のワルキューレ",
+      "author": null,
+      "vol1": {
+        "title": "終末のワルキューレ禁伝 神々の黙示録 (1) (ゼノンコミックス)",
+        "isbn13": "9784867206997",
+        "asin": "4867206997",
+        "image": "https://m.media-amazon.com/images/I/51JzuyGnjgL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4867206997",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "アオハライド",
+      "author": null,
+      "vol1": {
+        "title": "アオハライド 1",
+        "isbn13": "9784086016025",
+        "asin": "4086016028",
+        "image": "https://m.media-amazon.com/images/I/51xtR-tgd8L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4086016028",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "author": null,
+      "vol1": {
+        "title": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+        "isbn13": "9784065127445",
+        "asin": "4065127440",
+        "image": "https://m.media-amazon.com/images/I/51ZA6L9TuwL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065127440",
         "source": "paapi_search(mainline_guard)"
       }
     }
