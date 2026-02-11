@@ -1,10 +1,13 @@
 // public/app.js
-async function loadJson(p) {
-  const r = await fetch(p, { cache: "no-store" });
+function qs() { return new URLSearchParams(location.search); }
+
+async function loadJson(url, { bust = false } = {}) {
+  // bust=true のときだけ強制的にキャッシュを無視（更新確認用）
+  const r = await fetch(url, { cache: bust ? "no-store" : "default" });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return await r.json();
 }
-function qs() { return new URLSearchParams(location.search); }
+
 function esc(s) {
   return String(s ?? "")
     .replaceAll("&", "&amp;")
@@ -231,8 +234,13 @@ function renderWork(data) {
 async function run() {
   try {
     const v = qs().get("v");
-    const url = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
-    const data = await loadJson(url);
+    const url = v
+      ? `./data/lane2/works.json?v=${encodeURIComponent(v)}`
+      : "./data/lane2/works.json";
+
+    // v があるときだけ「強制更新」扱い
+    const data = await loadJson(url, { bust: !!v });
+
     renderList(data);
     renderWork(data);
   } catch (e) {
