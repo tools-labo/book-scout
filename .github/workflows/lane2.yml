@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: lane2-vol1
-  cancel-in-progress: true
+  cancel-in-progress: false  # 実行中を殺さない（schedule/手動の衝突対策）
 
 jobs:
   lane2:
@@ -33,6 +33,10 @@ jobs:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+          # 1回で処理する上限（build_lane2.mjs 側で参照してスキップ/積み上げにする想定）
+          LANE2_BUILD_LIMIT: "20"
+          # seedgen を組み込んでるなら、作るseed数（使ってなければ無視される）
+          LANE2_SEED_LIMIT: "100"
         run: |
           set -euo pipefail
           npm run lane2
