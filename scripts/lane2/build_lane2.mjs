@@ -12,6 +12,9 @@ const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
 const AMZ_PARTNER_TAG = process.env.AMZ_PARTNER_TAG || "";
 
+// ★今回の処理上限（積み上げ運用の肝）
+const BUILD_LIMIT = Math.max(1, Math.min(200, parseInt(process.env.LANE2_BUILD_LIMIT || "20", 10) || 20));
+
 function nowIso() {
   return new Date().toISOString();
 }
@@ -206,14 +209,7 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
     const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
     const payloadHash = awsHash(body);
 
-    const canonicalRequest = [
-      method,
-      canonicalUri,
-      canonicalQuerystring,
-      canonicalHeaders,
-      signedHeaders,
-      payloadHash,
-    ].join("\n");
+    const canonicalRequest = [method, canonicalUri, canonicalQuerystring, canonicalHeaders, signedHeaders, payloadHash].join("\n");
     const algorithm = "AWS4-HMAC-SHA256";
     const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
     const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
@@ -222,10 +218,7 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
     const kRegion = awsHmac(kDate, region);
     const kService = awsHmac(kRegion, service);
     const kSigning = awsHmac(kService, "aws4_request");
-    const signature = crypto
-      .createHmac("sha256", kSigning)
-      .update(stringToSign, "utf8")
-      .digest("hex");
+    const signature = crypto.createHmac("sha256", kSigning).update(stringToSign, "utf8").digest("hex");
 
     const authorizationHeader =
       `${algorithm} Credential=${AMZ_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
@@ -247,7 +240,6 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
 
     if (r.ok) return { ok: true, json: JSON.parse(text) };
 
-    // 429 は待ってリトライ
     if (r.status === 429 && attempt < 4) {
       await sleep(wait);
       wait *= 2;
@@ -346,7 +338,7 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
     }
 
     const best = pickBest(cands, seriesKey);
-    results.push({ query: q, ok: true, returned: items.length, best, candidatesAll: cands });
+    results.push({ query: q, ok: true, returned: items.length, best });
     await sleep(900);
   }
 
@@ -395,15 +387,7 @@ async function resolveBySeedHint({ seedHint, seriesKey }) {
         debug.title = title;
         debug.isbn13 = isbn13;
         debug.asin = seedHint.vol1Asin;
-        return {
-          ok: true,
-          item,
-          title,
-          isbn13,
-          asin: seedHint.vol1Asin,
-          image: extractImage(item) || null,
-          debug,
-        };
+        return { ok: true, title, isbn13, asin: seedHint.vol1Asin, image: extractImage(item) || null, debug };
       }
     } else if (pa?.skipped) {
       return { ok: false, reason: `paapi_skipped(${pa.reason})`, debug };
@@ -423,14 +407,13 @@ async function resolveBySeedHint({ seedHint, seriesKey }) {
         debug.title = title;
         debug.isbn13 = isbn13;
         debug.asin = asin;
-        return { ok: true, item, title, isbn13, asin, image: extractImage(item) || null, debug };
+        return { ok: true, title, isbn13, asin, image: extractImage(item) || null, debug };
       }
     } else if (pa?.skipped) {
       return { ok: false, reason: `paapi_skipped(${pa.reason})`, debug };
     }
   }
 
-  // ISBN13 hint だけは SearchItems→ヒットASIN→GetItems（ただしリトライ付き）
   if (seedHint.vol1Isbn13) {
     const s = await paapiSearchItems({ keywords: seedHint.vol1Isbn13 });
     debug.paapiSearch13 = s;
@@ -456,7 +439,7 @@ async function resolveBySeedHint({ seedHint, seriesKey }) {
             debug.title = title;
             debug.isbn13 = isbn13;
             debug.asin = asin;
-            return { ok: true, item, title, isbn13, asin, image: extractImage(item) || null, debug };
+            return { ok: true, title, isbn13, asin, image: extractImage(item) || null, debug };
           }
         }
       }
@@ -469,17 +452,49 @@ async function resolveBySeedHint({ seedHint, seriesKey }) {
 }
 
 /* -----------------------
+ * merge helpers（積み上げ）
+ * ----------------------- */
+function mapBySeriesKey(items) {
+  const m = new Map();
+  for (const x of Array.isArray(items) ? items : []) {
+    const k = norm(x?.seriesKey);
+    if (!k) continue;
+    if (!m.has(k)) m.set(k, x); // 先勝ち
+  }
+  return m;
+}
+
+/* -----------------------
  * main
  * ----------------------- */
 async function main() {
   const seeds = await loadJson(SEEDS_PATH, { items: [] });
-  const seedItems = Array.isArray(seeds?.items) ? seeds.items : [];
+  const seedItemsAll = Array.isArray(seeds?.items) ? seeds.items : [];
 
-  const confirmed = [];
-  const todo = [];
+  // 既存の積み上げを読む
+  const prevSeries = await loadJson(OUT_SERIES, { items: [] });
+  const prevTodo = await loadJson(OUT_TODO, { items: [] });
+
+  const prevConfirmedMap = mapBySeriesKey(prevSeries?.items);
+  const prevTodoMap = mapBySeriesKey(prevTodo?.items);
+
+  const known = new Set([...prevConfirmedMap.keys(), ...prevTodoMap.keys()]);
+
+  // 今回やる seeds（未処理だけ + 上限）
+  const pendingSeeds = [];
+  for (const s of seedItemsAll) {
+    const k = norm(s?.seriesKey);
+    if (!k) continue;
+    if (known.has(k)) continue;
+    pendingSeeds.push(s);
+    if (pendingSeeds.length >= BUILD_LIMIT) break;
+  }
+
+  const confirmedNew = [];
+  const todoNew = [];
   const debug = [];
 
-  for (const s of seedItems) {
+  for (const s of pendingSeeds) {
     const seriesKey = norm(s?.seriesKey);
     const author = norm(s?.author) || null;
     if (!seriesKey) continue;
@@ -507,7 +522,7 @@ async function main() {
             source: r.debug?.resolvedBy ? `seed_hint(${r.debug.resolvedBy})+mainline_guard` : "seed_hint+mainline_guard",
           },
         };
-        confirmed.push(out);
+        confirmedNew.push(out);
         one.path = "seed_hint";
         one.confirmed = out;
         debug.push(one);
@@ -523,7 +538,7 @@ async function main() {
     const b = paSearch?.best;
 
     if (!b?.asin) {
-      todo.push({
+      todoNew.push({
         seriesKey,
         author,
         reason: paSearch?.skipped ? `paapi_skipped(${paSearch.reason})` : "no_mainline_vol1_candidate",
@@ -534,7 +549,7 @@ async function main() {
       continue;
     }
 
-    // ★ここが肝：best に ISBN13 があれば GetItems せず確定（429回避）
+    // ★best に ISBN13 があれば GetItems せず確定（429回避）
     if (b.isbn13 && isMainlineVol1ByTitle(b.title || "", seriesKey)) {
       const out = {
         seriesKey,
@@ -548,7 +563,7 @@ async function main() {
           source: "paapi_search(mainline_guard)",
         },
       };
-      confirmed.push(out);
+      confirmedNew.push(out);
       one.path = "paapi_search_only";
       one.confirmed = out;
       debug.push(one);
@@ -561,7 +576,7 @@ async function main() {
     one.paapiGet = get;
 
     if (!get?.ok) {
-      todo.push({
+      todoNew.push({
         seriesKey,
         author,
         reason: get?.skipped ? `paapi_skipped(${get.reason})` : `paapi_getitems_error(${get?.status ?? "unknown"})`,
@@ -577,7 +592,7 @@ async function main() {
     const isbn13 = extractIsbn13(item) || b.isbn13 || null;
 
     if (!isMainlineVol1ByTitle(title, seriesKey) || !isbn13) {
-      todo.push({
+      todoNew.push({
         seriesKey,
         author,
         reason: !isbn13 ? "paapi_getitems_no_ean" : "final_guard_failed",
@@ -600,7 +615,7 @@ async function main() {
         source: "paapi_getitems(mainline_guard)",
       },
     };
-    confirmed.push(out);
+    confirmedNew.push(out);
     one.path = "paapi_getitems";
     one.confirmed = out;
     debug.push(one);
@@ -608,24 +623,48 @@ async function main() {
     await sleep(600);
   }
 
+  // ---- 積み上げマージ（先勝ち：既存を壊さない）
+  for (const x of confirmedNew) {
+    const k = norm(x?.seriesKey);
+    if (!k) continue;
+    if (!prevConfirmedMap.has(k)) prevConfirmedMap.set(k, x);
+  }
+  for (const x of todoNew) {
+    const k = norm(x?.seriesKey);
+    if (!k) continue;
+    if (!prevTodoMap.has(k)) prevTodoMap.set(k, x);
+  }
+
+  const confirmedAll = Array.from(prevConfirmedMap.values());
+  const todoAll = Array.from(prevTodoMap.values());
+
   await saveJson(OUT_SERIES, {
     updatedAt: nowIso(),
-    total: seedItems.length,
-    confirmed: confirmed.length,
-    todo: todo.length,
-    items: confirmed,
+    total: seedItemsAll.length,
+    confirmed: confirmedAll.length,
+    todo: todoAll.length,
+    processedThisRun: pendingSeeds.length,
+    buildLimit: BUILD_LIMIT,
+    items: confirmedAll,
   });
+
   await saveJson(OUT_TODO, {
     updatedAt: nowIso(),
-    total: todo.length,
-    items: todo,
+    total: todoAll.length,
+    addedThisRun: todoNew.length,
+    items: todoAll,
   });
+
+  // debug は毎回上書き（肥大化防止）
   await saveJson(OUT_DEBUG, {
     updatedAt: nowIso(),
+    processedThisRun: pendingSeeds.length,
     items: debug,
   });
 
-  console.log(`[lane2] seeds=${seedItems.length} confirmed=${confirmed.length} todo=${todo.length}`);
+  console.log(
+    `[lane2] seeds=${seedItemsAll.length} pending=${pendingSeeds.length} (+confirmed ${confirmedNew.length}, +todo ${todoNew.length}) total_confirmed=${confirmedAll.length} total_todo=${todoAll.length}`
+  );
 }
 
 main().catch((e) => {
