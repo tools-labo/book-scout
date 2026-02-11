@@ -5,9 +5,6 @@ import path from "node:path";
 const IN_ENRICHED = "data/lane2/enriched.json";
 const OUT_WORKS = "data/lane2/works.json";
 
-function nowIso() {
-  return new Date().toISOString();
-}
 async function loadJson(p, fallback) {
   try {
     return JSON.parse(await fs.readFile(p, "utf8"));
@@ -19,79 +16,80 @@ async function saveJson(p, obj) {
   await fs.mkdir(path.dirname(p), { recursive: true });
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
-
-function norm(s) {
-  return String(s ?? "").trim();
+function norm(s) { return String(s ?? "").trim(); }
+function uniq(arr) {
+  const out = [];
+  const seen = new Set();
+  for (const x of arr || []) {
+    const s = norm(x);
+    if (!s) continue;
+    if (seen.has(s)) continue;
+    seen.add(s);
+    out.push(s);
+  }
+  return out;
 }
 
-// "2018-11-16T00:00:01Z" -> "2018-11-16"
-function toDateOnly(iso) {
-  const s = norm(iso);
-  const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
-  return m ? m[1] : null;
-}
-
-function clampArray(arr, max) {
-  if (!Array.isArray(arr)) return [];
-  return arr.slice(0, max).filter((x) => x != null && String(x).trim());
+// null/空 を落としてスリムに
+function compact(obj) {
+  const out = {};
+  for (const [k, v] of Object.entries(obj || {})) {
+    if (v == null) continue;
+    if (typeof v === "string" && !v.trim()) continue;
+    if (Array.isArray(v) && v.length === 0) continue;
+    if (typeof v === "object" && !Array.isArray(v)) {
+      const inner = compact(v);
+      if (Object.keys(inner).length === 0) continue;
+      out[k] = inner;
+      continue;
+    }
+    out[k] = v;
+  }
+  return out;
 }
 
 async function main() {
-  const enriched = await loadJson(IN_ENRICHED, { items: [] });
-  const items = Array.isArray(enriched?.items) ? enriched.items : [];
+  const src = await loadJson(IN_ENRICHED, { items: [] });
+  const items = Array.isArray(src?.items) ? src.items : [];
 
-  const works = items.map((x) => {
-    const seriesKey = norm(x?.seriesKey);
-    const author = norm(x?.author);
-
+  const outItems = items.map((x) => {
     const v = x?.vol1 || {};
-    const title = norm(v?.title) || seriesKey || null;
-
-    const pub = v?.publisher || null;
-    const publisherText =
-      pub?.brand || pub?.manufacturer || null;
-
-    return {
-      seriesKey,
-      author: author || null,
-
-      title,
-      asin: v?.asin || null,
-
-      amazonDp: v?.amazonDp || null,
-      image: v?.image || null,
-
-      releaseDate: toDateOnly(v?.releaseDate),
-      publisher: publisherText,
-
-      // ★連載誌
-      magazine: v?.magazine || null,
-
-      // ★日本語優先の“あらすじ”
-      synopsis: v?.synopsis || null,
-      synopsisSource: v?.synopsisSource || null,
-
-      genres: Array.isArray(v?.genres) ? v.genres : [],
-      tags: clampArray(v?.tags, 20),
-
-      meta: {
-        titleLane2: v?.titleLane2 || null,
-        anilistId: v?.anilistId || null,
-        wikiTitle: v?.wikiTitle || null,
-        source: v?.source || null,
-      },
+    const meta = {
+      titleLane2: v?.titleLane2 ?? null,
+      anilistId: v?.anilistId ?? null,
+      wikiTitle: v?.wikiTitle ?? null,
+      source: v?.source ?? null,
     };
+
+    // tags は多いとUIもデータも重いので上限（詳細は全部表示したいなら上限外してOK）
+    const tags = uniq(v?.tags).slice(0, 24);
+
+    return compact({
+      seriesKey: x?.seriesKey ?? null,
+      author: x?.author ?? null,
+      title: v?.title ?? null,
+      asin: v?.asin ?? null,
+      amazonDp: v?.amazonDp ?? null,
+      image: v?.image ?? null,
+      releaseDate: v?.releaseDate ?? null,
+      publisher: v?.publisher ?? null,
+      magazine: v?.magazine ?? null,
+      synopsis: v?.synopsis ?? null,
+      synopsisSource: v?.synopsisSource ?? null,
+      genres: uniq(v?.genres),
+      tags,
+      meta,
+    });
   });
 
-  works.sort((a, b) => String(a.seriesKey).localeCompare(String(b.seriesKey), "ja"));
+  const out = {
+    updatedAt: src?.updatedAt ?? new Date().toISOString(),
+    total: outItems.length,
+    items: outItems,
+  };
 
-  await saveJson(OUT_WORKS, {
-    updatedAt: nowIso(),
-    total: works.length,
-    items: works,
-  });
-
-  console.log(`[lane2:format] total=${works.length} -> ${OUT_WORKS}`);
+  await saveJson(OUT_WORKS, out);
+  console.log(`[lane2:format] total=${outItems.length} -> ${OUT_WORKS}`);
 }
 
 main().catch((e) => {
