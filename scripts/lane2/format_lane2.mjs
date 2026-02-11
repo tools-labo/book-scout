@@ -1,4 +1,5 @@
 // scripts/lane2/format_lane2.mjs
+// ★変更なし（enriched は confirmed だけから作られる前提。review は build 側で隔離され、ここには来ない）
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -61,7 +62,6 @@ async function main() {
       source: v?.source ?? null,
     };
 
-    // tags は多いとUIもデータも重いので上限（詳細は全部表示したいなら上限外してOK）
     const tags = uniq(v?.tags).slice(0, 24);
 
     return compact({
