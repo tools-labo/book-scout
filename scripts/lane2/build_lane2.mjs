@@ -57,7 +57,9 @@ function titleHasSeries(title, seriesKey) {
 function isVol1Like(title) {
   const t = toHalfWidth(norm(title));
   if (/\(\s*1\s*\)/.test(t)) return true;
+  if (/（\s*1\s*）/.test(t)) return true;
   if (/第\s*1\s*巻/.test(t)) return true;
+  if (/1\s*巻/.test(t)) return true;
   return /\b1\b/.test(t);
 }
 
@@ -91,8 +93,10 @@ function isDerivedEdition(title) {
 }
 
 /**
- * ★シリーズ名の直後に「別作品っぽいサブタイトル」が付くのを検知して review に送る
- * 例：東京卍リベンジャーズ ~場地圭介からの手紙~(1)
+ * ★「シリーズ名の後に余計な文字列が入ってから巻表記が来る」→ reviewへ
+ * - 極主夫道 1巻: バンチコミックス   => OK（余計な文字なしで巻表記）
+ * - ホムンクルスの詩 １話-（１）     => review（シリーズ名の後に "の詩 １話-" が入る）
+ * - 東京卍リベンジャーズ ~場地…~(1)  => review
  */
 function detectSuspiciousSubtitle({ title, seriesKey }) {
   const t = toHalfWidth(norm(title));
@@ -102,35 +106,52 @@ function detectSuspiciousSubtitle({ title, seriesKey }) {
   const idx = t.indexOf(s);
   if (idx < 0) return { suspicious: false, reason: null };
 
-  // シリーズ名以降
-  let rest = t.slice(idx + s.length);
+  const after = t.slice(idx + s.length);
 
-  // よくある「巻表記」「括弧内レーベル」などを軽く落とす（雑でOK）
-  // ※ここは「弾く」ではなく「隔離」なので、過度に精密化しない
-  rest = rest
-    .replace(/\(\s*1\s*\)/g, " ")
-    .replace(/第\s*1\s*巻/g, " ")
-    .replace(/\b1\b/g, " ")
-    .replace(/\([^)]*\)/g, " ") // (少年マガジンKC) 等
-    .replace(/（[^）]*）/g, " ") // 全角括弧も
-    .replace(/\s+/g, " ")
-    .trim();
+  // 「巻表記」が最初に現れる位置を探す（ここより前に実文字があったら危険）
+  const volMarkers = [
+    /\(\s*1\s*\)/, /（\s*1\s*）/,
+    /第\s*1\s*巻/,
+    /1\s*巻/,
+    /\b1\b/,
+  ];
 
-  if (!rest) return { suspicious: false, reason: null };
-
-  // 強い区切り・明らかな別題
-  if (/[~～]/.test(rest)) return { suspicious: true, reason: "subtitle_tilde" };
-  if (/[：:]/.test(rest)) return { suspicious: true, reason: "subtitle_colon" };
-  if (/[「『【]/.test(rest)) return { suspicious: true, reason: "subtitle_quotes" };
-  if (/[-ー–—]/.test(rest)) return { suspicious: true, reason: "subtitle_dash" };
-
-  // よくある派生ワード（既存の derived に入ってない/弱いものも含める）
-  if (/(からの手紙|アンソロジー|公式アンソロジー|ノベル|小説版|特装版|限定版|キャラブック|設定資料|ガイド|ムック|ファンブック)/.test(rest)) {
-    return { suspicious: true, reason: "subtitle_keyword" };
+  let cut = after.length;
+  for (const re of volMarkers) {
+    const m = after.match(re);
+    if (!m || m.index == null) continue;
+    cut = Math.min(cut, m.index);
   }
 
-  // サブタイトルが長いほど別作品の可能性が上がる（雑な安全弁）
-  if (rest.length >= 10) return { suspicious: true, reason: "subtitle_long" };
+  // 巻表記が見つからないならここでは疑わない（別ルートで落ちる）
+  if (cut === after.length) return { suspicious: false, reason: null };
+
+  // 巻表記の前の部分
+  const beforeVol = after.slice(0, cut);
+
+  // 「許容するノイズ」（空白・記号・中点など）
+  const cleaned = beforeVol
+    .replace(/[\s　]/g, "")
+    .replace(/[・･\.\-ー–—:：~～]/g, "")
+    .replace(/[()（）【】『』「」]/g, "");
+
+  // ★ここが肝：実文字が残る＝シリーズ名直後に別題が混ざってる
+  if (cleaned.length > 0) {
+    // 理由の粗分類（デバッグ用）
+    if (/[~～]/.test(beforeVol)) return { suspicious: true, reason: "subtitle_tilde" };
+    if (/[：:]/.test(beforeVol)) return { suspicious: true, reason: "subtitle_colon" };
+    if (/[「『【]/.test(beforeVol)) return { suspicious: true, reason: "subtitle_quotes" };
+    if (/[-ー–—]/.test(beforeVol)) return { suspicious: true, reason: "subtitle_dash" };
+    if (beforeVol.length >= 8) return { suspicious: true, reason: "subtitle_long" };
+    return { suspicious: true, reason: "subtitle_text_before_vol" };
+  }
+
+  // 追加の「派生ワード」検知（巻表記後でも危険なやつ）
+  // ※ここは review 送りで、確定弾きはしない
+  const rest = after.slice(cut).replace(/\s+/g, " ");
+  if (/(からの手紙|アンソロジー|公式アンソロジー|特装版|限定版|キャラブック|設定資料|ガイド|ムック|ファンブック)/.test(rest)) {
+    return { suspicious: true, reason: "subtitle_keyword" };
+  }
 
   return { suspicious: false, reason: null };
 }
@@ -219,7 +240,7 @@ function awsHmac(key, data) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest();
 }
 function awsHash(data) {
-  return crypto.createHash("sha256").update(data, "utf8").digest("hex");
+  return crypto.createHash("sha256", data).digest("hex");
 }
 function amzDate() {
   const d = new Date();
@@ -253,12 +274,12 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
     const canonicalHeaders =
       `content-encoding:amz-1.0\ncontent-type:application/json; charset=utf-8\nhost:${host}\nx-amz-date:${xAmzDate}\nx-amz-target:${target}\n`;
     const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
-    const payloadHash = awsHash(body);
+    const payloadHash = crypto.createHash("sha256").update(body, "utf8").digest("hex");
 
     const canonicalRequest = [method, canonicalUri, canonicalQuerystring, canonicalHeaders, signedHeaders, payloadHash].join("\n");
     const algorithm = "AWS4-HMAC-SHA256";
     const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-    const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
+    const stringToSign = [algorithm, xAmzDate, credentialScope, crypto.createHash("sha256").update(canonicalRequest, "utf8").digest("hex")].join("\n");
 
     const kDate = awsHmac(`AWS4${AMZ_SECRET_KEY}`, dateStamp);
     const kRegion = awsHmac(kDate, region);
@@ -348,6 +369,7 @@ function extractImage(item) {
 
 /**
  * PA-API search（“本線1巻” だけ候補化）
+ * ★デバッグ用に「シリーズ名は含むが落ちた候補」を少し残す
  */
 async function paapiSearchMainlineVol1({ seriesKey }) {
   const tries = [
@@ -369,6 +391,7 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
 
     const items = res?.json?.SearchResult?.Items || [];
     const cands = [];
+    const rejected = [];
 
     for (const it of items) {
       const title = extractTitle(it);
@@ -376,15 +399,29 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
       const asin = it?.ASIN || null;
       const image = extractImage(it) || null;
 
+      // シリーズ名を含まないものは関係ないので無視
       if (!titleHasSeries(title, seriesKey)) continue;
-      if (!isMainlineVol1ByTitle(title, seriesKey)) continue;
+
+      // デバッグ用：落ちた理由を軽く残す（最大5件）
+      if (!isMainlineVol1ByTitle(title, seriesKey)) {
+        if (rejected.length < 5) {
+          const sub = detectSuspiciousSubtitle({ title, seriesKey });
+          rejected.push({
+            title,
+            asin,
+            isbn13,
+            why: isDerivedEdition(title) ? "derived" : sub.suspicious ? `suspicious(${sub.reason})` : "not_mainline_vol1",
+          });
+        }
+        continue;
+      }
 
       const score = scoreCandidate({ title, isbn13, seriesKey }) + (asin ? 5 : 0);
       cands.push({ source: "paapi_search", query: q, title, isbn13, asin, image, score });
     }
 
     const best = pickBest(cands, seriesKey);
-    results.push({ query: q, ok: true, returned: items.length, best });
+    results.push({ query: q, ok: true, returned: items.length, best, rejected });
     await sleep(900);
   }
 
@@ -558,7 +595,6 @@ async function main() {
       one.seedHintResult = r?.ok ? { ok: true, debug: r.debug } : { ok: false, reason: r.reason, debug: r.debug };
 
       if (r?.ok) {
-        // ★サブタイトル疑いが強ければ review へ
         const sub = detectSuspiciousSubtitle({ title: r.title, seriesKey });
         if (sub.suspicious) {
           const out = {
@@ -621,33 +657,29 @@ async function main() {
       continue;
     }
 
-    // ★サブタイトル疑いが強ければ review へ
-    {
-      const sub = detectSuspiciousSubtitle({ title: b.title || "", seriesKey });
-      if (sub.suspicious) {
-        const out = {
-          seriesKey,
-          author,
-          reason: `suspicious_subtitle(${sub.reason})`,
-          vol1: {
-            title: b.title,
-            isbn13: b.isbn13 || null,
-            asin: b.asin || null,
-            image: b.image || null,
-            amazonDp: dpPreferAsin({ asin: b.asin, isbn13: b.isbn13 || null }),
-            source: "paapi_search(mainline_guard)",
-          },
-        };
-        reviewNew.push(out);
-        one.path = "paapi_search_review";
-        one.review = out;
-        debug.push(one);
-        await sleep(600);
-        continue;
-      }
+    const sub0 = detectSuspiciousSubtitle({ title: b.title || "", seriesKey });
+    if (sub0.suspicious) {
+      const out = {
+        seriesKey,
+        author,
+        reason: `suspicious_subtitle(${sub0.reason})`,
+        vol1: {
+          title: b.title,
+          isbn13: b.isbn13 || null,
+          asin: b.asin || null,
+          image: b.image || null,
+          amazonDp: dpPreferAsin({ asin: b.asin, isbn13: b.isbn13 || null }),
+          source: "paapi_search(mainline_guard)",
+        },
+      };
+      reviewNew.push(out);
+      one.path = "paapi_search_review";
+      one.review = out;
+      debug.push(one);
+      await sleep(600);
+      continue;
     }
 
-    // ★best に ISBN13 があれば GetItems せず確定（429回避）
     if (b.isbn13 && isMainlineVol1ByTitle(b.title || "", seriesKey)) {
       const out = {
         seriesKey,
@@ -669,7 +701,6 @@ async function main() {
       continue;
     }
 
-    // 3) 不足時だけ GetItems
     const get = await paapiGetItems({ itemIds: [b.asin] });
     one.paapiGet = get;
 
@@ -689,30 +720,27 @@ async function main() {
     const title = extractTitle(item) || b.title || "";
     const isbn13 = extractIsbn13(item) || b.isbn13 || null;
 
-    // ★GetItems 後もサブタイトル疑いチェック（より確実なタイトルで判定）
-    {
-      const sub = detectSuspiciousSubtitle({ title, seriesKey });
-      if (sub.suspicious) {
-        const out = {
-          seriesKey,
-          author,
-          reason: `suspicious_subtitle(${sub.reason})`,
-          vol1: {
-            title,
-            isbn13: isbn13 || null,
-            asin: b.asin || null,
-            image: extractImage(item) || b.image || null,
-            amazonDp: dpPreferAsin({ asin: b.asin, isbn13: isbn13 || null }),
-            source: "paapi_getitems(mainline_guard)",
-          },
-        };
-        reviewNew.push(out);
-        one.path = "paapi_getitems_review";
-        one.review = out;
-        debug.push(one);
-        await sleep(600);
-        continue;
-      }
+    const sub1 = detectSuspiciousSubtitle({ title, seriesKey });
+    if (sub1.suspicious) {
+      const out = {
+        seriesKey,
+        author,
+        reason: `suspicious_subtitle(${sub1.reason})`,
+        vol1: {
+          title,
+          isbn13: isbn13 || null,
+          asin: b.asin || null,
+          image: extractImage(item) || b.image || null,
+          amazonDp: dpPreferAsin({ asin: b.asin, isbn13: isbn13 || null }),
+          source: "paapi_getitems(mainline_guard)",
+        },
+      };
+      reviewNew.push(out);
+      one.path = "paapi_getitems_review";
+      one.review = out;
+      debug.push(one);
+      await sleep(600);
+      continue;
     }
 
     if (!isMainlineVol1ByTitle(title, seriesKey) || !isbn13) {
@@ -793,7 +821,6 @@ async function main() {
     items: reviewAll,
   });
 
-  // debug は毎回上書き（肥大化防止）
   await saveJson(OUT_DEBUG, {
     updatedAt: nowIso(),
     processedThisRun: pendingSeeds.length,
