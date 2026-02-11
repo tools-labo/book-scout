@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T03:27:59.611Z",
+  "updatedAt": "2026-02-11T03:54:04.607Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,7 +48,20 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
           "cached": true
@@ -72,7 +85,10 @@
           "asin": "4065134005",
           "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
-          "publisher": "講談社",
+          "publisher": {
+            "brand": "講談社",
+            "manufacturer": "講談社"
+          },
           "contributors": [
             {
               "name": "金城 宗幸",
@@ -87,7 +103,7 @@
           ],
           "releaseDate": "2018-11-16T00:00:01Z",
           "synopsis": "あらすじ[編集]\n日本代表が、サッカーW杯を2010年大会以来8年ぶりにベスト16で終えた2018年。日本フットボール連合は日本をW杯優勝に導くストライカーを養成すべく、ユース年代の高校生FW300人を対象とした‘‘青い監獄’’計画（ブルーロックプロジェクト）を立ち上げ、ブルーロックと呼ばれる施設を建設する。失格者は日本代表入りの資格を永久に失うという条件の中、無名の高校生プレイヤーである潔世一は世界一のストライカーになるべく、計画の全権をもつ絵心甚八が課す試験に挑む。\n埼玉県高校サッカー選手権大会決勝戦、ボールは一難高校2年FWの潔世一に渡り、ゴールを狙う。潔はゴール前で味方にパスを出したがゴールは外れ、相手チームの吉良涼介にゴールを決められ敗北。その夜、全国を逃したことを後悔する潔のもとに日本フットボール連合から強化指定選手の通達が届く。",
-          "synopsisSource": "wiki_section",
+          "synopsisSource": "wiki",
           "magazine": "週刊少年マガジン",
           "wikiTitle": "ブルーロック",
           "anilistId": 106130,
@@ -164,7 +180,7 @@
           ],
           "retries": [
             {
-              "label": "base",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -175,7 +191,42 @@
           "cached": true
         },
         "wiki": {
-          "cached": true
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 799446,
+          "title": "荒川弘",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_lead",
+          "hasMagazine": false,
+          "sectionIndex": null,
+          "hitScores": [
+            {
+              "title": "荒川弘",
+              "pageid": 799446,
+              "score": 800
+            },
+            {
+              "title": "若林和弘",
+              "pageid": 910269,
+              "score": 800
+            },
+            {
+              "title": "ボンズ (アニメ制作会社)",
+              "pageid": 157305,
+              "score": 800
+            },
+            {
+              "title": "伊藤嘉之",
+              "pageid": 310334,
+              "score": 800
+            },
+            {
+              "title": "高木登",
+              "pageid": 1227641,
+              "score": 800
+            }
+          ]
         },
         "anilist": {
           "cached": true
@@ -193,7 +244,10 @@
           "asin": "4757579624",
           "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
-          "publisher": "スクウェア・エニックス(SQUARE ENIX)",
+          "publisher": {
+            "brand": "スクウェア・エニックス(SQUARE ENIX)",
+            "manufacturer": "スクウェア・エニックス"
+          },
           "contributors": [
             {
               "name": "荒川 弘",
@@ -274,16 +328,10 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
-            },
-            {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
             }
           ]
         },
@@ -309,7 +357,10 @@
           "asin": "4098501805",
           "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
-          "publisher": "小学館",
+          "publisher": {
+            "brand": "小学館",
+            "manufacturer": "小学館"
+          },
           "contributors": [
             {
               "name": "山田 鐘人",
@@ -324,7 +375,7 @@
           ],
           "releaseDate": "2020-08-18T00:00:01Z",
           "synopsis": "あらすじ[編集]\n魔王討伐の偉業を成し遂げ王都に凱旋した勇者ヒンメル、僧侶ハイター、戦士アイゼン、魔法使いフリーレンら勇者パーティー4人は、10年間もの旅路を振り返り感慨にふけっていたが、1000年は軽く生きる長命種のエルフであるフリーレンにとって、その旅はきわめて短いものであった。そして、50年に一度降るという「半世紀（エーラ）流星」を見た4人は、次回もそれを見る約束を交わしてパーティーを解散する。\nそれから50年後、すっかり年老いたヒンメルと再会したフリーレンは、ハイターやアイゼンとも連れ立って再び流星群を観賞する。まもなくヒンメルは亡くなるが、彼の葬儀でフリーレンは自身がヒンメルについて何も知らず、知ろうともしなかったことに気付いて涙する。その悲しみに困惑したフリーレンは、人間を知るためと魔法収集のために旅に出る。\nさらに20年後、フリーレンはもうひとりの仲間であったハイターを訪ねる。ヒンメルと同じく老い先短い身であったハイターは、魔導書の解読と戦災孤児の少女フェルンを弟子にすることを依頼。その4年後に魔導書の解読を終えたフリーレンと、一人前の魔法使いに成長したフェルンは、ハイターの最期を看取ったあとに諸国をめぐる旅に出る。\nその後フリーレンたちは、最後に訪ねた仲間であるアイゼンの助力を受けて、フリーレンの師匠にして伝説の大魔法使いフランメの手記を入手。その手記には、かつての魔王城があった大陸北端の地エンデにあるという、死者の魂と対話できる場所・オレオールの存在が記されていた。オレオールで亡きヒンメルと再会するという新たな目的ができたフリーレンは、アイゼンの弟子である少年戦士シュタルクや、行方不明の親友との再会を望む僧侶ザインという新たな仲間たちを加えて北方を目指す。",
-          "synopsisSource": "wiki_section",
+          "synopsisSource": "wiki",
           "magazine": "週刊少年サンデー",
           "wikiTitle": "葬送のフリーレン",
           "anilistId": 118586,
