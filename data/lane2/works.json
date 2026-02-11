@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T07:31:39.608Z",
+  "updatedAt": "2026-02-11T08:19:12.417Z",
   "total": 3,
   "items": [
     {
@@ -43,7 +43,7 @@
         "titleLane2": "ブルーロック(1) (少年マガジンコミックス)",
         "anilistId": 106130,
         "wikiTitle": "ブルーロック",
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
       }
     },
     {
@@ -58,6 +58,7 @@
         "brand": "スクウェア・エニックス(SQUARE ENIX)",
         "manufacturer": "スクウェア・エニックス"
       },
+      "magazine": "月刊少年ガンガン",
       "synopsis": "山奥の小さな村落で暮らす少年のユルは、野鳥を狩り、大自然の中で静かに暮らしていた。しかしユルの双子の妹のアサは、何故か村の奥にある牢の中で「おつとめ」を果たしているという。それはまるで幽閉されているかのように…。穏やかな村に浮かぶ不自然な謎、この村に隠された秘密とは一体…!?未曾有のツガイバトルここに開幕!!",
       "synopsisSource": "manual",
       "genres": [
@@ -79,7 +80,7 @@
       "meta": {
         "titleLane2": "黄泉のツガイ(1) (ガンガンコミックス)",
         "anilistId": 136899,
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
       }
     },
     {
@@ -123,7 +124,7 @@
         "titleLane2": "葬送のフリーレン (1) (少年サンデーコミックス)",
         "anilistId": 118586,
         "wikiTitle": "葬送のフリーレン",
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
       }
     }
   ]
