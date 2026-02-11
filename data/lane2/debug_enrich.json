@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T03:12:47.380Z",
+  "updatedAt": "2026-02-11T03:22:58.237Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,20 +48,21 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
         },
         "wiki": {
-          "cached": true
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 3965460,
+          "title": "ブルーロック",
+          "hasSynopsis": true,
+          "synopsisMode": "wiki_section",
+          "hasMagazine": true,
+          "sectionIndex": "1"
         },
         "anilist": {
           "cached": true
@@ -93,9 +94,9 @@
             }
           ],
           "releaseDate": "2018-11-16T00:00:01Z",
-          "synopsis": null,
-          "synopsisSource": null,
-          "magazine": null,
+          "synopsis": "あらすじ[編集]\n日本代表が、サッカーW杯を2010年大会以来8年ぶりにベスト16で終えた2018年。日本フットボール連合は日本をW杯優勝に導くストライカーを養成すべく、ユース年代の高校生FW300人を対象とした‘‘青い監獄’’計画（ブルーロックプロジェクト）を立ち上げ、ブルーロックと呼ばれる施設を建設する。失格者は日本代表入りの資格を永久に失うという条件の中、無名の高校生プレイヤーである潔世一は世界一のストライカーになるべく、計画の全権をもつ絵心甚八が課す試験に挑む。\n埼玉県高校サッカー選手権大会決勝戦、ボールは一難高校2年FWの潔世一に渡り、ゴールを狙う。潔はゴール前で味方にパスを出したがゴールは外れ、相手チームの吉良涼介にゴールを決められ敗北。その夜、全国を逃したことを後悔する潔のもとに日本フットボール連合から強化指定選手の通達が届く。",
+          "synopsisSource": "wiki_section",
+          "magazine": "週刊少年マガジン",
           "wikiTitle": "ブルーロック",
           "anilistId": 106130,
           "genres": [
@@ -103,7 +104,7 @@
             "Drama",
             "Sports"
           ],
-          "tags_en": [
+          "tags": [
             "Football",
             "Male Protagonist",
             "Battle Royale",
@@ -118,27 +119,10 @@
             "Foreign",
             "Augmented Reality",
             "Language Barrier",
+            "Suicide",
             "Revenge"
           ],
-          "tags": [
-            "サッカー",
-            "男性主人公",
-            "バトルロイヤル",
-            "競技",
-            "男多め",
-            "10代中心",
-            "群像劇",
-            "少年",
-            "超能力",
-            "アンチヒーロー",
-            "フィットネス",
-            "海外",
-            "拡張現実",
-            "言語の壁",
-            "復讐"
-          ],
-          "tags_missing_en": [],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+          "source": "enrich(paapi+openbd+wiki+anilist)"
         }
       }
     },
@@ -188,12 +172,6 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
               "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
@@ -205,7 +183,15 @@
           "cached": true
         },
         "wiki": {
-          "cached": true
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 799446,
+          "title": "荒川弘",
+          "hasSynopsis": true,
+          "synopsisMode": "wiki_lead",
+          "hasMagazine": false,
+          "sectionIndex": null
         },
         "anilist": {
           "cached": true
@@ -232,10 +218,10 @@
             }
           ],
           "releaseDate": "2022-06-10T00:00:01Z",
-          "synopsis": null,
-          "synopsisSource": null,
+          "synopsis": "荒川 弘（あらかわ ひろむ、1973年〈昭和48年〉5月8日 - ）は、日本の漫画家。女性。",
+          "synopsisSource": "wiki_lead",
           "magazine": null,
-          "wikiTitle": "黄泉のツガイ",
+          "wikiTitle": "荒川弘",
           "anilistId": 136899,
           "genres": [
             "Action",
@@ -243,28 +229,18 @@
             "Comedy",
             "Fantasy"
           ],
-          "tags_en": [
+          "tags": [
             "Shounen",
             "Twins",
             "Youkai",
+            "Anachronism",
             "Urban Fantasy",
             "Male Protagonist",
             "Conspiracy",
             "Archery",
             "Rural"
           ],
-          "tags": [
-            "少年",
-            "双子",
-            "妖怪",
-            "現代ファンタジー",
-            "男性主人公",
-            "陰謀",
-            "弓術",
-            "田舎"
-          ],
-          "tags_missing_en": [],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+          "source": "enrich(paapi+openbd+wiki+anilist)"
         }
       }
     },
@@ -314,12 +290,6 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
               "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
@@ -331,7 +301,15 @@
           "cached": true
         },
         "wiki": {
-          "cached": true
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 4124704,
+          "title": "葬送のフリーレン",
+          "hasSynopsis": true,
+          "synopsisMode": "wiki_section",
+          "hasMagazine": true,
+          "sectionIndex": "2"
         },
         "anilist": {
           "cached": true
@@ -363,9 +341,9 @@
             }
           ],
           "releaseDate": "2020-08-18T00:00:01Z",
-          "synopsis": null,
-          "synopsisSource": null,
-          "magazine": null,
+          "synopsis": "あらすじ[編集]\n魔王討伐の偉業を成し遂げ王都に凱旋した勇者ヒンメル、僧侶ハイター、戦士アイゼン、魔法使いフリーレンら勇者パーティー4人は、10年間もの旅路を振り返り感慨にふけっていたが、1000年は軽く生きる長命種のエルフであるフリーレンにとって、その旅はきわめて短いものであった。そして、50年に一度降るという「半世紀（エーラ）流星」を見た4人は、次回もそれを見る約束を交わしてパーティーを解散する。\nそれから50年後、すっかり年老いたヒンメルと再会したフリーレンは、ハイターやアイゼンとも連れ立って再び流星群を観賞する。まもなくヒンメルは亡くなるが、彼の葬儀でフリーレンは自身がヒンメルについて何も知らず、知ろうともしなかったことに気付いて涙する。その悲しみに困惑したフリーレンは、人間を知るためと魔法収集のために旅に出る。\nさらに20年後、フリーレンはもうひとりの仲間であったハイターを訪ねる。ヒンメルと同じく老い先短い身であったハイターは、魔導書の解読と戦災孤児の少女フェルンを弟子にすることを依頼。その4年後に魔導書の解読を終えたフリーレンと、一人前の魔法使いに成長したフェルンは、ハイターの最期を看取ったあとに諸国をめぐる旅に出る。\nその後フリーレンたちは、最後に訪ねた仲間であるアイゼンの助力を受けて、フリーレンの師匠にして伝説の大魔法使いフランメの手記を入手。その手記には、かつての魔王城があった大陸北端の地エンデにあるという、死者の魂と対話できる場所・オレオールの存在が記されていた。オレオールで亡きヒンメルと再会するという新たな目的ができたフリーレンは、アイゼンの弟子である少年戦士シュタルクや、行方不明の親友との再会を望む僧侶ザインという新たな仲間たちを加えて北方を目指す。",
+          "synopsisSource": "wiki_section",
+          "magazine": "週刊少年サンデー",
           "wikiTitle": "葬送のフリーレン",
           "anilistId": 118586,
           "genres": [
@@ -373,7 +351,7 @@
             "Drama",
             "Fantasy"
           ],
-          "tags_en": [
+          "tags": [
             "Magic",
             "Travel",
             "Elf",
@@ -385,30 +363,13 @@
             "Kuudere",
             "Episodic",
             "Spearplay",
+            "Heterosexual",
             "Shounen",
             "Fairy Tale",
             "Food",
             "Dungeon"
           ],
-          "tags": [
-            "魔法",
-            "旅",
-            "エルフ",
-            "哲学",
-            "女性主人公",
-            "悪魔",
-            "癒し",
-            "中世",
-            "クーデレ",
-            "エピソード式",
-            "槍術",
-            "少年",
-            "童話",
-            "食",
-            "ダンジョン"
-          ],
-          "tags_missing_en": [],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+          "source": "enrich(paapi+openbd+wiki+anilist)"
         }
       }
     }
