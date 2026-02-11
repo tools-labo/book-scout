@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-11T11:31:11.451Z",
-  "total": 22,
-  "addedThisRun": 13,
+  "updatedAt": "2026-02-11T12:58:08.804Z",
+  "total": 26,
+  "addedThisRun": 4,
   "items": [
     {
       "seriesKey": "チェンソーマン",
@@ -268,6 +268,54 @@
         "isbn13": null,
         "asin": "B09TF1DNJZ",
         "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+        "score": 570
+      }
+    },
+    {
+      "seriesKey": "惡の華",
+      "author": null,
+      "reason": "paapi_getitems_no_ean",
+      "best": {
+        "source": "paapi_search",
+        "query": "惡の華 (1)",
+        "title": "惡の華（１） (週刊少年マガジンコミックス)",
+        "isbn13": null,
+        "asin": "B009SNA0L4",
+        "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
+        "score": 570
+      }
+    },
+    {
+      "seriesKey": "呪術廻戦 0 東京都立呪術高等専門学校",
+      "author": null,
+      "reason": "no_mainline_vol1_candidate",
+      "best": null
+    },
+    {
+      "seriesKey": "五等分の花嫁",
+      "author": null,
+      "reason": "paapi_getitems_no_ean",
+      "best": {
+        "source": "paapi_search",
+        "query": "五等分の花嫁 (1)",
+        "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+        "isbn13": null,
+        "asin": "B0764YVB8W",
+        "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+        "score": 570
+      }
+    },
+    {
+      "seriesKey": "とんがり帽子のアトリエ",
+      "author": null,
+      "reason": "paapi_getitems_no_ean",
+      "best": {
+        "source": "paapi_search",
+        "query": "とんがり帽子のアトリエ (1)",
+        "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+        "isbn13": null,
+        "asin": "B01N22480D",
+        "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
         "score": 570
       }
     }

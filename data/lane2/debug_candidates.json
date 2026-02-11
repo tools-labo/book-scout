@@ -1,7 +1,754 @@
 {
-  "updatedAt": "2026-02-11T11:31:11.451Z",
+  "updatedAt": "2026-02-11T12:58:08.805Z",
   "processedThisRun": 20,
   "items": [
+    {
+      "seriesKey": "呪術廻戦",
+      "paapiSearch": {
+        "tried": [
+          "呪術廻戦 (1)",
+          "呪術廻戦（1）",
+          "呪術廻戦 1",
+          "呪術廻戦 1 コミックス",
+          "呪術廻戦 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "呪術廻戦 (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "呪術廻戦 (1)",
+              "title": "呪術廻戦 2 幼魚と逆罰 京都姉妹校交流会1団体戦 (集英社リミックス)",
+              "isbn13": "9784081152865",
+              "asin": "4081152861",
+              "image": "https://m.media-amazon.com/images/I/51YmK39lDhL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "呪術廻戦（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "呪術廻戦（1）",
+              "title": "呪術廻戦 2 幼魚と逆罰 京都姉妹校交流会1団体戦 (集英社リミックス)",
+              "isbn13": "9784081152865",
+              "asin": "4081152861",
+              "image": "https://m.media-amazon.com/images/I/51YmK39lDhL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "呪術廻戦 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "呪術廻戦 1",
+              "title": "呪術廻戦 2 幼魚と逆罰 京都姉妹校交流会1団体戦 (集英社リミックス)",
+              "isbn13": "9784081152865",
+              "asin": "4081152861",
+              "image": "https://m.media-amazon.com/images/I/51YmK39lDhL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "呪術廻戦 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "呪術廻戦 1 コミックス",
+              "title": "呪術廻戦 1 (ジャンプコミックスDIGITAL)",
+              "isbn13": null,
+              "asin": "B07D58KR39",
+              "image": "https://m.media-amazon.com/images/I/51zfBqzpcwL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "呪術廻戦 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "呪術廻戦 1 (コミックス)",
+              "title": "呪術廻戦 1 (ジャンプコミックスDIGITAL)",
+              "isbn13": null,
+              "asin": "B07D58KR39",
+              "image": "https://m.media-amazon.com/images/I/51zfBqzpcwL._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "呪術廻戦 (1)",
+          "title": "呪術廻戦 2 幼魚と逆罰 京都姉妹校交流会1団体戦 (集英社リミックス)",
+          "isbn13": "9784081152865",
+          "asin": "4081152861",
+          "image": "https://m.media-amazon.com/images/I/51YmK39lDhL._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "呪術廻戦",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_long)",
+        "vol1": {
+          "title": "呪術廻戦 2 幼魚と逆罰 京都姉妹校交流会1団体戦 (集英社リミックス)",
+          "isbn13": "9784081152865",
+          "asin": "4081152861",
+          "image": "https://m.media-amazon.com/images/I/51YmK39lDhL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4081152861",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "paapiSearch": {
+        "tried": [
+          "ベルセルク (1)",
+          "ベルセルク（1）",
+          "ベルセルク 1",
+          "ベルセルク 1 コミックス",
+          "ベルセルク 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "ベルセルク (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ベルセルク (1)",
+              "title": "ベルセルク 1",
+              "isbn13": "9784592842019",
+              "asin": "4592842014",
+              "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ベルセルク（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ベルセルク（1）",
+              "title": "ベルセルク 1",
+              "isbn13": "9784592842019",
+              "asin": "4592842014",
+              "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ベルセルク 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ベルセルク 1",
+              "title": "ベルセルク 1",
+              "isbn13": "9784592842019",
+              "asin": "4592842014",
+              "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ベルセルク 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ベルセルク 1 コミックス",
+              "title": "ベルセルク (1) (ヤングアニマルコミックス)",
+              "isbn13": "9784592135746",
+              "asin": "4592135741",
+              "image": "https://m.media-amazon.com/images/I/513rmAmf1CL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ベルセルク 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ベルセルク 1 (コミックス)",
+              "title": "ベルセルク (1) (ヤングアニマルコミックス)",
+              "isbn13": "9784592135746",
+              "asin": "4592135741",
+              "image": "https://m.media-amazon.com/images/I/513rmAmf1CL._SL500_.jpg",
+              "score": 650
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "ベルセルク (1)",
+          "title": "ベルセルク 1",
+          "isbn13": "9784592842019",
+          "asin": "4592842014",
+          "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_only",
+      "confirmed": {
+        "seriesKey": "ベルセルク",
+        "author": null,
+        "vol1": {
+          "title": "ベルセルク 1",
+          "isbn13": "9784592842019",
+          "asin": "4592842014",
+          "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4592842014",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "進撃の巨人",
+      "paapiSearch": {
+        "tried": [
+          "進撃の巨人 (1)",
+          "進撃の巨人（1）",
+          "進撃の巨人 1",
+          "進撃の巨人 1 コミックス",
+          "進撃の巨人 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "進撃の巨人 (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "進撃の巨人 (1)",
+              "title": "進撃の巨人　悔いなき選択　リマスター版（１） (ＡＲＩＡコミックス)",
+              "isbn13": "9784064220789",
+              "asin": "B012MPQGWQ",
+              "image": "https://m.media-amazon.com/images/I/51a8isADL0L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "進撃の巨人（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "進撃の巨人（1）",
+              "title": "進撃の巨人（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B009KYC6S6",
+              "image": "https://m.media-amazon.com/images/I/51KJGq4nTCL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "進撃の巨人 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "進撃の巨人 1",
+              "title": "進撃の巨人（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B009KYC6S6",
+              "image": "https://m.media-amazon.com/images/I/51KJGq4nTCL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "進撃の巨人 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "進撃の巨人 1 コミックス",
+              "title": "進撃の巨人　悔いなき選択　リマスター版（１） (ＡＲＩＡコミックス)",
+              "isbn13": "9784064220789",
+              "asin": "B012MPQGWQ",
+              "image": "https://m.media-amazon.com/images/I/51a8isADL0L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "進撃の巨人 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "進撃の巨人 1 (コミックス)",
+              "title": "進撃の巨人（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B009KYC6S6",
+              "image": "https://m.media-amazon.com/images/I/51KJGq4nTCL._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "進撃の巨人 (1)",
+          "title": "進撃の巨人　悔いなき選択　リマスター版（１） (ＡＲＩＡコミックス)",
+          "isbn13": "9784064220789",
+          "asin": "B012MPQGWQ",
+          "image": "https://m.media-amazon.com/images/I/51a8isADL0L._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "進撃の巨人",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_dash)",
+        "vol1": {
+          "title": "進撃の巨人　悔いなき選択　リマスター版（１） (ＡＲＩＡコミックス)",
+          "isbn13": "9784064220789",
+          "asin": "B012MPQGWQ",
+          "image": "https://m.media-amazon.com/images/I/51a8isADL0L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/B012MPQGWQ",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "僕のヒーローアカデミア",
+      "paapiSearch": {
+        "tried": [
+          "僕のヒーローアカデミア (1)",
+          "僕のヒーローアカデミア（1）",
+          "僕のヒーローアカデミア 1",
+          "僕のヒーローアカデミア 1 コミックス",
+          "僕のヒーローアカデミア 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "僕のヒーローアカデミア (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "僕のヒーローアカデミア (1)",
+              "title": "僕のヒーローアカデミア 雄英白書 1 (JUMP j BOOKS)",
+              "isbn13": "9784087033915",
+              "asin": "4087033910",
+              "image": "https://m.media-amazon.com/images/I/51+8mEfvagL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "僕のヒーローアカデミア（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "僕のヒーローアカデミア（1）",
+              "title": "僕のヒーローアカデミア 雄英白書 1 (JUMP j BOOKS)",
+              "isbn13": "9784087033915",
+              "asin": "4087033910",
+              "image": "https://m.media-amazon.com/images/I/51+8mEfvagL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "僕のヒーローアカデミア 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "僕のヒーローアカデミア 1",
+              "title": "僕のヒーローアカデミア 雄英白書 1 (JUMP j BOOKS)",
+              "isbn13": "9784087033915",
+              "asin": "4087033910",
+              "image": "https://m.media-amazon.com/images/I/51+8mEfvagL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "僕のヒーローアカデミア 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "僕のヒーローアカデミア 1 コミックス",
+              "title": "僕のヒーローアカデミア チームアップミッション 1 (ジャンプコミックス)",
+              "isbn13": "9784088822495",
+              "asin": "4088822498",
+              "image": "https://m.media-amazon.com/images/I/51jX82+3R3L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "僕のヒーローアカデミア 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "僕のヒーローアカデミア 1 (コミックス)",
+              "title": "僕のヒーローアカデミア チームアップミッション 1 (ジャンプコミックス)",
+              "isbn13": "9784088822495",
+              "asin": "4088822498",
+              "image": "https://m.media-amazon.com/images/I/51jX82+3R3L._SL500_.jpg",
+              "score": 650
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "僕のヒーローアカデミア (1)",
+          "title": "僕のヒーローアカデミア 雄英白書 1 (JUMP j BOOKS)",
+          "isbn13": "9784087033915",
+          "asin": "4087033910",
+          "image": "https://m.media-amazon.com/images/I/51+8mEfvagL._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_only",
+      "confirmed": {
+        "seriesKey": "僕のヒーローアカデミア",
+        "author": null,
+        "vol1": {
+          "title": "僕のヒーローアカデミア 雄英白書 1 (JUMP j BOOKS)",
+          "isbn13": "9784087033915",
+          "asin": "4087033910",
+          "image": "https://m.media-amazon.com/images/I/51+8mEfvagL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4087033910",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "ホリミヤ",
+      "paapiSearch": {
+        "tried": [
+          "ホリミヤ (1)",
+          "ホリミヤ（1）",
+          "ホリミヤ 1",
+          "ホリミヤ 1 コミックス",
+          "ホリミヤ 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "ホリミヤ (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホリミヤ (1)",
+              "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+              "isbn13": "9784757570603",
+              "asin": "4757570600",
+              "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ホリミヤ（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホリミヤ（1）",
+              "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+              "isbn13": "9784757570603",
+              "asin": "4757570600",
+              "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ホリミヤ 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホリミヤ 1",
+              "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+              "isbn13": "9784757570603",
+              "asin": "4757570600",
+              "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ホリミヤ 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホリミヤ 1 コミックス",
+              "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+              "isbn13": "9784757570603",
+              "asin": "4757570600",
+              "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "ホリミヤ 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホリミヤ 1 (コミックス)",
+              "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+              "isbn13": "9784757570603",
+              "asin": "4757570600",
+              "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+              "score": 650
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "ホリミヤ (1)",
+          "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+          "isbn13": "9784757570603",
+          "asin": "4757570600",
+          "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "ホリミヤ",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_tilde)",
+        "vol1": {
+          "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+          "isbn13": "9784757570603",
+          "asin": "4757570600",
+          "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757570600",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "東京卍リベンジャーズ",
+      "paapiSearch": {
+        "tried": [
+          "東京卍リベンジャーズ (1)",
+          "東京卍リベンジャーズ（1）",
+          "東京卍リベンジャーズ 1",
+          "東京卍リベンジャーズ 1 コミックス",
+          "東京卍リベンジャーズ 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "東京卍リベンジャーズ (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "東京卍リベンジャーズ (1)",
+              "title": "東京卍リベンジャーズ ~場地圭介からの手紙~(1) (少年マガジンKC)",
+              "isbn13": "9784065293782",
+              "asin": "4065293782",
+              "image": "https://m.media-amazon.com/images/I/51-fVzem--L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "東京卍リベンジャーズ（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "東京卍リベンジャーズ（1）",
+              "title": "東京卍リベンジャーズ ~場地圭介からの手紙~(1) (少年マガジンKC)",
+              "isbn13": "9784065293782",
+              "asin": "4065293782",
+              "image": "https://m.media-amazon.com/images/I/51-fVzem--L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "東京卍リベンジャーズ 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "東京卍リベンジャーズ 1",
+              "title": "東京卍リベンジャーズ ~場地圭介からの手紙~(1) (少年マガジンKC)",
+              "isbn13": "9784065293782",
+              "asin": "4065293782",
+              "image": "https://m.media-amazon.com/images/I/51-fVzem--L._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "東京卍リベンジャーズ 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "東京卍リベンジャーズ 1 コミックス",
+              "title": "東京卍リベンジャーズ（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B072HSHYHL",
+              "image": "https://m.media-amazon.com/images/I/51VOUx-7sZL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "東京卍リベンジャーズ 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "東京卍リベンジャーズ 1 (コミックス)",
+              "title": "東京卍リベンジャーズ（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B072HSHYHL",
+              "image": "https://m.media-amazon.com/images/I/51VOUx-7sZL._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "東京卍リベンジャーズ (1)",
+          "title": "東京卍リベンジャーズ ~場地圭介からの手紙~(1) (少年マガジンKC)",
+          "isbn13": "9784065293782",
+          "asin": "4065293782",
+          "image": "https://m.media-amazon.com/images/I/51-fVzem--L._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "東京卍リベンジャーズ",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_tilde)",
+        "vol1": {
+          "title": "東京卍リベンジャーズ ~場地圭介からの手紙~(1) (少年マガジンKC)",
+          "isbn13": "9784065293782",
+          "asin": "4065293782",
+          "image": "https://m.media-amazon.com/images/I/51-fVzem--L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4065293782",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "古見さんは、コミュ症です。",
+      "paapiSearch": {
+        "tried": [
+          "古見さんは、コミュ症です。 (1)",
+          "古見さんは、コミュ症です。（1）",
+          "古見さんは、コミュ症です。 1",
+          "古見さんは、コミュ症です。 1 コミックス",
+          "古見さんは、コミュ症です。 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "古見さんは、コミュ症です。 (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "古見さんは、コミュ症です。 (1)",
+              "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+              "isbn13": "9784098507092",
+              "asin": "4098507099",
+              "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "古見さんは、コミュ症です。（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "古見さんは、コミュ症です。（1）",
+              "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+              "isbn13": "9784098507092",
+              "asin": "4098507099",
+              "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "古見さんは、コミュ症です。 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "古見さんは、コミュ症です。 1",
+              "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+              "isbn13": "9784098507092",
+              "asin": "4098507099",
+              "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "古見さんは、コミュ症です。 1 コミックス",
+            "ok": true,
+            "returned": 7,
+            "best": {
+              "source": "paapi_search",
+              "query": "古見さんは、コミュ症です。 1 コミックス",
+              "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+              "isbn13": "9784098507092",
+              "asin": "4098507099",
+              "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+              "score": 650
+            }
+          },
+          {
+            "query": "古見さんは、コミュ症です。 1 (コミックス)",
+            "ok": true,
+            "returned": 7,
+            "best": {
+              "source": "paapi_search",
+              "query": "古見さんは、コミュ症です。 1 (コミックス)",
+              "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+              "isbn13": "9784098507092",
+              "asin": "4098507099",
+              "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+              "score": 650
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "古見さんは、コミュ症です。 (1)",
+          "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+          "isbn13": "9784098507092",
+          "asin": "4098507099",
+          "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+          "score": 650
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "古見さんは、コミュ症です。",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_tilde)",
+        "vol1": {
+          "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+          "isbn13": "9784098507092",
+          "asin": "4098507099",
+          "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4098507099",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
     {
       "seriesKey": "20世紀少年",
       "paapiSearch": {
@@ -94,10 +841,11 @@
           "score": 650
         }
       },
-      "path": "paapi_search_only",
-      "confirmed": {
+      "path": "paapi_search_review",
+      "review": {
         "seriesKey": "20世紀少年",
         "author": null,
+        "reason": "suspicious_subtitle(subtitle_colon)",
         "vol1": {
           "title": "20世紀少年: ともだち (1) (ビッグコミックス)",
           "isbn13": "9784091855312",
@@ -105,470 +853,6 @@
           "image": "https://m.media-amazon.com/images/I/518o-r7MvpL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4091855318",
           "source": "paapi_search(mainline_guard)"
-        }
-      }
-    },
-    {
-      "seriesKey": "ハイキュー！！",
-      "paapiSearch": {
-        "tried": [
-          "ハイキュー！！ (1)",
-          "ハイキュー！！（1）",
-          "ハイキュー！！ 1",
-          "ハイキュー！！ 1 コミックス",
-          "ハイキュー！！ 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ハイキュー！！ (1)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ハイキュー！！（1）",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ハイキュー！！ 1",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ハイキュー！！ 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ハイキュー！！ 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          }
-        ],
-        "best": null
-      }
-    },
-    {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
-      "paapiSearch": {
-        "tried": [
-          "東京喰種-トーキョーグール-:re (1)",
-          "東京喰種-トーキョーグール-:re（1）",
-          "東京喰種-トーキョーグール-:re 1",
-          "東京喰種-トーキョーグール-:re 1 コミックス",
-          "東京喰種-トーキョーグール-:re 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "東京喰種-トーキョーグール-:re (1)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "東京喰種-トーキョーグール-:re（1）",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "東京喰種-トーキョーグール-:re 1",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "東京喰種-トーキョーグール-:re 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "東京喰種-トーキョーグール-:re 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          }
-        ],
-        "best": null
-      }
-    },
-    {
-      "seriesKey": "ジョジョの奇妙な冒険 スティール・ボール・ラン",
-      "paapiSearch": {
-        "tried": [
-          "ジョジョの奇妙な冒険 スティール・ボール・ラン (1)",
-          "ジョジョの奇妙な冒険 スティール・ボール・ラン（1）",
-          "ジョジョの奇妙な冒険 スティール・ボール・ラン 1",
-          "ジョジョの奇妙な冒険 スティール・ボール・ラン 1 コミックス",
-          "ジョジョの奇妙な冒険 スティール・ボール・ラン 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ジョジョの奇妙な冒険 スティール・ボール・ラン (1)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 スティール・ボール・ラン（1）",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 スティール・ボール・ラン 1",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 スティール・ボール・ラン 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 スティール・ボール・ラン 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          }
-        ],
-        "best": null
-      }
-    },
-    {
-      "seriesKey": "ファイアパンチ",
-      "paapiSearch": {
-        "tried": [
-          "ファイアパンチ (1)",
-          "ファイアパンチ（1）",
-          "ファイアパンチ 1",
-          "ファイアパンチ 1 コミックス",
-          "ファイアパンチ 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ファイアパンチ (1)",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "ファイアパンチ (1)",
-              "title": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B01G1DV4PY",
-              "image": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ファイアパンチ（1）",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "ファイアパンチ（1）",
-              "title": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B01G1DV4PY",
-              "image": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ファイアパンチ 1",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "ファイアパンチ 1",
-              "title": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B01G1DV4PY",
-              "image": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ファイアパンチ 1 コミックス",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "ファイアパンチ 1 コミックス",
-              "title": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B01G1DV4PY",
-              "image": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ファイアパンチ 1 (コミックス)",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "ファイアパンチ 1 (コミックス)",
-              "title": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B01G1DV4PY",
-              "image": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "ファイアパンチ (1)",
-          "title": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-          "isbn13": null,
-          "asin": "B01G1DV4PY",
-          "image": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B01G1DV4PY",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B01G1DV4PY?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51m5nzCQrBL._SL500_.jpg",
-                      "Width": 368
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "集英社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "藤本タツキ",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "集英社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "ファイアパンチ 1 (ジャンプコミックスDIGITAL)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
-      "seriesKey": "NARUTO -ナルト-",
-      "paapiSearch": {
-        "tried": [
-          "NARUTO -ナルト- (1)",
-          "NARUTO -ナルト-（1）",
-          "NARUTO -ナルト- 1",
-          "NARUTO -ナルト- 1 コミックス",
-          "NARUTO -ナルト- 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "NARUTO -ナルト- (1)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "NARUTO -ナルト-（1）",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "NARUTO -ナルト- 1",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "NARUTO -ナルト- 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "NARUTO -ナルト- 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          }
-        ],
-        "best": null
-      }
-    },
-    {
-      "seriesKey": "地獄楽",
-      "paapiSearch": {
-        "tried": [
-          "地獄楽 (1)",
-          "地獄楽（1）",
-          "地獄楽 1",
-          "地獄楽 1 コミックス",
-          "地獄楽 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "地獄楽 (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "地獄楽 (1)",
-              "title": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B079Y75ZF3",
-              "image": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "地獄楽（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "地獄楽（1）",
-              "title": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B079Y75ZF3",
-              "image": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "地獄楽 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "地獄楽 1",
-              "title": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B079Y75ZF3",
-              "image": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "地獄楽 1 コミックス",
-            "ok": true,
-            "returned": 3,
-            "best": {
-              "source": "paapi_search",
-              "query": "地獄楽 1 コミックス",
-              "title": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B079Y75ZF3",
-              "image": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "地獄楽 1 (コミックス)",
-            "ok": true,
-            "returned": 3,
-            "best": {
-              "source": "paapi_search",
-              "query": "地獄楽 1 (コミックス)",
-              "title": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B079Y75ZF3",
-              "image": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "地獄楽 (1)",
-          "title": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-          "isbn13": null,
-          "asin": "B079Y75ZF3",
-          "image": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B079Y75ZF3",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B079Y75ZF3?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/61bLGPnl-4L._SL500_.jpg",
-                      "Width": 368
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "集英社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "賀来ゆうじ",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "集英社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "地獄楽 1 (ジャンプコミックスDIGITAL)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
         }
       }
     },
@@ -679,143 +963,6 @@
       }
     },
     {
-      "seriesKey": "聲の形",
-      "paapiSearch": {
-        "tried": [
-          "聲の形 (1)",
-          "聲の形（1）",
-          "聲の形 1",
-          "聲の形 1 コミックス",
-          "聲の形 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "聲の形 (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "聲の形 (1)",
-              "title": "聲の形（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B00HJYUJ9C",
-              "image": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "聲の形（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "聲の形（1）",
-              "title": "聲の形（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B00HJYUJ9C",
-              "image": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "聲の形 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "聲の形 1",
-              "title": "聲の形（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B00HJYUJ9C",
-              "image": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "聲の形 1 コミックス",
-            "ok": true,
-            "returned": 9,
-            "best": {
-              "source": "paapi_search",
-              "query": "聲の形 1 コミックス",
-              "title": "聲の形（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B00HJYUJ9C",
-              "image": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "聲の形 1 (コミックス)",
-            "ok": true,
-            "returned": 9,
-            "best": {
-              "source": "paapi_search",
-              "query": "聲の形 1 (コミックス)",
-              "title": "聲の形（１） (週刊少年マガジンコミックス)",
-              "isbn13": null,
-              "asin": "B00HJYUJ9C",
-              "image": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "聲の形 (1)",
-          "title": "聲の形（１） (週刊少年マガジンコミックス)",
-          "isbn13": null,
-          "asin": "B00HJYUJ9C",
-          "image": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B00HJYUJ9C",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B00HJYUJ9C?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51VsfzzIY2L._SL500_.jpg",
-                      "Width": 336
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "大今良時",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "講談社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "聲の形（１） (週刊少年マガジンコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
       "seriesKey": "うずまき",
       "paapiSearch": {
         "tried": [
@@ -918,444 +1065,6 @@
           "image": "https://m.media-amazon.com/images/I/51AlcnABk4L._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4834020959",
           "source": "paapi_search(mainline_guard)"
-        }
-      }
-    },
-    {
-      "seriesKey": "ドロヘドロ",
-      "paapiSearch": {
-        "tried": [
-          "ドロヘドロ (1)",
-          "ドロヘドロ（1）",
-          "ドロヘドロ 1",
-          "ドロヘドロ 1 コミックス",
-          "ドロヘドロ 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ドロヘドロ (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ドロヘドロ (1)",
-              "title": "ドロヘドロ（１） (IKKI　COMIX)",
-              "isbn13": null,
-              "asin": "B07K8QNMMH",
-              "image": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ドロヘドロ（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ドロヘドロ（1）",
-              "title": "ドロヘドロ（１） (IKKI　COMIX)",
-              "isbn13": null,
-              "asin": "B07K8QNMMH",
-              "image": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ドロヘドロ 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ドロヘドロ 1",
-              "title": "ドロヘドロ（１） (IKKI　COMIX)",
-              "isbn13": null,
-              "asin": "B07K8QNMMH",
-              "image": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ドロヘドロ 1 コミックス",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ドロヘドロ 1 コミックス",
-              "title": "ドロヘドロ（１） (IKKI　COMIX)",
-              "isbn13": null,
-              "asin": "B07K8QNMMH",
-              "image": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "ドロヘドロ 1 (コミックス)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "ドロヘドロ 1 (コミックス)",
-              "title": "ドロヘドロ（１） (IKKI　COMIX)",
-              "isbn13": null,
-              "asin": "B07K8QNMMH",
-              "image": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "ドロヘドロ (1)",
-          "title": "ドロヘドロ（１） (IKKI　COMIX)",
-          "isbn13": null,
-          "asin": "B07K8QNMMH",
-          "image": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B07K8QNMMH",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B07K8QNMMH?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/61VI7mFvmKL._SL500_.jpg",
-                      "Width": 353
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "小学館",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "林田球",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "小学館",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "ドロヘドロ（１） (IKKI　COMIX)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
-      "seriesKey": "寿命を買い取ってもらった。一年につき、一万円で。",
-      "paapiSearch": {
-        "tried": [
-          "寿命を買い取ってもらった。一年につき、一万円で。 (1)",
-          "寿命を買い取ってもらった。一年につき、一万円で。（1）",
-          "寿命を買い取ってもらった。一年につき、一万円で。 1",
-          "寿命を買い取ってもらった。一年につき、一万円で。 1 コミックス",
-          "寿命を買い取ってもらった。一年につき、一万円で。 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "寿命を買い取ってもらった。一年につき、一万円で。 (1)",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "寿命を買い取ってもらった。一年につき、一万円で。 (1)",
-              "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B072J3Z7YP",
-              "image": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "寿命を買い取ってもらった。一年につき、一万円で。（1）",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "寿命を買い取ってもらった。一年につき、一万円で。（1）",
-              "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B072J3Z7YP",
-              "image": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "寿命を買い取ってもらった。一年につき、一万円で。 1",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "寿命を買い取ってもらった。一年につき、一万円で。 1",
-              "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B072J3Z7YP",
-              "image": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "寿命を買い取ってもらった。一年につき、一万円で。 1 コミックス",
-            "ok": true,
-            "returned": 3,
-            "best": {
-              "source": "paapi_search",
-              "query": "寿命を買い取ってもらった。一年につき、一万円で。 1 コミックス",
-              "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B072J3Z7YP",
-              "image": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "寿命を買い取ってもらった。一年につき、一万円で。 1 (コミックス)",
-            "ok": true,
-            "returned": 3,
-            "best": {
-              "source": "paapi_search",
-              "query": "寿命を買い取ってもらった。一年につき、一万円で。 1 (コミックス)",
-              "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-              "isbn13": null,
-              "asin": "B072J3Z7YP",
-              "image": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "寿命を買い取ってもらった。一年につき、一万円で。 (1)",
-          "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-          "isbn13": null,
-          "asin": "B072J3Z7YP",
-          "image": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B072J3Z7YP",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B072J3Z7YP?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51lNgVTyXCL._SL500_.jpg",
-                      "Width": 368
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "集英社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "三秋縋（メディアワークス文庫「三日間の幸福」）",
-                        "Role": "著",
-                        "RoleType": "author"
-                      },
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "田口囁一",
-                        "Role": "著",
-                        "RoleType": "author"
-                      },
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "E9L・田口囁一",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "集英社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックスDIGITAL)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
-      "seriesKey": "宝石の国",
-      "paapiSearch": {
-        "tried": [
-          "宝石の国 (1)",
-          "宝石の国（1）",
-          "宝石の国 1",
-          "宝石の国 1 コミックス",
-          "宝石の国 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "宝石の国 (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "宝石の国 (1)",
-              "title": "宝石の国（１） (アフタヌーンコミックス)",
-              "isbn13": null,
-              "asin": "B00DW4ZYBG",
-              "image": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "宝石の国（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "宝石の国（1）",
-              "title": "宝石の国（１） (アフタヌーンコミックス)",
-              "isbn13": null,
-              "asin": "B00DW4ZYBG",
-              "image": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "宝石の国 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "宝石の国 1",
-              "title": "宝石の国（１） (アフタヌーンコミックス)",
-              "isbn13": null,
-              "asin": "B00DW4ZYBG",
-              "image": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "宝石の国 1 コミックス",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "宝石の国 1 コミックス",
-              "title": "宝石の国（１） (アフタヌーンコミックス)",
-              "isbn13": null,
-              "asin": "B00DW4ZYBG",
-              "image": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "宝石の国 1 (コミックス)",
-            "ok": true,
-            "returned": 5,
-            "best": {
-              "source": "paapi_search",
-              "query": "宝石の国 1 (コミックス)",
-              "title": "宝石の国（１） (アフタヌーンコミックス)",
-              "isbn13": null,
-              "asin": "B00DW4ZYBG",
-              "image": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "宝石の国 (1)",
-          "title": "宝石の国（１） (アフタヌーンコミックス)",
-          "isbn13": null,
-          "asin": "B00DW4ZYBG",
-          "image": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B00DW4ZYBG",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B00DW4ZYBG?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/61FXZ-+RZLL._SL500_.jpg",
-                      "Width": 352
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "講談社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "市川春子",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "講談社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "宝石の国（１） (アフタヌーンコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
         }
       }
     },
@@ -1557,10 +1266,11 @@
           "score": 650
         }
       },
-      "path": "paapi_search_only",
-      "confirmed": {
+      "path": "paapi_search_review",
+      "review": {
         "seriesKey": "ブルーピリオド",
         "author": null,
+        "reason": "suspicious_subtitle(subtitle_keyword)",
         "vol1": {
           "title": "ブルーピリオド(1)実写映画化記念特装版 (プレミアムKC)",
           "isbn13": "9784065368381",
@@ -1568,148 +1278,6 @@
           "image": "https://m.media-amazon.com/images/I/51a+bIUSRCL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4065368383",
           "source": "paapi_search(mainline_guard)"
-        }
-      }
-    },
-    {
-      "seriesKey": "イジらないで、長瀞さん",
-      "paapiSearch": {
-        "tried": [
-          "イジらないで、長瀞さん (1)",
-          "イジらないで、長瀞さん（1）",
-          "イジらないで、長瀞さん 1",
-          "イジらないで、長瀞さん 1 コミックス",
-          "イジらないで、長瀞さん 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "イジらないで、長瀞さん (1)",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "イジらないで、長瀞さん (1)",
-              "title": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-              "isbn13": null,
-              "asin": "B07B3VQQFJ",
-              "image": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "イジらないで、長瀞さん（1）",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "イジらないで、長瀞さん（1）",
-              "title": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-              "isbn13": null,
-              "asin": "B07B3VQQFJ",
-              "image": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "イジらないで、長瀞さん 1",
-            "ok": true,
-            "returned": 10,
-            "best": {
-              "source": "paapi_search",
-              "query": "イジらないで、長瀞さん 1",
-              "title": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-              "isbn13": null,
-              "asin": "B07B3VQQFJ",
-              "image": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "イジらないで、長瀞さん 1 コミックス",
-            "ok": true,
-            "returned": 7,
-            "best": {
-              "source": "paapi_search",
-              "query": "イジらないで、長瀞さん 1 コミックス",
-              "title": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-              "isbn13": null,
-              "asin": "B07B3VQQFJ",
-              "image": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-              "score": 570
-            }
-          },
-          {
-            "query": "イジらないで、長瀞さん 1 (コミックス)",
-            "ok": true,
-            "returned": 7,
-            "best": {
-              "source": "paapi_search",
-              "query": "イジらないで、長瀞さん 1 (コミックス)",
-              "title": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-              "isbn13": null,
-              "asin": "B07B3VQQFJ",
-              "image": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-              "score": 570
-            }
-          }
-        ],
-        "best": {
-          "source": "paapi_search",
-          "query": "イジらないで、長瀞さん (1)",
-          "title": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-          "isbn13": null,
-          "asin": "B07B3VQQFJ",
-          "image": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-          "score": 570
-        }
-      },
-      "paapiGet": {
-        "ok": true,
-        "json": {
-          "ItemsResult": {
-            "Items": [
-              {
-                "ASIN": "B07B3VQQFJ",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B07B3VQQFJ?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-                "Images": {
-                  "Primary": {
-                    "Large": {
-                      "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51zny95UtDL._SL500_.jpg",
-                      "Width": 378
-                    }
-                  }
-                },
-                "ItemInfo": {
-                  "ByLineInfo": {
-                    "Brand": {
-                      "DisplayValue": "講談社",
-                      "Label": "Brand",
-                      "Locale": "ja_JP"
-                    },
-                    "Contributors": [
-                      {
-                        "Locale": "ja_JP",
-                        "Name": "ナナシ",
-                        "Role": "著",
-                        "RoleType": "author"
-                      }
-                    ],
-                    "Manufacturer": {
-                      "DisplayValue": "講談社",
-                      "Label": "Manufacturer",
-                      "Locale": "ja_JP"
-                    }
-                  },
-                  "Title": {
-                    "DisplayValue": "イジらないで、長瀞さん（１） (マガジンポケットコミックス)",
-                    "Label": "Title",
-                    "Locale": "ja_JP"
-                  }
-                }
-              }
-            ]
-          }
         }
       }
     },
@@ -1820,51 +1388,6 @@
       }
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
-      "paapiSearch": {
-        "tried": [
-          "ジョジョの奇妙な冒険 ストーンオーシャン (1)",
-          "ジョジョの奇妙な冒険 ストーンオーシャン（1）",
-          "ジョジョの奇妙な冒険 ストーンオーシャン 1",
-          "ジョジョの奇妙な冒険 ストーンオーシャン 1 コミックス",
-          "ジョジョの奇妙な冒険 ストーンオーシャン 1 (コミックス)"
-        ],
-        "results": [
-          {
-            "query": "ジョジョの奇妙な冒険 ストーンオーシャン (1)",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 ストーンオーシャン（1）",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 ストーンオーシャン 1",
-            "ok": true,
-            "returned": 10,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 ストーンオーシャン 1 コミックス",
-            "ok": true,
-            "returned": 5,
-            "best": null
-          },
-          {
-            "query": "ジョジョの奇妙な冒険 ストーンオーシャン 1 (コミックス)",
-            "ok": true,
-            "returned": 5,
-            "best": null
-          }
-        ],
-        "best": null
-      }
-    },
-    {
       "seriesKey": "地縛少年 花子くん",
       "paapiSearch": {
         "tried": [
@@ -1956,10 +1479,11 @@
           "score": 650
         }
       },
-      "path": "paapi_search_only",
-      "confirmed": {
+      "path": "paapi_search_review",
+      "review": {
         "seriesKey": "地縛少年 花子くん",
         "author": null,
+        "reason": "suspicious_subtitle(subtitle_tilde)",
         "vol1": {
           "title": "地縛少年 花子くん 1巻~3巻バリューパック (Gファンタジーコミックス)",
           "isbn13": "9784757595781",
@@ -1971,94 +1495,94 @@
       }
     },
     {
-      "seriesKey": "薫る花は凛と咲く",
+      "seriesKey": "惡の華",
       "paapiSearch": {
         "tried": [
-          "薫る花は凛と咲く (1)",
-          "薫る花は凛と咲く（1）",
-          "薫る花は凛と咲く 1",
-          "薫る花は凛と咲く 1 コミックス",
-          "薫る花は凛と咲く 1 (コミックス)"
+          "惡の華 (1)",
+          "惡の華（1）",
+          "惡の華 1",
+          "惡の華 1 コミックス",
+          "惡の華 1 (コミックス)"
         ],
         "results": [
           {
-            "query": "薫る花は凛と咲く (1)",
+            "query": "惡の華 (1)",
             "ok": true,
             "returned": 10,
             "best": {
               "source": "paapi_search",
-              "query": "薫る花は凛と咲く (1)",
-              "title": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+              "query": "惡の華 (1)",
+              "title": "惡の華（１） (週刊少年マガジンコミックス)",
               "isbn13": null,
-              "asin": "B09TF1DNJZ",
-              "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+              "asin": "B009SNA0L4",
+              "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
               "score": 570
             }
           },
           {
-            "query": "薫る花は凛と咲く（1）",
+            "query": "惡の華（1）",
             "ok": true,
             "returned": 10,
             "best": {
               "source": "paapi_search",
-              "query": "薫る花は凛と咲く（1）",
-              "title": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+              "query": "惡の華（1）",
+              "title": "惡の華（１） (週刊少年マガジンコミックス)",
               "isbn13": null,
-              "asin": "B09TF1DNJZ",
-              "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+              "asin": "B009SNA0L4",
+              "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
               "score": 570
             }
           },
           {
-            "query": "薫る花は凛と咲く 1",
+            "query": "惡の華 1",
             "ok": true,
             "returned": 10,
             "best": {
               "source": "paapi_search",
-              "query": "薫る花は凛と咲く 1",
-              "title": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+              "query": "惡の華 1",
+              "title": "惡の華（１） (週刊少年マガジンコミックス)",
               "isbn13": null,
-              "asin": "B09TF1DNJZ",
-              "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+              "asin": "B009SNA0L4",
+              "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
               "score": 570
             }
           },
           {
-            "query": "薫る花は凛と咲く 1 コミックス",
+            "query": "惡の華 1 コミックス",
             "ok": true,
-            "returned": 3,
+            "returned": 10,
             "best": {
               "source": "paapi_search",
-              "query": "薫る花は凛と咲く 1 コミックス",
-              "title": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+              "query": "惡の華 1 コミックス",
+              "title": "惡の華（１） (週刊少年マガジンコミックス)",
               "isbn13": null,
-              "asin": "B09TF1DNJZ",
-              "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+              "asin": "B009SNA0L4",
+              "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
               "score": 570
             }
           },
           {
-            "query": "薫る花は凛と咲く 1 (コミックス)",
+            "query": "惡の華 1 (コミックス)",
             "ok": true,
-            "returned": 3,
+            "returned": 10,
             "best": {
               "source": "paapi_search",
-              "query": "薫る花は凛と咲く 1 (コミックス)",
-              "title": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+              "query": "惡の華 1 (コミックス)",
+              "title": "惡の華（１） (週刊少年マガジンコミックス)",
               "isbn13": null,
-              "asin": "B09TF1DNJZ",
-              "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+              "asin": "B009SNA0L4",
+              "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
               "score": 570
             }
           }
         ],
         "best": {
           "source": "paapi_search",
-          "query": "薫る花は凛と咲く (1)",
-          "title": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+          "query": "惡の華 (1)",
+          "title": "惡の華（１） (週刊少年マガジンコミックス)",
           "isbn13": null,
-          "asin": "B09TF1DNJZ",
-          "image": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
+          "asin": "B009SNA0L4",
+          "image": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
           "score": 570
         }
       },
@@ -2068,14 +1592,14 @@
           "ItemsResult": {
             "Items": [
               {
-                "ASIN": "B09TF1DNJZ",
-                "DetailPageURL": "https://www.amazon.co.jp/dp/B09TF1DNJZ?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "ASIN": "B009SNA0L4",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B009SNA0L4?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
                 "Images": {
                   "Primary": {
                     "Large": {
                       "Height": 500,
-                      "URL": "https://m.media-amazon.com/images/I/51ZHjkFQUSL._SL500_.jpg",
-                      "Width": 378
+                      "URL": "https://m.media-amazon.com/images/I/51X2tngBQpL._SL500_.jpg",
+                      "Width": 334
                     }
                   }
                 },
@@ -2089,7 +1613,7 @@
                     "Contributors": [
                       {
                         "Locale": "ja_JP",
-                        "Name": "三香見サカ",
+                        "Name": "押見修造",
                         "Role": "著",
                         "RoleType": "author"
                       }
@@ -2101,7 +1625,7 @@
                     }
                   },
                   "Title": {
-                    "DisplayValue": "薫る花は凛と咲く（１） (マガジンポケットコミックス)",
+                    "DisplayValue": "惡の華（１） (週刊少年マガジンコミックス)",
                     "Label": "Title",
                     "Locale": "ja_JP"
                   }
@@ -2109,6 +1633,549 @@
               }
             ]
           }
+        }
+      }
+    },
+    {
+      "seriesKey": "呪術廻戦 0 東京都立呪術高等専門学校",
+      "paapiSearch": {
+        "tried": [
+          "呪術廻戦 0 東京都立呪術高等専門学校 (1)",
+          "呪術廻戦 0 東京都立呪術高等専門学校（1）",
+          "呪術廻戦 0 東京都立呪術高等専門学校 1",
+          "呪術廻戦 0 東京都立呪術高等専門学校 1 コミックス",
+          "呪術廻戦 0 東京都立呪術高等専門学校 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "呪術廻戦 0 東京都立呪術高等専門学校 (1)",
+            "ok": true,
+            "returned": 1,
+            "best": null
+          },
+          {
+            "query": "呪術廻戦 0 東京都立呪術高等専門学校（1）",
+            "ok": true,
+            "returned": 1,
+            "best": null
+          },
+          {
+            "query": "呪術廻戦 0 東京都立呪術高等専門学校 1",
+            "ok": true,
+            "returned": 1,
+            "best": null
+          },
+          {
+            "query": "呪術廻戦 0 東京都立呪術高等専門学校 1 コミックス",
+            "ok": true,
+            "returned": 1,
+            "best": null
+          },
+          {
+            "query": "呪術廻戦 0 東京都立呪術高等専門学校 1 (コミックス)",
+            "ok": true,
+            "returned": 1,
+            "best": null
+          }
+        ],
+        "best": null
+      }
+    },
+    {
+      "seriesKey": "五等分の花嫁",
+      "paapiSearch": {
+        "tried": [
+          "五等分の花嫁 (1)",
+          "五等分の花嫁（1）",
+          "五等分の花嫁 1",
+          "五等分の花嫁 1 コミックス",
+          "五等分の花嫁 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "五等分の花嫁 (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "五等分の花嫁 (1)",
+              "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B0764YVB8W",
+              "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "五等分の花嫁（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "五等分の花嫁（1）",
+              "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B0764YVB8W",
+              "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "五等分の花嫁 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "五等分の花嫁 1",
+              "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B0764YVB8W",
+              "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "五等分の花嫁 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "五等分の花嫁 1 コミックス",
+              "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B0764YVB8W",
+              "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "五等分の花嫁 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "五等分の花嫁 1 (コミックス)",
+              "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+              "isbn13": null,
+              "asin": "B0764YVB8W",
+              "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "五等分の花嫁 (1)",
+          "title": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+          "isbn13": null,
+          "asin": "B0764YVB8W",
+          "image": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+          "score": 570
+        }
+      },
+      "paapiGet": {
+        "ok": true,
+        "json": {
+          "ItemsResult": {
+            "Items": [
+              {
+                "ASIN": "B0764YVB8W",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B0764YVB8W?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/51JWxNc85fL._SL500_.jpg",
+                      "Width": 334
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "講談社",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    },
+                    "Contributors": [
+                      {
+                        "Locale": "ja_JP",
+                        "Name": "春場ねぎ",
+                        "Role": "著",
+                        "RoleType": "author"
+                      }
+                    ],
+                    "Manufacturer": {
+                      "DisplayValue": "講談社",
+                      "Label": "Manufacturer",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "五等分の花嫁（１） (週刊少年マガジンコミックス)",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "seriesKey": "とんがり帽子のアトリエ",
+      "paapiSearch": {
+        "tried": [
+          "とんがり帽子のアトリエ (1)",
+          "とんがり帽子のアトリエ（1）",
+          "とんがり帽子のアトリエ 1",
+          "とんがり帽子のアトリエ 1 コミックス",
+          "とんがり帽子のアトリエ 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "とんがり帽子のアトリエ (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "とんがり帽子のアトリエ (1)",
+              "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+              "isbn13": null,
+              "asin": "B01N22480D",
+              "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "とんがり帽子のアトリエ（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "とんがり帽子のアトリエ（1）",
+              "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+              "isbn13": null,
+              "asin": "B01N22480D",
+              "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "とんがり帽子のアトリエ 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "とんがり帽子のアトリエ 1",
+              "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+              "isbn13": null,
+              "asin": "B01N22480D",
+              "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "とんがり帽子のアトリエ 1 コミックス",
+            "ok": true,
+            "returned": 5,
+            "best": {
+              "source": "paapi_search",
+              "query": "とんがり帽子のアトリエ 1 コミックス",
+              "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+              "isbn13": null,
+              "asin": "B01N22480D",
+              "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "とんがり帽子のアトリエ 1 (コミックス)",
+            "ok": true,
+            "returned": 5,
+            "best": {
+              "source": "paapi_search",
+              "query": "とんがり帽子のアトリエ 1 (コミックス)",
+              "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+              "isbn13": null,
+              "asin": "B01N22480D",
+              "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "とんがり帽子のアトリエ (1)",
+          "title": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+          "isbn13": null,
+          "asin": "B01N22480D",
+          "image": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+          "score": 570
+        }
+      },
+      "paapiGet": {
+        "ok": true,
+        "json": {
+          "ItemsResult": {
+            "Items": [
+              {
+                "ASIN": "B01N22480D",
+                "DetailPageURL": "https://www.amazon.co.jp/dp/B01N22480D?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+                "Images": {
+                  "Primary": {
+                    "Large": {
+                      "Height": 500,
+                      "URL": "https://m.media-amazon.com/images/I/61NvCgPIMML._SL500_.jpg",
+                      "Width": 352
+                    }
+                  }
+                },
+                "ItemInfo": {
+                  "ByLineInfo": {
+                    "Brand": {
+                      "DisplayValue": "講談社",
+                      "Label": "Brand",
+                      "Locale": "ja_JP"
+                    },
+                    "Contributors": [
+                      {
+                        "Locale": "ja_JP",
+                        "Name": "白浜鴎",
+                        "Role": "著",
+                        "RoleType": "author"
+                      }
+                    ],
+                    "Manufacturer": {
+                      "DisplayValue": "講談社",
+                      "Label": "Manufacturer",
+                      "Locale": "ja_JP"
+                    }
+                  },
+                  "Title": {
+                    "DisplayValue": "とんがり帽子のアトリエ（１） (モーニングコミックス)",
+                    "Label": "Title",
+                    "Locale": "ja_JP"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "seriesKey": "極主夫道",
+      "paapiSearch": {
+        "tried": [
+          "極主夫道 (1)",
+          "極主夫道（1）",
+          "極主夫道 1",
+          "極主夫道 1 コミックス",
+          "極主夫道 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "極主夫道 (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "極主夫道 (1)",
+              "title": "極主夫道　1巻: バンチコミックス",
+              "isbn13": null,
+              "asin": "B07G3NR14C",
+              "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "極主夫道（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "極主夫道（1）",
+              "title": "極主夫道　1巻: バンチコミックス",
+              "isbn13": null,
+              "asin": "B07G3NR14C",
+              "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "極主夫道 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "極主夫道 1",
+              "title": "極主夫道　1巻: バンチコミックス",
+              "isbn13": null,
+              "asin": "B07G3NR14C",
+              "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "極主夫道 1 コミックス",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "極主夫道 1 コミックス",
+              "title": "極主夫道　1巻: バンチコミックス",
+              "isbn13": null,
+              "asin": "B07G3NR14C",
+              "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "極主夫道 1 (コミックス)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "極主夫道 1 (コミックス)",
+              "title": "極主夫道　1巻: バンチコミックス",
+              "isbn13": null,
+              "asin": "B07G3NR14C",
+              "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "極主夫道 (1)",
+          "title": "極主夫道　1巻: バンチコミックス",
+          "isbn13": null,
+          "asin": "B07G3NR14C",
+          "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+          "score": 570
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "極主夫道",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_colon)",
+        "vol1": {
+          "title": "極主夫道　1巻: バンチコミックス",
+          "isbn13": null,
+          "asin": "B07G3NR14C",
+          "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/B07G3NR14C",
+          "source": "paapi_search(mainline_guard)"
+        }
+      }
+    },
+    {
+      "seriesKey": "ホムンクルス",
+      "paapiSearch": {
+        "tried": [
+          "ホムンクルス (1)",
+          "ホムンクルス（1）",
+          "ホムンクルス 1",
+          "ホムンクルス 1 コミックス",
+          "ホムンクルス 1 (コミックス)"
+        ],
+        "results": [
+          {
+            "query": "ホムンクルス (1)",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホムンクルス (1)",
+              "title": "ホムンクルスの詩 １話-（１）",
+              "isbn13": null,
+              "asin": "B0F92912WB",
+              "image": "https://m.media-amazon.com/images/I/514XN3F46-L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "ホムンクルス（1）",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホムンクルス（1）",
+              "title": "ホムンクルスの詩 １話-（１）",
+              "isbn13": null,
+              "asin": "B0F92912WB",
+              "image": "https://m.media-amazon.com/images/I/514XN3F46-L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "ホムンクルス 1",
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホムンクルス 1",
+              "title": "ホムンクルスの詩 １話-（１）",
+              "isbn13": null,
+              "asin": "B0F92912WB",
+              "image": "https://m.media-amazon.com/images/I/514XN3F46-L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "ホムンクルス 1 コミックス",
+            "ok": true,
+            "returned": 9,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホムンクルス 1 コミックス",
+              "title": "ホムンクルス（１） (ビッグコミックス)",
+              "isbn13": null,
+              "asin": "B00WW8IOOM",
+              "image": "https://m.media-amazon.com/images/I/51S9MFjmg9L._SL500_.jpg",
+              "score": 570
+            }
+          },
+          {
+            "query": "ホムンクルス 1 (コミックス)",
+            "ok": true,
+            "returned": 9,
+            "best": {
+              "source": "paapi_search",
+              "query": "ホムンクルス 1 (コミックス)",
+              "title": "ホムンクルス（１） (ビッグコミックス)",
+              "isbn13": null,
+              "asin": "B00WW8IOOM",
+              "image": "https://m.media-amazon.com/images/I/51S9MFjmg9L._SL500_.jpg",
+              "score": 570
+            }
+          }
+        ],
+        "best": {
+          "source": "paapi_search",
+          "query": "ホムンクルス (1)",
+          "title": "ホムンクルスの詩 １話-（１）",
+          "isbn13": null,
+          "asin": "B0F92912WB",
+          "image": "https://m.media-amazon.com/images/I/514XN3F46-L._SL500_.jpg",
+          "score": 570
+        }
+      },
+      "path": "paapi_search_review",
+      "review": {
+        "seriesKey": "ホムンクルス",
+        "author": null,
+        "reason": "suspicious_subtitle(subtitle_dash)",
+        "vol1": {
+          "title": "ホムンクルスの詩 １話-（１）",
+          "isbn13": null,
+          "asin": "B0F92912WB",
+          "image": "https://m.media-amazon.com/images/I/514XN3F46-L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/B0F92912WB",
+          "source": "paapi_search(mainline_guard)"
         }
       }
     }
