@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T01:47:09.969Z",
+  "updatedAt": "2026-02-11T02:05:20.879Z",
   "total": 3,
   "items": [
     {
@@ -10,7 +10,7 @@
       "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
       "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
       "releaseDate": "2018-11-16",
-      "publisher": "講談社",
+      "publisher": null,
       "magazine": null,
       "synopsis": null,
       "synopsisSource": null,
@@ -19,29 +19,12 @@
         "Drama",
         "Sports"
       ],
-      "tags": [
-        "Football",
-        "Male Protagonist",
-        "Battle Royale",
-        "Athletics",
-        "Primarily Male Cast",
-        "Primarily Teen Cast",
-        "Ensemble Cast",
-        "Shounen",
-        "Super Power",
-        "Anti-Hero",
-        "Fitness",
-        "Foreign",
-        "Augmented Reality",
-        "Language Barrier",
-        "Suicide",
-        "Revenge"
-      ],
+      "tags": [],
       "meta": {
         "titleLane2": "ブルーロック(1) (少年マガジンコミックス)",
         "anilistId": 106130,
         "wikiTitle": "ブルーロック",
-        "source": "enrich(paapi+openbd+wiki+anilist)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
       }
     },
     {
@@ -52,7 +35,7 @@
       "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
       "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
       "releaseDate": "2022-06-10",
-      "publisher": "スクウェア・エニックス(SQUARE ENIX)",
+      "publisher": null,
       "magazine": null,
       "synopsis": null,
       "synopsisSource": null,
@@ -62,22 +45,12 @@
         "Comedy",
         "Fantasy"
       ],
-      "tags": [
-        "Shounen",
-        "Twins",
-        "Youkai",
-        "Anachronism",
-        "Urban Fantasy",
-        "Male Protagonist",
-        "Conspiracy",
-        "Archery",
-        "Rural"
-      ],
+      "tags": [],
       "meta": {
         "titleLane2": "黄泉のツガイ",
         "anilistId": 136899,
         "wikiTitle": "黄泉のツガイ",
-        "source": "enrich(paapi+openbd+wiki+anilist)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
       }
     },
     {
@@ -88,7 +61,7 @@
       "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
       "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
       "releaseDate": "2020-08-18",
-      "publisher": "小学館",
+      "publisher": null,
       "magazine": null,
       "synopsis": null,
       "synopsisSource": null,
@@ -97,29 +70,12 @@
         "Drama",
         "Fantasy"
       ],
-      "tags": [
-        "Magic",
-        "Travel",
-        "Elf",
-        "Philosophy",
-        "Female Protagonist",
-        "Demons",
-        "Iyashikei",
-        "Medieval",
-        "Kuudere",
-        "Episodic",
-        "Spearplay",
-        "Heterosexual",
-        "Shounen",
-        "Fairy Tale",
-        "Food",
-        "Dungeon"
-      ],
+      "tags": [],
       "meta": {
         "titleLane2": "葬送のフリーレン",
         "anilistId": 118586,
         "wikiTitle": "葬送のフリーレン",
-        "source": "enrich(paapi+openbd+wiki+anilist)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
       }
     }
   ]

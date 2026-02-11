@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T01:47:30.099Z",
+  "updatedAt": "2026-02-11T02:05:39.885Z",
   "total": 3,
   "enriched": 3,
   "items": [
@@ -59,24 +59,25 @@
           "Suicide",
           "Revenge"
         ],
-        "tags": [],
+        "tags": [
+          "サッカー",
+          "男性主人公",
+          "バトルロイヤル",
+          "競技",
+          "男多め",
+          "10代中心",
+          "群像劇",
+          "少年",
+          "超能力",
+          "アンチヒーロー",
+          "フィットネス",
+          "海外",
+          "拡張現実",
+          "言語の壁",
+          "復讐"
+        ],
         "tags_missing_en": [
-          "Football",
-          "Male Protagonist",
-          "Battle Royale",
-          "Athletics",
-          "Primarily Male Cast",
-          "Primarily Teen Cast",
-          "Ensemble Cast",
-          "Shounen",
-          "Super Power",
-          "Anti-Hero",
-          "Fitness",
-          "Foreign",
-          "Augmented Reality",
-          "Language Barrier",
-          "Suicide",
-          "Revenge"
+          "Suicide"
         ],
         "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
       }
@@ -126,17 +127,18 @@
           "Archery",
           "Rural"
         ],
-        "tags": [],
+        "tags": [
+          "少年",
+          "双子",
+          "妖怪",
+          "現代ファンタジー",
+          "男性主人公",
+          "陰謀",
+          "弓術",
+          "田舎"
+        ],
         "tags_missing_en": [
-          "Shounen",
-          "Twins",
-          "Youkai",
-          "Anachronism",
-          "Urban Fantasy",
-          "Male Protagonist",
-          "Conspiracy",
-          "Archery",
-          "Rural"
+          "Anachronism"
         ],
         "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
       }
@@ -197,24 +199,25 @@
           "Food",
           "Dungeon"
         ],
-        "tags": [],
+        "tags": [
+          "魔法",
+          "旅",
+          "エルフ",
+          "哲学",
+          "女性主人公",
+          "悪魔",
+          "癒し",
+          "中世",
+          "クーデレ",
+          "エピソード式",
+          "槍術",
+          "少年",
+          "童話",
+          "食",
+          "ダンジョン"
+        ],
         "tags_missing_en": [
-          "Magic",
-          "Travel",
-          "Elf",
-          "Philosophy",
-          "Female Protagonist",
-          "Demons",
-          "Iyashikei",
-          "Medieval",
-          "Kuudere",
-          "Episodic",
-          "Spearplay",
-          "Heterosexual",
-          "Shounen",
-          "Fairy Tale",
-          "Food",
-          "Dungeon"
+          "Heterosexual"
         ],
         "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
       }

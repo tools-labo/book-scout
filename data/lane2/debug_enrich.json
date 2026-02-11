@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T01:47:30.101Z",
+  "updatedAt": "2026-02-11T02:05:39.886Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -50,16 +50,10 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ContentInfo",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
-            },
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
             }
           ]
         },
@@ -131,24 +125,25 @@
             "Suicide",
             "Revenge"
           ],
-          "tags": [],
+          "tags": [
+            "サッカー",
+            "男性主人公",
+            "バトルロイヤル",
+            "競技",
+            "男多め",
+            "10代中心",
+            "群像劇",
+            "少年",
+            "超能力",
+            "アンチヒーロー",
+            "フィットネス",
+            "海外",
+            "拡張現実",
+            "言語の壁",
+            "復讐"
+          ],
           "tags_missing_en": [
-            "Football",
-            "Male Protagonist",
-            "Battle Royale",
-            "Athletics",
-            "Primarily Male Cast",
-            "Primarily Teen Cast",
-            "Ensemble Cast",
-            "Shounen",
-            "Super Power",
-            "Anti-Hero",
-            "Fitness",
-            "Foreign",
-            "Augmented Reality",
-            "Language Barrier",
-            "Suicide",
-            "Revenge"
+            "Suicide"
           ],
           "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
         }
@@ -160,10 +155,20 @@
       "input": {
         "lane2Title": "黄泉のツガイ",
         "isbn13": "9784757579620",
-        "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+        "amazonDp": "https://www.amazon.co.jp/dp/9784757579620",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
+        "resolveAsinByIsbn13": {
+          "ok": true,
+          "reason": null,
+          "isbn13": "9784757579620",
+          "raw": {
+            "cached": true,
+            "asin": "4757579624"
+          },
+          "retries": null
+        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -206,7 +211,13 @@
               "waitMs": 900
             },
             {
-              "label": "probe:EditorialReviews.EditorialReview",
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            },
+            {
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -270,17 +281,18 @@
             "Archery",
             "Rural"
           ],
-          "tags": [],
+          "tags": [
+            "少年",
+            "双子",
+            "妖怪",
+            "現代ファンタジー",
+            "男性主人公",
+            "陰謀",
+            "弓術",
+            "田舎"
+          ],
           "tags_missing_en": [
-            "Shounen",
-            "Twins",
-            "Youkai",
-            "Anachronism",
-            "Urban Fantasy",
-            "Male Protagonist",
-            "Conspiracy",
-            "Archery",
-            "Rural"
+            "Anachronism"
           ],
           "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
         }
@@ -342,16 +354,10 @@
           ],
           "retries": [
             {
-              "label": "probe:EditorialReviews.EditorialReview",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
             }
           ]
         },
@@ -423,24 +429,25 @@
             "Food",
             "Dungeon"
           ],
-          "tags": [],
+          "tags": [
+            "魔法",
+            "旅",
+            "エルフ",
+            "哲学",
+            "女性主人公",
+            "悪魔",
+            "癒し",
+            "中世",
+            "クーデレ",
+            "エピソード式",
+            "槍術",
+            "少年",
+            "童話",
+            "食",
+            "ダンジョン"
+          ],
           "tags_missing_en": [
-            "Magic",
-            "Travel",
-            "Elf",
-            "Philosophy",
-            "Female Protagonist",
-            "Demons",
-            "Iyashikei",
-            "Medieval",
-            "Kuudere",
-            "Episodic",
-            "Spearplay",
-            "Heterosexual",
-            "Shounen",
-            "Fairy Tale",
-            "Food",
-            "Dungeon"
+            "Heterosexual"
           ],
           "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
         }
