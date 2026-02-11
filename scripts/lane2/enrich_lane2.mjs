@@ -19,6 +19,10 @@ const TAG_JA_MAP = "data/lane2/tag_ja_map.json";   // { map: { "Foo":"日本語"
 const TAG_HIDE = "data/lane2/tag_hide.json";       // { hide: ["Suicide", ...] } 無ければ空扱い
 const TAG_TODO = "data/lane2/tags_todo.json";      // { tags: [] } 無ければ生成
 
+// ★あらすじ手動上書き + todo
+const SYNOPSIS_OVERRIDE = "data/lane2/synopsis_override.json"; // { version, updatedAt, items: { "作品名": { synopsis: "..." } } }
+const SYNOPSIS_TODO = "data/lane2/synopsis_todo.json";         // { version, updatedAt, items: [ { seriesKey } ] }
+
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
 const AMZ_PARTNER_TAG = process.env.AMZ_PARTNER_TAG || "";
@@ -549,7 +553,7 @@ function extractFromAniList(media) {
  *  - タイトル一致/包含を強く優遇
  *  - ページHTML内に「漫画」「作品」等があると加点
  *  - 作品っぽくない（人物/企業等）を減点
- *  - ★最終採用は「titleがseriesKeyと一致/包含」だけ（ここが今回の修正点）
+ *  - ★最終採用は「titleがseriesKeyと一致/包含」だけ
  * ----------------------- */
 async function wikiApi(params) {
   const base = "https://ja.wikipedia.org/w/api.php";
@@ -685,7 +689,7 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
 
   scored.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
-  // ★ここが今回の本丸：作品名と一致/包含の候補だけ採用
+  // ★作品名と一致/包含の候補だけ採用
   const bestHit = scored.find((x) => wikiTitleLooksOk({ wikiTitle: x?.h?.title, seriesKey: key }))?.h || null;
 
   if (!bestHit?.pageid) {
@@ -824,6 +828,22 @@ function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
 }
 
 /* -----------------------
+ * synopsis override / todo
+ * ----------------------- */
+function loadSynopsisOverride(overrideJson) {
+  // 期待：{ version, updatedAt, items: { "作品名": { synopsis: "..." } } }
+  const items = overrideJson?.items && typeof overrideJson.items === "object" ? overrideJson.items : {};
+  const out = {};
+  for (const [k, v] of Object.entries(items)) {
+    const kk = norm(k);
+    const syn = norm(v?.synopsis);
+    if (!kk) continue;
+    out[kk] = { synopsis: syn || null };
+  }
+  return out;
+}
+
+/* -----------------------
  * main
  * ----------------------- */
 async function main() {
@@ -842,6 +862,17 @@ async function main() {
   const hideSet = loadHideSet(hideJson);
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
   const todoSet = new Set((todoJson?.tags || []).map((x) => norm(x)).filter(Boolean));
+
+  // synopsis override / todo
+  const synopsisOverrideJson = await loadJson(SYNOPSIS_OVERRIDE, { version: 1, updatedAt: "", items: {} });
+  const synopsisOverride = loadSynopsisOverride(synopsisOverrideJson);
+
+  const synopsisTodoJson = await loadJson(SYNOPSIS_TODO, { version: 1, updatedAt: "", items: [] });
+  const synopsisTodoSet = new Set(
+    (synopsisTodoJson?.items || [])
+      .map((x) => norm(x?.seriesKey))
+      .filter(Boolean)
+  );
 
   const enriched = [];
   const debug = [];
@@ -971,9 +1002,20 @@ async function main() {
     tagStep.missing = applied.tags_missing_en.length;
     one.steps.tagdict = tagStep;
 
-    // --- 最終 “あらすじ”
-    const finalSynopsis = obx.synopsis || wikiSynopsis || null;
-    const synopsisSource = obx.synopsis ? "openbd" : wikiSynopsis ? (wikiSynopsisSource || "wiki") : null;
+    // --- 手動あらすじ（override）
+    const manualSynopsis = norm(synopsisOverride?.[seriesKey]?.synopsis) || null;
+
+    // --- 最終 “あらすじ”（manual > openbd > wiki）
+    const finalSynopsis = manualSynopsis || obx.synopsis || wikiSynopsis || null;
+    const synopsisSource =
+      manualSynopsis ? "manual" :
+      obx.synopsis ? "openbd" :
+      wikiSynopsis ? (wikiSynopsisSource || "wiki") :
+      null;
+
+    // synopsis_todo：manualがあるなら除外、無い&最終nullなら追加
+    if (manualSynopsis) synopsisTodoSet.delete(seriesKey);
+    else if (!finalSynopsis) synopsisTodoSet.add(seriesKey);
 
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
 
@@ -1005,7 +1047,7 @@ async function main() {
         tags: applied.tags,
         tags_missing_en: applied.tags_missing_en,
 
-        source: "enrich(paapi+openbd+wiki+anilist+tagdict+hide)",
+        source: "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)",
       },
     };
 
@@ -1023,6 +1065,15 @@ async function main() {
     version: 1,
     updatedAt: nowIso(),
     tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
+  });
+
+  // synopsis_todo.json を毎回生成（空でもOK）
+  await saveJson(SYNOPSIS_TODO, {
+    version: 1,
+    updatedAt: nowIso(),
+    items: Array.from(synopsisTodoSet)
+      .sort((a, b) => a.localeCompare(b))
+      .map((k) => ({ seriesKey: k })),
   });
 
   await saveJson(OUT_ENRICHED, {
