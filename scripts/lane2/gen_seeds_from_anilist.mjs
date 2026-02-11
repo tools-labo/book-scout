@@ -9,6 +9,10 @@ async function saveJson(p, obj) {
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 async function fetchAniListPage(page) {
   const query = `
     query ($page:Int) {
@@ -43,29 +47,40 @@ function looksJapanese(s) {
 }
 
 async function main() {
-  const all = [];
-  for (let page = 1; page <= 6; page++) { // 50*6=300 から100作る
-    all.push(...(await fetchAniListPage(page)));
-  }
+  const limit = Math.max(1, Number(process.env.LANE2_SEED_LIMIT || 100));
 
   const seen = new Set();
   const items = [];
 
-  for (const m of all) {
-    if (m?.countryOfOrigin !== "JP") continue;
+  // JP縛りで間引かれるので、少し多めにページを掘れる上限
+  // （Popularity上位から拾う前提なので深掘りしすぎない）
+  const maxPages = Number(process.env.LANE2_SEED_MAX_PAGES || 20);
 
-    const native = norm(m?.title?.native);
-    const romaji = norm(m?.title?.romaji);
+  for (let page = 1; page <= maxPages; page++) {
+    const list = await fetchAniListPage(page);
 
-    // nativeが日本語っぽいものだけ採用（英語化が嫌ならromajiは使わない）
-    const key = looksJapanese(native) ? native : null;
+    for (const m of list) {
+      if (m?.countryOfOrigin !== "JP") continue;
 
-    if (!key) continue;
-    if (seen.has(key)) continue;
-    seen.add(key);
+      // ONE_SHOT は除外（lane2の「1巻」判定と混ざりやすい）
+      if (String(m?.format || "").toUpperCase() === "ONE_SHOT") continue;
 
-    items.push({ seriesKey: key });
-    if (items.length >= 100) break;
+      const native = norm(m?.title?.native);
+      // nativeが日本語っぽいものだけ採用（英語化が嫌ならromajiは使わない）
+      const key = looksJapanese(native) ? native : null;
+
+      if (!key) continue;
+      if (seen.has(key)) continue;
+      seen.add(key);
+
+      items.push({ seriesKey: key });
+      if (items.length >= limit) break;
+    }
+
+    if (items.length >= limit) break;
+
+    // AniListに優しい間隔
+    await sleep(250);
   }
 
   await saveJson(OUT, {
@@ -73,7 +88,7 @@ async function main() {
     items,
   });
 
-  console.log(`[seedgen] wrote ${items.length} seeds -> ${OUT}`);
+  console.log(`[seedgen] wrote ${items.length}/${limit} seeds -> ${OUT}`);
 }
 
 main().catch((e) => {
