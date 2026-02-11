@@ -3,6 +3,28 @@ name: Lane2 - Confirm Vol1 (NDL + Amazon PA-API)
 
 on:
   workflow_dispatch:
+    inputs:
+      fix_mode:
+        description: "Fix mode (no seed add / no new series). Only re-run build/enrich/format on existing data."
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      build_limit:
+        description: "How many pending seeds to process (ignored in fix_mode)"
+        required: true
+        default: "20"
+      seed_add:
+        description: "How many seeds to add (ignored in fix_mode)"
+        required: true
+        default: "100"
+      seed_max_pages:
+        description: "Seedgen max pages (ignored in fix_mode)"
+        required: true
+        default: "20"
+
   schedule:
     - cron: "17 */6 * * *" # 6時間ごと（様子見）
 
@@ -34,14 +56,14 @@ jobs:
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
 
-          # 1回で処理する「未処理seed」の上限（積み上げ運用）
-          LANE2_BUILD_LIMIT: "20"
+          # fixモード：手動実行時だけ inputs を使う（schedule では常に false）
+          LANE2_FIX_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.fix_mode || 'false' }}
 
-          # 1回で「追加するseed数」
-          LANE2_SEED_ADD: "100"
+          # 通常運用パラメータ（手動時は inputs、schedule 時は固定値）
+          LANE2_BUILD_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.build_limit || '20' }}
+          LANE2_SEED_ADD: ${{ github.event_name == 'workflow_dispatch' && inputs.seed_add || '100' }}
+          LANE2_SEED_MAX_PAGES: ${{ github.event_name == 'workflow_dispatch' && inputs.seed_max_pages || '20' }}
 
-          # seedgenが掘る最大ページ数（Popularity上位から少しずつ）
-          LANE2_SEED_MAX_PAGES: "20"
         run: |
           set -euo pipefail
           npm run lane2
@@ -56,7 +78,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # .gitignore で cache/debug は弾かれる前提
           git add data/lane2
           git commit -m "lane2: update vol1 series"
           git push
