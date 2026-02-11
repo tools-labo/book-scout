@@ -3,7 +3,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const OUT = "data/lane2/seeds.json";
-const STATE = "data/lane2/seedgen_state.json";
 
 async function loadJson(p, fallback) {
   try {
@@ -55,66 +54,67 @@ function looksJapanese(s) {
 }
 
 async function main() {
-  // 1回の「追加件数」
-  const addCount = Math.max(1, Number(process.env.LANE2_SEED_ADD || process.env.LANE2_SEED_LIMIT || 100));
+  // 今回「新規に足す」最大数（デフォ100）
+  const addLimit = Math.max(1, Number(process.env.LANE2_SEED_LIMIT || 100));
 
-  // 1回の実行で掘る最大ページ数（APIに優しく＆時間も守る）
-  const maxPages = Math.max(1, Number(process.env.LANE2_SEED_MAX_PAGES || 20));
+  // JP縛りで間引かれるので、少し多めにページを掘れる上限
+  const maxPages = Number(process.env.LANE2_SEED_MAX_PAGES || 20);
 
-  // 既存seedsを読み込む（積み上げ）
+  // 既存seedsを読み、Setに入れておく（★ここがA案の肝：上書きしない）
   const prev = await loadJson(OUT, { updatedAt: "", items: [] });
   const prevItems = Array.isArray(prev?.items) ? prev.items : [];
 
-  // 既存キーをseenに入れる
-  const seen = new Set(prevItems.map((x) => norm(x?.seriesKey)).filter(Boolean));
+  const seen = new Set();
+  const items = [];
 
-  // state（次の開始ページ）
-  const state = await loadJson(STATE, { updatedAt: "", nextPage: 1 });
-  let page = Math.max(1, Number(state?.nextPage || 1));
+  for (const x of prevItems) {
+    const k = norm(x?.seriesKey);
+    if (!k) continue;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    items.push({ seriesKey: k }); // 既存はそのまま保持（author等はここでは触らない）
+  }
 
-  const added = [];
-  const pageStart = page;
+  let added = 0;
 
-  for (let i = 0; i < maxPages; i++, page++) {
+  for (let page = 1; page <= maxPages; page++) {
     const list = await fetchAniListPage(page);
 
     for (const m of list) {
       if (m?.countryOfOrigin !== "JP") continue;
 
-      // ONE_SHOT は除外（lane2の1巻判定と混ざりやすい）
+      // ONE_SHOT は除外（lane2の「1巻」判定と混ざりやすい）
       if (String(m?.format || "").toUpperCase() === "ONE_SHOT") continue;
 
       const native = norm(m?.title?.native);
+
+      // nativeが日本語っぽいものだけ採用（英語化が嫌ならromajiは使わない）
       const key = looksJapanese(native) ? native : null;
+
       if (!key) continue;
-
       if (seen.has(key)) continue;
-      seen.add(key);
 
-      added.push({ seriesKey: key });
-      if (added.length >= addCount) break;
+      seen.add(key);
+      items.push({ seriesKey: key });
+      added++;
+
+      if (added >= addLimit) break;
     }
 
-    if (added.length >= addCount) break;
+    if (added >= addLimit) break;
 
     // AniListに優しい間隔
     await sleep(250);
   }
 
-  const nextItems = prevItems.concat(added);
-
   await saveJson(OUT, {
     updatedAt: new Date().toISOString(),
-    items: nextItems,
+    total: items.length,
+    addedThisRun: added,
+    items,
   });
 
-  await saveJson(STATE, {
-    updatedAt: new Date().toISOString(),
-    nextPage: page, // 次回はここから続き
-    lastRun: { added: added.length, addCount, pageStart, pageEnd: page - 1 },
-  });
-
-  console.log(`[seedgen] added ${added.length}/${addCount} (total ${nextItems.length}) pages ${pageStart}-${page - 1} -> ${OUT}`);
+  console.log(`[seedgen] added ${added}/${addLimit} (total ${items.length}) -> ${OUT}`);
 }
 
 main().catch((e) => {
