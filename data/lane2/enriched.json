@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T06:44:27.932Z",
+  "updatedAt": "2026-02-11T06:59:47.699Z",
   "total": 3,
   "enriched": 3,
   "items": [
@@ -76,7 +76,7 @@
           "復讐"
         ],
         "tags_missing_en": [],
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
       }
     },
     {
@@ -134,7 +134,7 @@
           "田舎"
         ],
         "tags_missing_en": [],
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
       }
     },
     {
@@ -210,7 +210,7 @@
           "ダンジョン"
         ],
         "tags_missing_en": [],
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
       }
     }
   ]

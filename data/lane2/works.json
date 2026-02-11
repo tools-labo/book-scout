@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T06:44:27.932Z",
+  "updatedAt": "2026-02-11T06:59:47.699Z",
   "total": 3,
   "items": [
     {
@@ -43,7 +43,7 @@
         "titleLane2": "ブルーロック(1) (少年マガジンコミックス)",
         "anilistId": 106130,
         "wikiTitle": "ブルーロック",
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
       }
     },
     {
@@ -77,7 +77,7 @@
       "meta": {
         "titleLane2": "黄泉のツガイ(1) (ガンガンコミックス)",
         "anilistId": 136899,
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
       }
     },
     {
@@ -121,7 +121,7 @@
         "titleLane2": "葬送のフリーレン (1) (少年サンデーコミックス)",
         "anilistId": 118586,
         "wikiTitle": "葬送のフリーレン",
-        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
       }
     }
   ]

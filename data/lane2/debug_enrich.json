@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T06:44:27.933Z",
+  "updatedAt": "2026-02-11T06:59:47.699Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,55 +48,13 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 3965460,
-          "title": "ブルーロック",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "1",
-          "hitScores": [
-            {
-              "title": "ブルーロック",
-              "pageid": 3965460,
-              "score": 26000
-            },
-            {
-              "title": "ハードロック",
-              "pageid": 4494,
-              "score": 2500
-            },
-            {
-              "title": "プログレッシブ・ロック",
-              "pageid": 4721,
-              "score": 2500
-            },
-            {
-              "title": "フォークロック",
-              "pageid": 4112,
-              "score": 0
-            },
-            {
-              "title": "日本のロック",
-              "pageid": 677352,
-              "score": -2500
-            }
-          ]
+          "cached": true
         },
         "anilist": {
           "cached": true
@@ -182,7 +140,7 @@
             "復讐"
           ],
           "tags_missing_en": [],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
         }
       }
     },
@@ -233,6 +191,12 @@
           "retries": [
             {
               "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -341,7 +305,7 @@
             "田舎"
           ],
           "tags_missing_en": [],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
         }
       }
     },
@@ -391,7 +355,7 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -402,42 +366,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 4124704,
-          "title": "葬送のフリーレン",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "2",
-          "hitScores": [
-            {
-              "title": "葬送のフリーレン",
-              "pageid": 4124704,
-              "score": 26000
-            },
-            {
-              "title": "アベツカサ",
-              "pageid": 4289144,
-              "score": 1300
-            },
-            {
-              "title": "はたしょう二",
-              "pageid": 2272142,
-              "score": 600
-            },
-            {
-              "title": "エバン・コール",
-              "pageid": 3725799,
-              "score": 100
-            },
-            {
-              "title": "種﨑敦美",
-              "pageid": 2133052,
-              "score": -1900
-            }
-          ]
+          "cached": true
         },
         "anilist": {
           "cached": true
@@ -523,7 +452,7 @@
             "ダンジョン"
           ],
           "tags_missing_en": [],
-          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+synopsis_override+synopsis_todo)"
         }
       }
     }
