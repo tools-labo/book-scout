@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-11T11:01:56.275Z",
-  "total": 14,
-  "ok": 14,
+  "updatedAt": "2026-02-11T11:33:31.429Z",
+  "total": 21,
+  "ok": 21,
   "ng": 0,
   "items": [
     {
@@ -48,7 +48,20 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            }
+          ]
         },
         "openbd": {
           "cached": true
@@ -353,14 +366,7 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
@@ -500,36 +506,16 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 3753018,
-          "title": "呪術廻戦",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "1"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 30,
@@ -685,29 +671,41 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "base",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": false
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 17751,
-          "title": "ベルセルク",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_lead",
-          "hasMagazine": false,
-          "sectionIndex": null
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 30,
@@ -869,26 +867,13 @@
           "retries": null
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": false
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 2047223,
-          "title": "進撃の巨人",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "3"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 30,
@@ -1062,13 +1047,13 @@
           ],
           "retries": [
             {
-              "label": "probe:EditorialReviews",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:EditorialReviews",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 2,
               "status": 429,
               "waitMs": 1800
@@ -1076,26 +1061,13 @@
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 3019450,
-          "title": "僕のヒーローアカデミア",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "4"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 30,
@@ -1259,6 +1231,12 @@
           ],
           "retries": [
             {
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
               "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
@@ -1267,26 +1245,13 @@
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 2651330,
-          "title": "ワンパンマン",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": false,
-          "sectionIndex": "3"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 16,
@@ -1422,34 +1387,27 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 31179,
-          "title": "バガボンド",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "1"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 25,
@@ -1599,12 +1557,23 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            }
+          ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
           "cached": false,
@@ -1640,10 +1609,7 @@
           ]
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 15,
@@ -1773,42 +1739,16 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 3571127,
-          "title": "東京卍リベンジャーズ",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "1"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 20,
@@ -1950,40 +1890,27 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:ItemInfo.ContentInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 2,
               "status": 429,
-              "waitMs": 900
+              "waitMs": 1800
             }
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 4433472,
-          "title": "ダンダダン",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": false,
-          "sectionIndex": "1"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 30,
@@ -2143,40 +2070,27 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:ItemInfo.ContentInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 2,
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
               "status": 429,
-              "waitMs": 1800
+              "waitMs": 900
             }
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 3524265,
-          "title": "古見さんは、コミュ症です。",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "1"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 20,
@@ -2313,40 +2227,27 @@
           ],
           "retries": [
             {
-              "label": "probe:EditorialReviews.EditorialReview",
+              "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
             },
             {
               "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 2,
+              "attempt": 1,
               "status": 429,
-              "waitMs": 1800
+              "waitMs": 900
             }
           ]
         },
         "openbd": {
-          "cached": false,
-          "ok": true,
-          "found": true
+          "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 4135543,
-          "title": "【推しの子】",
-          "hasSynopsis": true,
-          "synopsisSource": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "6"
+          "cached": true
         },
         "anilist": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pickedScore": 1360
+          "cached": true
         },
         "tagdict": {
           "total": 28,
@@ -2448,6 +2349,1214 @@
             "Incest",
             "VTuber",
             "Cosplay"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "20世紀少年",
+      "author": "",
+      "input": {
+        "lane2Title": "20世紀少年: ともだち (1) (ビッグコミックス)",
+        "isbn13": "9784091855312",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091855318",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4091855318",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": [
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
+            }
+          ]
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 1259868,
+          "title": "20世紀少年",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_section",
+          "hasMagazine": true,
+          "sectionIndex": "1"
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 30,
+          "hidden": 0,
+          "missing": 23
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "20世紀少年",
+        "author": "",
+        "vol1": {
+          "title": "20世紀少年: ともだち (1) (ビッグコミックス)",
+          "titleLane2": "20世紀少年: ともだち (1) (ビッグコミックス)",
+          "isbn13": "9784091855312",
+          "asin": "4091855318",
+          "image": "https://m.media-amazon.com/images/I/518o-r7MvpL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4091855318",
+          "publisher": {
+            "brand": "小学館",
+            "manufacturer": "小学館"
+          },
+          "contributors": [
+            {
+              "name": "浦沢 直樹",
+              "role": "イラスト",
+              "roleType": "illustrator"
+            }
+          ],
+          "releaseDate": "2000-01-29T00:00:01Z",
+          "synopsis": "あらすじ[編集]\n.mw-parser-output .ambox{border:1px solid #a2a9b1;border-left:10px solid #36c;background-color:#fbfbfb;box-sizing:border-box}.mw-parser-output .ambox+link+.ambox,.mw-parser-output .ambox+link+style+.ambox,.mw-parser-output .ambox+link+link+.ambox,.mw-parser-output .ambox+.mw-empty-elt+link+.ambox,.mw-parser-output .ambox+.mw-empty-elt+link+style+.ambox,.mw-parser-output .ambox+.mw-empty-elt+link+link+.ambox{margin-top:-1px}html body.mediawiki .mw-parser-output .ambox.mbox-small-left{margin:4px 1em 4px 0;overflow:hidden;width:238px;border-collapse:collapse;font-size:88%;line-height:1.25em}.mw-parser-output .ambox-speedy{border-left:10px solid #b32424;background-color:#fee7e6}.mw-parser-output .ambox-delete{border-left:10px solid #b32424}.mw-parser-output .ambox-content{border-left:10px solid #f28500}.mw-parser-output .ambox-style{border-left:10px solid #fc3}.mw-parser-output .ambox-move{border-left:10px solid #9932cc}.mw-parser-output .ambox-protection{border-left:10px solid #a2a9b1}.mw-parser-output .ambox .mbox-text{border:none;padding:0.25em 0.5em;width:100%;font-size:90%}.mw-parser-output .ambox .mbox-image{border:none;padding:2px 0 2px 0.5em;text-align:center}.mw-parser-output .ambox .mbox-imageright{border:none;padding:2px 0.5em 2px 0;text-align:center}.mw-parser-output .ambox .mbox-empty-cell{border:none;padding:0;width:1px}.mw-parser-output .ambox .mbox-image-div{width:52px}html.client-js body.skin-minerva .mw-parser-output .mbox-text-span{margin-left:23px!important}@media(min-width:720px){.mw-parser-output .ambox{margin:0 10%}}@media print{body.ns-0 .mw-parser-output .ambox{display:none!important}}この節にあるあらすじは作品内容に比して不十分です。 あらすじの書き方を参考にして、物語全体の流れが理解できるように（ネタバレも含めて）、著作権を侵害しないようご自身の言葉で加筆を行なってください。（2012年4月）（使い方）\n高度成長による「夢と希望」に満ちあふれていた時代から、一転して経済は停滞しオカルトブームが起き、世界滅亡の空気まで漂いはじめた、1970年前後。\nそんな時代の中で、少年たちは、地球滅亡をもくろむ悪の組織や、東京を破壊し尽くす巨大ロボットに蹂躙され、混沌とし、滅亡に向かっていく未来の世界を空想した。そして、それらに立ち向かい地球を救うのは、勧善懲悪の正義のヒーローとその仲間たちだ。下らないようなストーリーを描いたスケッチブックを、少年たちは“よげんの書”と名付ける。しかし大人になるにつれ、そんな空想の記憶は薄れていく。\n1997年、主人公のケンヂは、突然失踪した姉の娘のカンナを養い、コンビニを営む平凡な日々を送っていたが、お得意先の一家の失踪や幼なじみの死をきっかけに、その薄れかけていた記憶を次第に呼び覚まされていく。そして世界各地の異変が、幼い頃空想した“よげんの書”通りに起こっていることに気づく。一連のできごとの陰に見え隠れする謎の人物“ともだち”との出会いによって、全ての歯車は回り出す。\n物語は、“ともだち”による20世紀末にかけての暗躍と、それに立ち向かう大人になったケンヂ達幼なじみを中心とした第1部、ケンヂが行方不明となり、“ともだち”が世界の救世主として称えられるようになった2015年の世界で密かに反逆を試みるカンナを主人公とした第2部、人類が滅亡し“ともだち”が独裁政治を行う世界に突如現れたケンヂを描く第3部、“ともだち”亡き後に残された最後の陰謀に立ち向かい、幼少時との決着を付けるべく奔走するかつての仲間たちを描く最終部の4つに大きく分かれる。",
+          "synopsisSource": "wiki_section",
+          "magazine": "ビッグコミックスピリッツ",
+          "wikiTitle": "20世紀少年",
+          "anilistId": 30003,
+          "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Sci-Fi",
+            "Thriller"
+          ],
+          "tags_en": [
+            "Coming of Age",
+            "Ensemble Cast",
+            "Politics",
+            "Seinen",
+            "Achronological Order",
+            "Dystopian",
+            "Fugitive",
+            "Conspiracy",
+            "Cult",
+            "Found Family",
+            "Pandemic",
+            "Post-Apocalyptic",
+            "Terrorism",
+            "Male Protagonist",
+            "Detective",
+            "Philosophy",
+            "Cosmic Horror",
+            "Dissociative Identities",
+            "Musical Theater",
+            "Historical",
+            "Female Protagonist",
+            "Augmented Reality",
+            "Police",
+            "Robots",
+            "Cute Boys Doing Cute Things",
+            "Rock Music",
+            "Transgender",
+            "Foreign",
+            "Homeless",
+            "Nudity"
+          ],
+          "tags": [
+            "群像劇",
+            "陰謀",
+            "男性主人公",
+            "哲学",
+            "女性主人公",
+            "拡張現実",
+            "海外"
+          ],
+          "tags_missing_en": [
+            "Coming of Age",
+            "Politics",
+            "Seinen",
+            "Achronological Order",
+            "Dystopian",
+            "Fugitive",
+            "Cult",
+            "Found Family",
+            "Pandemic",
+            "Post-Apocalyptic",
+            "Terrorism",
+            "Detective",
+            "Cosmic Horror",
+            "Dissociative Identities",
+            "Musical Theater",
+            "Historical",
+            "Police",
+            "Robots",
+            "Cute Boys Doing Cute Things",
+            "Rock Music",
+            "Transgender",
+            "Homeless",
+            "Nudity"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "author": "",
+      "input": {
+        "lane2Title": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+        "isbn13": "9784757559202",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757559208",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4757559208",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": [
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 3947852,
+          "title": "その着せ替え人形は恋をする",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_section",
+          "hasMagazine": true,
+          "sectionIndex": "1"
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 18,
+          "hidden": 1,
+          "missing": 14
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "その着せ替え人形は恋をする",
+        "author": "",
+        "vol1": {
+          "title": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+          "titleLane2": "その着せ替え人形は恋をする(1) (ヤングガンガンコミックス)",
+          "isbn13": "9784757559202",
+          "asin": "4757559208",
+          "image": "https://m.media-amazon.com/images/I/41HRSm+u0DL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757559208",
+          "publisher": {
+            "brand": "スクウェア・エニックス(SQUARE ENIX)",
+            "manufacturer": "スクウェア・エニックス"
+          },
+          "contributors": [
+            {
+              "name": "福田 晋一",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2018-11-24T00:00:01Z",
+          "synopsis": "あらすじ[編集]\nプロローグ\n祖父の家が雛人形屋であり、幼い頃から雛人形が好きで「雛人形の頭師」を目指す高校1年生の五条新菜は、幼い頃に仲良しだった女の子に「男の子なのに雛人形が趣味なんて気持ち悪い」と自身の趣味を否定され絶交されてしまったことがトラウマとなり、それ以降ずっと友達がおらず、ひたすら雛人形と向き合う毎日だった。\n初めてのコスプレ\n1学期のある日、新菜は学校で雛人形用の衣装を作っていたところを同級生の喜多川海夢に見られる。かねてよりコスプレ願望を抱きながらも、自分では衣装を上手に作ることができなかった海夢は、新菜の裁縫に感銘を受けコスプレ衣装の制作を依頼する。新菜は戸惑いながらも、海夢の熱意に絆されコスプレ衣装の製作に取り掛かる。\n衣装完成後、海夢は新菜を誘ってコスプレイベントに参加し、コスプレイヤーとしてデビューする。その帰り道の電車の中、新菜はイベントでの海夢について「奇麗だった」と呟く。この言葉は新菜にとって特別な褒め言葉であり、彼の呟きを耳にした海夢は恋に落ちてしまう&#91;1&#93;&#91;2&#93;。\nジュジュ姉妹との合わせ\n新菜が作った衣装はSNSを通じて乾紗寿叶（ジュジュ）というコスプレイヤーの目に留まる。新菜の衣装に惹かれた紗寿叶は、彼にコスプレ衣装をオーダーする。この話を聞きつけた海夢の提案で、海夢と紗寿叶による合同コスプレ撮影、「合わせ（同じ作品に登場するキャラの衣装で揃えること）」が行われることになる。\n3人は、紗寿叶の妹で撮影担当の心寿を交えて準備を進めていくが、新菜は心寿が密かにコスプレ願望を抱いていることを知り、並行して心寿の衣装の準備にも取り組む。そして撮影当日、海夢と紗寿叶の前にコスプレ姿の心寿が現れ、合同コスプレ撮影は大成功に終わる&#91;3&#93;。\n文化祭でのコスプレ\nその後も、新菜と海夢はコスプレ衣装づくりを通じて仲を深めてゆき、コスプレイベントにも積極的に参加するようになり、コスプレを通じた新たな友人も作る。\nそして、学校では初めての文化祭を迎えるにあたって、コスプレもOKなミスコンイベントがあることを知り、海夢が出場することになってクラス全員で一番を取ろうと盛り上がる。また海夢の衣装とメイクを新菜が担当することがクラスに知れ渡り、新菜の技術が評判になったことに加え、新菜も積極的に他人（クラスメイト）に頼ることを覚えたこともあって、それまでクラスで孤立気味だった新菜もクラスの皆と打ち解ける&#91;4&#93;。\n造形物作り\n新菜はコスプレ用の小道具や装飾物といった造形物作りにも興味を持ち、ネットで知り合った緒方旭（アキラ）というコスプレイヤーに教えを請う。また話の流れで、海夢とジュジュ姉妹、またコスプレで知り合った友人達が、ホラーゲームの衣装合わせコスプレ撮影を行うことになる。この撮影で新菜はホラー用の小道具制作を引き受け、アキラから教えてもらいながら共に造形物制作を行う。\n一方、海夢のコスプレ友達でアキラの友人でもある都と涼香は、ジュジュが自身の「幼児体型で童顔」を気にしてコスプレすることを避けているキャラがあることを知り、身長や顔つきを誤魔化して撮影するテクニックを披露して、ジュジュにコスプレさせる。\nホラーゲームコスプレの撮影は、ジュジュが妹のためにホラーが苦手なのを隠して無理に参加していた結果倒れかけたり、海夢を避けていると思われていたアキラの行動が、実は海夢を「推し」すぎだったためで、海夢とツーショットで撮影できた結果とうとう感極まり泣き出したりしてしまうということも起こったが、無事に終わる&#91;5&#93;。\n冬コミ参加\n今までの経験を経て、すっかり新菜に惚れ込んでしまった海夢は新菜に告白しようと思うものの、なかなかその勇気が出せない。そんな中で冬コミにコスプレで参加することにした海夢は、さらに造形物作りもしたいという新菜の希望を受けてコスプレするキャラを考え、漫画『天命』のハニエルというキャラを挙げる。その漫画を読んだ新菜は作品にすっかり魅せられ、憑かれたように制作に没頭し徹底的なこだわりでハニエルを再現。海夢がその衣装で冬コミにコスプレ参加したところ、キャラになりきった海夢の立ち振る舞いも相まって大評判となる。SNSで写真を見た漫画原作者が賞賛したり、プロのコスプレモデルにならないかというスカウトが海夢に来たりするほどの反響を呼んだが、そんな海夢を見ていた新菜は複雑な心境で、微妙に海夢との距離が開く。\nさらに新菜は、幼い頃に新菜の雛人形への執着を「気持ち悪い」と言って、新菜にトラウマを与えた幼馴染みであるのんちゃん（青柳のばら）と再会したこともあって、海夢との関係がギクシャクしてしまう。海夢はもう衣装製作は頼まないと新菜に言い出したが、コスプレ衣装製作を通して自分の世界が広がったから海夢には感謝していると新菜は話す。さらに冬コミの時の自分の態度は、海夢が多くの人々の人気者になった嫉妬からだったと打ち明けた。すると海夢は「やきもち焼くくらいあたしの事好きなんでしょ！！」と新菜に言って、その勢いのまま自分も新菜が好きだと告白、それから猛アタックを開始する。\n一方『天命』の雑誌編集者は、ネットで見た海夢のハニエルコスプレ写真を見て、雑誌グラビアモデルになってもらおうと必死で身元を探していた。だが海夢は、趣味としてコスプレが続けられたらいいと考え、これ以上目立つことは望まなかった。原作者の賞賛に返礼する海夢と新菜のコメントも、大量のSNSのメッセージの中に埋没し、ハニエルコスプレ美少女の正体は、海夢の知人達以外には謎のままに終わった。\n新菜は、海夢と付き合い始めたことを祖父やクラスメイトに打ち明けるが、周囲は「まだ付き合ってなかったの？」という反応だった。一方文化祭を通してクラスメイトとも親しくなった新菜は、孤立していたそれまでとは打って変わり、学校生活を楽しんでいた。また海夢と新菜は、コスプレで知り合った友人達と共に、マイペースにコスプレを続ける。\nエピローグ\n高校卒業後、海夢は事務所に所属してプロのモデルになるが、コスプレはあくまで趣味にとどめる。一方新菜は「一風変わった」雛人形を作る職人として話題になる。やがて結婚したふたりの間には、日嘉という娘が生まれていた。\n^ 『このマンガがすごい！』編集部 編『このマンガがすごい！2020』宝島社、2019年、56頁。.mw-parser-output cite.citation{font-style:inherit;word-wrap:break-word}.mw-parser-output .citation q{quotes:\"“\"\"”\"\"‘\"\"’\"}.mw-parser-output .citation.cs-ja1 q,.mw-parser-output .citation.cs-ja2 q{quotes:\"「\"\"」\"\"『\"\"』\"}.mw-parser-output .id-lock-free.id-lock-free a{background:url(\"//upload.wikimedia.org/wikipedia/commons/6/65/Lock-green.svg\")right 0.1em center/9px no-repeat;padding-right:1em}.mw-parser-output .id-lock-limited.id-lock-limited a,.mw-parser-output .id-lock-registration.id-lock-registration a{background:url(\"//upload.wikimedia.org/wikipedia/commons/d/d6/Lock-gray-alt-2.svg\")right 0.1em center/9px no-repeat;padding-right:1em}.mw-parser-output .id-lock-subscription.id-lock-subscription a{background:url(\"//upload.wikimedia.org/wikipedia/commons/a/aa/Lock-red-alt-2.svg\")right 0.1em center/9px no-repeat;padding-right:1em}.mw-parser-output .cs1-ws-icon.cs1-ws-icon a{background:url(\"//upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg\")right 0.1em center/auto 1em no-repeat;padding-right:1em}.mw-parser-output .cs1-code{color:inherit;background:inherit;border:none;padding:inherit}.mw-parser-output .cs1-hidden-error{display:none;color:var(--color-error,#bf3c2c)}.mw-parser-output .cs1-visible-error{color:var(--color-error,#bf3c2c)}.mw-parser-output .cs1-maint{display:none;color:var(--color-success,#177860);margin-left:0.3em}.mw-parser-output .cs1-kern-left{padding-left:0.2em}.mw-parser-output .cs1-kern-right{padding-right:0.2em}.mw-parser-output .citation .mw-selflink{font-weight:inherit}@media screen{.mw-parser-output .cs1-format{font-size:95%}}ISBN&#160;978-4-299-00089-7。&#160;\n^ コミックス 2巻まで\n^ コミックス4巻まで\n^ コミックス8巻まで\n^ コミックス11巻まで",
+          "synopsisSource": "wiki_section",
+          "magazine": "ヤングガンガン",
+          "wikiTitle": "その着せ替え人形は恋をする",
+          "anilistId": 101583,
+          "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "Slice of Life"
+          ],
+          "tags_en": [
+            "Cosplay",
+            "Otaku Culture",
+            "Fashion",
+            "Female Protagonist",
+            "Male Protagonist",
+            "Gyaru",
+            "Primarily Teen Cast",
+            "Makeup",
+            "Heterosexual",
+            "Seinen",
+            "Photography",
+            "Educational",
+            "Crossdressing",
+            "School",
+            "Primarily Female Cast",
+            "Drawing",
+            "Nudity",
+            "Unrequited Love"
+          ],
+          "tags": [
+            "女性主人公",
+            "男性主人公",
+            "10代中心"
+          ],
+          "tags_missing_en": [
+            "Cosplay",
+            "Otaku Culture",
+            "Fashion",
+            "Gyaru",
+            "Makeup",
+            "Seinen",
+            "Photography",
+            "Educational",
+            "Crossdressing",
+            "School",
+            "Primarily Female Cast",
+            "Drawing",
+            "Nudity",
+            "Unrequited Love"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "うずまき",
+      "author": "",
+      "input": {
+        "lane2Title": "きたきた うずまき (0.1.2.えほん)",
+        "isbn13": "9784834020953",
+        "amazonDp": "https://www.amazon.co.jp/dp/4834020959",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4834020959",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": [
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 1238448,
+          "title": "うずまき",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_lead",
+          "hasMagazine": false,
+          "sectionIndex": null
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 20,
+          "hidden": 2,
+          "missing": 12
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "うずまき",
+        "author": "",
+        "vol1": {
+          "title": "きたきた うずまき (0.1.2.えほん)",
+          "titleLane2": "きたきた うずまき (0.1.2.えほん)",
+          "isbn13": "9784834020953",
+          "asin": "4834020959",
+          "image": "https://m.media-amazon.com/images/I/51AlcnABk4L._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4834020959",
+          "publisher": {
+            "brand": "株式会社 福音館書店",
+            "manufacturer": "福音館書店"
+          },
+          "contributors": [
+            {
+              "name": "元永 定正",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2005-05-20T00:00:01Z",
+          "synopsis": "うずまき",
+          "synopsisSource": "wiki_lead",
+          "magazine": null,
+          "wikiTitle": "うずまき",
+          "anilistId": 30436,
+          "genres": [
+            "Drama",
+            "Horror",
+            "Mystery",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+          ],
+          "tags_en": [
+            "Body Horror",
+            "Cosmic Horror",
+            "Survival",
+            "Seinen",
+            "Female Protagonist",
+            "Gore",
+            "Episodic",
+            "Philosophy",
+            "Lost Civilization",
+            "Rural",
+            "Cannibalism",
+            "Urban Fantasy",
+            "Heterosexual",
+            "Suicide",
+            "Curses",
+            "Bullying",
+            "Demons",
+            "Unrequited Love",
+            "Cult",
+            "Yandere"
+          ],
+          "tags": [
+            "女性主人公",
+            "エピソード式",
+            "哲学",
+            "田舎",
+            "現代ファンタジー",
+            "悪魔"
+          ],
+          "tags_missing_en": [
+            "Body Horror",
+            "Cosmic Horror",
+            "Survival",
+            "Seinen",
+            "Gore",
+            "Lost Civilization",
+            "Cannibalism",
+            "Curses",
+            "Bullying",
+            "Unrequited Love",
+            "Cult",
+            "Yandere"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "鋼の錬金術師",
+      "author": "",
+      "input": {
+        "lane2Title": "TVアニメ 鋼の錬金術師シナリオブック (1)",
+        "isbn13": "9784757512689",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757512686",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4757512686",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": [
+            {
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": false
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 257875,
+          "title": "鋼の錬金術師",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_section",
+          "hasMagazine": false,
+          "sectionIndex": "2"
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 30,
+          "hidden": 1,
+          "missing": 18
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "鋼の錬金術師",
+        "author": "",
+        "vol1": {
+          "title": "TVアニメ 鋼の錬金術師シナリオブック (1)",
+          "titleLane2": "TVアニメ 鋼の錬金術師シナリオブック (1)",
+          "isbn13": "9784757512689",
+          "asin": "4757512686",
+          "image": "https://m.media-amazon.com/images/I/510X5Gi6kyL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757512686",
+          "publisher": {
+            "brand": "スクウェア・エニックス(SQUARE ENIX)",
+            "manufacturer": "スクウェア・エニックス"
+          },
+          "contributors": [
+            {
+              "name": "スクウェア・エニックス",
+              "role": "編集",
+              "roleType": "editor"
+            }
+          ],
+          "releaseDate": "2004-09-24T00:00:01Z",
+          "synopsis": "あらすじ[編集]\n幼少期から錬金術を学んでいた兄エドワード（エド）と弟アルフォンス（アル）のエルリック兄弟は、流行り病で亡くなった母を生き返らせるため、人体錬成という禁忌を犯す。しかし母の錬成には失敗し、「対価」としてエドは左足を、アルは全てを失うが、エドは自らの右腕を対価にアルの魂だけを取り戻す。その反動で「真理の扉」の前に飛ばされたエドは「『世界』『宇宙』あるいは『神』あるいは『真理』あるいは『全』あるいは『一』」と名乗る者に会う。\nエドは右腕と左足を機械鎧で補い、アルは鎧を新たな体として生きることとなる。アメストリス国の「国家錬金術師」の資格を取ったエドは鋼の二つ名を与えられる。兄弟は「対価」として失った肉体を取り戻すため、錬金術の万能素材賢者の石を探して旅立つ。\n旅の途中、焔の錬金術師の二つ名を持つ軍人ロイ・マスタング大佐や彼の部下たちに助けられ、またある時は錬金術師を狙う謎の男・傷の男（スカー）やホムンクルスのラスト（色欲）、グラトニー（暴食）、エンヴィー（嫉妬）との戦いを繰り広げることになる。そんな中、賢者の石について探っていたマスタング大佐の部下であり親友、ヒューズ中佐が真相に気ついた。しかし、口封じにエンヴィーに殺害される。\nやがてエドたちは賢者の石の研究者の研究資料を入手し解読するが、賢者の石の材料が大量の生きた人間であると知って愕然とし、肉体を取り戻すのに賢者の石は使わないと誓う。\n他方、マスタング大佐はホムンクルスたちとの戦いを経て、大総統キング・ブラッドレイがホムンクルスだと気づき、軍そのものが陰謀に巻き込まれていると推測する。\nエルリック兄弟はホムンクルスを作ったお父様に会い、恐ろしい陰謀が張り巡らされていることに気付く。アメストリス国の全体に密かに「国土錬成陣」が仕掛けられており、アメストリス国そのものを犠牲にする錬金術が、お父様やその手先であるブラッドレイによって長い時間をかけて準備され、後は決行日たる「約束の日」を待つばかりとなっていた。しかし兄弟より以前からお父様の陰謀を知り、その計画を阻止しようとする者たちもいた。行方不明だったエルリック兄弟の父ヴァン・ホーエンハイムと、その協力者たちである。エルリック兄弟、傷の男、マスタング大佐、オリヴィエ少将、皇位継承のため賢者の石を求めて東方から来た錬丹術師のリンやメイなどが手を組み、お父様を迎え撃つこととなる。\n「約束の日」、お父様は人柱として「真理の扉」を見た錬金術師5人、エルリック兄弟、兄弟の師匠イズミ・カーティス、ホーエンハイム、マスタング大佐を集める。その後アメストリス全土を覆う皆既日食に合わせて国土錬成陣を発動させ、アメストリス国民全員の魂を犠牲に、お父様は神の力を手に入れる。ホーエンハイムたちによる錬丹術を用いた逆転の錬成陣により、アメストリス国民の魂は取り戻されたものの、お父様は神の力を手に入れたままで、それを維持するには賢者の石、すなわち生きた人間の魂を消費する必要があった。\nお父様とエドたちの激しい戦いの最中、暴走を始めた神の力を抑え込むべくお父様は、身動きの取れなくなったエドへ迫る。それを見たアルは、自分の魂を対価にエドの失った右腕を再生させ、エドに反撃の力を与えた。そして神の力が不安定になっていたお父様との戦いの末、エドはお父様を撃破する。それらの戦いは、表向きはアメストリス軍上層部の暴走と言う形で決着した。そしてエドは最後の錬成を行い、自身の錬金術の能力（真理の扉）を対価に、アルの全てを取り戻す。\n戦いが終わり、故郷に戻ったエルリック兄弟は、多くの犠牲者に報いるべく、新しい錬金術の在り方を模索すると決める。アルは錬丹術を学ぶため東方へ、エドはさらに錬金術を研究するため西方へ旅立った。",
+          "synopsisSource": "wiki_section",
+          "magazine": null,
+          "wikiTitle": "鋼の錬金術師",
+          "anilistId": 30025,
+          "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy"
+          ],
+          "tags_en": [
+            "Alchemy",
+            "Conspiracy",
+            "Politics",
+            "Philosophy",
+            "Military",
+            "War",
+            "Shounen",
+            "Male Protagonist",
+            "Disability",
+            "Travel",
+            "Steampunk",
+            "Ensemble Cast",
+            "Body Horror",
+            "Super Power",
+            "Magic",
+            "Lost Civilization",
+            "Chimera",
+            "Primarily Adult Cast",
+            "Primarily Male Cast",
+            "Shapeshifting",
+            "Guns",
+            "Gore",
+            "Historical",
+            "Cars",
+            "Tsundere",
+            "Heterosexual",
+            "Kuudere",
+            "Tomboy",
+            "Trains",
+            "Urban Fantasy"
+          ],
+          "tags": [
+            "陰謀",
+            "哲学",
+            "少年",
+            "男性主人公",
+            "旅",
+            "群像劇",
+            "超能力",
+            "魔法",
+            "男多め",
+            "クーデレ",
+            "現代ファンタジー"
+          ],
+          "tags_missing_en": [
+            "Alchemy",
+            "Politics",
+            "Military",
+            "War",
+            "Disability",
+            "Steampunk",
+            "Body Horror",
+            "Lost Civilization",
+            "Chimera",
+            "Primarily Adult Cast",
+            "Shapeshifting",
+            "Guns",
+            "Gore",
+            "Historical",
+            "Cars",
+            "Tsundere",
+            "Tomboy",
+            "Trains"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "ブルーピリオド",
+      "author": "",
+      "input": {
+        "lane2Title": "ブルーピリオド(1)実写映画化記念特装版 (プレミアムKC)",
+        "isbn13": "9784065368381",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065368383",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4065368383",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": null
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 4052612,
+          "title": "ブルーピリオド",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_section",
+          "hasMagazine": true,
+          "sectionIndex": "1"
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 19,
+          "hidden": 1,
+          "missing": 15
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "ブルーピリオド",
+        "author": "",
+        "vol1": {
+          "title": "ブルーピリオド(1)実写映画化記念特装版 (プレミアムKC)",
+          "titleLane2": "ブルーピリオド(1)実写映画化記念特装版 (プレミアムKC)",
+          "isbn13": "9784065368381",
+          "asin": "4065368383",
+          "image": "https://m.media-amazon.com/images/I/51a+bIUSRCL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4065368383",
+          "publisher": {
+            "brand": "講談社",
+            "manufacturer": "講談社"
+          },
+          "contributors": [
+            {
+              "name": "山口 つばさ",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2024-07-23T00:00:01Z",
+          "synopsis": "あらすじ[編集]\n矢口八虎は、学校では高成績だがタバコや酒もする不良優等生。仲間とはつるむも味気ない毎日を送っていたが、ある日美術室で見た一枚の絵に惹かれ美術部に入部したことで、美術大学の受験を目指す。",
+          "synopsisSource": "wiki_section",
+          "magazine": "月刊アフタヌーン",
+          "wikiTitle": "ブルーピリオド",
+          "anilistId": 107237,
+          "genres": [
+            "Drama",
+            "Slice of Life"
+          ],
+          "tags_en": [
+            "Drawing",
+            "Coming of Age",
+            "College",
+            "Seinen",
+            "Male Protagonist",
+            "Educational",
+            "Philosophy",
+            "Primarily Adult Cast",
+            "LGBTQ+ Themes",
+            "School",
+            "School Club",
+            "Transgender",
+            "Bisexual",
+            "Primarily Teen Cast",
+            "Crossdressing",
+            "Suicide",
+            "Gender Bending",
+            "Nudity",
+            "Tomboy"
+          ],
+          "tags": [
+            "男性主人公",
+            "哲学",
+            "10代中心"
+          ],
+          "tags_missing_en": [
+            "Drawing",
+            "Coming of Age",
+            "College",
+            "Seinen",
+            "Educational",
+            "Primarily Adult Cast",
+            "LGBTQ+ Themes",
+            "School",
+            "School Club",
+            "Transgender",
+            "Bisexual",
+            "Crossdressing",
+            "Gender Bending",
+            "Nudity",
+            "Tomboy"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "キングダム",
+      "author": "",
+      "input": {
+        "lane2Title": "キングダム 完全版 1 (愛蔵版コミックス)",
+        "isbn13": "9784087927863",
+        "amazonDp": "https://www.amazon.co.jp/dp/4087927865",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4087927865",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": [
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 891062,
+          "title": "キングダム",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_lead",
+          "hasMagazine": false,
+          "sectionIndex": null
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 25,
+          "hidden": 1,
+          "missing": 16
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "キングダム",
+        "author": "",
+        "vol1": {
+          "title": "キングダム 完全版 1 (愛蔵版コミックス)",
+          "titleLane2": "キングダム 完全版 1 (愛蔵版コミックス)",
+          "isbn13": "9784087927863",
+          "asin": "4087927865",
+          "image": "https://m.media-amazon.com/images/I/51qP1djrNhL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4087927865",
+          "publisher": {
+            "brand": "集英社",
+            "manufacturer": "集英社"
+          },
+          "contributors": [
+            {
+              "name": "原 泰久",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2024-03-18T00:00:01Z",
+          "synopsis": "キングダム (kingdom) は、英語では「王国」や「界 (分類学)」などの意味を持つ。",
+          "synopsisSource": "wiki_lead",
+          "magazine": null,
+          "wikiTitle": "キングダム",
+          "anilistId": 46765,
+          "genres": [
+            "Action",
+            "Drama"
+          ],
+          "tags_en": [
+            "Military",
+            "Historical",
+            "War",
+            "Ancient China",
+            "Politics",
+            "Royal Affairs",
+            "Male Protagonist",
+            "Seinen",
+            "Coming of Age",
+            "Swordplay",
+            "Foreign",
+            "Heterosexual",
+            "Gore",
+            "Primarily Male Cast",
+            "Fugitive",
+            "Conspiracy",
+            "Body Horror",
+            "Archery",
+            "Ensemble Cast",
+            "Spearplay",
+            "Assassins",
+            "Torture",
+            "Crossdressing",
+            "Nudity",
+            "Magic"
+          ],
+          "tags": [
+            "男性主人公",
+            "海外",
+            "男多め",
+            "陰謀",
+            "弓術",
+            "群像劇",
+            "槍術",
+            "魔法"
+          ],
+          "tags_missing_en": [
+            "Military",
+            "Historical",
+            "War",
+            "Ancient China",
+            "Politics",
+            "Royal Affairs",
+            "Seinen",
+            "Coming of Age",
+            "Swordplay",
+            "Gore",
+            "Fugitive",
+            "Body Horror",
+            "Assassins",
+            "Torture",
+            "Crossdressing",
+            "Nudity"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
+        }
+      }
+    },
+    {
+      "seriesKey": "地縛少年 花子くん",
+      "author": "",
+      "input": {
+        "lane2Title": "地縛少年 花子くん 1巻~3巻バリューパック (Gファンタジーコミックス)",
+        "isbn13": "9784757595781",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757595786",
+        "source": "paapi_search(mainline_guard)"
+      },
+      "steps": {
+        "getItemByAsin": {
+          "ok": true,
+          "reason": null,
+          "asin": "4757595786",
+          "raw": {
+            "usedResources": [
+              "ItemInfo.Title",
+              "ItemInfo.ByLineInfo",
+              "ItemInfo.ExternalIds",
+              "Images.Primary.Large",
+              "ItemInfo.ContentInfo",
+              "ItemInfo.ProductInfo"
+            ]
+          },
+          "probe": [
+            {
+              "resource": "ItemInfo.ContentInfo",
+              "adopted": true
+            },
+            {
+              "resource": "ItemInfo.ProductInfo",
+              "adopted": true
+            },
+            {
+              "resource": "EditorialReviews",
+              "adopted": false,
+              "reason": "invalid_resource"
+            },
+            {
+              "resource": "EditorialReviews.EditorialReview",
+              "adopted": false,
+              "reason": "invalid_resource"
+            }
+          ],
+          "retries": null
+        },
+        "openbd": {
+          "cached": false,
+          "ok": true,
+          "found": true
+        },
+        "wiki": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pageid": 3484702,
+          "title": "地縛少年花子くん",
+          "hasSynopsis": true,
+          "synopsisSource": "wiki_lead",
+          "hasMagazine": true,
+          "sectionIndex": null
+        },
+        "anilist": {
+          "cached": false,
+          "ok": true,
+          "found": true,
+          "pickedScore": 1360
+        },
+        "tagdict": {
+          "total": 25,
+          "hidden": 2,
+          "missing": 15
+        }
+      },
+      "ok": true,
+      "reason": null,
+      "output": {
+        "seriesKey": "地縛少年 花子くん",
+        "author": "",
+        "vol1": {
+          "title": "地縛少年 花子くん 1巻~3巻バリューパック (Gファンタジーコミックス)",
+          "titleLane2": "地縛少年 花子くん 1巻~3巻バリューパック (Gファンタジーコミックス)",
+          "isbn13": "9784757595781",
+          "asin": "4757595786",
+          "image": "https://m.media-amazon.com/images/I/51MGfohEgIL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757595786",
+          "publisher": {
+            "brand": "スクウェア・エニックス(SQUARE ENIX)",
+            "manufacturer": "スクウェア・エニックス"
+          },
+          "contributors": [
+            {
+              "name": "あいだいろ",
+              "role": "著",
+              "roleType": "author"
+            }
+          ],
+          "releaseDate": "2024-12-18T00:00:01Z",
+          "synopsis": "『地縛少年花子くん』（じばくしょうねんはなこくん）は、あいだいろによる日本の漫画作品。『月刊Gファンタジー』（スクウェア・エニックス）にて、2015年1月号より連載中。作者のあいだいろの病気療養により、2025年12月号から休載となることが発表されている。2024年2月時点でシリーズ累計部数は1000万部を突破している。主人公を始めとする個性的な人間と怪異の関係を描いた怪異譚。\n本作の日常を描いたスピンオフ『放課後少年花子くん』が『pixivコミック』内の「Pファンタピー」にて、2018年2月22日から連載中。\n本編・スピンオフ共にテレビアニメ化されている。詳細は#テレビアニメの節を参照。",
+          "synopsisSource": "wiki_lead",
+          "magazine": "月刊Gファンタジー",
+          "wikiTitle": "地縛少年花子くん",
+          "anilistId": 98842,
+          "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Mystery",
+            "Romance",
+            "Supernatural"
+          ],
+          "tags_en": [
+            "Youkai",
+            "Mythology",
+            "Ghost",
+            "Urban Fantasy",
+            "School",
+            "Twins",
+            "Female Protagonist",
+            "Heterosexual",
+            "Shounen",
+            "Male Protagonist",
+            "Revenge",
+            "Exorcism",
+            "LGBTQ+ Themes",
+            "Gore",
+            "Slapstick",
+            "Suicide",
+            "Magic",
+            "Survival",
+            "Tsundere",
+            "Body Horror",
+            "Yandere",
+            "Shrine Maiden",
+            "Mermaid",
+            "Gods",
+            "Love Triangle"
+          ],
+          "tags": [
+            "妖怪",
+            "現代ファンタジー",
+            "双子",
+            "女性主人公",
+            "少年",
+            "男性主人公",
+            "復讐",
+            "魔法"
+          ],
+          "tags_missing_en": [
+            "Mythology",
+            "Ghost",
+            "School",
+            "Exorcism",
+            "LGBTQ+ Themes",
+            "Gore",
+            "Slapstick",
+            "Survival",
+            "Tsundere",
+            "Body Horror",
+            "Yandere",
+            "Shrine Maiden",
+            "Mermaid",
+            "Gods",
+            "Love Triangle"
           ],
           "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide+overrides+todo)"
         }
