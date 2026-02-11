@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T07:17:03.901Z",
+  "updatedAt": "2026-02-11T07:31:39.608Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -190,7 +190,7 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "base",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -359,7 +359,14 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
           "cached": true
