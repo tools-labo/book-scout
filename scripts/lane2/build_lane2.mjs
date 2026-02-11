@@ -88,7 +88,6 @@ function isDerivedEdition(title) {
 
 /**
  * “本線1巻” 判定（タイトルベース）
- * ※Amazonなど「タイトルに巻数が入りやすい」系で強く使う
  */
 function isMainlineVol1ByTitle(title, seriesKey) {
   const t = toHalfWidth(norm(title));
@@ -184,6 +183,7 @@ function amzDate() {
   return { amzDate: `${y}${m}${day}T${hh}${mm}${ss}Z`, dateStamp: `${y}${m}${day}` };
 }
 
+// 429 はリトライ（軽め）
 async function paapiRequest({ target, pathUri, bodyObj }) {
   if (!AMZ_ACCESS_KEY || !AMZ_SECRET_KEY || !AMZ_PARTNER_TAG) {
     return { skipped: true, reason: "missing_paapi_secrets" };
@@ -193,57 +193,71 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
   const region = "us-west-2";
   const service = "ProductAdvertisingAPI";
   const endpoint = `https://${host}${pathUri}`;
-  const body = JSON.stringify(bodyObj);
 
-  const { amzDate: xAmzDate, dateStamp } = amzDate();
-  const method = "POST";
-  const canonicalUri = pathUri;
-  const canonicalQuerystring = "";
-  const canonicalHeaders =
-    `content-encoding:amz-1.0\ncontent-type:application/json; charset=utf-8\nhost:${host}\nx-amz-date:${xAmzDate}\nx-amz-target:${target}\n`;
-  const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
-  const payloadHash = awsHash(body);
+  let wait = 900;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const body = JSON.stringify(bodyObj);
+    const { amzDate: xAmzDate, dateStamp } = amzDate();
+    const method = "POST";
+    const canonicalUri = pathUri;
+    const canonicalQuerystring = "";
+    const canonicalHeaders =
+      `content-encoding:amz-1.0\ncontent-type:application/json; charset=utf-8\nhost:${host}\nx-amz-date:${xAmzDate}\nx-amz-target:${target}\n`;
+    const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
+    const payloadHash = awsHash(body);
 
-  const canonicalRequest = [
-    method,
-    canonicalUri,
-    canonicalQuerystring,
-    canonicalHeaders,
-    signedHeaders,
-    payloadHash,
-  ].join("\n");
-  const algorithm = "AWS4-HMAC-SHA256";
-  const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-  const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
+    const canonicalRequest = [
+      method,
+      canonicalUri,
+      canonicalQuerystring,
+      canonicalHeaders,
+      signedHeaders,
+      payloadHash,
+    ].join("\n");
+    const algorithm = "AWS4-HMAC-SHA256";
+    const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
+    const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
 
-  const kDate = awsHmac(`AWS4${AMZ_SECRET_KEY}`, dateStamp);
-  const kRegion = awsHmac(kDate, region);
-  const kService = awsHmac(kRegion, service);
-  const kSigning = awsHmac(kService, "aws4_request");
-  const signature = crypto
-    .createHmac("sha256", kSigning)
-    .update(stringToSign, "utf8")
-    .digest("hex");
+    const kDate = awsHmac(`AWS4${AMZ_SECRET_KEY}`, dateStamp);
+    const kRegion = awsHmac(kDate, region);
+    const kService = awsHmac(kRegion, service);
+    const kSigning = awsHmac(kService, "aws4_request");
+    const signature = crypto
+      .createHmac("sha256", kSigning)
+      .update(stringToSign, "utf8")
+      .digest("hex");
 
-  const authorizationHeader =
-    `${algorithm} Credential=${AMZ_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
+    const authorizationHeader =
+      `${algorithm} Credential=${AMZ_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
 
-  const r = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "content-encoding": "amz-1.0",
-      "content-type": "application/json; charset=utf-8",
-      host,
-      "x-amz-date": xAmzDate,
-      "x-amz-target": target,
-      Authorization: authorizationHeader,
-    },
-    body,
-  });
+    const r = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "content-encoding": "amz-1.0",
+        "content-type": "application/json; charset=utf-8",
+        host,
+        "x-amz-date": xAmzDate,
+        "x-amz-target": target,
+        Authorization: authorizationHeader,
+      },
+      body,
+    });
 
-  const text = await r.text();
-  if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1400) };
-  return { ok: true, json: JSON.parse(text) };
+    const text = await r.text();
+
+    if (r.ok) return { ok: true, json: JSON.parse(text) };
+
+    // 429 は待ってリトライ
+    if (r.status === 429 && attempt < 4) {
+      await sleep(wait);
+      wait *= 2;
+      continue;
+    }
+
+    return { error: true, status: r.status, body: text.slice(0, 1400) };
+  }
+
+  return { error: true, status: 429, body: "retry_exhausted" };
 }
 
 async function paapiSearchItems({ keywords }) {
@@ -322,12 +336,13 @@ async function paapiSearchMainlineVol1({ seriesKey }) {
       const title = extractTitle(it);
       const isbn13 = extractIsbn13(it);
       const asin = it?.ASIN || null;
+      const image = extractImage(it) || null;
 
       if (!titleHasSeries(title, seriesKey)) continue;
       if (!isMainlineVol1ByTitle(title, seriesKey)) continue;
 
       const score = scoreCandidate({ title, isbn13, seriesKey }) + (asin ? 5 : 0);
-      cands.push({ source: "paapi_search", query: q, title, isbn13, asin, score });
+      cands.push({ source: "paapi_search", query: q, title, isbn13, asin, image, score });
     }
 
     const best = pickBest(cands, seriesKey);
@@ -415,6 +430,7 @@ async function resolveBySeedHint({ seedHint, seriesKey }) {
     }
   }
 
+  // ISBN13 hint だけは SearchItems→ヒットASIN→GetItems（ただしリトライ付き）
   if (seedHint.vol1Isbn13) {
     const s = await paapiSearchItems({ keywords: seedHint.vol1Isbn13 });
     debug.paapiSearch13 = s;
@@ -476,26 +492,7 @@ async function main() {
     if (hasHint) {
       one.seedHint = seedHint;
       const r = await resolveBySeedHint({ seedHint, seriesKey });
-      one.seedHintResult = r?.ok
-        ? {
-            ok: true,
-            confirmed: {
-              seriesKey,
-              author,
-              vol1: {
-                title: r.title,
-                isbn13: r.isbn13,
-                asin: r.asin || null,
-                image: r.image,
-                amazonDp: dpPreferAsin({ asin: r.asin, isbn13: r.isbn13, isbn10: seedHint.vol1Isbn10 }),
-                source: r.debug?.resolvedBy
-                  ? `seed_hint(${r.debug.resolvedBy})+mainline_guard`
-                  : "seed_hint+mainline_guard",
-              },
-            },
-            debug: r.debug,
-          }
-        : { ok: false, reason: r.reason, debug: r.debug };
+      one.seedHintResult = r?.ok ? { ok: true, debug: r.debug } : { ok: false, reason: r.reason, debug: r.debug };
 
       if (r?.ok) {
         const out = {
@@ -507,9 +504,7 @@ async function main() {
             asin: r.asin || null,
             image: r.image,
             amazonDp: dpPreferAsin({ asin: r.asin, isbn13: r.isbn13, isbn10: seedHint.vol1Isbn10 }),
-            source: r.debug?.resolvedBy
-              ? `seed_hint(${r.debug.resolvedBy})+mainline_guard`
-              : "seed_hint+mainline_guard",
+            source: r.debug?.resolvedBy ? `seed_hint(${r.debug.resolvedBy})+mainline_guard` : "seed_hint+mainline_guard",
           },
         };
         confirmed.push(out);
@@ -521,11 +516,12 @@ async function main() {
       }
     }
 
-    // 2) PA-API search → best ASIN を決める
+    // 2) PA-API search → best を決める
     const paSearch = await paapiSearchMainlineVol1({ seriesKey });
     one.paapiSearch = paSearch;
 
     const b = paSearch?.best;
+
     if (!b?.asin) {
       todo.push({
         seriesKey,
@@ -538,7 +534,29 @@ async function main() {
       continue;
     }
 
-    // 3) GetItems で確定（EAN/ISBN13 も拾う）
+    // ★ここが肝：best に ISBN13 があれば GetItems せず確定（429回避）
+    if (b.isbn13 && isMainlineVol1ByTitle(b.title || "", seriesKey)) {
+      const out = {
+        seriesKey,
+        author,
+        vol1: {
+          title: b.title,
+          isbn13: b.isbn13,
+          asin: b.asin || null,
+          image: b.image || null,
+          amazonDp: dpPreferAsin({ asin: b.asin, isbn13: b.isbn13 }),
+          source: "paapi_search(mainline_guard)",
+        },
+      };
+      confirmed.push(out);
+      one.path = "paapi_search_only";
+      one.confirmed = out;
+      debug.push(one);
+      await sleep(600);
+      continue;
+    }
+
+    // 3) 不足時だけ GetItems
     const get = await paapiGetItems({ itemIds: [b.asin] });
     one.paapiGet = get;
 
@@ -577,17 +595,16 @@ async function main() {
         title,
         isbn13,
         asin: b.asin || null,
-        image: extractImage(item) || null,
+        image: extractImage(item) || b.image || null,
         amazonDp: dpPreferAsin({ asin: b.asin, isbn13 }),
-        source: "paapi(mainline_guard)",
+        source: "paapi_getitems(mainline_guard)",
       },
     };
     confirmed.push(out);
-
-    one.path = "paapi";
+    one.path = "paapi_getitems";
     one.confirmed = out;
-
     debug.push(one);
+
     await sleep(600);
   }
 
