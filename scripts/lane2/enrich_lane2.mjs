@@ -549,6 +549,7 @@ function extractFromAniList(media) {
  *  - タイトル一致/包含を強く優遇
  *  - ページHTML内に「漫画」「作品」等があると加点
  *  - 作品っぽくない（人物/企業等）を減点
+ *  - ★最終採用は「titleがseriesKeyと一致/包含」だけ（ここが今回の修正点）
  * ----------------------- */
 async function wikiApi(params) {
   const base = "https://ja.wikipedia.org/w/api.php";
@@ -683,10 +684,18 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
   scored.push(...rest);
 
   scored.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-  const bestHit = scored[0]?.h || null;
+
+  // ★ここが今回の本丸：作品名と一致/包含の候補だけ採用
+  const bestHit = scored.find((x) => wikiTitleLooksOk({ wikiTitle: x?.h?.title, seriesKey: key }))?.h || null;
 
   if (!bestHit?.pageid) {
-    debugSteps.wiki = { cached: false, ok: true, found: false };
+    debugSteps.wiki = {
+      cached: false,
+      ok: true,
+      found: false,
+      reason: "no_title_match_candidate",
+      hitScores: scored.slice(0, 5).map((x) => ({ title: x.h?.title ?? null, pageid: x.h?.pageid ?? null, score: x.score })),
+    };
     cache[key] = null;
     return { ok: true, data: null, found: false };
   }
@@ -782,7 +791,6 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
  * ----------------------- */
 function loadTagMap(tagMapJson) {
   const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
-  // 余計な空白を防ぐ
   const out = {};
   for (const [k, v] of Object.entries(m)) {
     const kk = norm(k);
