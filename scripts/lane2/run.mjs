@@ -16,14 +16,16 @@ function run(cmd, args, env = {}) {
 }
 
 async function main() {
-  // 何件 seeds を作るか（デフォ 100）
-  const limit = String(process.env.LANE2_SEED_LIMIT || "100");
+  // 0) AniList → seeds.json を「追加で積み上げ」
+  const seedAdd = String(process.env.LANE2_SEED_ADD || process.env.LANE2_SEED_LIMIT || "100");
+  const seedMaxPages = String(process.env.LANE2_SEED_MAX_PAGES || "20");
 
-  // 0) AniList → seeds.json を生成（100件）
-  // ※ gen_seeds_from_anilist.mjs 側が LANE2_SEED_LIMIT を見てる前提
-  await run("node", ["scripts/lane2/gen_seeds_from_anilist.mjs"], { LANE2_SEED_LIMIT: limit });
+  await run("node", ["scripts/lane2/gen_seeds_from_anilist.mjs"], {
+    LANE2_SEED_ADD: seedAdd,
+    LANE2_SEED_MAX_PAGES: seedMaxPages,
+  });
 
-  // 1) seeds → series（1巻確定）
+  // 1) seeds → series（1巻確定・積み上げ）
   await run("node", ["scripts/lane2/build_lane2.mjs"]);
 
   // 2) series → enriched（override/todo含む）
