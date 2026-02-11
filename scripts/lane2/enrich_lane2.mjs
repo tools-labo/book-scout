@@ -7,22 +7,23 @@ const IN_SERIES = "data/lane2/series.json";
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_DEBUG = "data/lane2/debug_enrich.json";
 
+// ★enrich段階の統合todo（新規）
+const ENRICH_TODO = "data/lane2/enrich_todo.json"; // { version, updatedAt, total, items:[{seriesKey, needs, reasons}] }
+
 // 軽キャッシュ（Actionsでも効く：リポジトリに残る）
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
 const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ISBN13→ASIN 解決キャッシュ
-const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;   // Wikipedia（掲載誌のみ使う。あらすじは捨てる）
+const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;   // Wikipedia（掲載誌だけに使う）
 
 // タグ辞書（手で育てる）
 const TAG_JA_MAP = "data/lane2/tag_ja_map.json";   // { map: { "Foo":"日本語" } }
 const TAG_HIDE = "data/lane2/tag_hide.json";       // { hide: ["Suicide", ...] } 無ければ空扱い
 const TAG_TODO = "data/lane2/tags_todo.json";      // { tags: [] } 無ければ生成
 
-// ★オーバーライド統一 + todo
+// ★オーバーライド統一
 const OVERRIDES = "data/lane2/overrides.json";        // { version, updatedAt, items: { "作品名": { synopsis, magazine } } }
-const SYNOPSIS_TODO = "data/lane2/synopsis_todo.json"; // { version, updatedAt, items: [ { seriesKey } ] }
-const MAGAZINE_TODO = "data/lane2/magazine_todo.json"; // { version, updatedAt, items: [ { seriesKey } ] }
 
 const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
 const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
@@ -78,10 +79,8 @@ function parseAmazonDpId(amazonDp) {
   if (!m) return { asin: null, isbn13FromDp: null };
 
   const id = m[1].toUpperCase();
-
   if (/^[A-Z0-9]{10}$/.test(id)) return { asin: id, isbn13FromDp: null };
   if (/^\d{13}$/.test(id)) return { asin: null, isbn13FromDp: id };
-
   return { asin: null, isbn13FromDp: null };
 }
 
@@ -125,7 +124,14 @@ async function paapiRequest({ target, pathUri, bodyObj }) {
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = awsHash(body);
 
-  const canonicalRequest = [method, canonicalUri, canonicalQuerystring, canonicalHeaders, signedHeaders, payloadHash].join("\n");
+  const canonicalRequest = [
+    method,
+    canonicalUri,
+    canonicalQuerystring,
+    canonicalHeaders,
+    signedHeaders,
+    payloadHash,
+  ].join("\n");
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
   const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
@@ -243,7 +249,8 @@ function isInvalidResourceError(rawBody) {
 
 async function getItemWithResourceProbe({ asin, debugSteps }) {
   const base = ["ItemInfo.Title", "ItemInfo.ByLineInfo", "ItemInfo.ExternalIds", "Images.Primary.Large"];
-  const optionalCandidates = ["ItemInfo.ContentInfo", "ItemInfo.ProductInfo", "EditorialReviews", "EditorialReviews.EditorialReview"];
+  // ★あらすじはWikiを捨てるので、PA-API EditorialReviewsは無理に取らない（必要なら後で復活）
+  const optionalCandidates = ["ItemInfo.ContentInfo", "ItemInfo.ProductInfo"];
 
   let okJson = null;
   let okResources = base.slice();
@@ -549,8 +556,7 @@ function extractFromAniList(media) {
 }
 
 /* -----------------------
- * Wikipedia（MediaWiki API）
- * ★B方針：あらすじは捨てる。掲載誌だけ補助で取る
+ * Wikipedia（掲載誌だけ。あらすじは捨てる）
  * ----------------------- */
 async function wikiApi(params) {
   const base = "https://ja.wikipedia.org/w/api.php";
@@ -564,7 +570,7 @@ function extractMagazineFromInfoboxHtml(html) {
   const m =
     h.match(/<th[^>]*>\s*掲載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/) ||
     h.match(/<th[^>]*>\s*連載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
-  if (!html || !m) return null;
+  if (!m) return null;
   return stripHtml(m[1]).replace(/\s+/g, " ").trim() || null;
 }
 function wikiTitleLooksOk({ wikiTitle, seriesKey }) {
@@ -578,10 +584,11 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache, debugSteps }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
+  // キャッシュ再利用（タイトル一致だけ）
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
     const c = cache[key];
     if (c && wikiTitleLooksOk({ wikiTitle: c?.title, seriesKey: key })) {
-      debugSteps.wiki = { cached: true };
+      debugSteps.wiki = { cached: true, hasMagazine: !!c?.magazine, title: c?.title ?? null };
       return { ok: true, data: c, cached: true };
     }
   }
@@ -609,7 +616,7 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache, debugSteps }) {
   }
 
   const k0 = normLoose(toHalfWidth(key));
-  function scoreHit(hit) {
+  function baseScore(hit) {
     const t0 = normLoose(toHalfWidth(hit?.title ?? ""));
     const sn = stripHtml(hit?.snippet ?? "");
     let score = 0;
@@ -620,13 +627,14 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache, debugSteps }) {
 
     if (sn.includes(key)) score += 600;
 
+    // 人物ページを強めに落とす
     if (/(漫画家|作家|声優|人物|日本の|生年|出身|代表作)/.test(sn)) score -= 2500;
 
     return score;
   }
 
   const scored = results
-    .map((h) => ({ h, score: scoreHit(h) }))
+    .map((h) => ({ h, score: baseScore(h) }))
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
   const bestHit = scored.find((x) => wikiTitleLooksOk({ wikiTitle: x?.h?.title, seriesKey: key }))?.h || null;
@@ -649,18 +657,10 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache, debugSteps }) {
   }
   const magazine = extractMagazineFromInfoboxHtml(pageHtml);
 
-  const out = { pageid, title, magazine };
+  const out = { pageid, title, magazine: magazine || null };
   cache[key] = out;
 
-  debugSteps.wiki = {
-    cached: false,
-    ok: true,
-    found: true,
-    pageid,
-    title,
-    hasMagazine: !!magazine,
-  };
-
+  debugSteps.wiki = { cached: false, ok: true, found: true, pageid, title, hasMagazine: !!magazine };
   return { ok: true, data: out, found: true };
 }
 
@@ -719,6 +719,35 @@ function loadOverrides(overrideJson) {
 }
 
 /* -----------------------
+ * enrich_todo 統合ユーティリティ
+ * ----------------------- */
+function addEnrichTodo(todoMap, seriesKey, need, reason) {
+  const k = norm(seriesKey);
+  if (!k) return;
+
+  const cur = todoMap.get(k) || { seriesKey: k, needs: [], reasons: {} };
+  if (!cur.needs.includes(need)) cur.needs.push(need);
+  if (reason) cur.reasons[need] = reason;
+  todoMap.set(k, cur);
+}
+function removeEnrichTodoNeed(todoMap, seriesKey, need) {
+  const k = norm(seriesKey);
+  if (!k) return;
+
+  const cur = todoMap.get(k);
+  if (!cur) return;
+
+  cur.needs = Array.isArray(cur.needs) ? cur.needs.filter((x) => x !== need) : [];
+  if (cur.reasons && typeof cur.reasons === "object") delete cur.reasons[need];
+
+  if (!cur.needs.length) {
+    todoMap.delete(k);
+  } else {
+    todoMap.set(k, cur);
+  }
+}
+
+/* -----------------------
  * main
  * ----------------------- */
 async function main() {
@@ -742,13 +771,17 @@ async function main() {
   const overridesJson = await loadJson(OVERRIDES, { version: 1, updatedAt: "", items: {} });
   const overrides = loadOverrides(overridesJson);
 
-  // synopsis todo
-  const synopsisTodoJson = await loadJson(SYNOPSIS_TODO, { version: 1, updatedAt: "", items: [] });
-  const synopsisTodoSet = new Set((synopsisTodoJson?.items || []).map((x) => norm(x?.seriesKey)).filter(Boolean));
-
-  // magazine todo
-  const magazineTodoJson = await loadJson(MAGAZINE_TODO, { version: 1, updatedAt: "", items: [] });
-  const magazineTodoSet = new Set((magazineTodoJson?.items || []).map((x) => norm(x?.seriesKey)).filter(Boolean));
+  // ★enrich_todo（既存を読み込み、積み上げ更新）
+  const enrichTodoPrev = await loadJson(ENRICH_TODO, { version: 1, updatedAt: "", items: [] });
+  const enrichTodoMap = new Map(
+    (Array.isArray(enrichTodoPrev?.items) ? enrichTodoPrev.items : [])
+      .map((x) => {
+        const k = norm(x?.seriesKey);
+        if (!k) return null;
+        return [k, { seriesKey: k, needs: Array.isArray(x?.needs) ? x.needs : [], reasons: x?.reasons && typeof x.reasons === "object" ? x.reasons : {} }];
+      })
+      .filter(Boolean)
+  );
 
   const enriched = [];
   const debug = [];
@@ -843,7 +876,7 @@ async function main() {
 
     const obx = ob?.ok ? extractFromOpenBd(ob.data) : { synopsis: null, pubdate: null, publisherText: null };
 
-    // 3) Wiki（★B方針：あらすじは捨てる。掲載誌だけ補助）
+    // 3) Wiki（★掲載誌だけ。あらすじは捨てる）
     const stepWiki = {};
     const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki, debugSteps: stepWiki });
     one.steps.wiki = stepWiki.wiki || null;
@@ -871,23 +904,31 @@ async function main() {
     const manualSynopsis = norm(ov?.synopsis) || null;
     const manualMagazine = norm(ov?.magazine) || null;
 
-    // ★B：最終 “あらすじ”（manual > openbd > null） ※wikiは使わない
+    // ★B：最終 “あらすじ” は manual > openbd のみ（Wikiは絶対使わない）
     const finalSynopsis = manualSynopsis || obx.synopsis || null;
     const synopsisSource =
       manualSynopsis ? "manual" :
       obx.synopsis ? "openbd" :
       null;
 
-    // --- 最終 “掲載誌”（manual > wiki）
+    // 掲載誌は manual > wiki（これはOK）
     const finalMagazine = manualMagazine || wikiMagazine || null;
 
-    // synopsis_todo：manualがあるなら除外、無い&最終nullなら追加
-    if (manualSynopsis) synopsisTodoSet.delete(seriesKey);
-    else if (!finalSynopsis) synopsisTodoSet.add(seriesKey);
+    // ---- enrich_todo 更新（統合）
+    // synopsis
+    if (manualSynopsis) removeEnrichTodoNeed(enrichTodoMap, seriesKey, "synopsis");
+    else if (!obx.synopsis) addEnrichTodo(enrichTodoMap, seriesKey, "synopsis", "openbd_not_found");
 
-    // magazine_todo：manualがあるなら除外、無い&最終nullなら追加
-    if (manualMagazine) magazineTodoSet.delete(seriesKey);
-    else if (!finalMagazine) magazineTodoSet.add(seriesKey);
+    // magazine
+    if (manualMagazine) removeEnrichTodoNeed(enrichTodoMap, seriesKey, "magazine");
+    else if (!finalMagazine) addEnrichTodo(enrichTodoMap, seriesKey, "magazine", "wiki_magazine_missing");
+
+    // tags 翻訳不足（辞書育成用。フロントには出さない前提）
+    if (applied.tags_missing_en.length) {
+      addEnrichTodo(enrichTodoMap, seriesKey, "tags_ja_map", `missing:${applied.tags_missing_en.slice(0, 5).join(",")}`);
+    } else {
+      removeEnrichTodoNeed(enrichTodoMap, seriesKey, "tags_ja_map");
+    }
 
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
 
@@ -918,7 +959,7 @@ async function main() {
         tags: applied.tags,
         tags_missing_en: applied.tags_missing_en,
 
-        source: "enrich(paapi+openbd+wiki(magazine_only)+anilist+tagdict+hide+overrides+todo)",
+        source: "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)",
       },
     };
 
@@ -931,25 +972,27 @@ async function main() {
     await sleep(1000);
   }
 
-  // tags_todo.json
+  // tags_todo.json（辞書育成）
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
     tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  // synopsis_todo.json
-  await saveJson(SYNOPSIS_TODO, {
-    version: 1,
-    updatedAt: nowIso(),
-    items: Array.from(synopsisTodoSet).sort((a, b) => a.localeCompare(b)).map((k) => ({ seriesKey: k })),
-  });
+  // ★enrich_todo.json（統合）
+  const enrichTodoItems = Array.from(enrichTodoMap.values())
+    .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey))
+    .map((x) => ({
+      seriesKey: x.seriesKey,
+      needs: Array.isArray(x.needs) ? x.needs.sort((a, b) => a.localeCompare(b)) : [],
+      reasons: x.reasons && typeof x.reasons === "object" ? x.reasons : {},
+    }));
 
-  // magazine_todo.json
-  await saveJson(MAGAZINE_TODO, {
+  await saveJson(ENRICH_TODO, {
     version: 1,
     updatedAt: nowIso(),
-    items: Array.from(magazineTodoSet).sort((a, b) => a.localeCompare(b)).map((k) => ({ seriesKey: k })),
+    total: enrichTodoItems.length,
+    items: enrichTodoItems,
   });
 
   await saveJson(OUT_ENRICHED, {
