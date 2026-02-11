@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T03:54:04.607Z",
+  "updatedAt": "2026-02-11T04:27:36.557Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -50,12 +50,6 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ContentInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
               "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
@@ -71,6 +65,11 @@
         },
         "anilist": {
           "cached": true
+        },
+        "tagdict": {
+          "total": 16,
+          "hidden": 0,
+          "missing": 1
         }
       },
       "ok": true,
@@ -112,7 +111,7 @@
             "Drama",
             "Sports"
           ],
-          "tags": [
+          "tags_en": [
             "Football",
             "Male Protagonist",
             "Battle Royale",
@@ -130,7 +129,27 @@
             "Suicide",
             "Revenge"
           ],
-          "source": "enrich(paapi+openbd+wiki+anilist)"
+          "tags": [
+            "サッカー",
+            "男性主人公",
+            "バトルロイヤル",
+            "競技",
+            "男多め",
+            "10代中心",
+            "群像劇",
+            "少年",
+            "超能力",
+            "アンチヒーロー",
+            "フィットネス",
+            "海外",
+            "拡張現実",
+            "言語の壁",
+            "復讐"
+          ],
+          "tags_missing_en": [
+            "Suicide"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
         }
       }
     },
@@ -180,10 +199,22 @@
           ],
           "retries": [
             {
+              "label": "base",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
               "label": "probe:EditorialReviews",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
@@ -204,32 +235,37 @@
             {
               "title": "荒川弘",
               "pageid": 799446,
-              "score": 800
-            },
-            {
-              "title": "若林和弘",
-              "pageid": 910269,
-              "score": 800
-            },
-            {
-              "title": "ボンズ (アニメ制作会社)",
-              "pageid": 157305,
-              "score": 800
+              "score": 1300
             },
             {
               "title": "伊藤嘉之",
               "pageid": 310334,
-              "score": 800
+              "score": 600
             },
             {
               "title": "高木登",
               "pageid": 1227641,
-              "score": 800
+              "score": 600
+            },
+            {
+              "title": "若林和弘",
+              "pageid": 910269,
+              "score": 100
+            },
+            {
+              "title": "ボンズ (アニメ制作会社)",
+              "pageid": 157305,
+              "score": 100
             }
           ]
         },
         "anilist": {
           "cached": true
+        },
+        "tagdict": {
+          "total": 9,
+          "hidden": 0,
+          "missing": 1
         }
       },
       "ok": true,
@@ -267,7 +303,7 @@
             "Comedy",
             "Fantasy"
           ],
-          "tags": [
+          "tags_en": [
             "Shounen",
             "Twins",
             "Youkai",
@@ -278,7 +314,20 @@
             "Archery",
             "Rural"
           ],
-          "source": "enrich(paapi+openbd+wiki+anilist)"
+          "tags": [
+            "少年",
+            "双子",
+            "妖怪",
+            "現代ファンタジー",
+            "男性主人公",
+            "陰謀",
+            "弓術",
+            "田舎"
+          ],
+          "tags_missing_en": [
+            "Anachronism"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
         }
       }
     },
@@ -343,6 +392,11 @@
         },
         "anilist": {
           "cached": true
+        },
+        "tagdict": {
+          "total": 16,
+          "hidden": 0,
+          "missing": 1
         }
       },
       "ok": true,
@@ -384,7 +438,7 @@
             "Drama",
             "Fantasy"
           ],
-          "tags": [
+          "tags_en": [
             "Magic",
             "Travel",
             "Elf",
@@ -402,7 +456,27 @@
             "Food",
             "Dungeon"
           ],
-          "source": "enrich(paapi+openbd+wiki+anilist)"
+          "tags": [
+            "魔法",
+            "旅",
+            "エルフ",
+            "哲学",
+            "女性主人公",
+            "悪魔",
+            "癒し",
+            "中世",
+            "クーデレ",
+            "エピソード式",
+            "槍術",
+            "少年",
+            "童話",
+            "食",
+            "ダンジョン"
+          ],
+          "tags_missing_en": [
+            "Heterosexual"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
         }
       }
     }

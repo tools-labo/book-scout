@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T03:54:04.606Z",
+  "updatedAt": "2026-02-11T04:27:36.557Z",
   "total": 3,
   "items": [
     {
@@ -23,28 +23,27 @@
         "Sports"
       ],
       "tags": [
-        "Football",
-        "Male Protagonist",
-        "Battle Royale",
-        "Athletics",
-        "Primarily Male Cast",
-        "Primarily Teen Cast",
-        "Ensemble Cast",
-        "Shounen",
-        "Super Power",
-        "Anti-Hero",
-        "Fitness",
-        "Foreign",
-        "Augmented Reality",
-        "Language Barrier",
-        "Suicide",
-        "Revenge"
+        "サッカー",
+        "男性主人公",
+        "バトルロイヤル",
+        "競技",
+        "男多め",
+        "10代中心",
+        "群像劇",
+        "少年",
+        "超能力",
+        "アンチヒーロー",
+        "フィットネス",
+        "海外",
+        "拡張現実",
+        "言語の壁",
+        "復讐"
       ],
       "meta": {
         "titleLane2": "ブルーロック(1) (少年マガジンコミックス)",
         "anilistId": 106130,
         "wikiTitle": "ブルーロック",
-        "source": "enrich(paapi+openbd+wiki+anilist)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
       }
     },
     {
@@ -68,21 +67,20 @@
         "Fantasy"
       ],
       "tags": [
-        "Shounen",
-        "Twins",
-        "Youkai",
-        "Anachronism",
-        "Urban Fantasy",
-        "Male Protagonist",
-        "Conspiracy",
-        "Archery",
-        "Rural"
+        "少年",
+        "双子",
+        "妖怪",
+        "現代ファンタジー",
+        "男性主人公",
+        "陰謀",
+        "弓術",
+        "田舎"
       ],
       "meta": {
         "titleLane2": "黄泉のツガイ(1) (ガンガンコミックス)",
         "anilistId": 136899,
         "wikiTitle": "荒川弘",
-        "source": "enrich(paapi+openbd+wiki+anilist)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
       }
     },
     {
@@ -106,28 +104,27 @@
         "Fantasy"
       ],
       "tags": [
-        "Magic",
-        "Travel",
-        "Elf",
-        "Philosophy",
-        "Female Protagonist",
-        "Demons",
-        "Iyashikei",
-        "Medieval",
-        "Kuudere",
-        "Episodic",
-        "Spearplay",
-        "Heterosexual",
-        "Shounen",
-        "Fairy Tale",
-        "Food",
-        "Dungeon"
+        "魔法",
+        "旅",
+        "エルフ",
+        "哲学",
+        "女性主人公",
+        "悪魔",
+        "癒し",
+        "中世",
+        "クーデレ",
+        "エピソード式",
+        "槍術",
+        "少年",
+        "童話",
+        "食",
+        "ダンジョン"
       ],
       "meta": {
         "titleLane2": "葬送のフリーレン (1) (少年サンデーコミックス)",
         "anilistId": 118586,
         "wikiTitle": "葬送のフリーレン",
-        "source": "enrich(paapi+openbd+wiki+anilist)"
+        "source": "enrich(paapi+openbd+wiki+anilist+tagdict+hide)"
       }
     }
   ]
