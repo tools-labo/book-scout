@@ -7,10 +7,6 @@ const IN_SERIES = "data/lane2/series.json";
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_DEBUG = "data/lane2/debug_enrich.json";
 
-// ★タグ辞書/未翻訳蓄積
-const TAG_JA_MAP = "data/lane2/tag_ja_map.json";
-const TAGS_TODO = "data/lane2/tags_todo.json";
-
 // 軽キャッシュ（Actionsでも効く：リポジトリに残る）
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
@@ -51,18 +47,6 @@ function toHalfWidth(s) {
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
-}
-function uniq(arr) {
-  const out = [];
-  const seen = new Set();
-  for (const x of arr || []) {
-    const s = norm(x);
-    if (!s) continue;
-    if (seen.has(s)) continue;
-    seen.add(s);
-    out.push(s);
-  }
-  return out;
 }
 
 // dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
@@ -198,16 +182,11 @@ function extractIsbn13(item) {
   }
   return null;
 }
-function extractPublisherObj(item) {
+function extractPublisher(item) {
   const brand = item?.ItemInfo?.ByLineInfo?.Brand?.DisplayValue || null;
   const manufacturer = item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || null;
-  return { brand, manufacturer };
-}
-function pickPublisherText(pubObj, openbdPublisherText) {
-  const brand = norm(pubObj?.brand);
-  const manufacturer = norm(pubObj?.manufacturer);
-  const ob = norm(openbdPublisherText);
-  return brand || manufacturer || ob || null;
+  // 最終的にUIで文字列が欲しいので、ここでは一本化
+  return brand || manufacturer || null;
 }
 function extractContributors(item) {
   const arr = item?.ItemInfo?.ByLineInfo?.Contributors;
@@ -549,7 +528,7 @@ function extractFromAniList(media) {
 }
 
 /* -----------------------
- * Wikipedia（MediaWiki API：あらすじ節 / 掲載誌）
+ * Wikipedia（MediaWiki API：あらすじ節 → 無ければ導入文）
  * ----------------------- */
 async function wikiApi(params) {
   const base = "https://ja.wikipedia.org/w/api.php";
@@ -561,7 +540,7 @@ async function wikiApi(params) {
 
 function normalizeWikiText(s) {
   return String(s ?? "")
-    .replace(/\[\d+\]/g, "")
+    .replace(/\[\d+\]/g, "")      // 参照番号
     .replace(/\s+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -570,28 +549,19 @@ function normalizeWikiText(s) {
 function extractMagazineFromInfoboxHtml(html) {
   const h = String(html ?? "");
   const m =
-    h.match(/<th[^>]*>\s*掲載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/) ||
-    h.match(/<th[^>]*>\s*連載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
+    h.match(/<th[^>]*>\s*(掲載誌|連載誌)\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/) ||
+    h.match(/<th[^>]*>\s*(掲載誌|連載誌)[\s\S]*?<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
 
   if (!m) return null;
 
-  const td = m[1];
-  const text = stripHtml(td)
-    .replace(/\s*（[^）]*）\s*/g, (x) => x)
-    .replace(/\s+/g, " ")
-    .trim();
-
+  const td = m[2] ?? "";
+  const text = stripHtml(td).replace(/\s+/g, " ").trim();
   return text || null;
 }
 
-async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
+async function fetchWikiFresh({ seriesKey, debugSteps }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
-
-  if (Object.prototype.hasOwnProperty.call(cache, key)) {
-    debugSteps.wiki = { cached: true };
-    return { ok: true, data: cache[key], cached: true };
-  }
 
   // 1) 検索（ページ特定）
   let search;
@@ -605,31 +575,29 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
     });
   } catch (e) {
     debugSteps.wiki = { cached: false, ok: false, error: String(e?.message || e) };
-    cache[key] = null;
     return { ok: false, reason: "wiki_search_error" };
   }
 
   const hit = search?.query?.search?.[0] || null;
   if (!hit?.pageid) {
     debugSteps.wiki = { cached: false, ok: true, found: false };
-    cache[key] = null;
     return { ok: true, data: null, found: false };
   }
 
   const pageid = hit.pageid;
   const title = hit.title || null;
 
-  // 2) sections 取得（あらすじ/ストーリー/物語）
+  // 2) sections 取得（あらすじ/ストーリー/物語 を探す）
   let sectionsJson;
   try {
     sectionsJson = await wikiApi({
       action: "parse",
       pageid: String(pageid),
       prop: "sections",
+      redirects: "1",
     });
   } catch (e) {
     debugSteps.wiki = { cached: false, ok: false, error: String(e?.message || e) };
-    cache[key] = null;
     return { ok: false, reason: "wiki_sections_error" };
   }
 
@@ -656,8 +624,10 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
   }
   const magazine = extractMagazineFromInfoboxHtml(pageHtml);
 
-  // 4) あらすじ節
+  // 4) あらすじ節（優先）
   let synopsis = null;
+  let synopsisMode = null;
+
   if (sectionIndex != null) {
     try {
       const secHtml = await wikiApi({
@@ -670,14 +640,33 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
       const html = secHtml?.parse?.text?.["*"] ?? "";
       const text = normalizeWikiText(stripHtml(html));
       synopsis = text || null;
+      synopsisMode = synopsis ? "wiki_section" : null;
     } catch {
       synopsis = null;
     }
   }
 
-  const out = { pageid, title, synopsis, magazine };
-  cache[key] = out;
+  // 5) 節が無い/空なら導入文（exintro）にフォールバック
+  if (!synopsis) {
+    try {
+      const q = await wikiApi({
+        action: "query",
+        pageids: String(pageid),
+        prop: "extracts",
+        exintro: "1",
+        explaintext: "1",
+        redirects: "1",
+      });
+      const ex = q?.query?.pages?.[pageid]?.extract ?? null;
+      const text = normalizeWikiText(ex);
+      synopsis = text || null;
+      synopsisMode = synopsis ? "wiki_lead" : null;
+    } catch {
+      // noop
+    }
+  }
 
+  const out = { pageid, title, synopsis, synopsisMode, magazine };
   debugSteps.wiki = {
     cached: false,
     ok: true,
@@ -685,41 +674,30 @@ async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
     pageid,
     title,
     hasSynopsis: !!synopsis,
+    synopsisMode,
     hasMagazine: !!magazine,
     sectionIndex,
   };
-
   return { ok: true, data: out, found: true };
 }
 
-/* -----------------------
- * タグ翻訳（C1：英語保持 + 翻訳済みだけ表示 + hide除外）
- * ----------------------- */
-function translateTags({ tagsEn, tagMap, hideSet }) {
-  const en0 = uniq(tagsEn);
-  const en = en0.filter((t) => !hideSet?.has(norm(t)));
+async function fetchWikiBySeriesKey({ seriesKey, cache, debugSteps }) {
+  const key = norm(seriesKey);
+  if (!key) return { ok: false, reason: "no_seriesKey" };
 
-  const map = tagMap || {};
-  const ja = [];
-  const missing = [];
-
-  for (const t of en) {
-    const j = norm(map[t]);
-    if (j) ja.push(j);
-    else missing.push(t);
+  // キャッシュがあっても、synopsis/magazine 両方空なら “再取得” して埋める
+  if (Object.prototype.hasOwnProperty.call(cache, key)) {
+    const c = cache[key];
+    const hasUseful = !!(c?.synopsis || c?.magazine);
+    if (hasUseful) {
+      debugSteps.wiki = { cached: true };
+      return { ok: true, data: c, cached: true };
+    }
   }
 
-  return {
-    tags_en: en,
-    tags: uniq(ja),
-    tags_missing_en: uniq(missing),
-  };
-}
-
-function mergeTodoList({ todoArr, missingArr }) {
-  const set = new Set(Array.isArray(todoArr) ? todoArr.map(norm).filter(Boolean) : []);
-  for (const t of missingArr || []) set.add(norm(t));
-  return Array.from(set).sort((a, b) => a.localeCompare(b));
+  const fresh = await fetchWikiFresh({ seriesKey: key, debugSteps });
+  cache[key] = fresh?.ok ? fresh.data ?? null : null;
+  return fresh;
 }
 
 /* -----------------------
@@ -733,14 +711,6 @@ async function main() {
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
-
-  // ★辞書＆hide＆todo
-  const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: null, map: {}, hide: [] });
-  const tagMap = tagMapJson?.map || {};
-  const hideSet = new Set((tagMapJson?.hide || []).map(norm).filter(Boolean));
-
-  const todoJson = await loadJson(TAGS_TODO, { version: 1, updatedAt: null, tags: [] });
-  let todoTags = Array.isArray(todoJson?.tags) ? todoJson.tags.slice() : [];
 
   const enriched = [];
   const debug = [];
@@ -770,12 +740,12 @@ async function main() {
       output: null,
     };
 
-    // 0) dp から asin / isbn13
+    // 0) dp から asin / isbn13 を取得
     const parsed = parseAmazonDpId(amazonDp);
     let asin = parsed.asin;
     const isbn13FromDp = parsed.isbn13FromDp;
 
-    // 0.5) dpがISBN13だったら、SearchItemsでASIN解決
+    // 0.5) dpがISBN13だったら、SearchItemsでASIN解決（EAN一致）
     if (!asin) {
       const targetIsbn13 = isbn13FromDp || isbn13 || null;
       if (targetIsbn13) {
@@ -800,7 +770,7 @@ async function main() {
       continue;
     }
 
-    // 1) PA-API GetItems
+    // 1) PA-API GetItems（タイトル正、書影、出版社、発売日など）
     const stepPa = {};
     const got = await getItemWithResourceProbe({ asin, debugSteps: stepPa });
     one.steps.getItemByAsin = {
@@ -829,7 +799,7 @@ async function main() {
 
     const finalTitle = paTitle || lane2Title || seriesKey || null;
 
-    // 2) openBD
+    // 2) openBD（あらすじ：最優先）
     const stepOpenbd = {};
     const ob = await fetchOpenBdByIsbn13({
       isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
@@ -840,38 +810,28 @@ async function main() {
 
     const obx = ob?.ok ? extractFromOpenBd(ob.data) : { synopsis: null, pubdate: null, publisherText: null };
 
-    // 3) Wiki（あらすじ節/掲載誌）
+    // 3) Wiki（あらすじ節→無ければ導入文 / 掲載誌）
     const stepWiki = {};
     const wk = await fetchWikiBySeriesKey({ seriesKey, cache: cacheWiki, debugSteps: stepWiki });
     one.steps.wiki = stepWiki.wiki || null;
 
     const wikiSynopsis = wk?.ok ? wk?.data?.synopsis ?? null : null;
+    const wikiSynopsisMode = wk?.ok ? wk?.data?.synopsisMode ?? null : null;
     const magazine = wk?.ok ? wk?.data?.magazine ?? null : null;
     const wikiTitle = wk?.ok ? wk?.data?.title ?? null : null;
 
-    // 4) AniList（ジャンル/タグ）
+    // 4) AniList（ジャンル/タグのみ）
     const stepAni = {};
     const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList, debugSteps: stepAni });
     one.steps.anilist = stepAni.anilist || null;
 
     const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
 
-    // synopsis
+    // --- 最終 “あらすじ” の決定（英語説明は使わない）
     const finalSynopsis = obx.synopsis || wikiSynopsis || null;
-    const synopsisSource = obx.synopsis ? "openbd" : wikiSynopsis ? "wiki" : null;
+    const synopsisSource = obx.synopsis ? "openbd" : wikiSynopsisMode || null;
 
-    // release
     const finalReleaseDate = paReleaseDate || obx.pubdate || null;
-
-    // publisher（文字列）
-    const pubObj = extractPublisherObj(item);
-    const publisherText = pickPublisherText(pubObj, obx.publisherText);
-
-    // tags（hide込み）
-    const tagX = translateTags({ tagsEn: anx.tags, tagMap, hideSet });
-    if (tagX.tags_missing_en.length) {
-      todoTags = mergeTodoList({ todoArr: todoTags, missingArr: tagX.tags_missing_en });
-    }
 
     const out = {
       seriesKey,
@@ -883,8 +843,7 @@ async function main() {
         asin,
         image: extractImage(item) || null,
         amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
-
-        publisher: publisherText,
+        publisher: extractPublisher(item),
         contributors: extractContributors(item),
         releaseDate: finalReleaseDate,
 
@@ -895,13 +854,10 @@ async function main() {
         wikiTitle,
 
         anilistId: anx.id,
-        genres: uniq(anx.genres),
+        genres: anx.genres,
+        tags: anx.tags,
 
-        tags_en: tagX.tags_en,
-        tags: tagX.tags,
-        tags_missing_en: tagX.tags_missing_en,
-
-        source: "enrich(paapi+openbd+wiki+anilist+tagdict+hide)",
+        source: "enrich(paapi+openbd+wiki+anilist)",
       },
     };
 
@@ -927,13 +883,6 @@ async function main() {
     ok,
     ng,
     items: debug,
-  });
-
-  // todoを書き戻し（hide除外済みの未翻訳だけが入る）
-  await saveJson(TAGS_TODO, {
-    version: todoJson?.version ?? 1,
-    updatedAt: nowIso(),
-    tags: todoTags,
   });
 
   await saveJson(CACHE_OPENBD, cacheOpenbd);
