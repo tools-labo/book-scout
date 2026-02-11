@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-11T14:33:49.869Z",
+  "total": 5,
+  "items": [
+    {
+      "seriesKey": "ダンダダン",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Ghost,Aliens,Tokusatsu,Surreal Comedy,Henshin"
+      }
+    },
+    {
+      "seriesKey": "バガボンド",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Samurai,Seinen,Swordplay,Historical,Coming of Age"
+      }
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Seinen,Cosmic Horror,Gore,Found Family,Rape"
+      }
+    },
+    {
+      "seriesKey": "ワンパンマン",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Superhero,Meta,Parody,Primarily Adult Cast,Seinen"
+      }
+    },
+    {
+      "seriesKey": "僕のヒーローアカデミア",
+      "needs": [
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "tags_ja_map": "missing:Superhero,Boarding School,Terrorism,School,Cultivation"
+      }
+    }
+  ]
+}
