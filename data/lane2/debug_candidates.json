@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T02:53:23.860Z",
+  "updatedAt": "2026-02-11T03:12:29.974Z",
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -10,18 +10,6 @@
       },
       "seedHintResult": {
         "ok": true,
-        "confirmed": {
-          "seriesKey": "ブルーロック",
-          "author": "金城 宗幸",
-          "vol1": {
-            "title": "ブルーロック(1) (少年マガジンコミックス)",
-            "isbn13": "9784065134009",
-            "asin": "4065134005",
-            "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
-            "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
-            "source": "seed_hint(getitems10)+mainline_guard"
-          }
-        },
         "debug": {
           "used": true,
           "hintAsin": null,
@@ -139,6 +127,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
+              "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
               "score": 650
             },
             "candidatesAll": [
@@ -148,6 +137,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
+                "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
                 "score": 650
               },
               {
@@ -156,6 +146,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
+                "image": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
                 "score": 570
               }
             ]
@@ -170,6 +161,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
+              "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
               "score": 650
             },
             "candidatesAll": [
@@ -179,6 +171,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
+                "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
                 "score": 650
               },
               {
@@ -187,6 +180,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
+                "image": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
                 "score": 570
               }
             ]
@@ -201,6 +195,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
+              "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
               "score": 650
             },
             "candidatesAll": [
@@ -210,6 +205,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
+                "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
                 "score": 650
               },
               {
@@ -218,15 +214,44 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
+                "image": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
                 "score": 570
               }
             ]
           },
           {
             "query": "黄泉のツガイ 1 コミックス",
-            "ok": false,
-            "status": 429,
-            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            "ok": true,
+            "returned": 6,
+            "best": {
+              "source": "paapi_search",
+              "query": "黄泉のツガイ 1 コミックス",
+              "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+              "isbn13": "9784757579620",
+              "asin": "4757579624",
+              "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+              "score": 650
+            },
+            "candidatesAll": [
+              {
+                "source": "paapi_search",
+                "query": "黄泉のツガイ 1 コミックス",
+                "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
+                "isbn13": null,
+                "asin": "B09Y8YB5DP",
+                "image": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
+                "score": 570
+              },
+              {
+                "source": "paapi_search",
+                "query": "黄泉のツガイ 1 コミックス",
+                "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+                "isbn13": "9784757579620",
+                "asin": "4757579624",
+                "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+                "score": 650
+              }
+            ]
           },
           {
             "query": "黄泉のツガイ 1 (コミックス)",
@@ -238,6 +263,7 @@
               "title": "黄泉のツガイ(1) (ガンガンコミックス)",
               "isbn13": "9784757579620",
               "asin": "4757579624",
+              "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
               "score": 650
             },
             "candidatesAll": [
@@ -247,6 +273,7 @@
                 "title": "黄泉のツガイ 1巻 (デジタル版ガンガンコミックス)",
                 "isbn13": null,
                 "asin": "B09Y8YB5DP",
+                "image": "https://m.media-amazon.com/images/I/51dT1ERjavL._SL500_.jpg",
                 "score": 570
               },
               {
@@ -255,6 +282,7 @@
                 "title": "黄泉のツガイ(1) (ガンガンコミックス)",
                 "isbn13": "9784757579620",
                 "asin": "4757579624",
+                "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
                 "score": 650
               }
             ]
@@ -266,13 +294,22 @@
           "title": "黄泉のツガイ(1) (ガンガンコミックス)",
           "isbn13": "9784757579620",
           "asin": "4757579624",
+          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
           "score": 650
         }
       },
-      "paapiGet": {
-        "error": true,
-        "status": 429,
-        "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+      "path": "paapi_search_only",
+      "confirmed": {
+        "seriesKey": "黄泉のツガイ",
+        "author": "荒川弘",
+        "vol1": {
+          "title": "黄泉のツガイ(1) (ガンガンコミックス)",
+          "isbn13": "9784757579620",
+          "asin": "4757579624",
+          "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
+          "source": "paapi_search(mainline_guard)"
+        }
       }
     },
     {
@@ -288,9 +325,37 @@
         "results": [
           {
             "query": "葬送のフリーレン (1)",
-            "ok": false,
-            "status": 429,
-            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "葬送のフリーレン (1)",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": "9784098501809",
+              "asin": "4098501805",
+              "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+              "score": 650
+            },
+            "candidatesAll": [
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン (1)",
+                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+                "isbn13": "9784098501809",
+                "asin": "4098501805",
+                "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン (1)",
+                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
+                "isbn13": null,
+                "asin": "B08FDH57JT",
+                "image": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
+                "score": 570
+              }
+            ]
           },
           {
             "query": "葬送のフリーレン（1）",
@@ -302,6 +367,7 @@
               "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
               "isbn13": "9784098501809",
               "asin": "4098501805",
+              "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
               "score": 650
             },
             "candidatesAll": [
@@ -311,6 +377,7 @@
                 "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
                 "isbn13": null,
                 "asin": "B08FDH57JT",
+                "image": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
                 "score": 570
               },
               {
@@ -319,42 +386,136 @@
                 "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
                 "isbn13": "9784098501809",
                 "asin": "4098501805",
+                "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
                 "score": 650
               }
             ]
           },
           {
             "query": "葬送のフリーレン 1",
-            "ok": false,
-            "status": 429,
-            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "葬送のフリーレン 1",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": "9784098501809",
+              "asin": "4098501805",
+              "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+              "score": 650
+            },
+            "candidatesAll": [
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1",
+                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+                "isbn13": "9784098501809",
+                "asin": "4098501805",
+                "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1",
+                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
+                "isbn13": null,
+                "asin": "B08FDH57JT",
+                "image": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
+                "score": 570
+              }
+            ]
           },
           {
             "query": "葬送のフリーレン 1 コミックス",
-            "ok": false,
-            "status": 429,
-            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "葬送のフリーレン 1 コミックス",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": "9784098501809",
+              "asin": "4098501805",
+              "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+              "score": 650
+            },
+            "candidatesAll": [
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1 コミックス",
+                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+                "isbn13": "9784098501809",
+                "asin": "4098501805",
+                "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1 コミックス",
+                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
+                "isbn13": null,
+                "asin": "B08FDH57JT",
+                "image": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
+                "score": 570
+              }
+            ]
           },
           {
             "query": "葬送のフリーレン 1 (コミックス)",
-            "ok": false,
-            "status": 429,
-            "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+            "ok": true,
+            "returned": 10,
+            "best": {
+              "source": "paapi_search",
+              "query": "葬送のフリーレン 1 (コミックス)",
+              "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+              "isbn13": "9784098501809",
+              "asin": "4098501805",
+              "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+              "score": 650
+            },
+            "candidatesAll": [
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1 (コミックス)",
+                "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+                "isbn13": "9784098501809",
+                "asin": "4098501805",
+                "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+                "score": 650
+              },
+              {
+                "source": "paapi_search",
+                "query": "葬送のフリーレン 1 (コミックス)",
+                "title": "葬送のフリーレン（１） (少年サンデーコミックス)",
+                "isbn13": null,
+                "asin": "B08FDH57JT",
+                "image": "https://m.media-amazon.com/images/I/51km4YYjnQL._SL500_.jpg",
+                "score": 570
+              }
+            ]
           }
         ],
         "best": {
           "source": "paapi_search",
-          "query": "葬送のフリーレン（1）",
+          "query": "葬送のフリーレン (1)",
           "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
           "isbn13": "9784098501809",
           "asin": "4098501805",
+          "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
           "score": 650
         }
       },
-      "paapiGet": {
-        "error": true,
-        "status": 429,
-        "body": "{\"__type\":\"com.amazon.paapi5#TooManyRequestsException\",\"Errors\":[{\"Code\":\"TooManyRequests\",\"Message\":\"The request was denied due to request throttling. Please verify the number of requests made per second to the Amazon Product Advertising API.\"}]}"
+      "path": "paapi_search_only",
+      "confirmed": {
+        "seriesKey": "葬送のフリーレン",
+        "author": "山田鐘人",
+        "vol1": {
+          "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+          "isbn13": "9784098501809",
+          "asin": "4098501805",
+          "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+          "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+          "source": "paapi_search(mainline_guard)"
+        }
       }
     }
   ]
