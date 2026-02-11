@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T07:06:33.793Z",
+  "updatedAt": "2026-02-11T07:17:03.901Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,20 +48,7 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:EditorialReviews",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
@@ -203,10 +190,22 @@
           ],
           "retries": [
             {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
               "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
@@ -279,8 +278,8 @@
             }
           ],
           "releaseDate": "2022-06-10T00:00:01Z",
-          "synopsis": null,
-          "synopsisSource": null,
+          "synopsis": "山奥の小さな村落で暮らす少年のユルは、野鳥を狩り、大自然の中で静かに暮らしていた。しかしユルの双子の妹のアサは、何故か村の奥にある牢の中で「おつとめ」を果たしているという。それはまるで幽閉されているかのように…。穏やかな村に浮かぶ不自然な謎、この村に隠された秘密とは一体…!?未曾有のツガイバトルここに開幕!!",
+          "synopsisSource": "manual",
           "magazine": null,
           "wikiTitle": null,
           "anilistId": 136899,
@@ -360,20 +359,7 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": [
-            {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            }
-          ]
+          "retries": null
         },
         "openbd": {
           "cached": true
