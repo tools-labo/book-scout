@@ -21,3 +21,7 @@ Thumbs.db
 
 # build output (使ってるなら)
 dist/
+
+# --- book-scout lane2 (do not commit) ---
+data/lane2/cache/
+data/lane2/debug_*.json
