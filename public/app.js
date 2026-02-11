@@ -27,7 +27,6 @@ function toText(v) {
   }
 
   if (typeof v === "object") {
-    // よくある形だけ拾う（publisherがobjectでも崩れない）
     const keys = ["name","ja","jp","label","value","text","title","publisher","company","display","brand","manufacturer"];
     for (const k of keys) {
       if (v[k] != null) {
@@ -80,7 +79,6 @@ function pick(it, keys) {
     const v = k.includes(".")
       ? k.split(".").reduce((o, kk) => (o ? o[kk] : undefined), it)
       : it?.[k];
-    const t = (Array.isArray(v) ? v : toText(v));
     if (Array.isArray(v)) return v;
     if (toText(v)) return v;
   }
@@ -94,6 +92,17 @@ function pickArr(it, keys) {
     if (Array.isArray(v) && v.length) return v;
   }
   return [];
+}
+
+function setStatus(msg) {
+  const s = document.getElementById("status");
+  if (s) { s.textContent = msg; return; }
+
+  // status が無いページでも分かるように、detail/list に出す
+  const d = document.getElementById("detail");
+  if (d) { d.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
+  const l = document.getElementById("list");
+  if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
 function renderList(data) {
@@ -219,14 +228,21 @@ function renderWork(data) {
   `;
 }
 
-(async function main() {
+async function run() {
   try {
-    const data = await loadJson("./data/lane2/works.json");
+    const v = qs().get("v");
+    const url = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
+    const data = await loadJson(url);
     renderList(data);
     renderWork(data);
   } catch (e) {
-    const s = document.getElementById("status");
-    if (s) s.textContent = "読み込みに失敗しました";
+    setStatus("読み込みに失敗しました");
     console.error(e);
   }
-})();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", run, { once: true });
+} else {
+  run();
+}
