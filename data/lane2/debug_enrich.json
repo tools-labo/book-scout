@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T06:59:47.699Z",
+  "updatedAt": "2026-02-11T07:06:33.793Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -48,7 +48,20 @@
               "reason": "invalid_resource"
             }
           ],
-          "retries": null
+          "retries": [
+            {
+              "label": "probe:EditorialReviews",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            }
+          ]
         },
         "openbd": {
           "cached": true
@@ -190,12 +203,6 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
-              "attempt": 1,
-              "status": 429,
-              "waitMs": 900
-            },
-            {
               "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
               "status": 429,
@@ -228,13 +235,13 @@
               "score": 600
             },
             {
-              "title": "ボンズ (アニメ制作会社)",
-              "pageid": 157305,
+              "title": "若林和弘",
+              "pageid": 910269,
               "score": 100
             },
             {
-              "title": "若林和弘",
-              "pageid": 910269,
+              "title": "ボンズ (アニメ制作会社)",
+              "pageid": 157305,
               "score": 100
             }
           ]
@@ -354,6 +361,12 @@
             }
           ],
           "retries": [
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 1,
+              "status": 429,
+              "waitMs": 900
+            },
             {
               "label": "probe:EditorialReviews.EditorialReview",
               "attempt": 1,
