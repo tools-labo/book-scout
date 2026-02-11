@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-11T03:22:58.237Z",
+  "updatedAt": "2026-02-11T03:27:59.611Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -54,15 +54,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 3965460,
-          "title": "ブルーロック",
-          "hasSynopsis": true,
-          "synopsisMode": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "1"
+          "cached": true
         },
         "anilist": {
           "cached": true
@@ -172,7 +164,7 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "base",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -183,15 +175,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 799446,
-          "title": "荒川弘",
-          "hasSynopsis": true,
-          "synopsisMode": "wiki_lead",
-          "hasMagazine": false,
-          "sectionIndex": null
+          "cached": true
         },
         "anilist": {
           "cached": true
@@ -290,10 +274,16 @@
           ],
           "retries": [
             {
-              "label": "probe:EditorialReviews",
+              "label": "probe:ItemInfo.ProductInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:ItemInfo.ProductInfo",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
@@ -301,15 +291,7 @@
           "cached": true
         },
         "wiki": {
-          "cached": false,
-          "ok": true,
-          "found": true,
-          "pageid": 4124704,
-          "title": "葬送のフリーレン",
-          "hasSynopsis": true,
-          "synopsisMode": "wiki_section",
-          "hasMagazine": true,
-          "sectionIndex": "2"
+          "cached": true
         },
         "anilist": {
           "cached": true
