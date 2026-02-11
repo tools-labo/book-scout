@@ -1,8 +1,10 @@
 {
-  "updatedAt": "2026-02-11T08:18:53.074Z",
-  "total": 3,
-  "confirmed": 3,
-  "todo": 0,
+  "updatedAt": "2026-02-11T11:00:03.726Z",
+  "total": 100,
+  "confirmed": 14,
+  "todo": 9,
+  "processedThisRun": 20,
+  "buildLimit": 20,
   "items": [
     {
       "seriesKey": "ブルーロック",
@@ -37,6 +39,138 @@
         "asin": "4098501805",
         "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "呪術廻戦",
+      "author": null,
+      "vol1": {
+        "title": "呪術廻戦 2 幼魚と逆罰 京都姉妹校交流会1団体戦 (集英社リミックス)",
+        "isbn13": "9784081152865",
+        "asin": "4081152861",
+        "image": "https://m.media-amazon.com/images/I/51YmK39lDhL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4081152861",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "author": null,
+      "vol1": {
+        "title": "ベルセルク 1",
+        "isbn13": "9784592842019",
+        "asin": "4592842014",
+        "image": "https://m.media-amazon.com/images/I/31EMtc+nE9L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592842014",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "進撃の巨人",
+      "author": null,
+      "vol1": {
+        "title": "進撃の巨人　悔いなき選択　リマスター版（１） (ＡＲＩＡコミックス)",
+        "isbn13": "9784064220789",
+        "asin": "B012MPQGWQ",
+        "image": "https://m.media-amazon.com/images/I/51a8isADL0L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/B012MPQGWQ",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "僕のヒーローアカデミア",
+      "author": null,
+      "vol1": {
+        "title": "僕のヒーローアカデミア 雄英白書 1 (JUMP j BOOKS)",
+        "isbn13": "9784087033915",
+        "asin": "4087033910",
+        "image": "https://m.media-amazon.com/images/I/51+8mEfvagL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4087033910",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ワンパンマン",
+      "author": null,
+      "vol1": {
+        "title": "ワンパンマン 1 (ジャンプコミックス)",
+        "isbn13": "9784088707013",
+        "asin": "408870701X",
+        "image": "https://m.media-amazon.com/images/I/51n9Du3F1FL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/408870701X",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "バガボンド",
+      "author": null,
+      "vol1": {
+        "title": "バガボンド(1)(モーニングKC)",
+        "isbn13": "9784063286199",
+        "asin": "4063286193",
+        "image": "https://m.media-amazon.com/images/I/51j0Z8IC3eL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063286193",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ホリミヤ",
+      "author": null,
+      "vol1": {
+        "title": "ホリミヤ TVアニメ化記念 1巻~3巻 バリューパック (Gファンタジーコミックス)",
+        "isbn13": "9784757570603",
+        "asin": "4757570600",
+        "image": "https://m.media-amazon.com/images/I/51zFyk3DjoL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757570600",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "東京卍リベンジャーズ",
+      "author": null,
+      "vol1": {
+        "title": "東京卍リベンジャーズ ~場地圭介からの手紙~(1) (少年マガジンKC)",
+        "isbn13": "9784065293782",
+        "asin": "4065293782",
+        "image": "https://m.media-amazon.com/images/I/51-fVzem--L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065293782",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ダンダダン",
+      "author": null,
+      "vol1": {
+        "title": "ダンダダン 1 (ジャンプコミックス)",
+        "isbn13": "9784088825991",
+        "asin": "4088825993",
+        "image": "https://m.media-amazon.com/images/I/51tm2JOPR-L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088825993",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "古見さんは、コミュ症です。",
+      "author": null,
+      "vol1": {
+        "title": "古見さんは、コミュ症です。アニメ化記念 1~4巻SPプライスパック (少年サンデーコミックス)",
+        "isbn13": "9784098507092",
+        "asin": "4098507099",
+        "image": "https://m.media-amazon.com/images/I/61fRzdmDbML._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098507099",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "【推しの子】",
+      "author": null,
+      "vol1": {
+        "title": "【推しの子】 1 (ヤングジャンプコミックス)",
+        "isbn13": "9784088916507",
+        "asin": "4088916506",
+        "image": "https://m.media-amazon.com/images/I/41DDVHgT3bL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088916506",
         "source": "paapi_search(mainline_guard)"
       }
     }
