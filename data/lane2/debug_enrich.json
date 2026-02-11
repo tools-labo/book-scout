@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-10T19:34:32.944Z",
+  "updatedAt": "2026-02-11T01:47:30.101Z",
   "total": 3,
   "ok": 3,
   "ng": 0,
@@ -50,10 +50,16 @@
           ],
           "retries": [
             {
-              "label": "probe:ItemInfo.ProductInfo",
+              "label": "probe:ItemInfo.ContentInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:ItemInfo.ContentInfo",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
@@ -79,7 +85,8 @@
           "asin": "4065134005",
           "image": "https://m.media-amazon.com/images/I/41Udk96XX6L._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4065134005",
-          "publisher": {
+          "publisher": "講談社",
+          "publisherRaw": {
             "brand": "講談社",
             "manufacturer": "講談社"
           },
@@ -106,7 +113,7 @@
             "Drama",
             "Sports"
           ],
-          "tags": [
+          "tags_en": [
             "Football",
             "Male Protagonist",
             "Battle Royale",
@@ -124,7 +131,26 @@
             "Suicide",
             "Revenge"
           ],
-          "source": "enrich(paapi+openbd+wiki+anilist)"
+          "tags": [],
+          "tags_missing_en": [
+            "Football",
+            "Male Protagonist",
+            "Battle Royale",
+            "Athletics",
+            "Primarily Male Cast",
+            "Primarily Teen Cast",
+            "Ensemble Cast",
+            "Shounen",
+            "Super Power",
+            "Anti-Hero",
+            "Fitness",
+            "Foreign",
+            "Augmented Reality",
+            "Language Barrier",
+            "Suicide",
+            "Revenge"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
         }
       }
     },
@@ -174,7 +200,7 @@
           ],
           "retries": [
             {
-              "label": "base",
+              "label": "probe:ItemInfo.ContentInfo",
               "attempt": 1,
               "status": 429,
               "waitMs": 900
@@ -184,12 +210,6 @@
               "attempt": 1,
               "status": 429,
               "waitMs": 900
-            },
-            {
-              "label": "probe:EditorialReviews.EditorialReview",
-              "attempt": 2,
-              "status": 429,
-              "waitMs": 1800
             }
           ]
         },
@@ -215,7 +235,8 @@
           "asin": "4757579624",
           "image": "https://m.media-amazon.com/images/I/51VyZtU4uWL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4757579624",
-          "publisher": {
+          "publisher": "スクウェア・エニックス(SQUARE ENIX)",
+          "publisherRaw": {
             "brand": "スクウェア・エニックス(SQUARE ENIX)",
             "manufacturer": "スクウェア・エニックス"
           },
@@ -238,7 +259,7 @@
             "Comedy",
             "Fantasy"
           ],
-          "tags": [
+          "tags_en": [
             "Shounen",
             "Twins",
             "Youkai",
@@ -249,7 +270,19 @@
             "Archery",
             "Rural"
           ],
-          "source": "enrich(paapi+openbd+wiki+anilist)"
+          "tags": [],
+          "tags_missing_en": [
+            "Shounen",
+            "Twins",
+            "Youkai",
+            "Anachronism",
+            "Urban Fantasy",
+            "Male Protagonist",
+            "Conspiracy",
+            "Archery",
+            "Rural"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
         }
       }
     },
@@ -259,10 +292,20 @@
       "input": {
         "lane2Title": "葬送のフリーレン",
         "isbn13": "9784098501809",
-        "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "amazonDp": "https://www.amazon.co.jp/dp/9784098501809",
         "source": "ndl(opensearch)+paapi_probe+ndl_guard"
       },
       "steps": {
+        "resolveAsinByIsbn13": {
+          "ok": true,
+          "reason": null,
+          "isbn13": "9784098501809",
+          "raw": {
+            "cached": true,
+            "asin": "4098501805"
+          },
+          "retries": null
+        },
         "getItemByAsin": {
           "ok": true,
           "reason": null,
@@ -303,6 +346,12 @@
               "attempt": 1,
               "status": 429,
               "waitMs": 900
+            },
+            {
+              "label": "probe:EditorialReviews.EditorialReview",
+              "attempt": 2,
+              "status": 429,
+              "waitMs": 1800
             }
           ]
         },
@@ -328,7 +377,8 @@
           "asin": "4098501805",
           "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
           "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
-          "publisher": {
+          "publisher": "小学館",
+          "publisherRaw": {
             "brand": "小学館",
             "manufacturer": "小学館"
           },
@@ -355,7 +405,7 @@
             "Drama",
             "Fantasy"
           ],
-          "tags": [
+          "tags_en": [
             "Magic",
             "Travel",
             "Elf",
@@ -373,7 +423,26 @@
             "Food",
             "Dungeon"
           ],
-          "source": "enrich(paapi+openbd+wiki+anilist)"
+          "tags": [],
+          "tags_missing_en": [
+            "Magic",
+            "Travel",
+            "Elf",
+            "Philosophy",
+            "Female Protagonist",
+            "Demons",
+            "Iyashikei",
+            "Medieval",
+            "Kuudere",
+            "Episodic",
+            "Spearplay",
+            "Heterosexual",
+            "Shounen",
+            "Fairy Tale",
+            "Food",
+            "Dungeon"
+          ],
+          "source": "enrich(paapi+openbd+wiki+anilist+tagdict)"
         }
       }
     }
