@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-11T19:32:07.167Z",
-  "total": 7,
-  "addedThisRun": 4,
+  "updatedAt": "2026-02-12T03:25:31.856Z",
+  "total": 12,
+  "addedThisRun": 5,
   "items": [
     {
       "seriesKey": "進撃の巨人",
@@ -91,6 +91,71 @@
         "asin": "4087927865",
         "image": "https://m.media-amazon.com/images/I/51qP1djrNhL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4087927865",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "極主夫道",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_colon)",
+      "vol1": {
+        "title": "極主夫道　1巻: バンチコミックス",
+        "isbn13": null,
+        "asin": "B07G3NR14C",
+        "image": "https://m.media-amazon.com/images/I/519mmybSh0L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/B07G3NR14C",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ホムンクルス",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_text_before_vol)",
+      "vol1": {
+        "title": "ホムンクルスの詩 １話-（１）",
+        "isbn13": null,
+        "asin": "B0F92912WB",
+        "image": "https://m.media-amazon.com/images/I/514XN3F46-L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/B0F92912WB",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "終末のワルキューレ",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_text_before_vol)",
+      "vol1": {
+        "title": "終末のワルキューレ禁伝 神々の黙示録 (1) (ゼノンコミックス)",
+        "isbn13": "9784867206997",
+        "asin": "4867206997",
+        "image": "https://m.media-amazon.com/images/I/51JzuyGnjgL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4867206997",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ソウルイーター",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_text_before_vol)",
+      "vol1": {
+        "title": "反逆のソウルイーター~THE REVENGE OF THE SOUL EATER~ (1) (アース・スターコミックス)",
+        "isbn13": "9784803014273",
+        "asin": "4803014272",
+        "image": "https://m.media-amazon.com/images/I/51UtZBqzBmL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4803014272",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ヲタクに恋は難しい",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_colon)",
+      "vol1": {
+        "title": "ヲタクに恋は難しい: 1 (comic POOL)",
+        "isbn13": null,
+        "asin": "B00WGA6W7C",
+        "image": "https://m.media-amazon.com/images/I/51cqYkox2TL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/B00WGA6W7C",
         "source": "paapi_search(mainline_guard)"
       }
     }
