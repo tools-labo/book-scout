@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-12T03:25:57.149Z",
-  "total": 6,
+  "updatedAt": "2026-02-12T07:33:17.796Z",
+  "total": 10,
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -12,6 +12,17 @@
       "reasons": {
         "synopsis": "openbd_not_found",
         "tags_ja_map": "missing:Revenge,Idol,Acting,Seinen,Male Protagonist"
+      }
+    },
+    {
+      "seriesKey": "アオハライド",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Shoujo,School,Love Triangle,Heterosexual,Female Protagonist"
       }
     },
     {
@@ -39,6 +50,15 @@
       }
     },
     {
+      "seriesKey": "ドラゴンボール",
+      "needs": [
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "tags_ja_map": "missing:Martial Arts,Shounen,Travel,Male Protagonist,Super Power"
+      }
+    },
+    {
       "seriesKey": "バガボンド",
       "needs": [
         "synopsis",
@@ -63,6 +83,17 @@
       }
     },
     {
+      "seriesKey": "暁のヨナ",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Found Family,Female Protagonist,Travel,Historical,Shoujo"
+      }
+    },
+    {
       "seriesKey": "葬送のフリーレン",
       "needs": [
         "synopsis",
@@ -71,6 +102,17 @@
       "reasons": {
         "synopsis": "openbd_not_found",
         "tags_ja_map": "missing:Magic,Travel,Elf,Philosophy,Female Protagonist"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "needs": [
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "tags_ja_map": "missing:Isekai,Kingdom Management,Politics,Medieval,War"
       }
     }
   ]

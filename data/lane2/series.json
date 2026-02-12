@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-02-12T03:25:31.854Z",
-  "total": 220,
-  "confirmed": 6,
-  "todo": 42,
-  "review": 12,
+  "updatedAt": "2026-02-12T07:32:28.258Z",
+  "total": 320,
+  "confirmed": 10,
+  "todo": 55,
+  "review": 15,
   "processedThisRun": 20,
   "buildLimit": 20,
   "items": [
@@ -76,6 +76,54 @@
         "asin": "4098501805",
         "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/4098501805",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "アオハライド",
+      "author": null,
+      "vol1": {
+        "title": "アオハライド 1",
+        "isbn13": "9784086016025",
+        "asin": "4086016028",
+        "image": "https://m.media-amazon.com/images/I/51xtR-tgd8L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4086016028",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "author": null,
+      "vol1": {
+        "title": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+        "isbn13": "9784065127445",
+        "asin": "4065127440",
+        "image": "https://m.media-amazon.com/images/I/51ZA6L9TuwL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065127440",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "暁のヨナ",
+      "author": null,
+      "vol1": {
+        "title": "暁のヨナ 1 (花とゆめCOMICS)",
+        "isbn13": "9784592190813",
+        "asin": "4592190815",
+        "image": "https://m.media-amazon.com/images/I/512WA6M60NL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592190815",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "author": null,
+      "vol1": {
+        "title": "ドラゴンボール超 1 (ジャンプコミックス)",
+        "isbn13": "9784088806617",
+        "asin": "4088806611",
+        "image": "https://m.media-amazon.com/images/I/51rOw7t-I+L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088806611",
         "source": "paapi_search(mainline_guard)"
       }
     }

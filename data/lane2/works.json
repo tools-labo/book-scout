@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-02-12T03:25:57.149Z",
-  "total": 6,
+  "updatedAt": "2026-02-12T07:33:17.797Z",
+  "total": 10,
   "items": [
     {
       "seriesKey": "ベルセルク",
@@ -149,6 +149,111 @@
         "titleLane2": "葬送のフリーレン (1) (少年サンデーコミックス)",
         "anilistId": 118586,
         "wikiTitle": "葬送のフリーレン",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "アオハライド",
+      "title": "アオハライド 1",
+      "asin": "4086016028",
+      "amazonDp": "https://www.amazon.co.jp/dp/4086016028",
+      "image": "https://m.media-amazon.com/images/I/51xtR-tgd8L._SL500_.jpg",
+      "releaseDate": "2011-12-27T00:00:01Z",
+      "publisher": {
+        "brand": "集英社",
+        "manufacturer": "集英社"
+      },
+      "magazine": "別冊マーガレット",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "meta": {
+        "titleLane2": "アオハライド 1",
+        "anilistId": 54294,
+        "wikiTitle": "アオハライド",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "title": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+      "asin": "4065127440",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065127440",
+      "image": "https://m.media-amazon.com/images/I/51ZA6L9TuwL._SL500_.jpg",
+      "releaseDate": "2018-09-28T00:00:01Z",
+      "publisher": {
+        "brand": "講談社",
+        "manufacturer": "講談社"
+      },
+      "magazine": "月刊少年シリウス",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "meta": {
+        "titleLane2": "転スラ日記 転生したらスライムだった件(1) (シリウスコミックス)",
+        "anilistId": 86399,
+        "wikiTitle": "転生したらスライムだった件",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "暁のヨナ",
+      "title": "暁のヨナ 1 (花とゆめCOMICS)",
+      "asin": "4592190815",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592190815",
+      "image": "https://m.media-amazon.com/images/I/512WA6M60NL._SL500_.jpg",
+      "releaseDate": "2010-01-19T00:00:01Z",
+      "publisher": {
+        "brand": "白泉社",
+        "manufacturer": "白泉社"
+      },
+      "magazine": "花とゆめ",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "meta": {
+        "titleLane2": "暁のヨナ 1 (花とゆめCOMICS)",
+        "anilistId": 51525,
+        "wikiTitle": "暁のヨナ",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "title": "ドラゴンボール超 1 (ジャンプコミックス)",
+      "asin": "4088806611",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088806611",
+      "image": "https://m.media-amazon.com/images/I/51rOw7t-I+L._SL500_.jpg",
+      "releaseDate": "2016-04-04T00:00:01Z",
+      "publisher": {
+        "brand": "集英社",
+        "manufacturer": "集英社"
+      },
+      "magazine": "週刊少年ジャンプ",
+      "synopsis": "第6宇宙の戦士たち",
+      "synopsisSource": "openbd",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Sci-Fi",
+        "Supernatural"
+      ],
+      "meta": {
+        "titleLane2": "ドラゴンボール超 1 (ジャンプコミックス)",
+        "anilistId": 30042,
+        "wikiTitle": "ドラゴンボール",
         "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
       }
     }

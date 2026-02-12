@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-12T03:25:31.856Z",
-  "total": 12,
-  "addedThisRun": 5,
+  "updatedAt": "2026-02-12T07:32:28.259Z",
+  "total": 15,
+  "addedThisRun": 3,
   "items": [
     {
       "seriesKey": "進撃の巨人",
@@ -156,6 +156,45 @@
         "asin": "B00WGA6W7C",
         "image": "https://m.media-amazon.com/images/I/51cqYkox2TL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/B00WGA6W7C",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "亜人",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_text_before_vol)",
+      "vol1": {
+        "title": "社会人が築く亜人ハーレム 糖度200%のエッチなラブコメをあなたに 1 (ドラゴンコミックスエイジ)",
+        "isbn13": "9784040745312",
+        "asin": "4040745310",
+        "image": "https://m.media-amazon.com/images/I/51f4c6GItgL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4040745310",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ニセコイ",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_colon)",
+      "vol1": {
+        "title": "ニセコイ(1): 集英社リミックス (SHUEISHA JUMP REMIX)",
+        "isbn13": "9784081137732",
+        "asin": "4081137730",
+        "image": "https://m.media-amazon.com/images/I/51pv7-Am28L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4081137730",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "リライフ",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_dash)",
+      "vol1": {
+        "title": "ReLife-リライフ-(1) (ヤングキングコミックス)",
+        "isbn13": null,
+        "asin": "B01FFNQUZA",
+        "image": "https://m.media-amazon.com/images/I/61cflqcRAfL._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/B01FFNQUZA",
         "source": "paapi_search(mainline_guard)"
       }
     }
