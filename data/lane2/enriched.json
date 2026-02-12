@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-12T07:33:17.797Z",
-  "total": 10,
-  "enriched": 10,
+  "updatedAt": "2026-02-12T13:49:37.816Z",
+  "total": 12,
+  "enriched": 12,
   "items": [
     {
       "seriesKey": "ベルセルク",
@@ -897,6 +897,145 @@
           "Rural",
           "Dragons",
           "Dissociative Identities"
+        ],
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "マギ",
+      "author": "",
+      "vol1": {
+        "title": "ぽむ☆マギ (1) (まんがタイムKRコミックス)",
+        "titleLane2": "ぽむ☆マギ (1) (まんがタイムKRコミックス)",
+        "isbn13": "9784832243750",
+        "asin": "4832243756",
+        "image": "https://m.media-amazon.com/images/I/51T-OfU0V8L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4832243756",
+        "publisher": {
+          "brand": "芳文社",
+          "manufacturer": "芳文社"
+        },
+        "contributors": [
+          {
+            "name": "原案:Magica Quartet",
+            "role": "著",
+            "roleType": "author"
+          },
+          {
+            "name": "漫画:九十九",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2013-11-27T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": null,
+        "wikiTitle": "マギ",
+        "anilistId": 44790,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Magic",
+          "Foreign",
+          "Conspiracy",
+          "War",
+          "Politics",
+          "Criminal Organization",
+          "Class Struggle",
+          "Royal Affairs",
+          "Male Protagonist",
+          "Memory Manipulation",
+          "Shounen",
+          "Philosophy",
+          "Dungeon",
+          "Slavery",
+          "Economics",
+          "Pirates",
+          "Revenge",
+          "Ensemble Cast",
+          "Gods",
+          "Swordplay",
+          "Desert",
+          "Dystopian",
+          "Cultivation",
+          "Spearplay",
+          "Food",
+          "Dragons"
+        ],
+        "tags": [],
+        "tags_missing_en": [
+          "Magic",
+          "Foreign",
+          "Conspiracy",
+          "War",
+          "Politics",
+          "Criminal Organization",
+          "Class Struggle",
+          "Royal Affairs",
+          "Male Protagonist",
+          "Memory Manipulation",
+          "Shounen",
+          "Philosophy",
+          "Dungeon",
+          "Slavery",
+          "Economics",
+          "Pirates",
+          "Revenge",
+          "Ensemble Cast",
+          "Gods",
+          "Swordplay",
+          "Desert",
+          "Dystopian",
+          "Cultivation",
+          "Spearplay",
+          "Food",
+          "Dragons"
+        ],
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "リアル",
+      "author": "",
+      "vol1": {
+        "title": "人形のアサ 1 (ヤングアンリアルコミックス)",
+        "titleLane2": "人形のアサ 1 (ヤングアンリアルコミックス)",
+        "isbn13": "9784799211496",
+        "asin": "4799211498",
+        "image": "https://m.media-amazon.com/images/I/617y-ekgS2L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4799211498",
+        "publisher": {
+          "brand": null,
+          "manufacturer": "キルタイムコミュニケーション"
+        },
+        "contributors": [
+          {
+            "name": "木材石材",
+            "role": "著",
+            "roleType": "author"
+          }
+        ],
+        "releaseDate": "2018-05-12T00:00:01Z",
+        "synopsis": null,
+        "synopsisSource": null,
+        "magazine": null,
+        "wikiTitle": "リアル",
+        "anilistId": 32793,
+        "genres": [
+          "Hentai",
+          "Romance"
+        ],
+        "tags_en": [
+          "Boys' Love"
+        ],
+        "tags": [],
+        "tags_missing_en": [
+          "Boys' Love"
         ],
         "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
       }

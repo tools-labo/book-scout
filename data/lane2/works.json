@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-02-12T07:33:17.797Z",
-  "total": 10,
+  "updatedAt": "2026-02-12T13:49:37.816Z",
+  "total": 12,
   "items": [
     {
       "seriesKey": "ベルセルク",
@@ -254,6 +254,51 @@
         "titleLane2": "ドラゴンボール超 1 (ジャンプコミックス)",
         "anilistId": 30042,
         "wikiTitle": "ドラゴンボール",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "マギ",
+      "title": "ぽむ☆マギ (1) (まんがタイムKRコミックス)",
+      "asin": "4832243756",
+      "amazonDp": "https://www.amazon.co.jp/dp/4832243756",
+      "image": "https://m.media-amazon.com/images/I/51T-OfU0V8L._SL500_.jpg",
+      "releaseDate": "2013-11-27T00:00:01Z",
+      "publisher": {
+        "brand": "芳文社",
+        "manufacturer": "芳文社"
+      },
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "meta": {
+        "titleLane2": "ぽむ☆マギ (1) (まんがタイムKRコミックス)",
+        "anilistId": 44790,
+        "wikiTitle": "マギ",
+        "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
+      }
+    },
+    {
+      "seriesKey": "リアル",
+      "title": "人形のアサ 1 (ヤングアンリアルコミックス)",
+      "asin": "4799211498",
+      "amazonDp": "https://www.amazon.co.jp/dp/4799211498",
+      "image": "https://m.media-amazon.com/images/I/617y-ekgS2L._SL500_.jpg",
+      "releaseDate": "2018-05-12T00:00:01Z",
+      "publisher": {
+        "manufacturer": "キルタイムコミュニケーション"
+      },
+      "genres": [
+        "Hentai",
+        "Romance"
+      ],
+      "meta": {
+        "titleLane2": "人形のアサ 1 (ヤングアンリアルコミックス)",
+        "anilistId": 32793,
+        "wikiTitle": "リアル",
         "source": "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)"
       }
     }

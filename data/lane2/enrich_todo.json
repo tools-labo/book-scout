@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-12T07:33:17.796Z",
-  "total": 10,
+  "updatedAt": "2026-02-12T13:49:37.816Z",
+  "total": 12,
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -80,6 +80,32 @@
         "synopsis": "openbd_not_found",
         "magazine": "wiki_magazine_missing",
         "tags_ja_map": "missing:Seinen,Revenge,Male Protagonist,Demons,Cosmic Horror"
+      }
+    },
+    {
+      "seriesKey": "マギ",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Magic,Foreign,Conspiracy,War,Politics"
+      }
+    },
+    {
+      "seriesKey": "リアル",
+      "needs": [
+        "magazine",
+        "synopsis",
+        "tags_ja_map"
+      ],
+      "reasons": {
+        "synopsis": "openbd_not_found",
+        "magazine": "wiki_magazine_missing",
+        "tags_ja_map": "missing:Boys' Love"
       }
     },
     {

@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-02-12T07:32:28.259Z",
-  "total": 15,
-  "addedThisRun": 3,
+  "updatedAt": "2026-02-12T13:48:46.633Z",
+  "total": 16,
+  "addedThisRun": 1,
   "items": [
     {
       "seriesKey": "進撃の巨人",
@@ -195,6 +195,19 @@
         "asin": "B01FFNQUZA",
         "image": "https://m.media-amazon.com/images/I/61cflqcRAfL._SL500_.jpg",
         "amazonDp": "https://www.amazon.co.jp/dp/B01FFNQUZA",
+        "source": "paapi_search(mainline_guard)"
+      }
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
+      "author": null,
+      "reason": "suspicious_subtitle(subtitle_colon)",
+      "vol1": {
+        "title": "ゴールデンカムイ 1: 集英社REMIX (SHUEISHA JUMP REMIX)",
+        "isbn13": "9784081138968",
+        "asin": "4081138966",
+        "image": "https://m.media-amazon.com/images/I/51sxn3vpb-L._SL500_.jpg",
+        "amazonDp": "https://www.amazon.co.jp/dp/4081138966",
         "source": "paapi_search(mainline_guard)"
       }
     }
