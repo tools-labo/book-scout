@@ -1,0 +1,60 @@
+name: Lane2 - Seedgen (AniList -> seeds.json)
+
+on:
+  workflow_dispatch:
+    inputs:
+      seed_add:
+        description: "How many seeds to add this run (0 allowed)"
+        required: true
+        default: "100"
+      seed_max_pages:
+        description: "AniList max pages to crawl"
+        required: true
+        default: "20"
+
+  schedule:
+    - cron: "07 3 * * *" # 毎日 12:07 JST（= 03:07 UTC）
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lane2-seedgen
+  cancel-in-progress: false
+
+jobs:
+  seedgen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm install
+
+      - name: Run seedgen
+        env:
+          LANE2_SEED_ADD: ${{ github.event_name == 'workflow_dispatch' && inputs.seed_add || '100' }}
+          LANE2_SEED_MAX_PAGES: ${{ github.event_name == 'workflow_dispatch' && inputs.seed_max_pages || '20' }}
+        run: |
+          set -euo pipefail
+          npm run lane2:seedgen
+
+      - name: Commit seeds
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/lane2/seeds.json
+          git commit -m "lane2: seedgen"
+          git push
