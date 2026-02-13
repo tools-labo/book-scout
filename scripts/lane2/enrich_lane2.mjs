@@ -63,13 +63,27 @@ function sleep(ms) {
 
 function stripHtml(s) {
   const x = String(s ?? "");
-  return x
+
+  // 数値文字参照（&#91; や &#x5B; など）も含めてデコード
+  const decodeHtmlEntities = (t) =>
+    String(t ?? "")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+
+  const t = x
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/p>/gi, "\n")
     .replace(/<[^>]+>/g, "")
     .replace(/\u00A0/g, " ")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
+
+  return decodeHtmlEntities(t);
 }
 
 /* -----------------------
@@ -218,7 +232,17 @@ function extractMagazineFromInfoboxHtml(html) {
     h.match(/<th[^>]*>\s*掲載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/) ||
     h.match(/<th[^>]*>\s*連載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
   if (!m) return null;
-  return stripHtml(m[1]).replace(/\s+/g, " ").trim() || null;
+
+  // stripHtml 側でHTMLタグ除去＋エンティティ復元済み
+  const text = stripHtml(m[1]);
+
+  // 脚注 [1] などを除去（→ は残る）
+  const cleaned = text
+    .replace(/\[\s*\d+\s*\]/g, "") // [1] [ 12 ]
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return cleaned || null;
 }
 function wikiTitleLooksOk({ wikiTitle, seriesKey }) {
   const t = normLoose(toHalfWidth(wikiTitle ?? ""));
