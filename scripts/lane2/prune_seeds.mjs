@@ -12,28 +12,31 @@ async function loadJson(p, fallback) {
     return fallback;
   }
 }
+
 async function saveJson(p, obj) {
   await fs.mkdir(path.dirname(p), { recursive: true });
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
+
 function norm(s) {
   return String(s ?? "").trim();
 }
 
 async function main() {
-  const seeds = await loadJson(SEEDS, { updatedAt: "", total: 0, addedThisRun: 0, items: [] });
+  const seeds = await loadJson(SEEDS, { updatedAt: "", total: 0, items: [] });
   const series = await loadJson(SERIES, { version: 1, updatedAt: "", total: 0, items: [] });
 
   const seedItems = Array.isArray(seeds?.items) ? seeds.items : [];
   const seriesItems = Array.isArray(series?.items) ? series.items : [];
 
+  // series.json に入っている seriesKey は「確定済み」とみなし、seeds から除外する
   const done = new Set(seriesItems.map((x) => norm(x?.seriesKey)).filter(Boolean));
 
   const before = seedItems.length;
 
-  // seeds から series 済みを落とす
+  // seeds から確定済みを落としつつ、seeds 内の重複も除去
   const kept = [];
-  const seen = new Set(); // seeds内の重複も潰す
+  const seen = new Set();
   for (const x of seedItems) {
     const k = norm(x?.seriesKey);
     if (!k) continue;
@@ -46,18 +49,18 @@ async function main() {
   const after = kept.length;
   const removed = before - after;
 
+  // seeds.json：addedThisRun は意味がズレやすいのでここでは持たない（seedgen 側の責務）
   await saveJson(SEEDS, {
     updatedAt: new Date().toISOString(),
     total: kept.length,
-    addedThisRun: Number(seeds?.addedThisRun ?? 0), // 既存を維持（不要なら消してOK）
     removedThisRun: removed,
     items: kept,
   });
 
-  // series の total も自動で正す（手編集不要化）
+  // series.json：total と updatedAt を自動で正す（手編集不要化）
   await saveJson(SERIES, {
     ...series,
-    updatedAt: series?.updatedAt || new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     total: seriesItems.length,
     items: seriesItems,
   });
