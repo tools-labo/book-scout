@@ -1,18 +1,7 @@
-# .github/workflows/lane2.yml
-name: Lane2 - Enrich (Wiki magazine + AniList tags)
+name: Lane2 - Enrich + Format + Prune Seeds
 
 on:
   workflow_dispatch:
-    inputs:
-      step:
-        description: "What to run"
-        required: true
-        default: "enrich"
-        type: choice
-        options:
-          - "enrich"
-          - "seed"
-          - "all"
 
 permissions:
   contents: write
@@ -36,16 +25,14 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Run lane2
+      - name: Run lane2 (enrich -> format -> prune)
+        env:
+          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
+          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
+          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
         run: |
           set -euo pipefail
-          if [ "${{ inputs.step }}" = "seed" ]; then
-            npm run lane2:seed
-          elif [ "${{ inputs.step }}" = "all" ]; then
-            npm run lane2
-          else
-            npm run lane2:enrich
-          fi
+          npm run lane2
 
       - name: Commit outputs
         run: |
@@ -54,9 +41,10 @@ jobs:
             echo "No changes."
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add data/lane2
-          git commit -m "lane2: enrich works"
+          git commit -m "lane2: enrich/format/prune"
           git push
