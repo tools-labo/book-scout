@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const OUT = "data/lane2/seeds.json";
+const SERIES = "data/lane2/series.json";
 
 async function loadJson(p, fallback) {
   try {
@@ -64,15 +65,23 @@ async function main() {
   const maxPages = Number(process.env.LANE2_SEED_MAX_PAGES || 20);
 
   // 既存seedsを読み、Setに入れておく（上書きしない）
-  const prev = await loadJson(OUT, { updatedAt: "", items: [] });
+  const prev = await loadJson(OUT, { updatedAt: "", total: 0, addedThisRun: 0, items: [] });
   const prevItems = Array.isArray(prev?.items) ? prev.items : [];
+
+  // ★series を読み、すでに series 済みの作品は seed に「追加しない」
+  // series.json が無い/壊れてても安全に動くよう fallback
+  const series = await loadJson(SERIES, { version: 1, updatedAt: "", total: 0, items: [] });
+  const seriesItems = Array.isArray(series?.items) ? series.items : [];
+  const done = new Set(seriesItems.map((x) => norm(x?.seriesKey)).filter(Boolean));
 
   const seen = new Set();
   const items = [];
 
+  // seeds 既存分（+重複排除）を保持。ただし series 済みは落とす（ここで掃除もする）
   for (const x of prevItems) {
     const k = norm(x?.seriesKey);
     if (!k) continue;
+    if (done.has(k)) continue;
     if (seen.has(k)) continue;
     seen.add(k);
     items.push({ seriesKey: k });
@@ -103,6 +112,11 @@ async function main() {
       const key = looksJapanese(native) ? native : null;
 
       if (!key) continue;
+
+      // ★series 済みは seed に入れない（最重要）
+      if (done.has(key)) continue;
+
+      // ★seeds内での重複も入れない
       if (seen.has(key)) continue;
 
       seen.add(key);
