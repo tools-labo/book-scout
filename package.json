@@ -3,10 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lane2:seed": "node scripts/lane2/run.mjs seed",
-    "lane2:enrich": "node scripts/lane2/run.mjs enrich",
-    "lane2:format": "node scripts/lane2/run.mjs format",
-    "lane2": "node scripts/lane2/run.mjs all"
+    "lane2:seedgen": "node scripts/lane2/gen_seeds_from_anilist.mjs",
+    "lane2:enrich": "node scripts/lane2/enrich_lane2.mjs",
+    "lane2:format": "node scripts/lane2/format_lane2.mjs",
+    "lane2:prune": "node scripts/lane2/prune_seeds.mjs",
+
+    "lane2": "npm run lane2:enrich && npm run lane2:format && npm run lane2:prune"
   },
   "dependencies": {}
 }
