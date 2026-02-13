@@ -1,5 +1,4 @@
 // scripts/lane2/format_lane2.mjs
-// ★変更なし（enriched は confirmed だけから作られる前提。review は build 側で隔離され、ここには来ない）
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -56,28 +55,27 @@ async function main() {
   const outItems = items.map((x) => {
     const v = x?.vol1 || {};
     const meta = {
-      titleLane2: v?.titleLane2 ?? null,
       anilistId: v?.anilistId ?? null,
       wikiTitle: v?.wikiTitle ?? null,
       source: v?.source ?? null,
     };
 
-    const tags = uniq(v?.tags).slice(0, 24);
-
     return compact({
       seriesKey: x?.seriesKey ?? null,
-      author: x?.author ?? null,
+
       title: v?.title ?? null,
+      amazonUrl: v?.amazonUrl ?? null,
+      isbn13: v?.isbn13 ?? null,
       asin: v?.asin ?? null,
-      amazonDp: v?.amazonDp ?? null,
-      image: v?.image ?? null,
-      releaseDate: v?.releaseDate ?? null,
-      publisher: v?.publisher ?? null,
-      magazine: v?.magazine ?? null,
+
       synopsis: v?.synopsis ?? null,
-      synopsisSource: v?.synopsisSource ?? null,
+
+      magazine: v?.magazine ?? null,
+      magazineSource: v?.magazineSource ?? null,
+
       genres: uniq(v?.genres),
-      tags,
+      tags: uniq(v?.tags).slice(0, 24),
+
       meta,
     });
   });
