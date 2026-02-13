@@ -1,39 +1,25 @@
 # .github/workflows/lane2.yml
-name: Lane2 - Confirm Vol1 (NDL + Amazon PA-API)
+name: Lane2 - Enrich (Wiki magazine + AniList tags)
 
 on:
   workflow_dispatch:
     inputs:
-      fix_mode:
-        description: "Fix mode (no seed add / no new series). Only re-run build/enrich/format on existing data."
+      step:
+        description: "What to run"
         required: true
-        default: "false"
+        default: "enrich"
         type: choice
         options:
-          - "false"
-          - "true"
-      build_limit:
-        description: "How many pending seeds to process (ignored in fix_mode)"
-        required: true
-        default: "20"
-      seed_add:
-        description: "How many seeds to add (ignored in fix_mode)"
-        required: true
-        default: "20"
-      seed_max_pages:
-        description: "Seedgen max pages (ignored in fix_mode)"
-        required: true
-        default: "20"
-
-  schedule:
-    - cron: "17 */6 * * *" # 6時間ごと（様子見）
+          - "enrich"
+          - "seed"
+          - "all"
 
 permissions:
   contents: write
 
 concurrency:
-  group: lane2-vol1
-  cancel-in-progress: false  # 実行中を殺さない（schedule/手動の衝突対策）
+  group: lane2
+  cancel-in-progress: false
 
 jobs:
   lane2:
@@ -51,22 +37,15 @@ jobs:
         run: npm install
 
       - name: Run lane2
-        env:
-          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-
-          # fixモード：手動実行時だけ inputs を使う（schedule では常に false）
-          LANE2_FIX_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.fix_mode || 'false' }}
-
-          # 通常運用パラメータ（手動時は inputs、schedule 時は固定値）
-          LANE2_BUILD_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.build_limit || '20' }}
-          LANE2_SEED_ADD: ${{ github.event_name == 'workflow_dispatch' && inputs.seed_add || '100' }}
-          LANE2_SEED_MAX_PAGES: ${{ github.event_name == 'workflow_dispatch' && inputs.seed_max_pages || '20' }}
-
         run: |
           set -euo pipefail
-          npm run lane2
+          if [ "${{ inputs.step }}" = "seed" ]; then
+            npm run lane2:seed
+          elif [ "${{ inputs.step }}" = "all" ]; then
+            npm run lane2
+          else
+            npm run lane2:enrich
+          fi
 
       - name: Commit outputs
         run: |
@@ -79,5 +58,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add data/lane2
-          git commit -m "lane2: update vol1 series"
+          git commit -m "lane2: enrich works"
           git push
