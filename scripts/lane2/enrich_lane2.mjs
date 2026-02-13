@@ -1,37 +1,25 @@
 // scripts/lane2/enrich_lane2.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
-import crypto from "node:crypto";
 
 const IN_SERIES = "data/lane2/series.json";
-const OUT_ENRICHED = "data/lane2/enriched.json";
-const OUT_DEBUG = "data/lane2/debug_enrich.json";
+const IN_MAG_OVERRIDES = "data/lane2/magazine_overrides.json";
 
-// ★enrich段階の統合todo（新規）
-const ENRICH_TODO = "data/lane2/enrich_todo.json"; // { version, updatedAt, total, items:[{seriesKey, needs, reasons}] }
+const TAG_JA_MAP = "data/lane2/tag_ja_map.json";
+const TAG_HIDE = "data/lane2/tag_hide.json";
+const TAG_TODO = "data/lane2/tags_todo.json";
 
-// 軽キャッシュ（Actionsでも効く：リポジトリに残る）
 const CACHE_DIR = "data/lane2/cache";
-const CACHE_OPENBD = `${CACHE_DIR}/openbd.json`;
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
-const CACHE_PAAPI = `${CACHE_DIR}/paapi.json`; // ISBN13→ASIN 解決キャッシュ
-const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;   // Wikipedia（掲載誌だけに使う）
+const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;
 
-// タグ辞書（手で育てる）
-const TAG_JA_MAP = "data/lane2/tag_ja_map.json";   // { map: { "Foo":"日本語" } }
-const TAG_HIDE = "data/lane2/tag_hide.json";       // { hide: ["Suicide", ...] } 無ければ空扱い
-const TAG_TODO = "data/lane2/tags_todo.json";      // { tags: [] } 無ければ生成
-
-// ★オーバーライド統一
-const OVERRIDES = "data/lane2/overrides.json";        // { version, updatedAt, items: { "作品名": { synopsis, magazine } } }
-
-const AMZ_ACCESS_KEY = process.env.AMZ_ACCESS_KEY || "";
-const AMZ_SECRET_KEY = process.env.AMZ_SECRET_KEY || "";
-const AMZ_PARTNER_TAG = process.env.AMZ_PARTNER_TAG || "";
+const OUT_ENRICHED = "data/lane2/enriched.json";
+const OUT_MAG_TODO = "data/lane2/magazine_todo.json";
 
 function nowIso() {
   return new Date().toISOString();
 }
+
 async function loadJson(p, fallback) {
   try {
     return JSON.parse(await fs.readFile(p, "utf8"));
@@ -43,14 +31,9 @@ async function saveJson(p, obj) {
   await fs.mkdir(path.dirname(p), { recursive: true });
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
+
 function norm(s) {
   return String(s ?? "").trim();
-}
-function normLoose(s) {
-  return norm(s).replace(/\s+/g, "");
 }
 function toHalfWidth(s) {
   return String(s ?? "")
@@ -58,6 +41,9 @@ function toHalfWidth(s) {
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
+}
+function normLoose(s) {
+  return norm(s).replace(/\s+/g, "");
 }
 function uniq(arr) {
   const out = [];
@@ -71,306 +57,10 @@ function uniq(arr) {
   }
   return out;
 }
-
-// dp から「10桁ASIN or 13桁ISBN」を安全に取り出す
-function parseAmazonDpId(amazonDp) {
-  const u = String(amazonDp ?? "");
-  const m = u.match(/\/dp\/([A-Z0-9]{10,13})/i);
-  if (!m) return { asin: null, isbn13FromDp: null };
-
-  const id = m[1].toUpperCase();
-  if (/^[A-Z0-9]{10}$/.test(id)) return { asin: id, isbn13FromDp: null };
-  if (/^\d{13}$/.test(id)) return { asin: null, isbn13FromDp: id };
-  return { asin: null, isbn13FromDp: null };
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
 }
 
-/* -----------------------
- * Amazon PA-API（公式APIのみ）
- * ----------------------- */
-function awsHmac(key, data) {
-  return crypto.createHmac("sha256", key).update(data, "utf8").digest();
-}
-function awsHash(data) {
-  return crypto.createHash("sha256").update(data, "utf8").digest("hex");
-}
-function amzDate() {
-  const d = new Date();
-  const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth() + 1).padStart(2, "0");
-  const day = String(d.getUTCDate()).padStart(2, "0");
-  const hh = String(d.getUTCHours()).padStart(2, "0");
-  const mm = String(d.getUTCMinutes()).padStart(2, "0");
-  const ss = String(d.getUTCSeconds()).padStart(2, "0");
-  return { amzDate: `${y}${m}${day}T${hh}${mm}${ss}Z`, dateStamp: `${y}${m}${day}` };
-}
-
-async function paapiRequest({ target, pathUri, bodyObj }) {
-  if (!AMZ_ACCESS_KEY || !AMZ_SECRET_KEY || !AMZ_PARTNER_TAG) {
-    return { skipped: true, reason: "missing_paapi_secrets" };
-  }
-
-  const host = "webservices.amazon.co.jp";
-  const region = "us-west-2";
-  const service = "ProductAdvertisingAPI";
-  const endpoint = `https://${host}${pathUri}`;
-  const body = JSON.stringify(bodyObj);
-
-  const { amzDate: xAmzDate, dateStamp } = amzDate();
-  const method = "POST";
-  const canonicalUri = pathUri;
-  const canonicalQuerystring = "";
-  const canonicalHeaders =
-    `content-encoding:amz-1.0\ncontent-type:application/json; charset=utf-8\nhost:${host}\nx-amz-date:${xAmzDate}\nx-amz-target:${target}\n`;
-  const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
-  const payloadHash = awsHash(body);
-
-  const canonicalRequest = [
-    method,
-    canonicalUri,
-    canonicalQuerystring,
-    canonicalHeaders,
-    signedHeaders,
-    payloadHash,
-  ].join("\n");
-  const algorithm = "AWS4-HMAC-SHA256";
-  const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-  const stringToSign = [algorithm, xAmzDate, credentialScope, awsHash(canonicalRequest)].join("\n");
-
-  const kDate = awsHmac(`AWS4${AMZ_SECRET_KEY}`, dateStamp);
-  const kRegion = awsHmac(kDate, region);
-  const kService = awsHmac(kRegion, service);
-  const kSigning = awsHmac(kService, "aws4_request");
-  const signature = crypto.createHmac("sha256", kSigning).update(stringToSign, "utf8").digest("hex");
-
-  const authorizationHeader =
-    `${algorithm} Credential=${AMZ_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
-
-  const r = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "content-encoding": "amz-1.0",
-      "content-type": "application/json; charset=utf-8",
-      host,
-      "x-amz-date": xAmzDate,
-      "x-amz-target": target,
-      Authorization: authorizationHeader,
-    },
-    body,
-  });
-
-  const text = await r.text();
-  if (!r.ok) return { error: true, status: r.status, body: text.slice(0, 1800) };
-  return { ok: true, json: JSON.parse(text) };
-}
-
-async function paapiGetItems({ itemIds, resources }) {
-  return paapiRequest({
-    target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
-    pathUri: "/paapi5/getitems",
-    bodyObj: {
-      ItemIds: itemIds,
-      PartnerTag: AMZ_PARTNER_TAG,
-      PartnerType: "Associates",
-      Resources: resources,
-    },
-  });
-}
-
-async function paapiSearchItems({ keywords, resources, itemCount = 10 }) {
-  return paapiRequest({
-    target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.SearchItems",
-    pathUri: "/paapi5/searchitems",
-    bodyObj: {
-      Keywords: keywords,
-      SearchIndex: "Books",
-      ItemCount: itemCount,
-      PartnerTag: AMZ_PARTNER_TAG,
-      PartnerType: "Associates",
-      Resources: resources,
-    },
-  });
-}
-
-function extractTitle(item) {
-  return item?.ItemInfo?.Title?.DisplayValue || "";
-}
-function extractImage(item) {
-  return item?.Images?.Primary?.Large?.URL || null;
-}
-function extractIsbn13(item) {
-  const eans = item?.ItemInfo?.ExternalIds?.EANs?.DisplayValues;
-  if (Array.isArray(eans) && eans.length) {
-    const v = String(eans[0]).replace(/[^0-9]/g, "");
-    if (/^97[89]\d{10}$/.test(v)) return v;
-  }
-  const isbns = item?.ItemInfo?.ExternalIds?.ISBNs?.DisplayValues;
-  if (Array.isArray(isbns) && isbns.length) {
-    const v = String(isbns[0]).replace(/[^0-9]/g, "");
-    if (/^97[89]\d{10}$/.test(v)) return v;
-  }
-  return null;
-}
-function extractPublisher(item) {
-  const brand = item?.ItemInfo?.ByLineInfo?.Brand?.DisplayValue || null;
-  const manufacturer = item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || null;
-  return { brand, manufacturer };
-}
-function extractContributors(item) {
-  const arr = item?.ItemInfo?.ByLineInfo?.Contributors;
-  if (!Array.isArray(arr)) return [];
-  return arr
-    .map((x) => ({
-      name: x?.Name ?? null,
-      role: x?.Role ?? null,
-      roleType: x?.RoleType ?? null,
-    }))
-    .filter((x) => x.name);
-}
-function extractReleaseDate(item) {
-  const ci = item?.ItemInfo?.ContentInfo;
-  const pi = item?.ItemInfo?.ProductInfo;
-
-  const candidates = [
-    ci?.PublicationDate?.DisplayValue,
-    ci?.ReleaseDate?.DisplayValue,
-    pi?.ReleaseDate?.DisplayValue,
-    pi?.PublicationDate?.DisplayValue,
-  ]
-    .map((x) => (x == null ? null : String(x).trim()))
-    .filter(Boolean);
-
-  return candidates.length ? candidates[0] : null;
-}
-
-function isInvalidResourceError(rawBody) {
-  const s = String(rawBody ?? "");
-  return s.includes("InvalidParameterValue") && s.includes("provided in the request for Resources is invalid");
-}
-
-async function getItemWithResourceProbe({ asin, debugSteps }) {
-  const base = ["ItemInfo.Title", "ItemInfo.ByLineInfo", "ItemInfo.ExternalIds", "Images.Primary.Large"];
-  // ★あらすじはWikiを捨てるので、PA-API EditorialReviewsは無理に取らない（必要なら後で復活）
-  const optionalCandidates = ["ItemInfo.ContentInfo", "ItemInfo.ProductInfo"];
-
-  let okJson = null;
-  let okResources = base.slice();
-
-  async function callWithRetry(resources, label) {
-    let wait = 900;
-    for (let i = 0; i < 4; i++) {
-      const res = await paapiGetItems({ itemIds: [asin], resources });
-      if (res?.ok) return { ok: true, res };
-      if (res?.skipped) return { ok: false, skipped: true, res };
-
-      if (res?.error && res.status === 429) {
-        debugSteps.retries = debugSteps.retries || [];
-        debugSteps.retries.push({ label, attempt: i + 1, status: 429, waitMs: wait });
-        await sleep(wait);
-        wait *= 2;
-        continue;
-      }
-      return { ok: false, res };
-    }
-    return { ok: false, res: { error: true, status: 429, body: "retry_exhausted" } };
-  }
-
-  // base
-  {
-    const got = await callWithRetry(okResources, "base");
-    debugSteps.base = got?.res ?? null;
-    if (!got?.ok) {
-      return {
-        ok: false,
-        reason: got?.skipped ? `paapi_skipped(${got.res.reason})` : `paapi_getitems_error(${got?.res?.status ?? "unknown"})`,
-        raw: got?.res,
-      };
-    }
-    okJson = got.res.json;
-  }
-
-  // optional probe
-  debugSteps.probe = [];
-  for (const opt of optionalCandidates) {
-    const trial = okResources.concat([opt]);
-    const got = await callWithRetry(trial, `probe:${opt}`);
-
-    if (got?.ok) {
-      okResources = trial;
-      okJson = got.res.json;
-      debugSteps.probe.push({ resource: opt, adopted: true });
-      await sleep(650);
-      continue;
-    }
-
-    if (got?.res?.error && got.res.status === 400 && isInvalidResourceError(got.res.body)) {
-      debugSteps.probe.push({ resource: opt, adopted: false, reason: "invalid_resource" });
-      await sleep(650);
-      continue;
-    }
-
-    debugSteps.probe.push({ resource: opt, adopted: false, reason: `error(${got?.res?.status ?? "unknown"})` });
-    await sleep(650);
-  }
-
-  const item = okJson?.ItemsResult?.Items?.[0] || null;
-  if (!item) return { ok: false, reason: "no_item", raw: okJson };
-
-  return { ok: true, item, usedResources: okResources };
-}
-
-// ISBN13→ASIN解決（SearchItemsでEAN一致のASINを拾う）
-async function resolveAsinByIsbn13({ isbn13, cache, debugSteps }) {
-  const key = norm(isbn13);
-  if (!/^97[89]\d{10}$/.test(key)) return { ok: false, reason: "invalid_isbn13" };
-
-  if (cache[key]) {
-    debugSteps.paapiResolve = { cached: true, asin: cache[key] };
-    return { ok: true, asin: cache[key], cached: true };
-  }
-
-  const resources = ["ItemInfo.ExternalIds", "ItemInfo.Title"];
-  let wait = 900;
-
-  for (let i = 0; i < 4; i++) {
-    const res = await paapiSearchItems({ keywords: key, resources, itemCount: 10 });
-
-    if (res?.skipped) {
-      debugSteps.paapiResolve = { cached: false, ok: false, skipped: true, reason: res.reason };
-      return { ok: false, reason: `paapi_skipped(${res.reason})` };
-    }
-
-    if (res?.error && res.status === 429) {
-      debugSteps.retries = debugSteps.retries || [];
-      debugSteps.retries.push({ label: "paapi_search_isbn13", attempt: i + 1, status: 429, waitMs: wait });
-      await sleep(wait);
-      wait *= 2;
-      continue;
-    }
-
-    if (!res?.ok) {
-      debugSteps.paapiResolve = { cached: false, ok: false, status: res?.status ?? "unknown", body: res?.body ?? null };
-      return { ok: false, reason: `paapi_search_error(${res?.status ?? "unknown"})` };
-    }
-
-    const items = res?.json?.SearchResult?.Items || [];
-    const hit = items.find((it) => extractIsbn13(it) === key) || null;
-
-    const asin = hit?.ASIN || null;
-    debugSteps.paapiResolve = { cached: false, ok: true, found: !!asin, returned: items.length, asin };
-
-    if (asin) {
-      cache[key] = asin;
-      return { ok: true, asin, cached: false };
-    }
-    return { ok: false, reason: "asin_not_found_by_isbn13" };
-  }
-
-  return { ok: false, reason: "paapi_search_retry_exhausted" };
-}
-
-/* -----------------------
- * openBD（ISBN→内容紹介）
- * ----------------------- */
 function stripHtml(s) {
   const x = String(s ?? "");
   return x
@@ -382,74 +72,47 @@ function stripHtml(s) {
     .trim();
 }
 
-async function fetchOpenBdByIsbn13({ isbn13, cache, debugSteps }) {
-  if (!isbn13) return { ok: false, reason: "no_isbn13" };
-
-  if (Object.prototype.hasOwnProperty.call(cache, isbn13)) {
-    debugSteps.openbd = { cached: true };
-    return { ok: true, data: cache[isbn13], cached: true };
+/* -----------------------
+ * Tag dict
+ * ----------------------- */
+function loadTagMap(tagMapJson) {
+  const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
+  const out = {};
+  for (const [k, v] of Object.entries(m)) {
+    const kk = norm(k);
+    const vv = norm(v);
+    if (!kk || !vv) continue;
+    out[kk] = vv;
   }
-
-  const url = `https://api.openbd.jp/v1/get?isbn=${encodeURIComponent(isbn13)}`;
-  let r;
-  try {
-    r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 openbd" } });
-  } catch (e) {
-    debugSteps.openbd = { cached: false, ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "openbd_fetch_error" };
-  }
-
-  if (!r.ok) {
-    debugSteps.openbd = { cached: false, ok: false, status: r.status };
-    return { ok: false, reason: `openbd_http_${r.status}` };
-  }
-
-  let json;
-  try {
-    json = await r.json();
-  } catch {
-    debugSteps.openbd = { cached: false, ok: false, reason: "json_parse_error" };
-    return { ok: false, reason: "openbd_json_parse_error" };
-  }
-
-  const first = Array.isArray(json) ? json[0] : null;
-  cache[isbn13] = first ?? null;
-
-  debugSteps.openbd = { cached: false, ok: true, found: !!first };
-  return { ok: true, data: first ?? null, found: !!first };
+  return out;
 }
-
-function extractFromOpenBd(openbdObj) {
-  if (!openbdObj) return { synopsis: null, pubdate: null, publisherText: null };
-
-  const summary = openbdObj?.summary || null;
-  const onix = openbdObj?.onix || null;
-
-  const synopsis =
-    summary?.description ||
-    summary?.content ||
-    onix?.CollateralDetail?.TextContent?.[0]?.Text ||
-    null;
-
-  const pubdate = summary?.pubdate || null;
-  const publisherText = summary?.publisher || null;
-
-  return {
-    synopsis: synopsis ? stripHtml(synopsis) : null,
-    pubdate: pubdate ? String(pubdate).trim() : null,
-    publisherText: publisherText ? String(publisherText).trim() : null,
-  };
+function loadHideSet(hideJson) {
+  const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : [];
+  return new Set(arr.map((x) => norm(x)).filter(Boolean));
+}
+function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
+  const outJa = [];
+  const missing = [];
+  for (const t of uniq(tagsEn)) {
+    if (hideSet.has(t)) continue;
+    const ja = tagMap[t];
+    if (ja) outJa.push(ja);
+    else {
+      missing.push(t);
+      todoSet.add(t);
+    }
+  }
+  return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
 }
 
 /* -----------------------
- * AniList（ジャンル/タグだけ）
+ * AniList (genres/tags)
  * ----------------------- */
-async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
+async function fetchAniListBySeriesKey({ seriesKey, cache }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
-    debugSteps.anilist = { cached: true };
     return { ok: true, data: cache[key], cached: true };
   }
 
@@ -468,44 +131,30 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
     }
   `;
 
-  let r;
-  try {
-    r = await fetch("https://graphql.anilist.co", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        accept: "application/json",
-        "user-agent": "tools-labo/book-scout lane2 anilist",
-      },
-      body: JSON.stringify({ query, variables: { search: key } }),
-    });
-  } catch (e) {
-    debugSteps.anilist = { cached: false, ok: false, error: String(e?.message || e) };
-    return { ok: false, reason: "anilist_fetch_error" };
-  }
+  const r = await fetch("https://graphql.anilist.co", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      accept: "application/json",
+      "user-agent": "tools-labo/book-scout lane2 anilist",
+    },
+    body: JSON.stringify({ query, variables: { search: key } }),
+  });
 
   if (!r.ok) {
-    const text = await r.text().catch(() => "");
-    debugSteps.anilist = { cached: false, ok: false, status: r.status, body: text.slice(0, 300) };
+    cache[key] = null;
     return { ok: false, reason: `anilist_http_${r.status}` };
   }
 
-  let json;
-  try {
-    json = await r.json();
-  } catch {
-    debugSteps.anilist = { cached: false, ok: false, reason: "json_parse_error" };
-    return { ok: false, reason: "anilist_json_parse_error" };
-  }
-
+  const json = await r.json();
   const list = json?.data?.Page?.media;
-  if (!Array.isArray(list)) {
+  if (!Array.isArray(list) || !list.length) {
     cache[key] = null;
-    debugSteps.anilist = { cached: false, ok: true, found: false };
     return { ok: true, data: null, found: false };
   }
 
   const s0 = normLoose(toHalfWidth(key));
+
   function scoreMedia(m) {
     let score = 0;
     const titles = [
@@ -522,11 +171,10 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
 
     const fmt = String(m?.format || "");
     if (fmt === "MANGA") score += 40;
-    if (fmt === "ONE_SHOT") score += 10;
+    if (fmt === "ONE_SHOT") score -= 9999; // 念のため落とす
 
     if (Array.isArray(m?.genres) && m.genres.length) score += 10;
     if (Array.isArray(m?.tags) && m.tags.length) score += 10;
-
     return score;
   }
 
@@ -535,7 +183,6 @@ async function fetchAniListBySeriesKey({ seriesKey, cache, debugSteps }) {
   const best = withScore[0]?.m || null;
 
   cache[key] = best ?? null;
-  debugSteps.anilist = { cached: false, ok: true, found: !!best, pickedScore: withScore[0]?.score ?? null };
   return { ok: true, data: best, found: !!best };
 }
 
@@ -556,7 +203,7 @@ function extractFromAniList(media) {
 }
 
 /* -----------------------
- * Wikipedia（掲載誌だけ。あらすじは捨てる）
+ * Wikipedia (magazine only)
  * ----------------------- */
 async function wikiApi(params) {
   const base = "https://ja.wikipedia.org/w/api.php";
@@ -580,15 +227,13 @@ function wikiTitleLooksOk({ wikiTitle, seriesKey }) {
   return t === k || t.includes(k) || k.includes(t);
 }
 
-async function fetchWikiMagazineBySeriesKey({ seriesKey, cache, debugSteps }) {
+async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
   const key = norm(seriesKey);
   if (!key) return { ok: false, reason: "no_seriesKey" };
 
-  // キャッシュ再利用（タイトル一致だけ）
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
     const c = cache[key];
     if (c && wikiTitleLooksOk({ wikiTitle: c?.title, seriesKey: key })) {
-      debugSteps.wiki = { cached: true, hasMagazine: !!c?.magazine, title: c?.title ?? null };
       return { ok: true, data: c, cached: true };
     }
   }
@@ -602,420 +247,164 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache, debugSteps }) {
       srlimit: "5",
       srprop: "snippet",
     });
-  } catch (e) {
-    debugSteps.wiki = { cached: false, ok: false, error: String(e?.message || e) };
+  } catch {
     cache[key] = null;
     return { ok: false, reason: "wiki_search_error" };
   }
 
   const results = Array.isArray(search?.query?.search) ? search.query.search : [];
   if (!results.length) {
-    debugSteps.wiki = { cached: false, ok: true, found: false };
     cache[key] = null;
     return { ok: true, data: null, found: false };
   }
 
-  const k0 = normLoose(toHalfWidth(key));
-  function baseScore(hit) {
-    const t0 = normLoose(toHalfWidth(hit?.title ?? ""));
-    const sn = stripHtml(hit?.snippet ?? "");
-    let score = 0;
-
-    if (t0 === k0) score += 20000;
-    if (t0.includes(k0)) score += 6000;
-    if (k0.includes(t0) && t0.length >= 3) score += 1200;
-
-    if (sn.includes(key)) score += 600;
-
-    // 人物ページを強めに落とす
-    if (/(漫画家|作家|声優|人物|日本の|生年|出身|代表作)/.test(sn)) score -= 2500;
-
-    return score;
-  }
-
-  const scored = results
-    .map((h) => ({ h, score: baseScore(h) }))
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-
-  const bestHit = scored.find((x) => wikiTitleLooksOk({ wikiTitle: x?.h?.title, seriesKey: key }))?.h || null;
+  const bestHit =
+    results.find((x) => wikiTitleLooksOk({ wikiTitle: x?.title, seriesKey: key })) || null;
 
   if (!bestHit?.pageid) {
-    debugSteps.wiki = { cached: false, ok: true, found: false, reason: "no_title_match_candidate" };
     cache[key] = null;
     return { ok: true, data: null, found: false };
   }
-
-  const pageid = bestHit.pageid;
-  const title = bestHit.title || null;
 
   let pageHtml = null;
   try {
-    const p = await wikiApi({ action: "parse", pageid: String(pageid), prop: "text", redirects: "1" });
+    const p = await wikiApi({ action: "parse", pageid: String(bestHit.pageid), prop: "text", redirects: "1" });
     pageHtml = p?.parse?.text?.["*"] ?? null;
   } catch {
     pageHtml = null;
   }
-  const magazine = extractMagazineFromInfoboxHtml(pageHtml);
 
-  const out = { pageid, title, magazine: magazine || null };
+  const magazine = extractMagazineFromInfoboxHtml(pageHtml);
+  const out = { pageid: bestHit.pageid, title: bestHit.title || null, magazine: magazine || null };
   cache[key] = out;
 
-  debugSteps.wiki = { cached: false, ok: true, found: true, pageid, title, hasMagazine: !!magazine };
   return { ok: true, data: out, found: true };
-}
-
-/* -----------------------
- * tagdict（翻訳＋除外＋todo蓄積）
- * ----------------------- */
-function loadTagMap(tagMapJson) {
-  const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
-  const out = {};
-  for (const [k, v] of Object.entries(m)) {
-    const kk = norm(k);
-    const vv = norm(v);
-    if (!kk || !vv) continue;
-    out[kk] = vv;
-  }
-  return out;
-}
-function loadHideSet(hideJson) {
-  const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : Array.isArray(hideJson?.tags) ? hideJson.tags : [];
-  return new Set(arr.map((x) => norm(x)).filter(Boolean));
-}
-
-function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
-  const outJa = [];
-  const missing = [];
-
-  for (const t of uniq(tagsEn)) {
-    if (hideSet.has(t)) continue;
-
-    const ja = tagMap[t];
-    if (ja) {
-      outJa.push(ja);
-    } else {
-      missing.push(t);
-      todoSet.add(t);
-    }
-  }
-  return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
-}
-
-/* -----------------------
- * overrides（synopsis / magazine）
- * ----------------------- */
-function loadOverrides(overrideJson) {
-  const items = overrideJson?.items && typeof overrideJson.items === "object" ? overrideJson.items : {};
-  const out = {};
-  for (const [k, v] of Object.entries(items)) {
-    const kk = norm(k);
-    if (!kk) continue;
-    out[kk] = {
-      synopsis: norm(v?.synopsis) || null,
-      magazine: norm(v?.magazine) || null,
-    };
-  }
-  return out;
-}
-
-/* -----------------------
- * enrich_todo 統合ユーティリティ
- * ----------------------- */
-function addEnrichTodo(todoMap, seriesKey, need, reason) {
-  const k = norm(seriesKey);
-  if (!k) return;
-
-  const cur = todoMap.get(k) || { seriesKey: k, needs: [], reasons: {} };
-  if (!cur.needs.includes(need)) cur.needs.push(need);
-  if (reason) cur.reasons[need] = reason;
-  todoMap.set(k, cur);
-}
-function removeEnrichTodoNeed(todoMap, seriesKey, need) {
-  const k = norm(seriesKey);
-  if (!k) return;
-
-  const cur = todoMap.get(k);
-  if (!cur) return;
-
-  cur.needs = Array.isArray(cur.needs) ? cur.needs.filter((x) => x !== need) : [];
-  if (cur.reasons && typeof cur.reasons === "object") delete cur.reasons[need];
-
-  if (!cur.needs.length) {
-    todoMap.delete(k);
-  } else {
-    todoMap.set(k, cur);
-  }
 }
 
 /* -----------------------
  * main
  * ----------------------- */
 async function main() {
-  const series = await loadJson(IN_SERIES, { items: [] });
-  const items = Array.isArray(series?.items) ? series.items : [];
+  const seriesJson = await loadJson(IN_SERIES, { version: 1, updatedAt: "", total: 0, items: [] });
+  const items = Array.isArray(seriesJson?.items) ? seriesJson.items : [];
 
-  const cacheOpenbd = (await loadJson(CACHE_OPENBD, {})) || {};
+  const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
+  const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
+
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
-  const cachePaapi = (await loadJson(CACHE_PAAPI, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
 
-  // tagdict
   const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: "", map: {} });
   const tagMap = loadTagMap(tagMapJson);
+
   const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
   const hideSet = loadHideSet(hideJson);
+
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
   const todoSet = new Set((todoJson?.tags || []).map((x) => norm(x)).filter(Boolean));
 
-  // overrides
-  const overridesJson = await loadJson(OVERRIDES, { version: 1, updatedAt: "", items: {} });
-  const overrides = loadOverrides(overridesJson);
-
-  // ★enrich_todo（既存を読み込み、積み上げ更新）
-  const enrichTodoPrev = await loadJson(ENRICH_TODO, { version: 1, updatedAt: "", items: [] });
-  const enrichTodoMap = new Map(
-    (Array.isArray(enrichTodoPrev?.items) ? enrichTodoPrev.items : [])
-      .map((x) => {
-        const k = norm(x?.seriesKey);
-        if (!k) return null;
-        return [k, { seriesKey: k, needs: Array.isArray(x?.needs) ? x.needs : [], reasons: x?.reasons && typeof x.reasons === "object" ? x.reasons : {} }];
-      })
-      .filter(Boolean)
-  );
+  // magazine todo（積み上げ）
+  const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
+  const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
   const enriched = [];
-  const debug = [];
-
   let ok = 0;
   let ng = 0;
 
-  for (const x of items) {
+  // series.jsonはあなたが手で積むが、並びの安定のためここで整列（表示＆後続処理のブレ防止）
+  const sorted = items
+    .map((x) => ({ ...x, seriesKey: norm(x?.seriesKey) }))
+    .filter((x) => x.seriesKey)
+    .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey));
+
+  for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
-    const author = norm(x?.author);
-    const lane2Title = x?.vol1?.title ?? null;
-    const isbn13 = x?.vol1?.isbn13 ?? null;
-    const amazonDp = x?.vol1?.amazonDp ?? null;
+    const v = x?.vol1 || {};
 
-    const one = {
-      seriesKey,
-      author,
-      input: { lane2Title, isbn13, amazonDp, source: x?.vol1?.source ?? null },
-      steps: {},
-      ok: false,
-      reason: null,
-      output: null,
-    };
+    const amazonUrl = norm(v?.amazonUrl) || null;
+    const isbn13 = norm(v?.isbn13) || null;
+    const asin = norm(v?.asin) || null;
+    const title = norm(v?.title) || null;
+    const synopsis = norm(v?.synopsis) || null;
 
-    // 0) dp から asin / isbn13 を取得
-    const parsed = parseAmazonDpId(amazonDp);
-    let asin = parsed.asin;
-    const isbn13FromDp = parsed.isbn13FromDp;
+    // 連載誌：manual override（magazine_overrides） > wiki
+    const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
-    // 0.5) dpがISBN13だったら、SearchItemsでASIN解決（EAN一致）
-    if (!asin) {
-      const targetIsbn13 = isbn13FromDp || isbn13 || null;
-      if (targetIsbn13) {
-        const stepResolve = {};
-        const rr = await resolveAsinByIsbn13({ isbn13: targetIsbn13, cache: cachePaapi, debugSteps: stepResolve });
-        one.steps.resolveAsinByIsbn13 = {
-          ok: !!rr.ok,
-          reason: rr.ok ? null : rr.reason,
-          isbn13: targetIsbn13,
-          raw: stepResolve.paapiResolve || null,
-          retries: stepResolve.retries || null,
-        };
-        if (rr.ok) asin = rr.asin;
-      }
+    // wiki
+    let wikiMag = null;
+    let wikiTitle = null;
+    if (!manualMag) {
+      const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
+      wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
+      wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
     }
 
-    if (!asin) {
-      one.reason = "no_asin_resolved";
-      debug.push(one);
-      ng++;
-      await sleep(350);
-      continue;
-    }
+    const magazine = manualMag || wikiMag || null;
 
-    // 1) PA-API GetItems
-    const stepPa = {};
-    const got = await getItemWithResourceProbe({ asin, debugSteps: stepPa });
-    one.steps.getItemByAsin = {
-      ok: !!got.ok,
-      reason: got.ok ? null : got.reason,
-      asin,
-      raw: got.ok ? { usedResources: got.usedResources } : got.raw,
-      probe: stepPa.probe || null,
-      retries: stepPa.retries || null,
-    };
-
-    if (!got.ok) {
-      one.ok = false;
-      one.reason = got.reason;
-      debug.push(one);
-      ng++;
-      await sleep(650);
-      continue;
-    }
-
-    const item = got.item;
-
-    const paTitle = extractTitle(item) || null;
-    const paIsbn13 = extractIsbn13(item) || null;
-    const paReleaseDate = extractReleaseDate(item) || null;
-
-    const finalTitle = paTitle || lane2Title || seriesKey || null;
-
-    // 2) openBD（あらすじ：最優先）
-    const stepOpenbd = {};
-    const ob = await fetchOpenBdByIsbn13({
-      isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
-      cache: cacheOpenbd,
-      debugSteps: stepOpenbd,
-    });
-    one.steps.openbd = stepOpenbd.openbd || null;
-
-    const obx = ob?.ok ? extractFromOpenBd(ob.data) : { synopsis: null, pubdate: null, publisherText: null };
-
-    // 3) Wiki（★掲載誌だけ。あらすじは捨てる）
-    const stepWiki = {};
-    const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki, debugSteps: stepWiki });
-    one.steps.wiki = stepWiki.wiki || null;
-
-    const wikiMagazine = wk?.ok ? wk?.data?.magazine ?? null : null;
-    const wikiTitle = wk?.ok ? wk?.data?.title ?? null : null;
-
-    // 4) AniList（ジャンル/タグ）
-    const stepAni = {};
-    const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList, debugSteps: stepAni });
-    one.steps.anilist = stepAni.anilist || null;
-
+    // anilist
+    const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList });
     const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
 
-    // タグ翻訳＋除外＋todo
-    const tagStep = {};
     const applied = applyTagDict({ tagsEn: anx.tags, tagMap, hideSet, todoSet });
-    tagStep.total = (anx.tags || []).length;
-    tagStep.hidden = uniq(anx.tags).filter((t) => hideSet.has(t)).length;
-    tagStep.missing = applied.tags_missing_en.length;
-    one.steps.tagdict = tagStep;
 
-    // --- overrides
-    const ov = overrides?.[seriesKey] || {};
-    const manualSynopsis = norm(ov?.synopsis) || null;
-    const manualMagazine = norm(ov?.magazine) || null;
+    if (!magazine) magTodoSet.add(seriesKey);
+    else magTodoSet.delete(seriesKey);
 
-    // ★B：最終 “あらすじ” は manual > openbd のみ（Wikiは絶対使わない）
-    const finalSynopsis = manualSynopsis || obx.synopsis || null;
-    const synopsisSource =
-      manualSynopsis ? "manual" :
-      obx.synopsis ? "openbd" :
-      null;
-
-    // 掲載誌は manual > wiki（これはOK）
-    const finalMagazine = manualMagazine || wikiMagazine || null;
-
-    // ---- enrich_todo 更新（統合）
-    // synopsis
-    if (manualSynopsis) removeEnrichTodoNeed(enrichTodoMap, seriesKey, "synopsis");
-    else if (!obx.synopsis) addEnrichTodo(enrichTodoMap, seriesKey, "synopsis", "openbd_not_found");
-
-    // magazine
-    if (manualMagazine) removeEnrichTodoNeed(enrichTodoMap, seriesKey, "magazine");
-    else if (!finalMagazine) addEnrichTodo(enrichTodoMap, seriesKey, "magazine", "wiki_magazine_missing");
-
-    // tags 翻訳不足（辞書育成用。フロントには出さない前提）
-    if (applied.tags_missing_en.length) {
-      addEnrichTodo(enrichTodoMap, seriesKey, "tags_ja_map", `missing:${applied.tags_missing_en.slice(0, 5).join(",")}`);
-    } else {
-      removeEnrichTodoNeed(enrichTodoMap, seriesKey, "tags_ja_map");
-    }
-
-    const finalReleaseDate = paReleaseDate || obx.pubdate || null;
-
-    const out = {
+    enriched.push({
       seriesKey,
-      author,
       vol1: {
-        title: finalTitle,
-        titleLane2: lane2Title,
-        isbn13: paIsbn13 || isbn13 || isbn13FromDp || null,
+        amazonUrl,
+        isbn13,
         asin,
-        image: extractImage(item) || null,
-        amazonDp: `https://www.amazon.co.jp/dp/${asin}`,
-        publisher: extractPublisher(item),
-        contributors: extractContributors(item),
-        releaseDate: finalReleaseDate,
+        title,
+        synopsis,
 
-        synopsis: finalSynopsis,
-        synopsisSource,
-
-        magazine: finalMagazine,
+        magazine,
+        magazineSource: manualMag ? "manual_override" : (wikiMag ? "wikipedia" : null),
         wikiTitle,
 
         anilistId: anx.id,
-        genres: anx.genres,
-
+        genres: uniq(anx.genres),
         tags_en: uniq(anx.tags),
         tags: applied.tags,
         tags_missing_en: applied.tags_missing_en,
 
-        source: "enrich(paapi+openbd+wiki(mag)+anilist+tagdict+hide+overrides+enrich_todo)",
+        source: "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides)",
       },
-    };
+      meta: x?.meta || null,
+    });
 
-    one.ok = true;
-    one.output = out;
-    debug.push(one);
-    enriched.push(out);
     ok++;
-
-    await sleep(1000);
+    await sleep(250); // AniList/Wikiの負荷を軽く
   }
 
-  // tags_todo.json（辞書育成）
+  // tags_todo.json 更新（辞書育成）
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
     tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  // ★enrich_todo.json（統合）
-  const enrichTodoItems = Array.from(enrichTodoMap.values())
-    .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey))
-    .map((x) => ({
-      seriesKey: x.seriesKey,
-      needs: Array.isArray(x.needs) ? x.needs.sort((a, b) => a.localeCompare(b)) : [],
-      reasons: x.reasons && typeof x.reasons === "object" ? x.reasons : {},
-    }));
-
-  await saveJson(ENRICH_TODO, {
+  // magazine_todo.json 更新
+  await saveJson(OUT_MAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
-    total: enrichTodoItems.length,
-    items: enrichTodoItems,
+    total: Array.from(magTodoSet).length,
+    items: Array.from(magTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
   await saveJson(OUT_ENRICHED, {
     updatedAt: nowIso(),
-    total: items.length,
-    enriched: enriched.length,
+    total: sorted.length,
+    ok,
+    ng,
     items: enriched,
   });
 
-  await saveJson(OUT_DEBUG, {
-    updatedAt: nowIso(),
-    total: items.length,
-    ok,
-    ng,
-    items: debug,
-  });
-
-  await saveJson(CACHE_OPENBD, cacheOpenbd);
   await saveJson(CACHE_ANILIST, cacheAniList);
-  await saveJson(CACHE_PAAPI, cachePaapi);
   await saveJson(CACHE_WIKI, cacheWiki);
 
-  console.log(`[lane2:enrich] total=${items.length} enriched=${enriched.length}`);
+  console.log(`[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} -> ${OUT_ENRICHED}`);
 }
 
 main().catch((e) => {
