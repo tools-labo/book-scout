@@ -1,50 +1,74 @@
-name: Lane2 - Enrich + Format + Prune Seeds
+// scripts/lane2/prune_seeds.mjs
+import fs from "node:fs/promises";
+import path from "node:path";
 
-on:
-  workflow_dispatch:
+const SEEDS = "data/lane2/seeds.json";
+const SERIES = "data/lane2/series.json";
 
-permissions:
-  contents: write
+async function loadJson(p, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(p, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
 
-concurrency:
-  group: lane2
-  cancel-in-progress: false
+async function saveJson(p, obj) {
+  await fs.mkdir(path.dirname(p), { recursive: true });
+  await fs.writeFile(p, JSON.stringify(obj, null, 2));
+}
 
-jobs:
-  lane2:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+function norm(s) {
+  return String(s ?? "").trim();
+}
 
-    steps:
-      - uses: actions/checkout@v4
+async function main() {
+  const seeds = await loadJson(SEEDS, { updatedAt: "", total: 0, items: [] });
+  const series = await loadJson(SERIES, { version: 1, updatedAt: "", total: 0, items: [] });
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  const seedItems = Array.isArray(seeds?.items) ? seeds.items : [];
+  const seriesItems = Array.isArray(series?.items) ? series.items : [];
 
-      - name: Install
-        run: npm install
+  // series.json に入っている seriesKey は「確定済み」とみなし、seeds から除外する
+  const done = new Set(seriesItems.map((x) => norm(x?.seriesKey)).filter(Boolean));
 
-      - name: Run lane2 (enrich -> format -> prune)
-        env:
-          AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
-          AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
-          AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-        run: |
-          set -euo pipefail
-          npm run lane2
+  const before = seedItems.length;
 
-      - name: Commit outputs
-        run: |
-          set -euo pipefail
-          if git diff --quiet; then
-            echo "No changes."
-            exit 0
-          fi
+  // seeds から確定済みを落としつつ、seeds 内の重複も除去
+  const kept = [];
+  const seen = new Set();
+  for (const x of seedItems) {
+    const k = norm(x?.seriesKey);
+    if (!k) continue;
+    if (done.has(k)) continue;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    kept.push({ seriesKey: k });
+  }
 
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+  const after = kept.length;
+  const removed = before - after;
 
-          git add data/lane2
-          git commit -m "lane2: enrich/format/prune"
-          git push
+  // seeds.json：addedThisRun は意味がズレやすいのでここでは持たない（seedgen 側の責務）
+  await saveJson(SEEDS, {
+    updatedAt: new Date().toISOString(),
+    total: kept.length,
+    removedThisRun: removed,
+    items: kept,
+  });
+
+  // series.json：total と updatedAt を自動で正す（手編集不要化）
+  await saveJson(SERIES, {
+    ...series,
+    updatedAt: new Date().toISOString(),
+    total: seriesItems.length,
+    items: seriesItems,
+  });
+
+  console.log(`[prune_seeds] seeds: ${before} -> ${after} (removed ${removed})`);
+}
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
