@@ -3,7 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lane2": "node scripts/lane2/run.mjs"
+    "lane2:seed": "node scripts/lane2/run.mjs seed",
+    "lane2:enrich": "node scripts/lane2/run.mjs enrich",
+    "lane2:format": "node scripts/lane2/run.mjs format",
+    "lane2": "node scripts/lane2/run.mjs all"
   },
   "dependencies": {}
 }
