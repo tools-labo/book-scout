@@ -12,8 +12,6 @@ on:
         required: true
         default: "20"
 
-  schedule:
-    - cron: "07 3 * * *" # 毎日 12:07 JST（= 03:07 UTC）
 
 permissions:
   contents: write
