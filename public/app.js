@@ -107,8 +107,8 @@ function pills(list) {
 
 /* =======================
  * ジャンル棚（10本）
- * - まずは works.json の genres（英語）だけで判定
- * - 「異世界」は後で tags 束ねJSON入れたら強化できる
+ * - works.json の genres（英語）だけで判定
+ * - 「もっと見る」では match 全体を genre=... で渡す（ズレ防止）
  * ======================= */
 const GENRE_SHELVES = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -128,15 +128,36 @@ function hasAnyGenre(it, wanted) {
   return wanted.some(x => g.includes(x));
 }
 
+// genre=Action,Comedy みたいな複数指定を許可
+function parseGenreQuery() {
+  const raw = toText(qs().get("genre"));
+  if (!raw) return [];
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+// list向け：上に「絞り込み中」を出す
+function renderGenreBanner(wanted) {
+  const s = document.getElementById("status");
+  if (!s) return;
+
+  if (!wanted.length) {
+    s.textContent = "";
+    return;
+  }
+
+  const ja = wanted.map((g) => GENRE_JA[g] || g).join(" / ");
+  s.innerHTML = `ジャンル絞り込み：<b>${esc(ja)}</b>`;
+}
+
 function renderShelves(data) {
   const root = document.getElementById("shelves");
   if (!root) return;
 
   const items = Array.isArray(data?.items) ? data.items : [];
-  if (!items.length) {
-    root.innerHTML = "";
-    return;
-  }
+  if (!items.length) { root.innerHTML = ""; return; }
 
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
@@ -146,13 +167,12 @@ function renderShelves(data) {
       .filter((it) => hasAnyGenre(it, sh.match))
       .slice(0, 12);
 
-    if (!picked.length) return ""; // 0件棚は出さない
+    if (!picked.length) return "";
 
     const cards = picked.map((it) => {
       const seriesKey = toText(pick(it, ["seriesKey"])) || "";
       const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
       const img = toText(pick(it, ["image", "vol1.image"])) || "";
-      const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
       const key = encodeURIComponent(seriesKey);
 
       return `
@@ -165,7 +185,9 @@ function renderShelves(data) {
       `;
     }).join("");
 
-    const jump = `./list.html?genre=${encodeURIComponent(sh.match[0])}${vq}`;
+    // ★棚の match 全体を渡す（list側で OR フィルタ）
+    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
+
     return `
       <section class="shelf">
         <div class="shelf-head">
@@ -182,15 +204,17 @@ function renderShelves(data) {
 
 /* =======================
  * list/work 表示
- * - list.html?genre=Action で絞り込み
+ * - list.html?genre=Action,Thriller で OR 絞り込み
  * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
 
   const all = Array.isArray(data?.items) ? data.items : [];
-  const genreFilter = qs().get("genre"); // 例: Action / Fantasy / ...
-  const items = genreFilter ? all.filter((it) => hasAnyGenre(it, [genreFilter])) : all;
+  const wanted = parseGenreQuery();
+  const items = wanted.length ? all.filter((it) => hasAnyGenre(it, wanted)) : all;
+
+  renderGenreBanner(wanted);
 
   if (!items.length) {
     root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
@@ -319,7 +343,7 @@ async function run() {
 
     const data = await loadJson(url, { bust: !!v });
 
-    renderShelves(data); // index 用（#shelves が無いページでは何もしない）
+    renderShelves(data); // index用（#shelvesが無いページでは何もしない）
     renderList(data);
     renderWork(data);
   } catch (e) {
