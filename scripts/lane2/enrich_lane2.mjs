@@ -69,7 +69,6 @@ function sleep(ms) {
 function stripHtml(s) {
   const x = String(s ?? "");
 
-  // 1回で &amp;#91; のような「エスケープされた数値参照」もデコードする
   const decodeHtmlEntities = (t) => {
     let y = String(t ?? "");
 
@@ -430,6 +429,7 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
   return { ok: true, status: r.status, json };
 }
 
+// ★出版社の扱い修正版（ByLineInfoにPublisherは無い → Manufacturerを出版社として採用）
 function extractPaapiItem(item) {
   if (!item) return null;
 
@@ -446,19 +446,27 @@ function extractPaapiItem(item) {
     item?.ItemInfo?.Title?.Value ||
     null;
 
-  const publisher =
-    item?.ItemInfo?.ByLineInfo?.Publisher?.DisplayValue ||
-    item?.ItemInfo?.ManufactureInfo?.Manufacturer?.DisplayValue ||
+  const manufacturer =
+    item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue ||
+    item?.ItemInfo?.ByLineInfo?.Manufacturer?.Value ||
     null;
+
+  const publisher = manufacturer || null;
 
   const contributors = Array.isArray(item?.ItemInfo?.ByLineInfo?.Contributors)
     ? item.ItemInfo.ByLineInfo.Contributors
     : [];
 
-  const author = contributors
+  const authorList = contributors
+    .filter((c) => String(c?.RoleType || "").toLowerCase() === "author")
     .map((c) => c?.Name)
-    .filter(Boolean)
-    .join(" / ") || null;
+    .filter(Boolean);
+
+  const authorFallback = contributors
+    .map((c) => c?.Name)
+    .filter(Boolean);
+
+  const author = (authorList.length ? authorList : authorFallback).join(" / ") || null;
 
   const releaseDate =
     item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue ||
@@ -508,7 +516,6 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
         "ItemInfo.Title",
         "ItemInfo.ByLineInfo",
         "ItemInfo.ContentInfo",
-        "ItemInfo.ManufactureInfo",
       ],
     };
 
@@ -523,7 +530,6 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
     });
 
     if (!res.ok) {
-      // 失敗した塊は null で埋める（落ちない運用）
       for (const asin of chunk) cache[asin] = null;
     } else {
       const items = res.json?.ItemsResult?.Items || [];
@@ -534,7 +540,7 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
       }
     }
 
-    await sleep(350); // 連打防止
+    await sleep(350);
   }
 }
 
@@ -579,13 +585,13 @@ async function main() {
     region: norm(process.env.AMZ_REGION) || "us-west-2",
   };
 
-  // series.json を安定整列（表示＆後続処理のブレ防止）
+  // series.json を安定整列
   const sorted = items
     .map((x) => ({ ...x, seriesKey: norm(x?.seriesKey) }))
     .filter((x) => x.seriesKey)
     .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey));
 
-  // 先に ASIN 一覧を集めて PA-API をまとめて引く（キャッシュ前提）
+  // 先にまとめてPA-API（キャッシュ前提）
   const asins = sorted.map((x) => norm(x?.vol1?.asin)).filter(Boolean);
   await fetchPaapiByAsins({ asins, cache: cacheAmz, creds });
 
@@ -601,7 +607,7 @@ async function main() {
     const isbn13 = norm(v?.isbn13) || null;
     const asin = norm(v?.asin) || null;
 
-    // 連載誌：manual override（magazine_overrides） > wiki
+    // 連載誌：manual override > wiki
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
     let wikiMag = null;
@@ -625,10 +631,9 @@ async function main() {
     const manualTitle = norm(v?.title) || null;
     const title = manualTitle || norm(amz?.title) || null;
 
-    // synopsis は manual のみ（運用方針）
+    // synopsis は manual のみ
     const synopsis = norm(v?.synopsis) || null;
 
-    // 追加で欲しい表示項目
     const image = norm(amz?.image) || null;
     const publisher = norm(amz?.publisher) || null;
     const author = norm(amz?.author) || null;
@@ -642,17 +647,17 @@ async function main() {
       seriesKey,
       vol1: {
         amazonUrl,
-        amazonDp,     // ★追加（フロント用：1巻の詳細ページURL）
+        amazonDp,
         isbn13,
         asin,
 
         title,
         synopsis,
 
-        image,        // ★追加
-        publisher,    // ★追加
-        author,       // ★追加
-        releaseDate,  // ★追加
+        image,
+        publisher,
+        author,
+        releaseDate,
 
         magazine,
         magazineSource: manualMag ? "manual_override" : (wikiMag ? "wikipedia" : null),
@@ -670,7 +675,7 @@ async function main() {
     });
 
     ok++;
-    await sleep(250); // AniList/Wiki の負荷を軽く
+    await sleep(250);
   }
 
   await saveJson(TAG_TODO, {
