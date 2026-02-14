@@ -41,16 +41,16 @@ function toText(v) {
   return "";
 }
 
-// ★ 追加：発売日の表示整形（ISOなら YYYY-MM-DD だけ）
+// ★ ISOっぽい日付を YYYY-MM-DD に丸める（"2007-08-03T00:00:01Z" → "2007-08-03"）
 function fmtDate(s) {
   const t = toText(s);
   if (!t) return "";
-  // 例: 2007-08-03T00:00:01Z / 2019-03-04T00:00:01Z
-  if (/^\d{4}-\d{2}-\d{2}T/.test(t)) return t.slice(0, 10);
+  // 先頭が YYYY-MM-DD ならそれだけ使う
   if (/^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
   return t;
 }
 
+// ジャンルはそのまま（英語なら日本語化、もともと日本語なら通す）
 const GENRE_JA = {
   Action: "アクション",
   Adventure: "冒険",
@@ -84,6 +84,7 @@ function pills(list) {
   return `<div class="pills">${list.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
 }
 
+// works.json が「フラット形式」でも「vol1ネスト形式」でも読めるようにする
 function pick(it, keys) {
   for (const k of keys) {
     const v = k.includes(".")
@@ -107,6 +108,7 @@ function pickArr(it, keys) {
 function setStatus(msg) {
   const s = document.getElementById("status");
   if (s) { s.textContent = msg; return; }
+
   const d = document.getElementById("detail");
   if (d) { d.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
   const l = document.getElementById("list");
@@ -133,6 +135,7 @@ function renderList(data) {
     const img = toText(pick(it, ["image", "vol1.image"])) || "";
     const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
 
+    // ★ここだけ fmtDate
     const release = fmtDate(pick(it, ["releaseDate", "vol1.releaseDate"]));
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
     const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
@@ -199,6 +202,7 @@ function renderWork(data) {
   const img = toText(pick(it, ["image", "vol1.image"])) || "";
   const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
 
+  // ★ここだけ fmtDate
   const release = fmtDate(pick(it, ["releaseDate", "vol1.releaseDate"]));
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
