@@ -1,19 +1,34 @@
-name: Lane2 - Enrich + Format + Prune Seeds
+# .github/workflows/lane2.yml
+name: Lane2 - Enrich/Format/Prune + Deploy Pages
 
 on:
   workflow_dispatch:
+    inputs:
+      fix_mode:
+        description: "Fix mode (no seed add / no new series). Only re-run enrich/format/prune on existing data."
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: lane2
+  group: lane2-vol1
   cancel-in-progress: false
 
 jobs:
   lane2:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
 
     steps:
       - uses: actions/checkout@v4
@@ -25,26 +40,65 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Run lane2 (enrich -> format -> prune)
+      - name: Run lane2
         env:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+
+          LANE2_FIX_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.fix_mode || 'false' }}
         run: |
           set -euo pipefail
           npm run lane2
 
-      - name: Commit outputs
+      - name: Detect changes
+        id: diff
         run: |
           set -euo pipefail
           if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes."
-            exit 0
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected."
           fi
 
+      - name: Commit outputs
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add data/lane2
           git commit -m "lane2: enrich/format/prune"
           git push
+
+  deploy_pages:
+    needs: lane2
+    if: needs.lane2.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # public/ を公開ルートにするため、data/ を public/data に同期
+      - name: Prepare site root
+        run: |
+          set -euo pipefail
+          rm -rf public/data
+          mkdir -p public/data
+          if [ -d data ]; then
+            cp -R data/* public/data/ || true
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
