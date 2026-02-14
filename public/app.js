@@ -108,6 +108,22 @@ function setStatus(msg) {
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
+function isHttpUrl(u) {
+  const s = toText(u);
+  return /^https?:\/\//i.test(s);
+}
+
+// Amazonリンク：amazonDp（PA-API）優先、無ければamazonUrl（manual）を使う
+function pickAmazonLink(it) {
+  const dp = toText(pick(it, ["amazonDp", "vol1.amazonDp"]));
+  if (isHttpUrl(dp)) return dp;
+
+  const url = toText(pick(it, ["amazonUrl", "vol1.amazonUrl"]));
+  if (isHttpUrl(url)) return url;
+
+  return "";
+}
+
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
@@ -126,7 +142,7 @@ function renderList(data) {
     const author = toText(pick(it, ["author", "vol1.author"])) || "";
 
     const img = toText(pick(it, ["image", "vol1.image"])) || "";
-    const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp"])) || "#";
+    const amz = pickAmazonLink(it);
 
     const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
@@ -144,12 +160,17 @@ function renderList(data) {
       magazine ? `連載誌: ${esc(magazine)}` : null,
     ].filter(Boolean).join(" / ");
 
+    const thumb = img
+      ? (amz
+          ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+          : `<img src="${esc(img)}" alt="${esc(title)}"/>`
+        )
+      : `<div class="thumb-ph"></div>`;
+
     return `
       <article class="card">
         <div class="card-row">
-          <div class="thumb">
-            ${img ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
-          </div>
+          <div class="thumb">${thumb}</div>
           <div class="meta">
             <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
             ${metaParts ? `<div class="sub">${metaParts}</div>` : ""}
@@ -192,7 +213,7 @@ function renderWork(data) {
   const author = toText(pick(it, ["author", "vol1.author"])) || "";
 
   const img = toText(pick(it, ["image", "vol1.image"])) || "";
-  const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp"])) || "";
+  const amz = pickAmazonLink(it);
 
   const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
