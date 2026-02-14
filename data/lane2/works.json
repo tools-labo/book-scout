@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-14T03:13:12.022Z",
+  "updatedAt": "2026-02-14T03:34:28.806Z",
   "total": 10,
   "items": [
     {
@@ -155,6 +155,8 @@
       "isbn13": "9784592135746",
       "asin": "4592135741",
       "synopsis": "巨大な剣と義手を携えた剣士ガッツが、過酷な運命の中で血みどろの戦いを重ねる。圧倒的スケールのダークファンタジーが幕を開ける。",
+      "magazine": "ヤングアニマル",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Adventure",
@@ -191,7 +193,6 @@
       ],
       "meta": {
         "anilistId": 30002,
-        "wikiTitle": "ベルセルク",
         "source": "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
       }
     },
@@ -206,6 +207,8 @@
       "isbn13": "9784088707013",
       "asin": "408870701X",
       "synopsis": "どんな怪人も一撃で倒してしまう最強ヒーロー・サイタマ。強すぎるがゆえの虚無を抱えつつ、異色のヒーロー活動が始まる。",
+      "magazine": "となりのヤングジャンプ",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Comedy",
@@ -230,7 +233,6 @@
       ],
       "meta": {
         "anilistId": 85364,
-        "wikiTitle": "ワンパンマン",
         "source": "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
       }
     },
