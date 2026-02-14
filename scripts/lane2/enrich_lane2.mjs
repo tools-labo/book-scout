@@ -1,6 +1,7 @@
 // scripts/lane2/enrich_lane2.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const IN_SERIES = "data/lane2/series.json";
 const IN_MAG_OVERRIDES = "data/lane2/magazine_overrides.json";
@@ -12,6 +13,7 @@ const TAG_TODO = "data/lane2/tags_todo.json";
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
 const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;
+const CACHE_AMZ = `${CACHE_DIR}/amazon.json`;
 
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_MAG_TODO = "data/lane2/magazine_todo.json";
@@ -61,19 +63,36 @@ function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+/* -----------------------
+ * HTML strip / decode
+ * ----------------------- */
 function stripHtml(s) {
   const x = String(s ?? "");
 
-  // 数値文字参照（&#91; や &#x5B; など）も含めてデコード
-  const decodeHtmlEntities = (t) =>
-    String(t ?? "")
+  // 1回で &amp;#91; のような「エスケープされた数値参照」もデコードする
+  const decodeHtmlEntities = (t) => {
+    let y = String(t ?? "");
+
+    // &amp;#91; / &amp;#x5B; を先に処理（重要）
+    y = y
+      .replace(/&amp;#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+      .replace(/&amp;#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
+
+    // 通常の数値参照
+    y = y
       .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
-      .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
+
+    // 代表的な named entity
+    y = y
       .replace(/&amp;/g, "&")
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, "'");
+
+    return y;
+  };
 
   const t = x
     .replace(/<br\s*\/?>/gi, "\n")
@@ -185,7 +204,7 @@ async function fetchAniListBySeriesKey({ seriesKey, cache }) {
 
     const fmt = String(m?.format || "");
     if (fmt === "MANGA") score += 40;
-    if (fmt === "ONE_SHOT") score -= 9999; // 念のため落とす
+    if (fmt === "ONE_SHOT") score -= 9999;
 
     if (Array.isArray(m?.genres) && m.genres.length) score += 10;
     if (Array.isArray(m?.tags) && m.tags.length) score += 10;
@@ -233,12 +252,11 @@ function extractMagazineFromInfoboxHtml(html) {
     h.match(/<th[^>]*>\s*連載誌\s*<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/);
   if (!m) return null;
 
-  // stripHtml 側でHTMLタグ除去＋エンティティ復元済み
   const text = stripHtml(m[1]);
 
-  // 脚注 [1] などを除去（→ は残る）
+  // 脚注 [1] 等を除去（→ は残す）
   const cleaned = text
-    .replace(/\[\s*\d+\s*\]/g, "") // [1] [ 12 ]
+    .replace(/\[\s*\d+\s*\]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -292,7 +310,12 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
 
   let pageHtml = null;
   try {
-    const p = await wikiApi({ action: "parse", pageid: String(bestHit.pageid), prop: "text", redirects: "1" });
+    const p = await wikiApi({
+      action: "parse",
+      pageid: String(bestHit.pageid),
+      prop: "text",
+      redirects: "1",
+    });
     pageHtml = p?.parse?.text?.["*"] ?? null;
   } catch {
     pageHtml = null;
@@ -303,6 +326,216 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
   cache[key] = out;
 
   return { ok: true, data: out, found: true };
+}
+
+/* -----------------------
+ * Amazon PA-API (GetItems)
+ * - no scraping
+ * - cache by ASIN
+ * ----------------------- */
+function hmac(key, data, enc = null) {
+  return crypto.createHmac("sha256", key).update(data, "utf8").digest(enc || undefined);
+}
+function sha256Hex(s) {
+  return crypto.createHash("sha256").update(s, "utf8").digest("hex");
+}
+function toAmzDate(d = new Date()) {
+  const pad = (n) => String(n).padStart(2, "0");
+  const yyyy = d.getUTCFullYear();
+  const mm = pad(d.getUTCMonth() + 1);
+  const dd = pad(d.getUTCDate());
+  const hh = pad(d.getUTCHours());
+  const mi = pad(d.getUTCMinutes());
+  const ss = pad(d.getUTCSeconds());
+  return {
+    amzDate: `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`,
+    dateStamp: `${yyyy}${mm}${dd}`,
+  };
+}
+function signKey(secretKey, dateStamp, region, service) {
+  const kDate = hmac("AWS4" + secretKey, dateStamp);
+  const kRegion = hmac(kDate, region);
+  const kService = hmac(kRegion, service);
+  return hmac(kService, "aws4_request");
+}
+
+async function paapiPost({ host, region, accessKey, secretKey, target, path: apiPath, payload }) {
+  const service = "ProductAdvertisingAPI";
+  const endpoint = `https://${host}${apiPath}`;
+
+  const { amzDate, dateStamp } = toAmzDate(new Date());
+  const contentType = "application/json; charset=utf-8";
+
+  const canonicalUri = apiPath;
+  const canonicalQuery = "";
+  const canonicalHeaders =
+    `content-encoding:amz-1.0\n` +
+    `content-type:${contentType}\n` +
+    `host:${host}\n` +
+    `x-amz-date:${amzDate}\n` +
+    `x-amz-target:${target}\n`;
+  const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
+  const payloadHash = sha256Hex(payload);
+
+  const canonicalRequest = [
+    "POST",
+    canonicalUri,
+    canonicalQuery,
+    canonicalHeaders,
+    signedHeaders,
+    payloadHash,
+  ].join("\n");
+
+  const algorithm = "AWS4-HMAC-SHA256";
+  const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
+  const stringToSign = [
+    algorithm,
+    amzDate,
+    credentialScope,
+    sha256Hex(canonicalRequest),
+  ].join("\n");
+
+  const signingKey = signKey(secretKey, dateStamp, region, service);
+  const signature = hmac(signingKey, stringToSign, "hex");
+
+  const authorization =
+    `${algorithm} ` +
+    `Credential=${accessKey}/${credentialScope}, ` +
+    `SignedHeaders=${signedHeaders}, ` +
+    `Signature=${signature}`;
+
+  const r = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "content-encoding": "amz-1.0",
+      "content-type": contentType,
+      host,
+      "x-amz-date": amzDate,
+      "x-amz-target": target,
+      Authorization: authorization,
+    },
+    body: payload,
+  });
+
+  const txt = await r.text();
+  let json = null;
+  try {
+    json = JSON.parse(txt);
+  } catch {
+    json = null;
+  }
+  if (!r.ok) {
+    return { ok: false, status: r.status, json, text: txt };
+  }
+  return { ok: true, status: r.status, json };
+}
+
+function extractPaapiItem(item) {
+  if (!item) return null;
+
+  const dp = item?.DetailPageURL ?? null;
+
+  const img =
+    item?.Images?.Primary?.Large?.URL ||
+    item?.Images?.Primary?.Medium?.URL ||
+    item?.Images?.Primary?.Small?.URL ||
+    null;
+
+  const title =
+    item?.ItemInfo?.Title?.DisplayValue ||
+    item?.ItemInfo?.Title?.Value ||
+    null;
+
+  const publisher =
+    item?.ItemInfo?.ByLineInfo?.Publisher?.DisplayValue ||
+    item?.ItemInfo?.ManufactureInfo?.Manufacturer?.DisplayValue ||
+    null;
+
+  const contributors = Array.isArray(item?.ItemInfo?.ByLineInfo?.Contributors)
+    ? item.ItemInfo.ByLineInfo.Contributors
+    : [];
+
+  const author = contributors
+    .map((c) => c?.Name)
+    .filter(Boolean)
+    .join(" / ") || null;
+
+  const releaseDate =
+    item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue ||
+    item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
+    null;
+
+  return {
+    amazonDp: dp,
+    image: img,
+    title,
+    publisher,
+    author,
+    releaseDate,
+  };
+}
+
+async function fetchPaapiByAsins({ asins, cache, creds }) {
+  const want = [];
+  for (const asin of asins) {
+    if (!asin) continue;
+    if (Object.prototype.hasOwnProperty.call(cache, asin)) continue;
+    want.push(asin);
+  }
+  if (!want.length) return;
+
+  if (!creds?.enabled) {
+    for (const asin of want) cache[asin] = null;
+    return;
+  }
+
+  const host = creds.host;
+  const region = creds.region;
+
+  // 10件ずつ
+  for (let i = 0; i < want.length; i += 10) {
+    const chunk = want.slice(i, i + 10);
+
+    const payloadObj = {
+      ItemIds: chunk,
+      PartnerTag: creds.partnerTag,
+      PartnerType: "Associates",
+      Marketplace: "www.amazon.co.jp",
+      Resources: [
+        "Images.Primary.Large",
+        "Images.Primary.Medium",
+        "Images.Primary.Small",
+        "ItemInfo.Title",
+        "ItemInfo.ByLineInfo",
+        "ItemInfo.ContentInfo",
+        "ItemInfo.ManufactureInfo",
+      ],
+    };
+
+    const res = await paapiPost({
+      host,
+      region,
+      accessKey: creds.accessKey,
+      secretKey: creds.secretKey,
+      target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
+      path: "/paapi5/getitems",
+      payload: JSON.stringify(payloadObj),
+    });
+
+    if (!res.ok) {
+      // 失敗した塊は null で埋める（落ちない運用）
+      for (const asin of chunk) cache[asin] = null;
+    } else {
+      const items = res.json?.ItemsResult?.Items || [];
+      const map = new Map(items.map((it) => [it?.ASIN, it]));
+      for (const asin of chunk) {
+        const it = map.get(asin) || null;
+        cache[asin] = it ? extractPaapiItem(it) : null;
+      }
+    }
+
+    await sleep(350); // 連打防止
+  }
 }
 
 /* -----------------------
@@ -317,6 +550,7 @@ async function main() {
 
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
+  const cacheAmz = (await loadJson(CACHE_AMZ, {})) || {};
 
   const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: "", map: {} });
   const tagMap = loadTagMap(tagMapJson);
@@ -331,15 +565,33 @@ async function main() {
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
-  const enriched = [];
-  let ok = 0;
-  let ng = 0;
+  // PA-API creds
+  const accessKey = norm(process.env.AMZ_ACCESS_KEY);
+  const secretKey = norm(process.env.AMZ_SECRET_KEY);
+  const partnerTag = norm(process.env.AMZ_PARTNER_TAG);
 
-  // series.jsonはあなたが手で積むが、並びの安定のためここで整列（表示＆後続処理のブレ防止）
+  const creds = {
+    enabled: !!(accessKey && secretKey && partnerTag),
+    accessKey,
+    secretKey,
+    partnerTag,
+    host: norm(process.env.AMZ_HOST) || "webservices.amazon.co.jp",
+    region: norm(process.env.AMZ_REGION) || "us-west-2",
+  };
+
+  // series.json を安定整列（表示＆後続処理のブレ防止）
   const sorted = items
     .map((x) => ({ ...x, seriesKey: norm(x?.seriesKey) }))
     .filter((x) => x.seriesKey)
     .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey));
+
+  // 先に ASIN 一覧を集めて PA-API をまとめて引く（キャッシュ前提）
+  const asins = sorted.map((x) => norm(x?.vol1?.asin)).filter(Boolean);
+  await fetchPaapiByAsins({ asins, cache: cacheAmz, creds });
+
+  const enriched = [];
+  let ok = 0;
+  let ng = 0;
 
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
@@ -348,13 +600,10 @@ async function main() {
     const amazonUrl = norm(v?.amazonUrl) || null;
     const isbn13 = norm(v?.isbn13) || null;
     const asin = norm(v?.asin) || null;
-    const title = norm(v?.title) || null;
-    const synopsis = norm(v?.synopsis) || null;
 
     // 連載誌：manual override（magazine_overrides） > wiki
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
-    // wiki
     let wikiMag = null;
     let wikiTitle = null;
     if (!manualMag) {
@@ -362,14 +611,29 @@ async function main() {
       wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
       wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
     }
-
     const magazine = manualMag || wikiMag || null;
 
     // anilist
     const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList });
     const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
-
     const applied = applyTagDict({ tagsEn: anx.tags, tagMap, hideSet, todoSet });
+
+    // amazon PA-API（キャッシュ）
+    const amz = asin ? (cacheAmz?.[asin] ?? null) : null;
+
+    // title は manual を尊重。無ければPA-APIで補完。
+    const manualTitle = norm(v?.title) || null;
+    const title = manualTitle || norm(amz?.title) || null;
+
+    // synopsis は manual のみ（運用方針）
+    const synopsis = norm(v?.synopsis) || null;
+
+    // 追加で欲しい表示項目
+    const image = norm(amz?.image) || null;
+    const publisher = norm(amz?.publisher) || null;
+    const author = norm(amz?.author) || null;
+    const releaseDate = norm(amz?.releaseDate) || null;
+    const amazonDp = norm(amz?.amazonDp) || null;
 
     if (!magazine) magTodoSet.add(seriesKey);
     else magTodoSet.delete(seriesKey);
@@ -378,10 +642,17 @@ async function main() {
       seriesKey,
       vol1: {
         amazonUrl,
+        amazonDp,     // ★追加（フロント用：1巻の詳細ページURL）
         isbn13,
         asin,
+
         title,
         synopsis,
+
+        image,        // ★追加
+        publisher,    // ★追加
+        author,       // ★追加
+        releaseDate,  // ★追加
 
         magazine,
         magazineSource: manualMag ? "manual_override" : (wikiMag ? "wikipedia" : null),
@@ -393,23 +664,21 @@ async function main() {
         tags: applied.tags,
         tags_missing_en: applied.tags_missing_en,
 
-        source: "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides)",
+        source: "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)",
       },
       meta: x?.meta || null,
     });
 
     ok++;
-    await sleep(250); // AniList/Wikiの負荷を軽く
+    await sleep(250); // AniList/Wiki の負荷を軽く
   }
 
-  // tags_todo.json 更新（辞書育成）
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
     tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  // magazine_todo.json 更新
   await saveJson(OUT_MAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
@@ -427,6 +696,7 @@ async function main() {
 
   await saveJson(CACHE_ANILIST, cacheAniList);
   await saveJson(CACHE_WIKI, cacheWiki);
+  await saveJson(CACHE_AMZ, cacheAmz);
 
   console.log(`[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} -> ${OUT_ENRICHED}`);
 }
