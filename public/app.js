@@ -71,6 +71,20 @@ function setStatus(msg) {
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
+/* =======================
+ * 発売日表示の正規化（T00:00:01Z を潰す）
+ * - 2026-02-14T01:23:43Z -> 2026-02-14
+ * - 2026-02-14 -> 2026-02-14
+ * - それ以外はそのまま
+ * ======================= */
+function formatDate(s) {
+  const t = toText(s);
+  if (!t) return "";
+  const m = t.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (m) return m[1];
+  return t;
+}
+
 // ジャンル英→日
 const GENRE_JA = {
   Action: "アクション",
@@ -107,8 +121,8 @@ function pills(list) {
 
 /* =======================
  * ジャンル棚（10本）
- * - works.json の genres（英語）だけで判定
- * - 「もっと見る」では match 全体を genre=... で渡す（ズレ防止）
+ * - トップは飾り：小さめ表紙＋固定冊数＋横スクロール
+ * - 棚名クリックで genre 絞り込み list へ
  * ======================= */
 const GENRE_SHELVES = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -132,10 +146,7 @@ function hasAnyGenre(it, wanted) {
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
-  return raw
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
+  return raw.split(",").map(s => s.trim()).filter(Boolean);
 }
 
 // list向け：上に「絞り込み中」を出す
@@ -143,10 +154,7 @@ function renderGenreBanner(wanted) {
   const s = document.getElementById("status");
   if (!s) return;
 
-  if (!wanted.length) {
-    s.textContent = "";
-    return;
-  }
+  if (!wanted.length) { s.textContent = ""; return; }
 
   const ja = wanted.map((g) => GENRE_JA[g] || g).join(" / ");
   s.innerHTML = `ジャンル絞り込み：<b>${esc(ja)}</b>`;
@@ -162,12 +170,17 @@ function renderShelves(data) {
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
 
+  // 固定冊数（トップの役割＝飾り）
+  const PICK_N = 8;
+
   root.innerHTML = GENRE_SHELVES.map((sh) => {
     const picked = items
       .filter((it) => hasAnyGenre(it, sh.match))
-      .slice(0, 12);
+      .slice(0, PICK_N);
 
     if (!picked.length) return "";
+
+    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
 
     const cards = picked.map((it) => {
       const seriesKey = toText(pick(it, ["seriesKey"])) || "";
@@ -175,23 +188,21 @@ function renderShelves(data) {
       const img = toText(pick(it, ["image", "vol1.image"])) || "";
       const key = encodeURIComponent(seriesKey);
 
+      // トップは「飾り」なので、タイトルは短く（無いなら出さないでもOK）
       return `
         <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
           <div class="shelf-thumb">
             ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
           </div>
-          <div class="shelf-title">${esc(seriesKey || title)}</div>
+          <div class="shelf-title">${esc(seriesKey)}</div>
         </a>
       `;
     }).join("");
 
-    // ★棚の match 全体を渡す（list側で OR フィルタ）
-    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
-
     return `
       <section class="shelf">
         <div class="shelf-head">
-          <h2 class="shelf-h">${esc(sh.label)}</h2>
+          <h2 class="shelf-h"><a class="shelf-link" href="${jump}">${esc(sh.label)}</a></h2>
           <a class="shelf-more" href="${jump}">もっと見る</a>
         </div>
         <div class="shelf-row">
@@ -231,7 +242,7 @@ function renderList(data) {
     const img = toText(pick(it, ["image", "vol1.image"])) || "";
     const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
 
-    const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
+    const release = formatDate(pick(it, ["releaseDate", "vol1.releaseDate"]));
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
     const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
@@ -297,7 +308,7 @@ function renderWork(data) {
   const img = toText(pick(it, ["image", "vol1.image"])) || "";
   const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
 
-  const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
+  const release = formatDate(pick(it, ["releaseDate", "vol1.releaseDate"]));
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
