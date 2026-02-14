@@ -1,9 +1,7 @@
-/* public/style.css （全差し替え） */
-
 :root { --bg:#0b0c10; --fg:#e8e8e8; --muted:#a8a8a8; --card:#14161d; --chip:#222636; --line:#23263a; }
 * { box-sizing: border-box; }
 body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", sans-serif; background:var(--bg); color:var(--fg); }
-a { color: inherit; }
+a { color: inherit; text-decoration: none; }
 
 .header { padding: 18px 14px; border-bottom: 1px solid var(--line); }
 .header h1 { margin:0; font-size: 18px; }
@@ -12,6 +10,114 @@ a { color: inherit; }
 .wrap { max-width: 980px; margin: 0 auto; padding: 14px; }
 .status { color: var(--muted); margin: 8px 0 12px; }
 
+.btn { display:inline-block; padding: 10px 12px; background: #2b61ff; color:#fff; border-radius: 12px; font-size: 13px; font-weight: 700; }
+.home-actions { margin: 10px 0 18px; }
+
+/* =======================
+ * Home shelves
+ * ======================= */
+.shelves { margin-top: 6px; }
+
+.shelves-title { font-size: 22px; font-weight: 900; margin: 18px 0 6px; }
+.shelves-sub { color: var(--muted); font-size: 12px; margin: 0 0 14px; }
+
+.shelf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 760px) {
+  .shelf-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.shelf {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.shelf-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.shelf-h {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+.shelf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.shelf-link:active { transform: translateY(1px); }
+
+.shelf-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+}
+.shelf-row::-webkit-scrollbar { height: 6px; }
+.shelf-row::-webkit-scrollbar-thumb { background: #1f2233; border-radius: 999px; }
+
+.shelf-card {
+  flex: 0 0 auto;
+  width: 92px;               /* ここで「小さめ固定」 */
+  scroll-snap-align: start;
+}
+
+.shelf-thumb {
+  width: 92px;
+  height: 128px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #202433;
+}
+.shelf-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.shelf-title {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #d9d9d9;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 「2冊見えて残りはスクロール」の見え方を安定させる */
+@media (max-width: 430px) {
+  .shelf-card { width: 88px; }
+  .shelf-thumb { width: 88px; height: 122px; }
+}
+
+/* =======================
+ * List cards (existing)
+ * ======================= */
 .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 
@@ -30,9 +136,11 @@ a { color: inherit; }
 .syn summary { cursor: pointer; color: var(--muted); font-size: 12px; user-select: none; }
 .syn-body { margin-top: 8px; font-size: 12px; line-height: 1.6; color: #d8d8d8; white-space: pre-wrap; }
 
-.btn { display:inline-block; padding: 10px 12px; background: #2b61ff; color:#fff; text-decoration:none; border-radius: 12px; font-size: 13px; font-weight: 700; }
 .actions { margin-top: 12px; }
 
+/* =======================
+ * Work detail (existing)
+ * ======================= */
 .detail { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
 .d-title { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
 .d-sub { color: var(--muted); font-size: 12px; margin-bottom: 10px; line-height: 1.4; }
@@ -40,102 +148,3 @@ a { color: inherit; }
 .d-img { width: 150px; height: 214px; object-fit: cover; border-radius: 12px; }
 .d-links { display:flex; flex-direction: column; gap: 8px; flex: 1; }
 .d-text { font-size: 14px; line-height: 1.75; color: #e2e2e2; white-space: pre-wrap; }
-
-/* =========================
-   Home: Genre shelves (pro layout)
-   ========================= */
-
-.shelves { margin-top: 10px; }
-
-/* 必ず2列（iPhoneでも2つ並ぶ） */
-.genre-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-/* ジャンルカード */
-.genre-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 12px;
-  overflow: hidden;
-  min-width: 0; /* iOSでのはみ出し防止 */
-}
-
-/* ヘッダ：見出し + 一覧を見る（どっちもリンク） */
-.genre-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.genre-title {
-  font-size: 15px;
-  font-weight: 900;
-  text-decoration: none;
-  line-height: 1.2;
-}
-
-.genre-more {
-  font-size: 12px;
-  color: var(--muted);
-  text-decoration: none;
-  white-space: nowrap;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.03);
-  padding: 6px 10px;
-  border-radius: 999px;
-}
-
-/* 横スクロール：2冊は必ず見えるサイズ */
-.genre-strip {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 6px;
-}
-
-/* スクロールバーうっすら（iOS Safariは出ないこともある） */
-.genre-strip::-webkit-scrollbar { height: 6px; }
-.genre-strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 999px; }
-.genre-strip::-webkit-scrollbar-track { background: transparent; }
-
-.cover {
-  flex: 0 0 auto;
-  width: 86px;          /* ★小さめ：2冊＋少し余白が見える */
-  scroll-snap-align: start;
-  text-decoration: none;
-}
-
-.cover img {
-  width: 86px;
-  height: 124px;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(0,0,0,0.2);
-}
-
-.cover-ph {
-  width: 86px;
-  height: 124px;
-  border-radius: 12px;
-  background:#202433;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-/* 画面が広いときは少しだけ余裕 */
-@media (min-width: 520px) {
-  .cover, .cover img, .cover-ph { width: 92px; }
-  .cover img, .cover-ph { height: 132px; }
-}
-
-/* タップ感（押せるのはヘッダリンク＋表紙） */
-.genre-title:active, .genre-more:active, .cover:active { opacity: 0.85; }
