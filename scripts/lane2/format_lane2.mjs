@@ -63,16 +63,27 @@ async function main() {
     return compact({
       seriesKey: x?.seriesKey ?? null,
 
+      // 表示したい項目
       title: v?.title ?? null,
-      amazonUrl: v?.amazonUrl ?? null,
+      author: v?.author ?? null,
+      publisher: v?.publisher ?? null,
+      releaseDate: v?.releaseDate ?? null,
+      image: v?.image ?? null,
+
+      // Amazon
+      amazonUrl: v?.amazonUrl ?? null,   // manualの入力URL（紙1巻URL）
+      amazonDp: v?.amazonDp ?? null,     // PA-APIの詳細URL（基本は同等だが、安定リンクとして保持）
       isbn13: v?.isbn13 ?? null,
       asin: v?.asin ?? null,
 
+      // synopsis（manual）
       synopsis: v?.synopsis ?? null,
 
+      // 連載誌
       magazine: v?.magazine ?? null,
       magazineSource: v?.magazineSource ?? null,
 
+      // AniList
       genres: uniq(v?.genres),
       tags: uniq(v?.tags).slice(0, 24),
 
