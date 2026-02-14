@@ -1,4 +1,3 @@
-// public/app.js
 function qs() { return new URLSearchParams(location.search); }
 
 async function loadJson(url, { bust = false } = {}) {
@@ -41,49 +40,6 @@ function toText(v) {
   return "";
 }
 
-// ★ ISOっぽい日付を YYYY-MM-DD に丸める（"2007-08-03T00:00:01Z" → "2007-08-03"）
-function fmtDate(s) {
-  const t = toText(s);
-  if (!t) return "";
-  // 先頭が YYYY-MM-DD ならそれだけ使う
-  if (/^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
-  return t;
-}
-
-// ジャンルはそのまま（英語なら日本語化、もともと日本語なら通す）
-const GENRE_JA = {
-  Action: "アクション",
-  Adventure: "冒険",
-  Comedy: "コメディ",
-  Drama: "ドラマ",
-  Fantasy: "ファンタジー",
-  Horror: "ホラー",
-  Mystery: "ミステリー",
-  Psychological: "心理",
-  Romance: "恋愛",
-  "Sci-Fi": "SF",
-  "Slice of Life": "日常",
-  Sports: "スポーツ",
-  Supernatural: "超常",
-  Thriller: "サスペンス",
-};
-function mapGenres(genres) {
-  if (!Array.isArray(genres)) return [];
-  return genres
-    .map((g) => {
-      const s = toText(g);
-      if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
-      return GENRE_JA[s] || null;
-    })
-    .filter(Boolean);
-}
-
-function pills(list) {
-  if (!list?.length) return "";
-  return `<div class="pills">${list.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
-}
-
 // works.json が「フラット形式」でも「vol1ネスト形式」でも読めるようにする
 function pick(it, keys) {
   for (const k of keys) {
@@ -115,13 +71,129 @@ function setStatus(msg) {
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
+// ジャンル英→日
+const GENRE_JA = {
+  Action: "アクション",
+  Adventure: "冒険",
+  Comedy: "コメディ",
+  Drama: "ドラマ",
+  Fantasy: "ファンタジー",
+  Horror: "ホラー",
+  Mystery: "ミステリー",
+  Psychological: "心理",
+  Romance: "恋愛",
+  "Sci-Fi": "SF",
+  "Slice of Life": "日常",
+  Sports: "スポーツ",
+  Supernatural: "超常",
+  Thriller: "サスペンス",
+};
+function mapGenres(genres) {
+  if (!Array.isArray(genres)) return [];
+  return genres
+    .map((g) => {
+      const s = toText(g);
+      if (!s) return null;
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
+      return GENRE_JA[s] || null; // 辞書外英語は非表示
+    })
+    .filter(Boolean);
+}
+
+function pills(list) {
+  if (!list?.length) return "";
+  return `<div class="pills">${list.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
+}
+
+/* =======================
+ * ジャンル棚（10本）
+ * - まずは works.json の genres（英語）だけで判定
+ * - 「異世界」は後で tags 束ねJSON入れたら強化できる
+ * ======================= */
+const GENRE_SHELVES = [
+  { id: "action", label: "アクション・バトル", match: ["Action"] },
+  { id: "fantasy", label: "ファンタジー・異世界", match: ["Fantasy"] },
+  { id: "sf", label: "SF", match: ["Sci-Fi"] },
+  { id: "horror", label: "ホラー", match: ["Horror"] },
+  { id: "mystery", label: "ミステリー・サスペンス", match: ["Mystery", "Thriller"] },
+  { id: "romance", label: "恋愛・ラブコメ", match: ["Romance", "Comedy"] },
+  { id: "comedy", label: "コメディ", match: ["Comedy"] },
+  { id: "slice", label: "日常", match: ["Slice of Life"] },
+  { id: "sports", label: "スポーツ", match: ["Sports"] },
+  { id: "drama", label: "ヒューマンドラマ", match: ["Drama"] },
+];
+
+function hasAnyGenre(it, wanted) {
+  const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
+  return wanted.some(x => g.includes(x));
+}
+
+function renderShelves(data) {
+  const root = document.getElementById("shelves");
+  if (!root) return;
+
+  const items = Array.isArray(data?.items) ? data.items : [];
+  if (!items.length) {
+    root.innerHTML = "";
+    return;
+  }
+
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
+  root.innerHTML = GENRE_SHELVES.map((sh) => {
+    const picked = items
+      .filter((it) => hasAnyGenre(it, sh.match))
+      .slice(0, 12);
+
+    if (!picked.length) return ""; // 0件棚は出さない
+
+    const cards = picked.map((it) => {
+      const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+      const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+      const img = toText(pick(it, ["image", "vol1.image"])) || "";
+      const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
+      const key = encodeURIComponent(seriesKey);
+
+      return `
+        <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+          <div class="shelf-thumb">
+            ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+          </div>
+          <div class="shelf-title">${esc(seriesKey || title)}</div>
+        </a>
+      `;
+    }).join("");
+
+    const jump = `./list.html?genre=${encodeURIComponent(sh.match[0])}${vq}`;
+    return `
+      <section class="shelf">
+        <div class="shelf-head">
+          <h2 class="shelf-h">${esc(sh.label)}</h2>
+          <a class="shelf-more" href="${jump}">もっと見る</a>
+        </div>
+        <div class="shelf-row">
+          ${cards}
+        </div>
+      </section>
+    `;
+  }).join("");
+}
+
+/* =======================
+ * list/work 表示
+ * - list.html?genre=Action で絞り込み
+ * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
 
-  const items = data?.items || [];
+  const all = Array.isArray(data?.items) ? data.items : [];
+  const genreFilter = qs().get("genre"); // 例: Action / Fantasy / ...
+  const items = genreFilter ? all.filter((it) => hasAnyGenre(it, [genreFilter])) : all;
+
   if (!items.length) {
-    root.innerHTML = `<div class="status">表示できる作品がありません（1巻確定が0件）</div>`;
+    root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
     return;
   }
 
@@ -129,14 +201,13 @@ function renderList(data) {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
     const key = encodeURIComponent(seriesKey);
 
-    const title = toText(pick(it, ["title", "vol1.title", "vol1.titleLane2"])) || seriesKey || "(無題)";
+    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
     const author = toText(pick(it, ["author", "vol1.author"])) || "";
 
     const img = toText(pick(it, ["image", "vol1.image"])) || "";
     const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
 
-    // ★ここだけ fmtDate
-    const release = fmtDate(pick(it, ["releaseDate", "vol1.releaseDate"]));
+    const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
     const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
@@ -188,7 +259,7 @@ function renderWork(data) {
     return;
   }
 
-  const items = data?.items || [];
+  const items = Array.isArray(data?.items) ? data.items : [];
   const it = items.find((x) => toText(pick(x, ["seriesKey"])) === key);
   if (!it) {
     detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
@@ -196,14 +267,13 @@ function renderWork(data) {
   }
 
   const seriesKey = toText(pick(it, ["seriesKey"])) || "";
-  const title = toText(pick(it, ["title", "vol1.title", "vol1.titleLane2"])) || seriesKey || "(無題)";
+  const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
   const author = toText(pick(it, ["author", "vol1.author"])) || "";
 
   const img = toText(pick(it, ["image", "vol1.image"])) || "";
   const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
 
-  // ★ここだけ fmtDate
-  const release = fmtDate(pick(it, ["releaseDate", "vol1.releaseDate"]));
+  const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
@@ -249,6 +319,7 @@ async function run() {
 
     const data = await loadJson(url, { bust: !!v });
 
+    renderShelves(data); // index 用（#shelves が無いページでは何もしない）
     renderList(data);
     renderWork(data);
   } catch (e) {
