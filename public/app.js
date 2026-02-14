@@ -97,8 +97,8 @@ function mapGenres(genres) {
     .map((g) => {
       const s = toText(g);
       if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
-      return GENRE_JA[s] || null; // 辞書外英語は非表示
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+      return GENRE_JA[s] || null;
     })
     .filter(Boolean);
 }
@@ -110,10 +110,6 @@ function pills(list) {
 
 /* =======================
  * ジャンル棚（10本）
- * - works.json の genres（英語）だけで判定
- * - ジャンルは必ず2列
- * - “飛ぶ”のはヘッダ（見出し／一覧を見る）だけ
- * - 中の作品は飾り：小さめ表紙、2冊見えればOK、横スクロール
  * ======================= */
 const GENRE_SHELVES = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -121,7 +117,10 @@ const GENRE_SHELVES = [
   { id: "sf", label: "SF", match: ["Sci-Fi"] },
   { id: "horror", label: "ホラー", match: ["Horror"] },
   { id: "mystery", label: "ミステリー・サスペンス", match: ["Mystery", "Thriller"] },
-  { id: "romance", label: "恋愛・ラブコメ", match: ["Romance", "Comedy"] },
+
+  // ★修正：Comedy を混ぜない（Romance のみ）
+  { id: "romance", label: "恋愛・ラブコメ", match: ["Romance"] },
+
   { id: "comedy", label: "コメディ", match: ["Comedy"] },
   { id: "slice", label: "日常", match: ["Slice of Life"] },
   { id: "sports", label: "スポーツ", match: ["Sports"] },
@@ -174,7 +173,6 @@ function renderShelves(data) {
 
     if (!picked.length) return "";
 
-    // ★棚ヘッダリンク（見出し／一覧を見る）だけが list に飛ぶ
     const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
 
     const covers = picked.map((it) => {
@@ -183,7 +181,6 @@ function renderShelves(data) {
       const img = toText(pick(it, ["image", "vol1.image"])) || "";
       const key = encodeURIComponent(seriesKey);
 
-      // 飾りなので「作品詳細」へ。タイトル表示は無し（省スペース）
       return `
         <a class="cover" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}" aria-label="${esc(title)}">
           ${img ? `<img src="${esc(img)}" alt="${esc(title)}" loading="lazy">` : `<div class="cover-ph" aria-hidden="true"></div>`}
@@ -211,10 +208,6 @@ function renderShelves(data) {
   `;
 }
 
-/* =======================
- * list/work 表示
- * - list.html?genre=Action,Thriller で OR 絞り込み
- * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
@@ -352,7 +345,7 @@ async function run() {
 
     const data = await loadJson(url, { bust: !!v });
 
-    renderShelves(data); // index用（#shelvesが無いページでは何もしない）
+    renderShelves(data);
     renderList(data);
     renderWork(data);
   } catch (e) {
