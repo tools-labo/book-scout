@@ -1,4 +1,4 @@
-// public/app.js （全差し替え）
+// public/app.js
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -73,7 +73,7 @@ function setStatus(msg) {
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
-// ジャンル英→日
+// ジャンル英→日（表示用。棚判定とは別）
 const GENRE_JA = {
   Action: "アクション",
   Adventure: "冒険",
@@ -90,15 +90,14 @@ const GENRE_JA = {
   Supernatural: "超常",
   Thriller: "サスペンス",
 };
-
 function mapGenres(genres) {
   if (!Array.isArray(genres)) return [];
   return genres
     .map((g) => {
       const s = toText(g);
       if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
-      return GENRE_JA[s] || null;
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
+      return GENRE_JA[s] || null; // 辞書外英語は非表示
     })
     .filter(Boolean);
 }
@@ -109,22 +108,23 @@ function pills(list) {
 }
 
 /* =======================
- * ジャンル棚（10本）
+ * ジャンル棚（※コメディ棚は作らない／恋愛棚にComedyは混ぜない）
+ * - works.json の genres（英語）だけで判定
  * ======================= */
 const GENRE_SHELVES = [
-  { id: "action", label: "アクション・バトル", match: ["Action"] },
-  { id: "fantasy", label: "ファンタジー・異世界", match: ["Fantasy"] },
-  { id: "sf", label: "SF", match: ["Sci-Fi"] },
-  { id: "horror", label: "ホラー", match: ["Horror"] },
+  { id: "action",  label: "アクション・バトル",     match: ["Action"] },
+  { id: "fantasy", label: "ファンタジー・異世界",   match: ["Fantasy"] },
+  { id: "sf",      label: "SF",                     match: ["Sci-Fi"] },
+  { id: "horror",  label: "ホラー",                 match: ["Horror"] },
   { id: "mystery", label: "ミステリー・サスペンス", match: ["Mystery", "Thriller"] },
 
-  // ★修正：Comedy を混ぜない（Romance のみ）
-  { id: "romance", label: "恋愛・ラブコメ", match: ["Romance"] },
+  // ★ここが重要：恋愛棚は Romance のみ（Comedy を混ぜない）
+  { id: "romance", label: "恋愛・ラブコメ",         match: ["Romance"] },
 
-  { id: "comedy", label: "コメディ", match: ["Comedy"] },
-  { id: "slice", label: "日常", match: ["Slice of Life"] },
-  { id: "sports", label: "スポーツ", match: ["Sports"] },
-  { id: "drama", label: "ヒューマンドラマ", match: ["Drama"] },
+  { id: "slice",   label: "日常",                   match: ["Slice of Life"] },
+  { id: "sports",  label: "スポーツ",               match: ["Sports"] },
+  { id: "drama",   label: "ヒューマンドラマ",       match: ["Drama"] },
+  // ★コメディ棚（match:["Comedy"]）は作らない
 ];
 
 function hasAnyGenre(it, wanted) {
@@ -132,7 +132,7 @@ function hasAnyGenre(it, wanted) {
   return wanted.some(x => g.includes(x));
 }
 
-// genre=Action,Comedy みたいな複数指定を許可
+// genre=Action,Comedy みたいな複数指定を許可（listの手動操作用）
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
@@ -166,48 +166,50 @@ function renderShelves(data) {
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
 
-  const cardsHtml = GENRE_SHELVES.map((sh) => {
+  root.innerHTML = GENRE_SHELVES.map((sh) => {
     const picked = items
       .filter((it) => hasAnyGenre(it, sh.match))
       .slice(0, 12);
 
     if (!picked.length) return "";
 
-    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
-
-    const covers = picked.map((it) => {
+    const cards = picked.map((it) => {
       const seriesKey = toText(pick(it, ["seriesKey"])) || "";
       const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
       const img = toText(pick(it, ["image", "vol1.image"])) || "";
       const key = encodeURIComponent(seriesKey);
 
       return `
-        <a class="cover" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}" aria-label="${esc(title)}">
-          ${img ? `<img src="${esc(img)}" alt="${esc(title)}" loading="lazy">` : `<div class="cover-ph" aria-hidden="true"></div>`}
+        <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+          <div class="shelf-thumb">
+            ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+          </div>
+          <div class="shelf-title">${esc(seriesKey || title)}</div>
         </a>
       `;
     }).join("");
 
+    // 棚の match 全体を渡す（list側で OR フィルタ）
+    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
+
     return `
-      <section class="genre-card">
-        <div class="genre-head">
-          <a class="genre-title" href="${jump}">${esc(sh.label)}</a>
-          <a class="genre-more" href="${jump}">一覧を見る</a>
+      <section class="shelf">
+        <div class="shelf-head">
+          <h2 class="shelf-h">${esc(sh.label)}</h2>
+          <a class="shelf-more" href="${jump}">一覧を見る</a>
         </div>
-        <div class="genre-strip" role="list">
-          ${covers}
+        <div class="shelf-row">
+          ${cards}
         </div>
       </section>
     `;
   }).join("");
-
-  root.innerHTML = `
-    <div class="genre-grid">
-      ${cardsHtml}
-    </div>
-  `;
 }
 
+/* =======================
+ * list/work 表示
+ * - list.html?genre=Action,Thriller で OR 絞り込み
+ * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
   if (!root) return;
@@ -345,7 +347,7 @@ async function run() {
 
     const data = await loadJson(url, { bust: !!v });
 
-    renderShelves(data);
+    renderShelves(data); // index用（#shelvesが無いページでは何もしない）
     renderList(data);
     renderWork(data);
   } catch (e) {
