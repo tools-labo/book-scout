@@ -10,8 +10,6 @@ a { color: inherit; }
 .wrap { max-width: 980px; margin: 0 auto; padding: 14px; }
 .status { color: var(--muted); margin: 8px 0 12px; }
 
-.home-actions { margin: 10px 0 16px; }
-
 .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 
@@ -41,79 +39,89 @@ a { color: inherit; }
 .d-links { display:flex; flex-direction: column; gap: 8px; flex: 1; }
 .d-text { font-size: 14px; line-height: 1.75; color: #e2e2e2; white-space: pre-wrap; }
 
-/* ===== Genre shelves (top) ===== */
-.shelves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-
-.shelf {
+/* =======================
+   HOME: ジャンル（2列カード）
+======================= */
+.ggrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.gcard{
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 12px;
+  overflow: hidden;
+  min-height: 220px;
 }
+.gcard-empty{ opacity:0; pointer-events:none; }
 
-.shelf-headlink{
+.ghead{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
+  align-items:baseline;
+  justify-content: space-between;
   gap: 10px;
-  text-decoration:none;
-  color: inherit;
-  padding: 6px 6px 10px;
-  border-radius: 12px;
+  margin-bottom: 10px;
 }
-
-.shelf-headlink:active { transform: translateY(1px); }
-
-.shelf-h{
-  margin:0;
+.gtitle{
   font-size: 16px;
   font-weight: 900;
-  line-height: 1.1;
+  text-decoration: none;
+  line-height: 1.2;
 }
-
-.shelf-cta{
+.gmore{
   font-size: 12px;
   color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
   padding: 6px 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255,255,255,0.02);
-  white-space: nowrap;
+  background: rgba(255,255,255,0.03);
 }
 
-.shelf-row{
+.grow{
   display:flex;
   gap: 10px;
   overflow-x: auto;
-  padding: 6px 4px 2px;
+  padding-bottom: 6px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
+.grow::-webkit-scrollbar{ height: 6px; }
+.grow::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.12); border-radius: 999px; }
 
-.shelf-card{
-  width: 86px;              /* ★画像もう一回り小さく */
+.mini{
   flex: 0 0 auto;
-  text-decoration:none;
-  color: inherit;
+  width: 92px;              /* 1ジャンル2作品が見えるサイズ */
+  text-decoration: none;
   scroll-snap-align: start;
 }
-
-.shelf-thumb img{
-  width: 86px;
-  height: 120px;
+.mini-thumb img{
+  width: 92px;
+  height: 128px;            /* 既存より少し小さめ */
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 12px;
   display:block;
   border: 1px solid rgba(255,255,255,0.06);
 }
-
-.shelf-title{
+.mini-title{
   margin-top: 6px;
   font-size: 11px;
-  color: var(--muted);
-  line-height: 1.2;
+  color: #d6d6d6;
+  line-height: 1.25;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* iPhone幅での見え方調整 */
+@media (max-width: 430px){
+  .ggrid{ gap: 10px; }
+  .gcard{ padding: 10px; border-radius: 14px; min-height: 210px; }
+  .gtitle{ font-size: 15px; }
+  .mini{ width: 86px; }
+  .mini-thumb img{ width: 86px; height: 120px; }
 }
