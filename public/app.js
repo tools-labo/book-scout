@@ -13,6 +13,7 @@ function esc(s) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
+    .replaceAll("'", "&quot;")
     .replaceAll("'", "&#39;");
 }
 
@@ -72,7 +73,7 @@ function setStatus(msg) {
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
-// ジャンル英→日
+// ジャンル英→日（listのバナー用）
 const GENRE_JA = {
   Action: "アクション",
   Adventure: "冒険",
@@ -95,8 +96,8 @@ function mapGenres(genres) {
     .map((g) => {
       const s = toText(g);
       if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
-      return GENRE_JA[s] || null; // 辞書外英語は非表示
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+      return GENRE_JA[s] || null;
     })
     .filter(Boolean);
 }
@@ -108,8 +109,6 @@ function pills(list) {
 
 /* =======================
  * ジャンル棚（10本）
- * - works.json の genres（英語）だけで判定
- * - ヘッダだけを list へリンク（要件）
  * ======================= */
 const GENRE_SHELVES = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -129,23 +128,18 @@ function hasAnyGenre(it, wanted) {
   return wanted.some(x => g.includes(x));
 }
 
-// genre=Action,Comedy みたいな複数指定を許可
+// genre=Action,Comedy の複数指定を許可
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
-  return raw
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
+  return raw.split(",").map(s => s.trim()).filter(Boolean);
 }
 
-// list向け：上に「絞り込み中」を出す
 function renderGenreBanner(wanted) {
   const s = document.getElementById("status");
   if (!s) return;
 
   if (!wanted.length) { s.textContent = ""; return; }
-
   const ja = wanted.map((g) => GENRE_JA[g] || g).join(" / ");
   s.innerHTML = `ジャンル絞り込み：<b>${esc(ja)}</b>`;
 }
@@ -160,51 +154,54 @@ function renderShelves(data) {
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
 
-  root.innerHTML = GENRE_SHELVES.map((sh) => {
-    const picked = items
-      .filter((it) => hasAnyGenre(it, sh.match))
-      .slice(0, 12);
-
+  // 2列（必ず2つ並ぶ）にするため、カードを作って最後に空カードで埋める
+  const cardsHtml = GENRE_SHELVES.map((sh) => {
+    const picked = items.filter((it) => hasAnyGenre(it, sh.match)).slice(0, 12);
     if (!picked.length) return "";
 
-    const cards = picked.map((it) => {
+    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
+
+    // 棚カード内の作品（最初の2冊だけ見せて、横スクロールで追加）
+    const workCards = picked.map((it) => {
       const seriesKey = toText(pick(it, ["seriesKey"])) || "";
       const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
       const img = toText(pick(it, ["image", "vol1.image"])) || "";
       const key = encodeURIComponent(seriesKey);
 
       return `
-        <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
-          <div class="shelf-thumb">
+        <a class="mini" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+          <div class="mini-thumb">
             ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
           </div>
-          <div class="shelf-title">${esc(seriesKey || title)}</div>
+          <div class="mini-title">${esc(seriesKey || title)}</div>
         </a>
       `;
     }).join("");
 
-    // ★棚の match 全体を渡す（list側で OR フィルタ）
-    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
-
-    // ★ヘッダだけリンク（要件）
+    // ★ 見出しも「一覧を見る」も同じ jump にリンク
     return `
-      <section class="shelf">
-        <a class="shelf-headlink" href="${jump}">
-          <h2 class="shelf-h">${esc(sh.label)}</h2>
-          <span class="shelf-cta">カテゴリ名一覧を見る</span>
-        </a>
-
-        <div class="shelf-row">
-          ${cards}
+      <section class="gcard">
+        <div class="ghead">
+          <a class="gtitle" href="${jump}">${esc(sh.label)}</a>
+          <a class="gmore" href="${jump}">一覧を見る</a>
+        </div>
+        <div class="grow">
+          ${workCards}
         </div>
       </section>
     `;
-  }).join("");
+  }).filter(Boolean);
+
+  // 2列を崩さない：奇数なら1枚ダミー
+  if (cardsHtml.length % 2 === 1) {
+    cardsHtml.push(`<section class="gcard gcard-empty" aria-hidden="true"></section>`);
+  }
+
+  root.innerHTML = `<div class="ggrid">${cardsHtml.join("")}</div>`;
 }
 
 /* =======================
- * list/work 表示
- * - list.html?genre=Action,Thriller で OR 絞り込み
+ * list/work 表示（既存）
  * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
