@@ -40,7 +40,6 @@ function toText(v) {
   return "";
 }
 
-// works.json が「フラット形式」でも「vol1ネスト形式」でも読めるようにする
 function pick(it, keys) {
   for (const k of keys) {
     const v = k.includes(".")
@@ -71,12 +70,7 @@ function setStatus(msg) {
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
 
-/* =======================
- * 発売日表示の正規化（T00:00:01Z を潰す）
- * - 2026-02-14T01:23:43Z -> 2026-02-14
- * - 2026-02-14 -> 2026-02-14
- * - それ以外はそのまま
- * ======================= */
+// 発売日表示の正規化（T00:00:01Z を潰す）
 function formatDate(s) {
   const t = toText(s);
   if (!t) return "";
@@ -108,8 +102,8 @@ function mapGenres(genres) {
     .map((g) => {
       const s = toText(g);
       if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
-      return GENRE_JA[s] || null; // 辞書外英語は非表示
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+      return GENRE_JA[s] || null;
     })
     .filter(Boolean);
 }
@@ -120,9 +114,9 @@ function pills(list) {
 }
 
 /* =======================
- * ジャンル棚（10本）
- * - トップは飾り：小さめ表紙＋固定冊数＋横スクロール
- * - 棚名クリックで genre 絞り込み list へ
+ * ジャンル棚（10本）= カード化
+ * - genreカードは常に2列（CSS側）
+ * - カード内は「2冊見えて+α」になるよう小さめ
  * ======================= */
 const GENRE_SHELVES = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -142,20 +136,16 @@ function hasAnyGenre(it, wanted) {
   return wanted.some(x => g.includes(x));
 }
 
-// genre=Action,Comedy みたいな複数指定を許可
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
   return raw.split(",").map(s => s.trim()).filter(Boolean);
 }
 
-// list向け：上に「絞り込み中」を出す
 function renderGenreBanner(wanted) {
   const s = document.getElementById("status");
   if (!s) return;
-
   if (!wanted.length) { s.textContent = ""; return; }
-
   const ja = wanted.map((g) => GENRE_JA[g] || g).join(" / ");
   s.innerHTML = `ジャンル絞り込み：<b>${esc(ja)}</b>`;
 }
@@ -170,8 +160,8 @@ function renderShelves(data) {
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
 
-  // 固定冊数（トップの役割＝飾り）
-  const PICK_N = 8;
+  // トップは「飾る」：固定冊数
+  const PICK_N = 10;
 
   root.innerHTML = GENRE_SHELVES.map((sh) => {
     const picked = items
@@ -188,7 +178,6 @@ function renderShelves(data) {
       const img = toText(pick(it, ["image", "vol1.image"])) || "";
       const key = encodeURIComponent(seriesKey);
 
-      // トップは「飾り」なので、タイトルは短く（無いなら出さないでもOK）
       return `
         <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
           <div class="shelf-thumb">
@@ -214,8 +203,7 @@ function renderShelves(data) {
 }
 
 /* =======================
- * list/work 表示
- * - list.html?genre=Action,Thriller で OR 絞り込み
+ * list/work
  * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
@@ -289,17 +277,11 @@ function renderWork(data) {
   if (!detail) return;
 
   const key = qs().get("key");
-  if (!key) {
-    detail.innerHTML = `<div class="d-title">作品キーがありません</div>`;
-    return;
-  }
+  if (!key) { detail.innerHTML = `<div class="d-title">作品キーがありません</div>`; return; }
 
   const items = Array.isArray(data?.items) ? data.items : [];
   const it = items.find((x) => toText(pick(x, ["seriesKey"])) === key);
-  if (!it) {
-    detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`;
-    return;
-  }
+  if (!it) { detail.innerHTML = `<div class="d-title">見つかりませんでした</div>`; return; }
 
   const seriesKey = toText(pick(it, ["seriesKey"])) || "";
   const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
@@ -354,7 +336,7 @@ async function run() {
 
     const data = await loadJson(url, { bust: !!v });
 
-    renderShelves(data); // index用（#shelvesが無いページでは何もしない）
+    renderShelves(data);
     renderList(data);
     renderWork(data);
   } catch (e) {
