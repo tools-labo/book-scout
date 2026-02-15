@@ -1,3 +1,5 @@
+// public/app.js  (FULL REPLACE)
+
 function qs() { return new URLSearchParams(location.search); }
 
 async function loadJson(url, { bust = false } = {}) {
@@ -40,6 +42,7 @@ function toText(v) {
   return "";
 }
 
+// works.json が「フラット形式」でも「vol1ネスト形式」でも読めるようにする
 function pick(it, keys) {
   for (const k of keys) {
     const v = k.includes(".")
@@ -71,6 +74,60 @@ function setStatus(msg) {
 }
 
 /* =======================
+ * ★再発防止：表示用の正規化
+ * ======================= */
+
+// 発売日：ISOでも何でも "YYYY-MM-DD" を優先表示（末尾のT...Zを出さない）
+function formatReleaseDate(raw) {
+  const s = toText(raw);
+  if (!s) return "";
+  const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
+  return m ? m[1] : s;
+}
+
+// tags: 配列でも文字列でも拾う（"A / B" でも表示できる）
+function normalizeTagList(raw) {
+  if (raw == null) return [];
+  if (Array.isArray(raw)) {
+    return raw.map(toText).filter(Boolean);
+  }
+  if (typeof raw === "string") {
+    const s = raw.trim();
+    if (!s) return [];
+    // "A / B" や "A,B" などを吸収
+    const parts = s.split(/\s*\/\s*|\s*,\s*/g).map(x => x.trim()).filter(Boolean);
+    return parts.length ? parts : [s];
+  }
+  // object などは toText で拾って1要素扱い
+  const t = toText(raw);
+  return t ? [t] : [];
+}
+
+// 重複除去
+function uniqStr(list) {
+  const seen = new Set();
+  const out = [];
+  for (const x of list || []) {
+    const s = toText(x);
+    if (!s) continue;
+    if (seen.has(s)) continue;
+    seen.add(s);
+    out.push(s);
+  }
+  return out;
+}
+
+function getTagsForView(it) {
+  // まず配列を優先
+  const arr = pickArr(it, ["tags", "vol1.tags"]);
+  if (arr.length) return uniqStr(arr.map(toText).filter(Boolean));
+
+  // 次に文字列/その他を拾う
+  const raw = pick(it, ["tags", "vol1.tags"]);
+  return uniqStr(normalizeTagList(raw));
+}
+
+/* =======================
  * Genre map (EN -> JA)
  * ======================= */
 const GENRE_JA = {
@@ -96,8 +153,8 @@ function mapGenres(genres) {
     .map((g) => {
       const s = toText(g);
       if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
-      return GENRE_JA[s] || null;
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
+      return GENRE_JA[s] || null; // 辞書外英語は非表示
     })
     .filter(Boolean);
 }
@@ -235,12 +292,18 @@ function renderList(data) {
     const img = toText(pick(it, ["image", "vol1.image"])) || "";
     const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
 
-    const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
+    // ★発売日：必ず整形して表示
+    const releaseRaw = pick(it, ["releaseDate", "vol1.releaseDate"]);
+    const release = formatReleaseDate(releaseRaw);
+
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
     const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
     const genresJa = mapGenres(pickArr(it, ["genres", "vol1.genres"]));
-    const tagsJa = pickArr(it, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
+
+    // ★タグ：配列でも文字列でも表示できる
+    const tagsJa = getTagsForView(it).slice(0, 10);
+
     const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
 
     const metaParts = [
@@ -297,12 +360,18 @@ function renderWork(data) {
   const img = toText(pick(it, ["image", "vol1.image"])) || "";
   const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
 
-  const release = toText(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
+  // ★発売日：必ず整形して表示
+  const releaseRaw = pick(it, ["releaseDate", "vol1.releaseDate"]);
+  const release = formatReleaseDate(releaseRaw);
+
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
   const genresJa = mapGenres(pickArr(it, ["genres", "vol1.genres"]));
-  const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
+
+  // ★タグ：配列でも文字列でも表示できる
+  const tagsJa = getTagsForView(it);
+
   const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
 
   const metaParts = [
