@@ -320,12 +320,16 @@ function extractMagazineFromInfoboxHtml(html) {
   if (!m) return null;
 
   const text = stripHtml(m[1]);
+
+  // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去（連載誌だけを綺麗にする）
   const cleaned = text
+    .replace(/\[\s*(?:\d+|[a-zA-Z]|注\s*\d+|注釈\s*\d+)\s*\]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
   return cleaned || null;
 }
+
 function wikiTitleLooksOk({ wikiTitle, seriesKey }) {
   const t = normLoose(toHalfWidth(wikiTitle ?? ""));
   const k = normLoose(toHalfWidth(seriesKey ?? ""));
