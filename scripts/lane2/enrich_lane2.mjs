@@ -32,7 +32,7 @@ async function loadJson(p, fallback) {
 
 // ★必須JSONは fallback 禁止（壊れたら落とす）
 async function loadJsonStrict(p) {
-  const txt = await fs.readFile(p, "utf8"); // ここでファイル無い/権限なども落ちる
+  const txt = await fs.readFile(p, "utf8");
   try {
     return JSON.parse(txt);
   } catch (e) {
@@ -49,6 +49,21 @@ async function saveJson(p, obj) {
 function norm(s) {
   return String(s ?? "").trim();
 }
+
+// ★タグ照合用の正規化（揺れ吸収）
+function normTagKey(s) {
+  return String(s ?? "")
+    .trim()
+    .replace(/\u00A0/g, " ")           // NBSP
+    .replace(/\s+/g, " ")             // 多重スペース
+    .replace(/[’´`]/g, "'")           // アポストロフィ揺れ
+    .replace(/[‐-‒–—−]/g, "-")        // ハイフン/ダッシュ揺れ
+    .replace(/[“”]/g, '"')            // ダブルクォート揺れ
+    .replace(/[（]/g, "(")
+    .replace(/[）]/g, ")")
+    .normalize("NFKC");               // 全角/互換の寄せ
+}
+
 function toHalfWidth(s) {
   return String(s ?? "")
     .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
@@ -130,12 +145,14 @@ function stripHtml(s) {
 
 /* -----------------------
  * Tag dict
+ * - tag_ja_map.json に入ってるのに todo に出る問題を潰す
+ *   → 照合キーを normTagKey() に統一
  * ----------------------- */
 function loadTagMap(tagMapJson) {
   const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
   const out = {};
   for (const [k, v] of Object.entries(m)) {
-    const kk = norm(k);
+    const kk = normTagKey(k);
     const vv = norm(v);
     if (!kk || !vv) continue;
     out[kk] = vv;
@@ -144,18 +161,24 @@ function loadTagMap(tagMapJson) {
 }
 function loadHideSet(hideJson) {
   const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : [];
-  return new Set(arr.map((x) => norm(x)).filter(Boolean));
+  return new Set(arr.map((x) => normTagKey(x)).filter(Boolean));
 }
 function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
   const outJa = [];
   const missing = [];
-  for (const t of uniq(tagsEn)) {
-    if (hideSet.has(t)) continue;
-    const ja = tagMap[t];
+  for (const raw of uniq(tagsEn)) {
+    const key = normTagKey(raw);
+    if (!key) continue;
+
+    if (hideSet.has(key)) continue;
+
+    const ja = tagMap[key];
     if (ja) outJa.push(ja);
     else {
-      missing.push(t);
-      todoSet.add(t);
+      // 表示/欠落のログは「元表記」も残す（運用しやすい）
+      missing.push(raw);
+      // todo は正規化キーで積む（揺れ重複も潰れる）
+      todoSet.add(key);
     }
   }
   return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
@@ -279,7 +302,7 @@ function extractMagazineFromInfoboxHtml(html) {
 
   // 脚注 [1] 等を除去（→ は残す）
   const cleaned = text
-    .replace(/\[\s*\d+\s*\]/g, "")
+    .replace(/$begin:math:display$\\s\*\\d\+\\s\*$end:math:display$/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -592,8 +615,9 @@ async function main() {
   const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
   const hideSet = loadHideSet(hideJson);
 
+  // ★todo は正規化キーで読む（旧データも吸収）
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
-  const todoSet = new Set((todoJson?.tags || []).map((x) => norm(x)).filter(Boolean));
+  const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
 
   // magazine todo（積み上げ）
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
@@ -713,6 +737,7 @@ async function main() {
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
+    // todo は正規化キーで保存（揺れ重複を潰す）
     tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
   });
 
