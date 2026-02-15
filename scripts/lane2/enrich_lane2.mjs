@@ -315,8 +315,10 @@ function extractMagazineFromInfoboxHtml(html) {
   if (!m) return null;
 
   const text = stripHtml(m[1]);
+
+  // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去
   const cleaned = text
-    .replace(/$begin:math:display$\\s\*\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)\\s\*$end:math:display$/g, "")
+    .replace(/\[\s*(?:\d+|[a-zA-Z]|注\s*\d+|注釈\s*\d+)\s*\]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -628,15 +630,42 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
  * Magazine split + audience
  * ----------------------- */
 function splitMagazines(magazineStr) {
-  const s = norm(magazineStr);
+  let s = norm(magazineStr);
   if (!s) return [];
-  return uniq(
-    s
-      .split(/[\/／・,、]/g)
-      .map((x) => norm(x))
-      .filter(Boolean)
-      .flatMap((x) => x.split(/\s+/g).map(norm))
-  ).filter(Boolean);
+
+  // 表記ゆれ吸収（全角/半角スペースなど）
+  s = s
+    .replace(/\u00A0/g, " ")
+    .replace(/[　]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // 「→」「⇒」「＞」などを “区切り” として扱う（前後に空白が無くても分割できるように）
+  s = s.replace(/[→⇒＞>]+/g, " / ");
+
+  // 括弧注記を落とす（例: 週刊少年ジャンプ（第1部） / 週刊少年マガジン（特別編））
+  // ※「→で分割」してから落とすほうが安全なので先にやってOK
+  s = s.replace(/（[^）]*）/g, "");
+
+  // たまに混ざる記号の統一
+  s = s
+    .replace(/[／/・,、]/g, " / ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // ここから分割
+  const parts = s
+    .split("/")
+    .map((x) => norm(x))
+    .filter(Boolean)
+    // トークンの先頭末尾に残った矢印/記号を落とす
+    .map((x) => x.replace(/^[→⇒＞>\-–—]+/, "").replace(/[→⇒＞>\-–—]+$/, "").trim())
+    .filter(Boolean);
+
+  // さらに「空白区切りで複数誌が並ぶ」ケース（Wikipedia由来）を救う
+  const parts2 = parts.flatMap((p) => p.split(/\s+/g).map(norm).filter(Boolean));
+
+  return uniq(parts2);
 }
 
 function loadMagAudienceMap(json) {
