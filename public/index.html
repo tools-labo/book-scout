@@ -19,13 +19,21 @@
       <a class="btn" href="./list.html">作品リストへ</a>
     </section>
 
-    <!-- ★ 追加：ジャンル見出し -->
+    <!-- ジャンル -->
     <section class="section-head">
       <h2 class="section-title">ジャンル</h2>
       <p class="section-sub">まずは気分で選ぶ。タップで絞り込み一覧へ。</p>
     </section>
-
     <section id="shelves" class="shelves"></section>
+
+    <!-- ★追加：読者層→連載誌 -->
+    <section class="section-head" style="margin-top: 18px;">
+      <h2 class="section-title">読者層 → 連載誌</h2>
+      <p class="section-sub">読者層で切り替え、連載誌ごとに探す。</p>
+    </section>
+
+    <div id="audienceTabs" class="aud-tabs"></div>
+    <section id="audienceShelves" class="aud-shelves"></section>
   </main>
 
   <!-- ★ ?v= が付いている時だけ app.js も ?v= で読み込む -->
