@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-15T08:54:25.191Z",
+  "updatedAt": "2026-02-15T09:03:56.570Z",
   "total": 30,
   "ok": 30,
   "ng": 0,
@@ -8,7 +8,7 @@
     "skippedWiki": 21,
     "skippedAmazon": 30,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 19
+    "magAudienceTodoAdded": 6
   },
   "items": [
     {
@@ -72,7 +72,30 @@
           "VTuber",
           "Cosplay"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "復讐",
+          "アイドル",
+          "演技",
+          "青年向け",
+          "双子",
+          "探偵",
+          "仕事",
+          "現代ファンタジー",
+          "オタク文化",
+          "逆ハーレム",
+          "三角関係",
+          "アンチヒーロー",
+          "いじめ",
+          "都会",
+          "教育",
+          "ツンデレ",
+          "映画制作",
+          "妊娠",
+          "VTuber",
+          "コスプレ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -138,7 +161,34 @@
           "Homeless",
           "Nudity"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "成長譚",
+          "政治",
+          "青年向け",
+          "時系列シャッフル",
+          "ディストピア",
+          "逃亡者",
+          "陰謀",
+          "カルト",
+          "疑似家族",
+          "パンデミック",
+          "終末後",
+          "探偵",
+          "哲学",
+          "コズミックホラー",
+          "解離性同一性障害（多重人格）",
+          "ミュージカル",
+          "歴史",
+          "拡張現実（AR）",
+          "警察",
+          "ロボット",
+          "ロック",
+          "トランスジェンダー",
+          "海外",
+          "ホームレス"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -196,7 +246,31 @@
           "Espionage",
           "Aliens"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "少年向け",
+          "忍者",
+          "成長譚",
+          "復讐",
+          "疑似家族",
+          "超能力",
+          "武術",
+          "戦争",
+          "孤児",
+          "怪獣",
+          "死霊術",
+          "修行（強化）",
+          "哲学",
+          "魔法",
+          "変身",
+          "動物",
+          "旅",
+          "三角関係",
+          "悪魔",
+          "スパイ",
+          "宇宙人"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -261,7 +335,36 @@
           "Indigenous Cultures",
           "Achronological Order"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "更生",
+          "歴史",
+          "ヴァイキング",
+          "成長譚",
+          "海外",
+          "哲学",
+          "青年向け",
+          "戦争",
+          "復讐",
+          "旅",
+          "疑似家族",
+          "奴隷",
+          "剣術",
+          "政治",
+          "カップリング（推しカプ）",
+          "中世",
+          "田舎",
+          "階級闘争",
+          "親子（子育て）",
+          "アンチヒーロー",
+          "農業",
+          "海賊",
+          "宗教",
+          "環境（環境問題）",
+          "先住民文化",
+          "時系列シャッフル"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -280,7 +383,7 @@
         "releaseDate": "2007-08-03T00:00:01Z",
         "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ",
         "magazines": [
-          "週刊ヤングサンデー",
+          "週刊ヤングサンデー→",
           "ビッグコミックスピリッツ"
         ],
         "audiences": [
@@ -318,7 +421,23 @@
           "Love Triangle",
           "Religion"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "成長譚",
+          "青年向け",
+          "哲学",
+          "都会",
+          "アンチヒーロー",
+          "不条理コメディ",
+          "神々",
+          "学園",
+          "逃亡者",
+          "カルト",
+          "仕事",
+          "三角関係",
+          "宗教"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -340,8 +459,7 @@
         "releaseDate": "2016-03-18T00:00:01Z",
         "magazine": "ミラクルジャンプ→週刊ヤングジャンプ",
         "magazines": [
-          "ミラクルジャンプ",
-          "週刊ヤングジャンプ"
+          "ミラクルジャンプ→週刊ヤングジャンプ"
         ],
         "audiences": [
           "その他"
@@ -381,7 +499,27 @@
           "Foreign",
           "Crossdressing"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "学園",
+          "ツンデレ",
+          "部活",
+          "お嬢様",
+          "成長譚",
+          "ドタバタ",
+          "青年向け",
+          "パロディ",
+          "三角関係",
+          "政治",
+          "陰謀",
+          "哲学",
+          "いじめ",
+          "LGBTQ+テーマ",
+          "VTuber",
+          "海外",
+          "女装・男装"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -448,7 +586,32 @@
           "Gambling",
           "Nudity"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "旅",
+          "カウボーイ",
+          "超能力",
+          "青年向け",
+          "陰謀",
+          "障害",
+          "海外",
+          "環境（環境問題）",
+          "哲学",
+          "歴史",
+          "アウトドア",
+          "女装・男装",
+          "銃",
+          "砂漠",
+          "成長譚",
+          "修道女",
+          "演技",
+          "大自然",
+          "スパイ",
+          "鉄道",
+          "恐竜",
+          "ギャンブル"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -501,7 +664,22 @@
           "Nudity",
           "Unrequited Love"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "コスプレ",
+          "オタク文化",
+          "ファッション",
+          "ギャル",
+          "メイク",
+          "青年向け",
+          "写真",
+          "教育",
+          "女装・男装",
+          "学園",
+          "絵・作画",
+          "片思い"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -568,7 +746,31 @@
           "Circus",
           "Nudity"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "現代ファンタジー",
+          "妖怪",
+          "幽霊",
+          "超能力",
+          "宇宙人",
+          "少年向け",
+          "特撮",
+          "不条理コメディ",
+          "変身",
+          "ギャル",
+          "変身能力",
+          "学園",
+          "三角関係",
+          "祓い・除霊",
+          "陰謀",
+          "呪い",
+          "怪獣",
+          "スーパーロボット",
+          "中二病",
+          "記憶喪失",
+          "サーカス"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -587,8 +789,8 @@
         "releaseDate": "2019-03-04T00:00:01Z",
         "magazine": "週刊少年ジャンプ（第1部） 少年ジャンプ+（第2部）",
         "magazines": [
-          "週刊少年ジャンプ",
-          "少年ジャンプ+"
+          "週刊少年ジャンプ（第1部）",
+          "少年ジャンプ+（第2部）"
         ],
         "audiences": [
           "その他"
@@ -635,7 +837,32 @@
           "Politics",
           "Terrorism"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "悪魔",
+          "解離性同一性障害（多重人格）",
+          "現代ファンタジー",
+          "コズミックホラー",
+          "成長譚",
+          "変身",
+          "モンスター男子",
+          "都会",
+          "疑似家族",
+          "サバイバル",
+          "仕事",
+          "記憶操作",
+          "少年向け",
+          "カルト",
+          "銃",
+          "女王様（女性優位）",
+          "ヤンデレ",
+          "暗殺者",
+          "人間ペット",
+          "モンスター娘",
+          "復讐",
+          "政治"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -683,7 +910,17 @@
           "School",
           "Twins"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "バレーボール",
+          "成長譚",
+          "少年向け",
+          "部活",
+          "哲学",
+          "学園",
+          "双子"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -742,7 +979,30 @@
           "Nudity",
           "Rape"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "侍",
+          "青年向け",
+          "剣術",
+          "歴史",
+          "哲学",
+          "旅",
+          "成長譚",
+          "武術",
+          "障害",
+          "サバイバル",
+          "修行（強化）",
+          "伝記",
+          "田舎",
+          "戦争",
+          "農業",
+          "幽霊",
+          "アウトドア",
+          "古典文学",
+          "逃亡者",
+          "言語の壁"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -812,7 +1072,31 @@
           "Memory Manipulation",
           "Denpa"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "終末後",
+          "ディストピア",
+          "復讐",
+          "哲学",
+          "カルト",
+          "アンチヒーロー",
+          "超能力",
+          "宗教",
+          "サバイバル",
+          "コズミックホラー",
+          "映画制作",
+          "演技",
+          "雪景色",
+          "成長譚",
+          "トランスジェンダー",
+          "奴隷",
+          "LGBTQ+テーマ",
+          "不条理コメディ",
+          "神々",
+          "現代ファンタジー",
+          "記憶操作"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -832,7 +1116,7 @@
         "magazine": "週刊少年ジャンプ →ジャンプGIGA",
         "magazines": [
           "週刊少年ジャンプ",
-          "ジャンプGIGA"
+          "→ジャンプGIGA"
         ],
         "audiences": [
           "その他"
@@ -867,7 +1151,27 @@
           "Dungeon",
           "Found Family"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "魔法",
+          "少年向け",
+          "超能力",
+          "悪魔",
+          "解離性同一性障害（多重人格）",
+          "失われた文明",
+          "エルフ",
+          "階級闘争",
+          "修行（強化）",
+          "三合会（トライアド）",
+          "中世",
+          "王侯貴族",
+          "ツンデレ",
+          "逆ハーレム",
+          "年齢退行",
+          "ダンジョン",
+          "疑似家族"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -917,7 +1221,21 @@
           "Suicide",
           "Revenge"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "サッカー",
+          "バトルロイヤル",
+          "陸上競技",
+          "少年向け",
+          "超能力",
+          "アンチヒーロー",
+          "フィットネス",
+          "海外",
+          "拡張現実（AR）",
+          "言語の壁",
+          "復讐"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -984,7 +1302,33 @@
           "Torture",
           "Witch"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "青年向け",
+          "復讐",
+          "悪魔",
+          "コズミックホラー",
+          "疑似家族",
+          "哲学",
+          "アンチヒーロー",
+          "旅",
+          "更生",
+          "神話",
+          "剣術",
+          "サバイバル",
+          "戦争",
+          "魔法",
+          "海外",
+          "宗教",
+          "神々",
+          "妖精",
+          "障害",
+          "政治",
+          "軍事",
+          "記憶喪失",
+          "魔女"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -1036,7 +1380,19 @@
           "Bullying",
           "Urban"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "ツンデレ",
+          "学園",
+          "家族もの",
+          "成長譚",
+          "ドタバタ",
+          "少年向け",
+          "三角関係",
+          "いじめ",
+          "都会"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1087,7 +1443,21 @@
           "Gore",
           "Cyborg"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "スーパーヒーロー",
+          "超能力",
+          "哲学",
+          "パロディ",
+          "青年向け",
+          "神々",
+          "武術",
+          "コズミックホラー",
+          "擬人化",
+          "宇宙人",
+          "サイボーグ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -1156,7 +1526,31 @@
           "Tomboy",
           "Age Regression"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "スーパーヒーロー",
+          "超能力",
+          "現代ファンタジー",
+          "少年向け",
+          "寄宿学校",
+          "学園",
+          "陰謀",
+          "成長譚",
+          "犯罪",
+          "犯罪組織",
+          "アンチヒーロー",
+          "戦争",
+          "復讐",
+          "都会",
+          "救出",
+          "政治",
+          "動物",
+          "逃亡者",
+          "銃",
+          "ボーイッシュ",
+          "年齢退行"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -1213,7 +1607,24 @@
           "Chuunibyou",
           "Crossdressing"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "学園",
+          "成長譚",
+          "クーデレ",
+          "三角関係",
+          "ドタバタ",
+          "障害",
+          "少年向け",
+          "不条理コメディ",
+          "ヤンデレ",
+          "ギャル",
+          "4コマ",
+          "無性別",
+          "中二病",
+          "女装・男装"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1277,7 +1688,33 @@
           "Nudity",
           "Slapstick"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "現代ファンタジー",
+          "悪魔",
+          "超能力",
+          "少年向け",
+          "呪い",
+          "モンスター男子",
+          "妖怪",
+          "魔法",
+          "武術",
+          "解離性同一性障害（多重人格）",
+          "デスゲーム",
+          "バトルロイヤル",
+          "都会",
+          "祓い・除霊",
+          "コズミックホラー",
+          "記憶喪失",
+          "カルト",
+          "学園",
+          "擬人化",
+          "トランスジェンダー",
+          "暗殺者",
+          "剣術",
+          "ドタバタ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -1343,7 +1780,32 @@
           "Crime",
           "Yandere"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "サバイバル",
+          "哲学",
+          "侍",
+          "神話",
+          "忍者",
+          "アンチヒーロー",
+          "歴史",
+          "神々",
+          "暗殺者",
+          "剣術",
+          "性転換",
+          "バトルロイヤル",
+          "少年向け",
+          "超能力",
+          "旅",
+          "LGBTQ+テーマ",
+          "記憶喪失",
+          "犯罪",
+          "ヤンデレ"
+        ],
+        "tags_missing_en": [
+          "Eco-Horror",
+          "Arranged Marriage"
+        ],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1399,7 +1861,27 @@
           "Slapstick",
           "Kuudere"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "怪獣",
+          "現代ファンタジー",
+          "変身能力",
+          "少年向け",
+          "軍事",
+          "変身",
+          "超能力",
+          "都会",
+          "モンスター男子",
+          "特撮",
+          "銃",
+          "陰謀",
+          "復讐",
+          "戦争",
+          "サバイバル",
+          "ドタバタ",
+          "クーデレ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1454,7 +1936,25 @@
           "Adoption",
           "Guns"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "不良",
+          "ギャング",
+          "陰謀",
+          "復讐",
+          "犯罪",
+          "少年向け",
+          "年齢退行",
+          "都会",
+          "バイク",
+          "三角関係",
+          "スパイ",
+          "原付",
+          "学園",
+          "養子縁組",
+          "銃"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1512,7 +2012,24 @@
           "Mythology",
           "Demons"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "現代ファンタジー",
+          "青年向け",
+          "サバイバル",
+          "ディストピア",
+          "哲学",
+          "成長譚",
+          "変身能力",
+          "警察",
+          "クーデレ",
+          "コズミックホラー",
+          "キメラ",
+          "双子",
+          "神話",
+          "悪魔"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -1579,7 +2096,28 @@
           "Transgender",
           "Gender Bending"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "解離性同一性障害（多重人格）",
+          "記憶喪失",
+          "ディストピア",
+          "哲学",
+          "青年向け",
+          "変身能力",
+          "現代ファンタジー",
+          "陰謀",
+          "警察",
+          "更生",
+          "ヤンデレ",
+          "クーデレ",
+          "コズミックホラー",
+          "LGBTQ+テーマ",
+          "女装・男装",
+          "神話",
+          "トランスジェンダー",
+          "性転換"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1641,7 +2179,28 @@
           "Augmented Reality",
           "Suicide"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "サバイバル",
+          "子どもが中心",
+          "悪魔",
+          "ディストピア",
+          "戦争",
+          "疑似家族",
+          "銃",
+          "成長譚",
+          "政治",
+          "少年向け",
+          "旅",
+          "陰謀",
+          "アンチヒーロー",
+          "哲学",
+          "刑務所（監獄）",
+          "記憶喪失",
+          "田舎",
+          "拡張現実（AR）"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1692,7 +2251,20 @@
           "Shounen",
           "Tomboy"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "更生",
+          "言語の壁",
+          "いじめ",
+          "障害",
+          "成長譚",
+          "学園",
+          "クーデレ",
+          "映画制作",
+          "少年向け",
+          "ボーイッシュ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1712,7 +2284,7 @@
         "magazine": "別冊少年マガジン 週刊少年マガジン（特別編）",
         "magazines": [
           "別冊少年マガジン",
-          "週刊少年マガジン"
+          "週刊少年マガジン（特別編）"
         ],
         "audiences": [
           "その他"
@@ -1758,7 +2330,33 @@
           "Espionage",
           "Mythology"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "ディストピア",
+          "アンチヒーロー",
+          "戦争",
+          "哲学",
+          "軍事",
+          "陰謀",
+          "サバイバル",
+          "怪獣",
+          "変身能力",
+          "記憶操作",
+          "政治",
+          "復讐",
+          "変身",
+          "モンスター男子",
+          "終末後",
+          "超能力",
+          "コズミックホラー",
+          "成長譚",
+          "奴隷",
+          "剣術",
+          "少年向け",
+          "スパイ",
+          "神話"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -1821,7 +2419,32 @@
           "Animals",
           "Food"
         ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
+        "tags": [
+          "悪魔",
+          "少年向け",
+          "剣術",
+          "復讐",
+          "歴史",
+          "田舎",
+          "孤児",
+          "成長譚",
+          "変身能力",
+          "旅",
+          "花魁",
+          "鉄道",
+          "銃",
+          "女装・男装",
+          "年齢退行",
+          "障害",
+          "ポリアモリー",
+          "バイセクシュアル",
+          "妖怪",
+          "宗教",
+          "動物",
+          "グルメ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
