@@ -6,9 +6,13 @@ import crypto from "node:crypto";
 const IN_SERIES = "data/lane2/series.json";
 const IN_MAG_OVERRIDES = "data/lane2/magazine_overrides.json";
 
-const TAG_JA_MAP = "data/lane2/tag_ja_map.json";
-const TAG_HIDE = "data/lane2/tag_hide.json";
-const TAG_TODO = "data/lane2/tags_todo.json";
+// タグは使わない方針（読まない・書かない）
+// const TAG_JA_MAP = "data/lane2/tag_ja_map.json";
+// const TAG_HIDE = "data/lane2/tag_hide.json";
+// const TAG_TODO = "data/lane2/tags_todo.json";
+
+const IN_MAG_AUDIENCE = "data/lane2/magazine_audience.json";
+const IN_MAG_AUDIENCE_TODO = "data/lane2/magazine_audience_todo.json";
 
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
@@ -17,10 +21,6 @@ const CACHE_AMZ = `${CACHE_DIR}/amazon.json`;
 
 const OUT_ENRICHED = "data/lane2/enriched.json";
 const OUT_MAG_TODO = "data/lane2/magazine_todo.json";
-
-// ★連載誌→読者層（少年/青年/少女/女性/その他）
-const MAG_AUDIENCE = "data/lane2/magazine_audience.json";
-const MAG_AUDIENCE_TODO = "data/lane2/magazine_audience_todo.json";
 
 function nowIso() {
   return new Date().toISOString();
@@ -52,20 +52,6 @@ async function saveJson(p, obj) {
 
 function norm(s) {
   return String(s ?? "").trim();
-}
-
-// ★タグ照合用の正規化（揺れ吸収）
-function normTagKey(s) {
-  return String(s ?? "")
-    .trim()
-    .replace(/\u00A0/g, " ")
-    .replace(/\s+/g, " ")
-    .replace(/[’´`]/g, "'")
-    .replace(/[‐-‒–—−]/g, "-")
-    .replace(/[“”]/g, '"')
-    .replace(/[（]/g, "(")
-    .replace(/[）]/g, ")")
-    .normalize("NFKC");
 }
 
 function toHalfWidth(s) {
@@ -118,12 +104,16 @@ function stripHtml(s) {
     // &amp;#91; / &amp;#x5B; を先に処理（重要）
     y = y
       .replace(/&amp;#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
-      .replace(/&amp;#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
+      .replace(/&amp;#x([0-9a-fA-F]+);/g, (_, h) =>
+        String.fromCharCode(parseInt(h, 16))
+      );
 
     // 通常の数値参照
     y = y
       .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
-      .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
+      .replace(/&#x([0-9a-fA-F]+);/g, (_, h) =>
+        String.fromCharCode(parseInt(h, 16))
+      );
 
     // 代表的な named entity
     y = y
@@ -148,44 +138,7 @@ function stripHtml(s) {
 }
 
 /* -----------------------
- * Tag dict
- * ----------------------- */
-function loadTagMap(tagMapJson) {
-  const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
-  const out = {};
-  for (const [k, v] of Object.entries(m)) {
-    const kk = normTagKey(k);
-    const vv = norm(v);
-    if (!kk || !vv) continue;
-    out[kk] = vv;
-  }
-  return out;
-}
-function loadHideSet(hideJson) {
-  const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : [];
-  return new Set(arr.map((x) => normTagKey(x)).filter(Boolean));
-}
-function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
-  const outJa = [];
-  const missing = [];
-  for (const raw of uniq(tagsEn)) {
-    const key = normTagKey(raw);
-    if (!key) continue;
-
-    if (hideSet.has(key)) continue;
-
-    const ja = tagMap[key];
-    if (ja) outJa.push(ja);
-    else {
-      missing.push(raw);
-      todoSet.add(key);
-    }
-  }
-  return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
-}
-
-/* -----------------------
- * “充足判定” = 差分エンリッチの核
+ * “充足判定” = 差分エンリッチ
  * ----------------------- */
 function hasAniListFilled(prevVol1) {
   return !!(
@@ -210,78 +163,112 @@ function hasAmazonFilled(prevVol1) {
     norm(prevVol1.releaseDate)
   );
 }
-function hasAudienceFilled(prevVol1) {
-  return !!(
-    prevVol1 &&
-    Array.isArray(prevVol1.audiences) &&
-    prevVol1.audiences.length > 0 &&
-    Array.isArray(prevVol1.magazines) &&
-    prevVol1.magazines.length > 0
-  );
-}
 
 /* -----------------------
  * Magazine -> Audience
- * - 複数誌は両方に入る
- * - 未知の誌は other 扱い + todo に積む
  * ----------------------- */
-function normMag(s) {
-  return String(s ?? "")
-    .trim()
-    .replace(/\u00A0/g, " ")
+function normalizeMagazineName(s) {
+  // 全角寄せ＆前後トリム＆多重スペース
+  return toHalfWidth(norm(s)).replace(/\s+/g, " ").trim();
+}
+
+function splitMagazines(magazineStr) {
+  const raw = normalizeMagazineName(magazineStr);
+  if (!raw) return [];
+
+  // 注記・脚注っぽいものを落とす（既にwiki抽出でも落としてるが二重保険）
+  // 例: "週刊ヤングサンデー→ ビッグコミックスピリッツ[1]"
+  let s = raw.replace(/\[\s*(?:\d+|[a-zA-Z]|注\s*\d+|注釈\s*\d+)\s*\]/g, "");
+
+  // 括弧内注記（第1部など）を落としてマッチさせやすくする
+  s = s.replace(/（[^）]*）/g, "").replace(/\([^)]*\)/g, "");
+
+  // 区切りを統一（矢印・スラッシュ・中点・読点など）
+  s = s
+    .replace(/→/g, " / ")
+    .replace(/[・、,]/g, " / ")
+    .replace(/[／/]/g, " / ")
     .replace(/\s+/g, " ")
-    .normalize("NFKC");
+    .trim();
+
+  // 「空白で並ぶ」ケース対策：いったん / で割った後、各要素も空白で分割
+  const chunks = s
+    .split(" / ")
+    .map((x) => normalizeMagazineName(x))
+    .filter(Boolean)
+    .flatMap((x) => x.split(" ").map((y) => normalizeMagazineName(y)).filter(Boolean));
+
+  // 最終ユニーク
+  return uniq(chunks);
 }
 
-function splitMagazines(magazineText) {
-  const s = String(magazineText ?? "").trim();
-  if (!s) return [];
+// magazine_audience.json の形に柔軟対応（rules/items/map どれでも）
+function readAudienceRules(json) {
+  if (!json || typeof json !== "object") return { 少年: [], 青年: [], 少女: [], 女性: [], その他: [] };
 
-  // 方向矢印/区切りをまとめて split
-  return s
-    .replace(/$begin:math:display$\[0\-9\]\+$end:math:display$/g, "") // [1]
-    .replace(/$begin:math:display$\\s\*\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)\\s\*$end:math:display$/g, "") // [注1] [a]
-    .replace(/（[^）]*）/g, "") // （特別編）など
-    .split(/→|\/|・|,|、|\n|\s{2,}/)
-    .map((x) => normMag(x))
-    .filter(Boolean);
+  const obj =
+    (json.rules && typeof json.rules === "object" && json.rules) ||
+    (json.items && typeof json.items === "object" && json.items) ||
+    (json.map && typeof json.map === "object" && json.map) ||
+    null;
+
+  const base = obj || json;
+
+  const pick = (k) => (Array.isArray(base?.[k]) ? base[k].map(normalizeMagazineName).filter(Boolean) : []);
+
+  return {
+    少年: pick("少年"),
+    青年: pick("青年"),
+    少女: pick("少女"),
+    女性: pick("女性"),
+    その他: pick("その他"),
+  };
 }
 
-function buildAudienceIndex(groups) {
-  const idx = new Map(); // magazineName -> Set(audience)
-  for (const [aud, arr] of Object.entries(groups || {})) {
-    for (const raw of arr || []) {
-      const k = normMag(raw);
-      if (!k) continue;
-      if (!idx.has(k)) idx.set(k, new Set());
-      idx.get(k).add(aud);
-    }
-  }
+function buildMagazineToAudienceIndex(rules) {
+  // magazineName(normalized) -> Set(audience)
+  const idx = new Map();
+
+  const add = (aud, name) => {
+    const k = normalizeMagazineName(name);
+    if (!k) return;
+    if (!idx.has(k)) idx.set(k, new Set());
+    idx.get(k).add(aud);
+  };
+
+  for (const name of rules.少年 || []) add("少年", name);
+  for (const name of rules.青年 || []) add("青年", name);
+  for (const name of rules.少女 || []) add("少女", name);
+  for (const name of rules.女性 || []) add("女性", name);
+  for (const name of rules.その他 || []) add("その他", name);
+
   return idx;
 }
 
-function audiencesForMagazines(magazines, idx) {
+function classifyAudiences({ magazines, idx, todoSet }) {
   const out = new Set();
-  const unknown = new Set();
 
   for (const m of magazines || []) {
-    const k = normMag(m);
-    if (!k) continue;
+    const key = normalizeMagazineName(m);
+    if (!key) continue;
 
-    const hit = idx.get(k);
+    const hit = idx.get(key);
     if (hit && hit.size) {
       for (const a of hit) out.add(a);
-    } else {
-      unknown.add(k);
-      out.add("その他");
+      continue;
     }
+
+    // 未知誌は todo に積む（and 一旦 その他）
+    todoSet.add(key);
+    out.add("その他");
   }
 
-  return { audiences: Array.from(out), unknownMagazines: Array.from(unknown) };
+  // magazines が空なら audience も空（連載誌todo側で拾う）
+  return Array.from(out);
 }
 
 /* -----------------------
- * AniList (genres/tags)
+ * AniList (genres/tags)  ※tagsは使わないが、genresは残す想定
  * ----------------------- */
 async function fetchAniListBySeriesKey({ seriesKey, cache }) {
   const key = norm(seriesKey);
@@ -396,9 +383,9 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const text = stripHtml(m[1]);
 
-  // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去
+  // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去（連載誌だけを綺麗にする）
   const cleaned = text
-    .replace(/$begin:math:display$\\s\*\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)\\s\*$end:math:display$/g, "")
+    .replace(/\[\s*(?:\d+|[a-zA-Z]|注\s*\d+|注釈\s*\d+)\s*\]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -579,7 +566,8 @@ function extractPaapiItem(item) {
     item?.Images?.Primary?.Small?.URL ||
     null;
 
-  const title = item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
+  const title =
+    item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
 
   const manufacturer =
     item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue ||
@@ -606,7 +594,14 @@ function extractPaapiItem(item) {
     item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
     null;
 
-  return { amazonDp: dp, image: img, title, publisher, author, releaseDate };
+  return {
+    amazonDp: dp,
+    image: img,
+    title,
+    publisher,
+    author,
+    releaseDate,
+  };
 }
 
 async function fetchPaapiByAsins({ asins, cache, creds }) {
@@ -678,6 +673,7 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
 
   for (let i = 1; i <= max; i++) {
     const res = await fetchAniListBySeriesKey({ seriesKey, cache });
+
     if (res.ok) return res;
 
     if (res.reason === "anilist_http_429") {
@@ -709,6 +705,17 @@ async function main() {
   const magOverrides =
     magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
 
+  // magazine audience rules（必須にする：壊れてたら落とす）
+  const magAudJson = await loadJsonStrict(IN_MAG_AUDIENCE);
+  const magAudRules = readAudienceRules(magAudJson);
+  const magAudIndex = buildMagazineToAudienceIndex(magAudRules);
+
+  // audience todo（積み上げ）
+  const magAudTodoPrev = await loadJson(IN_MAG_AUDIENCE_TODO, { version: 1, updatedAt: "", items: [] });
+  const magAudTodoSet = new Set(
+    (magAudTodoPrev?.items || []).map((x) => normalizeMagazineName(x)).filter(Boolean)
+  );
+
   // 前回の enriched を“成果キャッシュ”として読む
   const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
   const prevMap = new Map(
@@ -723,32 +730,9 @@ async function main() {
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
   const cacheAmz = (await loadJson(CACHE_AMZ, {})) || {};
 
-  const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: "", map: {} });
-  const tagMap = loadTagMap(tagMapJson);
-
-  const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
-  const hideSet = loadHideSet(hideJson);
-
-  const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
-  const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
-
+  // magazine todo（積み上げ）
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
-
-  // ★読者層マップ＆TODO
-  const magAudJson = await loadJson(MAG_AUDIENCE, { version: 1, updatedAt: "", groups: {} });
-  const magAudGroups =
-    magAudJson?.groups && typeof magAudJson.groups === "object" ? magAudJson.groups : {};
-  const magAudIndex = buildAudienceIndex(magAudGroups);
-
-  const magAudTodoPrev = await loadJson(MAG_AUDIENCE_TODO, {
-    version: 1,
-    updatedAt: "",
-    items: [],
-  });
-  const magAudTodoSet = new Set(
-    (magAudTodoPrev?.items || []).map((x) => normMag(x)).filter(Boolean)
-  );
 
   // PA-API creds
   const accessKey = norm(process.env.AMZ_ACCESS_KEY);
@@ -794,10 +778,10 @@ async function main() {
   const enriched = [];
   let ok = 0;
   let ng = 0;
+
   let skippedAni = 0;
   let skippedWiki = 0;
   let skippedAmz = 0;
-  let skippedAudience = 0;
 
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
@@ -835,29 +819,14 @@ async function main() {
       await sleep(150);
     }
 
-    // ★読者層（audiences / magazines）
-    let magazines = Array.isArray(prevVol1?.magazines) ? prevVol1.magazines : [];
-    let audiences = Array.isArray(prevVol1?.audiences) ? prevVol1.audiences : [];
+    // magazines / audiences（毎回ここは計算：mapが更新されたら即反映したい）
+    const magazines = magazine ? splitMagazines(magazine) : [];
+    const audiences = classifyAudiences({ magazines, idx: magAudIndex, todoSet: magAudTodoSet });
 
-    if (hasAudienceFilled(prevVol1)) {
-      skippedAudience++;
-    } else {
-      const mags = splitMagazines(magazine).map(normMag);
-      const aud = audiencesForMagazines(mags, magAudIndex);
-
-      magazines = mags;
-      audiences = aud.audiences;
-
-      for (const unk of aud.unknownMagazines) magAudTodoSet.add(unk);
-    }
-
-    // AniList：前回埋まってるなら再取得しない
+    // AniList：前回埋まってるなら再取得しない（genresは残す）
     let anilistId = prevVol1?.anilistId ?? null;
     let genres = Array.isArray(prevVol1?.genres) ? prevVol1.genres : [];
     let tagsEn = Array.isArray(prevVol1?.tags_en) ? prevVol1.tags_en : [];
-
-    let tagsJa = Array.isArray(prevVol1?.tags) ? prevVol1.tags : [];
-    let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
     if (hasAniListFilled(prevVol1)) {
       skippedAni++;
@@ -868,10 +837,6 @@ async function main() {
         anilistId = anx.id;
         genres = uniq(anx.genres);
         tagsEn = uniq(anx.tags);
-
-        const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
-        tagsJa = applied.tags;
-        tagsMissing = applied.tags_missing_en;
       } else {
         ng++;
       }
@@ -895,17 +860,15 @@ async function main() {
     const author = prevAuthor || norm(amz?.author) || null;
     const releaseDate = prevReleaseDate || norm(amz?.releaseDate) || null;
 
-    // title は manual を尊重。無ければ「前回」→「PA-API」
     const title = manualTitle || norm(prevVol1?.title) || norm(amz?.title) || null;
 
     // synopsis は manual のみ
     const synopsis = norm(v?.synopsis) || null;
 
-    // todo
+    // todo（連載誌未取得）
     if (!magazine) magTodoSet.add(seriesKey);
     else magTodoSet.delete(seriesKey);
 
-    // “Amazon情報が前回で埋まってた”判定ログ用
     if (hasAmazonFilled(prevVol1)) skippedAmz++;
 
     enriched.push({
@@ -925,21 +888,20 @@ async function main() {
         releaseDate,
 
         magazine,
+        magazines,          // ★追加
+        audiences,          // ★追加
+
         magazineSource,
         wikiTitle,
 
-        // ★新規
-        magazines: uniq(magazines),
-        audiences: uniq(audiences),
-
+        // AniList
         anilistId,
         genres: uniq(genres),
-        tags_en: uniq(tagsEn),
-        tags: uniq(tagsJa),
-        tags_missing_en: uniq(tagsMissing),
 
-        source:
-          "enrich(diff+prev+wiki(mag)+magAudience+anilist+tagdict+hide+magazine_overrides+paapi)",
+        // tagsは使わない方針だが、将来復活用に raw を残すなら tags_en だけ保持
+        tags_en: uniq(tagsEn),
+
+        source: "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)",
       },
       meta: x?.meta || null,
     });
@@ -947,12 +909,7 @@ async function main() {
     ok++;
   }
 
-  await saveJson(TAG_TODO, {
-    version: 1,
-    updatedAt: nowIso(),
-    tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
-  });
-
+  // magazine todo
   await saveJson(OUT_MAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
@@ -960,14 +917,15 @@ async function main() {
     items: Array.from(magTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  // ★audience todo を保存
-  await saveJson(MAG_AUDIENCE_TODO, {
+  // magazine audience todo
+  await saveJson(IN_MAG_AUDIENCE_TODO, {
     version: 1,
     updatedAt: nowIso(),
     total: Array.from(magAudTodoSet).length,
     items: Array.from(magAudTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
+  // outputs
   await saveJson(OUT_ENRICHED, {
     updatedAt: nowIso(),
     total: sorted.length,
@@ -977,8 +935,8 @@ async function main() {
       skippedAniList: skippedAni,
       skippedWiki: skippedWiki,
       skippedAmazon: skippedAmz,
-      skippedAudience: skippedAudience,
       fetchedAmazonAsins: asinsNeed.length,
+      magAudienceTodoAdded: Array.from(magAudTodoSet).length,
     },
     items: enriched,
   });
@@ -988,7 +946,7 @@ async function main() {
   await saveJson(CACHE_AMZ, cacheAmz);
 
   console.log(
-    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}, audience=${skippedAudience}) -> ${OUT_ENRICHED}`
+    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) -> ${OUT_ENRICHED}`
   );
 }
 
