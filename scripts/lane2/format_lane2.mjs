@@ -16,7 +16,9 @@ async function saveJson(p, obj) {
   await fs.mkdir(path.dirname(p), { recursive: true });
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
-function norm(s) { return String(s ?? "").trim(); }
+function norm(s) {
+  return String(s ?? "").trim();
+}
 function uniq(arr) {
   const out = [];
   const seen = new Set();
@@ -71,8 +73,8 @@ async function main() {
       image: v?.image ?? null,
 
       // Amazon
-      amazonUrl: v?.amazonUrl ?? null,   // manualの入力URL（紙1巻URL）
-      amazonDp: v?.amazonDp ?? null,     // PA-APIの詳細URL（基本は同等だが、安定リンクとして保持）
+      amazonUrl: v?.amazonUrl ?? null, // manualの入力URL（紙1巻URL）
+      amazonDp: v?.amazonDp ?? null, // PA-APIの詳細URL（安定リンク）
       isbn13: v?.isbn13 ?? null,
       asin: v?.asin ?? null,
 
@@ -83,9 +85,12 @@ async function main() {
       magazine: v?.magazine ?? null,
       magazineSource: v?.magazineSource ?? null,
 
-      // AniList
+      // ★追加：連載誌の分割配列＋読者層（少年/青年/少女/女性/その他）
+      magazines: uniq(v?.magazines),
+      audiences: uniq(v?.audiences),
+
+      // AniList（タグは表示しない運用なので出力しない）
       genres: uniq(v?.genres),
-      tags: uniq(v?.tags).slice(0, 24),
 
       meta,
     });
