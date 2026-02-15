@@ -129,7 +129,25 @@ function pills(list) {
 }
 
 /* =======================
- * ジャンル（確定10本）→ タブに使う
+ * Home：URL state
+ * /?g=action&a=seinen (aはIDで持つ)
+ * ======================= */
+function getHomeState() {
+  const p = qs();
+  const g = toText(p.get("g")) || "action";
+  const a = toText(p.get("a")) || "shonen";
+  return { g, a };
+}
+function setHomeState(next) {
+  const p = qs();
+  if (next.g != null) p.set("g", String(next.g));
+  if (next.a != null) p.set("a", String(next.a));
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
+}
+
+/* =======================
+ * ジャンル（確定10本）→ タブ
  * ======================= */
 const GENRE_TABS = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -149,22 +167,40 @@ function hasAnyGenre(it, wanted) {
   return wanted.some(x => g.includes(x));
 }
 
+// list.html 側：genre=Action,Thriller の複数指定を許可
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
   return raw.split(",").map(s => s.trim()).filter(Boolean);
 }
-
 function parseOneQueryParam(name) {
   const raw = toText(qs().get(name));
   return raw ? raw.trim() : "";
 }
 
-function hasAudience(it, aud) {
-  if (!aud) return true;
-  const a = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
-  return a.includes(aud);
+/* =======================
+ * 読者層（タブ） a=ID / listは aud=日本語
+ * ======================= */
+const AUDIENCE_TABS = [
+  { id: "shonen", label: "少年" },
+  { id: "seinen", label: "青年" },
+  { id: "shojo", label: "少女" },
+  { id: "josei", label: "女性" },
+  { id: "other", label: "その他" },
+];
+
+function getFirstAudienceLabel(it) {
+  const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
+  return arr[0] || "その他";
 }
+function hasAudience(it, audLabel) {
+  if (!audLabel) return true;
+  return getFirstAudienceLabel(it) === audLabel;
+}
+
+/* =======================
+ * 連載誌（list/work 表示 & list 絞り込み用）
+ * ======================= */
 function hasMagazine(it, mag) {
   if (!mag) return true;
   const ms = pickArr(it, ["magazines", "vol1.magazines"]).map(toText).filter(Boolean);
@@ -173,6 +209,9 @@ function hasMagazine(it, mag) {
   return m1.includes(mag);
 }
 
+/* =======================
+ * list.html のバナー（連載誌も表示する）
+ * ======================= */
 function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
   const s = document.getElementById("status");
   if (!s) return;
@@ -190,9 +229,9 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
 }
 
 /* =======================
- * 共通：横一列カード列
+ * 共通：横一列カード列（④もっと見るカード）
  * ======================= */
-function renderCardRow({ items, limit = 18 }) {
+function renderCardRow({ items, limit = 18, moreHref = "" }) {
   const v = qs().get("v");
   const cards = (items || []).slice(0, limit).map((it) => {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
@@ -211,11 +250,67 @@ function renderCardRow({ items, limit = 18 }) {
     `;
   }).join("");
 
-  return `<div class="row-scroll">${cards}</div>`;
+  const moreCard = moreHref
+    ? `
+      <a class="row-card row-more" href="${esc(moreHref)}" aria-label="もっと見る">
+        <div class="row-thumb row-more-thumb">
+          <div class="row-more-icon">→</div>
+        </div>
+        <div class="row-title row-more-title">もっと見る</div>
+      </a>
+    `
+    : "";
+
+  return `<div class="row-scroll">${cards}${moreCard}</div>`;
+}
+
+/* =======================
+ * ①「一覧を見る」導線（今のタブに紐づけ）
+ * ③件数バッジ
+ * ======================= */
+function setGenreAllLink(activeTab) {
+  const a = document.getElementById("genreAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const q = encodeURIComponent(activeTab.match.join(","));
+  a.href = `./list.html?genre=${q}${vq}`;
+}
+
+function setAudienceAllLink(activeAudLabel) {
+  const a = document.getElementById("audienceAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  a.href = `./list.html?aud=${encodeURIComponent(activeAudLabel)}${vq}`;
+}
+
+function genreCountMap(allItems) {
+  const map = new Map();
+  for (const t of GENRE_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    for (const t of GENRE_TABS) {
+      if (hasAnyGenre(it, t.match)) map.set(t.id, (map.get(t.id) || 0) + 1);
+    }
+  }
+  return map;
+}
+
+function audienceCountMap(allItems) {
+  const map = new Map();
+  for (const t of AUDIENCE_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    const label = getFirstAudienceLabel(it);
+    const tab = AUDIENCE_TABS.find(x => x.label === label) || AUDIENCE_TABS.find(x => x.id === "other");
+    if (!tab) continue;
+    map.set(tab.id, (map.get(tab.id) || 0) + 1);
+  }
+  return map;
 }
 
 /* =======================
  * Home：ジャンル（タブ + 作品一列）
+ * ②タブ状態URL反映 / ③件数バッジ / ④もっと見る
  * ======================= */
 function renderGenreTabsRow({ data, activeId }) {
   const tabs = document.getElementById("genreTabs");
@@ -225,41 +320,45 @@ function renderGenreTabsRow({ data, activeId }) {
   const all = Array.isArray(data?.items) ? data.items : [];
   if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
 
+  const counts = genreCountMap(all);
   const active = GENRE_TABS.find(x => x.id === activeId) || GENRE_TABS[0];
 
   tabs.innerHTML = `
     <div class="tabrow">
       ${GENRE_TABS.map((t) => `
         <button class="tab ${t.id === active.id ? "is-active" : ""}" data-genre="${esc(t.id)}" type="button">
-          ${esc(t.label)}
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
         </button>
       `).join("")}
     </div>
   `;
 
   const picked = all.filter(it => hasAnyGenre(it, active.match));
-  row.innerHTML = renderCardRow({ items: picked, limit: 18 });
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const moreHref = `./list.html?genre=${encodeURIComponent(active.match.join(","))}${vq}`;
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+
+  setGenreAllLink(active);
 
   tabs.onclick = (ev) => {
     const btn = ev.target?.closest?.("button[data-genre]");
     if (!btn) return;
     const next = btn.getAttribute("data-genre") || "";
     if (!next || next === active.id) return;
+
+    setHomeState({ g: next });
     renderGenreTabsRow({ data, activeId: next });
   };
 }
 
 /* =======================
  * Home：読者層（タブ + 作品一列）
+ * ②タブ状態URL反映 / ③件数バッジ / ④もっと見る
  * ======================= */
-const AUDIENCES = ["少年", "青年", "少女", "女性", "その他"];
-
-function getFirstAudience(it) {
-  const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
-  return arr[0] || "その他";
-}
-
-function renderAudienceTabsRow({ data, activeAud }) {
+function renderAudienceTabsRow({ data, activeAudId }) {
   const tabs = document.getElementById("audienceTabs");
   const row = document.getElementById("audienceRow");
   if (!tabs || !row) return;
@@ -267,32 +366,43 @@ function renderAudienceTabsRow({ data, activeAud }) {
   const all = Array.isArray(data?.items) ? data.items : [];
   if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
 
-  const aud = AUDIENCES.includes(activeAud) ? activeAud : "少年";
+  const counts = audienceCountMap(all);
+  const active = AUDIENCE_TABS.find(x => x.id === activeAudId) || AUDIENCE_TABS[0];
+  const audLabel = active.label;
 
   tabs.innerHTML = `
     <div class="tabrow">
-      ${AUDIENCES.map((a) => `
-        <button class="tab ${a === aud ? "is-active" : ""}" data-aud="${esc(a)}" type="button">
-          ${esc(a)}
+      ${AUDIENCE_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-aud="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
         </button>
       `).join("")}
     </div>
   `;
 
-  const picked = all.filter(it => getFirstAudience(it) === aud);
-  row.innerHTML = renderCardRow({ items: picked, limit: 18 });
+  const picked = all.filter(it => getFirstAudienceLabel(it) === audLabel);
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const moreHref = `./list.html?aud=${encodeURIComponent(audLabel)}${vq}`;
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+
+  setAudienceAllLink(audLabel);
 
   tabs.onclick = (ev) => {
     const btn = ev.target?.closest?.("button[data-aud]");
     if (!btn) return;
     const next = btn.getAttribute("data-aud") || "";
-    if (!next || next === aud) return;
-    renderAudienceTabsRow({ data, activeAud: next });
+    if (!next || next === active.id) return;
+
+    setHomeState({ a: next });
+    renderAudienceTabsRow({ data, activeAudId: next });
   };
 }
 
 /* =======================
- * list.html
+ * list.html（連載誌は表示する）
  * ======================= */
 function renderList(data) {
   const root = document.getElementById("list");
@@ -370,7 +480,7 @@ function renderList(data) {
 }
 
 /* =======================
- * work.html
+ * work.html（連載誌は表示する）
  * ======================= */
 function renderWork(data) {
   const detail = document.getElementById("detail");
@@ -434,9 +544,10 @@ async function run() {
     const url = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
     const data = await loadJson(url, { bust: !!v });
 
-    // Home
-    renderGenreTabsRow({ data, activeId: "action" });
-    renderAudienceTabsRow({ data, activeAud: "少年" });
+    // Home（URLから復元）
+    const st = getHomeState();
+    renderGenreTabsRow({ data, activeId: st.g });
+    renderAudienceTabsRow({ data, activeAudId: st.a });
 
     // List / Work
     renderList(data);
