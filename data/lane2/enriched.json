@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-02-15T15:03:16.230Z",
+  "updatedAt": "2026-02-15T15:27:09.660Z",
   "total": 40,
   "ok": 40,
   "ng": 0,
   "stats": {
-    "skippedAniList": 30,
-    "skippedWiki": 21,
-    "skippedAmazon": 30,
-    "fetchedAmazonAsins": 10,
-    "magAudienceTodoAdded": 8
+    "skippedAniList": 40,
+    "skippedWiki": 26,
+    "skippedAmazon": 40,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 6
   },
   "items": [
     {
@@ -288,13 +288,15 @@
         "publisher": "講談社",
         "author": "ナナシ",
         "releaseDate": "2018-03-09T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "マガジンポケット",
+        "magazines": [
+          "マガジンポケット"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "イジらないで、長瀞さん",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 100664,
         "genres": [
           "Comedy",
@@ -454,13 +456,15 @@
         "publisher": "小学館",
         "author": "伊藤 潤二",
         "releaseDate": "2010-08-30T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ビッグコミックスピリッツ",
+        "magazines": [
+          "ビッグコミックスピリッツ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "うずまき",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30436,
         "genres": [
           "Drama",
@@ -681,13 +685,15 @@
         "publisher": "集英社",
         "author": "原 泰久",
         "releaseDate": "2006-05-19T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングジャンプ",
+        "magazines": [
+          "週刊ヤングジャンプ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "キングダム",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 46765,
         "genres": [
           "Action",
@@ -1189,7 +1195,8 @@
           "ゲッサン"
         ],
         "audiences": [
-          "その他"
+          "青年",
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ドロヘドロ",
@@ -2380,12 +2387,14 @@
         "publisher": "集英社",
         "author": "田口 囁一",
         "releaseDate": "2017-07-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 97553,
         "genres": [
@@ -3054,13 +3063,15 @@
         "publisher": "スクウェア・エニックス",
         "author": "荒川弘",
         "releaseDate": "2002-01-22T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊少年ガンガン",
+        "magazines": [
+          "月刊少年ガンガン"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "鋼の錬金術師",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30025,
         "genres": [
           "Action",
