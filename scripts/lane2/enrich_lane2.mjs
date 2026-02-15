@@ -731,11 +731,18 @@ async function main() {
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
-  // audience map + todo(magazine names)
+    // audience map + todo(magazine names)
   const magAudienceJson = await loadJsonStrict(IN_MAG_AUDIENCE);
   const magAudienceMap = loadMagAudienceMap(magAudienceJson);
+
+  // ★todoは「前回の残骸」が残り続けないように、現時点の辞書で掃除してから使う
   const magAudTodoPrev = await loadJson(IN_MAG_AUDIENCE_TODO, { version: 1, updatedAt: "", items: [] });
   const magAudTodoSet = new Set((magAudTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
+
+  // ★すでに magazine_audience.json に載った雑誌は todo から除外
+  for (const m of Array.from(magAudTodoSet)) {
+    if (magAudienceMap.has(m)) magAudTodoSet.delete(m);
+  }
 
   // PA-API creds
   const accessKey = norm(process.env.AMZ_ACCESS_KEY);
