@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-15T05:50:09.639Z",
+  "updatedAt": "2026-02-15T06:05:54.645Z",
   "total": 30,
   "items": [
     {
@@ -117,7 +117,7 @@
       "isbn13": "9784091512185",
       "asin": "4091512186",
       "synopsis": "小学5年生のプンプンは転校生の愛子に惹かれ、世界や将来への不安を抱えながら日常を過ごす。家庭や周囲の歪みの中で、少年の心が揺れていく。",
-      "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ",
+      "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ[1]",
       "magazineSource": "wikipedia",
       "genres": [
         "Drama",
@@ -142,6 +142,8 @@
       "isbn13": "9784088904320",
       "asin": "408890432X",
       "synopsis": "名門・秀知院学園の生徒会で出会った会長・白銀と副会長・かぐや。両想いなのにプライドが邪魔して告白できず、“相手に告白させる”ための頭脳戦に突入する。",
+      "magazine": "ミラクルジャンプ→週刊ヤングジャンプ",
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Psychological",
@@ -218,6 +220,8 @@
       "isbn13": "9784088825991",
       "asin": "4088825993",
       "synopsis": "幽霊派の女子高生・綾瀬桃と、オカルト好きの同級生。互いに否定するUFOと怪異を証明しようとして、超常の騒動に巻き込まれていく。恋の気配も漂う、オカルティック怪奇バトル開幕。",
+      "magazine": "少年ジャンプ+",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Comedy",
@@ -228,7 +232,6 @@
       ],
       "meta": {
         "anilistId": 132029,
-        "wikiTitle": "ダンダダン",
         "source": "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
       }
     },
@@ -271,6 +274,8 @@
       "isbn13": "9784088704531",
       "asin": "4088704533",
       "synopsis": "バレーボールに魅せられた日向翔陽は初の公式戦で天才・影山に完敗。烏野高校でリベンジを誓い、バレー部の門を叩く青春スポーツ物語。",
+      "magazine": "週刊少年ジャンプ",
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Drama",
@@ -318,6 +323,8 @@
       "isbn13": "9784088807317",
       "asin": "4088807316",
       "synopsis": "『氷の魔女』により雪と飢餓に覆われた世界。再生能力を持つ少年アグニは妹ルナと共に過酷な運命へ立ち向かう、衝撃のダークファンタジー。",
+      "magazine": "少年ジャンプ+",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Drama",
@@ -328,7 +335,6 @@
       ],
       "meta": {
         "anilistId": 87170,
-        "wikiTitle": "ファイアパンチ",
         "source": "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
       }
     },
@@ -422,6 +428,8 @@
       "isbn13": "9784757535435",
       "asin": "4757535430",
       "synopsis": "学校では派手な堀さんと、地味眼鏡に見えて実はピアスだらけの宮村くん。偶然の出会いから、素顔を知り合った二人の距離が少しずつ近づいていく。甘酸っぱいスクールライフ。",
+      "magazine": "月刊Gファンタジー",
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Romance",
@@ -471,7 +479,15 @@
       "synopsis": "人々が“個性”を持つ世界で、少年はヒーローを志す。力は善のためとは限らず、悪もまた存在する中で、憧れに向かって走り出す。",
       "magazine": "週刊少年ジャンプ",
       "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
       "meta": {
+        "anilistId": 85486,
         "wikiTitle": "僕のヒーローアカデミア",
         "source": "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
       }
@@ -602,6 +618,8 @@
       "isbn13": "9784088900810",
       "asin": "4088900812",
       "synopsis": "「あんていく」編から2年後。喰種対策組織CCGは実験体集団「クインクス」を新設し、佐々木琲世一等捜査官のもとで新たな局面へと進む。",
+      "magazine": "週刊ヤングジャンプ",
+      "magazineSource": "manual_override",
       "meta": {
         "source": "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
       }
