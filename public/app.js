@@ -73,7 +73,7 @@ function setStatus(msg) {
 }
 
 /* =======================
- * 表示前の正規化（再発防止用）
+ * 表示前の正規化
  * ======================= */
 function formatYmd(s) {
   const t = toText(s);
@@ -129,11 +129,9 @@ function pills(list) {
 }
 
 /* =======================
- * ジャンル棚（確定10本）
- * ★コメディ棚は作らない
- * ★恋愛・ラブコメに Comedy を混ぜない（Romanceのみ）
+ * ジャンル（確定10本）→ タブに使う
  * ======================= */
-const GENRE_SHELVES = [
+const GENRE_TABS = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
   { id: "fantasy", label: "ファンタジー・異世界", match: ["Fantasy"] },
   { id: "sf", label: "SF", match: ["Sci-Fi"] },
@@ -157,9 +155,6 @@ function parseGenreQuery() {
   return raw.split(",").map(s => s.trim()).filter(Boolean);
 }
 
-/* =======================
- * audience / magazine query (list用)
- * ======================= */
 function parseOneQueryParam(name) {
   const raw = toText(qs().get(name));
   return raw ? raw.trim() : "";
@@ -170,11 +165,9 @@ function hasAudience(it, aud) {
   const a = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
   return a.includes(aud);
 }
-
 function hasMagazine(it, mag) {
   if (!mag) return true;
   const ms = pickArr(it, ["magazines", "vol1.magazines"]).map(toText).filter(Boolean);
-  // fallback: magazine 文字列にしか無い作品があっても拾えるようにする
   const m1 = toText(pick(it, ["magazine", "vol1.magazine"]));
   if (ms.length) return ms.includes(mag);
   return m1.includes(mag);
@@ -197,209 +190,104 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
 }
 
 /* =======================
- * index.html ジャンル棚
+ * 共通：横一列カード列
  * ======================= */
-function renderShelves(data) {
-  const root = document.getElementById("shelves");
-  if (!root) return;
-
-  const items = Array.isArray(data?.items) ? data.items : [];
-  if (!items.length) { root.innerHTML = ""; return; }
-
+function renderCardRow({ items, limit = 18 }) {
   const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-
-  const shelvesHtml = GENRE_SHELVES.map((sh) => {
-    const picked = items
-      .filter((it) => hasAnyGenre(it, sh.match))
-      .slice(0, 12);
-
-    if (!picked.length) return "";
-
-    const jump = `./list.html?genre=${encodeURIComponent(sh.match.join(","))}${vq}`;
-
-    const cards = picked.map((it) => {
-      const seriesKey = toText(pick(it, ["seriesKey"])) || "";
-      const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
-      const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
-      const img = normalizeImgUrl(imgRaw);
-      const key = encodeURIComponent(seriesKey);
-
-      return `
-        <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
-          <div class="shelf-thumb">
-            ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
-          </div>
-          <div class="shelf-title">${esc(seriesKey || title)}</div>
-        </a>
-      `;
-    }).join("");
+  const cards = (items || []).slice(0, limit).map((it) => {
+    const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+    const img = normalizeImgUrl(imgRaw);
+    const key = encodeURIComponent(seriesKey);
 
     return `
-      <section class="shelf">
-        <div class="shelf-head">
-          <a href="${jump}" aria-label="${esc(sh.label)} 一覧を見る">
-            <h2 class="shelf-h">${esc(sh.label)}</h2>
-          </a>
-          <a class="shelf-link" href="${jump}" aria-label="${esc(sh.label)} 一覧を見る">一覧を見る</a>
+      <a class="row-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+        <div class="row-thumb">
+          ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
         </div>
-        <div class="shelf-row">${cards}</div>
-      </section>
+        <div class="row-title">${esc(seriesKey || title)}</div>
+      </a>
     `;
   }).join("");
 
-  root.innerHTML = `
-    <div class="shelf-grid">
-      ${shelvesHtml}
-    </div>
-  `;
+  return `<div class="row-scroll">${cards}</div>`;
 }
 
 /* =======================
- * index.html 読者層→連載誌棚
+ * Home：ジャンル（タブ + 作品一列）
+ * ======================= */
+function renderGenreTabsRow({ data, activeId }) {
+  const tabs = document.getElementById("genreTabs");
+  const row = document.getElementById("genreRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(data?.items) ? data.items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const active = GENRE_TABS.find(x => x.id === activeId) || GENRE_TABS[0];
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${GENRE_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-genre="${esc(t.id)}" type="button">
+          ${esc(t.label)}
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const picked = all.filter(it => hasAnyGenre(it, active.match));
+  row.innerHTML = renderCardRow({ items: picked, limit: 18 });
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-genre]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-genre") || "";
+    if (!next || next === active.id) return;
+    renderGenreTabsRow({ data, activeId: next });
+  };
+}
+
+/* =======================
+ * Home：読者層（タブ + 作品一列）
  * ======================= */
 const AUDIENCES = ["少年", "青年", "少女", "女性", "その他"];
 
 function getFirstAudience(it) {
   const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
-  // audiences が複数でも、ホームのタブは「最初の1つ」に寄せる（棚の重複爆発を防ぐ）
   return arr[0] || "その他";
 }
 
-function getMagazines(it) {
-  const ms = pickArr(it, ["magazines", "vol1.magazines"]).map(toText).filter(Boolean);
-  if (ms.length) return ms;
-  const m1 = toText(pick(it, ["magazine", "vol1.magazine"]));
-  return m1 ? [m1] : [];
-}
-
-function sortByReleaseDesc(a, b) {
-  const da = formatYmd(pick(a, ["releaseDate", "vol1.releaseDate"])) || "";
-  const db = formatYmd(pick(b, ["releaseDate", "vol1.releaseDate"])) || "";
-  // 文字列比較（YYYY-MM-DD）
-  if (da !== db) return db.localeCompare(da);
-  const ta = toText(pick(a, ["seriesKey"])) || "";
-  const tb = toText(pick(b, ["seriesKey"])) || "";
-  return ta.localeCompare(tb);
-}
-
-function buildAudienceMagazineIndex(items) {
-  // aud -> mag -> items[]
-  const map = new Map();
-  for (const it of items) {
-    const aud = getFirstAudience(it);
-    const mags = getMagazines(it);
-    if (!map.has(aud)) map.set(aud, new Map());
-    const mm = map.get(aud);
-
-    for (const mag of mags) {
-      const k = toText(mag);
-      if (!k) continue;
-      if (!mm.has(k)) mm.set(k, []);
-      mm.get(k).push(it);
-    }
-  }
-
-  // sort inside each magazine
-  for (const [aud, mm] of map.entries()) {
-    for (const [mag, arr] of mm.entries()) {
-      arr.sort(sortByReleaseDesc);
-      mm.set(mag, arr);
-    }
-    map.set(aud, mm);
-  }
-
-  return map;
-}
-
-function renderAudienceTabs(activeAud) {
+function renderAudienceTabsRow({ data, activeAud }) {
   const tabs = document.getElementById("audienceTabs");
-  if (!tabs) return;
+  const row = document.getElementById("audienceRow");
+  if (!tabs || !row) return;
 
-  const btns = AUDIENCES.map((a) => {
-    const isOn = a === activeAud;
-    return `<button class="aud-tab ${isOn ? "is-active" : ""}" data-aud="${esc(a)}" type="button">${esc(a)}</button>`;
-  }).join("");
+  const all = Array.isArray(data?.items) ? data.items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
 
-  tabs.innerHTML = `<div class="aud-tabrow">${btns}</div>`;
-}
+  const aud = AUDIENCES.includes(activeAud) ? activeAud : "少年";
 
-function renderAudienceShelvesSection({ data, activeAud }) {
-  const root = document.getElementById("audienceShelves");
-  const tabs = document.getElementById("audienceTabs");
-  if (!root || !tabs) return;
-
-  const items = Array.isArray(data?.items) ? data.items : [];
-  if (!items.length) { root.innerHTML = ""; return; }
-
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-
-  const idx = buildAudienceMagazineIndex(items);
-
-  const aud = AUDIENCES.includes(activeAud) ? activeAud : (AUDIENCES.find(a => idx.has(a)) || "その他");
-  renderAudienceTabs(aud);
-
-  const mm = idx.get(aud) || new Map();
-  // magazines sort: number of items desc
-  const magsSorted = Array.from(mm.entries())
-    .map(([mag, arr]) => ({ mag, arr, count: arr.length }))
-    .sort((a, b) => (b.count - a.count) || a.mag.localeCompare(b.mag))
-    .slice(0, 12); // 棚が増えすぎるので上位だけ
-
-  if (!magsSorted.length) {
-    root.innerHTML = `<div class="status">この読者層に表示できる連載誌がありません</div>`;
-    return;
-  }
-
-  const shelvesHtml = magsSorted.map(({ mag, arr }) => {
-    const picked = arr.slice(0, 12);
-
-    const jump = `./list.html?aud=${encodeURIComponent(aud)}&mag=${encodeURIComponent(mag)}${vq}`;
-
-    const cards = picked.map((it) => {
-      const seriesKey = toText(pick(it, ["seriesKey"])) || "";
-      const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
-      const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
-      const img = normalizeImgUrl(imgRaw);
-      const key = encodeURIComponent(seriesKey);
-
-      return `
-        <a class="shelf-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
-          <div class="shelf-thumb">
-            ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
-          </div>
-          <div class="shelf-title">${esc(seriesKey || title)}</div>
-        </a>
-      `;
-    }).join("");
-
-    return `
-      <section class="shelf">
-        <div class="shelf-head">
-          <a href="${jump}" aria-label="${esc(aud)} / ${esc(mag)} 一覧を見る">
-            <h2 class="shelf-h">${esc(mag)}</h2>
-          </a>
-          <a class="shelf-link" href="${jump}" aria-label="${esc(aud)} / ${esc(mag)} 一覧を見る">一覧を見る</a>
-        </div>
-        <div class="shelf-row">${cards}</div>
-      </section>
-    `;
-  }).join("");
-
-  root.innerHTML = `
-    <div class="aud-shelfgrid">
-      ${shelvesHtml}
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${AUDIENCES.map((a) => `
+        <button class="tab ${a === aud ? "is-active" : ""}" data-aud="${esc(a)}" type="button">
+          ${esc(a)}
+        </button>
+      `).join("")}
     </div>
   `;
 
-  // tab click
+  const picked = all.filter(it => getFirstAudience(it) === aud);
+  row.innerHTML = renderCardRow({ items: picked, limit: 18 });
+
   tabs.onclick = (ev) => {
     const btn = ev.target?.closest?.("button[data-aud]");
     if (!btn) return;
     const next = btn.getAttribute("data-aud") || "";
     if (!next || next === aud) return;
-    renderAudienceShelvesSection({ data, activeAud: next });
+    renderAudienceTabsRow({ data, activeAud: next });
   };
 }
 
@@ -546,9 +434,11 @@ async function run() {
     const url = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
     const data = await loadJson(url, { bust: !!v });
 
-    renderShelves(data);
-    renderAudienceShelvesSection({ data, activeAud: "少年" });
+    // Home
+    renderGenreTabsRow({ data, activeId: "action" });
+    renderAudienceTabsRow({ data, activeAud: "少年" });
 
+    // List / Work
     renderList(data);
     renderWork(data);
   } catch (e) {
