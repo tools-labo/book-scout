@@ -37,6 +37,20 @@ jobs:
         with:
           node-version: 20
 
+      # ★AniList/Wiki/Amazon のローカルキャッシュを Actions cache で永続化
+      - name: Ensure lane2 cache dir
+        run: |
+          set -euo pipefail
+          mkdir -p data/lane2/cache
+
+      - name: Restore lane2 cache
+        uses: actions/cache@v4
+        with:
+          path: data/lane2/cache
+          key: ${{ runner.os }}-lane2-cache-${{ hashFiles('data/lane2/series.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lane2-cache-
+
       - name: Install
         run: npm install
 
@@ -45,6 +59,10 @@ jobs:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
+
+          # 必要なら Secrets/Vars で後から追加できる（未指定ならスクリプト側デフォルトが効く）
+          AMZ_HOST: ${{ secrets.AMZ_HOST }}
+          AMZ_REGION: ${{ secrets.AMZ_REGION }}
 
           LANE2_FIX_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.fix_mode || 'false' }}
         run: |
@@ -69,7 +87,17 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # data/lane2 はコミットするが、cache は Actions cache に任せて repo には入れない
           git add data/lane2
+          git reset -q data/lane2/cache || true
+
+          # 念のため（cache 以外が何も無ければコミットしない）
+          if git diff --cached --quiet; then
+            echo "Only cache changes (or nothing). Skip commit."
+            exit 0
+          fi
+
           git commit -m "lane2: enrich/format/prune"
           git push
 
