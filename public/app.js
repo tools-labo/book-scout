@@ -1,4 +1,4 @@
-// public/app.js  (FULL REPLACE)
+// public/app.js
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -42,7 +42,6 @@ function toText(v) {
   return "";
 }
 
-// works.json が「フラット形式」でも「vol1ネスト形式」でも読めるようにする
 function pick(it, keys) {
   for (const k of keys) {
     const v = k.includes(".")
@@ -74,57 +73,26 @@ function setStatus(msg) {
 }
 
 /* =======================
- * ★再発防止：表示用の正規化
+ * 表示前の正規化（再発防止用）
  * ======================= */
-
-// 発売日：ISOでも何でも "YYYY-MM-DD" を優先表示（末尾のT...Zを出さない）
-function formatReleaseDate(raw) {
-  const s = toText(raw);
-  if (!s) return "";
-  const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
-  return m ? m[1] : s;
+function formatYmd(s) {
+  const t = toText(s);
+  if (!t) return "";
+  // ISO でも "YYYY-MM-DD" でも先頭10文字が日付になる想定
+  if (t.length >= 10 && /^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
+  return t;
 }
 
-// tags: 配列でも文字列でも拾う（"A / B" でも表示できる）
-function normalizeTagList(raw) {
-  if (raw == null) return [];
-  if (Array.isArray(raw)) {
-    return raw.map(toText).filter(Boolean);
-  }
-  if (typeof raw === "string") {
-    const s = raw.trim();
-    if (!s) return [];
-    // "A / B" や "A,B" などを吸収
-    const parts = s.split(/\s*\/\s*|\s*,\s*/g).map(x => x.trim()).filter(Boolean);
-    return parts.length ? parts : [s];
-  }
-  // object などは toText で拾って1要素扱い
-  const t = toText(raw);
-  return t ? [t] : [];
-}
-
-// 重複除去
-function uniqStr(list) {
-  const seen = new Set();
-  const out = [];
-  for (const x of list || []) {
-    const s = toText(x);
-    if (!s) continue;
-    if (seen.has(s)) continue;
-    seen.add(s);
-    out.push(s);
-  }
-  return out;
-}
-
-function getTagsForView(it) {
-  // まず配列を優先
-  const arr = pickArr(it, ["tags", "vol1.tags"]);
-  if (arr.length) return uniqStr(arr.map(toText).filter(Boolean));
-
-  // 次に文字列/その他を拾う
-  const raw = pick(it, ["tags", "vol1.tags"]);
-  return uniqStr(normalizeTagList(raw));
+function normalizeImgUrl(u) {
+  const raw = toText(u);
+  if (!raw) return "";
+  // 1) ざっくりURI化（空白などを潰す）
+  let x = "";
+  try { x = encodeURI(raw); } catch { x = raw; }
+  // 2) Amazon画像URLで + が混ざるケースを安全側に倒す
+  //    （path中の + を %2B に寄せる）
+  x = x.replaceAll("+", "%2B");
+  return x;
 }
 
 /* =======================
@@ -153,8 +121,8 @@ function mapGenres(genres) {
     .map((g) => {
       const s = toText(g);
       if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s; // 日本語はそのまま
-      return GENRE_JA[s] || null; // 辞書外英語は非表示
+      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+      return GENRE_JA[s] || null;
     })
     .filter(Boolean);
 }
@@ -204,8 +172,6 @@ function renderGenreBanner(wanted) {
 
 /* =======================
  * index.html shelves
- * - 2ジャンル横並びは CSS の .shelf-grid が担当
- * - 「一覧を見る」は見出し/文言の2箇所とも list へリンク
  * ======================= */
 function renderShelves(data) {
   const root = document.getElementById("shelves");
@@ -229,7 +195,8 @@ function renderShelves(data) {
     const cards = picked.map((it) => {
       const seriesKey = toText(pick(it, ["seriesKey"])) || "";
       const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
-      const img = toText(pick(it, ["image", "vol1.image"])) || "";
+      const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+      const img = normalizeImgUrl(imgRaw);
       const key = encodeURIComponent(seriesKey);
 
       return `
@@ -289,21 +256,17 @@ function renderList(data) {
     const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
     const author = toText(pick(it, ["author", "vol1.author"])) || "";
 
-    const img = toText(pick(it, ["image", "vol1.image"])) || "";
+    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+    const img = normalizeImgUrl(imgRaw);
+
     const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
 
-    // ★発売日：必ず整形して表示
-    const releaseRaw = pick(it, ["releaseDate", "vol1.releaseDate"]);
-    const release = formatReleaseDate(releaseRaw);
-
+    const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
     const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
     const genresJa = mapGenres(pickArr(it, ["genres", "vol1.genres"]));
-
-    // ★タグ：配列でも文字列でも表示できる
-    const tagsJa = getTagsForView(it).slice(0, 10);
-
+    const tagsJa = pickArr(it, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
     const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
 
     const metaParts = [
@@ -357,21 +320,17 @@ function renderWork(data) {
   const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
   const author = toText(pick(it, ["author", "vol1.author"])) || "";
 
-  const img = toText(pick(it, ["image", "vol1.image"])) || "";
+  const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+  const img = normalizeImgUrl(imgRaw);
+
   const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
 
-  // ★発売日：必ず整形して表示
-  const releaseRaw = pick(it, ["releaseDate", "vol1.releaseDate"]);
-  const release = formatReleaseDate(releaseRaw);
-
+  const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
   const genresJa = mapGenres(pickArr(it, ["genres", "vol1.genres"]));
-
-  // ★タグ：配列でも文字列でも表示できる
-  const tagsJa = getTagsForView(it);
-
+  const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
   const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
 
   const metaParts = [
