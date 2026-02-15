@@ -19,21 +19,29 @@
       <a class="btn" href="./list.html">作品リストへ</a>
     </section>
 
-    <!-- ジャンル（タブ + 作品一列） -->
-    <section class="section-head">
-      <h2 class="section-title">ジャンル</h2>
-      <p class="section-sub">タップでジャンル切り替え。</p>
-    </section>
-    <div id="genreTabs" class="tabs"></div>
-    <section id="genreRow" class="rows"></section>
+    <!-- ジャンル -->
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">ジャンル</h2>
+        <a id="genreAllLink" class="section-link" href="./list.html">一覧を見る</a>
+      </div>
+      <p class="section-sub">タップでジャンル切り替え。深掘りは一覧へ。</p>
 
-    <!-- 読者層（タブ + 作品一列） -->
-    <section class="section-head" style="margin-top: 18px;">
-      <h2 class="section-title">読者層</h2>
-      <p class="section-sub">タップで読者層切り替え。</p>
+      <div id="genreTabs"></div>
+      <div id="genreRow"></div>
     </section>
-    <div id="audienceTabs" class="tabs"></div>
-    <section id="audienceRow" class="rows"></section>
+
+    <!-- 読者層 -->
+    <section class="section" style="margin-top:18px;">
+      <div class="section-head">
+        <h2 class="section-title">読者層</h2>
+        <a id="audienceAllLink" class="section-link" href="./list.html">一覧を見る</a>
+      </div>
+      <p class="section-sub">タップで読者層切り替え。深掘りは一覧へ。</p>
+
+      <div id="audienceTabs"></div>
+      <div id="audienceRow"></div>
+    </section>
   </main>
 
   <!-- ★ ?v= が付いている時だけ app.js も ?v= で読み込む -->
