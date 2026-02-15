@@ -29,6 +29,18 @@ async function loadJson(p, fallback) {
     return fallback;
   }
 }
+
+// ★必須JSONは fallback 禁止（壊れたら落とす）
+async function loadJsonStrict(p) {
+  const txt = await fs.readFile(p, "utf8"); // ここでファイル無い/権限なども落ちる
+  try {
+    return JSON.parse(txt);
+  } catch (e) {
+    const msg = e?.message ? String(e.message) : String(e);
+    throw new Error(`[lane2:enrich] JSON parse failed: ${p} (${msg})`);
+  }
+}
+
 async function saveJson(p, obj) {
   await fs.mkdir(path.dirname(p), { recursive: true });
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
@@ -61,6 +73,18 @@ function uniq(arr) {
 }
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+// ★0件ガード（ここで落ちれば「書き込み」まで到達しない）
+function assertNonEmptySeries(sorted) {
+  if (!Array.isArray(sorted)) {
+    throw new Error("[lane2:enrich] series items is not an array");
+  }
+  if (sorted.length === 0) {
+    throw new Error(
+      "[lane2:enrich] series has 0 items after normalization. Refusing to overwrite outputs."
+    );
+  }
 }
 
 /* -----------------------
@@ -548,8 +572,12 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
  * main
  * ----------------------- */
 async function main() {
-  const seriesJson = await loadJson(IN_SERIES, { version: 1, updatedAt: "", total: 0, items: [] });
-  const items = Array.isArray(seriesJson?.items) ? seriesJson.items : [];
+  // ★series.json は必須：壊れてたら落とす（fallback禁止）
+  const seriesJson = await loadJsonStrict(IN_SERIES);
+  const items = Array.isArray(seriesJson?.items) ? seriesJson.items : null;
+  if (!items) {
+    throw new Error(`[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`);
+  }
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
   const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
@@ -590,6 +618,9 @@ async function main() {
     .map((x) => ({ ...x, seriesKey: norm(x?.seriesKey) }))
     .filter((x) => x.seriesKey)
     .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey));
+
+  // ★0件なら絶対に出力しない
+  assertNonEmptySeries(sorted);
 
   // 先にまとめてPA-API（キャッシュ前提）
   const asins = sorted.map((x) => norm(x?.vol1?.asin)).filter(Boolean);
@@ -678,6 +709,7 @@ async function main() {
     await sleep(250);
   }
 
+  // ★ここまで来たら「正常系」なので書き込みOK（sortedが0ならここに来ない）
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
