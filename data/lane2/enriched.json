@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-02-15T09:46:06.940Z",
-  "total": 30,
-  "ok": 30,
+  "updatedAt": "2026-02-15T15:03:16.230Z",
+  "total": 40,
+  "ok": 40,
   "ng": 0,
   "stats": {
     "skippedAniList": 30,
     "skippedWiki": 21,
     "skippedAmazon": 30,
-    "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0
+    "fetchedAmazonAsins": 10,
+    "magAudienceTodoAdded": 8
   },
   "items": [
     {
@@ -276,6 +276,77 @@
       "meta": null
     },
     {
+      "seriesKey": "イジらないで、長瀞さん",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/イジらないで、長瀞さん-1-講談社コミックス-ナナシ/dp/406511196X",
+        "amazonDp": "https://www.amazon.co.jp/dp/406511196X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065111963",
+        "asin": "406511196X",
+        "title": "イジらないで、長瀞さん(1) (少年マガジンコミックス)",
+        "synopsis": "図書室で出会ったドSな後輩・長瀞さんに目をつけられ、先輩は日々からかわれ振り回される。憎たらしさと愛おしさが同居する距離感で進む、ちょっと歪なラブコメディ。",
+        "image": "https://m.media-amazon.com/images/I/51FiES7aucL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "ナナシ",
+        "releaseDate": "2018-03-09T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "イジらないで、長瀞さん",
+        "anilistId": 100664,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Bullying",
+          "Heterosexual",
+          "Female Protagonist",
+          "Tsundere",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Tanned Skin",
+          "School",
+          "Drawing",
+          "Primarily Female Cast",
+          "School Club",
+          "Shounen",
+          "Tomboy",
+          "Urban",
+          "Martial Arts",
+          "Slapstick",
+          "Judo",
+          "Gyaru",
+          "Nudity",
+          "Yandere"
+        ],
+        "tags": [
+          "いじめ",
+          "ツンデレ",
+          "学園",
+          "絵・作画",
+          "部活",
+          "少年向け",
+          "ボーイッシュ",
+          "都会",
+          "武術",
+          "ドタバタ",
+          "ギャル",
+          "ヤンデレ"
+        ],
+        "tags_missing_en": [
+          "Tanned Skin",
+          "Judo"
+        ],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/ヴィンランド・サガ-1-アフタヌーンKC-幸村-誠/dp/4063144232",
@@ -364,6 +435,77 @@
           "環境（環境問題）",
           "先住民文化",
           "時系列シャッフル"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "うずまき",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/うずまき-ビッグコミックススペシャル-伊藤-潤二/dp/4091832423",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091832423?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091832429",
+        "asin": "4091832423",
+        "title": "うずまき (ビッグコミックススペシャル)",
+        "synopsis": "女子高生・桐絵の住む黒渦町で、渦を巻く異変が町中に広がり、人々の身体や日常までもが“うずまき”に侵食されていく。呪いから逃れるため、桐絵は町からの脱出を試みる。",
+        "image": "https://m.media-amazon.com/images/I/51D6LDk3sfL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "伊藤 潤二",
+        "releaseDate": "2010-08-30T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "うずまき",
+        "anilistId": 30436,
+        "genres": [
+          "Drama",
+          "Horror",
+          "Mystery",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Body Horror",
+          "Cosmic Horror",
+          "Survival",
+          "Seinen",
+          "Female Protagonist",
+          "Gore",
+          "Episodic",
+          "Philosophy",
+          "Lost Civilization",
+          "Rural",
+          "Cannibalism",
+          "Urban Fantasy",
+          "Heterosexual",
+          "Suicide",
+          "Curses",
+          "Bullying",
+          "Demons",
+          "Unrequited Love",
+          "Cult",
+          "Yandere"
+        ],
+        "tags": [
+          "コズミックホラー",
+          "サバイバル",
+          "青年向け",
+          "哲学",
+          "失われた文明",
+          "田舎",
+          "現代ファンタジー",
+          "呪い",
+          "いじめ",
+          "悪魔",
+          "片思い",
+          "カルト",
+          "ヤンデレ"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -527,6 +669,82 @@
       "meta": null
     },
     {
+      "seriesKey": "キングダム",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/キングダム-1-ヤングジャンプコミックス-原-泰久/dp/408877079X/",
+        "amazonDp": "https://www.amazon.co.jp/dp/408877079X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088770796",
+        "asin": "408877079X",
+        "title": "キングダム 1 (ヤングジャンプコミックス)",
+        "synopsis": "紀元前の中国、戦国の大乱世。下僕の少年・信は、天下の大将軍を目指して戦場へ身を投じる。国家統一へ向かう激動の時代で、夢と成り上がりの戦記が始まる。",
+        "image": "https://m.media-amazon.com/images/I/51bLvvaTB5L._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "原 泰久",
+        "releaseDate": "2006-05-19T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "キングダム",
+        "anilistId": 46765,
+        "genres": [
+          "Action",
+          "Drama"
+        ],
+        "tags_en": [
+          "Military",
+          "Historical",
+          "War",
+          "Ancient China",
+          "Politics",
+          "Royal Affairs",
+          "Male Protagonist",
+          "Seinen",
+          "Coming of Age",
+          "Swordplay",
+          "Foreign",
+          "Heterosexual",
+          "Gore",
+          "Primarily Male Cast",
+          "Fugitive",
+          "Conspiracy",
+          "Body Horror",
+          "Archery",
+          "Ensemble Cast",
+          "Spearplay",
+          "Assassins",
+          "Torture",
+          "Crossdressing",
+          "Nudity",
+          "Magic"
+        ],
+        "tags": [
+          "軍事",
+          "歴史",
+          "戦争",
+          "古代中国",
+          "政治",
+          "王侯貴族",
+          "青年向け",
+          "成長譚",
+          "剣術",
+          "海外",
+          "逃亡者",
+          "陰謀",
+          "弓術",
+          "槍術",
+          "暗殺者",
+          "女装・男装",
+          "魔法"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ジョジョの奇妙な冒険 スティール・ボール・ラン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/スティール・ボール・ラン-1-ジャンプコミックス-荒木-飛呂彦/dp/408873601X",
@@ -613,6 +831,79 @@
           "鉄道",
           "恐竜",
           "ギャンブル"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/ストーンオーシャン-1-ジョジョの奇妙な冒険-第6部-ジャンプコミックス/dp/4088728661",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088728661?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088728667",
+        "asin": "4088728661",
+        "title": "ジョジョの奇妙な冒険 第6部 ストーンオーシャン 1 (ジャンプコミックス)",
+        "synopsis": "罠にはめられ刑務所送りとなった空条徐倫は、父・承太郎から託されたペンダントをきっかけに不思議な力へ目覚める。監獄を舞台に、陰謀と戦いの物語が動き出す。",
+        "image": "https://m.media-amazon.com/images/I/51zaAAr82iL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "荒木 飛呂彦",
+        "releaseDate": "2000-05-01T00:00:01Z",
+        "magazine": "週刊少年ジャンプ ウルトラジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ",
+          "ウルトラジャンプ"
+        ],
+        "audiences": [
+          "少年",
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ジョジョの奇妙な冒険",
+        "anilistId": 33009,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Super Power",
+          "Female Protagonist",
+          "Prison",
+          "Urban Fantasy",
+          "Memory Manipulation",
+          "Foreign",
+          "Crime",
+          "Gore",
+          "Primarily Female Cast",
+          "Body Horror",
+          "Shounen",
+          "Ensemble Cast",
+          "Philosophy",
+          "LGBTQ+ Themes",
+          "Religion",
+          "Cosmic Horror",
+          "Amnesia",
+          "Transgender",
+          "Disability"
+        ],
+        "tags": [
+          "超能力",
+          "刑務所（監獄）",
+          "現代ファンタジー",
+          "記憶操作",
+          "海外",
+          "犯罪",
+          "少年向け",
+          "哲学",
+          "LGBTQ+テーマ",
+          "宗教",
+          "コズミックホラー",
+          "記憶喪失",
+          "トランスジェンダー",
+          "障害"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -872,6 +1163,103 @@
         "source": "manual_batch",
         "addedAt": "2026-02-13"
       }
+    },
+    {
+      "seriesKey": "ドロヘドロ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/ドロヘドロ-1-BIC-COMICS-IKKI/dp/4091882714",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091882714?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091882714",
+        "asin": "4091882714",
+        "title": "ドロヘドロ 1 BIC COMICS IKKI",
+        "synopsis": "魔法使いに頭を爬虫類の姿へ変えられた男・カイマンは、失った記憶と元の姿を取り戻すため、相棒ニカイドウと“魔法使い狩り”に挑む。ドアで繋がる二つの世界を舞台に、混沌と抗争が加速していく。",
+        "image": "https://m.media-amazon.com/images/I/51CJFSSAM3L._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "林田 球",
+        "releaseDate": "2002-01-30T00:00:01Z",
+        "magazine": "(1) 週刊ビッグコミックスピリッツ増刊イッキ (2) 月刊IKKI (3) ヒバナ (4) ゲッサン",
+        "magazines": [
+          "(1)",
+          "週刊ビッグコミックスピリッツ増刊イッキ",
+          "(2)",
+          "月刊IKKI",
+          "(3)",
+          "ヒバナ",
+          "(4)",
+          "ゲッサン"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ドロヘドロ",
+        "anilistId": 31133,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Horror",
+          "Mystery"
+        ],
+        "tags_en": [
+          "Dissociative Identities",
+          "Magic",
+          "Ensemble Cast",
+          "Anti-Hero",
+          "Amnesia",
+          "Seinen",
+          "Dystopian",
+          "Revenge",
+          "Body Horror",
+          "Monster Boy",
+          "Gore",
+          "Surreal Comedy",
+          "Primarily Adult Cast",
+          "Demons",
+          "Urban Fantasy",
+          "Curses",
+          "Super Power",
+          "Cosmic Horror",
+          "Henshin",
+          "Gangs",
+          "Nudity",
+          "Anthropomorphism",
+          "Animals",
+          "Zombie",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Cyberpunk",
+          "Gender Bending"
+        ],
+        "tags": [
+          "解離性同一性障害（多重人格）",
+          "魔法",
+          "アンチヒーロー",
+          "記憶喪失",
+          "青年向け",
+          "ディストピア",
+          "復讐",
+          "モンスター男子",
+          "不条理コメディ",
+          "悪魔",
+          "現代ファンタジー",
+          "呪い",
+          "超能力",
+          "コズミックホラー",
+          "変身",
+          "ギャング",
+          "擬人化",
+          "動物",
+          "性転換"
+        ],
+        "tags_missing_en": [
+          "Zombie",
+          "Cyberpunk"
+        ],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
     },
     {
       "seriesKey": "ハイキュー！！",
@@ -1173,6 +1561,75 @@
           "年齢退行",
           "ダンジョン",
           "疑似家族"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ブルーピリオド",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/ブルーピリオド-1-アフタヌーンKC-山口-つばさ/dp/4065105862/ref=monarch_sidesheet",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065105862?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065105863",
+        "asin": "4065105862",
+        "title": "ブルーピリオド(1) (アフタヌーンKC)",
+        "synopsis": "成績優秀で要領よく生きてきた高校生・八虎は、一枚の絵に心を奪われ、美術の世界へ踏み出す。美大合格を目指し、“好き”を武器に努力と葛藤の青春受験に挑む。",
+        "image": "https://m.media-amazon.com/images/I/51JXLo3YvAL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "山口 つばさ",
+        "releaseDate": "2017-12-22T00:00:01Z",
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ブルーピリオド",
+        "anilistId": 107237,
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Drawing",
+          "Coming of Age",
+          "College",
+          "Seinen",
+          "Male Protagonist",
+          "Educational",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "LGBTQ+ Themes",
+          "School",
+          "School Club",
+          "Transgender",
+          "Bisexual",
+          "Primarily Teen Cast",
+          "Crossdressing",
+          "Suicide",
+          "Gender Bending",
+          "Nudity",
+          "Tomboy"
+        ],
+        "tags": [
+          "絵・作画",
+          "成長譚",
+          "大学",
+          "青年向け",
+          "教育",
+          "哲学",
+          "LGBTQ+テーマ",
+          "学園",
+          "部活",
+          "トランスジェンダー",
+          "バイセクシュアル",
+          "女装・男装",
+          "性転換",
+          "ボーイッシュ"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -1814,6 +2271,157 @@
       "meta": null
     },
     {
+      "seriesKey": "宝石の国",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/-/en/宝石の国-1-アフタヌーンKC-市川-春子/dp/4063879062",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063879062?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063879063",
+        "asin": "4063879062",
+        "title": "宝石の国(1) (アフタヌーンKC)",
+        "synopsis": "遥か未来、宝石の身体を持つ“宝石”たちは、彼らを狙う月人に備えて役割を担っていた。何も任されていなかったフォスは博物誌の編纂を命じられ、世界の真相へ踏み込んでいく。",
+        "image": "https://m.media-amazon.com/images/I/61BFjZZRVEL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "市川 春子",
+        "releaseDate": "2013-07-23T00:00:01Z",
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "宝石の国",
+        "anilistId": 74489,
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Mystery",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Philosophy",
+          "Anthropomorphism",
+          "Seinen",
+          "Religion",
+          "Coming of Age",
+          "Anti-Hero",
+          "Cosmic Horror",
+          "Shapeshifting",
+          "Body Horror",
+          "Post-Apocalyptic",
+          "Revenge",
+          "Amnesia",
+          "Agender",
+          "Dissociative Identities",
+          "Memory Manipulation",
+          "Ensemble Cast",
+          "Space",
+          "Asexual",
+          "Aliens",
+          "Gender Bending",
+          "Politics",
+          "Robots",
+          "LGBTQ+ Themes",
+          "Swordplay",
+          "Suicide",
+          "Gods",
+          "Foreign",
+          "School",
+          "Work",
+          "Nudity"
+        ],
+        "tags": [
+          "哲学",
+          "擬人化",
+          "青年向け",
+          "宗教",
+          "成長譚",
+          "アンチヒーロー",
+          "コズミックホラー",
+          "変身能力",
+          "終末後",
+          "復讐",
+          "記憶喪失",
+          "無性別",
+          "解離性同一性障害（多重人格）",
+          "記憶操作",
+          "宇宙人",
+          "性転換",
+          "政治",
+          "ロボット",
+          "LGBTQ+テーマ",
+          "剣術",
+          "神々",
+          "海外",
+          "学園",
+          "仕事"
+        ],
+        "tags_missing_en": [
+          "Space",
+          "Asexual"
+        ],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "寿命を買い取ってもらった。一年につき、一万円で。",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/寿命を買い取ってもらった%E3%80%82一年につき、一万円で%E3%80%82-1-ジャンプコミックス-田口-囁一/dp/4088811216",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088811216?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088811215",
+        "asin": "4088811216",
+        "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックス)",
+        "synopsis": "無気力に生きていた青年クスノキは、寿命を買い取る店に辿り着き、大半の寿命を売って余命3か月となる。残りの時間を監視員ミヤギと共に過ごしながら、人生の意味と向き合っていく。",
+        "image": "https://m.media-amazon.com/images/I/51dIoHt2ZmL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "田口 囁一",
+        "releaseDate": "2017-07-04T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 97553,
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Coming of Age",
+          "Philosophy",
+          "Male Protagonist",
+          "Primarily Adult Cast",
+          "Urban Fantasy",
+          "Heterosexual",
+          "Suicide",
+          "Shounen",
+          "Drawing",
+          "Photography",
+          "Mopeds"
+        ],
+        "tags": [
+          "成長譚",
+          "哲学",
+          "現代ファンタジー",
+          "少年向け",
+          "絵・作画",
+          "写真",
+          "原付"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "怪獣８号",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/怪獣8号-1-ジャンプコミックス-松本-直也/dp/408882525X",
@@ -2273,6 +2881,72 @@
       "meta": null
     },
     {
+      "seriesKey": "葬送のフリーレン",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/葬送のフリーレン-1-少年サンデーコミックス-山田-鐘人/dp/4098501805",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784098501809",
+        "asin": "4098501805",
+        "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
+        "synopsis": "魔王を倒した勇者一行の“その後”を描く後日譚ファンタジー。長命のエルフ魔法使いフリーレンは、仲間たちの死や別れを通して、人の時間と想いの重さを知っていく。",
+        "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "山田 鐘人 / アベツカサ",
+        "releaseDate": "2020-08-18T00:00:01Z",
+        "magazine": "週刊少年サンデー",
+        "magazines": [
+          "週刊少年サンデー"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "葬送のフリーレン",
+        "anilistId": 118586,
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Magic",
+          "Travel",
+          "Elf",
+          "Philosophy",
+          "Female Protagonist",
+          "Demons",
+          "Iyashikei",
+          "Medieval",
+          "Kuudere",
+          "Episodic",
+          "Spearplay",
+          "Heterosexual",
+          "Shounen",
+          "Fairy Tale",
+          "Food",
+          "Dungeon"
+        ],
+        "tags": [
+          "魔法",
+          "旅",
+          "エルフ",
+          "哲学",
+          "悪魔",
+          "癒し系",
+          "中世",
+          "クーデレ",
+          "槍術",
+          "少年向け",
+          "童話",
+          "グルメ",
+          "ダンジョン"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "進撃の巨人",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/進撃の巨人-1-少年マガジンKC-諫山-創/dp/4063842762",
@@ -2366,6 +3040,96 @@
         "source": "manual_batch",
         "addedAt": "2026-02-13"
       }
+    },
+    {
+      "seriesKey": "鋼の錬金術師",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/鋼の錬金術師-1-ガンガンコミックス-荒川弘/dp/4757506201",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757506201?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784757506206",
+        "asin": "4757506201",
+        "title": "鋼の錬金術師(1) (ガンガンコミックス)",
+        "synopsis": "亡き母を甦らせようと禁断の人体錬成に挑んだ兄弟は、取り返しのつかない代償を負う。失った身体を取り戻すため、国家錬金術師となったエドとアルは“賢者の石”を求め旅に出る。",
+        "image": "https://m.media-amazon.com/images/I/51Nj8j-sXyL._SL500_.jpg",
+        "publisher": "スクウェア・エニックス",
+        "author": "荒川弘",
+        "releaseDate": "2002-01-22T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "鋼の錬金術師",
+        "anilistId": 30025,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Alchemy",
+          "Conspiracy",
+          "Politics",
+          "Philosophy",
+          "Military",
+          "War",
+          "Shounen",
+          "Male Protagonist",
+          "Disability",
+          "Travel",
+          "Steampunk",
+          "Ensemble Cast",
+          "Body Horror",
+          "Super Power",
+          "Magic",
+          "Lost Civilization",
+          "Chimera",
+          "Primarily Adult Cast",
+          "Primarily Male Cast",
+          "Shapeshifting",
+          "Guns",
+          "Gore",
+          "Historical",
+          "Cars",
+          "Tsundere",
+          "Heterosexual",
+          "Kuudere",
+          "Tomboy",
+          "Trains",
+          "Urban Fantasy"
+        ],
+        "tags": [
+          "錬金術",
+          "陰謀",
+          "政治",
+          "哲学",
+          "軍事",
+          "戦争",
+          "少年向け",
+          "障害",
+          "旅",
+          "スチームパンク",
+          "超能力",
+          "魔法",
+          "失われた文明",
+          "キメラ",
+          "変身能力",
+          "銃",
+          "歴史",
+          "車",
+          "ツンデレ",
+          "クーデレ",
+          "ボーイッシュ",
+          "鉄道",
+          "現代ファンタジー"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
     },
     {
       "seriesKey": "鬼滅の刃",
