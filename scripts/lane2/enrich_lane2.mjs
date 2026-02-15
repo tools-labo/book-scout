@@ -54,14 +54,14 @@ function norm(s) {
 function normTagKey(s) {
   return String(s ?? "")
     .trim()
-    .replace(/\u00A0/g, " ")           // NBSP
-    .replace(/\s+/g, " ")             // 多重スペース
-    .replace(/[’´`]/g, "'")           // アポストロフィ揺れ
-    .replace(/[‐-‒–—−]/g, "-")        // ハイフン/ダッシュ揺れ
-    .replace(/[“”]/g, '"')            // ダブルクォート揺れ
+    .replace(/\u00A0/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/[’´`]/g, "'")
+    .replace(/[‐-‒–—−]/g, "-")
+    .replace(/[“”]/g, '"')
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
-    .normalize("NFKC");               // 全角/互換の寄せ
+    .normalize("NFKC");
 }
 
 function toHalfWidth(s) {
@@ -181,23 +181,39 @@ function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
 }
 
 /* -----------------------
- * AniList (genres/tags)
- * - ★HTTPエラーは null キャッシュしない（再取得できるように）
- * - ★429/5xx はリトライ＋バックオフ
- * - ★結果ステータスを返す
+ * “充足判定” = ここが差分エンリッチの核
  * ----------------------- */
-function isRetryableStatus(status) {
-  return status === 429 || (status >= 500 && status <= 599);
+function hasAniListFilled(prevVol1) {
+  return !!(
+    prevVol1 &&
+    prevVol1.anilistId &&
+    Array.isArray(prevVol1.genres) && prevVol1.genres.length > 0 &&
+    Array.isArray(prevVol1.tags_en) && prevVol1.tags_en.length > 0
+  );
+}
+function hasMagazineFilled(prevVol1) {
+  return !!(prevVol1 && norm(prevVol1.magazine));
+}
+function hasAmazonFilled(prevVol1) {
+  return !!(
+    prevVol1 &&
+    norm(prevVol1.amazonDp) &&
+    norm(prevVol1.image) &&
+    norm(prevVol1.publisher) &&
+    norm(prevVol1.author) &&
+    norm(prevVol1.releaseDate)
+  );
 }
 
+/* -----------------------
+ * AniList (genres/tags)
+ * ----------------------- */
 async function fetchAniListBySeriesKey({ seriesKey, cache }) {
   const key = norm(seriesKey);
-  if (!key) return { ok: false, reason: "no_seriesKey", status: "no_seriesKey" };
+  if (!key) return { ok: false, reason: "no_seriesKey" };
 
-  // 旧キャッシュ互換：mediaオブジェクト or null
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
-    const c = cache[key];
-    return { ok: true, data: c, cached: true, found: !!c, status: c ? "ok" : "not_found_cached" };
+    return { ok: true, data: cache[key], cached: true };
   }
 
   const query = `
@@ -215,94 +231,59 @@ async function fetchAniListBySeriesKey({ seriesKey, cache }) {
     }
   `;
 
-  const url = "https://graphql.anilist.co";
+  const r = await fetch("https://graphql.anilist.co", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      accept: "application/json",
+      "user-agent": "tools-labo/book-scout lane2 anilist",
+    },
+    body: JSON.stringify({ query, variables: { search: key } }),
+  });
 
-  // リトライ設定
-  const maxAttempts = 4; // 1 + 3 retries
-  const baseDelayMs = 700;
-
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    let r;
-    try {
-      r = await fetch(url, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          accept: "application/json",
-          "user-agent": "tools-labo/book-scout lane2 anilist",
-        },
-        body: JSON.stringify({ query, variables: { search: key } }),
-      });
-    } catch (e) {
-      // ネットワーク例外：リトライ対象
-      const reason = "anilist_fetch_error";
-      if (attempt === maxAttempts) {
-        return { ok: false, reason, status: "error" };
-      }
-      const wait = baseDelayMs * Math.pow(2, attempt - 1);
-      console.warn(`[lane2:enrich] anilist ${reason} seriesKey="${key}" attempt=${attempt}/${maxAttempts} wait=${wait}ms`);
-      await sleep(wait);
-      continue;
-    }
-
-    if (!r.ok) {
-      const st = r.status;
-      if (isRetryableStatus(st) && attempt < maxAttempts) {
-        const wait = baseDelayMs * Math.pow(2, attempt - 1);
-        console.warn(`[lane2:enrich] anilist http_${st} seriesKey="${key}" attempt=${attempt}/${maxAttempts} wait=${wait}ms`);
-        await sleep(wait);
-        continue;
-      }
-
-      // ★ここ重要：HTTPエラーは cache に書かない（null固定化を防ぐ）
-      return { ok: false, reason: `anilist_http_${st}`, status: `http_${st}` };
-    }
-
-    const json = await r.json();
-    const list = json?.data?.Page?.media;
-
-    if (!Array.isArray(list) || !list.length) {
-      // ★「見つからない」は null キャッシュOK
-      cache[key] = null;
-      return { ok: true, data: null, found: false, status: "not_found" };
-    }
-
-    const s0 = normLoose(toHalfWidth(key));
-
-    function scoreMedia(m) {
-      let score = 0;
-      const titles = [
-        m?.title?.native,
-        m?.title?.romaji,
-        m?.title?.english,
-        ...(Array.isArray(m?.synonyms) ? m.synonyms : []),
-      ]
-        .filter(Boolean)
-        .map((t) => normLoose(toHalfWidth(t)));
-
-      if (titles.some((t) => t === s0)) score += 1000;
-      if (titles.some((t) => t.includes(s0))) score += 300;
-
-      const fmt = String(m?.format || "");
-      if (fmt === "MANGA") score += 40;
-      if (fmt === "ONE_SHOT") score -= 9999;
-
-      if (Array.isArray(m?.genres) && m.genres.length) score += 10;
-      if (Array.isArray(m?.tags) && m.tags.length) score += 10;
-      return score;
-    }
-
-    const withScore = list.map((m) => ({ m, score: scoreMedia(m) }));
-    withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-    const best = withScore[0]?.m || null;
-
-    // ★best が取れたらキャッシュ
-    cache[key] = best ?? null;
-    return { ok: true, data: best, found: !!best, status: best ? "ok" : "not_found" };
+  if (!r.ok) {
+    // 429は上位で扱う（ここではcacheにnullを確定しない）
+    return { ok: false, reason: `anilist_http_${r.status}` };
   }
 
-  // 到達しない想定
-  return { ok: false, reason: "anilist_unknown", status: "error" };
+  const json = await r.json();
+  const list = json?.data?.Page?.media;
+  if (!Array.isArray(list) || !list.length) {
+    cache[key] = null;
+    return { ok: true, data: null, found: false };
+  }
+
+  const s0 = normLoose(toHalfWidth(key));
+
+  function scoreMedia(m) {
+    let score = 0;
+    const titles = [
+      m?.title?.native,
+      m?.title?.romaji,
+      m?.title?.english,
+      ...(Array.isArray(m?.synonyms) ? m.synonyms : []),
+    ]
+      .filter(Boolean)
+      .map((t) => normLoose(toHalfWidth(t)));
+
+    if (titles.some((t) => t === s0)) score += 1000;
+    if (titles.some((t) => t.includes(s0))) score += 300;
+
+    const fmt = String(m?.format || "");
+    if (fmt === "MANGA") score += 40;
+    if (fmt === "ONE_SHOT") score -= 9999;
+
+    if (Array.isArray(m?.genres) && m.genres.length) score += 10;
+    if (Array.isArray(m?.tags) && m.tags.length) score += 10;
+    return score;
+  }
+
+  const withScore = list.map((m) => ({ m, score: scoreMedia(m) }));
+  withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  const best = withScore[0]?.m || null;
+
+  cache[key] = best ?? null;
+  return { ok: true, data: best, found: !!best };
 }
 
 function extractFromAniList(media) {
@@ -339,9 +320,7 @@ function extractMagazineFromInfoboxHtml(html) {
   if (!m) return null;
 
   const text = stripHtml(m[1]);
-
   const cleaned = text
-    .replace(/$begin:math:display$\\s\*\\d\+\\s\*$end:math:display$/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -502,18 +481,15 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
 
   const txt = await r.text();
   let json = null;
-  try {
-    json = JSON.parse(txt);
-  } catch {
-    json = null;
-  }
+  try { json = JSON.parse(txt); } catch { json = null; }
+
   if (!r.ok) {
     return { ok: false, status: r.status, json, text: txt };
   }
   return { ok: true, status: r.status, json };
 }
 
-// ★出版社の扱い修正版（ByLineInfoにPublisherは無い → Manufacturerを出版社として採用）
+// ★出版社の扱い修正版（ByLineInfoのManufacturerを出版社扱い）
 function extractPaapiItem(item) {
   if (!item) return null;
 
@@ -628,6 +604,35 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
 }
 
 /* -----------------------
+ * AniList retry wrapper（429対策）
+ * - 429が続くときは「それ以上叩かない」ことが重要
+ * ----------------------- */
+async function fetchAniListWithRetry({ seriesKey, cache }) {
+  const max = 4;
+  let wait = 700;
+
+  for (let i = 1; i <= max; i++) {
+    const res = await fetchAniListBySeriesKey({ seriesKey, cache });
+
+    if (res.ok) return res;
+
+    // 429は待って再試行（ただし最後までダメなら諦め）
+    if (res.reason === "anilist_http_429") {
+      console.log(
+        `[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`
+      );
+      await sleep(wait);
+      wait *= 2;
+      continue;
+    }
+
+    return res;
+  }
+
+  return { ok: false, reason: "anilist_http_429_exhausted" };
+}
+
+/* -----------------------
  * main
  * ----------------------- */
 async function main() {
@@ -639,6 +644,16 @@ async function main() {
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
   const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
+
+  // 前回の enriched を“成果キャッシュ”として読む
+  const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
+  const prevMap = new Map(
+    (Array.isArray(prevEnriched?.items) ? prevEnriched.items : [])
+      .map((x) => [norm(x?.seriesKey), x])
+      .filter(([k]) => k)
+  );
+
+  await fs.mkdir(CACHE_DIR, { recursive: true });
 
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
@@ -670,7 +685,6 @@ async function main() {
     region: norm(process.env.AMZ_REGION) || "us-west-2",
   };
 
-  // series.json を安定整列
   const sorted = items
     .map((x) => ({ ...x, seriesKey: norm(x?.seriesKey) }))
     .filter((x) => x.seriesKey)
@@ -678,62 +692,128 @@ async function main() {
 
   assertNonEmptySeries(sorted);
 
-  // 先にまとめてPA-API
-  const asins = sorted.map((x) => norm(x?.vol1?.asin)).filter(Boolean);
-  await fetchPaapiByAsins({ asins, cache: cacheAmz, creds });
+  // --- 差分PA-API: 既にAmazon情報が揃ってる作品は呼ばない
+  const asinsNeed = [];
+  for (const x of sorted) {
+    const seriesKey = norm(x?.seriesKey);
+    const v = x?.vol1 || {};
+    const asin = norm(v?.asin) || null;
+
+    const prev = prevMap.get(seriesKey);
+    const prevVol1 = prev?.vol1 || null;
+
+    // 前回が埋まってるならPA-API不要（ただしcacheAmzには保存されないこともあるので、前回値を後で流用する）
+    if (!asin) continue;
+    if (hasAmazonFilled(prevVol1)) continue;
+
+    // まだcacheに無いなら取得候補
+    if (!Object.prototype.hasOwnProperty.call(cacheAmz, asin)) {
+      asinsNeed.push(asin);
+    }
+  }
+
+  await fetchPaapiByAsins({ asins: asinsNeed, cache: cacheAmz, creds });
 
   const enriched = [];
   let ok = 0;
   let ng = 0;
+  let skippedAni = 0;
+  let skippedWiki = 0;
+  let skippedAmz = 0;
 
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
     const v = x?.vol1 || {};
 
+    const prev = prevMap.get(seriesKey);
+    const prevVol1 = prev?.vol1 || null;
+
     const amazonUrl = norm(v?.amazonUrl) || null;
     const isbn13 = norm(v?.isbn13) || null;
     const asin = norm(v?.asin) || null;
 
-    // 連載誌：manual override > wiki
+    // 連載誌：manual override > 前回値 > wiki
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
-    let wikiMag = null;
+    let magazine = null;
+    let magazineSource = null;
     let wikiTitle = null;
-    if (!manualMag) {
+
+    if (manualMag) {
+      magazine = manualMag;
+      magazineSource = "manual_override";
+      wikiTitle = null;
+    } else if (hasMagazineFilled(prevVol1)) {
+      magazine = norm(prevVol1.magazine) || null;
+      magazineSource = norm(prevVol1.magazineSource) || null;
+      wikiTitle = prevVol1.wikiTitle ?? null;
+      skippedWiki++;
+    } else {
       const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
-      wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
+      const wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
       wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
+      magazine = norm(wikiMag) || null;
+      magazineSource = magazine ? "wikipedia" : null;
+      await sleep(150);
     }
-    const magazine = manualMag || wikiMag || null;
 
-    // anilist（ステータス付き）
-    const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList });
-    const anilistStatus = an?.ok ? (an.status || "ok") : (an?.status || an?.reason || "error");
+    // AniList：前回埋まってるなら再取得しない
+    let anilistId = prevVol1?.anilistId ?? null;
+    let genres = Array.isArray(prevVol1?.genres) ? prevVol1.genres : [];
+    let tagsEn = Array.isArray(prevVol1?.tags_en) ? prevVol1.tags_en : [];
 
-    // ★anilistがエラーなら ng にカウント（全体ログで見えるように）
-    if (!an?.ok) ng++;
+    let tagsJa = Array.isArray(prevVol1?.tags) ? prevVol1.tags : [];
+    let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
-    const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
-    const applied = applyTagDict({ tagsEn: anx.tags, tagMap, hideSet, todoSet });
+    if (hasAniListFilled(prevVol1)) {
+      skippedAni++;
+    } else {
+      const an = await fetchAniListWithRetry({ seriesKey, cache: cacheAniList });
+      if (an?.ok) {
+        const anx = extractFromAniList(an.data);
+        anilistId = anx.id;
+        genres = uniq(anx.genres);
+        tagsEn = uniq(anx.tags);
 
-    // amazon PA-API（キャッシュ）
+        const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
+        tagsJa = applied.tags;
+        tagsMissing = applied.tags_missing_en;
+      } else {
+        // 429などで失敗した場合は「空のまま」= 次回差分で再挑戦対象になる
+        ng++;
+      }
+      await sleep(250);
+    }
+
+    // Amazon：manual title優先。Amazon情報は「前回値」→「cache(PA-API)」の順で埋める
+    const manualTitle = norm(v?.title) || null;
+
+    const prevAmazonDp = norm(prevVol1?.amazonDp) || null;
+    const prevImage = norm(prevVol1?.image) || null;
+    const prevPublisher = norm(prevVol1?.publisher) || null;
+    const prevAuthor = norm(prevVol1?.author) || null;
+    const prevReleaseDate = norm(prevVol1?.releaseDate) || null;
+
     const amz = asin ? (cacheAmz?.[asin] ?? null) : null;
 
-    // title は manual を尊重。無ければPA-APIで補完。
-    const manualTitle = norm(v?.title) || null;
-    const title = manualTitle || norm(amz?.title) || null;
+    const amazonDp = prevAmazonDp || norm(amz?.amazonDp) || null;
+    const image = prevImage || norm(amz?.image) || null;
+    const publisher = prevPublisher || norm(amz?.publisher) || null;
+    const author = prevAuthor || norm(amz?.author) || null;
+    const releaseDate = prevReleaseDate || norm(amz?.releaseDate) || null;
 
-    // synopsis は manual のみ
+    // title は manual を尊重。無ければ「前回」→「PA-API」
+    const title = manualTitle || norm(prevVol1?.title) || norm(amz?.title) || null;
+
+    // synopsis は manual のみ（前回もmanual由来のはずだが、series.jsonが正なのでそちら優先）
     const synopsis = norm(v?.synopsis) || null;
 
-    const image = norm(amz?.image) || null;
-    const publisher = norm(amz?.publisher) || null;
-    const author = norm(amz?.author) || null;
-    const releaseDate = norm(amz?.releaseDate) || null;
-    const amazonDp = norm(amz?.amazonDp) || null;
-
+    // todo
     if (!magazine) magTodoSet.add(seriesKey);
     else magTodoSet.delete(seriesKey);
+
+    // “Amazon情報が前回で埋まってた”判定ログ用
+    if (hasAmazonFilled(prevVol1)) skippedAmz++;
 
     enriched.push({
       seriesKey,
@@ -752,23 +832,21 @@ async function main() {
         releaseDate,
 
         magazine,
-        magazineSource: manualMag ? "manual_override" : (wikiMag ? "wikipedia" : null),
+        magazineSource,
         wikiTitle,
 
-        anilistId: anx.id,
-        anilistStatus, // ★追加：原因可視化
-        genres: uniq(anx.genres),
-        tags_en: uniq(anx.tags),
-        tags: applied.tags,
-        tags_missing_en: applied.tags_missing_en,
+        anilistId,
+        genres: uniq(genres),
+        tags_en: uniq(tagsEn),
+        tags: uniq(tagsJa),
+        tags_missing_en: uniq(tagsMissing),
 
-        source: "enrich(wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)",
+        source: "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)",
       },
       meta: x?.meta || null,
     });
 
     ok++;
-    await sleep(250);
   }
 
   await saveJson(TAG_TODO, {
@@ -789,6 +867,12 @@ async function main() {
     total: sorted.length,
     ok,
     ng,
+    stats: {
+      skippedAniList: skippedAni,
+      skippedWiki: skippedWiki,
+      skippedAmazon: skippedAmz,
+      fetchedAmazonAsins: asinsNeed.length,
+    },
     items: enriched,
   });
 
@@ -796,7 +880,9 @@ async function main() {
   await saveJson(CACHE_WIKI, cacheWiki);
   await saveJson(CACHE_AMZ, cacheAmz);
 
-  console.log(`[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} -> ${OUT_ENRICHED}`);
+  console.log(
+    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) -> ${OUT_ENRICHED}`
+  );
 }
 
 main().catch((e) => {
