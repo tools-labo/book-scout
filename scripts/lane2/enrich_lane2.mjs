@@ -145,8 +145,6 @@ function stripHtml(s) {
 
 /* -----------------------
  * Tag dict
- * - tag_ja_map.json に入ってるのに todo に出る問題を潰す
- *   → 照合キーを normTagKey() に統一
  * ----------------------- */
 function loadTagMap(tagMapJson) {
   const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
@@ -175,9 +173,7 @@ function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
     const ja = tagMap[key];
     if (ja) outJa.push(ja);
     else {
-      // 表示/欠落のログは「元表記」も残す（運用しやすい）
       missing.push(raw);
-      // todo は正規化キーで積む（揺れ重複も潰れる）
       todoSet.add(key);
     }
   }
@@ -186,13 +182,22 @@ function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
 
 /* -----------------------
  * AniList (genres/tags)
+ * - ★HTTPエラーは null キャッシュしない（再取得できるように）
+ * - ★429/5xx はリトライ＋バックオフ
+ * - ★結果ステータスを返す
  * ----------------------- */
+function isRetryableStatus(status) {
+  return status === 429 || (status >= 500 && status <= 599);
+}
+
 async function fetchAniListBySeriesKey({ seriesKey, cache }) {
   const key = norm(seriesKey);
-  if (!key) return { ok: false, reason: "no_seriesKey" };
+  if (!key) return { ok: false, reason: "no_seriesKey", status: "no_seriesKey" };
 
+  // 旧キャッシュ互換：mediaオブジェクト or null
   if (Object.prototype.hasOwnProperty.call(cache, key)) {
-    return { ok: true, data: cache[key], cached: true };
+    const c = cache[key];
+    return { ok: true, data: c, cached: true, found: !!c, status: c ? "ok" : "not_found_cached" };
   }
 
   const query = `
@@ -210,59 +215,94 @@ async function fetchAniListBySeriesKey({ seriesKey, cache }) {
     }
   `;
 
-  const r = await fetch("https://graphql.anilist.co", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      accept: "application/json",
-      "user-agent": "tools-labo/book-scout lane2 anilist",
-    },
-    body: JSON.stringify({ query, variables: { search: key } }),
-  });
+  const url = "https://graphql.anilist.co";
 
-  if (!r.ok) {
-    cache[key] = null;
-    return { ok: false, reason: `anilist_http_${r.status}` };
+  // リトライ設定
+  const maxAttempts = 4; // 1 + 3 retries
+  const baseDelayMs = 700;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    let r;
+    try {
+      r = await fetch(url, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json",
+          "user-agent": "tools-labo/book-scout lane2 anilist",
+        },
+        body: JSON.stringify({ query, variables: { search: key } }),
+      });
+    } catch (e) {
+      // ネットワーク例外：リトライ対象
+      const reason = "anilist_fetch_error";
+      if (attempt === maxAttempts) {
+        return { ok: false, reason, status: "error" };
+      }
+      const wait = baseDelayMs * Math.pow(2, attempt - 1);
+      console.warn(`[lane2:enrich] anilist ${reason} seriesKey="${key}" attempt=${attempt}/${maxAttempts} wait=${wait}ms`);
+      await sleep(wait);
+      continue;
+    }
+
+    if (!r.ok) {
+      const st = r.status;
+      if (isRetryableStatus(st) && attempt < maxAttempts) {
+        const wait = baseDelayMs * Math.pow(2, attempt - 1);
+        console.warn(`[lane2:enrich] anilist http_${st} seriesKey="${key}" attempt=${attempt}/${maxAttempts} wait=${wait}ms`);
+        await sleep(wait);
+        continue;
+      }
+
+      // ★ここ重要：HTTPエラーは cache に書かない（null固定化を防ぐ）
+      return { ok: false, reason: `anilist_http_${st}`, status: `http_${st}` };
+    }
+
+    const json = await r.json();
+    const list = json?.data?.Page?.media;
+
+    if (!Array.isArray(list) || !list.length) {
+      // ★「見つからない」は null キャッシュOK
+      cache[key] = null;
+      return { ok: true, data: null, found: false, status: "not_found" };
+    }
+
+    const s0 = normLoose(toHalfWidth(key));
+
+    function scoreMedia(m) {
+      let score = 0;
+      const titles = [
+        m?.title?.native,
+        m?.title?.romaji,
+        m?.title?.english,
+        ...(Array.isArray(m?.synonyms) ? m.synonyms : []),
+      ]
+        .filter(Boolean)
+        .map((t) => normLoose(toHalfWidth(t)));
+
+      if (titles.some((t) => t === s0)) score += 1000;
+      if (titles.some((t) => t.includes(s0))) score += 300;
+
+      const fmt = String(m?.format || "");
+      if (fmt === "MANGA") score += 40;
+      if (fmt === "ONE_SHOT") score -= 9999;
+
+      if (Array.isArray(m?.genres) && m.genres.length) score += 10;
+      if (Array.isArray(m?.tags) && m.tags.length) score += 10;
+      return score;
+    }
+
+    const withScore = list.map((m) => ({ m, score: scoreMedia(m) }));
+    withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+    const best = withScore[0]?.m || null;
+
+    // ★best が取れたらキャッシュ
+    cache[key] = best ?? null;
+    return { ok: true, data: best, found: !!best, status: best ? "ok" : "not_found" };
   }
 
-  const json = await r.json();
-  const list = json?.data?.Page?.media;
-  if (!Array.isArray(list) || !list.length) {
-    cache[key] = null;
-    return { ok: true, data: null, found: false };
-  }
-
-  const s0 = normLoose(toHalfWidth(key));
-
-  function scoreMedia(m) {
-    let score = 0;
-    const titles = [
-      m?.title?.native,
-      m?.title?.romaji,
-      m?.title?.english,
-      ...(Array.isArray(m?.synonyms) ? m.synonyms : []),
-    ]
-      .filter(Boolean)
-      .map((t) => normLoose(toHalfWidth(t)));
-
-    if (titles.some((t) => t === s0)) score += 1000;
-    if (titles.some((t) => t.includes(s0))) score += 300;
-
-    const fmt = String(m?.format || "");
-    if (fmt === "MANGA") score += 40;
-    if (fmt === "ONE_SHOT") score -= 9999;
-
-    if (Array.isArray(m?.genres) && m.genres.length) score += 10;
-    if (Array.isArray(m?.tags) && m.tags.length) score += 10;
-    return score;
-  }
-
-  const withScore = list.map((m) => ({ m, score: scoreMedia(m) }));
-  withScore.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-  const best = withScore[0]?.m || null;
-
-  cache[key] = best ?? null;
-  return { ok: true, data: best, found: !!best };
+  // 到達しない想定
+  return { ok: false, reason: "anilist_unknown", status: "error" };
 }
 
 function extractFromAniList(media) {
@@ -300,7 +340,6 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const text = stripHtml(m[1]);
 
-  // 脚注 [1] 等を除去（→ は残す）
   const cleaned = text
     .replace(/$begin:math:display$\\s\*\\d\+\\s\*$end:math:display$/g, "")
     .replace(/\s+/g, " ")
@@ -376,8 +415,6 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
 
 /* -----------------------
  * Amazon PA-API (GetItems)
- * - no scraping
- * - cache by ASIN
  * ----------------------- */
 function hmac(key, data, enc = null) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest(enc || undefined);
@@ -547,7 +584,6 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
   const host = creds.host;
   const region = creds.region;
 
-  // 10件ずつ
   for (let i = 0; i < want.length; i += 10) {
     const chunk = want.slice(i, i + 10);
 
@@ -595,7 +631,6 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
  * main
  * ----------------------- */
 async function main() {
-  // ★series.json は必須：壊れてたら落とす（fallback禁止）
   const seriesJson = await loadJsonStrict(IN_SERIES);
   const items = Array.isArray(seriesJson?.items) ? seriesJson.items : null;
   if (!items) {
@@ -615,11 +650,9 @@ async function main() {
   const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
   const hideSet = loadHideSet(hideJson);
 
-  // ★todo は正規化キーで読む（旧データも吸収）
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
   const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
 
-  // magazine todo（積み上げ）
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
@@ -643,10 +676,9 @@ async function main() {
     .filter((x) => x.seriesKey)
     .sort((a, b) => a.seriesKey.localeCompare(b.seriesKey));
 
-  // ★0件なら絶対に出力しない
   assertNonEmptySeries(sorted);
 
-  // 先にまとめてPA-API（キャッシュ前提）
+  // 先にまとめてPA-API
   const asins = sorted.map((x) => norm(x?.vol1?.asin)).filter(Boolean);
   await fetchPaapiByAsins({ asins, cache: cacheAmz, creds });
 
@@ -674,8 +706,13 @@ async function main() {
     }
     const magazine = manualMag || wikiMag || null;
 
-    // anilist
+    // anilist（ステータス付き）
     const an = await fetchAniListBySeriesKey({ seriesKey, cache: cacheAniList });
+    const anilistStatus = an?.ok ? (an.status || "ok") : (an?.status || an?.reason || "error");
+
+    // ★anilistがエラーなら ng にカウント（全体ログで見えるように）
+    if (!an?.ok) ng++;
+
     const anx = an?.ok ? extractFromAniList(an.data) : { id: null, genres: [], tags: [] };
     const applied = applyTagDict({ tagsEn: anx.tags, tagMap, hideSet, todoSet });
 
@@ -719,6 +756,7 @@ async function main() {
         wikiTitle,
 
         anilistId: anx.id,
+        anilistStatus, // ★追加：原因可視化
         genres: uniq(anx.genres),
         tags_en: uniq(anx.tags),
         tags: applied.tags,
@@ -733,11 +771,9 @@ async function main() {
     await sleep(250);
   }
 
-  // ★ここまで来たら「正常系」なので書き込みOK（sortedが0ならここに来ない）
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
-    // todo は正規化キーで保存（揺れ重複を潰す）
     tags: Array.from(todoSet).sort((a, b) => a.localeCompare(b)),
   });
 
