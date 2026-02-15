@@ -21,57 +21,43 @@ a { color: inherit; text-decoration: none; }
 .section-sub{ margin:6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 
 /* =======================
- * Home shelves (genre)
+ * Tabs (genre / audience 共通)
  * ======================= */
-.shelves { margin-top: 6px; }
+.tabs{ margin: 8px 0 10px; }
 
-/* ★常に2カラム（要件） */
-.shelf-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-/* 2カラムでも崩れないようにカードはコンパクト */
-.shelf{
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 12px;
-  overflow: hidden;
-  min-width: 0;
-}
-
-.shelf-head{
+.tabrow{
   display:flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
 }
+.tabrow::-webkit-scrollbar{ height: 6px; }
+.tabrow::-webkit-scrollbar-thumb{ background:#1f2233; border-radius: 999px; }
 
-.shelf-h{
-  margin: 0;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: .01em;
-  line-height: 1.15;
-}
-
-.shelf-link{
-  display:inline-flex;
-  align-items:center;
-  padding: 6px 10px;
+.tab{
+  flex: 0 0 auto;
+  padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255,255,255,0.02);
   color: var(--muted);
   font-size: 12px;
-  white-space: nowrap;
+  font-weight: 800;
 }
-.shelf-link:active{ transform: translateY(1px); }
+.tab.is-active{
+  background: rgba(43,97,255,0.18);
+  color: #dfe7ff;
+  border-color: rgba(43,97,255,0.5);
+}
+.tab:active{ transform: translateY(1px); }
 
-.shelf-row{
+/* =======================
+ * Home rows (作品一列)
+ * ======================= */
+.rows{ margin-top: 8px; }
+
+.row-scroll{
   display:flex;
   gap: 10px;
   overflow-x: auto;
@@ -79,16 +65,16 @@ a { color: inherit; text-decoration: none; }
   scroll-snap-type: x mandatory;
   padding-bottom: 4px;
 }
-.shelf-row::-webkit-scrollbar{ height: 6px; }
-.shelf-row::-webkit-scrollbar-thumb{ background:#1f2233; border-radius: 999px; }
+.row-scroll::-webkit-scrollbar{ height: 6px; }
+.row-scroll::-webkit-scrollbar-thumb{ background:#1f2233; border-radius: 999px; }
 
-.shelf-card{
+.row-card{
   flex: 0 0 auto;
   width: 84px;
   scroll-snap-align: start;
 }
 
-.shelf-thumb{
+.row-thumb{
   width: 84px;
   height: 116px;
   border-radius: 12px;
@@ -96,14 +82,17 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line);
   background: #202433;
 }
-.shelf-thumb img{
+.row-thumb img{
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.shelf-title{
+/* 画像なしのプレースホルダ（既存互換） */
+.thumb-ph { width:84px; height:116px; background:#202433; border-radius:12px; }
+
+.row-title{
   margin-top: 8px;
   font-size: 12px;
   line-height: 1.25;
@@ -115,47 +104,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* =======================
- * Audience tabs + shelves
- * ======================= */
-.aud-tabs{ margin: 8px 0 10px; }
-
-.aud-tabrow{
-  display:flex;
-  gap: 8px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
-}
-.aud-tabrow::-webkit-scrollbar{ height: 6px; }
-.aud-tabrow::-webkit-scrollbar-thumb{ background:#1f2233; border-radius: 999px; }
-
-.aud-tab{
-  flex: 0 0 auto;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.02);
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-}
-.aud-tab.is-active{
-  background: rgba(43,97,255,0.18);
-  color: #dfe7ff;
-  border-color: rgba(43,97,255,0.5);
-}
-.aud-tab:active{ transform: translateY(1px); }
-
-.aud-shelves{ margin-top: 8px; }
-
-/* 読者層側は1カラムで棚を縦に並べる（見やすさ優先） */
-.aud-shelfgrid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-/* =======================
  * List cards
  * ======================= */
 .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
@@ -164,7 +112,8 @@ a { color: inherit; text-decoration: none; }
 .card-row { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 12px; }
 .thumb { width: 92px; }
 .thumb img { width: 92px; height: 128px; object-fit: cover; border-radius: 10px; display:block; }
-.thumb-ph { width:92px; height:128px; background:#202433; border-radius:10px; }
+/* listのthumb用placeholderは別サイズ */
+.thumb .thumb-ph { width:92px; height:128px; border-radius:10px; }
 
 .meta .title { font-weight: 800; margin-bottom: 6px; font-size: 18px; }
 .meta .sub { color: var(--muted); font-size: 12px; margin: 6px 0; line-height: 1.35; }
