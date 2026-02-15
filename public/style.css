@@ -14,49 +14,86 @@ a { color: inherit; text-decoration: none; }
 .home-actions { margin: 10px 0 18px; }
 
 /* =======================
- * section head (home)
+ * Home section head
  * ======================= */
-.section-head{ margin: 18px 0 10px; }
-.section-title{ margin:0; font-size: 18px; font-weight: 900; }
-.section-sub{ margin:6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.section { background: transparent; }
+.section-head{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 16px 0 6px;
+}
+.section-title{ margin: 0; font-size: 20px; font-weight: 900; }
+.section-sub{ margin: 0 0 10px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+.section-link{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.section-link:active{ transform: translateY(1px); }
 
 /* =======================
- * Tabs (genre / audience 共通)
+ * Tabs (scrollable)
  * ======================= */
-.tabs{ margin: 8px 0 10px; }
-
 .tabrow{
   display:flex;
   gap: 8px;
   overflow-x:auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 4px;
+  margin-bottom: 10px;
 }
 .tabrow::-webkit-scrollbar{ height: 6px; }
 .tabrow::-webkit-scrollbar-thumb{ background:#1f2233; border-radius: 999px; }
 
 .tab{
   flex: 0 0 auto;
-  padding: 8px 12px;
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 9px 12px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255,255,255,0.02);
-  color: var(--muted);
+  color: var(--fg);
   font-size: 12px;
   font-weight: 800;
-}
-.tab.is-active{
-  background: rgba(43,97,255,0.18);
-  color: #dfe7ff;
-  border-color: rgba(43,97,255,0.5);
+  white-space: nowrap;
+  cursor: pointer;
 }
 .tab:active{ transform: translateY(1px); }
 
-/* =======================
- * Home rows (作品一列)
- * ======================= */
-.rows{ margin-top: 8px; }
+.tab.is-active{
+  border-color: rgba(43,97,255,0.65);
+  background: rgba(43,97,255,0.18);
+}
 
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 26px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  color: var(--muted);
+  font-weight: 900;
+  font-size: 11px;
+}
+
+/* =======================
+ * Row (horizontal cards)
+ * ======================= */
 .row-scroll{
   display:flex;
   gap: 10px;
@@ -89,9 +126,6 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
-/* 画像なしのプレースホルダ（既存互換） */
-.thumb-ph { width:84px; height:116px; background:#202433; border-radius:12px; }
-
 .row-title{
   margin-top: 8px;
   font-size: 12px;
@@ -103,6 +137,21 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 
+/* ④ もっと見るカード */
+.row-more .row-thumb{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.02);
+}
+.row-more-thumb{ border-style: dashed; }
+.row-more-icon{
+  font-size: 22px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.7);
+}
+.row-more-title{ color: var(--muted); font-weight: 800; }
+
 /* =======================
  * List cards
  * ======================= */
@@ -112,8 +161,7 @@ a { color: inherit; text-decoration: none; }
 .card-row { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 12px; }
 .thumb { width: 92px; }
 .thumb img { width: 92px; height: 128px; object-fit: cover; border-radius: 10px; display:block; }
-/* listのthumb用placeholderは別サイズ */
-.thumb .thumb-ph { width:92px; height:128px; border-radius:10px; }
+.thumb-ph { width:92px; height:128px; background:#202433; border-radius:10px; }
 
 .meta .title { font-weight: 800; margin-bottom: 6px; font-size: 18px; }
 .meta .sub { color: var(--muted); font-size: 12px; margin: 6px 0; line-height: 1.35; }
