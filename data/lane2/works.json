@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-15T07:55:12.728Z",
+  "updatedAt": "2026-02-15T08:54:25.191Z",
   "total": 30,
   "items": [
     {
@@ -15,6 +15,14 @@
       "asin": "4088916506",
       "synopsis": "地方都市で産婦人科医として働くゴローは、“推し”のアイドル星野アイと出会い、芸能界の裏表に巻き込まれていく。嘘を武器にした世界で運命が動き出す。",
       "magazine": "週刊ヤングジャンプ ヤンジャン! 少年ジャンプ+",
+      "magazines": [
+        "週刊ヤングジャンプ",
+        "ヤンジャン!",
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Drama",
@@ -22,32 +30,10 @@
         "Psychological",
         "Supernatural"
       ],
-      "tags": [
-        "復讐",
-        "アイドル",
-        "演技",
-        "青年向け",
-        "双子",
-        "探偵",
-        "仕事",
-        "現代ファンタジー",
-        "オタク文化",
-        "逆ハーレム",
-        "三角関係",
-        "アンチヒーロー",
-        "いじめ",
-        "都会",
-        "教育",
-        "ツンデレ",
-        "映画制作",
-        "妊娠",
-        "VTuber",
-        "コスプレ"
-      ],
       "meta": {
         "anilistId": 117195,
         "wikiTitle": "【推しの子】",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -63,6 +49,12 @@
       "asin": "4091855318",
       "synopsis": "敷島家失踪事件をきっかけに、ケンヂは壁に描かれた謎のマークと出会う。少年時代の“秘密基地の誓い”が、現実の脅威として迫り始める。",
       "magazine": "ビッグコミックスピリッツ",
+      "magazines": [
+        "ビッグコミックスピリッツ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Drama",
@@ -71,36 +63,10 @@
         "Sci-Fi",
         "Thriller"
       ],
-      "tags": [
-        "成長譚",
-        "政治",
-        "青年向け",
-        "時系列シャッフル",
-        "ディストピア",
-        "逃亡者",
-        "陰謀",
-        "カルト",
-        "疑似家族",
-        "パンデミック",
-        "終末後",
-        "探偵",
-        "哲学",
-        "コズミックホラー",
-        "解離性同一性障害（多重人格）",
-        "ミュージカル",
-        "歴史",
-        "拡張現実（AR）",
-        "警察",
-        "ロボット",
-        "ロック",
-        "トランスジェンダー",
-        "海外",
-        "ホームレス"
-      ],
       "meta": {
         "anilistId": 30003,
         "wikiTitle": "20世紀少年",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -116,39 +82,22 @@
       "asin": "4088728408",
       "synopsis": "木ノ葉隠れの里で忍術学校に通う問題児ナルト。歴代の英雄「火影」を目指して突っ走るが、彼には出生にまつわる秘密があった。",
       "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
         "Adventure",
         "Supernatural"
       ],
-      "tags": [
-        "少年向け",
-        "忍者",
-        "成長譚",
-        "復讐",
-        "疑似家族",
-        "超能力",
-        "武術",
-        "戦争",
-        "孤児",
-        "怪獣",
-        "死霊術",
-        "修行（強化）",
-        "哲学",
-        "魔法",
-        "変身",
-        "動物",
-        "旅",
-        "三角関係",
-        "悪魔",
-        "スパイ",
-        "宇宙人"
-      ],
       "meta": {
         "anilistId": 30011,
         "wikiTitle": "NARUTO -ナルト-",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -164,42 +113,23 @@
       "asin": "4063144232",
       "synopsis": "11世紀の北欧。父を殺された少年トルフィンは復讐のため戦場を生き抜くが、仇の死で目的を失う。奴隷となった彼は“本当の戦士”を目指し、安息の地ヴィンランドを夢見る。",
       "magazine": "週刊少年マガジン 月刊アフタヌーン",
+      "magazines": [
+        "週刊少年マガジン",
+        "月刊アフタヌーン"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
         "Adventure",
         "Drama"
       ],
-      "tags": [
-        "更生",
-        "歴史",
-        "ヴァイキング",
-        "成長譚",
-        "海外",
-        "哲学",
-        "青年向け",
-        "戦争",
-        "復讐",
-        "旅",
-        "疑似家族",
-        "奴隷",
-        "剣術",
-        "政治",
-        "カップリング（推しカプ）",
-        "中世",
-        "田舎",
-        "階級闘争",
-        "親子（子育て）",
-        "アンチヒーロー",
-        "農業",
-        "海賊",
-        "宗教",
-        "環境（環境問題）"
-      ],
       "meta": {
         "anilistId": 30642,
         "wikiTitle": "ヴィンランド・サガ",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -214,32 +144,23 @@
       "isbn13": "9784091512185",
       "asin": "4091512186",
       "synopsis": "小学5年生のプンプンは転校生の愛子に惹かれ、世界や将来への不安を抱えながら日常を過ごす。家庭や周囲の歪みの中で、少年の心が揺れていく。",
-      "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ[1]",
-      "magazineSource": "wikipedia",
+      "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ",
+      "magazines": [
+        "週刊ヤングサンデー",
+        "ビッグコミックスピリッツ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Drama",
         "Psychological",
         "Slice of Life"
       ],
-      "tags": [
-        "成長譚",
-        "青年向け",
-        "哲学",
-        "都会",
-        "アンチヒーロー",
-        "不条理コメディ",
-        "神々",
-        "学園",
-        "逃亡者",
-        "カルト",
-        "仕事",
-        "三角関係",
-        "宗教"
-      ],
       "meta": {
         "anilistId": 34632,
-        "wikiTitle": "おやすみプンプン",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -255,6 +176,13 @@
       "asin": "408890432X",
       "synopsis": "名門・秀知院学園の生徒会で出会った会長・白銀と副会長・かぐや。両想いなのにプライドが邪魔して告白できず、“相手に告白させる”ための頭脳戦に突入する。",
       "magazine": "ミラクルジャンプ→週刊ヤングジャンプ",
+      "magazines": [
+        "ミラクルジャンプ",
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Comedy",
@@ -262,28 +190,9 @@
         "Romance",
         "Slice of Life"
       ],
-      "tags": [
-        "学園",
-        "ツンデレ",
-        "部活",
-        "お嬢様",
-        "成長譚",
-        "ドタバタ",
-        "青年向け",
-        "パロディ",
-        "三角関係",
-        "政治",
-        "陰謀",
-        "哲学",
-        "いじめ",
-        "LGBTQ+テーマ",
-        "VTuber",
-        "海外",
-        "女装・男装"
-      ],
       "meta": {
         "anilistId": 86635,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -299,6 +208,13 @@
       "asin": "408873601X",
       "synopsis": "1890年、北米大陸横断の乗馬レース「SBR」が開幕。総距離約6000km、莫大な賞金を巡り、屈強な参加者たちの戦いが始まる。",
       "magazine": "週刊少年ジャンプ ウルトラジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ",
+        "ウルトラジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -307,34 +223,10 @@
         "Mystery",
         "Supernatural"
       ],
-      "tags": [
-        "旅",
-        "カウボーイ",
-        "超能力",
-        "青年向け",
-        "陰謀",
-        "障害",
-        "海外",
-        "環境（環境問題）",
-        "哲学",
-        "歴史",
-        "アウトドア",
-        "女装・男装",
-        "銃",
-        "砂漠",
-        "成長譚",
-        "修道女",
-        "演技",
-        "大自然",
-        "スパイ",
-        "鉄道",
-        "恐竜",
-        "ギャンブル"
-      ],
       "meta": {
         "anilistId": 31706,
         "wikiTitle": "スティール・ボール・ラン",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -350,6 +242,12 @@
       "asin": "4757559208",
       "synopsis": "雛人形の頭師を目指す五条新菜は、クラスの人気者ギャル・喜多川海夢と出会い、コスプレ衣装作りを通じて距離を縮めていく。ドキドキのスクールライフ。",
       "magazine": "ヤングガンガン",
+      "magazines": [
+        "ヤングガンガン"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Comedy",
@@ -357,24 +255,10 @@
         "Romance",
         "Slice of Life"
       ],
-      "tags": [
-        "コスプレ",
-        "オタク文化",
-        "ファッション",
-        "ギャル",
-        "メイク",
-        "青年向け",
-        "写真",
-        "教育",
-        "女装・男装",
-        "学園",
-        "絵・作画",
-        "片思い"
-      ],
       "meta": {
         "anilistId": 101583,
         "wikiTitle": "その着せ替え人形は恋をする",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -390,6 +274,12 @@
       "asin": "4088825993",
       "synopsis": "幽霊派の女子高生・綾瀬桃と、オカルト好きの同級生。互いに否定するUFOと怪異を証明しようとして、超常の騒動に巻き込まれていく。恋の気配も漂う、オカルティック怪奇バトル開幕。",
       "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Action",
@@ -399,32 +289,9 @@
         "Sci-Fi",
         "Supernatural"
       ],
-      "tags": [
-        "現代ファンタジー",
-        "妖怪",
-        "幽霊",
-        "超能力",
-        "宇宙人",
-        "少年向け",
-        "特撮",
-        "不条理コメディ",
-        "変身",
-        "ギャル",
-        "変身能力",
-        "学園",
-        "三角関係",
-        "祓い・除霊",
-        "陰謀",
-        "呪い",
-        "怪獣",
-        "スーパーロボット",
-        "中二病",
-        "記憶喪失",
-        "サーカス"
-      ],
       "meta": {
         "anilistId": 132029,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -440,6 +307,13 @@
       "asin": "408881780X",
       "synopsis": "貧困にあえぐ少年デンジは相棒の悪魔ポチタとデビルハンターとして働くが、裏切りで人生が一変。悪魔の力を宿し、悪魔を狩る戦いに身を投じる。",
       "magazine": "週刊少年ジャンプ（第1部） 少年ジャンプ+（第2部）",
+      "magazines": [
+        "週刊少年ジャンプ",
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -448,34 +322,10 @@
         "Horror",
         "Supernatural"
       ],
-      "tags": [
-        "悪魔",
-        "解離性同一性障害（多重人格）",
-        "現代ファンタジー",
-        "コズミックホラー",
-        "成長譚",
-        "変身",
-        "モンスター男子",
-        "都会",
-        "疑似家族",
-        "サバイバル",
-        "仕事",
-        "記憶操作",
-        "少年向け",
-        "カルト",
-        "銃",
-        "女王様（女性優位）",
-        "ヤンデレ",
-        "暗殺者",
-        "人間ペット",
-        "モンスター娘",
-        "復讐",
-        "政治"
-      ],
       "meta": {
         "anilistId": 105778,
         "wikiTitle": "チェンソーマン",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -491,24 +341,21 @@
       "asin": "4088704533",
       "synopsis": "バレーボールに魅せられた日向翔陽は初の公式戦で天才・影山に完敗。烏野高校でリベンジを誓い、バレー部の門を叩く青春スポーツ物語。",
       "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Drama",
         "Sports"
       ],
-      "tags": [
-        "バレーボール",
-        "成長譚",
-        "少年向け",
-        "部活",
-        "哲学",
-        "学園",
-        "双子"
-      ],
       "meta": {
         "anilistId": 65243,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -524,38 +371,22 @@
       "asin": "4063286193",
       "synopsis": "「強さ」とは何かを求め、宮本武蔵の生き様を圧倒的な筆致で描く。剣の道にのめり込む若者の激動が始まる。",
       "magazine": "週刊モーニング",
+      "magazines": [
+        "週刊モーニング"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
         "Adventure",
         "Drama"
       ],
-      "tags": [
-        "侍",
-        "青年向け",
-        "剣術",
-        "歴史",
-        "哲学",
-        "旅",
-        "成長譚",
-        "武術",
-        "障害",
-        "サバイバル",
-        "修行（強化）",
-        "伝記",
-        "田舎",
-        "戦争",
-        "農業",
-        "幽霊",
-        "アウトドア",
-        "古典文学",
-        "逃亡者",
-        "言語の壁"
-      ],
       "meta": {
         "anilistId": 30656,
         "wikiTitle": "バガボンド",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -571,6 +402,12 @@
       "asin": "4088807316",
       "synopsis": "『氷の魔女』により雪と飢餓に覆われた世界。再生能力を持つ少年アグニは妹ルナと共に過酷な運命へ立ち向かう、衝撃のダークファンタジー。",
       "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Action",
@@ -580,32 +417,9 @@
         "Supernatural",
         "Thriller"
       ],
-      "tags": [
-        "終末後",
-        "ディストピア",
-        "復讐",
-        "哲学",
-        "カルト",
-        "アンチヒーロー",
-        "超能力",
-        "宗教",
-        "サバイバル",
-        "コズミックホラー",
-        "映画制作",
-        "演技",
-        "雪景色",
-        "成長譚",
-        "トランスジェンダー",
-        "奴隷",
-        "LGBTQ+テーマ",
-        "不条理コメディ",
-        "神々",
-        "現代ファンタジー",
-        "記憶操作"
-      ],
       "meta": {
         "anilistId": 87170,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -621,6 +435,13 @@
       "asin": "4088804163",
       "synopsis": "魔法がすべての世界で、魔法が使えない少年アスタは“魔法帝”を目指す。己の力を証明し、友との約束を果たすため、逆境だらけの道を突き進む少年魔法ファンタジー。",
       "magazine": "週刊少年ジャンプ →ジャンプGIGA",
+      "magazines": [
+        "週刊少年ジャンプ",
+        "ジャンプGIGA"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -628,29 +449,10 @@
         "Drama",
         "Fantasy"
       ],
-      "tags": [
-        "魔法",
-        "少年向け",
-        "超能力",
-        "悪魔",
-        "解離性同一性障害（多重人格）",
-        "失われた文明",
-        "エルフ",
-        "階級闘争",
-        "修行（強化）",
-        "三合会（トライアド）",
-        "中世",
-        "王侯貴族",
-        "ツンデレ",
-        "逆ハーレム",
-        "年齢退行",
-        "ダンジョン",
-        "疑似家族"
-      ],
       "meta": {
         "anilistId": 86123,
         "wikiTitle": "ブラッククローバー",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -666,29 +468,22 @@
       "asin": "4065134005",
       "synopsis": "W杯で敗れた日本が必要とするのは“絶対的エース”のみ。300人のユースが集められ、生き残りを賭けた選抜計画が始動する。高校生・潔世一はエゴを武器に頂点を目指す。",
       "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
         "Drama",
         "Sports"
       ],
-      "tags": [
-        "サッカー",
-        "バトルロイヤル",
-        "陸上競技",
-        "少年向け",
-        "超能力",
-        "アンチヒーロー",
-        "フィットネス",
-        "海外",
-        "拡張現実（AR）",
-        "言語の壁",
-        "復讐"
-      ],
       "meta": {
         "anilistId": 106130,
         "wikiTitle": "ブルーロック",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -704,6 +499,12 @@
       "asin": "4592135741",
       "synopsis": "巨大な剣と義手を携えた剣士ガッツが、過酷な運命の中で血みどろの戦いを重ねる。圧倒的スケールのダークファンタジーが幕を開ける。",
       "magazine": "ヤングアニマル",
+      "magazines": [
+        "ヤングアニマル"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Action",
@@ -713,34 +514,9 @@
         "Horror",
         "Psychological"
       ],
-      "tags": [
-        "青年向け",
-        "復讐",
-        "悪魔",
-        "コズミックホラー",
-        "疑似家族",
-        "哲学",
-        "アンチヒーロー",
-        "旅",
-        "更生",
-        "神話",
-        "剣術",
-        "サバイバル",
-        "戦争",
-        "魔法",
-        "海外",
-        "宗教",
-        "神々",
-        "妖精",
-        "障害",
-        "政治",
-        "軍事",
-        "記憶喪失",
-        "魔女"
-      ],
       "meta": {
         "anilistId": 30002,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -756,26 +532,21 @@
       "asin": "4757535430",
       "synopsis": "学校では派手な堀さんと、地味眼鏡に見えて実はピアスだらけの宮村くん。偶然の出会いから、素顔を知り合った二人の距離が少しずつ近づいていく。甘酸っぱいスクールライフ。",
       "magazine": "月刊Gファンタジー",
+      "magazines": [
+        "月刊Gファンタジー"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Romance",
         "Slice of Life"
       ],
-      "tags": [
-        "ツンデレ",
-        "学園",
-        "家族もの",
-        "成長譚",
-        "ドタバタ",
-        "少年向け",
-        "三角関係",
-        "いじめ",
-        "都会"
-      ],
       "meta": {
         "anilistId": 72451,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -791,6 +562,12 @@
       "asin": "408870701X",
       "synopsis": "どんな怪人も一撃で倒してしまう最強ヒーロー・サイタマ。強すぎるがゆえの虚無を抱えつつ、異色のヒーロー活動が始まる。",
       "magazine": "となりのヤングジャンプ",
+      "magazines": [
+        "となりのヤングジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Action",
@@ -798,22 +575,9 @@
         "Sci-Fi",
         "Supernatural"
       ],
-      "tags": [
-        "スーパーヒーロー",
-        "超能力",
-        "哲学",
-        "パロディ",
-        "青年向け",
-        "神々",
-        "武術",
-        "コズミックホラー",
-        "擬人化",
-        "宇宙人",
-        "サイボーグ"
-      ],
       "meta": {
         "anilistId": 85364,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -829,6 +593,12 @@
       "asin": "4088802640",
       "synopsis": "人々が“個性”を持つ世界で、少年はヒーローを志す。力は善のためとは限らず、悪もまた存在する中で、憧れに向かって走り出す。",
       "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -837,33 +607,10 @@
         "Drama",
         "Fantasy"
       ],
-      "tags": [
-        "スーパーヒーロー",
-        "超能力",
-        "現代ファンタジー",
-        "少年向け",
-        "寄宿学校",
-        "学園",
-        "陰謀",
-        "成長譚",
-        "犯罪",
-        "犯罪組織",
-        "アンチヒーロー",
-        "戦争",
-        "復讐",
-        "都会",
-        "救出",
-        "政治",
-        "動物",
-        "逃亡者",
-        "銃",
-        "ボーイッシュ",
-        "年齢退行"
-      ],
       "meta": {
         "anilistId": 85486,
         "wikiTitle": "僕のヒーローアカデミア",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -879,32 +626,22 @@
       "asin": "4091273432",
       "synopsis": "誰もが振り返る美少女・古見さんは、実は極度のコミュ症。友達100人を目標に、只野くんと一緒に一歩ずつ関係を広げていく。緊張と共感が癖になる学園コミュニケーションコメディ。",
       "magazine": "週刊少年サンデー",
+      "magazines": [
+        "週刊少年サンデー"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Comedy",
         "Romance",
         "Slice of Life"
       ],
-      "tags": [
-        "学園",
-        "成長譚",
-        "クーデレ",
-        "三角関係",
-        "ドタバタ",
-        "障害",
-        "少年向け",
-        "不条理コメディ",
-        "ヤンデレ",
-        "ギャル",
-        "4コマ",
-        "無性別",
-        "中二病",
-        "女装・男装"
-      ],
       "meta": {
         "anilistId": 97852,
         "wikiTitle": "古見さんは、コミュ症です。",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -920,41 +657,22 @@
       "asin": "4088815165",
       "synopsis": "身体能力に優れた高校生・虎杖悠仁は、封印が解かれた「呪物」をきっかけに化物と遭遇。先輩を救うため、危険な戦いへ踏み込んでいく。",
       "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
         "Drama",
         "Supernatural"
       ],
-      "tags": [
-        "現代ファンタジー",
-        "悪魔",
-        "超能力",
-        "少年向け",
-        "呪い",
-        "モンスター男子",
-        "妖怪",
-        "魔法",
-        "武術",
-        "解離性同一性障害（多重人格）",
-        "デスゲーム",
-        "バトルロイヤル",
-        "都会",
-        "祓い・除霊",
-        "コズミックホラー",
-        "記憶喪失",
-        "カルト",
-        "学園",
-        "擬人化",
-        "トランスジェンダー",
-        "暗殺者",
-        "剣術",
-        "ドタバタ"
-      ],
       "meta": {
         "anilistId": 101517,
         "wikiTitle": "呪術廻戦",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -970,6 +688,12 @@
       "asin": "4088814711",
       "synopsis": "囚われの抜け忍・画眉丸は、無罪放免の条件として極楽浄土と噂の地で「不老不死の仙薬」を探す任務を課される。生死を賭けた忍法浪漫活劇。",
       "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -977,31 +701,10 @@
         "Mystery",
         "Supernatural"
       ],
-      "tags": [
-        "サバイバル",
-        "哲学",
-        "侍",
-        "神話",
-        "忍者",
-        "アンチヒーロー",
-        "歴史",
-        "神々",
-        "暗殺者",
-        "剣術",
-        "性転換",
-        "バトルロイヤル",
-        "少年向け",
-        "超能力",
-        "旅",
-        "LGBTQ+テーマ",
-        "記憶喪失",
-        "犯罪",
-        "ヤンデレ"
-      ],
       "meta": {
         "anilistId": 100994,
         "wikiTitle": "地獄楽",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1017,34 +720,21 @@
       "asin": "408882525X",
       "synopsis": "怪獣が日常を侵す日本。怪獣清掃員として働くカフカは、謎の生物により怪獣化してしまう。討伐側の防衛隊から“怪獣8号”と呼ばれながらも、再び夢を追って戦いへ踏み出す。",
       "magazine": "最強ジャンプ",
+      "magazines": [
+        "最強ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
         "Sci-Fi"
       ],
-      "tags": [
-        "怪獣",
-        "現代ファンタジー",
-        "変身能力",
-        "少年向け",
-        "軍事",
-        "変身",
-        "超能力",
-        "都会",
-        "モンスター男子",
-        "特撮",
-        "銃",
-        "陰謀",
-        "復讐",
-        "戦争",
-        "サバイバル",
-        "ドタバタ",
-        "クーデレ"
-      ],
       "meta": {
         "anilistId": 120760,
         "wikiTitle": "怪獣8号",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1060,6 +750,12 @@
       "asin": "4063959384",
       "synopsis": "冴えないフリーターの武道は、元恋人の死をきっかけに12年前へタイムリープする。彼女を救うため、逃げ続けた自分を変えるため、最凶集団“東京卍會”に挑む人生リベンジが始まる。",
       "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -1067,27 +763,10 @@
         "Romance",
         "Supernatural"
       ],
-      "tags": [
-        "不良",
-        "ギャング",
-        "陰謀",
-        "復讐",
-        "犯罪",
-        "少年向け",
-        "年齢退行",
-        "都会",
-        "バイク",
-        "三角関係",
-        "スパイ",
-        "原付",
-        "学園",
-        "養子縁組",
-        "銃"
-      ],
       "meta": {
         "anilistId": 102988,
         "wikiTitle": "東京卍リベンジャーズ",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1103,6 +782,12 @@
       "asin": "4088792726",
       "synopsis": "人を喰らう存在“喰種”が潜む東京で、平凡な青年カネキは運命的な出会いを機に日常を失う。人と喰種の狭間で葛藤しながら、生き方を探していく。",
       "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -1111,26 +796,10 @@
         "Psychological",
         "Supernatural"
       ],
-      "tags": [
-        "現代ファンタジー",
-        "青年向け",
-        "サバイバル",
-        "ディストピア",
-        "哲学",
-        "成長譚",
-        "変身能力",
-        "警察",
-        "クーデレ",
-        "コズミックホラー",
-        "キメラ",
-        "双子",
-        "神話",
-        "悪魔"
-      ],
       "meta": {
         "anilistId": 63327,
         "wikiTitle": "東京喰種トーキョーグール",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1146,6 +815,12 @@
       "asin": "4088900812",
       "synopsis": "「あんていく」編から2年後。喰種対策組織CCGは実験体集団「クインクス」を新設し、佐々木琲世一等捜査官のもとで新たな局面へと進む。",
       "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "manual_override",
       "genres": [
         "Action",
@@ -1155,29 +830,9 @@
         "Psychological",
         "Supernatural"
       ],
-      "tags": [
-        "解離性同一性障害（多重人格）",
-        "記憶喪失",
-        "ディストピア",
-        "哲学",
-        "青年向け",
-        "変身能力",
-        "現代ファンタジー",
-        "陰謀",
-        "警察",
-        "更生",
-        "ヤンデレ",
-        "クーデレ",
-        "コズミックホラー",
-        "LGBTQ+テーマ",
-        "女装・男装",
-        "神話",
-        "トランスジェンダー",
-        "性転換"
-      ],
       "meta": {
         "anilistId": 85611,
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1193,6 +848,12 @@
       "asin": "408880872X",
       "synopsis": "孤児院で幸せに暮らすエマ、ノーマン、レイ。しかし“母”の正体と施設の真実を知った日から、日常は崩れ去る。自由を求め、過酷な運命に立ち向かう脱出劇が始まる。",
       "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Drama",
@@ -1202,30 +863,10 @@
         "Psychological",
         "Thriller"
       ],
-      "tags": [
-        "サバイバル",
-        "子どもが中心",
-        "悪魔",
-        "ディストピア",
-        "戦争",
-        "疑似家族",
-        "銃",
-        "成長譚",
-        "政治",
-        "少年向け",
-        "旅",
-        "陰謀",
-        "アンチヒーロー",
-        "哲学",
-        "刑務所（監獄）",
-        "記憶喪失",
-        "田舎",
-        "拡張現実（AR）"
-      ],
       "meta": {
         "anilistId": 87423,
         "wikiTitle": "約束のネバーランド",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1241,28 +882,22 @@
       "asin": "4063949737",
       "synopsis": "耳の聞こえない転校生・西宮硝子をいじめた少年・石田将也。年月を経て、将也はもう一度硝子に会うことを望み、償いと再会の物語が動き出す。",
       "magazine": "別冊少年マガジン",
+      "magazines": [
+        "別冊少年マガジン"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Drama",
         "Romance",
         "Slice of Life"
       ],
-      "tags": [
-        "更生",
-        "言語の壁",
-        "いじめ",
-        "障害",
-        "成長譚",
-        "学園",
-        "クーデレ",
-        "映画制作",
-        "少年向け",
-        "ボーイッシュ"
-      ],
       "meta": {
         "anilistId": 85135,
         "wikiTitle": "聲の形",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1278,6 +913,13 @@
       "asin": "4063842762",
       "synopsis": "巨人に支配された世界で、人類は壁の内側で生き延びていた。だが超大型巨人の出現で均衡が崩れ、少年エレンは絶望的な戦いへ踏み出す。",
       "magazine": "別冊少年マガジン 週刊少年マガジン（特別編）",
+      "magazines": [
+        "別冊少年マガジン",
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -1285,35 +927,10 @@
         "Fantasy",
         "Mystery"
       ],
-      "tags": [
-        "ディストピア",
-        "アンチヒーロー",
-        "戦争",
-        "哲学",
-        "軍事",
-        "陰謀",
-        "サバイバル",
-        "怪獣",
-        "変身能力",
-        "記憶操作",
-        "政治",
-        "復讐",
-        "変身",
-        "モンスター男子",
-        "終末後",
-        "超能力",
-        "コズミックホラー",
-        "成長譚",
-        "奴隷",
-        "剣術",
-        "少年向け",
-        "スパイ",
-        "神話"
-      ],
       "meta": {
         "anilistId": 53390,
         "wikiTitle": "進撃の巨人",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
@@ -1329,6 +946,12 @@
       "asin": "4088807235",
       "synopsis": "家族を鬼に奪われ、妹も鬼へ変貌した少年・炭治郎。妹を人に戻し仇を討つため、剣戟の旅に出る。",
       "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
       "magazineSource": "wikipedia",
       "genres": [
         "Action",
@@ -1336,34 +959,10 @@
         "Drama",
         "Supernatural"
       ],
-      "tags": [
-        "悪魔",
-        "少年向け",
-        "剣術",
-        "復讐",
-        "歴史",
-        "田舎",
-        "孤児",
-        "成長譚",
-        "変身能力",
-        "旅",
-        "花魁",
-        "鉄道",
-        "銃",
-        "女装・男装",
-        "年齢退行",
-        "障害",
-        "ポリアモリー",
-        "バイセクシュアル",
-        "妖怪",
-        "宗教",
-        "動物",
-        "グルメ"
-      ],
       "meta": {
         "anilistId": 87216,
         "wikiTitle": "鬼滅の刃",
-        "source": "enrich(diff+prev+wiki(mag)+anilist+tagdict+hide+magazine_overrides+paapi)"
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+magazine_overrides+paapi+mag_audience)"
       }
     }
   ]
