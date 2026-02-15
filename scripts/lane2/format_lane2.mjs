@@ -30,7 +30,6 @@ function uniq(arr) {
   return out;
 }
 
-// null/空 を落としてスリムに
 function compact(obj) {
   const out = {};
   for (const [k, v] of Object.entries(obj || {})) {
@@ -63,7 +62,7 @@ async function main() {
     return compact({
       seriesKey: x?.seriesKey ?? null,
 
-      // 表示したい項目
+      // 表示
       title: v?.title ?? null,
       author: v?.author ?? null,
       publisher: v?.publisher ?? null,
@@ -76,17 +75,17 @@ async function main() {
       isbn13: v?.isbn13 ?? null,
       asin: v?.asin ?? null,
 
-      // synopsis（manual）
       synopsis: v?.synopsis ?? null,
 
-      // 連載誌（表示/分類用）
+      // 連載誌（表示と分類に使う）
       magazine: v?.magazine ?? null,
       magazines: uniq(v?.magazines),
       audiences: uniq(v?.audiences),
       magazineSource: v?.magazineSource ?? null,
 
-      // AniList（genresだけ残す）
+      // AniList（genresは表示してもいい、タグは日本語を表示）
       genres: uniq(v?.genres),
+      tags: uniq(v?.tags).slice(0, 24),
 
       meta,
     });
