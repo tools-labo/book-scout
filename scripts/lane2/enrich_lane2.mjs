@@ -657,13 +657,13 @@ function splitMagazines(magazineStr) {
   const s = norm(magazineStr);
   if (!s) return [];
 
-  // ★行区切り/ " / " も分割対象に追加（stripHtml強化の恩恵を活かす）
+  // 1) 改行と、よくある区切りだけで分割（空白では分割しない）
   const parts = s
-    .split(/[\n\/／・,、]| \\/ | \/ /g)
+    .split(/[\n\/／・,、]/g)
     .map((x) => norm(x))
     .filter(Boolean);
 
-  // 2) 「→」があれば左右に分割（例: A→B / A→ B）
+  // 2) 「→」は左右に分割（A→B / A→ B）
   const mags = parts.flatMap((p) =>
     p
       .split("→")
