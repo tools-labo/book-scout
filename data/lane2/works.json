@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-16T11:27:14.172Z",
+  "updatedAt": "2026-02-16T12:06:37.229Z",
   "total": 83,
   "items": [
     {
@@ -468,7 +468,7 @@
       "synopsis": "小学5年生のプンプンは転校生の愛子に惹かれ、世界や将来への不安を抱えながら日常を過ごす。家庭や周囲の歪みの中で、少年の心が揺れていく。",
       "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ",
       "magazines": [
-        "週刊ヤングサンデー",
+        "週刊ヤングサンデー→",
         "ビッグコミックスピリッツ"
       ],
       "audiences": [
@@ -514,8 +514,7 @@
       "synopsis": "名門・秀知院学園の生徒会で出会った会長・白銀と副会長・かぐや。両想いなのにプライドが邪魔して告白できず、“相手に告白させる”ための頭脳戦に突入する。",
       "magazine": "ミラクルジャンプ→週刊ヤングジャンプ",
       "magazines": [
-        "ミラクルジャンプ",
-        "週刊ヤングジャンプ"
+        "ミラクルジャンプ→週刊ヤングジャンプ"
       ],
       "audiences": [
         "青年"
@@ -1217,8 +1216,8 @@
       "synopsis": "貧困にあえぐ少年デンジは相棒の悪魔ポチタとデビルハンターとして働くが、裏切りで人生が一変。悪魔の力を宿し、悪魔を狩る戦いに身を投じる。",
       "magazine": "週刊少年ジャンプ（第1部） 少年ジャンプ+（第2部）",
       "magazines": [
-        "週刊少年ジャンプ",
-        "少年ジャンプ+"
+        "週刊少年ジャンプ（第1部）",
+        "少年ジャンプ+（第2部）"
       ],
       "audiences": [
         "少年"
@@ -1738,7 +1737,7 @@
       "magazine": "週刊少年ジャンプ →ジャンプGIGA",
       "magazines": [
         "週刊少年ジャンプ",
-        "ジャンプGIGA"
+        "→ジャンプGIGA"
       ],
       "audiences": [
         "少年"
@@ -2013,7 +2012,28 @@
         "少年"
       ],
       "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "魔法",
+        "フィットネス",
+        "不条理コメディ",
+        "少年向け",
+        "パロディ",
+        "学園",
+        "ドタバタ",
+        "戦争",
+        "グルメ",
+        "片思い",
+        "LGBTQ+テーマ",
+        "アセクシュアル（無性愛）",
+        "バレーボール"
+      ],
       "meta": {
+        "anilistId": 114960,
         "wikiTitle": "マッシュル-MASHLE-",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
@@ -2025,21 +2045,36 @@
       "asin": "4812483808",
       "synopsis": "人類最後の秘境“アビス”の縁の町オースで暮らす少女リコは、行方不明の白笛の母に憧れる。ある日、彼女はロボットの少年レグと出会い、母からの手紙を受けてアビスへと冒険に旅立つ。",
       "magazine": ".mw-parser-output .plainlist--only-child>ol,.mw-parser-output .plainlist--only-child>ul{line-height:inherit;list-style:none none;margin:0;padding-left:0}.mw-parser-output .plainlist--only-child>ol li,.mw-parser-output .plainlist--only-child>ul li{margin-bottom:0}まんがライフWIN+WEBコミックガンマ竹コミ!",
-      "magazines": [
-        ".mw-parser-output",
-        ".plainlist--only-child",
-        "ol",
-        "ul{line-height:inherit;list-style:none",
-        "none;margin:0;padding-left:0}.mw-parser-output",
-        "li",
-        "ul",
-        "li{margin-bottom:0}まんがライフWIN+WEBコミックガンマ竹コミ!"
-      ],
       "audiences": [
         "その他"
       ],
       "magazineSource": "wikipedia",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Fantasy",
+        "Horror",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "サバイバル",
+        "子どもが中心",
+        "旅",
+        "失われた文明",
+        "大自然",
+        "記憶喪失",
+        "哲学",
+        "青年向け",
+        "ロボット",
+        "双子",
+        "グルメ",
+        "モンスター娘",
+        "呪い",
+        "LGBTQ+テーマ",
+        "養子縁組"
+      ],
       "meta": {
+        "anilistId": 86551,
         "wikiTitle": "メイドインアビス",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
@@ -2064,7 +2099,25 @@
         "その他"
       ],
       "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "百合",
+        "成長譚",
+        "学園",
+        "LGBTQ+テーマ",
+        "片思い",
+        "三角関係",
+        "部活",
+        "演技",
+        "哲学",
+        "少年向け"
+      ],
       "meta": {
+        "anilistId": 86218,
         "wikiTitle": "やがて君になる",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
@@ -2084,7 +2137,22 @@
       "audiences": [
         "その他"
       ],
+      "genres": [
+        "Comedy",
+        "Slice of Life"
+      ],
+      "tags": [
+        "家族もの",
+        "癒し系",
+        "親子（子育て）",
+        "ドタバタ",
+        "少年向け",
+        "田舎",
+        "養子縁組",
+        "ボーイッシュ"
+      ],
       "meta": {
+        "anilistId": 30104,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -2108,7 +2176,32 @@
         "少年"
       ],
       "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Psychological",
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "現代ファンタジー",
+        "モンスター娘",
+        "少年向け",
+        "成長譚",
+        "不条理コメディ",
+        "モンスター男子",
+        "都会",
+        "LGBTQ+テーマ",
+        "探偵",
+        "哲学",
+        "アウトドア",
+        "銃",
+        "ヤンデレ",
+        "ギャル",
+        "癒し系"
+      ],
       "meta": {
+        "anilistId": 111233,
         "wikiTitle": "よふかしのうた (漫画)",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
@@ -3610,7 +3703,7 @@
       "magazine": "別冊少年マガジン 週刊少年マガジン（特別編）",
       "magazines": [
         "別冊少年マガジン",
-        "週刊少年マガジン"
+        "週刊少年マガジン（特別編）"
       ],
       "audiences": [
         "少年"
