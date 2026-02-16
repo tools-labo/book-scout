@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-16T13:48:07.235Z",
+  "updatedAt": "2026-02-16T14:04:56.271Z",
   "total": 83,
   "items": [
     {
@@ -232,9 +232,14 @@
       "isbn13": "9784803005950",
       "asin": "4803005958",
       "synopsis": "27歳無職の海崎新太は、求職難に悩む中でリライフ研究所の職員に出会い、1年間高校生活をやり直す実験に参加する。見た目は高校生、心は大人の彼が新たな仲間と学園生活を送り、自身と周囲に変化をもたらす青春再生物語。",
+      "magazine": "comico",
+      "magazines": [
+        "comico"
+      ],
       "audiences": [
         "その他"
       ],
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Drama",
@@ -258,7 +263,6 @@
       ],
       "meta": {
         "anilistId": 85849,
-        "wikiTitle": "ReLIFE",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -1984,7 +1988,7 @@
         "週刊ビッグコミックスピリッツ"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "manual_override",
       "genres": [
@@ -3365,7 +3369,7 @@
         "くらげバンチ"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "manual_override",
       "genres": [
@@ -3663,7 +3667,7 @@
         "ビッグコミックスペリオール"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "manual_override",
       "genres": [

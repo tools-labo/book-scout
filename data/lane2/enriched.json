@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-16T13:48:07.235Z",
+  "updatedAt": "2026-02-16T14:04:56.271Z",
   "total": 83,
   "ok": 83,
   "ng": 0,
@@ -8,7 +8,7 @@
     "skippedWiki": 56,
     "skippedAmazon": 60,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 5
+    "magAudienceTodoAdded": 1
   },
   "items": [
     {
@@ -355,13 +355,15 @@
         "publisher": "泰文堂",
         "author": "夜宵草",
         "releaseDate": "2014-08-12T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "comico",
+        "magazines": [
+          "comico"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ReLIFE",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85849,
         "genres": [
           "Comedy",
@@ -3163,7 +3165,7 @@
           "週刊ビッグコミックスピリッツ"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
@@ -3715,7 +3717,8 @@
         "releaseDate": "2015-04-30T00:00:01Z",
         "magazine": "comic POOL",
         "magazines": [
-          "comic POOL"
+          "comic",
+          "POOL"
         ],
         "audiences": [
           "その他"
@@ -5429,7 +5432,7 @@
           "くらげバンチ"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
@@ -5914,7 +5917,7 @@
           "ビッグコミックスペリオール"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
