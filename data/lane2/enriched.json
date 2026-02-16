@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-16T12:17:57.789Z",
+  "updatedAt": "2026-02-16T13:48:07.235Z",
   "total": 83,
   "ok": 83,
   "ng": 0,
@@ -8,7 +8,7 @@
     "skippedWiki": 56,
     "skippedAmazon": 60,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 11
+    "magAudienceTodoAdded": 5
   },
   "items": [
     {
@@ -343,6 +343,74 @@
       "meta": null
     },
     {
+      "seriesKey": "ReLIFE",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4803005958",
+        "amazonDp": "https://www.amazon.co.jp/dp/4803005958?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784803005950",
+        "asin": "4803005958",
+        "title": "ReLIFE 1 (アース・スター コミックス)",
+        "synopsis": "27歳無職の海崎新太は、求職難に悩む中でリライフ研究所の職員に出会い、1年間高校生活をやり直す実験に参加する。見た目は高校生、心は大人の彼が新たな仲間と学園生活を送り、自身と周囲に変化をもたらす青春再生物語。",
+        "image": "https://m.media-amazon.com/images/I/51qmDxACE+L._SL500_.jpg",
+        "publisher": "泰文堂",
+        "author": "夜宵草",
+        "releaseDate": "2014-08-12T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "ReLIFE",
+        "anilistId": 85849,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Psychological",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Memory Manipulation",
+          "Age Regression",
+          "Shapeshifting",
+          "School",
+          "Full Color",
+          "Rehabilitation",
+          "Amnesia",
+          "Ensemble Cast",
+          "Kuudere",
+          "Coming of Age",
+          "Seinen",
+          "Male Protagonist",
+          "Work",
+          "Heterosexual",
+          "Love Triangle",
+          "Volleyball",
+          "Suicide"
+        ],
+        "tags": [
+          "記憶操作",
+          "年齢退行",
+          "変身能力",
+          "学園",
+          "更生",
+          "記憶喪失",
+          "クーデレ",
+          "成長譚",
+          "青年向け",
+          "仕事",
+          "三角関係",
+          "バレーボール"
+        ],
+        "tags_missing_en": [
+          "Full Color"
+        ],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "アオのハコ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088827317",
@@ -421,7 +489,7 @@
           "別冊マーガレット"
         ],
         "audiences": [
-          "その他"
+          "少女"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "アオハライド",
@@ -1098,7 +1166,7 @@
           "good!アフタヌーン"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ぐらんぶる",
@@ -1665,13 +1733,15 @@
         "publisher": "小学館",
         "author": "浅野 いにお",
         "releaseDate": "2005-12-05T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングサンデー",
+        "magazines": [
+          "週刊ヤングサンデー"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ソラニン",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 33731,
         "genres": [
           "Drama",
@@ -1728,7 +1798,7 @@
           "ハルタ"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ダンジョン飯",
@@ -2004,7 +2074,7 @@
           "月刊少年エース"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "デッドマン・ワンダーランド",
@@ -2236,7 +2306,7 @@
           "月刊モーニングtwo"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "とんがり帽子のアトリエ",
@@ -2413,7 +2483,7 @@
           "月刊少年マガジン"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ノラガミ",
@@ -2617,12 +2687,14 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊Gファンタジー",
+        "magazines": [
+          "月刊Gファンタジー"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 33031,
         "genres": [
@@ -3086,13 +3158,15 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
+        "magazine": "週刊ビッグコミックスピリッツ",
+        "magazines": [
+          "週刊ビッグコミックスピリッツ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ホムンクルス",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30936,
         "genres": [
           "Drama",
@@ -3369,7 +3443,7 @@
           "月刊コミック電撃大王"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "やがて君になる",
@@ -3427,12 +3501,14 @@
         "publisher": "KADOKAWA",
         "author": "あずま きよひこ",
         "releaseDate": "2003-08-27T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊コミック電撃大王",
+        "magazines": [
+          "月刊コミック電撃大王"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30104,
         "genres": [
@@ -3557,74 +3633,6 @@
       "meta": null
     },
     {
-      "seriesKey": "ReLIFE",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4803005958",
-        "amazonDp": "https://www.amazon.co.jp/dp/4803005958?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784803005950",
-        "asin": "4803005958",
-        "title": "ReLIFE 1 (アース・スター コミックス)",
-        "synopsis": "27歳無職の海崎新太は、求職難に悩む中でリライフ研究所の職員に出会い、1年間高校生活をやり直す実験に参加する。見た目は高校生、心は大人の彼が新たな仲間と学園生活を送り、自身と周囲に変化をもたらす青春再生物語。",
-        "image": "https://m.media-amazon.com/images/I/51qmDxACE+L._SL500_.jpg",
-        "publisher": "泰文堂",
-        "author": "夜宵草",
-        "releaseDate": "2014-08-12T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
-        ],
-        "magazineSource": null,
-        "wikiTitle": "リライフ",
-        "anilistId": 85849,
-        "genres": [
-          "Comedy",
-          "Drama",
-          "Psychological",
-          "Romance",
-          "Slice of Life"
-        ],
-        "tags_en": [
-          "Memory Manipulation",
-          "Age Regression",
-          "Shapeshifting",
-          "School",
-          "Full Color",
-          "Rehabilitation",
-          "Amnesia",
-          "Ensemble Cast",
-          "Kuudere",
-          "Coming of Age",
-          "Seinen",
-          "Male Protagonist",
-          "Work",
-          "Heterosexual",
-          "Love Triangle",
-          "Volleyball",
-          "Suicide"
-        ],
-        "tags": [
-          "記憶操作",
-          "年齢退行",
-          "変身能力",
-          "学園",
-          "更生",
-          "記憶喪失",
-          "クーデレ",
-          "成長譚",
-          "青年向け",
-          "仕事",
-          "三角関係",
-          "バレーボール"
-        ],
-        "tags_missing_en": [
-          "Full Color"
-        ],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
       "seriesKey": "ワンパンマン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/ワンパンマン-1-ジャンプコミックス-村田-雄介/dp/408870701X",
@@ -3705,13 +3713,16 @@
         "publisher": "一迅社",
         "author": "ふじた",
         "releaseDate": "2015-04-30T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "comic POOL",
+        "magazines": [
+          "comic",
+          "POOL"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ヲタクに恋は難しい",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 86717,
         "genres": [
           "Comedy",
@@ -3770,13 +3781,15 @@
         "publisher": "講談社",
         "author": "鈴木 央",
         "releaseDate": "2013-02-15T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年マガジン",
+        "magazines": [
+          "週刊少年マガジン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "七つの大罪",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 86060,
         "genres": [
           "Action",
@@ -3976,13 +3989,15 @@
         "publisher": "講談社",
         "author": "桜井 画門",
         "releaseDate": "2013-03-07T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "good!アフタヌーン",
+        "magazines": [
+          "good!アフタヌーン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "亜人",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 79865,
         "genres": [
           "Action",
@@ -4488,13 +4503,15 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングジャンプ",
+        "magazines": [
+          "週刊ヤングジャンプ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "孤高の人",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 37375,
         "genres": [
           "Adventure",
@@ -5028,7 +5045,7 @@
           "花とゆめ"
         ],
         "audiences": [
-          "その他"
+          "少女"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "暁のヨナ",
@@ -5408,13 +5425,15 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
+        "magazine": "くらげバンチ",
+        "magazines": [
+          "くらげバンチ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "極主夫道",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 101233,
         "genres": [
           "Comedy",
@@ -5641,7 +5660,7 @@
           "月刊コミックゼノン"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "終末のワルキューレ",
@@ -5831,12 +5850,14 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "マガジンポケット",
+        "magazines": [
+          "マガジンポケット"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 140475,
         "genres": [
@@ -5889,13 +5910,15 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ビッグコミックスペリオール",
+        "magazines": [
+          "ビッグコミックスペリオール"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "血の轍",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 98397,
         "genres": [
           "Drama",
@@ -5965,7 +5988,7 @@
           "月刊少年シリウス"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "転生したらスライムだった件",
@@ -6305,13 +6328,15 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "魔都精兵のスレイブ",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 106064,
         "genres": [
           "Action",

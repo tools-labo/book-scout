@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-16T12:17:57.789Z",
+  "updatedAt": "2026-02-16T13:48:07.235Z",
   "total": 83,
   "items": [
     {
@@ -221,6 +221,48 @@
       }
     },
     {
+      "seriesKey": "ReLIFE",
+      "title": "ReLIFE 1 (アース・スター コミックス)",
+      "author": "夜宵草",
+      "publisher": "泰文堂",
+      "releaseDate": "2014-08-12T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51qmDxACE+L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4803005958",
+      "amazonDp": "https://www.amazon.co.jp/dp/4803005958?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784803005950",
+      "asin": "4803005958",
+      "synopsis": "27歳無職の海崎新太は、求職難に悩む中でリライフ研究所の職員に出会い、1年間高校生活をやり直す実験に参加する。見た目は高校生、心は大人の彼が新たな仲間と学園生活を送り、自身と周囲に変化をもたらす青春再生物語。",
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Psychological",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "記憶操作",
+        "年齢退行",
+        "変身能力",
+        "学園",
+        "更生",
+        "記憶喪失",
+        "クーデレ",
+        "成長譚",
+        "青年向け",
+        "仕事",
+        "三角関係",
+        "バレーボール"
+      ],
+      "meta": {
+        "anilistId": 85849,
+        "wikiTitle": "ReLIFE",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "アオのハコ",
       "title": "アオのハコ 1 (ジャンプコミックス)",
       "author": "三浦 糀",
@@ -277,7 +319,7 @@
         "別冊マーガレット"
       ],
       "audiences": [
-        "その他"
+        "少女"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -711,7 +753,7 @@
         "good!アフタヌーン"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -1074,9 +1116,14 @@
       "isbn13": "9784091533210",
       "asin": "4091533213",
       "synopsis": "社会人2年目の芽衣子とバンドマンの恋人・種田は、将来への不安と倦怠感を抱えていた。芽衣子は会社を辞め、ふたりは音楽に懸けるが、夢と現実の狭間で揺れる若者の等身大の青春を描く。",
-      "audiences": [
-        "その他"
+      "magazine": "週刊ヤングサンデー",
+      "magazines": [
+        "週刊ヤングサンデー"
       ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Drama",
         "Music",
@@ -1093,7 +1140,6 @@
       ],
       "meta": {
         "anilistId": 33731,
-        "wikiTitle": "ソラニン",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -1108,7 +1154,7 @@
         "ハルタ"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -1271,7 +1317,7 @@
         "月刊少年エース"
       ],
       "audiences": [
-        "その他"
+        "少年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -1414,7 +1460,7 @@
         "月刊モーニングtwo"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -1508,7 +1554,7 @@
         "月刊少年マガジン"
       ],
       "audiences": [
-        "その他"
+        "少年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -1635,9 +1681,14 @@
       "isbn13": "9784757518087",
       "asin": "4757518080",
       "synopsis": "15歳の成人の儀で“紅き厄災”の罪を負わされたオズ＝ベザリウスは、永遠の監獄アヴィスに落とされる。そこで兎の姿の少女アリスと出会い、運命の歯車に抗って世界の謎に挑むダークファンタジー。",
-      "audiences": [
-        "その他"
+      "magazine": "月刊Gファンタジー",
+      "magazines": [
+        "月刊Gファンタジー"
       ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Adventure",
@@ -1928,9 +1979,14 @@
       "isbn13": "9784091870711",
       "asin": "4091870716",
       "synopsis": "新宿の公園で車上生活を送る名越進は、医学生・伊藤学の誘いで報酬と引き換えに頭蓋骨に穴を開ける手術を受ける。以後、片目で人を見ると心の闇が異形となった“ホムンクルス”が見えるようになり、彼はさまざまな人々のトラウマと自身の過去に向き合っていく。",
+      "magazine": "週刊ビッグコミックスピリッツ",
+      "magazines": [
+        "週刊ビッグコミックスピリッツ"
+      ],
       "audiences": [
         "その他"
       ],
+      "magazineSource": "manual_override",
       "genres": [
         "Drama",
         "Horror",
@@ -1953,7 +2009,6 @@
       ],
       "meta": {
         "anilistId": 30936,
-        "wikiTitle": "ホムンクルス",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -2096,7 +2151,7 @@
         "月刊コミック電撃大王"
       ],
       "audiences": [
-        "その他"
+        "少年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -2134,9 +2189,14 @@
       "isbn13": "9784048690669",
       "asin": "4048690663",
       "synopsis": "夏休み直前、元気すぎる女の子“よつば”と「とーちゃん」が引っ越してくる。近所の人たちや同年代の子と出会い、毎日が発見だらけの“はじめて”を積み重ねていく日常コメディ。",
-      "audiences": [
-        "その他"
+      "magazine": "月刊コミック電撃大王",
+      "magazines": [
+        "月刊コミック電撃大王"
       ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Slice of Life"
@@ -2207,48 +2267,6 @@
       }
     },
     {
-      "seriesKey": "ReLIFE",
-      "title": "ReLIFE 1 (アース・スター コミックス)",
-      "author": "夜宵草",
-      "publisher": "泰文堂",
-      "releaseDate": "2014-08-12T00:00:01Z",
-      "image": "https://m.media-amazon.com/images/I/51qmDxACE+L._SL500_.jpg",
-      "amazonUrl": "https://www.amazon.co.jp/dp/4803005958",
-      "amazonDp": "https://www.amazon.co.jp/dp/4803005958?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-      "isbn13": "9784803005950",
-      "asin": "4803005958",
-      "synopsis": "27歳無職の海崎新太は、求職難に悩む中でリライフ研究所の職員に出会い、1年間高校生活をやり直す実験に参加する。見た目は高校生、心は大人の彼が新たな仲間と学園生活を送り、自身と周囲に変化をもたらす青春再生物語。",
-      "audiences": [
-        "その他"
-      ],
-      "genres": [
-        "Comedy",
-        "Drama",
-        "Psychological",
-        "Romance",
-        "Slice of Life"
-      ],
-      "tags": [
-        "記憶操作",
-        "年齢退行",
-        "変身能力",
-        "学園",
-        "更生",
-        "記憶喪失",
-        "クーデレ",
-        "成長譚",
-        "青年向け",
-        "仕事",
-        "三角関係",
-        "バレーボール"
-      ],
-      "meta": {
-        "anilistId": 85849,
-        "wikiTitle": "リライフ",
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      }
-    },
-    {
       "seriesKey": "ワンパンマン",
       "title": "ワンパンマン 1",
       "author": "村田 雄介",
@@ -2304,9 +2322,15 @@
       "isbn13": "9784758008464",
       "asin": "4758008469",
       "synopsis": "隠れ腐女子のOL成海と、容姿端麗で仕事もできるが重度のゲームオタクの幼なじみ宏嵩が再会。オタク同士の恋愛に四苦八苦しながらも仕事や趣味を楽しむ、等身大のラブコメディ。",
+      "magazine": "comic POOL",
+      "magazines": [
+        "comic",
+        "POOL"
+      ],
       "audiences": [
         "その他"
       ],
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Romance",
@@ -2322,7 +2346,6 @@
       ],
       "meta": {
         "anilistId": 86717,
-        "wikiTitle": "ヲタクに恋は難しい",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -2338,9 +2361,14 @@
       "isbn13": "9784063848021",
       "asin": "4063848027",
       "synopsis": "王国転覆を疑われ指名手配された伝説の騎士団“七つの大罪”。聖騎士たちに支配された王国を救うため、王女エリザベスは団長メリオダスを探し出し、仲間と共に巨悪に立ち向かう冒険ファンタジー。",
-      "audiences": [
-        "その他"
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
       ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Comedy",
@@ -2353,7 +2381,6 @@
       ],
       "meta": {
         "anilistId": 86060,
-        "wikiTitle": "七つの大罪",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -2472,9 +2499,14 @@
       "isbn13": "9784063878684",
       "asin": "4063878686",
       "synopsis": "「死なない人間」――亜人の存在が社会を揺らす中、高校生の永井圭は交通事故で“死んだはずなのに生き返り”、自分が亜人だと知る。逃亡の果てに待つのは、国家と亜人の過酷な追跡劇だった。",
-      "audiences": [
-        "その他"
+      "magazine": "good!アフタヌーン",
+      "magazines": [
+        "good!アフタヌーン"
       ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Horror",
@@ -2504,7 +2536,6 @@
       ],
       "meta": {
         "anilistId": 79865,
-        "wikiTitle": "亜人",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -2781,9 +2812,14 @@
       "isbn13": "9784088774268",
       "asin": "4088774264",
       "synopsis": "孤独な高校生・森文太郎は転校初日、同級生の宮本にそそのかされ校舎をよじ登る。命がけの挑戦で感じた高揚感からクライミングに目覚め、やがて険しい山々へ挑んでいく姿を描く。",
-      "audiences": [
-        "その他"
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
       ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Adventure",
         "Drama",
@@ -2810,7 +2846,6 @@
       ],
       "meta": {
         "anilistId": 37375,
-        "wikiTitle": "孤高の人",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3092,7 +3127,7 @@
         "花とゆめ"
       ],
       "audiences": [
-        "その他"
+        "少女"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -3325,9 +3360,14 @@
       "isbn13": "9784107721044",
       "asin": "4107721043",
       "synopsis": "“不死身の龍”と恐れられた元ヤクザの龍は妻との結婚を機に足を洗い、専業主夫となる。仁義を貫く性格で家事にも全力を注ぐ彼の姿はギャップ満載で、元舎弟や警官たちとの再会や日常の騒動がシュールな笑いを生み出す。",
+      "magazine": "くらげバンチ",
+      "magazines": [
+        "くらげバンチ"
+      ],
       "audiences": [
         "その他"
       ],
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Slice of Life"
@@ -3347,7 +3387,6 @@
       ],
       "meta": {
         "anilistId": 101233,
-        "wikiTitle": "極主夫道",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3460,7 +3499,7 @@
         "月刊コミックゼノン"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -3584,9 +3623,14 @@
       "isbn13": "9784065266090",
       "asin": "4065266092",
       "synopsis": "不良だらけの千鳥高校とお嬢様校・桔梗女子は犬猿の仲。腕っぷしは強いが心優しい千鳥高校2年の紬凛太郎は、家業のケーキ店で桔梗女子の令嬢・和栗薫子と出会い、隣接する2校の壁を越えた恋を育んでいく。",
-      "audiences": [
-        "その他"
+      "magazine": "マガジンポケット",
+      "magazines": [
+        "マガジンポケット"
       ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Comedy",
         "Drama",
@@ -3614,9 +3658,14 @@
       "isbn13": "9784091896230",
       "asin": "4091896235",
       "synopsis": "平凡な中学生・静一は、過保護な母・静子と穏やかな日々を送っていた。しかし親戚との登山をきっかけに、母の“笑顔の奥”にある歪みが顔を出し始める。親子の距離が静かに崩れていく心理サスペンス。",
+      "magazine": "ビッグコミックスペリオール",
+      "magazines": [
+        "ビッグコミックスペリオール"
+      ],
       "audiences": [
         "その他"
       ],
+      "magazineSource": "manual_override",
       "genres": [
         "Drama",
         "Horror",
@@ -3641,7 +3690,6 @@
       ],
       "meta": {
         "anilistId": 98397,
-        "wikiTitle": "血の轍",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3656,7 +3704,7 @@
         "月刊少年シリウス"
       ],
       "audiences": [
-        "その他"
+        "少年"
       ],
       "magazineSource": "wikipedia",
       "genres": [
@@ -3865,9 +3913,14 @@
       "isbn13": "9784088817866",
       "asin": "4088817869",
       "synopsis": "異界“魔都”が現れ、侵入した女性が能力を得る世界。高校生の和倉優希は、妹を守ろうとして魔都に迷い込み、強力な“魔都防衛隊”の総帥・羽前京香に救われて彼女の奴隷となり、共に異形と戦うバトルアクション。",
-      "audiences": [
-        "その他"
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
       ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Adventure",
@@ -3896,7 +3949,6 @@
       ],
       "meta": {
         "anilistId": 106064,
-        "wikiTitle": "魔都精兵のスレイブ",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     }
