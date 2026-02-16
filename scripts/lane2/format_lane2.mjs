@@ -47,58 +47,101 @@ function compact(obj) {
   return out;
 }
 
+// ★フロント必須（スクショの要件に合わせて）
+function isFrontRequiredFilled(v) {
+  const req = {
+    title: norm(v?.title),
+    author: norm(v?.author),
+    publisher: norm(v?.publisher),
+    releaseDate: norm(v?.releaseDate),
+    image: norm(v?.image),
+    amazonDp: norm(v?.amazonDp),
+    amazonUrl: norm(v?.amazonUrl),
+    synopsis: norm(v?.synopsis),
+    magazine: norm(v?.magazine),
+    audiencesOk: Array.isArray(v?.audiences) && v.audiences.length > 0,
+  };
+
+  // audiences は最低1（その他でもOK）になってる想定
+  return !!(
+    req.title &&
+    req.author &&
+    req.publisher &&
+    req.releaseDate &&
+    req.image &&
+    req.amazonDp &&
+    req.amazonUrl &&
+    req.synopsis &&
+    req.magazine &&
+    req.audiencesOk
+  );
+}
+
 async function main() {
-  const src = await loadJson(IN_ENRICHED, { items: [] });
+  const src = await loadJson(IN_ENRICHED, { items: [], stats: {} });
   const items = Array.isArray(src?.items) ? src.items : [];
 
-  const outItems = items.map((x) => {
+  const kept = [];
+  const dropped = [];
+
+  for (const x of items) {
     const v = x?.vol1 || {};
+    if (!isFrontRequiredFilled(v)) {
+      dropped.push(norm(x?.seriesKey) || "(unknown)");
+      continue;
+    }
+
     const meta = {
       anilistId: v?.anilistId ?? null,
       wikiTitle: v?.wikiTitle ?? null,
       source: v?.source ?? null,
     };
 
-    return compact({
-      seriesKey: x?.seriesKey ?? null,
+    kept.push(
+      compact({
+        seriesKey: x?.seriesKey ?? null,
 
-      // 表示
-      title: v?.title ?? null,
-      author: v?.author ?? null,
-      publisher: v?.publisher ?? null,
-      releaseDate: v?.releaseDate ?? null,
-      image: v?.image ?? null,
+        // 表示
+        title: v?.title ?? null,
+        author: v?.author ?? null,
+        publisher: v?.publisher ?? null,
+        releaseDate: v?.releaseDate ?? null,
+        image: v?.image ?? null,
 
-      // Amazon
-      amazonUrl: v?.amazonUrl ?? null,
-      amazonDp: v?.amazonDp ?? null,
-      isbn13: v?.isbn13 ?? null,
-      asin: v?.asin ?? null,
+        // Amazon
+        amazonUrl: v?.amazonUrl ?? null,
+        amazonDp: v?.amazonDp ?? null,
+        isbn13: v?.isbn13 ?? null,
+        asin: v?.asin ?? null,
 
-      synopsis: v?.synopsis ?? null,
+        synopsis: v?.synopsis ?? null,
 
-      // 連載誌（表示と分類に使う）
-      magazine: v?.magazine ?? null,
-      magazines: uniq(v?.magazines),
-      audiences: uniq(v?.audiences),
-      magazineSource: v?.magazineSource ?? null,
+        // 連載誌（表示と分類に使う）
+        magazine: v?.magazine ?? null,
+        magazines: uniq(v?.magazines),
+        audiences: uniq(v?.audiences),
+        magazineSource: v?.magazineSource ?? null,
 
-      // AniList（genresは表示してもいい、タグは日本語を表示）
-      genres: uniq(v?.genres),
-      tags: uniq(v?.tags).slice(0, 24),
+        // AniList（genresは表示してもいい、タグは日本語を表示）
+        genres: uniq(v?.genres),
+        tags: uniq(v?.tags).slice(0, 24),
 
-      meta,
-    });
-  });
+        meta,
+      })
+    );
+  }
 
   const out = {
     updatedAt: src?.updatedAt ?? new Date().toISOString(),
-    total: outItems.length,
-    items: outItems,
+    total: kept.length,
+    droppedTotal: dropped.length,
+    droppedSeriesKeys: dropped, // ★差し戻し対象（次回runで復活する想定）
+    items: kept,
   };
 
   await saveJson(OUT_WORKS, out);
-  console.log(`[lane2:format] total=${outItems.length} -> ${OUT_WORKS}`);
+
+  console.log(`[lane2:format] total_in=${items.length} total_out=${kept.length} dropped=${dropped.length} -> ${OUT_WORKS}`);
 }
 
 main().catch((e) => {
