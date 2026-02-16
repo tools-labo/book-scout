@@ -106,7 +106,12 @@ function assertNonEmptySeries(sorted) {
  * HTML strip / decode
  * ----------------------- */
 function stripHtml(s) {
-  const x = String(s ?? "");
+  let x = String(s ?? "");
+
+  // ★重要：style/script の中身は「文字」として残るので先に除去
+  x = x
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "");
 
   const decodeHtmlEntities = (t) => {
     let y = String(t ?? "");
@@ -630,42 +635,31 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
  * Magazine split + audience
  * ----------------------- */
 function splitMagazines(magazineStr) {
-  let s = norm(magazineStr);
+  const s = norm(magazineStr);
   if (!s) return [];
 
-  // 表記ゆれ吸収（全角/半角スペースなど）
-  s = s
-    .replace(/\u00A0/g, " ")
-    .replace(/[　]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  const isNoise = (t) => {
+    const x = norm(t);
+    if (!x) return true;
 
-  // 「→」「⇒」「＞」などを “区切り” として扱う（前後に空白が無くても分割できるように）
-  s = s.replace(/[→⇒＞>]+/g, " / ");
+    // CSS/HTML由来ノイズ（今回出てるやつを確実に殺す）
+    if (x.startsWith(".")) return true;
+    if (/[{};]/.test(x)) return true;
+    if (/^mw-parser-output/i.test(x)) return true;
+    if (/plainlist/i.test(x)) return true;
+    if (/^(ul|ol|li)$/i.test(x)) return true;
+    if (/margin|padding|list-style|line-height|only-child/i.test(x)) return true;
 
-  // 括弧注記を落とす（例: 週刊少年ジャンプ（第1部） / 週刊少年マガジン（特別編））
-  // ※「→で分割」してから落とすほうが安全なので先にやってOK
-  s = s.replace(/（[^）]*）/g, "");
+    return false;
+  };
 
-  // たまに混ざる記号の統一
-  s = s
-    .replace(/[／/・,、]/g, " / ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  // ここから分割
-  const parts = s
-    .split("/")
-    .map((x) => norm(x))
-    .filter(Boolean)
-    // トークンの先頭末尾に残った矢印/記号を落とす
-    .map((x) => x.replace(/^[→⇒＞>\-–—]+/, "").replace(/[→⇒＞>\-–—]+$/, "").trim())
-    .filter(Boolean);
-
-  // さらに「空白区切りで複数誌が並ぶ」ケース（Wikipedia由来）を救う
-  const parts2 = parts.flatMap((p) => p.split(/\s+/g).map(norm).filter(Boolean));
-
-  return uniq(parts2);
+  return uniq(
+    s
+      .split(/[\/／・,、]/g)
+      .map((x) => norm(x))
+      .filter(Boolean)
+      .flatMap((x) => x.split(/\s+/g).map(norm))
+  ).filter((x) => !isNoise(x));
 }
 
 function loadMagAudienceMap(json) {
