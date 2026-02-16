@@ -108,7 +108,7 @@ function assertNonEmptySeries(sorted) {
 function stripHtml(s) {
   let x = String(s ?? "");
 
-  // ★重要：style/script の中身は「文字」として残るので先に除去
+  // style/script を先に除去（中身を文字として残さない）
   x = x
     .replace(/<script[\s\S]*?<\/script>/gi, "")
     .replace(/<style[\s\S]*?<\/style>/gi, "");
@@ -134,7 +134,7 @@ function stripHtml(s) {
     return y;
   };
 
-  // ★li / br などで区切りを入れてからタグ除去（= 雑誌名を行単位にしやすくする）
+  // li/br/p/div/td などで行区切りを入れてからタグ除去
   const t = x
     .replace(/<\/li>/gi, "\n")
     .replace(/<li[^>]*>/gi, "")
@@ -152,7 +152,49 @@ function stripHtml(s) {
 }
 
 /* -----------------------
- * Tag dict (EN -> JA)  ※表示用に復活
+ * CSS/セレクタ系のゴミ判定
+ * ----------------------- */
+function looksCssGarbage(line) {
+  const s = norm(line);
+  if (!s) return true;
+
+  // 明確に Wikipedia のセレクタ/テンプレ断片
+  if (s.includes("mw-parser-output")) return true;
+  if (s.includes("plainlist")) return true;
+
+  // CSS/セレクタっぽい記号
+  if (/[{};]/.test(s)) return true;
+  if (/[<>]/.test(s)) return true;
+
+  // セレクタ先頭
+  if (/^[.#]/.test(s)) return true;
+
+  // ありがちな CSS 断片ワード
+  if (/(margin|padding|line-height|list-style|only-child)/i.test(s)) return true;
+
+  // タグ名だけ/断片だけ
+  if (/^(ul|ol|li)$/i.test(s)) return true;
+  if (/^none\b/i.test(s)) return true;
+
+  // 異常に長いのは雑に弾く（雑誌名としてはまず出ない）
+  if (s.length > 80) return true;
+
+  return false;
+}
+
+function isPlausibleMagazineName(name) {
+  const s = norm(name);
+  if (!s) return false;
+  if (looksCssGarbage(s)) return false;
+
+  // 雑誌名として最低限「日本語 or 英字」が含まれること（記号だらけを弾く）
+  if (!/[ぁ-んァ-ヶ一-龠a-zA-Z0-9]/.test(s)) return false;
+
+  return true;
+}
+
+/* -----------------------
+ * Tag dict (EN -> JA)
  * ----------------------- */
 function loadTagMap(tagMapJson) {
   const m = tagMapJson?.map && typeof tagMapJson.map === "object" ? tagMapJson.map : {};
@@ -328,19 +370,18 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const text = stripHtml(m[1]);
 
-  // ★行単位でゴミ除去（CSS断片 / セレクタ / 記号だらけ / 異常に長い等）
+  // 行単位にして “雑誌名っぽい行” だけ残す（CSSゴミをここで殺す）
   const lines = text
     .split("\n")
-    .map((x) => x.trim())
+    .map((x) => norm(x))
     .filter(Boolean)
-    .filter((x) => !x.includes("mw-parser-output"))
-    .filter((x) => !x.includes("plainlist"))
-    .filter((x) => !/^(\.|#)/.test(x))        // .selector / #id
-    .filter((x) => !/[{};]/.test(x))          // CSSっぽい
-    .filter((x) => x.length <= 80);           // 異常に長いのは弾く（保険）
+    .filter((x) => !looksCssGarbage(x))
+    .filter((x) => x.length <= 80);
+
+  // 連結（この段階では「空白での分割」はしない）
+  const joined = lines.join(" / ");
 
   // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去
-  const joined = lines.join(" / ");
   const cleaned = joined
     .replace(/$begin:math:display$\\s\*\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)\\s\*$end:math:display$/g, "")
     .replace(/\s+/g, " ")
@@ -671,7 +712,8 @@ function splitMagazines(magazineStr) {
       .filter(Boolean)
   );
 
-  return uniq(mags);
+  // 3) CSS/セレクタ系ゴミをここで除去（todoにすら入れない）
+  return uniq(mags).filter(isPlausibleMagazineName);
 }
 
 function loadMagAudienceMap(json) {
@@ -688,13 +730,47 @@ function loadMagAudienceMap(json) {
   return out;
 }
 
+// ★辞書一致でだけ空白連結を分解する（comic POOL を壊さない）
+function splitByDictOnlyIfAllKnown(raw, magAudienceMap) {
+  const s = norm(raw);
+  if (!s) return [];
+
+  // 既に辞書にあるなら分解不要
+  if (magAudienceMap.has(s)) return [s];
+
+  // 空白がないなら無理に分解しない
+  if (!/\s/.test(s)) return [s];
+
+  const parts = s.split(/\s+/g).map(norm).filter(Boolean);
+
+  // “全部”が辞書に存在する時だけ分解
+  if (parts.length >= 2 && parts.every((p) => magAudienceMap.has(p))) {
+    return parts;
+  }
+
+  // それ以外は分解しない（comic POOL 等を守る）
+  return [s];
+}
+
 function pickAudiences({ magazines, magAudienceMap, todoSet }) {
   const auds = new Set();
-  for (const m of magazines) {
-    const a = magAudienceMap.get(m) || null;
-    if (a) auds.add(a);
-    else todoSet.add(m);
+
+  for (const m0 of magazines) {
+    const candidates = splitByDictOnlyIfAllKnown(m0, magAudienceMap);
+
+    for (const m of candidates) {
+      const mm = norm(m);
+      if (!mm) continue;
+
+      // ここでも一応ゴミ弾き（保険）
+      if (!isPlausibleMagazineName(mm)) continue;
+
+      const a = magAudienceMap.get(mm) || null;
+      if (a) auds.add(a);
+      else todoSet.add(mm);
+    }
   }
+
   if (auds.size === 0) auds.add("その他");
   return Array.from(auds);
 }
@@ -842,12 +918,11 @@ async function main() {
     let genres = Array.isArray(prevVol1?.genres) ? prevVol1.genres : [];
     let tagsEn = Array.isArray(prevVol1?.tags_en) ? prevVol1.tags_en : [];
 
-    // ★表示用 tags（日本語）を復活：前回値を使いつつ、取れたら更新
+    // 表示用 tags（日本語）
     let tagsJa = Array.isArray(prevVol1?.tags) ? prevVol1.tags : [];
     let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
     if (hasAniListFilled(prevVol1)) {
-      // 前回 tags_ja が空の可能性があるので、tagsEn があれば辞書適用だけは走らせる
       if ((!Array.isArray(tagsJa) || tagsJa.length === 0) && Array.isArray(tagsEn) && tagsEn.length > 0) {
         const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
         tagsJa = applied.tags;
@@ -924,7 +999,6 @@ async function main() {
         anilistId,
         genres: uniq(genres),
 
-        // ★表示用タグ復活
         tags_en: uniq(tagsEn),
         tags: uniq(tagsJa),
         tags_missing_en: uniq(tagsMissing),
