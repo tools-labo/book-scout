@@ -108,7 +108,6 @@ function assertNonEmptySeries(sorted) {
 function stripHtml(s) {
   let x = String(s ?? "");
 
-  // style/script を先に除去（中身を文字として残さない）
   x = x
     .replace(/<script[\s\S]*?<\/script>/gi, "")
     .replace(/<style[\s\S]*?<\/style>/gi, "");
@@ -134,7 +133,6 @@ function stripHtml(s) {
     return y;
   };
 
-  // li/br/p/div/td などで行区切りを入れてからタグ除去
   const t = x
     .replace(/<\/li>/gi, "\n")
     .replace(/<li[^>]*>/gi, "")
@@ -158,25 +156,17 @@ function looksCssGarbage(line) {
   const s = norm(line);
   if (!s) return true;
 
-  // 明確に Wikipedia のセレクタ/テンプレ断片
   if (s.includes("mw-parser-output")) return true;
   if (s.includes("plainlist")) return true;
 
-  // CSS/セレクタっぽい記号
   if (/[{};]/.test(s)) return true;
   if (/[<>]/.test(s)) return true;
-
-  // セレクタ先頭
   if (/^[.#]/.test(s)) return true;
-
-  // ありがちな CSS 断片ワード
   if (/(margin|padding|line-height|list-style|only-child)/i.test(s)) return true;
 
-  // タグ名だけ/断片だけ
   if (/^(ul|ol|li)$/i.test(s)) return true;
   if (/^none\b/i.test(s)) return true;
 
-  // 異常に長いのは雑に弾く（雑誌名としてはまず出ない）
   if (s.length > 80) return true;
 
   return false;
@@ -187,7 +177,6 @@ function isPlausibleMagazineName(name) {
   if (!s) return false;
   if (looksCssGarbage(s)) return false;
 
-  // 雑誌名として最低限「日本語 or 英字」が含まれること（記号だらけを弾く）
   if (!/[ぁ-んァ-ヶ一-龠a-zA-Z0-9]/.test(s)) return false;
 
   return true;
@@ -243,14 +232,15 @@ function hasAniListFilled(prevVol1) {
 function hasMagazineFilled(prevVol1) {
   return !!(prevVol1 && norm(prevVol1.magazine));
 }
-function hasAmazonFilled(prevVol1) {
+function hasAmazonFilled(vol1) {
   return !!(
-    prevVol1 &&
-    norm(prevVol1.amazonDp) &&
-    norm(prevVol1.image) &&
-    norm(prevVol1.publisher) &&
-    norm(prevVol1.author) &&
-    norm(prevVol1.releaseDate)
+    vol1 &&
+    norm(vol1.amazonDp) &&
+    norm(vol1.image) &&
+    norm(vol1.publisher) &&
+    norm(vol1.author) &&
+    norm(vol1.releaseDate) &&
+    norm(vol1.title)
   );
 }
 
@@ -370,7 +360,6 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const text = stripHtml(m[1]);
 
-  // 行単位にして “雑誌名っぽい行” だけ残す（CSSゴミをここで殺す）
   const lines = text
     .split("\n")
     .map((x) => norm(x))
@@ -378,12 +367,10 @@ function extractMagazineFromInfoboxHtml(html) {
     .filter((x) => !looksCssGarbage(x))
     .filter((x) => x.length <= 80);
 
-  // 連結（この段階では「空白での分割」はしない）
   const joined = lines.join(" / ");
 
-  // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去
   const cleaned = joined
-    .replace(/$begin:math:display$\\s\*\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)\\s\*$end:math:display$/g, "")
+    .replace(/$begin:math:display$\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)$end:math:display$/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -458,7 +445,11 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
 
 /* -----------------------
  * Amazon PA-API (GetItems)
+ * - ★失敗ログを出す
+ * - ★429/503など一時失敗は null 固定しない
+ * - ★cache には “結果オブジェクト” を保存（success/temporary/permanent）
  * ----------------------- */
+
 function hmac(key, data, enc = null) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest(enc || undefined);
 }
@@ -483,6 +474,31 @@ function signKey(secretKey, dateStamp, region, service) {
   const kRegion = hmac(kDate, region);
   const kService = hmac(kRegion, service);
   return hmac(kService, "aws4_request");
+}
+
+function isRetryablePaapiStatus(status) {
+  return status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+}
+
+function summarizePaapiError(json, text) {
+  const code =
+    json?.Errors?.[0]?.Code ||
+    json?.Error?.Code ||
+    json?.__type ||
+    null;
+
+  const msg =
+    json?.Errors?.[0]?.Message ||
+    json?.Error?.Message ||
+    null;
+
+  const shortText = (() => {
+    const t = String(text ?? "");
+    if (!t) return null;
+    return t.length > 180 ? t.slice(0, 180) + "…" : t;
+  })();
+
+  return { code, message: msg, shortText };
 }
 
 async function paapiPost({ host, region, accessKey, secretKey, target, path: apiPath, payload }) {
@@ -543,14 +559,16 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
     body: payload,
   });
 
+  const retryAfter = r.headers?.get?.("retry-after") ?? null;
+
   const txt = await r.text();
   let json = null;
   try { json = JSON.parse(txt); } catch { json = null; }
 
   if (!r.ok) {
-    return { ok: false, status: r.status, json, text: txt };
+    return { ok: false, status: r.status, json, text: txt, retryAfter };
   }
-  return { ok: true, status: r.status, json };
+  return { ok: true, status: r.status, json, retryAfter };
 }
 
 function extractPaapiItem(item) {
@@ -606,17 +624,68 @@ function extractPaapiItem(item) {
   };
 }
 
-async function fetchPaapiByAsins({ asins, cache, creds }) {
+/**
+ * cacheAmz[asin] の形式:
+ *  - { ok:true, data:{...}, at:"..." }
+ *  - { ok:false, kind:"temporary"|"permanent", status:number|null, error:{code,message,shortText}, at:"..." }
+ */
+function readCacheAmzEntry(cacheAmz, asin) {
+  const v = cacheAmz?.[asin];
+  if (!v) return null;
+
+  // 旧形式（item直 or null）互換：
+  //  - null は「不明」扱いにして再取得対象にする
+  //  - itemっぽいなら success にラップ
+  if (v === null) return { legacyNull: true, raw: v };
+  if (v && typeof v === "object" && "ok" in v) return v;
+  // itemっぽい（amazonDp/title 等）を success 扱い
+  if (v && typeof v === "object") {
+    return { ok: true, data: v, at: nowIso(), legacyWrapped: true };
+  }
+  return null;
+}
+
+function writeCacheAmzSuccess(cacheAmz, asin, data) {
+  cacheAmz[asin] = { ok: true, data: data ?? null, at: nowIso() };
+}
+function writeCacheAmzError(cacheAmz, asin, { kind, status, error }) {
+  cacheAmz[asin] = { ok: false, kind, status: status ?? null, error: error ?? null, at: nowIso() };
+}
+
+async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
   const want = [];
   for (const asin of asins) {
-    if (!asin) continue;
-    if (Object.prototype.hasOwnProperty.call(cache, asin)) continue;
-    want.push(asin);
+    const a = norm(asin);
+    if (!a) continue;
+
+    const entry = readCacheAmzEntry(cache, a);
+
+    // success は再取得不要
+    if (entry && entry.ok) continue;
+
+    // temporary は再取得したい
+    if (entry && entry.ok === false && entry.kind === "temporary") {
+      want.push(a);
+      continue;
+    }
+
+    // permanent は原則再取得しない（本当に永久かは運用で判断）
+    if (entry && entry.ok === false && entry.kind === "permanent") continue;
+
+    // legacy null / 未存在 は再取得対象
+    want.push(a);
   }
+
   if (!want.length) return;
 
   if (!creds?.enabled) {
-    for (const asin of want) cache[asin] = null;
+    for (const asin of want) {
+      writeCacheAmzError(cache, asin, {
+        kind: "temporary",
+        status: null,
+        error: { code: "AMZ_CREDS_MISSING", message: "PA-API creds missing", shortText: null },
+      });
+    }
     return;
   }
 
@@ -641,28 +710,93 @@ async function fetchPaapiByAsins({ asins, cache, creds }) {
       ],
     };
 
-    const res = await paapiPost({
-      host,
-      region,
-      accessKey: creds.accessKey,
-      secretKey: creds.secretKey,
-      target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
-      path: "/paapi5/getitems",
-      payload: JSON.stringify(payloadObj),
-    });
+    const payload = JSON.stringify(payloadObj);
 
-    if (!res.ok) {
-      for (const asin of chunk) cache[asin] = null;
-    } else {
-      const items = res.json?.ItemsResult?.Items || [];
-      const map = new Map(items.map((it) => [it?.ASIN, it]));
-      for (const asin of chunk) {
-        const it = map.get(asin) || null;
-        cache[asin] = it ? extractPaapiItem(it) : null;
-      }
+    // retry（PA-API）
+    const max = 4;
+    let wait = 900;
+    let res = null;
+
+    for (let attempt = 1; attempt <= max; attempt++) {
+      res = await paapiPost({
+        host,
+        region,
+        accessKey: creds.accessKey,
+        secretKey: creds.secretKey,
+        target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
+        path: "/paapi5/getitems",
+        payload,
+      });
+
+      if (res.ok) break;
+
+      const retryable = isRetryablePaapiStatus(res.status);
+      const ra = Number(res.retryAfter);
+      const waitMs = Number.isFinite(ra) && ra > 0 ? ra * 1000 : wait;
+
+      // ログ（原因特定のため）
+      const err = summarizePaapiError(res.json, res.text);
+      console.log(
+        `[lane2:enrich] paapi http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${waitMs}ms chunk=${chunk.join(",")} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
+      );
+
+      if (!retryable || attempt === max) break;
+
+      await sleep(waitMs);
+      wait *= 2;
     }
 
-    await sleep(350);
+    // 成否に応じて cache 更新
+    if (!res || !res.ok) {
+      const status = res?.status ?? null;
+      const retryable = status != null ? isRetryablePaapiStatus(status) : true;
+      const kind = retryable ? "temporary" : "permanent";
+      const err = summarizePaapiError(res?.json, res?.text);
+
+      for (const asin of chunk) {
+        // ★一時失敗は temporary として残し、次回再取得可能にする
+        writeCacheAmzError(cache, asin, { kind, status, error: err });
+      }
+
+      if (stats) {
+        stats.paapiFailures++;
+        if (status === 429) stats.paapi429++;
+        if (status === 503) stats.paapi503++;
+      }
+
+      await sleep(400);
+      continue;
+    }
+
+    // res.ok: ItemsResult を反映
+    const items = res.json?.ItemsResult?.Items || [];
+    const map = new Map(items.map((it) => [it?.ASIN, it]));
+
+    for (const asin of chunk) {
+      const it = map.get(asin) || null;
+
+      if (!it) {
+        // ★okだけど返ってこない：永久かは微妙なので一旦 temporary 扱い（運用「次回再取得」に合わせる）
+        writeCacheAmzError(cache, asin, {
+          kind: "temporary",
+          status: 200,
+          error: { code: "ITEM_NOT_RETURNED", message: "GetItems returned no item for this ASIN", shortText: null },
+        });
+        if (stats) stats.paapiMissingItems++;
+        continue;
+      }
+
+      const extracted = extractPaapiItem(it);
+
+      // extracted が薄いケースもあり得るので、成功として保存（欠損は format側で差し戻し）
+      writeCacheAmzSuccess(cache, asin, extracted);
+
+      if (stats) stats.paapiSuccessItems++;
+    }
+
+    if (stats) stats.paapiChunks++;
+
+    await sleep(400);
   }
 }
 
@@ -698,13 +832,11 @@ function splitMagazines(magazineStr) {
   const s = norm(magazineStr);
   if (!s) return [];
 
-  // 1) 改行と、よくある区切りだけで分割（空白では分割しない）
   const parts = s
     .split(/[\n\/／・,、]/g)
     .map((x) => norm(x))
     .filter(Boolean);
 
-  // 2) 「→」は左右に分割（A→B / A→ B）
   const mags = parts.flatMap((p) =>
     p
       .split("→")
@@ -712,7 +844,6 @@ function splitMagazines(magazineStr) {
       .filter(Boolean)
   );
 
-  // 3) CSS/セレクタ系ゴミをここで除去（todoにすら入れない）
   return uniq(mags).filter(isPlausibleMagazineName);
 }
 
@@ -730,25 +861,17 @@ function loadMagAudienceMap(json) {
   return out;
 }
 
-// ★辞書一致でだけ空白連結を分解する（comic POOL を壊さない）
 function splitByDictOnlyIfAllKnown(raw, magAudienceMap) {
   const s = norm(raw);
   if (!s) return [];
-
-  // 既に辞書にあるなら分解不要
   if (magAudienceMap.has(s)) return [s];
-
-  // 空白がないなら無理に分解しない
   if (!/\s/.test(s)) return [s];
 
   const parts = s.split(/\s+/g).map(norm).filter(Boolean);
 
-  // “全部”が辞書に存在する時だけ分解
   if (parts.length >= 2 && parts.every((p) => magAudienceMap.has(p))) {
     return parts;
   }
-
-  // それ以外は分解しない（comic POOL 等を守る）
   return [s];
 }
 
@@ -761,8 +884,6 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
     for (const m of candidates) {
       const mm = norm(m);
       if (!mm) continue;
-
-      // ここでも一応ゴミ弾き（保険）
       if (!isPlausibleMagazineName(mm)) continue;
 
       const a = magAudienceMap.get(mm) || null;
@@ -841,25 +962,33 @@ async function main() {
 
   assertNonEmptySeries(sorted);
 
-  // --- 差分PA-API
+  // --- 差分PA-API（★Amazon必須が欠けているものは再取得対象）
   const asinsNeed = [];
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
     const v = x?.vol1 || {};
     const asin = norm(v?.asin) || null;
+    if (!asin) continue;
 
     const prev = prevMap.get(seriesKey);
     const prevVol1 = prev?.vol1 || null;
 
-    if (!asin) continue;
+    // 前回が埋まってればスキップ
     if (hasAmazonFilled(prevVol1)) continue;
 
-    if (!Object.prototype.hasOwnProperty.call(cacheAmz, asin)) {
-      asinsNeed.push(asin);
-    }
+    asinsNeed.push(asin);
   }
 
-  await fetchPaapiByAsins({ asins: asinsNeed, cache: cacheAmz, creds });
+  const paapiStats = {
+    paapiChunks: 0,
+    paapiFailures: 0,
+    paapi429: 0,
+    paapi503: 0,
+    paapiMissingItems: 0,
+    paapiSuccessItems: 0,
+  };
+
+  await fetchPaapiByAsins({ asins: asinsNeed, cache: cacheAmz, creds, stats: paapiStats });
 
   const enriched = [];
   let ok = 0;
@@ -907,7 +1036,7 @@ async function main() {
 
     const magazines = splitMagazines(magazine);
 
-    // 読者層：magazines -> magazine_audience.json のみ（タグ不使用）
+    // 読者層：magazines -> magazine_audience.json のみ
     const beforeSize = magAudTodoSet.size;
     const audiences = pickAudiences({ magazines, magAudienceMap, todoSet: magAudTodoSet });
     const afterSize = magAudTodoSet.size;
@@ -918,7 +1047,6 @@ async function main() {
     let genres = Array.isArray(prevVol1?.genres) ? prevVol1.genres : [];
     let tagsEn = Array.isArray(prevVol1?.tags_en) ? prevVol1.tags_en : [];
 
-    // 表示用 tags（日本語）
     let tagsJa = Array.isArray(prevVol1?.tags) ? prevVol1.tags : [];
     let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
@@ -954,16 +1082,22 @@ async function main() {
     const prevPublisher = norm(prevVol1?.publisher) || null;
     const prevAuthor = norm(prevVol1?.author) || null;
     const prevReleaseDate = norm(prevVol1?.releaseDate) || null;
+    const prevTitle = norm(prevVol1?.title) || null;
 
-    const amz = asin ? (cacheAmz?.[asin] ?? null) : null;
+    // cacheAmz entry -> data
+    let amzData = null;
+    if (asin) {
+      const entry = readCacheAmzEntry(cacheAmz, asin);
+      if (entry && entry.ok) amzData = entry.data ?? null;
+    }
 
-    const amazonDp = prevAmazonDp || norm(amz?.amazonDp) || null;
-    const image = prevImage || norm(amz?.image) || null;
-    const publisher = prevPublisher || norm(amz?.publisher) || null;
-    const author = prevAuthor || norm(amz?.author) || null;
-    const releaseDate = prevReleaseDate || norm(amz?.releaseDate) || null;
+    const amazonDp = prevAmazonDp || norm(amzData?.amazonDp) || null;
+    const image = prevImage || norm(amzData?.image) || null;
+    const publisher = prevPublisher || norm(amzData?.publisher) || null;
+    const author = prevAuthor || norm(amzData?.author) || null;
+    const releaseDate = prevReleaseDate || norm(amzData?.releaseDate) || null;
 
-    const title = manualTitle || norm(prevVol1?.title) || norm(amz?.title) || null;
+    const title = manualTitle || prevTitle || norm(amzData?.title) || null;
 
     const synopsis = norm(v?.synopsis) || null;
 
@@ -1031,6 +1165,7 @@ async function main() {
     items: Array.from(magAudTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
+  // ★fetchedAmazonAsins を「今回 run で再取得対象に入れたASIN数」として出す
   await saveJson(OUT_ENRICHED, {
     updatedAt: nowIso(),
     total: sorted.length,
@@ -1042,6 +1177,19 @@ async function main() {
       skippedAmazon: skippedAmz,
       fetchedAmazonAsins: asinsNeed.length,
       magAudienceTodoAdded,
+
+      // ★原因特定用（PA-API）
+      paapi: {
+        host: creds.host,
+        region: creds.region,
+        enabled: creds.enabled,
+        chunks: paapiStats.paapiChunks,
+        failures: paapiStats.paapiFailures,
+        http429: paapiStats.paapi429,
+        http503: paapiStats.paapi503,
+        missingItems: paapiStats.paapiMissingItems,
+        successItems: paapiStats.paapiSuccessItems,
+      },
     },
     items: enriched,
   });
@@ -1051,7 +1199,7 @@ async function main() {
   await saveJson(CACHE_AMZ, cacheAmz);
 
   console.log(
-    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) -> ${OUT_ENRICHED}`
+    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) fetchedAmazonAsins=${asinsNeed.length} -> ${OUT_ENRICHED}`
   );
 }
 
