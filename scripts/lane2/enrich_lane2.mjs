@@ -134,12 +134,18 @@ function stripHtml(s) {
     return y;
   };
 
+  // ★li / br などで区切りを入れてからタグ除去（= 雑誌名を行単位にしやすくする）
   const t = x
+    .replace(/<\/li>/gi, "\n")
+    .replace(/<li[^>]*>/gi, "")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/p>/gi, "\n")
+    .replace(/<\/div>/gi, "\n")
+    .replace(/<\/tr>/gi, "\n")
+    .replace(/<\/td>/gi, "\n")
     .replace(/<[^>]+>/g, "")
     .replace(/\u00A0/g, " ")
-    .replace(/\n{3,}/g, "\n\n")
+    .replace(/\n{2,}/g, "\n")
     .trim();
 
   return decodeHtmlEntities(t);
@@ -312,6 +318,7 @@ async function wikiApi(params) {
   if (!r.ok) throw new Error(`wiki_http_${r.status}`);
   return await r.json();
 }
+
 function extractMagazineFromInfoboxHtml(html) {
   const h = String(html ?? "");
   const m =
@@ -321,9 +328,21 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const text = stripHtml(m[1]);
 
+  // ★行単位でゴミ除去（CSS断片 / セレクタ / 記号だらけ / 異常に長い等）
+  const lines = text
+    .split("\n")
+    .map((x) => x.trim())
+    .filter(Boolean)
+    .filter((x) => !x.includes("mw-parser-output"))
+    .filter((x) => !x.includes("plainlist"))
+    .filter((x) => !/^(\.|#)/.test(x))        // .selector / #id
+    .filter((x) => !/[{};]/.test(x))          // CSSっぽい
+    .filter((x) => x.length <= 80);           // 異常に長いのは弾く（保険）
+
   // Wikipedia脚注っぽい [1], [注1], [注 1], [注釈1], [a] を除去
-  const cleaned = text
-    .replace(/\[\s*(?:\d+|[a-zA-Z]|注\s*\d+|注釈\s*\d+)\s*\]/g, "")
+  const joined = lines.join(" / ");
+  const cleaned = joined
+    .replace(/$begin:math:display$\\s\*\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)\\s\*$end:math:display$/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -638,13 +657,13 @@ function splitMagazines(magazineStr) {
   const s = norm(magazineStr);
   if (!s) return [];
 
-  // 1) まずは / ／ ・ , 、 で分割（空白では分割しない）
+  // ★行区切り/ " / " も分割対象に追加（stripHtml強化の恩恵を活かす）
   const parts = s
-    .split(/[\/／・,、]/g)
+    .split(/[\n\/／・,、]| \\/ | \/ /g)
     .map((x) => norm(x))
     .filter(Boolean);
 
-  // 2) 次に「→」があれば左右に分割（例: A→B / A→ B）
+  // 2) 「→」があれば左右に分割（例: A→B / A→ B）
   const mags = parts.flatMap((p) =>
     p
       .split("→")
@@ -718,18 +737,12 @@ async function main() {
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
-    // audience map + todo(magazine names)
+  // audience map
   const magAudienceJson = await loadJsonStrict(IN_MAG_AUDIENCE);
   const magAudienceMap = loadMagAudienceMap(magAudienceJson);
 
-  // ★todoは「前回の残骸」が残り続けないように、現時点の辞書で掃除してから使う
-  const magAudTodoPrev = await loadJson(IN_MAG_AUDIENCE_TODO, { version: 1, updatedAt: "", items: [] });
-  const magAudTodoSet = new Set((magAudTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
-
-  // ★すでに magazine_audience.json に載った雑誌は todo から除外
-  for (const m of Array.from(magAudTodoSet)) {
-    if (magAudienceMap.has(m)) magAudTodoSet.delete(m);
-  }
+  // ★magazine_audience_todo は「今回のrunで観測した未分類だけ」を出す（過去残骸は保持しない）
+  const magAudTodoSet = new Set();
 
   // PA-API creds
   const accessKey = norm(process.env.AMZ_ACCESS_KEY);
@@ -911,7 +924,7 @@ async function main() {
         anilistId,
         genres: uniq(genres),
 
-        // ★ここが今回の修正：表示用タグ復活
+        // ★表示用タグ復活
         tags_en: uniq(tagsEn),
         tags: uniq(tagsJa),
         tags_missing_en: uniq(tagsMissing),
