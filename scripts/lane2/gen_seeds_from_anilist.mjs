@@ -4,6 +4,7 @@ import path from "node:path";
 
 const OUT = "data/lane2/seeds.json";
 const SERIES = "data/lane2/series.json";
+const EXCLUDES = "data/lane2/excludes.json";
 
 async function loadJson(p, fallback) {
   try {
@@ -69,19 +70,27 @@ async function main() {
   const prevItems = Array.isArray(prev?.items) ? prev.items : [];
 
   // ★series を読み、すでに series 済みの作品は seed に「追加しない」
-  // series.json が無い/壊れてても安全に動くよう fallback
   const series = await loadJson(SERIES, { version: 1, updatedAt: "", total: 0, items: [] });
   const seriesItems = Array.isArray(series?.items) ? series.items : [];
   const done = new Set(seriesItems.map((x) => norm(x?.seriesKey)).filter(Boolean));
 
+  // ★excludes を読み、seed段階では seriesKey で除外
+  const ex = await loadJson(EXCLUDES, { version: 1, updatedAt: "", seriesKeys: [], asins: [] });
+  const excludeKeys = new Set(
+    (Array.isArray(ex?.seriesKeys) ? ex.seriesKeys : [])
+      .map((x) => norm(x))
+      .filter(Boolean)
+  );
+
   const seen = new Set();
   const items = [];
 
-  // seeds 既存分（+重複排除）を保持。ただし series 済みは落とす（ここで掃除もする）
+  // seeds 既存分（+重複排除）を保持。ただし series 済み＆exclude は落とす（ここで掃除もする）
   for (const x of prevItems) {
     const k = norm(x?.seriesKey);
     if (!k) continue;
     if (done.has(k)) continue;
+    if (excludeKeys.has(k)) continue;
     if (seen.has(k)) continue;
     seen.add(k);
     items.push({ seriesKey: k });
@@ -110,11 +119,13 @@ async function main() {
 
       const native = norm(m?.title?.native);
       const key = looksJapanese(native) ? native : null;
-
       if (!key) continue;
 
-      // ★series 済みは seed に入れない（最重要）
+      // ★series 済みは seed に入れない
       if (done.has(key)) continue;
+
+      // ★excludes は seed に入れない（0巻対策など）
+      if (excludeKeys.has(key)) continue;
 
       // ★seeds内での重複も入れない
       if (seen.has(key)) continue;
