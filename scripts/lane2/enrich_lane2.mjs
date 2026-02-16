@@ -638,28 +638,21 @@ function splitMagazines(magazineStr) {
   const s = norm(magazineStr);
   if (!s) return [];
 
-  const isNoise = (t) => {
-    const x = norm(t);
-    if (!x) return true;
+  // 1) まずは / ／ ・ , 、 で分割（空白では分割しない）
+  const parts = s
+    .split(/[\/／・,、]/g)
+    .map((x) => norm(x))
+    .filter(Boolean);
 
-    // CSS/HTML由来ノイズ（今回出てるやつを確実に殺す）
-    if (x.startsWith(".")) return true;
-    if (/[{};]/.test(x)) return true;
-    if (/^mw-parser-output/i.test(x)) return true;
-    if (/plainlist/i.test(x)) return true;
-    if (/^(ul|ol|li)$/i.test(x)) return true;
-    if (/margin|padding|list-style|line-height|only-child/i.test(x)) return true;
-
-    return false;
-  };
-
-  return uniq(
-    s
-      .split(/[\/／・,、]/g)
+  // 2) 次に「→」があれば左右に分割（例: A→B / A→ B）
+  const mags = parts.flatMap((p) =>
+    p
+      .split("→")
       .map((x) => norm(x))
       .filter(Boolean)
-      .flatMap((x) => x.split(/\s+/g).map(norm))
-  ).filter((x) => !isNoise(x));
+  );
+
+  return uniq(mags);
 }
 
 function loadMagAudienceMap(json) {
