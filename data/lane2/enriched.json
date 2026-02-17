@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-02-17T13:26:00.158Z",
+  "updatedAt": "2026-02-17T13:58:18.061Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 79,
-    "skippedAniList": 73,
-    "skippedWiki": 73,
-    "skippedAmazon": 71,
+    "skippedPerfect": 92,
+    "skippedAniList": 60,
+    "skippedWiki": 60,
+    "skippedAmazon": 58,
     "fetchedAmazonAsins": 2,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
-      "amazonMissing": 2,
+      "amazonMissing": 0,
       "magazineEmpty": 0,
       "magazinesEmpty": 0,
       "audiencesEmpty": 0,
@@ -26,10 +26,6 @@
       "magazineNotPlausible": 0
     },
     "perfectNotMetSamples": {
-      "tagsMissingNotHidden": [
-        "21世紀少年",
-        "山田くんとLv999の恋をする"
-      ],
       "audiencesOnlyOther": [
         "orange [オレンジ]",
         "ReLIFE",
@@ -43,9 +39,9 @@
         "気になってる人が男じゃなかった",
         "見える子ちゃん"
       ],
-      "amazonMissing": [
-        "ギヴン",
-        "ようこそ実力至上主義の教室へ"
+      "tagsMissingNotHidden": [
+        "キングダム",
+        "マギ"
       ]
     },
     "paapi": {
@@ -56,8 +52,8 @@
       "failures": 0,
       "http429": 0,
       "http503": 0,
-      "missingItems": 2,
-      "successItems": 0
+      "missingItems": 0,
+      "successItems": 2
     }
   },
   "items": [
@@ -299,13 +295,12 @@
           "青年向け",
           "カルト",
           "幽霊",
+          "仮想世界",
           "軍事",
           "ロボット",
           "拡張現実（AR）"
         ],
-        "tags_missing_en": [
-          "Virtual World"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1642,16 +1637,16 @@
     {
       "seriesKey": "ギヴン",
       "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4403665521",
-        "amazonDp": null,
-        "isbn13": "9784403665520",
-        "asin": "4403665521",
-        "title": null,
-        "synopsis": "ギターを抱えた謎めいた少年・真冬と、音楽に打ち込む立夏が出会いバンドが動き出す。言葉にできない傷と想いが音に変わって伝わっていく、青春と恋が交差するバンドBL。",
-        "image": null,
-        "publisher": null,
-        "author": null,
-        "releaseDate": null,
+        "amazonUrl": "https://www.amazon.co.jp/dp/4403664490",
+        "amazonDp": "https://www.amazon.co.jp/dp/4403664490?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784403664496",
+        "asin": "4403664490",
+        "title": "ギヴンーgivenー(1) (ディアプラス・コミックス)",
+        "synopsis": "ギターも部活も色褪せて見え始めた上ノ山は、壊れたギターを抱えた真冬と出会う。修理をきっかけに懐かれ、偶然聴いた真冬の歌声が胸に刺さって――。音楽を通じて心が交差する青春ラブ。",
+        "image": "https://m.media-amazon.com/images/I/615w64sBKgL._SL500_.jpg",
+        "publisher": "新書館",
+        "author": "キヅ ナツキ",
+        "releaseDate": "2014-11-29T00:00:01Z",
         "magazine": "シェリプラス",
         "magazines": [
           "シェリプラス"
@@ -1765,7 +1760,6 @@
           "戦争",
           "古代中国",
           "政治",
-          "王侯貴族",
           "青年向け",
           "成長譚",
           "剣術",
@@ -1778,7 +1772,9 @@
           "女装・男装",
           "魔法"
         ],
-        "tags_missing_en": [],
+        "tags_missing_en": [
+          "Royal Affairs"
+        ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -5696,7 +5692,6 @@
           "政治",
           "犯罪組織",
           "階級闘争",
-          "王侯貴族",
           "記憶操作",
           "少年向け",
           "哲学",
@@ -5714,7 +5709,9 @@
           "グルメ",
           "ドラゴン"
         ],
-        "tags_missing_en": [],
+        "tags_missing_en": [
+          "Royal Affairs"
+        ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -6075,16 +6072,16 @@
     {
       "seriesKey": "ようこそ実力至上主義の教室へ",
       "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4040680394",
-        "amazonDp": null,
-        "isbn13": "9784040680399",
-        "asin": "4040680394",
-        "title": null,
-        "synopsis": "“実力”がすべてを左右する特殊な学園で、評価と特典を巡る競争が始まる。目立たず過ごしたい少年は、癖のあるクラスメイトと関わるうちに制度の裏側と人間の本性へ踏み込んでいく。",
-        "image": null,
-        "publisher": null,
-        "author": null,
-        "releaseDate": null,
+        "amazonUrl": "https://www.amazon.co.jp/dp/4040685504",
+        "amazonDp": "https://www.amazon.co.jp/dp/4040685504?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784040685502",
+        "asin": "4040685504",
+        "title": "ようこそ実力至上主義の教室へ 1 (MFコミックス アライブシリーズ)",
+        "synopsis": "進学・就職の希望がほぼ叶う名門・高度育成高等学校に入学した綾小路清隆。理想の学園生活を思い描くが、クラスメイトは一筋縄ではいかず、学園の“制度”と駆け引きに巻き込まれていく。",
+        "image": "https://m.media-amazon.com/images/I/51lHpA+UfnL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "一乃 ゆゆ",
+        "releaseDate": "2016-09-23T00:00:01Z",
         "magazine": "月刊コミックアライブ",
         "magazines": [
           "月刊コミックアライブ"
@@ -8482,13 +8479,12 @@
           "ゲーム",
           "オタク文化",
           "少女",
+          "仮想世界",
           "大学",
           "都会",
           "eスポーツ"
         ],
-        "tags_missing_en": [
-          "Virtual World"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null

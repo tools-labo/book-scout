@@ -1,11 +1,8 @@
 {
-  "updatedAt": "2026-02-17T13:26:00.158Z",
-  "total": 150,
-  "droppedTotal": 2,
-  "droppedSeriesKeys": [
-    "ギヴン",
-    "ようこそ実力至上主義の教室へ"
-  ],
+  "updatedAt": "2026-02-17T13:58:18.061Z",
+  "total": 152,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -158,6 +155,7 @@
         "青年向け",
         "カルト",
         "幽霊",
+        "仮想世界",
         "軍事",
         "ロボット",
         "拡張現実（AR）"
@@ -1056,6 +1054,52 @@
       }
     },
     {
+      "seriesKey": "ギヴン",
+      "title": "ギヴンーgivenー(1) (ディアプラス・コミックス)",
+      "author": "キヅ ナツキ",
+      "publisher": "新書館",
+      "releaseDate": "2014-11-29T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/615w64sBKgL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4403664490",
+      "amazonDp": "https://www.amazon.co.jp/dp/4403664490?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784403664496",
+      "asin": "4403664490",
+      "synopsis": "ギターも部活も色褪せて見え始めた上ノ山は、壊れたギターを抱えた真冬と出会う。修理をきっかけに懐かれ、偶然聴いた真冬の歌声が胸に刺さって――。音楽を通じて心が交差する青春ラブ。",
+      "magazine": "シェリプラス",
+      "magazines": [
+        "シェリプラス"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Music",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ボーイズラブ",
+        "バンド",
+        "LGBTQテーマ",
+        "更生",
+        "成長譚",
+        "バイセクシュアル",
+        "片思い",
+        "学園",
+        "都会",
+        "三角関係",
+        "クーデレ",
+        "ツンデレ"
+      ],
+      "meta": {
+        "anilistId": 87347,
+        "wikiTitle": "ギヴン",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "キングダム",
       "title": "キングダム 1 (ヤングジャンプコミックス)",
       "author": "原 泰久",
@@ -1085,7 +1129,6 @@
         "戦争",
         "古代中国",
         "政治",
-        "王侯貴族",
         "青年向け",
         "成長譚",
         "剣術",
@@ -3707,7 +3750,6 @@
         "政治",
         "犯罪組織",
         "階級闘争",
-        "王侯貴族",
         "記憶操作",
         "少年向け",
         "哲学",
@@ -3970,6 +4012,44 @@
       ],
       "meta": {
         "anilistId": 111189,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "ようこそ実力至上主義の教室へ",
+      "title": "ようこそ実力至上主義の教室へ 1 (MFコミックス アライブシリーズ)",
+      "author": "一乃 ゆゆ",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016-09-23T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51lHpA+UfnL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040685504",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040685504?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784040685502",
+      "asin": "4040685504",
+      "synopsis": "進学・就職の希望がほぼ叶う名門・高度育成高等学校に入学した綾小路清隆。理想の学園生活を思い描くが、クラスメイトは一筋縄ではいかず、学園の“制度”と駆け引きに巻き込まれていく。",
+      "magazine": "月刊コミックアライブ",
+      "magazines": [
+        "月刊コミックアライブ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Psychological"
+      ],
+      "tags": [
+        "学園",
+        "アンチヒーロー",
+        "バトルロイヤル",
+        "青年向け",
+        "全寮制"
+      ],
+      "meta": {
+        "anilistId": 96798,
+        "wikiTitle": "ようこそ実力至上主義の教室へ",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -5559,6 +5639,7 @@
         "ゲーム",
         "オタク文化",
         "少女",
+        "仮想世界",
         "大学",
         "都会",
         "eスポーツ"
