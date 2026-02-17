@@ -31,7 +31,12 @@ jobs:
       changed: ${{ steps.diff.outputs.changed }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
 
       - uses: actions/setup-node@v4
         with:
@@ -59,11 +64,8 @@ jobs:
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
-
-          # 必要なら Secrets/Vars で後から追加できる（未指定ならスクリプト側デフォルトが効く）
           AMZ_HOST: ${{ secrets.AMZ_HOST }}
           AMZ_REGION: ${{ secrets.AMZ_REGION }}
-
           LANE2_FIX_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.fix_mode || 'false' }}
         run: |
           set -euo pipefail
@@ -83,6 +85,8 @@ jobs:
 
       - name: Commit outputs
         if: steps.diff.outputs.changed == 'true'
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -99,7 +103,9 @@ jobs:
           fi
 
           git commit -m "lane2: enrich/format/prune"
-          git push
+
+          # ★detached HEAD 対策：ブランチ名に明示 push
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
   deploy_pages:
     needs: lane2
@@ -110,7 +116,12 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
 
       # public/ を公開ルートにするため、data/ を public/data に同期
       - name: Prepare site root
