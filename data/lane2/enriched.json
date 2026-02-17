@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-02-17T10:08:29.742Z",
+  "updatedAt": "2026-02-17T10:32:08.042Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 18,
-    "skippedAniList": 129,
-    "skippedWiki": 78,
-    "skippedAmazon": 132,
+    "skippedPerfect": 79,
+    "skippedAniList": 73,
+    "skippedWiki": 17,
+    "skippedAmazon": 71,
     "fetchedAmazonAsins": 2,
-    "magAudienceTodoAdded": 21,
+    "magAudienceTodoAdded": 14,
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -113,10 +113,7 @@
           "VTuber",
           "コスプレ"
         ],
-        "tags_missing_en": [
-          "Suicide",
-          "Incest"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -213,10 +210,7 @@
           "海外",
           "ホームレス"
         ],
-        "tags_missing_en": [
-          "Terrorism",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1000,12 +994,7 @@
           "犯罪",
           "教育"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Torture",
-          "Nudity",
-          "Rape"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1097,9 +1086,7 @@
           "百合",
           "演技"
         ],
-        "tags_missing_en": [
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1197,9 +1184,7 @@
           "先住民文化",
           "時系列シャッフル"
         ],
-        "tags_missing_en": [
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1590,10 +1575,7 @@
           "クーデレ",
           "花魁"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Torture"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1667,9 +1649,7 @@
           "コズミックホラー",
           "銃"
         ],
-        "tags_missing_en": [
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1907,10 +1887,7 @@
           "ギャル",
           "LGBTQテーマ"
         ],
-        "tags_missing_en": [
-          "Nudity",
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2007,9 +1984,7 @@
           "鉄道",
           "動物"
         ],
-        "tags_missing_en": [
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2229,9 +2204,7 @@
           "ティーン中心",
           "学園"
         ],
-        "tags_missing_en": [
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2324,14 +2297,7 @@
           "トランスジェンダー",
           "デスゲーム"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Terrorism",
-          "Nudity",
-          "Rape",
-          "Body Horror",
-          "Drugs"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2406,12 +2372,7 @@
           "女装・男装",
           "呪い"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Gore",
-          "Nudity",
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2508,12 +2469,7 @@
           "恐竜",
           "ギャンブル"
         ],
-        "tags_missing_en": [
-          "Terrorism",
-          "Gore",
-          "Body Horror",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2588,10 +2544,7 @@
           "トランスジェンダー",
           "障害"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2649,10 +2602,7 @@
           "学園",
           "ヤンデレ"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2783,10 +2733,7 @@
           "バイセクシュアル",
           "サイボーグ"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2855,10 +2802,7 @@
           "障害",
           "カップリング"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2935,9 +2879,7 @@
           "年齢退行",
           "片思い"
         ],
-        "tags_missing_en": [
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -3093,10 +3035,7 @@
           "武術",
           "宇宙"
         ],
-        "tags_missing_en": [
-          "Nudity",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -3169,9 +3108,7 @@
           "絵・作画",
           "片思い"
         ],
-        "tags_missing_en": [
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -3328,9 +3265,7 @@
           "呪い",
           "日焼け肌"
         ],
-        "tags_missing_en": [
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -3528,11 +3463,7 @@
           "人間ペット",
           "復讐"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror",
-          "Terrorism"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -3690,10 +3621,7 @@
           "女装・男装",
           "三角関係"
         ],
-        "tags_missing_en": [
-          "Suicide",
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -3752,12 +3680,7 @@
           "少年向け",
           "哲学"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Gore",
-          "Torture",
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -3981,11 +3904,7 @@
           "バイセクシュアル",
           "ヤンデレ"
         ],
-        "tags_missing_en": [
-          "Inseki",
-          "Nudity",
-          "Drugs"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -4211,9 +4130,7 @@
           "ドラゴン",
           "多重人格"
         ],
-        "tags_missing_en": [
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -4360,11 +4277,7 @@
           "サイバーパンク",
           "性転換"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Gore",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -4460,9 +4373,7 @@
           "ボーイズラブ",
           "双子"
         ],
-        "tags_missing_en": [
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -4548,9 +4459,7 @@
           "LGBTQテーマ",
           "性転換"
         ],
-        "tags_missing_en": [
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -4621,10 +4530,7 @@
           "疑似家族",
           "猫耳"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Torture"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -4767,11 +4673,7 @@
           "逃亡者",
           "言語の壁"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Nudity",
-          "Rape"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -5293,9 +5195,7 @@
           "ダンジョン",
           "疑似家族"
         ],
-        "tags_missing_en": [
-          "Triads"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -5465,10 +5365,7 @@
           "性転換",
           "ボーイッシュ"
         ],
-        "tags_missing_en": [
-          "Suicide",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -5536,9 +5433,7 @@
           "言語の壁",
           "復讐"
         ],
-        "tags_missing_en": [
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -6587,10 +6482,7 @@
           "癒し系",
           "女装男子"
         ],
-        "tags_missing_en": [
-          "Suicide",
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -6982,11 +6874,7 @@
           "歴史",
           "女性主人公"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Suicide",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -7117,9 +7005,7 @@
           "養子縁組",
           "日焼け肌"
         ],
-        "tags_missing_en": [
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -7470,12 +7356,7 @@
           "ボーイッシュ",
           "年齢退行"
         ],
-        "tags_missing_en": [
-          "Terrorism",
-          "Gore",
-          "Body Horror",
-          "Drugs"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -7672,14 +7553,7 @@
           "警察",
           "女装・男装"
         ],
-        "tags_missing_en": [
-          "Torture",
-          "Gore",
-          "Rape",
-          "Nudity",
-          "Scat",
-          "Incest"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8073,12 +7947,7 @@
           "剣術",
           "ドタバタ"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Gore",
-          "Sadism",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -8172,11 +8041,7 @@
           "犯罪",
           "ヤンデレ"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8263,11 +8128,7 @@
           "神々",
           "三角関係"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Suicide",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8449,11 +8310,7 @@
           "学園",
           "仕事"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Suicide",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8722,12 +8579,7 @@
           "ひきこもり",
           "自然災害"
         ],
-        "tags_missing_en": [
-          "Suicide",
-          "Nudity",
-          "Incest",
-          "Rape"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8941,10 +8793,7 @@
           "農業",
           "学園"
         ],
-        "tags_missing_en": [
-          "Prostitution",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9024,10 +8873,7 @@
           "ドタバタ",
           "クーデレ"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9104,12 +8950,7 @@
           "脅迫",
           "女装・男装"
         ],
-        "tags_missing_en": [
-          "Sadism",
-          "Suicide",
-          "Rape",
-          "Nudity"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9203,12 +9044,7 @@
           "剣術",
           "警察"
         ],
-        "tags_missing_en": [
-          "Terrorism",
-          "Suicide",
-          "Gore",
-          "Torture"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9399,9 +9235,7 @@
           "海賊",
           "クーデレ"
         ],
-        "tags_missing_en": [
-          "Drugs"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9539,10 +9373,7 @@
           "養子縁組",
           "銃"
         ],
-        "tags_missing_en": [
-          "Suicide",
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9621,12 +9452,7 @@
           "神話",
           "悪魔"
         ],
-        "tags_missing_en": [
-          "Cannibalism",
-          "Gore",
-          "Body Horror",
-          "Torture"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -9855,10 +9681,7 @@
           "ヤンデレ",
           "奴隷"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10143,10 +9966,7 @@
           "女性優位",
           "LGBTQテーマ"
         ],
-        "tags_missing_en": [
-          "Nudity",
-          "Watersports"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10292,11 +10112,7 @@
           "異性愛",
           "拡張現実（AR）"
         ],
-        "tags_missing_en": [
-          "Body Horror",
-          "Gore",
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10440,9 +10256,7 @@
           "暗殺者",
           "チアリーディング"
         ],
-        "tags_missing_en": [
-          "Gore"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10512,9 +10326,7 @@
           "少年向け",
           "ボーイッシュ"
         ],
-        "tags_missing_en": [
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10730,10 +10542,7 @@
           "恋愛志向なし",
           "戦争"
         ],
-        "tags_missing_en": [
-          "Drugs",
-          "Suicide"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -11088,13 +10897,7 @@
           "スパイ",
           "神話"
         ],
-        "tags_missing_en": [
-          "Terrorism",
-          "Gore",
-          "Body Horror",
-          "Cannibalism",
-          "Torture"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -11483,10 +11286,7 @@
           "ツンデレ",
           "砂漠"
         ],
-        "tags_missing_en": [
-          "Nudity",
-          "Incest"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -11572,10 +11372,7 @@
           "動物",
           "グルメ"
         ],
-        "tags_missing_en": [
-          "Gore",
-          "Body Horror"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
@@ -11834,9 +11631,7 @@
           "女装・男装",
           "逃亡者"
         ],
-        "tags_missing_en": [
-          "Rape"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
