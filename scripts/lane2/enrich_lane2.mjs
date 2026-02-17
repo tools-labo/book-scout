@@ -202,6 +202,32 @@ function loadHideSet(hideJson) {
 }
 
 /**
+ * ★tags_todo 自動消し込み：
+ *  - 既に tag_ja_map に入った（翻訳済み）
+ *  - 既に tag_hide に入った（非表示扱い）
+ * は todo から削除する
+ */
+function cleanupTagTodoSet({ todoSet, tagMap, hideSet }) {
+  if (!(todoSet instanceof Set)) return;
+  const hs = hideSet instanceof Set ? hideSet : new Set();
+  const tm = tagMap && typeof tagMap === "object" ? tagMap : {};
+  for (const k of Array.from(todoSet)) {
+    if (!k) {
+      todoSet.delete(k);
+      continue;
+    }
+    if (hs.has(k)) {
+      todoSet.delete(k);
+      continue;
+    }
+    if (Object.prototype.hasOwnProperty.call(tm, k)) {
+      todoSet.delete(k);
+      continue;
+    }
+  }
+}
+
+/**
  * tagsEn から:
  *  - hide は除外
  *  - tag_ja_map で日本語化
@@ -306,9 +332,9 @@ function isPerfectVol1(prevVol1, hideSet) {
   return true;
 }
 
-/**
+/* -----------------------
  * ★perfect未達理由の集計（debug用）
- */
+ * ----------------------- */
 function bumpReason(reasons, key) {
   reasons[key] = (reasons[key] || 0) + 1;
 }
@@ -446,7 +472,6 @@ function extractMagazineFromInfoboxHtml(html) {
     .filter((x) => x.length <= 80);
 
   const joined = lines.join(" / ");
-
   const cleaned = joined.replace(/\s+/g, " ").trim();
 
   return cleaned || null;
@@ -853,6 +878,7 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
     await sleep(400);
   }
 }
+
 /* -----------------------
  * AniList retry wrapper（429対策）
  * ----------------------- */
@@ -865,7 +891,9 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
     if (res.ok) return res;
 
     if (res.reason === "anilist_http_429") {
-      console.log(`[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`);
+      console.log(
+        `[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`
+      );
       await sleep(wait);
       wait *= 2;
       continue;
@@ -949,7 +977,6 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
 
 /* -----------------------
  * perfect未達の理由を判定して集計
- *   ※「Otherのみ」は未達にしたい（あなたの現状集計の通り）
  * ----------------------- */
 function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }) {
   if (!vol1) {
@@ -991,8 +1018,7 @@ function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }
     bumpReason(reasons, "audiencesEmpty");
     pushSample(samples, "audiencesEmpty", seriesKey);
   } else {
-    const onlyOther =
-      vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
+    const onlyOther = vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
     if (onlyOther) {
       bumpReason(reasons, "audiencesOnlyOther");
       pushSample(samples, "audiencesOnlyOther", seriesKey);
@@ -1000,7 +1026,15 @@ function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }
   }
 
   // AniList fields
-  if (!(vol1.anilistId && Array.isArray(vol1.genres) && vol1.genres.length > 0 && Array.isArray(vol1.tags_en) && vol1.tags_en.length > 0)) {
+  if (
+    !(
+      vol1.anilistId &&
+      Array.isArray(vol1.genres) &&
+      vol1.genres.length > 0 &&
+      Array.isArray(vol1.tags_en) &&
+      vol1.tags_en.length > 0
+    )
+  ) {
     bumpReason(reasons, "anilistMissing");
     pushSample(samples, "anilistMissing", seriesKey);
   } else {
@@ -1042,7 +1076,9 @@ async function main() {
   const seriesJson = await loadJsonStrict(IN_SERIES);
   const items = Array.isArray(seriesJson?.items) ? seriesJson.items : null;
   if (!items) {
-    throw new Error(`[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`);
+    throw new Error(
+      `[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`
+    );
   }
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
@@ -1068,6 +1104,9 @@ async function main() {
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
   const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
   mergeTodoFromPrevMissingTags({ prevEnrichedItems: prevItems, todoSet, hideSet });
+
+  // ★ここで「翻訳済み / 非表示」を自動消し込み（重複・残骸を消す）
+  cleanupTagTodoSet({ todoSet, tagMap, hideSet });
 
   // mag todo (seriesKey)
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
@@ -1277,8 +1316,12 @@ async function main() {
 
     const synopsis = norm(v?.synopsis) || null;
 
-    // todo(seriesKey): magazine
-    if (!magazine) magTodoSet.add(seriesKey);
+    /**
+     * ★変更点(A)：magazine_todo に積む条件を強化
+     *  - magazine が null/空 → todo
+     *  - magazine はあるが、split後 magazines が空（= “ゴミだけ取得して弾かれた”）→ todo
+     */
+    if (!magazine || magazines.length === 0) magTodoSet.add(seriesKey);
     else magTodoSet.delete(seriesKey);
 
     if (hasAmazonFilled(prevVol1)) skippedAmz++;
@@ -1327,6 +1370,13 @@ async function main() {
       samples: perfectNotMetSamples,
     });
   }
+
+  /**
+   * ★変更点(B)：tags_todo を保存する直前にもう一度クリーンアップ
+   *  - run中に applyTagDict で todoSet に積んだもののうち、
+   *    既に map/hide に入っているものがあれば消える（安全側）
+   */
+  cleanupTagTodoSet({ todoSet, tagMap, hideSet });
 
   // tags_todo.json を確実に「再構築の結果」で出す
   await saveJson(TAG_TODO, {
