@@ -244,6 +244,30 @@ function hasAmazonFilled(vol1) {
   );
 }
 
+/**
+ * ★完璧判定：
+ *  - Amazon / magazine / AniList が揃っている
+ *  - magazines / audiences / tags(ja) が揃っている
+ *  - tags_missing_en が空（=辞書未対応タグが残っていない）
+ * これを満たす prevVol1 は “今回のrunで一切触らず” 丸ごと温存する。
+ */
+function isPerfectVol1(prevVol1) {
+  if (!prevVol1) return false;
+
+  if (!hasAmazonFilled(prevVol1)) return false;
+  if (!hasMagazineFilled(prevVol1)) return false;
+  if (!hasAniListFilled(prevVol1)) return false;
+
+  if (!Array.isArray(prevVol1.magazines) || prevVol1.magazines.length === 0) return false;
+  if (!Array.isArray(prevVol1.audiences) || prevVol1.audiences.length === 0) return false;
+
+  if (!Array.isArray(prevVol1.tags) || prevVol1.tags.length === 0) return false;
+
+  if (Array.isArray(prevVol1.tags_missing_en) && prevVol1.tags_missing_en.length > 0) return false;
+
+  return true;
+}
+
 /* -----------------------
  * AniList
  * ----------------------- */
@@ -370,7 +394,7 @@ function extractMagazineFromInfoboxHtml(html) {
   const joined = lines.join(" / ");
 
   const cleaned = joined
-    .replace(/$begin:math:display$\(\?\:\\d\+\|\[a\-zA\-Z\]\|注\\s\*\\d\+\|注釈\\s\*\\d\+\)$end:math:display$/g, "")
+    .replace(/$begin:math:display$$begin:math:text$\\\?\\\:\\\\d\\\+\\\|\\\[a\\\-zA\\\-Z\\\]\\\|注\\\\s\\\*\\\\d\\\+\\\|注釈\\\\s\\\*\\\\d\\\+$end:math:text$$end:math:display$/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -481,16 +505,9 @@ function isRetryablePaapiStatus(status) {
 }
 
 function summarizePaapiError(json, text) {
-  const code =
-    json?.Errors?.[0]?.Code ||
-    json?.Error?.Code ||
-    json?.__type ||
-    null;
+  const code = json?.Errors?.[0]?.Code || json?.Error?.Code || json?.__type || null;
 
-  const msg =
-    json?.Errors?.[0]?.Message ||
-    json?.Error?.Message ||
-    null;
+  const msg = json?.Errors?.[0]?.Message || json?.Error?.Message || null;
 
   const shortText = (() => {
     const t = String(text ?? "");
@@ -519,23 +536,13 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = sha256Hex(payload);
 
-  const canonicalRequest = [
-    "POST",
-    canonicalUri,
-    canonicalQuery,
-    canonicalHeaders,
-    signedHeaders,
-    payloadHash,
-  ].join("\n");
+  const canonicalRequest = ["POST", canonicalUri, canonicalQuery, canonicalHeaders, signedHeaders, payloadHash].join(
+    "\n"
+  );
 
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-  const stringToSign = [
-    algorithm,
-    amzDate,
-    credentialScope,
-    sha256Hex(canonicalRequest),
-  ].join("\n");
+  const stringToSign = [algorithm, amzDate, credentialScope, sha256Hex(canonicalRequest)].join("\n");
 
   const signingKey = signKey(secretKey, dateStamp, region, service);
   const signature = hmac(signingKey, stringToSign, "hex");
@@ -563,7 +570,11 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
 
   const txt = await r.text();
   let json = null;
-  try { json = JSON.parse(txt); } catch { json = null; }
+  try {
+    json = JSON.parse(txt);
+  } catch {
+    json = null;
+  }
 
   if (!r.ok) {
     return { ok: false, status: r.status, json, text: txt, retryAfter };
@@ -582,15 +593,10 @@ function extractPaapiItem(item) {
     item?.Images?.Primary?.Small?.URL ||
     null;
 
-  const title =
-    item?.ItemInfo?.Title?.DisplayValue ||
-    item?.ItemInfo?.Title?.Value ||
-    null;
+  const title = item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
 
   const manufacturer =
-    item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue ||
-    item?.ItemInfo?.ByLineInfo?.Manufacturer?.Value ||
-    null;
+    item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || item?.ItemInfo?.ByLineInfo?.Manufacturer?.Value || null;
 
   const publisher = manufacturer || null;
 
@@ -603,16 +609,12 @@ function extractPaapiItem(item) {
     .map((c) => c?.Name)
     .filter(Boolean);
 
-  const authorFallback = contributors
-    .map((c) => c?.Name)
-    .filter(Boolean);
+  const authorFallback = contributors.map((c) => c?.Name).filter(Boolean);
 
   const author = (authorList.length ? authorList : authorFallback).join(" / ") || null;
 
   const releaseDate =
-    item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue ||
-    item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
-    null;
+    item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue || item?.ItemInfo?.ContentInfo?.PublicationDate?.Value || null;
 
   return {
     amazonDp: dp,
@@ -737,7 +739,9 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
       // ログ（原因特定のため）
       const err = summarizePaapiError(res.json, res.text);
       console.log(
-        `[lane2:enrich] paapi http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${waitMs}ms chunk=${chunk.join(",")} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
+        `[lane2:enrich] paapi http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${waitMs}ms chunk=${chunk.join(
+          ","
+        )} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
       );
 
       if (!retryable || attempt === max) break;
@@ -812,9 +816,7 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
     if (res.ok) return res;
 
     if (res.reason === "anilist_http_429") {
-      console.log(
-        `[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`
-      );
+      console.log(`[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`);
       await sleep(wait);
       wait *= 2;
       continue;
@@ -911,9 +913,7 @@ async function main() {
 
   const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
   const prevMap = new Map(
-    (Array.isArray(prevEnriched?.items) ? prevEnriched.items : [])
-      .map((x) => [norm(x?.seriesKey), x])
-      .filter(([k]) => k)
+    (Array.isArray(prevEnriched?.items) ? prevEnriched.items : []).map((x) => [norm(x?.seriesKey), x]).filter(([k]) => k)
   );
 
   await fs.mkdir(CACHE_DIR, { recursive: true });
@@ -996,6 +996,7 @@ async function main() {
   let skippedAni = 0;
   let skippedWiki = 0;
   let skippedAmz = 0;
+  let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
 
   for (const x of sorted) {
@@ -1005,13 +1006,29 @@ async function main() {
     const prev = prevMap.get(seriesKey);
     const prevVol1 = prev?.vol1 || null;
 
+    // manual override があるなら “完璧でも” 差し替え対象（手動が勝つ）
+    const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
+
+    // ★完璧は完全スキップ（vol1 を前回のまま温存）
+    if (!manualMag && isPerfectVol1(prevVol1)) {
+      // todo(seriesKey): magazine は完璧なので確実に外す
+      magTodoSet.delete(seriesKey);
+
+      enriched.push({
+        seriesKey,
+        vol1: prevVol1,
+        meta: x?.meta || null,
+      });
+      ok++;
+      skippedPerfect++;
+      continue;
+    }
+
     const amazonUrl = norm(v?.amazonUrl) || null;
     const isbn13 = norm(v?.isbn13) || null;
     const asin = norm(v?.asin) || null;
 
     // 連載誌：manual override > 前回値 > wiki
-    const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
-
     let magazine = null;
     let magazineSource = null;
     let wikiTitle = null;
@@ -1040,7 +1057,7 @@ async function main() {
     const beforeSize = magAudTodoSet.size;
     const audiences = pickAudiences({ magazines, magAudienceMap, todoSet: magAudTodoSet });
     const afterSize = magAudTodoSet.size;
-    if (afterSize > beforeSize) magAudienceTodoAdded += (afterSize - beforeSize);
+    if (afterSize > beforeSize) magAudienceTodoAdded += afterSize - beforeSize;
 
     // AniList：前回埋まってるなら再取得しない
     let anilistId = prevVol1?.anilistId ?? null;
@@ -1172,6 +1189,7 @@ async function main() {
     ok,
     ng,
     stats: {
+      skippedPerfect,
       skippedAniList: skippedAni,
       skippedWiki: skippedWiki,
       skippedAmazon: skippedAmz,
@@ -1199,7 +1217,7 @@ async function main() {
   await saveJson(CACHE_AMZ, cacheAmz);
 
   console.log(
-    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) fetchedAmazonAsins=${asinsNeed.length} -> ${OUT_ENRICHED}`
+    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(perfect=${skippedPerfect}, anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) fetchedAmazonAsins=${asinsNeed.length} -> ${OUT_ENRICHED}`
   );
 }
 
