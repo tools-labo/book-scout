@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-17T10:32:08.042Z",
+  "updatedAt": "2026-02-17T10:57:06.535Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
@@ -9,7 +9,7 @@
     "skippedWiki": 17,
     "skippedAmazon": 71,
     "fetchedAmazonAsins": 2,
-    "magAudienceTodoAdded": 14,
+    "magAudienceTodoAdded": 32,
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -228,12 +228,14 @@
         "publisher": "小学館",
         "author": "浦沢 直樹",
         "releaseDate": "2007-05-30T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ビッグコミックスピリッツ",
+        "magazines": [
+          "ビッグコミックスピリッツ"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30743,
         "genres": [
@@ -437,13 +439,15 @@
         "publisher": "双葉社",
         "author": "高野 苺",
         "releaseDate": "2013-12-25T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊アクション",
+        "magazines": [
+          "月刊アクション"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "オレンジ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 65573,
         "genres": [
           "Drama",
@@ -763,13 +767,15 @@
         "publisher": "スクウェア・エニックス",
         "author": "田代 哲也",
         "releaseDate": "2010-08-21T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊ガンガンJOKER",
+        "magazines": [
+          "月刊ガンガンJOKER"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "アカメ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 55132,
         "genres": [
           "Action",
@@ -1283,12 +1289,14 @@
         "publisher": "徳間書店",
         "author": "鶴田 謙二 / 梶尾 真治",
         "releaseDate": "2008-05-20T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "COMICリュウ",
+        "magazines": [
+          "COMICリュウ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 47465,
         "genres": [
@@ -1345,7 +1353,7 @@
         "publisher": "小学館",
         "author": "浅野 いにお",
         "releaseDate": "2007-08-03T00:00:01Z",
-        "magazine": "週刊ヤングサンデー→ ビッグコミックスピリッツ",
+        "magazine": "週刊ヤングサンデー → ビッグコミックスピリッツ",
         "magazines": [
           "週刊ヤングサンデー",
           "ビッグコミックスピリッツ"
@@ -1431,7 +1439,7 @@
         "publisher": "集英社",
         "author": "赤坂 アカ",
         "releaseDate": "2016-03-18T00:00:01Z",
-        "magazine": "ミラクルジャンプ→週刊ヤングジャンプ",
+        "magazine": "ミラクルジャンプ → 週刊ヤングジャンプ",
         "magazines": [
           "ミラクルジャンプ",
           "週刊ヤングジャンプ"
@@ -2002,13 +2010,15 @@
         "publisher": "イースト・プレス",
         "author": "永田カビ",
         "releaseDate": "2016-06-17T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "pixiv",
+        "magazines": [
+          "pixiv"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "さびしすぎてレズ風俗に行きましたレポ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 87459,
         "genres": [
           "Drama",
@@ -2081,13 +2091,15 @@
         "publisher": "少年画報社",
         "author": "Boichi",
         "releaseDate": "2006-09-27T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ヤングキング",
+        "magazines": [
+          "ヤングキング"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "サンケンロック",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 38848,
         "genres": [
           "Action",
@@ -3484,12 +3496,15 @@
         "publisher": "集英社",
         "author": "久保 帯人",
         "releaseDate": "2002-06-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年ジャンプ → ジャンプSQ.RISE",
+        "magazines": [
+          "週刊少年ジャンプ",
+          "ジャンプSQ.RISE"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30024,
         "genres": [
@@ -4002,13 +4017,15 @@
         "publisher": "星海社",
         "author": "柳田 史太",
         "releaseDate": "2015-10-08T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ツイ4",
+        "magazines": [
+          "ツイ4"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "トモちゃんは女の子!",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 86300,
         "genres": [
           "Comedy",
@@ -4815,13 +4832,15 @@
         "publisher": "講談社",
         "author": "東田 裕介",
         "releaseDate": "2016-02-05T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "別冊少年マガジン",
+        "magazines": [
+          "別冊少年マガジン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ハピネス",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 37532,
         "genres": [
           "Drama",
@@ -4951,12 +4970,14 @@
         "publisher": "講談社",
         "author": "浦沢 直樹 / 長崎 尚志",
         "releaseDate": "2009-06-23T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "モーニング",
+        "magazines": [
+          "モーニング"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 41054,
         "genres": [
@@ -5213,13 +5234,15 @@
         "publisher": "白泉社",
         "author": "高屋 奈月",
         "releaseDate": "1999-01-19T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "花とゆめ",
+        "magazines": [
+          "花とゆめ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "フルーツバスケット",
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30102,
         "genres": [
           "Comedy",
@@ -5631,9 +5654,9 @@
         "publisher": "小学館",
         "author": "山本 英夫",
         "releaseDate": "2003-07-30T00:00:01Z",
-        "magazine": "週刊ビッグコミックスピリッツ",
+        "magazine": "ビッグコミックスピリッツ",
         "magazines": [
-          "週刊ビッグコミックスピリッツ"
+          "ビッグコミックスピリッツ"
         ],
         "audiences": [
           "青年"
@@ -5780,13 +5803,15 @@
         "publisher": "小学館",
         "author": "大高 忍",
         "releaseDate": "2009-12-18T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年サンデー",
+        "magazines": [
+          "週刊少年サンデー"
         ],
-        "magazineSource": null,
-        "wikiTitle": "マギ",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 44790,
         "genres": [
           "Action",
@@ -6021,13 +6046,16 @@
         "publisher": "小学館",
         "author": "ONE",
         "releaseDate": "2012-11-16T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "裏サンデー／マンガワン",
+        "magazines": [
+          "裏サンデー",
+          "マンガワン"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "モブサイコ100",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85189,
         "genres": [
           "Action",
@@ -6167,12 +6195,14 @@
         "publisher": "講談社",
         "author": "森下 suu",
         "releaseDate": "2019-12-13T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "デザート",
+        "magazines": [
+          "デザート"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 111189,
         "genres": [
@@ -6500,13 +6530,15 @@
         "publisher": "集英社",
         "author": "井上 雄彦",
         "releaseDate": "2001-03-19T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングジャンプ",
+        "magazines": [
+          "週刊ヤングジャンプ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "リアル",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 32793,
         "genres": [
           "Hentai",
@@ -6728,12 +6760,14 @@
         "publisher": "集英社",
         "author": "田口 囁一",
         "releaseDate": "2017-07-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ガンガンJOKER",
+        "magazines": [
+          "ガンガンJOKER"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 98361,
         "genres": [
@@ -7210,13 +7244,15 @@
         "publisher": "白泉社",
         "author": "藤原 ヒロ",
         "releaseDate": "2006-09-05T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "LaLa",
+        "magazines": [
+          "LaLa"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "メイド",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 32921,
         "genres": [
           "Comedy",
@@ -7439,13 +7475,15 @@
         "publisher": "KADOKAWA",
         "author": "モクモク れん",
         "releaseDate": "2022-03-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ヤングエースUP",
+        "magazines": [
+          "ヤングエースUP"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "死",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 138603,
         "genres": [
           "Horror",
@@ -7648,13 +7686,15 @@
         "publisher": "講談社",
         "author": "真木 蛍五",
         "releaseDate": "2019-06-07T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "マガジンポケット",
+        "magazines": [
+          "マガジンポケット"
         ],
-        "magazineSource": null,
-        "wikiTitle": "可愛いだけじゃない式守さん",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 107282,
         "genres": [
           "Comedy",
@@ -8328,13 +8368,15 @@
         "publisher": "朝日新聞出版",
         "author": "伊藤潤二",
         "releaseDate": "2011-01-20T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ハロウィン",
+        "magazines": [
+          "ハロウィン"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "富江",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 145235,
         "genres": [
           "Drama",
@@ -8444,13 +8486,15 @@
         "publisher": "新潮社",
         "author": "つくみず",
         "releaseDate": "2014-11-08T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "くらげバンチ",
+        "magazines": [
+          "くらげバンチ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "少女終末旅行",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85412,
         "genres": [
           "Adventure",
@@ -9062,13 +9106,15 @@
         "publisher": "KADOKAWA/角川書店",
         "author": "貞本 義行",
         "releaseDate": "1995-08-29T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊少年エース",
+        "magazines": [
+          "月刊少年エース"
         ],
-        "magazineSource": null,
-        "wikiTitle": "新世紀エヴァンゲリオン劇場版 シト新生",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30698,
         "genres": [
           "Action",
@@ -9699,12 +9745,14 @@
         "publisher": "KADOKAWA",
         "author": "新井 すみこ",
         "releaseDate": "2023-04-19T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "カドコミ（コミックウォーカー）",
+        "magazines": [
+          "カドコミ（コミックウォーカー）"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 149544,
         "genres": [
@@ -9845,12 +9893,14 @@
         "publisher": "KADOKAWA/メディアファクトリー",
         "author": "フジカワ ユカ / 理不尽な孫の手",
         "releaseDate": "2014-10-23T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊コミックフラッパー",
+        "magazines": [
+          "月刊コミックフラッパー"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 85564,
         "genres": [
@@ -10640,13 +10690,15 @@
         "publisher": "KADOKAWA",
         "author": "泉 朝樹",
         "releaseDate": "2019-04-22T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "カドコミ（コミックウォーカー）",
+        "magazines": [
+          "カドコミ（コミックウォーカー）"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "見える子ちゃん",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 165265,
         "genres": [
           "Comedy",
@@ -10678,13 +10730,15 @@
         "publisher": "集英社",
         "author": "石田 スイ",
         "releaseDate": "2021-12-17T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "となりのヤングジャンプ",
+        "magazines": [
+          "となりのヤングジャンプ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "超人X",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 126693,
         "genres": [
           "Action",
@@ -11018,12 +11072,14 @@
         "publisher": "KADOKAWA",
         "author": "坂野 杏梨",
         "releaseDate": "2019-07-25T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊コンプエース",
+        "magazines": [
+          "月刊コンプエース"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 106758,
         "genres": [
@@ -11087,13 +11143,15 @@
         "publisher": "集英社",
         "author": "KAITO",
         "releaseDate": "2017-04-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "青のフラッグ",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 98334,
         "genres": [
           "Drama",
@@ -11393,12 +11451,14 @@
         "publisher": "秋田書店",
         "author": "西 修",
         "releaseDate": "2017-07-07T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "週刊少年チャンピオン",
+        "magazines": [
+          "週刊少年チャンピオン"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 99324,
         "genres": [
