@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-02-17T11:14:06.854Z",
+  "updatedAt": "2026-02-17T11:49:27.414Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
     "skippedPerfect": 79,
     "skippedAniList": 73,
-    "skippedWiki": 17,
+    "skippedWiki": 73,
     "skippedAmazon": 71,
     "fetchedAmazonAsins": 2,
-    "magAudienceTodoAdded": 1,
+    "magAudienceTodoAdded": 0,
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -772,7 +772,7 @@
           "月刊ガンガンJOKER"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
