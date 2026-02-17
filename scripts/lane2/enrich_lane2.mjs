@@ -200,22 +200,51 @@ function loadHideSet(hideJson) {
   const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : [];
   return new Set(arr.map((x) => normTagKey(x)).filter(Boolean));
 }
+
+/**
+ * tagsEn から:
+ *  - hide は除外
+ *  - tag_ja_map で日本語化
+ *  - 未翻訳は tags_missing_en に残し、todoSet に積む（hide は積まない）
+ */
 function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
   const outJa = [];
   const missing = [];
+  const hs = hideSet instanceof Set ? hideSet : new Set();
+
   for (const raw of uniq(tagsEn)) {
     const key = normTagKey(raw);
     if (!key) continue;
-    if (hideSet.has(key)) continue;
+
+    // hide は “表示しない＆未翻訳扱いもしない”
+    if (hs.has(key)) continue;
 
     const ja = tagMap[key];
     if (ja) outJa.push(ja);
     else {
       missing.push(raw);
-      todoSet.add(key);
+      if (todoSet) todoSet.add(key);
     }
   }
   return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
+}
+
+/**
+ * ★根本対策：過去の enriched に残っている tags_missing_en から todo を毎回再構築する
+ * （applyTagDict を通らないスキップ経路でも tags_todo が 0 にならない）
+ */
+function mergeTodoFromPrevMissingTags({ prevEnrichedItems, todoSet, hideSet }) {
+  const hs = hideSet instanceof Set ? hideSet : new Set();
+
+  for (const it of prevEnrichedItems || []) {
+    const miss = Array.isArray(it?.vol1?.tags_missing_en) ? it.vol1.tags_missing_en : [];
+    for (const raw of miss) {
+      const key = normTagKey(raw);
+      if (!key) continue;
+      if (hs.has(key)) continue;
+      todoSet.add(key);
+    }
+  }
 }
 
 /* -----------------------
@@ -262,10 +291,6 @@ function isPerfectVol1(prevVol1, hideSet) {
   if (!Array.isArray(prevVol1.magazines) || prevVol1.magazines.length === 0) return false;
   if (!Array.isArray(prevVol1.audiences) || prevVol1.audiences.length === 0) return false;
 
-  // audiences が「その他」だけは未達扱いにする（集計で見える化）
-  const aud = Array.isArray(prevVol1.audiences) ? prevVol1.audiences : [];
-  if (aud.length === 1 && norm(aud[0]) === "その他") return false;
-
   if (!Array.isArray(prevVol1.tags) || prevVol1.tags.length === 0) return false;
 
   const miss = Array.isArray(prevVol1.tags_missing_en) ? prevVol1.tags_missing_en : [];
@@ -278,114 +303,19 @@ function isPerfectVol1(prevVol1, hideSet) {
     if (remain.length > 0) return false;
   }
 
-  // magazine の中身がCSSゴミっぽいものは未達扱いにする（例: .mw-parser-output ...）
-  if (looksCssGarbage(prevVol1.magazine)) return false;
-
   return true;
 }
 
-/* -----------------------
- * Perfect未達理由の集計
- * ----------------------- */
-function initReasonCounters() {
-  return {
-    noPrevVol1: 0,
-    amazonMissing: 0,
-    magazineEmpty: 0,
-    magazinesEmpty: 0,
-    audiencesEmpty: 0,
-    audiencesOnlyOther: 0,
-    anilistMissing: 0,
-    genresEmpty: 0,
-    tagsEnEmpty: 0,
-    tagsJaEmpty: 0,
-    tagsMissingNotHidden: 0,
-    magazineLooksCssGarbage: 0,
-    magazineNotPlausible: 0,
-  };
+/**
+ * ★perfect未達理由の集計（debug用）
+ */
+function bumpReason(reasons, key) {
+  reasons[key] = (reasons[key] || 0) + 1;
 }
-
-function addSample(samples, key, seriesKey) {
-  const k = String(key);
-  if (!samples[k]) samples[k] = [];
-  const arr = samples[k];
-  if (arr.includes(seriesKey)) return;
-  const SAMPLE_LIMIT = 12; // 重くしないため
-  if (arr.length >= SAMPLE_LIMIT) return;
-  arr.push(seriesKey);
-}
-
-function countPerfectNotMet({ prevVol1, hideSet, seriesKey }, reason, samples) {
-  if (!prevVol1) {
-    reason.noPrevVol1++;
-    addSample(samples, "noPrevVol1", seriesKey);
-    return;
-  }
-
-  if (!hasAmazonFilled(prevVol1)) {
-    reason.amazonMissing++;
-    addSample(samples, "amazonMissing", seriesKey);
-  }
-
-  if (!norm(prevVol1.magazine)) {
-    reason.magazineEmpty++;
-    addSample(samples, "magazineEmpty", seriesKey);
-  } else {
-    if (looksCssGarbage(prevVol1.magazine)) {
-      reason.magazineLooksCssGarbage++;
-      addSample(samples, "magazineLooksCssGarbage", seriesKey);
-    }
-    if (!isPlausibleMagazineName(prevVol1.magazine)) {
-      reason.magazineNotPlausible++;
-      addSample(samples, "magazineNotPlausible", seriesKey);
-    }
-  }
-
-  if (!Array.isArray(prevVol1.magazines) || prevVol1.magazines.length === 0) {
-    reason.magazinesEmpty++;
-    addSample(samples, "magazinesEmpty", seriesKey);
-  }
-
-  const aud = Array.isArray(prevVol1.audiences) ? prevVol1.audiences : [];
-  if (aud.length === 0) {
-    reason.audiencesEmpty++;
-    addSample(samples, "audiencesEmpty", seriesKey);
-  } else if (aud.length === 1 && norm(aud[0]) === "その他") {
-    reason.audiencesOnlyOther++;
-    addSample(samples, "audiencesOnlyOther", seriesKey);
-  }
-
-  if (!hasAniListFilled(prevVol1)) {
-    reason.anilistMissing++;
-    addSample(samples, "anilistMissing", seriesKey);
-  }
-
-  if (!Array.isArray(prevVol1.genres) || prevVol1.genres.length === 0) {
-    reason.genresEmpty++;
-    addSample(samples, "genresEmpty", seriesKey);
-  }
-
-  if (!Array.isArray(prevVol1.tags_en) || prevVol1.tags_en.length === 0) {
-    reason.tagsEnEmpty++;
-    addSample(samples, "tagsEnEmpty", seriesKey);
-  }
-
-  if (!Array.isArray(prevVol1.tags) || prevVol1.tags.length === 0) {
-    reason.tagsJaEmpty++;
-    addSample(samples, "tagsJaEmpty", seriesKey);
-  }
-
-  const miss = Array.isArray(prevVol1.tags_missing_en) ? prevVol1.tags_missing_en : [];
-  if (miss.length > 0) {
-    const remain = miss
-      .map((x) => normTagKey(x))
-      .filter(Boolean)
-      .filter((k) => !hideSet.has(k));
-    if (remain.length > 0) {
-      reason.tagsMissingNotHidden++;
-      addSample(samples, "tagsMissingNotHidden", seriesKey);
-    }
-  }
+function pushSample(samples, key, seriesKey, limit = 12) {
+  if (!samples[key]) samples[key] = [];
+  if (samples[key].length >= limit) return;
+  samples[key].push(seriesKey);
 }
 
 /* -----------------------
@@ -518,6 +448,7 @@ function extractMagazineFromInfoboxHtml(html) {
   const joined = lines.join(" / ");
 
   const cleaned = joined.replace(/\s+/g, " ").trim();
+
   return cleaned || null;
 }
 
@@ -666,9 +597,7 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
 
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-  const stringToSign = [algorithm, amzDate, credentialScope, sha256Hex(canonicalRequest)].join(
-    "\n"
-  );
+  const stringToSign = [algorithm, amzDate, credentialScope, sha256Hex(canonicalRequest)].join("\n");
 
   const signingKey = signKey(secretKey, dateStamp, region, service);
   const signature = hmac(signingKey, stringToSign, "hex");
@@ -702,7 +631,9 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
     json = null;
   }
 
-  if (!r.ok) return { ok: false, status: r.status, json, text: txt, retryAfter };
+  if (!r.ok) {
+    return { ok: false, status: r.status, json, text: txt, retryAfter };
+  }
   return { ok: true, status: r.status, json, retryAfter };
 }
 
@@ -717,8 +648,7 @@ function extractPaapiItem(item) {
     item?.Images?.Primary?.Small?.URL ||
     null;
 
-  const title =
-    item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
+  const title = item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
 
   const manufacturer =
     item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue ||
@@ -737,6 +667,7 @@ function extractPaapiItem(item) {
     .filter(Boolean);
 
   const authorFallback = contributors.map((c) => c?.Name).filter(Boolean);
+
   const author = (authorList.length ? authorList : authorFallback).join(" / ") || null;
 
   const releaseDate =
@@ -744,7 +675,14 @@ function extractPaapiItem(item) {
     item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
     null;
 
-  return { amazonDp: dp, image: img, title, publisher, author, releaseDate };
+  return {
+    amazonDp: dp,
+    image: img,
+    title,
+    publisher,
+    author,
+    releaseDate,
+  };
 }
 
 /**
@@ -757,6 +695,8 @@ function readCacheAmzEntry(cacheAmz, asin) {
   if (!v) return null;
 
   // 旧形式（item直 or null）互換：
+  //  - null は「不明」扱いにして再取得対象にする
+  //  - itemっぽいなら success にラップ
   if (v === null) return { legacyNull: true, raw: v };
   if (v && typeof v === "object" && "ok" in v) return v;
   if (v && typeof v === "object") {
@@ -769,13 +709,7 @@ function writeCacheAmzSuccess(cacheAmz, asin, data) {
   cacheAmz[asin] = { ok: true, data: data ?? null, at: nowIso() };
 }
 function writeCacheAmzError(cacheAmz, asin, { kind, status, error }) {
-  cacheAmz[asin] = {
-    ok: false,
-    kind,
-    status: status ?? null,
-    error: error ?? null,
-    at: nowIso(),
-  };
+  cacheAmz[asin] = { ok: false, kind, status: status ?? null, error: error ?? null, at: nowIso() };
 }
 
 async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
@@ -786,19 +720,15 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
 
     const entry = readCacheAmzEntry(cache, a);
 
-    // success は再取得不要
     if (entry && entry.ok) continue;
 
-    // temporary は再取得したい
     if (entry && entry.ok === false && entry.kind === "temporary") {
       want.push(a);
       continue;
     }
 
-    // permanent は原則再取得しない
     if (entry && entry.ok === false && entry.kind === "permanent") continue;
 
-    // legacy null / 未存在 は再取得対象
     want.push(a);
   }
 
@@ -838,7 +768,6 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
 
     const payload = JSON.stringify(payloadObj);
 
-    // retry（PA-API）
     const max = 4;
     let wait = 900;
     let res = null;
@@ -873,7 +802,6 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
       wait *= 2;
     }
 
-    // 成否に応じて cache 更新
     if (!res || !res.ok) {
       const status = res?.status ?? null;
       const retryable = status != null ? isRetryablePaapiStatus(status) : true;
@@ -894,7 +822,6 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
       continue;
     }
 
-    // res.ok: ItemsResult を反映
     const items = res.json?.ItemsResult?.Items || [];
     const map = new Map(items.map((it) => [it?.ASIN, it]));
 
@@ -926,7 +853,6 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
     await sleep(400);
   }
 }
-
 /* -----------------------
  * AniList retry wrapper（429対策）
  * ----------------------- */
@@ -939,9 +865,7 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
     if (res.ok) return res;
 
     if (res.reason === "anilist_http_429") {
-      console.log(
-        `[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`
-      );
+      console.log(`[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`);
       await sleep(wait);
       wait *= 2;
       continue;
@@ -1023,7 +947,93 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
   return Array.from(auds);
 }
 
-// --- 1/2ここまで。続き(2/2)で main() 以降を全部出す。
+/* -----------------------
+ * perfect未達の理由を判定して集計
+ *   ※「Otherのみ」は未達にしたい（あなたの現状集計の通り）
+ * ----------------------- */
+function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }) {
+  if (!vol1) {
+    bumpReason(reasons, "noPrevVol1");
+    pushSample(samples, "noPrevVol1", seriesKey);
+    return;
+  }
+
+  // Amazon
+  if (!hasAmazonFilled(vol1)) {
+    bumpReason(reasons, "amazonMissing");
+    pushSample(samples, "amazonMissing", seriesKey);
+  }
+
+  // Magazine
+  const magazine = norm(vol1.magazine);
+  if (!magazine) {
+    bumpReason(reasons, "magazineEmpty");
+    pushSample(samples, "magazineEmpty", seriesKey);
+  } else {
+    if (looksCssGarbage(magazine)) {
+      bumpReason(reasons, "magazineLooksCssGarbage");
+      pushSample(samples, "magazineLooksCssGarbage", seriesKey);
+    }
+    if (!isPlausibleMagazineName(magazine)) {
+      bumpReason(reasons, "magazineNotPlausible");
+      pushSample(samples, "magazineNotPlausible", seriesKey);
+    }
+  }
+
+  // magazines[]
+  if (!Array.isArray(vol1.magazines) || vol1.magazines.length === 0) {
+    bumpReason(reasons, "magazinesEmpty");
+    pushSample(samples, "magazinesEmpty", seriesKey);
+  }
+
+  // audiences[]
+  if (!Array.isArray(vol1.audiences) || vol1.audiences.length === 0) {
+    bumpReason(reasons, "audiencesEmpty");
+    pushSample(samples, "audiencesEmpty", seriesKey);
+  } else {
+    const onlyOther =
+      vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
+    if (onlyOther) {
+      bumpReason(reasons, "audiencesOnlyOther");
+      pushSample(samples, "audiencesOnlyOther", seriesKey);
+    }
+  }
+
+  // AniList fields
+  if (!(vol1.anilistId && Array.isArray(vol1.genres) && vol1.genres.length > 0 && Array.isArray(vol1.tags_en) && vol1.tags_en.length > 0)) {
+    bumpReason(reasons, "anilistMissing");
+    pushSample(samples, "anilistMissing", seriesKey);
+  } else {
+    if (!Array.isArray(vol1.genres) || vol1.genres.length === 0) {
+      bumpReason(reasons, "genresEmpty");
+      pushSample(samples, "genresEmpty", seriesKey);
+    }
+    if (!Array.isArray(vol1.tags_en) || vol1.tags_en.length === 0) {
+      bumpReason(reasons, "tagsEnEmpty");
+      pushSample(samples, "tagsEnEmpty", seriesKey);
+    }
+  }
+
+  // tags (JA)
+  if (!Array.isArray(vol1.tags) || vol1.tags.length === 0) {
+    bumpReason(reasons, "tagsJaEmpty");
+    pushSample(samples, "tagsJaEmpty", seriesKey);
+  }
+
+  // tags_missing_en が hide 以外で残っているか
+  const miss = Array.isArray(vol1.tags_missing_en) ? vol1.tags_missing_en : [];
+  if (miss.length > 0) {
+    const hs = hideSet instanceof Set ? hideSet : new Set();
+    const remain = miss
+      .map((x) => normTagKey(x))
+      .filter(Boolean)
+      .filter((k) => !hs.has(k));
+    if (remain.length > 0) {
+      bumpReason(reasons, "tagsMissingNotHidden");
+      pushSample(samples, "tagsMissingNotHidden", seriesKey);
+    }
+  }
+}
 
 /* -----------------------
  * main
@@ -1039,11 +1049,8 @@ async function main() {
   const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
 
   const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
-  const prevMap = new Map(
-    (Array.isArray(prevEnriched?.items) ? prevEnriched.items : [])
-      .map((x) => [norm(x?.seriesKey), x])
-      .filter(([k]) => k)
-  );
+  const prevItems = Array.isArray(prevEnriched?.items) ? prevEnriched.items : [];
+  const prevMap = new Map(prevItems.map((x) => [norm(x?.seriesKey), x]).filter(([k]) => k));
 
   await fs.mkdir(CACHE_DIR, { recursive: true });
 
@@ -1056,11 +1063,14 @@ async function main() {
   const tagMap = loadTagMap(tagMapJson);
   const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
   const hideSet = loadHideSet(hideJson);
+
+  // todoSet: tags_todo.json をベースにしつつ、過去の enriched の tags_missing_en から毎回再構築して「0消し」を防ぐ
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
   const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
+  mergeTodoFromPrevMissingTags({ prevEnrichedItems: prevItems, todoSet, hideSet });
 
   // mag todo (seriesKey)
-  const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", total: 0, items: [] });
+  const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
   // audience map
@@ -1128,8 +1138,22 @@ async function main() {
   let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
 
-  // ★perfect未達の集計
-  const perfectNotMetReasons = initReasonCounters();
+  // ★集計
+  const perfectNotMetReasons = {
+    noPrevVol1: 0,
+    amazonMissing: 0,
+    magazineEmpty: 0,
+    magazinesEmpty: 0,
+    audiencesEmpty: 0,
+    audiencesOnlyOther: 0,
+    anilistMissing: 0,
+    genresEmpty: 0,
+    tagsEnEmpty: 0,
+    tagsJaEmpty: 0,
+    tagsMissingNotHidden: 0,
+    magazineLooksCssGarbage: 0,
+    magazineNotPlausible: 0,
+  };
   const perfectNotMetSamples = {};
 
   for (const x of sorted) {
@@ -1144,10 +1168,9 @@ async function main() {
 
     // ★完璧は完全スキップ（vol1 を前回のまま温存）
     if (!manualMag && isPerfectVol1(prevVol1, hideSet)) {
-      // todo(seriesKey): magazine は完璧なので確実に外す
       magTodoSet.delete(seriesKey);
 
-      // ★任意：perfect温存時に tags_missing_en から hide 分だけ掃除する
+      // perfect温存でも「hide以外の tags_missing_en を残さない」
       const prevClean = { ...prevVol1 };
       const miss = Array.isArray(prevClean.tags_missing_en) ? prevClean.tags_missing_en : [];
       prevClean.tags_missing_en = miss
@@ -1155,19 +1178,11 @@ async function main() {
         .filter((o) => o.key && !hideSet.has(o.key))
         .map((o) => o.raw);
 
-      enriched.push({
-        seriesKey,
-        vol1: prevClean,
-        meta: x?.meta || null,
-      });
+      enriched.push({ seriesKey, vol1: prevClean, meta: x?.meta || null });
       ok++;
       skippedPerfect++;
       continue;
     }
-
-    // ★ここに来た＝perfect未達（manual override で更新するケース含む）
-    // 集計は「前回vol1」がなぜperfectでないかをカウント（原因可視化）
-    countPerfectNotMet({ prevVol1, hideSet, seriesKey }, perfectNotMetReasons, perfectNotMetSamples);
 
     const amazonUrl = norm(v?.amazonUrl) || null;
     const isbn13 = norm(v?.isbn13) || null;
@@ -1179,19 +1194,16 @@ async function main() {
     let wikiTitle = null;
 
     if (manualMag) {
-      // manual override なら Wiki を叩かないので “skipped” に加算してOK
       magazine = manualMag;
       magazineSource = "manual_override";
       wikiTitle = null;
       skippedWiki++;
     } else if (hasMagazineFilled(prevVol1)) {
-      // 前回値がある場合も Wiki を叩かない
       magazine = norm(prevVol1.magazine) || null;
       magazineSource = norm(prevVol1.magazineSource) || null;
       wikiTitle = prevVol1.wikiTitle ?? null;
       skippedWiki++;
     } else {
-      // ここだけ Wiki を叩く
       const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
       const wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
       wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
@@ -1202,13 +1214,13 @@ async function main() {
 
     const magazines = splitMagazines(magazine);
 
-    // 読者層：magazines -> magazine_audience.json のみ
+    // 読者層
     const beforeSize = magAudTodoSet.size;
     const audiences = pickAudiences({ magazines, magAudienceMap, todoSet: magAudTodoSet });
     const afterSize = magAudTodoSet.size;
     if (afterSize > beforeSize) magAudienceTodoAdded += afterSize - beforeSize;
 
-    // AniList：前回埋まってるなら再取得しない
+    // AniList
     let anilistId = prevVol1?.anilistId ?? null;
     let genres = Array.isArray(prevVol1?.genres) ? prevVol1.genres : [];
     let tagsEn = Array.isArray(prevVol1?.tags_en) ? prevVol1.tags_en : [];
@@ -1217,11 +1229,11 @@ async function main() {
     let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
     if (hasAniListFilled(prevVol1)) {
-      if ((!Array.isArray(tagsJa) || tagsJa.length === 0) && Array.isArray(tagsEn) && tagsEn.length > 0) {
-        const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
-        tagsJa = applied.tags;
-        tagsMissing = applied.tags_missing_en;
-      }
+      // 既に tags_en があるのに tags/tags_missing が古い・空の場合は毎回再計算（根本対策）
+      const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
+      tagsJa = applied.tags;
+      tagsMissing = applied.tags_missing_en;
+
       skippedAni++;
     } else {
       const an = await fetchAniListWithRetry({ seriesKey, cache: cacheAniList });
@@ -1250,7 +1262,6 @@ async function main() {
     const prevReleaseDate = norm(prevVol1?.releaseDate) || null;
     const prevTitle = norm(prevVol1?.title) || null;
 
-    // cacheAmz entry -> data
     let amzData = null;
     if (asin) {
       const entry = readCacheAmzEntry(cacheAmz, asin);
@@ -1262,7 +1273,6 @@ async function main() {
     const publisher = prevPublisher || norm(amzData?.publisher) || null;
     const author = prevAuthor || norm(amzData?.author) || null;
     const releaseDate = prevReleaseDate || norm(amzData?.releaseDate) || null;
-
     const title = manualTitle || prevTitle || norm(amzData?.title) || null;
 
     const synopsis = norm(v?.synopsis) || null;
@@ -1273,44 +1283,52 @@ async function main() {
 
     if (hasAmazonFilled(prevVol1)) skippedAmz++;
 
-    enriched.push({
-      seriesKey,
-      vol1: {
-        amazonUrl,
-        amazonDp,
-        isbn13,
-        asin,
+    const outVol1 = {
+      amazonUrl,
+      amazonDp,
+      isbn13,
+      asin,
 
-        title,
-        synopsis,
+      title,
+      synopsis,
 
-        image,
-        publisher,
-        author,
-        releaseDate,
+      image,
+      publisher,
+      author,
+      releaseDate,
 
-        magazine,
-        magazines,
-        audiences,
+      magazine,
+      magazines,
+      audiences,
 
-        magazineSource,
-        wikiTitle,
+      magazineSource,
+      wikiTitle,
 
-        anilistId,
-        genres: uniq(genres),
+      anilistId,
+      genres: uniq(genres),
 
-        tags_en: uniq(tagsEn),
-        tags: uniq(tagsJa),
-        tags_missing_en: uniq(tagsMissing),
+      tags_en: uniq(tagsEn),
+      tags: uniq(tagsJa),
+      tags_missing_en: uniq(tagsMissing),
 
-        source: "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)",
-      },
-      meta: x?.meta || null,
-    });
+      source:
+        "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)",
+    };
 
+    enriched.push({ seriesKey, vol1: outVol1, meta: x?.meta || null });
     ok++;
+
+    // ★集計：今回更新対象のものだけ理由を積む
+    evalPerfectNotMetReasons({
+      seriesKey,
+      vol1: outVol1,
+      hideSet,
+      reasons: perfectNotMetReasons,
+      samples: perfectNotMetSamples,
+    });
   }
 
+  // tags_todo.json を確実に「再構築の結果」で出す
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
@@ -1331,7 +1349,6 @@ async function main() {
     items: Array.from(magAudTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  // ★fetchedAmazonAsins を「今回 run で再取得対象に入れたASIN数」として出す
   await saveJson(OUT_ENRICHED, {
     updatedAt: nowIso(),
     total: sorted.length,
@@ -1344,12 +1361,9 @@ async function main() {
       skippedAmazon: skippedAmz,
       fetchedAmazonAsins: asinsNeed.length,
       magAudienceTodoAdded,
-
-      // ★perfect未達の集計（ここが「集計どこ？」の答え）
       perfectNotMetReasons,
       perfectNotMetSamples,
 
-      // ★原因特定用（PA-API）
       paapi: {
         host: creds.host,
         region: creds.region,
