@@ -1,29 +1,69 @@
 {
-  "updatedAt": "2026-02-17T12:28:39.797Z",
+  "updatedAt": "2026-02-17T12:40:40.988Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 79,
-    "skippedAniList": 73,
-    "skippedWiki": 73,
-    "skippedAmazon": 71,
+    "skippedPerfect": 71,
+    "skippedAniList": 81,
+    "skippedWiki": 81,
+    "skippedAmazon": 79,
     "fetchedAmazonAsins": 2,
-    "magAudienceTodoAdded": 3,
+    "magAudienceTodoAdded": 5,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 2,
       "magazineEmpty": 0,
-      "magazinesEmpty": 1,
+      "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 11,
+      "audiencesOnlyOther": 19,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
       "tagsMissingNotHidden": 24,
-      "magazineLooksCssGarbage": 0,
-      "magazineNotPlausible": 0
+      "magazineLooksCssGarbage": 1,
+      "magazineNotPlausible": 1
+    },
+    "perfectNotMetSamples": {
+      "tagsMissingNotHidden": [
+        "21世紀少年",
+        "アイアムアヒーロー",
+        "おもいでエマノン",
+        "さびしすぎてレズ風俗に行きましたレポ",
+        "ジョジョの奇妙な冒険 ファントムブラッド",
+        "スーパーの裏でヤニ吸うふたり",
+        "とつくにの少女",
+        "トモダチゲーム",
+        "はじめの一歩",
+        "フルーツバスケット",
+        "ヨコハマ買い出し紀行",
+        "三日間の幸福"
+      ],
+      "audiencesOnlyOther": [
+        "orange [オレンジ]",
+        "ReLIFE",
+        "イノサン",
+        "ヴァニタスの手記",
+        "おもいでエマノン",
+        "ギヴン",
+        "さびしすぎてレズ風俗に行きましたレポ",
+        "トモちゃんは女の子!",
+        "ドロヘドロ",
+        "メイドインアビス",
+        "富江",
+        "山田くんとLv999の恋をする"
+      ],
+      "amazonMissing": [
+        "ギヴン",
+        "ようこそ実力至上主義の教室へ"
+      ],
+      "magazineLooksCssGarbage": [
+        "メイドインアビス"
+      ],
+      "magazineNotPlausible": [
+        "メイドインアビス"
+      ]
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
@@ -1038,7 +1078,7 @@
           "月刊ガンガンJOKER"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ヴァニタスの手記",
@@ -5984,11 +6024,7 @@
         "author": "つくし あきひと",
         "releaseDate": "2013-07-31T00:00:01Z",
         "magazine": ".mw-parser-output .plainlist--only-child>ol,.mw-parser-output .plainlist--only-child>ul{line-height:inherit;list-style:none none;margin:0;padding-left:0}.mw-parser-output .plainlist--only-child>ol li,.mw-parser-output .plainlist--only-child>ul li{margin-bottom:0}まんがライフWIN+WEBコミックガンマ竹コミ!",
-        "magazines": [
-          "まんがライフWIN",
-          "WEBコミックガンマ",
-          "竹コミ!"
-        ],
+        "magazines": [],
         "audiences": [
           "その他"
         ],
@@ -9712,7 +9748,7 @@
           "ジャンプスクエア"
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "極楽街",
@@ -10556,7 +10592,7 @@
           "月刊ビッグガンガン"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "薬屋のひとりごと",
