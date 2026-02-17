@@ -286,9 +286,19 @@ function hasAniListFilled(prevVol1) {
     prevVol1.tags_en.length > 0
   );
 }
+
+/**
+ * ★変更点：ゴミ magazine を「入ってる扱い」にしない
+ *  - prevVol1.magazine が CSSゴミでも wiki を見に行けるようにする
+ */
 function hasMagazineFilled(prevVol1) {
-  return !!(prevVol1 && norm(prevVol1.magazine));
+  const m = norm(prevVol1?.magazine);
+  if (!m) return false;
+  if (looksCssGarbage(m)) return false;
+  if (!isPlausibleMagazineName(m)) return false;
+  return true;
 }
+
 function hasAmazonFilled(vol1) {
   return !!(
     vol1 &&
@@ -1082,7 +1092,8 @@ async function main() {
   }
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
-  const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
+  const magOverrides =
+    magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
 
   const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
   const prevItems = Array.isArray(prevEnriched?.items) ? prevEnriched.items : [];
@@ -1251,7 +1262,18 @@ async function main() {
       await sleep(150);
     }
 
-    const magazines = splitMagazines(magazine);
+    let magazines = splitMagazines(magazine);
+
+    /**
+     * ★変更点(A-2)：“ゴミだけ取得して split で全部弾かれた” を明示的に「連載誌なし」に落とす
+     *  - magazine文字列があっても、magazines が 0 なら magazine=null 扱いにする
+     */
+    if (!magazines.length) {
+      magazine = null;
+      magazineSource = null;
+      wikiTitle = wikiTitle ?? null;
+      magazines = [];
+    }
 
     // 読者層
     const beforeSize = magAudTodoSet.size;
@@ -1320,8 +1342,9 @@ async function main() {
      * ★変更点(A)：magazine_todo に積む条件を強化
      *  - magazine が null/空 → todo
      *  - magazine はあるが、split後 magazines が空（= “ゴミだけ取得して弾かれた”）→ todo
+     *  → 判定を magazines[] ベースにする
      */
-    if (!magazine || magazines.length === 0) magTodoSet.add(seriesKey);
+    if (!Array.isArray(magazines) || magazines.length === 0) magTodoSet.add(seriesKey);
     else magTodoSet.delete(seriesKey);
 
     if (hasAmazonFilled(prevVol1)) skippedAmz++;
