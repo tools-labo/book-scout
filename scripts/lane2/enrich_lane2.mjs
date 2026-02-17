@@ -361,14 +361,13 @@ function extractFromAniList(media) {
   if (!media) return { id: null, genres: [], tags: [] };
 
   const genres = Array.isArray(media?.genres) ? media.genres.filter(Boolean) : [];
-  const tags =
-    Array.isArray(media?.tags)
-      ? media.tags
-          .filter((t) => t && t.name && !t.isGeneralSpoiler)
-          .sort((a, b) => (b.rank ?? 0) - (a.rank ?? 0))
-          .slice(0, 30)
-          .map((t) => t.name)
-      : [];
+  const tags = Array.isArray(media?.tags)
+    ? media.tags
+        .filter((t) => t && t.name && !t.isGeneralSpoiler)
+        .sort((a, b) => (b.rank ?? 0) - (a.rank ?? 0))
+        .slice(0, 30)
+        .map((t) => t.name)
+    : [];
 
   return { id: media?.id ?? null, genres, tags };
 }
@@ -404,7 +403,7 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const cleaned = joined
     .replace(
-      /$begin:math:display$$begin:math:text$\\\?\\\:\\\\d\\\+\\\|\\\[a\\\-zA\\\-Z\\\]\\\|注\\\\s\\\*\\\\d\\\+\\\|注釈\\\\s\\\*\\\\d\\\+$end:math:text$$end:math:display$/g,
+      /$begin:math:display$$begin:math:text$\\\?\\\:\\\\d\\\+\\\|\\$begin:math:display$a\\\\\\\-zA\\\\\\\-Z\\\\$end:math:display$\\\|注\\\\s\\\*\\\\d\\\+\\\|注釈\\\\s\\\*\\\\d\\\+$end:math:text$$end:math:display$/g,
       ""
     )
     .replace(/\s+/g, " ")
@@ -477,6 +476,7 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
 
   return { ok: true, data: out, found: true };
 }
+
 /* -----------------------
  * Amazon PA-API (GetItems)
  * - ★失敗ログを出す
@@ -546,13 +546,23 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = sha256Hex(payload);
 
-  const canonicalRequest = ["POST", canonicalUri, canonicalQuery, canonicalHeaders, signedHeaders, payloadHash].join(
-    "\n"
-  );
+  const canonicalRequest = [
+    "POST",
+    canonicalUri,
+    canonicalQuery,
+    canonicalHeaders,
+    signedHeaders,
+    payloadHash,
+  ].join("\n");
 
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-  const stringToSign = [algorithm, amzDate, credentialScope, sha256Hex(canonicalRequest)].join("\n");
+  const stringToSign = [
+    algorithm,
+    amzDate,
+    credentialScope,
+    sha256Hex(canonicalRequest),
+  ].join("\n");
 
   const signingKey = signKey(secretKey, dateStamp, region, service);
   const signature = hmac(signingKey, stringToSign, "hex");
@@ -603,10 +613,15 @@ function extractPaapiItem(item) {
     item?.Images?.Primary?.Small?.URL ||
     null;
 
-  const title = item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
+  const title =
+    item?.ItemInfo?.Title?.DisplayValue ||
+    item?.ItemInfo?.Title?.Value ||
+    null;
 
   const manufacturer =
-    item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue || item?.ItemInfo?.ByLineInfo?.Manufacturer?.Value || null;
+    item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue ||
+    item?.ItemInfo?.ByLineInfo?.Manufacturer?.Value ||
+    null;
 
   const publisher = manufacturer || null;
 
@@ -619,12 +634,16 @@ function extractPaapiItem(item) {
     .map((c) => c?.Name)
     .filter(Boolean);
 
-  const authorFallback = contributors.map((c) => c?.Name).filter(Boolean);
+  const authorFallback = contributors
+    .map((c) => c?.Name)
+    .filter(Boolean);
 
   const author = (authorList.length ? authorList : authorFallback).join(" / ") || null;
 
   const releaseDate =
-    item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue || item?.ItemInfo?.ContentInfo?.PublicationDate?.Value || null;
+    item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue ||
+    item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
+    null;
 
   return {
     amazonDp: dp,
@@ -650,6 +669,7 @@ function readCacheAmzEntry(cacheAmz, asin) {
   //  - itemっぽいなら success にラップ
   if (v === null) return { legacyNull: true, raw: v };
   if (v && typeof v === "object" && "ok" in v) return v;
+
   // itemっぽい（amazonDp/title 等）を success 扱い
   if (v && typeof v === "object") {
     return { ok: true, data: v, at: nowIso(), legacyWrapped: true };
@@ -794,7 +814,11 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
         writeCacheAmzError(cache, asin, {
           kind: "temporary",
           status: 200,
-          error: { code: "ITEM_NOT_RETURNED", message: "GetItems returned no item for this ASIN", shortText: null },
+          error: {
+            code: "ITEM_NOT_RETURNED",
+            message: "GetItems returned no item for this ASIN",
+            shortText: null,
+          },
         });
         if (stats) stats.paapiMissingItems++;
         continue;
@@ -826,7 +850,9 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
     if (res.ok) return res;
 
     if (res.reason === "anilist_http_429") {
-      console.log(`[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`);
+      console.log(
+        `[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`
+      );
       await sleep(wait);
       wait *= 2;
       continue;
@@ -923,7 +949,9 @@ async function main() {
 
   const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
   const prevMap = new Map(
-    (Array.isArray(prevEnriched?.items) ? prevEnriched.items : []).map((x) => [norm(x?.seriesKey), x]).filter(([k]) => k)
+    (Array.isArray(prevEnriched?.items) ? prevEnriched.items : [])
+      .map((x) => [norm(x?.seriesKey), x])
+      .filter(([k]) => k)
   );
 
   await fs.mkdir(CACHE_DIR, { recursive: true });
@@ -1008,8 +1036,7 @@ async function main() {
   let skippedAmz = 0;
   let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
-
-  for (const x of sorted) {
+    for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
     const v = x?.vol1 || {};
 
@@ -1047,33 +1074,32 @@ async function main() {
     const asin = norm(v?.asin) || null;
 
     // 連載誌：manual override > 前回値 > wiki
-const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
+    // ※ここは「manualMag」を再宣言しない（SyntaxError回避）
+    let magazine = null;
+    let magazineSource = null;
+    let wikiTitle = null;
 
-let magazine = null;
-let magazineSource = null;
-let wikiTitle = null;
-
-if (manualMag) {
-  // manual override なら Wiki を叩かないので “skipped” に加算してOK
-  magazine = manualMag;
-  magazineSource = "manual_override";
-  wikiTitle = null;
-  skippedWiki++;
-} else if (hasMagazineFilled(prevVol1)) {
-  // 前回値がある場合も Wiki を叩かない
-  magazine = norm(prevVol1.magazine) || null;
-  magazineSource = norm(prevVol1.magazineSource) || null;
-  wikiTitle = prevVol1.wikiTitle ?? null;
-  skippedWiki++;
-} else {
-  // ここだけ Wiki を叩く
-  const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
-  const wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
-  wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
-  magazine = norm(wikiMag) || null;
-  magazineSource = magazine ? "wikipedia" : null;
-  await sleep(150);
-}
+    if (manualMag) {
+      // manual override なら Wiki を叩かないので “skipped” に加算してOK
+      magazine = manualMag;
+      magazineSource = "manual_override";
+      wikiTitle = null;
+      skippedWiki++;
+    } else if (hasMagazineFilled(prevVol1)) {
+      // 前回値がある場合も Wiki を叩かない
+      magazine = norm(prevVol1.magazine) || null;
+      magazineSource = norm(prevVol1.magazineSource) || null;
+      wikiTitle = prevVol1.wikiTitle ?? null;
+      skippedWiki++;
+    } else {
+      // ここだけ Wiki を叩く
+      const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
+      const wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
+      wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
+      magazine = norm(wikiMag) || null;
+      magazineSource = magazine ? "wikipedia" : null;
+      await sleep(150);
+    }
 
     const magazines = splitMagazines(magazine);
 
@@ -1092,7 +1118,11 @@ if (manualMag) {
     let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
     if (hasAniListFilled(prevVol1)) {
-      if ((!Array.isArray(tagsJa) || tagsJa.length === 0) && Array.isArray(tagsEn) && tagsEn.length > 0) {
+      if (
+        (!Array.isArray(tagsJa) || tagsJa.length === 0) &&
+        Array.isArray(tagsEn) &&
+        tagsEn.length > 0
+      ) {
         const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
         tagsJa = applied.tags;
         tagsMissing = applied.tags_missing_en;
@@ -1178,7 +1208,8 @@ if (manualMag) {
         tags: uniq(tagsJa),
         tags_missing_en: uniq(tagsMissing),
 
-        source: "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)",
+        source:
+          "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)",
       },
       meta: x?.meta || null,
     });
