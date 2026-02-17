@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-17T09:16:21.214Z",
+  "updatedAt": "2026-02-17T10:08:29.742Z",
   "total": 121,
   "droppedTotal": 31,
   "droppedSeriesKeys": [
@@ -2863,7 +2863,42 @@
         "少年"
       ],
       "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery",
+        "Psychological",
+        "Supernatural",
+        "Thriller"
+      ],
+      "tags": [
+        "終末後",
+        "ディストピア",
+        "復讐",
+        "哲学",
+        "カルト",
+        "アンチヒーロー",
+        "超能力",
+        "宗教",
+        "サバイバル",
+        "メタ",
+        "コズミックホラー",
+        "男性主人公",
+        "映画制作",
+        "演技",
+        "雪景色",
+        "成長譚",
+        "トランスジェンダー",
+        "奴隷",
+        "LGBTQテーマ",
+        "不条理コメディ",
+        "神々",
+        "現代ファンタジー",
+        "記憶操作",
+        "電波系"
+      ],
       "meta": {
+        "anilistId": 87170,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -2888,7 +2923,34 @@
         "少年"
       ],
       "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "魔法",
+        "少年向け",
+        "超能力",
+        "悪魔",
+        "男性主人公",
+        "多重人格",
+        "失われた文明",
+        "エルフ",
+        "階級闘争",
+        "異性愛",
+        "修行",
+        "中世",
+        "王侯貴族",
+        "ツンデレ",
+        "逆ハーレム",
+        "年齢退行",
+        "ダンジョン",
+        "疑似家族"
+      ],
       "meta": {
+        "anilistId": 86123,
         "wikiTitle": "ブラッククローバー",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
@@ -2962,7 +3024,30 @@
         "少年"
       ],
       "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Drama",
+        "Sports"
+      ],
+      "tags": [
+        "サッカー",
+        "男性主人公",
+        "バトルロイヤル",
+        "陸上競技",
+        "男性中心",
+        "ティーン中心",
+        "群像劇",
+        "少年向け",
+        "超能力",
+        "アンチヒーロー",
+        "フィットネス",
+        "海外",
+        "拡張現実（AR）",
+        "言語の壁",
+        "復讐"
+      ],
       "meta": {
+        "anilistId": 106130,
         "wikiTitle": "ブルーロック",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
@@ -2987,7 +3072,42 @@
         "青年"
       ],
       "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy",
+        "Horror",
+        "Psychological"
+      ],
+      "tags": [
+        "青年向け",
+        "復讐",
+        "男性主人公",
+        "悪魔",
+        "コズミックホラー",
+        "疑似家族",
+        "哲学",
+        "アンチヒーロー",
+        "旅",
+        "更生",
+        "神話",
+        "剣術",
+        "サバイバル",
+        "戦争",
+        "魔法",
+        "海外",
+        "宗教",
+        "神々",
+        "大人中心",
+        "妖精",
+        "障害",
+        "政治",
+        "軍事",
+        "記憶喪失"
+      ],
       "meta": {
+        "anilistId": 30002,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
