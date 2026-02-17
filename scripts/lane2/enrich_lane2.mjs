@@ -1047,27 +1047,33 @@ async function main() {
     const asin = norm(v?.asin) || null;
 
     // 連載誌：manual override > 前回値 > wiki
-    let magazine = null;
-    let magazineSource = null;
-    let wikiTitle = null;
+const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
-    if (manualMag) {
-      magazine = manualMag;
-      magazineSource = "manual_override";
-      wikiTitle = null;
-    } else if (hasMagazineFilled(prevVol1)) {
-      magazine = norm(prevVol1.magazine) || null;
-      magazineSource = norm(prevVol1.magazineSource) || null;
-      wikiTitle = prevVol1.wikiTitle ?? null;
-      skippedWiki++;
-    } else {
-      const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
-      const wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
-      wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
-      magazine = norm(wikiMag) || null;
-      magazineSource = magazine ? "wikipedia" : null;
-      await sleep(150);
-    }
+let magazine = null;
+let magazineSource = null;
+let wikiTitle = null;
+
+if (manualMag) {
+  // manual override なら Wiki を叩かないので “skipped” に加算してOK
+  magazine = manualMag;
+  magazineSource = "manual_override";
+  wikiTitle = null;
+  skippedWiki++;
+} else if (hasMagazineFilled(prevVol1)) {
+  // 前回値がある場合も Wiki を叩かない
+  magazine = norm(prevVol1.magazine) || null;
+  magazineSource = norm(prevVol1.magazineSource) || null;
+  wikiTitle = prevVol1.wikiTitle ?? null;
+  skippedWiki++;
+} else {
+  // ここだけ Wiki を叩く
+  const wk = await fetchWikiMagazineBySeriesKey({ seriesKey, cache: cacheWiki });
+  const wikiMag = wk?.ok ? (wk?.data?.magazine ?? null) : null;
+  wikiTitle = wk?.ok ? (wk?.data?.title ?? null) : null;
+  magazine = norm(wikiMag) || null;
+  magazineSource = magazine ? "wikipedia" : null;
+  await sleep(150);
+}
 
     const magazines = splitMagazines(magazine);
 
