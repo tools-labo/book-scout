@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-02-17T13:58:18.061Z",
+  "updatedAt": "2026-02-17T15:12:34.586Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 92,
-    "skippedAniList": 60,
-    "skippedWiki": 60,
-    "skippedAmazon": 58,
-    "fetchedAmazonAsins": 2,
+    "skippedPerfect": 95,
+    "skippedAniList": 57,
+    "skippedWiki": 57,
+    "skippedAmazon": 57,
+    "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
@@ -16,12 +16,12 @@
       "magazineEmpty": 0,
       "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 11,
+      "audiencesOnlyOther": 9,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 2,
+      "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0
     },
@@ -30,30 +30,24 @@
         "orange [オレンジ]",
         "ReLIFE",
         "おもいでエマノン",
-        "ギヴン",
         "さびしすぎてレズ風俗に行きましたレポ",
         "トモちゃんは女の子!",
         "メイドインアビス",
         "富江",
-        "山田くんとLv999の恋をする",
         "気になってる人が男じゃなかった",
         "見える子ちゃん"
-      ],
-      "tagsMissingNotHidden": [
-        "キングダム",
-        "マギ"
       ]
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 2
+      "successItems": 0
     }
   },
   "items": [
@@ -1760,6 +1754,7 @@
           "戦争",
           "古代中国",
           "政治",
+          "王侯貴族",
           "青年向け",
           "成長譚",
           "剣術",
@@ -1772,9 +1767,7 @@
           "女装・男装",
           "魔法"
         ],
-        "tags_missing_en": [
-          "Royal Affairs"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -5692,6 +5685,7 @@
           "政治",
           "犯罪組織",
           "階級闘争",
+          "王侯貴族",
           "記憶操作",
           "少年向け",
           "哲学",
@@ -5709,9 +5703,7 @@
           "グルメ",
           "ドラゴン"
         ],
-        "tags_missing_en": [
-          "Royal Affairs"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
