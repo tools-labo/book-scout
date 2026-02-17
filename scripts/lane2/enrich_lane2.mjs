@@ -225,8 +225,10 @@ function hasAniListFilled(prevVol1) {
   return !!(
     prevVol1 &&
     prevVol1.anilistId &&
-    Array.isArray(prevVol1.genres) && prevVol1.genres.length > 0 &&
-    Array.isArray(prevVol1.tags_en) && prevVol1.tags_en.length > 0
+    Array.isArray(prevVol1.genres) &&
+    prevVol1.genres.length > 0 &&
+    Array.isArray(prevVol1.tags_en) &&
+    prevVol1.tags_en.length > 0
   );
 }
 function hasMagazineFilled(prevVol1) {
@@ -245,13 +247,12 @@ function hasAmazonFilled(vol1) {
 }
 
 /**
- * ★完璧判定：
- *  - Amazon / magazine / AniList が揃っている
- *  - magazines / audiences / tags(ja) が揃っている
- *  - tags_missing_en が空（=辞書未対応タグが残っていない）
+ * ★完璧判定（hide対応）：
+ *  - tags_missing_en が残っていても、
+ *    それが tag_hide.json に含まれるもの“だけ”ならOK扱い
  * これを満たす prevVol1 は “今回のrunで一切触らず” 丸ごと温存する。
  */
-function isPerfectVol1(prevVol1) {
+function isPerfectVol1(prevVol1, hideSet) {
   if (!prevVol1) return false;
 
   if (!hasAmazonFilled(prevVol1)) return false;
@@ -263,7 +264,15 @@ function isPerfectVol1(prevVol1) {
 
   if (!Array.isArray(prevVol1.tags) || prevVol1.tags.length === 0) return false;
 
-  if (Array.isArray(prevVol1.tags_missing_en) && prevVol1.tags_missing_en.length > 0) return false;
+  const miss = Array.isArray(prevVol1.tags_missing_en) ? prevVol1.tags_missing_en : [];
+  if (miss.length > 0) {
+    const hs = hideSet instanceof Set ? hideSet : new Set();
+    const remain = miss
+      .map((x) => normTagKey(x))
+      .filter(Boolean)
+      .filter((k) => !hs.has(k));
+    if (remain.length > 0) return false;
+  }
 
   return true;
 }
@@ -394,7 +403,10 @@ function extractMagazineFromInfoboxHtml(html) {
   const joined = lines.join(" / ");
 
   const cleaned = joined
-    .replace(/$begin:math:display$$begin:math:text$\\\?\\\:\\\\d\\\+\\\|\\\[a\\\-zA\\\-Z\\\]\\\|注\\\\s\\\*\\\\d\\\+\\\|注釈\\\\s\\\*\\\\d\\\+$end:math:text$$end:math:display$/g, "")
+    .replace(
+      /$begin:math:display$$begin:math:text$\\\?\\\:\\\\d\\\+\\\|\\\[a\\\-zA\\\-Z\\\]\\\|注\\\\s\\\*\\\\d\\\+\\\|注釈\\\\s\\\*\\\\d\\\+$end:math:text$$end:math:display$/g,
+      ""
+    )
     .replace(/\s+/g, " ")
     .trim();
 
@@ -439,8 +451,7 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
     return { ok: true, data: null, found: false };
   }
 
-  const bestHit =
-    results.find((x) => wikiTitleLooksOk({ wikiTitle: x?.title, seriesKey: key })) || null;
+  const bestHit = results.find((x) => wikiTitleLooksOk({ wikiTitle: x?.title, seriesKey: key })) || null;
 
   if (!bestHit?.pageid) {
     cache[key] = null;
@@ -466,7 +477,6 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
 
   return { ok: true, data: out, found: true };
 }
-
 /* -----------------------
  * Amazon PA-API (GetItems)
  * - ★失敗ログを出す
@@ -1010,13 +1020,21 @@ async function main() {
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
     // ★完璧は完全スキップ（vol1 を前回のまま温存）
-    if (!manualMag && isPerfectVol1(prevVol1)) {
+    if (!manualMag && isPerfectVol1(prevVol1, hideSet)) {
       // todo(seriesKey): magazine は完璧なので確実に外す
       magTodoSet.delete(seriesKey);
 
+      // ★任意：perfect温存時に tags_missing_en から hide 分だけ掃除する
+      const prevClean = { ...prevVol1 };
+      const miss = Array.isArray(prevClean.tags_missing_en) ? prevClean.tags_missing_en : [];
+      prevClean.tags_missing_en = miss
+        .map((raw) => ({ raw, key: normTagKey(raw) }))
+        .filter((o) => o.key && !hideSet.has(o.key))
+        .map((o) => o.raw);
+
       enriched.push({
         seriesKey,
-        vol1: prevVol1,
+        vol1: prevClean,
         meta: x?.meta || null,
       });
       ok++;
