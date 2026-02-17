@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-17T11:49:27.414Z",
+  "updatedAt": "2026-02-17T12:28:39.797Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
@@ -9,7 +9,22 @@
     "skippedWiki": 73,
     "skippedAmazon": 71,
     "fetchedAmazonAsins": 2,
-    "magAudienceTodoAdded": 0,
+    "magAudienceTodoAdded": 3,
+    "perfectNotMetReasons": {
+      "noPrevVol1": 0,
+      "amazonMissing": 2,
+      "magazineEmpty": 0,
+      "magazinesEmpty": 1,
+      "audiencesEmpty": 0,
+      "audiencesOnlyOther": 11,
+      "anilistMissing": 0,
+      "genresEmpty": 0,
+      "tagsEnEmpty": 0,
+      "tagsJaEmpty": 0,
+      "tagsMissingNotHidden": 24,
+      "magazineLooksCssGarbage": 0,
+      "magazineNotPlausible": 0
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -5969,7 +5984,11 @@
         "author": "つくし あきひと",
         "releaseDate": "2013-07-31T00:00:01Z",
         "magazine": ".mw-parser-output .plainlist--only-child>ol,.mw-parser-output .plainlist--only-child>ul{line-height:inherit;list-style:none none;margin:0;padding-left:0}.mw-parser-output .plainlist--only-child>ol li,.mw-parser-output .plainlist--only-child>ul li{margin-bottom:0}まんがライフWIN+WEBコミックガンマ竹コミ!",
-        "magazines": [],
+        "magazines": [
+          "まんがライフWIN",
+          "WEBコミックガンマ",
+          "竹コミ!"
+        ],
         "audiences": [
           "その他"
         ],
