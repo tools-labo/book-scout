@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-18T02:31:23.185Z",
+  "updatedAt": "2026-02-18T02:39:21.643Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
@@ -9,14 +9,14 @@
     "skippedWiki": 57,
     "skippedAmazon": 57,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "magAudienceTodoAdded": 5,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
       "magazineEmpty": 0,
       "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 9,
+      "audiencesOnlyOther": 8,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
@@ -27,7 +27,6 @@
     },
     "perfectNotMetSamples": {
       "audiencesOnlyOther": [
-        "orange [オレンジ]",
         "ReLIFE",
         "おもいでエマノン",
         "さびしすぎてレズ風俗に行きましたレポ",
@@ -464,11 +463,13 @@
         "publisher": "双葉社",
         "author": "高野 苺",
         "releaseDate": "2013-12-25T00:00:01Z",
-        "magazine": "月刊アクション",
+        "magazine": "別冊マーガレット → 月刊アクション",
         "magazines": [
+          "別冊マーガレット",
           "月刊アクション"
         ],
         "audiences": [
+          "少女",
           "その他"
         ],
         "magazineSource": "manual_override",
@@ -1276,9 +1277,9 @@
         "publisher": "徳間書店",
         "author": "鶴田 謙二 / 梶尾 真治",
         "releaseDate": "2008-05-20T00:00:01Z",
-        "magazine": "COMICリュウ",
+        "magazine": "月刊COMICリュウ",
         "magazines": [
-          "COMICリュウ"
+          "月刊COMICリュウ"
         ],
         "audiences": [
           "その他"
@@ -1962,9 +1963,9 @@
         "publisher": "イースト・プレス",
         "author": "永田カビ",
         "releaseDate": "2016-06-17T00:00:01Z",
-        "magazine": "pixiv",
+        "magazine": "pixivコミック",
         "magazines": [
-          "pixiv"
+          "pixivコミック"
         ],
         "audiences": [
           "その他"
@@ -5794,8 +5795,9 @@
         "publisher": "竹書房",
         "author": "つくし あきひと",
         "releaseDate": "2013-07-31T00:00:01Z",
-        "magazine": "竹コミ!",
+        "magazine": "WEBコミックガンマ / 竹コミ!",
         "magazines": [
+          "WEBコミックガンマ",
           "竹コミ!"
         ],
         "audiences": [
@@ -8109,9 +8111,9 @@
         "publisher": "朝日新聞出版",
         "author": "伊藤潤二",
         "releaseDate": "2011-01-20T00:00:01Z",
-        "magazine": "ハロウィン",
+        "magazine": "月刊ハロウィン",
         "magazines": [
-          "ハロウィン"
+          "月刊ハロウィン"
         ],
         "audiences": [
           "その他"
@@ -9447,8 +9449,9 @@
         "publisher": "KADOKAWA",
         "author": "新井 すみこ",
         "releaseDate": "2023-04-19T00:00:01Z",
-        "magazine": "カドコミ（コミックウォーカー）",
+        "magazine": "pixivコミック / カドコミ（コミックウォーカー）",
         "magazines": [
+          "pixivコミック",
           "カドコミ（コミックウォーカー）"
         ],
         "audiences": [
@@ -10370,9 +10373,10 @@
         "publisher": "KADOKAWA",
         "author": "泉 朝樹",
         "releaseDate": "2019-04-22T00:00:01Z",
-        "magazine": "カドコミ（コミックウォーカー）",
+        "magazine": "カドコミ（コミックウォーカー） → WebComicアパンダ",
         "magazines": [
-          "カドコミ（コミックウォーカー）"
+          "カドコミ（コミックウォーカー）",
+          "WebComicアパンダ"
         ],
         "audiences": [
           "その他"
