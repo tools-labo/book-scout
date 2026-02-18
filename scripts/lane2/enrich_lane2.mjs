@@ -1,4 +1,5 @@
 // scripts/lane2/enrich_lane2.mjs
+// ===== 1/2（全差し替え）=====
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -329,7 +330,7 @@ function isPerfectVol1(prevVol1, hideSet) {
 }
 
 /**
- * ★DEBUG：perfect に入らない理由を “prevVol1” ベースで説明する
+ * ★DEBUG：perfect に入らない理由を説明する（vol1ベース）
  */
 function explainPerfectFail(vol1, hideSet) {
   const reasons = [];
@@ -399,6 +400,11 @@ function pushSample(samples, key, seriesKey, limit = 12) {
   if (!samples[key]) samples[key] = [];
   if (samples[key].length >= limit) return;
   samples[key].push(seriesKey);
+}
+function pushSampleLine(samples, key, line, limit = 12) {
+  if (!samples[key]) samples[key] = [];
+  if (samples[key].length >= limit) return;
+  samples[key].push(line);
 }
 
 /* -----------------------
@@ -1026,10 +1032,10 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
   return Array.from(auds);
 }
 
-// ===== 1/2 ここまで。次で evalPerfectNotMetReasons〜main〜末尾まで全差し替え =====
+// ===== 2/2（全差し替え）=====
 
 /* -----------------------
- * perfect未達の理由を判定して集計
+ * perfect未達の理由を判定して集計（outVol1ベース）
  * ----------------------- */
 function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }) {
   if (!vol1) {
@@ -1071,10 +1077,6 @@ function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }
     bumpReason(reasons, "audiencesEmpty");
     pushSample(samples, "audiencesEmpty", seriesKey);
   } else {
-    // ★ここは「データ欠損」ではなく「分類できなかった」なので、
-    //   perfectNotMetReasons に積むかは “運用ポリシー” 次第。
-    //   今回は「perfect判定から外す」ために保持しつつ、
-    //   manual override 済みのものは sample に出さない（後段で制御）
     const onlyOther = vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
     if (onlyOther) {
       bumpReason(reasons, "audiencesOnlyOther");
@@ -1233,7 +1235,7 @@ async function main() {
   let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
 
-  // ★集計（perfect判定 “prevVol1” ベースに戻す）
+  // ★集計
   const perfectNotMetReasons = {
     noPrevVol1: 0,
     amazonMissing: 0,
@@ -1249,8 +1251,11 @@ async function main() {
     magazineLooksCssGarbage: 0,
     magazineNotPlausible: 0,
 
-    // ★追加：isPerfectVol1 が false の “まとめ理由”
-    notPerfect: 0,
+    // ★追加：prevVol1 が perfect になっていない（=次runで skippedPerfect に入らない）理由のサマリ
+    prevNotPerfect: 0,
+
+    // ★追加：outVol1 が perfect になっていない（=次runの prev 側に欠損を持ち越す）理由のサマリ
+    outNotPerfect: 0,
   };
   const perfectNotMetSamples = {};
 
@@ -1262,10 +1267,25 @@ async function main() {
     const prevVol1 = prev?.vol1 || null;
 
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
+    const manualMagSameAsPrev =
+      !!manualMag && !!norm(prevVol1?.magazine) && norm(prevVol1?.magazine) === manualMag;
+
+    // ★not-perfect(prev) を必ず観測（skippedPerfect 増えない原因の可視化）
+    if (!isPerfectVol1(prevVol1, hideSet)) {
+      bumpReason(perfectNotMetReasons, "prevNotPerfect");
+      const fails = explainPerfectFail(prevVol1, hideSet);
+      if (fails.length > 0) {
+        pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: ${fails.join(",")}`);
+      } else if (!prevVol1) {
+        pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: noVol1`);
+      } else {
+        pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: unknown`);
+      }
+    }
 
     // ★完璧は完全スキップ（prevVol1温存）
-    //   ただし「完璧」と判定できなかったものは、理由を stats に残す（デバッグ）
-    if (!manualMag && isPerfectVol1(prevVol1, hideSet)) {
+    //   ただし manual override が「前回と同じ」ならスキップOK（=差分コミットを減らす）
+    if ((manualMagSameAsPrev || !manualMag) && isPerfectVol1(prevVol1, hideSet)) {
       magTodoSet.delete(seriesKey);
 
       const prevClean = { ...prevVol1 };
@@ -1424,20 +1444,14 @@ async function main() {
     enriched.push({ seriesKey, vol1: outVol1, meta: x?.meta || null });
     ok++;
 
-    // ★ここが今回の “perfect増えない” 原因特定ポイント
-    //   「今 run で作った outVol1」ではなく「次runで温存される prevVol1」が perfect になる必要がある。
-    //   つまり、次 run の skippedPerfect を増やすには “outVol1 が isPerfectVol1 を満たしている必要がある”。
-    //
-    //   その判定に落ちているなら、何が欠けているかを samples に出す。
-    if (!manualMag) {
+    // ★not-perfect(out) を観測（次runで prev 側に残る欠損の可視化）
+    if (!isPerfectVol1(outVol1, hideSet)) {
+      bumpReason(perfectNotMetReasons, "outNotPerfect");
       const fails = explainPerfectFail(outVol1, hideSet);
       if (fails.length > 0) {
-        bumpReason(perfectNotMetReasons, "notPerfect");
-        // 先頭12件だけ
-        if (!perfectNotMetSamples.notPerfect) perfectNotMetSamples.notPerfect = [];
-        if (perfectNotMetSamples.notPerfect.length < 12) {
-          perfectNotMetSamples.notPerfect.push(`${seriesKey} :: ${fails.join(",")}`);
-        }
+        pushSampleLine(perfectNotMetSamples, "outNotPerfect", `${seriesKey} :: ${fails.join(",")}`);
+      } else {
+        pushSampleLine(perfectNotMetSamples, "outNotPerfect", `${seriesKey} :: unknown`);
       }
     }
 
