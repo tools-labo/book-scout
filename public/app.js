@@ -96,6 +96,7 @@ function normalizeImgUrl(u) {
  * - Amazon.co.jp のみ
  * - 既に tag があればそのまま
  * - tag が無ければ付与
+ * - DOM内の a[href] も一括で補正（index.html の直リンク対策）
  * ======================= */
 const AMAZON_ASSOCIATE_TAG = "book-scout-22";
 
@@ -124,6 +125,28 @@ function ensureAmazonAffiliate(urlLike) {
   } catch {
     // URL として解釈できないものは触らない
     return raw;
+  }
+}
+
+// index.html 等「HTMLに直書きされたAmazonリンク」もまとめて付与
+function patchAmazonAnchors(root = document) {
+  const as = root?.querySelectorAll?.('a[href]') || [];
+  for (const a of as) {
+    const href = a.getAttribute("href") || "";
+    if (!href) continue;
+
+    const next = ensureAmazonAffiliate(href);
+    if (next && next !== href) a.setAttribute("href", next);
+
+    // ついでに target/_blank の時は noopener を付け足す（既にあれば維持）
+    const target = (a.getAttribute("target") || "").toLowerCase();
+    if (target === "_blank") {
+      const rel = (a.getAttribute("rel") || "").trim();
+      const parts = new Set(rel.split(/\s+/g).filter(Boolean));
+      // nofollow は入れない（既存方針があるため）。noopener だけ補強。
+      parts.add("noopener");
+      a.setAttribute("rel", Array.from(parts).join(" "));
+    }
   }
 }
 
@@ -590,6 +613,9 @@ async function run() {
     // List / Work
     renderList(data);
     renderWork(data);
+
+    // ★index.html などの静的リンクも含めて、表示後に一括でアフィ付与
+    patchAmazonAnchors(document);
   } catch (e) {
     setStatus("読み込みに失敗しました");
     console.error(e);
