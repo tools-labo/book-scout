@@ -1,4 +1,3 @@
-
 // scripts/lane2/enrich_lane2.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -303,8 +302,6 @@ function hasAmazonFilled(vol1) {
 
 /**
  * ★完璧判定（hide対応）
- * ※ここでは audiencesOnlyOther は判定に使わない（= frontに必要情報が揃えば完璧）
- * 　audiencesOnlyOther “問題” の扱いは、別途「unknown magazines があるか」で判定する。
  */
 function isPerfectVol1(prevVol1, hideSet) {
   if (!prevVol1) return false;
@@ -329,6 +326,67 @@ function isPerfectVol1(prevVol1, hideSet) {
   }
 
   return true;
+}
+
+/**
+ * ★DEBUG：perfect に入らない理由を “prevVol1” ベースで説明する
+ */
+function explainPerfectFail(vol1, hideSet) {
+  const reasons = [];
+  if (!vol1) return ["noVol1"];
+
+  // Amazon
+  if (!hasAmazonFilled(vol1)) {
+    const miss = [];
+    if (!norm(vol1.amazonDp)) miss.push("amazonDp");
+    if (!norm(vol1.image)) miss.push("image");
+    if (!norm(vol1.publisher)) miss.push("publisher");
+    if (!norm(vol1.author)) miss.push("author");
+    if (!norm(vol1.releaseDate)) miss.push("releaseDate");
+    if (!norm(vol1.title)) miss.push("title");
+    reasons.push(`amazon(${miss.join("|") || "unknown"})`);
+  }
+
+  // Magazine
+  if (!hasMagazineFilled(vol1)) reasons.push("magazine");
+
+  // AniList
+  if (!hasAniListFilled(vol1)) {
+    const miss = [];
+    if (!vol1.anilistId) miss.push("anilistId");
+    if (!Array.isArray(vol1.genres) || vol1.genres.length === 0) miss.push("genres[]");
+    if (!Array.isArray(vol1.tags_en) || vol1.tags_en.length === 0) miss.push("tags_en[]");
+    reasons.push(`anilist(${miss.join("|") || "unknown"})`);
+  }
+
+  // arrays
+  if (!Array.isArray(vol1.magazines) || vol1.magazines.length === 0) reasons.push("magazines[]");
+  if (!Array.isArray(vol1.audiences) || vol1.audiences.length === 0) reasons.push("audiences[]");
+  if (!Array.isArray(vol1.tags) || vol1.tags.length === 0) reasons.push("tagsJa[]");
+
+  // tags_missing_en (hide除外後に残るか)
+  const miss = Array.isArray(vol1.tags_missing_en) ? vol1.tags_missing_en : [];
+  if (miss.length > 0) {
+    const hs = hideSet instanceof Set ? hideSet : new Set();
+
+    const remain = [];
+    const types = new Set();
+
+    for (const raw of miss) {
+      types.add(raw === null ? "null" : Array.isArray(raw) ? "array" : typeof raw);
+
+      const key = normTagKey(raw);
+      if (!key) continue;
+      if (hs.has(key)) continue;
+      remain.push(key);
+    }
+
+    if (remain.length > 0) {
+      reasons.push(`tags_missing_en(remain=${remain.length},types=${Array.from(types).join(",")})`);
+    }
+  }
+
+  return reasons;
 }
 
 /* -----------------------
@@ -968,35 +1026,12 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
   return Array.from(auds);
 }
 
-/**
- * ★今回の本題：audiencesOnlyOther を “問題” として扱うのは
- *   - audiences が ["その他"] で
- *   - かつ magazines に「辞書未登録」が残っている場合のみ
- */
-function getUnknownMagazines({ magazines, magAudienceMap }) {
-  const out = [];
-  for (const m of magazines || []) {
-    const mm = norm(m);
-    if (!mm) continue;
-    if (!isPlausibleMagazineName(mm)) continue;
-    if (!magAudienceMap.has(mm)) out.push(mm);
-  }
-  return uniq(out);
-}
-
-function isAudiencesOnlyOtherProblem({ audiences, magazines, magAudienceMap }) {
-  const onlyOther =
-    Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
-  if (!onlyOther) return false;
-
-  const unknown = getUnknownMagazines({ magazines, magAudienceMap });
-  return unknown.length > 0;
-}
+// ===== 1/2 ここまで。次で evalPerfectNotMetReasons〜main〜末尾まで全差し替え =====
 
 /* -----------------------
  * perfect未達の理由を判定して集計
  * ----------------------- */
-function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, magAudienceMap, reasons, samples }) {
+function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }) {
   if (!vol1) {
     bumpReason(reasons, "noPrevVol1");
     pushSample(samples, "noPrevVol1", seriesKey);
@@ -1036,13 +1071,12 @@ function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, magAudienceMap, re
     bumpReason(reasons, "audiencesEmpty");
     pushSample(samples, "audiencesEmpty", seriesKey);
   } else {
-    // ★ここが修正：["その他"] でも、unknown magazines が無ければ問題扱いしない
-    const onlyOtherProblem = isAudiencesOnlyOtherProblem({
-      audiences: vol1.audiences,
-      magazines: Array.isArray(vol1.magazines) ? vol1.magazines : [],
-      magAudienceMap,
-    });
-    if (onlyOtherProblem) {
+    // ★ここは「データ欠損」ではなく「分類できなかった」なので、
+    //   perfectNotMetReasons に積むかは “運用ポリシー” 次第。
+    //   今回は「perfect判定から外す」ために保持しつつ、
+    //   manual override 済みのものは sample に出さない（後段で制御）
+    const onlyOther = vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
+    if (onlyOther) {
       bumpReason(reasons, "audiencesOnlyOther");
       pushSample(samples, "audiencesOnlyOther", seriesKey);
     }
@@ -1105,7 +1139,8 @@ async function main() {
   }
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
-  const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
+  const magOverrides =
+    magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
 
   const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
   const prevItems = Array.isArray(prevEnriched?.items) ? prevEnriched.items : [];
@@ -1128,7 +1163,7 @@ async function main() {
   const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
   mergeTodoFromPrevMissingTags({ prevEnrichedItems: prevItems, todoSet, hideSet });
 
-  // ★ここで「翻訳済み / 非表示」を自動消し込み（重複・残骸を消す）
+  // 翻訳済み / 非表示 を自動消し込み
   cleanupTagTodoSet({ todoSet, tagMap, hideSet });
 
   // mag todo (seriesKey)
@@ -1139,7 +1174,7 @@ async function main() {
   const magAudienceJson = await loadJsonStrict(IN_MAG_AUDIENCE);
   const magAudienceMap = loadMagAudienceMap(magAudienceJson);
 
-  // ★magazine_audience_todo は「今回のrunで観測した未分類だけ」を出す（過去残骸は保持しない）
+  // magazine_audience_todo は “今回のrunで未分類だったものだけ”
   const magAudTodoSet = new Set();
 
   // PA-API creds
@@ -1163,7 +1198,7 @@ async function main() {
 
   assertNonEmptySeries(sorted);
 
-  // --- 差分PA-API（★Amazon必須が欠けているものは再取得対象）
+  // --- 差分PA-API
   const asinsNeed = [];
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
@@ -1174,9 +1209,7 @@ async function main() {
     const prev = prevMap.get(seriesKey);
     const prevVol1 = prev?.vol1 || null;
 
-    // 前回が埋まってればスキップ
     if (hasAmazonFilled(prevVol1)) continue;
-
     asinsNeed.push(asin);
   }
 
@@ -1200,14 +1233,14 @@ async function main() {
   let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
 
-  // ★集計
+  // ★集計（perfect判定 “prevVol1” ベースに戻す）
   const perfectNotMetReasons = {
     noPrevVol1: 0,
     amazonMissing: 0,
     magazineEmpty: 0,
     magazinesEmpty: 0,
     audiencesEmpty: 0,
-    audiencesOnlyOther: 0, // ★「問題の"その他"」だけ数える
+    audiencesOnlyOther: 0,
     anilistMissing: 0,
     genresEmpty: 0,
     tagsEnEmpty: 0,
@@ -1215,6 +1248,9 @@ async function main() {
     tagsMissingNotHidden: 0,
     magazineLooksCssGarbage: 0,
     magazineNotPlausible: 0,
+
+    // ★追加：isPerfectVol1 が false の “まとめ理由”
+    notPerfect: 0,
   };
   const perfectNotMetSamples = {};
 
@@ -1225,14 +1261,13 @@ async function main() {
     const prev = prevMap.get(seriesKey);
     const prevVol1 = prev?.vol1 || null;
 
-    // manual override があるなら “完璧でも” 差し替え対象（手動が勝つ）
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
 
-    // ★完璧は完全スキップ（vol1 を前回のまま温存）
+    // ★完璧は完全スキップ（prevVol1温存）
+    //   ただし「完璧」と判定できなかったものは、理由を stats に残す（デバッグ）
     if (!manualMag && isPerfectVol1(prevVol1, hideSet)) {
       magTodoSet.delete(seriesKey);
 
-      // perfect温存でも「hide以外の tags_missing_en を残さない」
       const prevClean = { ...prevVol1 };
       const miss = Array.isArray(prevClean.tags_missing_en) ? prevClean.tags_missing_en : [];
       prevClean.tags_missing_en = miss
@@ -1276,18 +1311,14 @@ async function main() {
 
     const magazines = splitMagazines(magazine);
 
-    // 読者層
+    // audiences
     const beforeSize = magAudTodoSet.size;
-    const audiences = pickAudiences({ magazines, magAudienceMap: magAudienceMap, todoSet: magAudTodoSet });
+    const audiences = pickAudiences({ magazines, magAudienceMap, todoSet: magAudTodoSet });
     const afterSize = magAudTodoSet.size;
     if (afterSize > beforeSize) magAudienceTodoAdded += afterSize - beforeSize;
 
-    // ★「その他だけ」でも unknown magazines が無ければ “問題ではない”
-    const audiencesOnlyOtherProblem = isAudiencesOnlyOtherProblem({
-      audiences,
-      magazines,
-      magAudienceMap,
-    });
+    const audiencesOnlyOther =
+      Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
 
     // AniList
     let anilistId = prevVol1?.anilistId ?? null;
@@ -1298,11 +1329,9 @@ async function main() {
     let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
     if (hasAniListFilled(prevVol1)) {
-      // 既に tags_en があるのに tags/tags_missing が古い・空の場合は毎回再計算
       const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
       tagsJa = applied.tags;
       tagsMissing = applied.tags_missing_en;
-
       skippedAni++;
     } else {
       const an = await fetchAniListWithRetry({ seriesKey, cache: cacheAniList });
@@ -1321,7 +1350,7 @@ async function main() {
       await sleep(250);
     }
 
-    // Amazon：manual title優先。Amazon情報は「前回値」→「cache(PA-API)」の順で埋める
+    // Amazon
     const manualTitle = norm(v?.title) || null;
 
     const prevAmazonDp = norm(prevVol1?.amazonDp) || null;
@@ -1346,25 +1375,12 @@ async function main() {
 
     const synopsis = norm(v?.synopsis) || null;
 
-    /**
-     * ★magazine_todo に積む条件（今回の修正）
-     *  - magazine が空
-     *  - split後 magazines が空（ゴミだけ取得→弾かれた）
-     *  - audiencesOnlyOtherProblem（= unknown magazines が残ってる “問題のその他”）
-     *
-     * ※manualMag の有無では分岐しない。
-     *   manual override 済みでも unknown magazines が残ってるなら、それは辞書側（magazine_audience）未分類として扱うべきで、
-     *   audiencesOnlyOtherProblem は true になる（＝mag_audience_todo に入る）一方、
-     *   magazine_todo は seriesKey 管理なので、ここでは “連載誌が空/ゴミ” の時だけ積む運用でも良い。
-     *
-     * ここはあなたの運用に合わせて：
-     *   - magazine_todo は「連載誌の確定が必要」だけに絞る
-     *   - audience 未分類は magazine_audience_todo の方で追う
-     */
+    // magazine_todo ルール（manualMag は todo から除外）
     const needMagTodo = (() => {
+      if (manualMag) return false;
       if (!magazine) return true;
       if (magazines.length === 0) return true;
-      // “問題のその他” は audience 側で追うので、magazine_todo には入れない
+      if (audiencesOnlyOther) return true;
       return false;
     })();
 
@@ -1408,23 +1424,35 @@ async function main() {
     enriched.push({ seriesKey, vol1: outVol1, meta: x?.meta || null });
     ok++;
 
-    // ★集計：audiencesOnlyOther は “問題のその他” だけ数える
+    // ★ここが今回の “perfect増えない” 原因特定ポイント
+    //   「今 run で作った outVol1」ではなく「次runで温存される prevVol1」が perfect になる必要がある。
+    //   つまり、次 run の skippedPerfect を増やすには “outVol1 が isPerfectVol1 を満たしている必要がある”。
+    //
+    //   その判定に落ちているなら、何が欠けているかを samples に出す。
+    if (!manualMag) {
+      const fails = explainPerfectFail(outVol1, hideSet);
+      if (fails.length > 0) {
+        bumpReason(perfectNotMetReasons, "notPerfect");
+        // 先頭12件だけ
+        if (!perfectNotMetSamples.notPerfect) perfectNotMetSamples.notPerfect = [];
+        if (perfectNotMetSamples.notPerfect.length < 12) {
+          perfectNotMetSamples.notPerfect.push(`${seriesKey} :: ${fails.join(",")}`);
+        }
+      }
+    }
+
+    // 既存の詳細理由集計（outVol1ベース）
     evalPerfectNotMetReasons({
       seriesKey,
       vol1: outVol1,
       hideSet,
-      magAudienceMap,
       reasons: perfectNotMetReasons,
       samples: perfectNotMetSamples,
     });
   }
 
-  /**
-   * ★tags_todo を保存する直前にもう一度クリーンアップ（安全側）
-   */
   cleanupTagTodoSet({ todoSet, tagMap, hideSet });
 
-  // tags_todo.json を確実に「再構築の結果」で出す
   await saveJson(TAG_TODO, {
     version: 1,
     updatedAt: nowIso(),
