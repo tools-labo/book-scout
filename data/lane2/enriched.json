@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-02-18T04:44:30.205Z",
+  "updatedAt": "2026-02-18T05:03:38.797Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 95,
-    "skippedAniList": 57,
-    "skippedWiki": 57,
-    "skippedAmazon": 57,
+    "skippedPerfect": 152,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
@@ -16,7 +16,7 @@
       "magazineEmpty": 0,
       "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 6,
+      "audiencesOnlyOther": 0,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
@@ -24,18 +24,10 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "notPerfect": 0
+      "prevNotPerfect": 0,
+      "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "audiencesOnlyOther": [
-        "ReLIFE",
-        "さびしすぎてレズ風俗に行きましたレポ",
-        "トモちゃんは女の子!",
-        "メイドインアビス",
-        "気になってる人が男じゃなかった",
-        "見える子ちゃん"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
