@@ -1,3 +1,4 @@
+
 // scripts/lane2/enrich_lane2.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -302,6 +303,8 @@ function hasAmazonFilled(vol1) {
 
 /**
  * ★完璧判定（hide対応）
+ * ※ここでは audiencesOnlyOther は判定に使わない（= frontに必要情報が揃えば完璧）
+ * 　audiencesOnlyOther “問題” の扱いは、別途「unknown magazines があるか」で判定する。
  */
 function isPerfectVol1(prevVol1, hideSet) {
   if (!prevVol1) return false;
@@ -965,12 +968,35 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
   return Array.from(auds);
 }
 
-// ===== 1/2 ここまで。次で evalPerfectNotMetReasons〜main〜末尾まで全差し替えを出す =====
+/**
+ * ★今回の本題：audiencesOnlyOther を “問題” として扱うのは
+ *   - audiences が ["その他"] で
+ *   - かつ magazines に「辞書未登録」が残っている場合のみ
+ */
+function getUnknownMagazines({ magazines, magAudienceMap }) {
+  const out = [];
+  for (const m of magazines || []) {
+    const mm = norm(m);
+    if (!mm) continue;
+    if (!isPlausibleMagazineName(mm)) continue;
+    if (!magAudienceMap.has(mm)) out.push(mm);
+  }
+  return uniq(out);
+}
+
+function isAudiencesOnlyOtherProblem({ audiences, magazines, magAudienceMap }) {
+  const onlyOther =
+    Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
+  if (!onlyOther) return false;
+
+  const unknown = getUnknownMagazines({ magazines, magAudienceMap });
+  return unknown.length > 0;
+}
 
 /* -----------------------
  * perfect未達の理由を判定して集計
  * ----------------------- */
-function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }) {
+function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, magAudienceMap, reasons, samples }) {
   if (!vol1) {
     bumpReason(reasons, "noPrevVol1");
     pushSample(samples, "noPrevVol1", seriesKey);
@@ -1010,8 +1036,13 @@ function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }
     bumpReason(reasons, "audiencesEmpty");
     pushSample(samples, "audiencesEmpty", seriesKey);
   } else {
-    const onlyOther = vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
-    if (onlyOther) {
+    // ★ここが修正：["その他"] でも、unknown magazines が無ければ問題扱いしない
+    const onlyOtherProblem = isAudiencesOnlyOtherProblem({
+      audiences: vol1.audiences,
+      magazines: Array.isArray(vol1.magazines) ? vol1.magazines : [],
+      magAudienceMap,
+    });
+    if (onlyOtherProblem) {
       bumpReason(reasons, "audiencesOnlyOther");
       pushSample(samples, "audiencesOnlyOther", seriesKey);
     }
@@ -1176,7 +1207,7 @@ async function main() {
     magazineEmpty: 0,
     magazinesEmpty: 0,
     audiencesEmpty: 0,
-    audiencesOnlyOther: 0,
+    audiencesOnlyOther: 0, // ★「問題の"その他"」だけ数える
     anilistMissing: 0,
     genresEmpty: 0,
     tagsEnEmpty: 0,
@@ -1247,13 +1278,16 @@ async function main() {
 
     // 読者層
     const beforeSize = magAudTodoSet.size;
-    const audiences = pickAudiences({ magazines, magAudienceMap, todoSet: magAudTodoSet });
+    const audiences = pickAudiences({ magazines, magAudienceMap: magAudienceMap, todoSet: magAudTodoSet });
     const afterSize = magAudTodoSet.size;
     if (afterSize > beforeSize) magAudienceTodoAdded += afterSize - beforeSize;
 
-    // ★audiences が「その他」だけなら話題化（magazine_todo）
-    const audiencesOnlyOther =
-      Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
+    // ★「その他だけ」でも unknown magazines が無ければ “問題ではない”
+    const audiencesOnlyOtherProblem = isAudiencesOnlyOtherProblem({
+      audiences,
+      magazines,
+      magAudienceMap,
+    });
 
     // AniList
     let anilistId = prevVol1?.anilistId ?? null;
@@ -1313,27 +1347,24 @@ async function main() {
     const synopsis = norm(v?.synopsis) || null;
 
     /**
-     * ★magazine_todo に積む条件（ここが今回の本題の修正点）
+     * ★magazine_todo に積む条件（今回の修正）
+     *  - magazine が空
+     *  - split後 magazines が空（ゴミだけ取得→弾かれた）
+     *  - audiencesOnlyOtherProblem（= unknown magazines が残ってる “問題のその他”）
      *
-     * 問題:
-     *  - manual override 済みでも audiencesOnlyOther だと todo に戻ってくる
+     * ※manualMag の有無では分岐しない。
+     *   manual override 済みでも unknown magazines が残ってるなら、それは辞書側（magazine_audience）未分類として扱うべきで、
+     *   audiencesOnlyOtherProblem は true になる（＝mag_audience_todo に入る）一方、
+     *   magazine_todo は seriesKey 管理なので、ここでは “連載誌が空/ゴミ” の時だけ積む運用でも良い。
      *
-     * 解決:
-     *  - manualMag がある場合は「連載誌は解決済み」とみなす
-     *    => audiencesOnlyOther を理由に todo に積まない
-     *
-     *  - manualMag が無い場合だけ、
-     *    (magazine空) or (magazines空) or (audiencesOnlyOther) で todo に積む
+     * ここはあなたの運用に合わせて：
+     *   - magazine_todo は「連載誌の確定が必要」だけに絞る
+     *   - audience 未分類は magazine_audience_todo の方で追う
      */
     const needMagTodo = (() => {
-      if (manualMag) {
-        // 手動で magazine を確定させたものは「連載誌TODO」からは除外
-        // （audience側の精度問題は magazine_audience の辞書で見る）
-        return false;
-      }
       if (!magazine) return true;
-      if (magazines.length === 0) return true; // “ゴミだけ取得” で弾かれた
-      if (audiencesOnlyOther) return true; // 話題化したい
+      if (magazines.length === 0) return true;
+      // “問題のその他” は audience 側で追うので、magazine_todo には入れない
       return false;
     })();
 
@@ -1377,11 +1408,12 @@ async function main() {
     enriched.push({ seriesKey, vol1: outVol1, meta: x?.meta || null });
     ok++;
 
-    // ★集計：今回更新対象のものだけ理由を積む
+    // ★集計：audiencesOnlyOther は “問題のその他” だけ数える
     evalPerfectNotMetReasons({
       seriesKey,
       vol1: outVol1,
       hideSet,
+      magAudienceMap,
       reasons: perfectNotMetReasons,
       samples: perfectNotMetSamples,
     });
