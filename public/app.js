@@ -92,6 +92,42 @@ function normalizeImgUrl(u) {
 }
 
 /* =======================
+ * Amazon（表示側でアフィ付与）
+ * - Amazon.co.jp のみ
+ * - 既に tag があればそのまま
+ * - tag が無ければ付与
+ * ======================= */
+const AMAZON_ASSOCIATE_TAG = "book-scout-22";
+
+function isAmazonJpHost(hostname) {
+  const h = String(hostname || "").toLowerCase();
+  return h === "amazon.co.jp" || h === "www.amazon.co.jp" || h.endsWith(".amazon.co.jp");
+}
+
+function ensureAmazonAffiliate(urlLike) {
+  const raw = toText(urlLike);
+  if (!raw) return "";
+
+  // 既に "#" などの場合はそのまま
+  if (raw === "#") return raw;
+
+  try {
+    const u = new URL(raw, location.href);
+
+    if (!isAmazonJpHost(u.hostname)) return raw;
+
+    // 既に tag があれば一切上書きしない
+    if (u.searchParams.has("tag")) return u.toString();
+
+    u.searchParams.set("tag", AMAZON_ASSOCIATE_TAG);
+    return u.toString();
+  } catch {
+    // URL として解釈できないものは触らない
+    return raw;
+  }
+}
+
+/* =======================
  * Genre map (EN -> JA)
  * ======================= */
 const GENRE_JA = {
@@ -436,7 +472,8 @@ function renderList(data) {
     const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
     const img = normalizeImgUrl(imgRaw);
 
-    const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
+    const amzRaw = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
+    const amz = ensureAmazonAffiliate(amzRaw);
 
     const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
     const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
@@ -500,7 +537,8 @@ function renderWork(data) {
   const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
   const img = normalizeImgUrl(imgRaw);
 
-  const amz = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
+  const amzRaw = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
+  const amz = ensureAmazonAffiliate(amzRaw);
 
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
