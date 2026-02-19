@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-02-19T11:52:04.272Z",
+  "updatedAt": "2026-02-19T12:11:08.395Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 152,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
+    "skippedPerfect": 151,
+    "skippedAniList": 1,
+    "skippedWiki": 1,
+    "skippedAmazon": 1,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
@@ -24,10 +24,14 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 0,
+      "prevNotPerfect": 1,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "監獄学園 :: audiences[]"
+      ]
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -9658,7 +9662,9 @@
         "magazines": [
           "週刊ヤングマガジン"
         ],
-        "audiences": [],
+        "audiences": [
+          "青年"
+        ],
         "magazineSource": "wikipedia",
         "wikiTitle": "監獄学園",
         "anilistId": 55297,
@@ -9691,16 +9697,13 @@
           "青年向け",
           "学園",
           "不条理コメディ",
-          "男性主人公",
           "奴隷",
           "ドタバタ",
           "監獄",
-          "異性愛",
           "いじめ",
           "復讐",
           "三角関係",
           "クーデレ",
-          "群像劇",
           "女性優位",
           "LGBTQテーマ"
         ],
