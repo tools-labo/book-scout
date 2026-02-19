@@ -14,7 +14,19 @@
 
   <main class="wrap">
     <div id="status" class="status"></div>
-    <section id="list" class="grid"></section>
+
+    <!-- 気分フィルター（メイン） -->
+    <section class="section" style="margin-top:10px;">
+      <div class="section-head">
+        <h2 class="section-title">気分で絞り込み</h2>
+        <a id="moodClearLink" class="section-link" href="./list.html">解除</a>
+      </div>
+      <p class="section-sub">最大2つまで選べます（AND）。0件になったらOR提案を出します。</p>
+      <div id="quickFiltersList"></div>
+      <div id="quickFiltersHint" class="status" style="margin-top:8px;"></div>
+    </section>
+
+    <section id="list" class="grid" style="margin-top:12px;"></section>
   </main>
 
   <script>
