@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-02-18T23:07:41.706Z",
+  "updatedAt": "2026-02-19T10:42:13.175Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 152,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
+    "skippedPerfect": 151,
+    "skippedAniList": 1,
+    "skippedWiki": 1,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
+    "fetchedAmazonAsins": 1,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
@@ -24,20 +24,24 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 0,
+      "prevNotPerfect": 1,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "ディー・グレイマン :: amazon(amazonDp|image|publisher|author|releaseDate|title)"
+      ]
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 0,
+      "chunks": 1,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 1
     }
   },
   "items": [
@@ -3393,15 +3397,15 @@
       "seriesKey": "ディー・グレイマン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088736915",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088736915?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
         "isbn13": "9784088736914",
         "asin": "4088736915",
-        "title": null,
+        "title": "D.Gray-man (1) ジャンプコミックス",
         "synopsis": "人の悲しみを利用して兵器“AKUMA”を生み出す敵に、異能を武器に戦うエクソシストたちが立ち向かう。少年アレンは呪いを抱えながら仲間と出会い、戦いの渦へ飛び込んでいく。",
-        "image": null,
-        "publisher": null,
-        "author": null,
-        "releaseDate": null,
+        "image": "https://m.media-amazon.com/images/I/51wK4+TrvxL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "星野 桂",
+        "releaseDate": "2004-10-04T00:00:01Z",
         "magazine": "週刊少年ジャンプ → ジャンプSQ.RISE",
         "magazines": [
           "週刊少年ジャンプ",
