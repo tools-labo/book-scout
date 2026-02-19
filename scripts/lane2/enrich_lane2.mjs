@@ -1,5 +1,5 @@
 // scripts/lane2/enrich_lane2.mjs
-// ===== 1/2（全差し替え）=====
+// ===== 1/2（全差し替え：今回対応=雑誌名の正規化で audience 辞書一致を安定化）=====
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -63,6 +63,21 @@ function normTagKey(s) {
     .replace(/[“”]/g, '"')
     .replace(/[（]/g, "(")
     .replace(/[）]/g, ")")
+    .normalize("NFKC");
+}
+
+/**
+ * ★今回の対応：雑誌名の辞書一致を安定化する正規化
+ * - NBSP / 全角スペース / ゼロ幅文字 / 連続空白 / NFKC を統一
+ * - audience辞書のキーも、作品側magazinesも、両方この関数を通す
+ */
+function normMagazineKey(s) {
+  return String(s ?? "")
+    .replace(/\u00A0/g, " ") // NBSP
+    .replace(/[\u200B-\u200D\uFEFF]/g, "") // zero-width / BOM
+    .replace(/[　]/g, " ") // full-width space
+    .replace(/\s+/g, " ") // collapse spaces
+    .trim()
     .normalize("NFKC");
 }
 
@@ -980,7 +995,8 @@ function splitMagazines(magazineStr) {
       .filter(Boolean)
   );
 
-  return uniq(mags).filter(isPlausibleMagazineName);
+  // ★今回の対応：magazines 側も辞書と同じ正規化で揃える
+  return uniq(mags.map(normMagazineKey)).filter(isPlausibleMagazineName);
 }
 
 function loadMagAudienceMap(json) {
@@ -989,7 +1005,8 @@ function loadMagAudienceMap(json) {
   for (const [aud, mags] of Object.entries(items)) {
     if (!Array.isArray(mags)) continue;
     for (const m of mags) {
-      const k = norm(m);
+      // ★今回の対応：辞書キーも正規化して格納
+      const k = normMagazineKey(m);
       if (!k) continue;
       out.set(k, aud);
     }
@@ -998,12 +1015,13 @@ function loadMagAudienceMap(json) {
 }
 
 function splitByDictOnlyIfAllKnown(raw, magAudienceMap) {
-  const s = norm(raw);
+  // ★今回の対応：ここも雑誌名正規化で統一
+  const s = normMagazineKey(raw);
   if (!s) return [];
   if (magAudienceMap.has(s)) return [s];
   if (!/\s/.test(s)) return [s];
 
-  const parts = s.split(/\s+/g).map(norm).filter(Boolean);
+  const parts = s.split(/\s+/g).map(normMagazineKey).filter(Boolean);
 
   if (parts.length >= 2 && parts.every((p) => magAudienceMap.has(p))) {
     return parts;
@@ -1018,7 +1036,8 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
     const candidates = splitByDictOnlyIfAllKnown(m0, magAudienceMap);
 
     for (const m of candidates) {
-      const mm = norm(m);
+      // ★今回の対応：照合キーも正規化で統一
+      const mm = normMagazineKey(m);
       if (!mm) continue;
       if (!isPlausibleMagazineName(mm)) continue;
 
@@ -1033,6 +1052,9 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
 }
 
 // ===== 2/2（全差し替え）=====
+
+// scripts/lane2/enrich_lane2.mjs
+// ===== 2/2（全差し替え：今回対応=雑誌名の正規化で audience 辞書一致を安定化）=====
 
 /* -----------------------
  * perfect未達の理由を判定して集計（outVol1ベース）
