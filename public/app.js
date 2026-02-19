@@ -109,7 +109,6 @@ function ensureAmazonAffiliate(urlLike) {
   const raw = toText(urlLike);
   if (!raw) return "";
 
-  // 既に "#" などの場合はそのまま
   if (raw === "#") return raw;
 
   try {
@@ -117,18 +116,15 @@ function ensureAmazonAffiliate(urlLike) {
 
     if (!isAmazonJpHost(u.hostname)) return raw;
 
-    // 既に tag があれば一切上書きしない
     if (u.searchParams.has("tag")) return u.toString();
 
     u.searchParams.set("tag", AMAZON_ASSOCIATE_TAG);
     return u.toString();
   } catch {
-    // URL として解釈できないものは触らない
     return raw;
   }
 }
 
-// index.html 等「HTMLに直書きされたAmazonリンク」もまとめて付与
 function patchAmazonAnchors(root = document) {
   const as = root?.querySelectorAll?.('a[href]') || [];
   for (const a of as) {
@@ -138,12 +134,10 @@ function patchAmazonAnchors(root = document) {
     const next = ensureAmazonAffiliate(href);
     if (next && next !== href) a.setAttribute("href", next);
 
-    // ついでに target/_blank の時は noopener を付け足す（既にあれば維持）
     const target = (a.getAttribute("target") || "").toLowerCase();
     if (target === "_blank") {
       const rel = (a.getAttribute("rel") || "").trim();
       const parts = new Set(rel.split(/\s+/g).filter(Boolean));
-      // nofollow は入れない（既存方針があるため）。noopener だけ補強。
       parts.add("noopener");
       a.setAttribute("rel", Array.from(parts).join(" "));
     }
@@ -189,7 +183,7 @@ function pills(list) {
 
 /* =======================
  * Home：URL state
- * /?g=action&a=seinen (aはIDで持つ)
+ * /?g=action&a=seinen
  * ======================= */
 function getHomeState() {
   const p = qs();
@@ -226,7 +220,6 @@ function hasAnyGenre(it, wanted) {
   return wanted.some(x => g.includes(x));
 }
 
-// list.html 側：genre=Action,Thriller の複数指定を許可
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
@@ -238,14 +231,16 @@ function parseOneQueryParam(name) {
 }
 
 /* =======================
- * 読者層（タブ） a=ID / listは aud=日本語
+ * カテゴリー（旧：読者層）
+ * - データの audiences は「少年/青年/少女/女性/その他」
+ * - 表示は「少年マンガ」等にする
  * ======================= */
-const AUDIENCE_TABS = [
-  { id: "shonen", label: "少年" },
-  { id: "seinen", label: "青年" },
-  { id: "shojo", label: "少女" },
-  { id: "josei", label: "女性" },
-  { id: "other", label: "その他" },
+const CATEGORY_TABS = [
+  { id: "shonen", value: "少年", label: "少年マンガ" },
+  { id: "seinen", value: "青年", label: "青年マンガ" },
+  { id: "shojo", value: "少女", label: "少女マンガ" },
+  { id: "josei", value: "女性", label: "女性マンガ" },
+  { id: "other", value: "その他", label: "その他" },
 ];
 
 function getFirstAudienceLabel(it) {
@@ -258,7 +253,7 @@ function hasAudience(it, audLabel) {
 }
 
 /* =======================
- * 連載誌（list/work 表示 & list 絞り込み用）
+ * 連載誌
  * ======================= */
 function hasMagazine(it, mag) {
   if (!mag) return true;
@@ -269,7 +264,167 @@ function hasMagazine(it, mag) {
 }
 
 /* =======================
- * list.html のバナー（連載誌も表示する）
+ * 気分（クイックフィルター）
+ * - list は AND
+ * - 最大2個まで
+ * - 0件なら OR 提案
+ * ======================= */
+const QUICK_FILTERS_PATH = "./data/lane2/quick_filters.json";
+const QUICK_MAX = 2;
+
+function parseMoodQuery() {
+  const raw = toText(qs().get("mood"));
+  if (!raw) return [];
+  const ids = raw.split(",").map(s => s.trim()).filter(Boolean);
+  // 最大2つまで
+  return ids.slice(0, QUICK_MAX);
+}
+
+function setMoodQuery(ids) {
+  const p = qs();
+  const clean = (ids || []).map(toText).filter(Boolean).slice(0, QUICK_MAX);
+  if (clean.length) p.set("mood", clean.join(","));
+  else p.delete("mood");
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
+}
+
+function itGenresTags(it) {
+  const genres = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
+  const tags = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
+  return { genres, tags };
+}
+
+function matchesAny(list, wanted) {
+  if (!wanted?.length) return false;
+  const set = new Set(list || []);
+  return wanted.some(x => set.has(x));
+}
+
+function matchesQuickDef(it, def) {
+  if (!def) return false;
+  const { genres, tags } = itGenresTags(it);
+
+  const anyGenres = (def.matchAny?.genres || []).map(toText).filter(Boolean);
+  const anyTags = (def.matchAny?.tags || []).map(toText).filter(Boolean);
+
+  const noneGenres = (def.matchNone?.genres || []).map(toText).filter(Boolean);
+  const noneTags = (def.matchNone?.tags || []).map(toText).filter(Boolean);
+
+  // matchNone に当たったら即NG
+  if (matchesAny(genres, noneGenres)) return false;
+  if (matchesAny(tags, noneTags)) return false;
+
+  // matchAny は genre OR tag のどちらかに当たればOK
+  const hit = matchesAny(genres, anyGenres) || matchesAny(tags, anyTags);
+  return !!hit;
+}
+
+function quickCounts(allItems, defs) {
+  const map = new Map();
+  for (const d of defs) map.set(d.id, 0);
+  for (const it of allItems) {
+    for (const d of defs) {
+      if (matchesQuickDef(it, d)) map.set(d.id, (map.get(d.id) || 0) + 1);
+    }
+  }
+  return map;
+}
+
+function renderQuickHome({ defs, counts }) {
+  const root = document.getElementById("quickFiltersHome");
+  if (!root) return;
+
+  if (!defs?.length) { root.innerHTML = ""; return; }
+
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
+  root.innerHTML = `
+    <div class="pills">
+      ${defs.map(d => {
+        const n = counts.get(d.id) || 0;
+        const href = `./list.html?mood=${encodeURIComponent(d.id)}${vq}`;
+        return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(d.label)} <span style="opacity:.7;">(${n})</span></a>`;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderQuickListUI({ defs, counts, selectedIds, onToggle }) {
+  const root = document.getElementById("quickFiltersList");
+  if (!root) return;
+
+  if (!defs?.length) { root.innerHTML = ""; return; }
+
+  const selected = new Set(selectedIds || []);
+
+  root.innerHTML = `
+    <div class="pills">
+      ${defs.map(d => {
+        const isOn = selected.has(d.id);
+        const n = counts.get(d.id) || 0;
+
+        // pill をボタンとして扱う（CSSは既存pillを流用）
+        return `
+          <button
+            type="button"
+            class="pill"
+            data-mood="${esc(d.id)}"
+            aria-pressed="${isOn ? "true" : "false"}"
+            style="${isOn ? "outline:2px solid currentColor; outline-offset:1px;" : ""}"
+          >
+            ${esc(d.label)} <span style="opacity:.7;">(${n})</span>
+          </button>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  root.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-mood]");
+    if (!btn) return;
+    const id = btn.getAttribute("data-mood") || "";
+    if (!id) return;
+    onToggle(id);
+  };
+}
+
+function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters, allItems }) {
+  const hint = document.getElementById("quickFiltersHint");
+  if (!hint) return;
+
+  const selected = (selectedIds || []).filter(Boolean);
+  if (!selected.length) {
+    hint.innerHTML = "";
+    return;
+  }
+
+  const labels = selected.map(id => defs.find(d => d.id === id)?.label || id);
+  const msg = `気分: <b>${esc(labels.join(" × "))}</b>（AND / 最大2）`;
+  hint.innerHTML = msg;
+
+  // 0件時：OR提案（単体にする）
+  if (itemsAfterAllFilters.length === 0 && selected.length >= 2) {
+    const v = qs().get("v");
+    const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+    const links = selected.map(id => {
+      const lab = defs.find(d => d.id === id)?.label || id;
+      const href = `./list.html?mood=${encodeURIComponent(id)}${vq}`;
+      return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(lab)}だけにする</a>`;
+    }).join("");
+
+    const clearHref = `./list.html${vq ? `?v=${encodeURIComponent(v)}` : ""}`;
+    hint.innerHTML = `
+      ${msg}<br/>
+      <div style="margin-top:8px;">0件です。ORで広げるなら：</div>
+      <div class="pills" style="margin-top:6px;">${links}<a class="pill" href="${esc(clearHref)}" style="text-decoration:none;">気分を解除</a></div>
+    `;
+  }
+}
+
+/* =======================
+ * list.html のバナー
  * ======================= */
 function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
   const s = document.getElementById("status");
@@ -280,7 +435,12 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
     const ja = genreWanted.map((g) => GENRE_JA[g] || g).join(" / ");
     parts.push(`ジャンル: <b>${esc(ja)}</b>`);
   }
-  if (audienceWanted) parts.push(`読者層: <b>${esc(audienceWanted)}</b>`);
+  if (audienceWanted) {
+    // audienceWanted はデータ値（少年/青年…）
+    const tab = CATEGORY_TABS.find(x => x.value === audienceWanted);
+    const label = tab?.label || audienceWanted;
+    parts.push(`カテゴリー: <b>${esc(label)}</b>`);
+  }
   if (magazineWanted) parts.push(`連載誌: <b>${esc(magazineWanted)}</b>`);
 
   if (!parts.length) { s.textContent = ""; return; }
@@ -288,7 +448,7 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
 }
 
 /* =======================
- * 共通：横一列カード列（④もっと見るカード）
+ * 共通：横一列カード列（もっと見る）
  * ======================= */
 function renderCardRow({ items, limit = 18, moreHref = "" }) {
   const v = qs().get("v");
@@ -324,8 +484,7 @@ function renderCardRow({ items, limit = 18, moreHref = "" }) {
 }
 
 /* =======================
- * ①「一覧を見る」導線（今のタブに紐づけ）
- * ③件数バッジ
+ * ①「一覧を見る」導線
  * ======================= */
 function setGenreAllLink(activeTab) {
   const a = document.getElementById("genreAllLink");
@@ -336,12 +495,12 @@ function setGenreAllLink(activeTab) {
   a.href = `./list.html?genre=${q}${vq}`;
 }
 
-function setAudienceAllLink(activeAudLabel) {
+function setAudienceAllLink(activeAudValue) {
   const a = document.getElementById("audienceAllLink");
   if (!a) return;
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  a.href = `./list.html?aud=${encodeURIComponent(activeAudLabel)}${vq}`;
+  a.href = `./list.html?aud=${encodeURIComponent(activeAudValue)}${vq}`;
 }
 
 function genreCountMap(allItems) {
@@ -355,12 +514,12 @@ function genreCountMap(allItems) {
   return map;
 }
 
-function audienceCountMap(allItems) {
+function categoryCountMap(allItems) {
   const map = new Map();
-  for (const t of AUDIENCE_TABS) map.set(t.id, 0);
+  for (const t of CATEGORY_TABS) map.set(t.id, 0);
   for (const it of allItems) {
-    const label = getFirstAudienceLabel(it);
-    const tab = AUDIENCE_TABS.find(x => x.label === label) || AUDIENCE_TABS.find(x => x.id === "other");
+    const label = getFirstAudienceLabel(it); // 少年/青年/…
+    const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
     if (!tab) continue;
     map.set(tab.id, (map.get(tab.id) || 0) + 1);
   }
@@ -368,8 +527,7 @@ function audienceCountMap(allItems) {
 }
 
 /* =======================
- * Home：ジャンル（タブ + 作品一列）
- * ②タブ状態URL反映 / ③件数バッジ / ④もっと見る
+ * Home：ジャンル
  * ======================= */
 function renderGenreTabsRow({ data, activeId }) {
   const tabs = document.getElementById("genreTabs");
@@ -414,8 +572,7 @@ function renderGenreTabsRow({ data, activeId }) {
 }
 
 /* =======================
- * Home：読者層（タブ + 作品一列）
- * ②タブ状態URL反映 / ③件数バッジ / ④もっと見る
+ * Home：カテゴリー（旧：読者層）
  * ======================= */
 function renderAudienceTabsRow({ data, activeAudId }) {
   const tabs = document.getElementById("audienceTabs");
@@ -425,13 +582,13 @@ function renderAudienceTabsRow({ data, activeAudId }) {
   const all = Array.isArray(data?.items) ? data.items : [];
   if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
 
-  const counts = audienceCountMap(all);
-  const active = AUDIENCE_TABS.find(x => x.id === activeAudId) || AUDIENCE_TABS[0];
-  const audLabel = active.label;
+  const counts = categoryCountMap(all);
+  const active = CATEGORY_TABS.find(x => x.id === activeAudId) || CATEGORY_TABS[0];
+  const audValue = active.value;
 
   tabs.innerHTML = `
     <div class="tabrow">
-      ${AUDIENCE_TABS.map((t) => `
+      ${CATEGORY_TABS.map((t) => `
         <button class="tab ${t.id === active.id ? "is-active" : ""}" data-aud="${esc(t.id)}" type="button">
           <span class="tab-label">${esc(t.label)}</span>
           <span class="badge">${counts.get(t.id) || 0}</span>
@@ -440,14 +597,14 @@ function renderAudienceTabsRow({ data, activeAudId }) {
     </div>
   `;
 
-  const picked = all.filter(it => getFirstAudienceLabel(it) === audLabel);
+  const picked = all.filter(it => getFirstAudienceLabel(it) === audValue);
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  const moreHref = `./list.html?aud=${encodeURIComponent(audLabel)}${vq}`;
+  const moreHref = `./list.html?aud=${encodeURIComponent(audValue)}${vq}`;
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
 
-  setAudienceAllLink(audLabel);
+  setAudienceAllLink(audValue);
 
   tabs.onclick = (ev) => {
     const btn = ev.target?.closest?.("button[data-aud]");
@@ -461,24 +618,77 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * list.html（連載誌は表示する）
+ * list.html（気分フィルターAND）
  * ======================= */
-function renderList(data) {
+function renderList(data, quickDefs) {
   const root = document.getElementById("list");
   if (!root) return;
 
   const all = Array.isArray(data?.items) ? data.items : [];
 
   const genreWanted = parseGenreQuery();
-  const audienceWanted = parseOneQueryParam("aud");
+  const audienceWanted = parseOneQueryParam("aud"); // 少年/青年/…
   const magazineWanted = parseOneQueryParam("mag");
+
+  const moodSelected = parseMoodQuery();
+
+  // 気分: AND（全て満たす）
+  const moodDefsById = new Map((quickDefs || []).map(d => [d.id, d]));
+  const moodActiveDefs = moodSelected.map(id => moodDefsById.get(id)).filter(Boolean);
 
   const items = all
     .filter((it) => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
     .filter((it) => hasAudience(it, audienceWanted))
-    .filter((it) => hasMagazine(it, magazineWanted));
+    .filter((it) => hasMagazine(it, magazineWanted))
+    .filter((it) => {
+      if (!moodActiveDefs.length) return true;
+      return moodActiveDefs.every(def => matchesQuickDef(it, def));
+    });
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
+
+  // list側：気分UI
+  if (document.getElementById("quickFiltersList")) {
+    const defs = Array.isArray(quickDefs) ? quickDefs : [];
+    const counts = quickCounts(all, defs);
+
+    // 解除リンク
+    const clear = document.getElementById("moodClearLink");
+    if (clear) {
+      const v = qs().get("v");
+      clear.href = v ? `./list.html?v=${encodeURIComponent(v)}` : "./list.html";
+    }
+
+    renderQuickListUI({
+      defs,
+      counts,
+      selectedIds: moodSelected,
+      onToggle: (id) => {
+        const cur = parseMoodQuery();
+        const set = new Set(cur);
+
+        if (set.has(id)) set.delete(id);
+        else {
+          if (set.size >= QUICK_MAX) return; // 2個制限
+          set.add(id);
+        }
+
+        const next = Array.from(set);
+        setMoodQuery(next);
+
+        // URL変更だけだと再描画されないので、その場で再描画
+        renderList(data, quickDefs);
+      }
+    });
+
+    // ヒント（AND / 2個制限 / 0件時OR提案）
+    renderQuickHint({
+      selectedIds: moodSelected,
+      defs,
+      itemsAfterAllFilters: items,
+      allItems: all
+    });
+  }
 
   if (!items.length) {
     root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
@@ -540,7 +750,7 @@ function renderList(data) {
 }
 
 /* =======================
- * work.html（連載誌は表示する）
+ * work.html
  * ======================= */
 function renderWork(data) {
   const detail = document.getElementById("detail");
@@ -602,19 +812,30 @@ function renderWork(data) {
 async function run() {
   try {
     const v = qs().get("v");
-    const url = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
-    const data = await loadJson(url, { bust: !!v });
+    const worksUrl = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
+    const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
+
+    const data = await loadJson(worksUrl, { bust: !!v });
+    const quick = await loadJson(quickUrl, { bust: !!v });
+    const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
     // Home（URLから復元）
     const st = getHomeState();
     renderGenreTabsRow({ data, activeId: st.g });
     renderAudienceTabsRow({ data, activeAudId: st.a });
 
+    // Home：気分（導線リンク）
+    if (document.getElementById("quickFiltersHome")) {
+      const all = Array.isArray(data?.items) ? data.items : [];
+      const counts = quickCounts(all, quickDefs);
+      renderQuickHome({ defs: quickDefs, counts });
+    }
+
     // List / Work
-    renderList(data);
+    renderList(data, quickDefs);
     renderWork(data);
 
-    // ★index.html などの静的リンクも含めて、表示後に一括でアフィ付与
+    // 静的リンクも含めて、表示後に一括でアフィ付与
     patchAmazonAnchors(document);
   } catch (e) {
     setStatus("読み込みに失敗しました");
