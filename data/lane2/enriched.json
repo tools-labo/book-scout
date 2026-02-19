@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-02-19T12:11:08.395Z",
+  "updatedAt": "2026-02-19T12:40:24.377Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 151,
-    "skippedAniList": 1,
-    "skippedWiki": 1,
-    "skippedAmazon": 1,
+    "skippedPerfect": 148,
+    "skippedAniList": 4,
+    "skippedWiki": 4,
+    "skippedAmazon": 4,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
@@ -24,12 +24,15 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 1,
+      "prevNotPerfect": 4,
       "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "監獄学園 :: audiences[]"
+        "イノサン :: audiences[]",
+        "ドロヘドロ :: audiences[]",
+        "文豪ストレイドッグス :: audiences[]",
+        "盾の勇者の成り上がり :: audiences[]"
       ]
     },
     "paapi": {
@@ -935,7 +938,9 @@
         "magazines": [
           "グランドジャンプ"
         ],
-        "audiences": [],
+        "audiences": [
+          "青年"
+        ],
         "magazineSource": "wikipedia",
         "wikiTitle": "イノサン",
         "anilistId": 85165,
@@ -974,14 +979,10 @@
           "成長譚",
           "海外",
           "政治",
-          "男性主人公",
           "哲学",
           "仕事",
           "バイセクシュアル",
-          "女性主人公",
           "LGBTQテーマ",
-          "大人中心",
-          "群像劇",
           "剣術",
           "ボーイズラブ",
           "女装・男装",
@@ -4116,9 +4117,11 @@
         "releaseDate": "2002-01-30T00:00:01Z",
         "magazine": "(1) 週刊ビッグコミックスピリッツ増刊イッキ (2) 月刊IKKI (3) ヒバナ (4) ゲッサン",
         "magazines": [
-          "週刊ビッグコミックスピリッツ増刊イッキ 月刊IKKI ヒバナ ゲッサン"
+          "(1) 週刊ビッグコミックスピリッツ増刊イッキ (2) 月刊IKKI (3) ヒバナ (4) ゲッサン"
         ],
-        "audiences": [],
+        "audiences": [
+          "青年"
+        ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ドロヘドロ",
         "anilistId": 31133,
@@ -4163,7 +4166,6 @@
         "tags": [
           "多重人格",
           "魔法",
-          "群像劇",
           "アンチヒーロー",
           "記憶喪失",
           "青年向け",
@@ -4171,7 +4173,6 @@
           "復讐",
           "モンスター男子",
           "不条理コメディ",
-          "大人中心",
           "悪魔",
           "現代ファンタジー",
           "呪い",
@@ -4182,8 +4183,6 @@
           "擬人化",
           "動物",
           "ゾンビ",
-          "男性主人公",
-          "女性主人公",
           "サイバーパンク",
           "性転換"
         ],
@@ -8732,7 +8731,9 @@
         "magazines": [
           "ヤングエース"
         ],
-        "audiences": [],
+        "audiences": [
+          "青年"
+        ],
         "magazineSource": "wikipedia",
         "wikiTitle": "文豪ストレイドッグス",
         "anilistId": 85307,
@@ -8781,13 +8782,9 @@
           "マフィア",
           "犯罪",
           "逃亡者",
-          "男性主人公",
           "古典文学",
-          "男性中心",
           "青年向け",
           "仕事",
-          "群像劇",
-          "大人中心",
           "哲学",
           "疑似家族",
           "犯罪組織",
@@ -9723,7 +9720,9 @@
         "magazines": [
           "コミックフラッパー"
         ],
-        "audiences": [],
+        "audiences": [
+          "青年"
+        ],
         "magazineSource": "wikipedia",
         "wikiTitle": "盾の勇者の成り上がり",
         "anilistId": 85442,
@@ -9751,7 +9750,6 @@
           "アンチヒーロー",
           "獣耳",
           "悪魔",
-          "男性主人公",
           "逃亡者",
           "青年向け",
           "奴隷",
