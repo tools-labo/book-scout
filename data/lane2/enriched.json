@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-02-19T10:42:13.175Z",
+  "updatedAt": "2026-02-19T10:50:24.177Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 151,
-    "skippedAniList": 1,
-    "skippedWiki": 1,
+    "skippedPerfect": 152,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 1,
+    "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
@@ -24,24 +24,20 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 1,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "ディー・グレイマン :: amazon(amazonDp|image|publisher|author|releaseDate|title)"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 1
+      "successItems": 0
     }
   },
   "items": [
