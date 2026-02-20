@@ -108,14 +108,12 @@ function isAmazonJpHost(hostname) {
 function ensureAmazonAffiliate(urlLike) {
   const raw = toText(urlLike);
   if (!raw) return "";
-
   if (raw === "#") return raw;
 
   try {
     const u = new URL(raw, location.href);
 
     if (!isAmazonJpHost(u.hostname)) return raw;
-
     if (u.searchParams.has("tag")) return u.toString();
 
     u.searchParams.set("tag", AMAZON_ASSOCIATE_TAG);
@@ -142,6 +140,57 @@ function patchAmazonAnchors(root = document) {
       a.setAttribute("rel", Array.from(parts).join(" "));
     }
   }
+}
+
+/* =======================
+ * イベント送信（Workerへ）
+ * ======================= */
+const EVENTS_ENDPOINT = "https://book-scout-events.dx7qqdcchs.workers.dev/collect";
+
+function sendEvent(type, payload = {}) {
+  try {
+    const p = new URLSearchParams();
+    p.set("type", String(type || "unknown"));
+
+    for (const [k, v] of Object.entries(payload || {})) {
+      const t = toText(v);
+      if (t) p.set(k, t);
+    }
+
+    const url = `${EVENTS_ENDPOINT}?${p.toString()}`;
+
+    // できれば sendBeacon（ページ遷移でも落ちにくい）
+    if (navigator.sendBeacon) {
+      const ok = navigator.sendBeacon(url);
+      if (ok) return;
+      // sendBeaconがfalseならfetchにフォールバック
+    }
+
+    // CORSが通っていればOK。通らない場合でも、Worker側をCORS対応にする（後述）。
+    fetch(url, { method: "GET", mode: "no-cors", keepalive: true }).catch(() => {});
+  } catch {
+    // 送信失敗は無視（UX優先）
+  }
+}
+
+// list：同じ状態での連打送信を防ぐ
+let __lastListEventKey = "";
+function sendListFilterEventOnce({ genreWanted, audienceWanted, magazineWanted, moodSelected, count }) {
+  const p = new URLSearchParams();
+  if (genreWanted?.length) p.set("genre", genreWanted.join(","));
+  if (audienceWanted) p.set("aud", audienceWanted);
+  if (magazineWanted) p.set("mag", magazineWanted);
+  if (moodSelected?.length) p.set("mood", moodSelected.join(","));
+  p.set("count", String(count ?? 0));
+
+  const v = qs().get("v");
+  if (v) p.set("v", v);
+
+  const key = p.toString();
+  if (key === __lastListEventKey) return;
+  __lastListEventKey = key;
+
+  sendEvent("list_filter", Object.fromEntries(p.entries()));
 }
 
 /* =======================
@@ -268,6 +317,7 @@ function hasMagazine(it, mag) {
  * - list は AND
  * - 最大2個まで
  * - 0件なら OR 提案
+ * - ★タグのみ参照（genresは無視）
  * ======================= */
 const QUICK_FILTERS_PATH = "./data/lane2/quick_filters.json";
 const QUICK_MAX = 2;
@@ -276,7 +326,6 @@ function parseMoodQuery() {
   const raw = toText(qs().get("mood"));
   if (!raw) return [];
   const ids = raw.split(",").map(s => s.trim()).filter(Boolean);
-  // 最大2つまで
   return ids.slice(0, QUICK_MAX);
 }
 
@@ -289,10 +338,8 @@ function setMoodQuery(ids) {
   history.replaceState(null, "", url);
 }
 
-function itGenresTags(it) {
-  const genres = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
-  const tags = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-  return { genres, tags };
+function itTags(it) {
+  return pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 }
 
 function matchesAny(list, wanted) {
@@ -303,20 +350,17 @@ function matchesAny(list, wanted) {
 
 function matchesQuickDef(it, def) {
   if (!def) return false;
-  const { genres, tags } = itGenresTags(it);
 
-  const anyGenres = (def.matchAny?.genres || []).map(toText).filter(Boolean);
+  const tags = itTags(it);
+
   const anyTags = (def.matchAny?.tags || []).map(toText).filter(Boolean);
-
-  const noneGenres = (def.matchNone?.genres || []).map(toText).filter(Boolean);
   const noneTags = (def.matchNone?.tags || []).map(toText).filter(Boolean);
 
   // matchNone に当たったら即NG
-  if (matchesAny(genres, noneGenres)) return false;
   if (matchesAny(tags, noneTags)) return false;
 
-  // matchAny は genre OR tag のどちらかに当たればOK
-  const hit = matchesAny(genres, anyGenres) || matchesAny(tags, anyTags);
+  // matchAny は tag に当たればOK（genresは見ない）
+  const hit = matchesAny(tags, anyTags);
   return !!hit;
 }
 
@@ -365,7 +409,6 @@ function renderQuickListUI({ defs, counts, selectedIds, onToggle }) {
         const isOn = selected.has(d.id);
         const n = counts.get(d.id) || 0;
 
-        // pill をボタンとして扱う（CSSは既存pillを流用）
         return `
           <button
             type="button"
@@ -390,7 +433,7 @@ function renderQuickListUI({ defs, counts, selectedIds, onToggle }) {
   };
 }
 
-function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters, allItems }) {
+function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters }) {
   const hint = document.getElementById("quickFiltersHint");
   if (!hint) return;
 
@@ -414,7 +457,7 @@ function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters, allItems }) 
       return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(lab)}だけにする</a>`;
     }).join("");
 
-    const clearHref = `./list.html${vq ? `?v=${encodeURIComponent(v)}` : ""}`;
+    const clearHref = `./list.html${v ? `?v=${encodeURIComponent(v)}` : ""}`;
     hint.innerHTML = `
       ${msg}<br/>
       <div style="margin-top:8px;">0件です。ORで広げるなら：</div>
@@ -436,7 +479,6 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
     parts.push(`ジャンル: <b>${esc(ja)}</b>`);
   }
   if (audienceWanted) {
-    // audienceWanted はデータ値（少年/青年…）
     const tab = CATEGORY_TABS.find(x => x.value === audienceWanted);
     const label = tab?.label || audienceWanted;
     parts.push(`カテゴリー: <b>${esc(label)}</b>`);
@@ -518,7 +560,7 @@ function categoryCountMap(allItems) {
   const map = new Map();
   for (const t of CATEGORY_TABS) map.set(t.id, 0);
   for (const it of allItems) {
-    const label = getFirstAudienceLabel(it); // 少年/青年/…
+    const label = getFirstAudienceLabel(it);
     const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
     if (!tab) continue;
     map.set(tab.id, (map.get(tab.id) || 0) + 1);
@@ -627,9 +669,8 @@ function renderList(data, quickDefs) {
   const all = Array.isArray(data?.items) ? data.items : [];
 
   const genreWanted = parseGenreQuery();
-  const audienceWanted = parseOneQueryParam("aud"); // 少年/青年/…
+  const audienceWanted = parseOneQueryParam("aud");
   const magazineWanted = parseOneQueryParam("mag");
-
   const moodSelected = parseMoodQuery();
 
   // 気分: AND（全て満たす）
@@ -647,12 +688,20 @@ function renderList(data, quickDefs) {
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
 
-  // list側：気分UI
+  // ★フィルター適用イベント（listの主目的）
+  sendListFilterEventOnce({
+    genreWanted,
+    audienceWanted,
+    magazineWanted,
+    moodSelected,
+    count: items.length
+  });
+
+  // list側：気分UI（DOMがあれば出す）
   if (document.getElementById("quickFiltersList")) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
     const counts = quickCounts(all, defs);
 
-    // 解除リンク
     const clear = document.getElementById("moodClearLink");
     if (clear) {
       const v = qs().get("v");
@@ -669,7 +718,7 @@ function renderList(data, quickDefs) {
 
         if (set.has(id)) set.delete(id);
         else {
-          if (set.size >= QUICK_MAX) return; // 2個制限
+          if (set.size >= QUICK_MAX) return;
           set.add(id);
         }
 
@@ -681,12 +730,10 @@ function renderList(data, quickDefs) {
       }
     });
 
-    // ヒント（AND / 2個制限 / 0件時OR提案）
     renderQuickHint({
       selectedIds: moodSelected,
       defs,
-      itemsAfterAllFilters: items,
-      allItems: all
+      itemsAfterAllFilters: items
     });
   }
 
@@ -750,9 +797,9 @@ function renderList(data, quickDefs) {
 }
 
 /* =======================
- * work.html
+ * work.html（投票UI）
  * ======================= */
-function renderWork(data) {
+function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
   if (!detail) return;
 
@@ -788,6 +835,8 @@ function renderWork(data) {
     magazine ? `連載誌: ${esc(magazine)}` : null,
   ].filter(Boolean).join(" / ");
 
+  const defs = Array.isArray(quickDefs) ? quickDefs : [];
+
   detail.innerHTML = `
     <div class="d-title">${esc(seriesKey || title)}</div>
     ${metaParts ? `<div class="d-sub">${metaParts}</div>` : ""}
@@ -799,6 +848,18 @@ function renderWork(data) {
       </div>
     </div>
 
+    ${defs.length ? `
+      <div class="d-sub" style="margin-top:14px;">読み味に投票（複数OK）</div>
+      <div class="pills" id="votePills">
+        ${defs.map(d => `
+          <button type="button" class="pill" data-vote="${esc(d.id)}">
+            ${esc(d.label)}
+          </button>
+        `).join("")}
+      </div>
+      <div class="d-sub" id="voteMsg" style="margin-top:6px;"></div>
+    ` : ""}
+
     ${genresJa.length ? `<div class="d-sub" style="margin-top:12px;">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
     ${tagsJa.length ? `<div class="d-sub" style="margin-top:8px;">タグ:</div>${pills(tagsJa)}` : ""}
 
@@ -807,6 +868,30 @@ function renderWork(data) {
       <div class="d-text">${esc(synopsis)}</div>
     ` : ""}
   `;
+
+  // 投票クリック
+  const voteRoot = document.getElementById("votePills");
+  if (voteRoot) {
+    voteRoot.onclick = (ev) => {
+      const btn = ev.target?.closest?.("button[data-vote]");
+      if (!btn) return;
+      const taste = btn.getAttribute("data-vote") || "";
+      if (!taste) return;
+
+      // UI: 軽く押した感
+      btn.style.transform = "translateY(1px)";
+      setTimeout(() => { btn.style.transform = ""; }, 120);
+
+      sendEvent("vote", {
+        key: seriesKey,
+        taste
+      });
+
+      const msg = document.getElementById("voteMsg");
+      if (msg) msg.textContent = "投票しました";
+      setTimeout(() => { const m = document.getElementById("voteMsg"); if (m) m.textContent = ""; }, 1200);
+    };
+  }
 }
 
 async function run() {
@@ -833,7 +918,7 @@ async function run() {
 
     // List / Work
     renderList(data, quickDefs);
-    renderWork(data);
+    renderWork(data, quickDefs);
 
     // 静的リンクも含めて、表示後に一括でアフィ付与
     patchAmazonAnchors(document);
