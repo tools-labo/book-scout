@@ -1,8 +1,0 @@
-name = "book-scout-events"
-main = "src/index.js"
-compatibility_date = "2026-02-20"
-
-# Workers Analytics Engine binding
-[[analytics_engine_datasets]]
-binding = "AE"
-dataset = "book_scout_events"
