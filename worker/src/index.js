@@ -1,98 +1,79 @@
-// worker/src/index.js
-
-function corsHeaders(origin) {
-  // 必要ならここを自サイトに絞ってOK（まずは * で）
-  return {
-    "Access-Control-Allow-Origin": origin || "*",
-    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Max-Age": "86400",
-  };
-}
-
-function json(data, { status = 200, origin = "*" } = {}) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      ...corsHeaders(origin),
-    },
-  });
-}
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const origin = request.headers.get("Origin") || "*";
 
-    // CORS preflight
+    // CORS（GitHub Pages から叩けるように）
+    const cors = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    };
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders(origin) });
+      return new Response(null, { status: 204, headers: cors });
     }
 
     // 疎通確認
     if (url.searchParams.get("ping") === "1") {
-      return new Response("pong", { status: 200, headers: corsHeaders(origin) });
+      return new Response("pong", { status: 200, headers: cors });
     }
 
-    // 収集（/collect と ?write=1 の両方対応）
+    // 収集（/collect か ?write=1）
     const wantsCollect =
       url.pathname === "/collect" || url.searchParams.get("write") === "1";
 
     if (!wantsCollect) {
-      return new Response("Not Found", { status: 404, headers: corsHeaders(origin) });
+      return new Response("Not Found", { status: 404, headers: cors });
     }
 
-    const type = url.searchParams.get("type") || "unknown";
-
-    // “中身”用
-    const key = url.searchParams.get("key") || "";     // seriesKey など
-    const mood = url.searchParams.get("mood") || "";   // 投票ID（泣ける等）
-    const page = url.searchParams.get("page") || "";   // list/work など（任意）
-
-    const country = request.headers.get("cf-ipcountry") || "";
-    const ua = request.headers.get("user-agent") || "";
-
-    // binding未設定だと1101になりがちなので先に返す
+    // AE バインディング確認（ここが無いと 1101/1011 になりがち）
     if (!env || !env.AE || typeof env.AE.writeDataPoint !== "function") {
-      return json(
+      return Response.json(
         {
           ok: false,
           error: "AE binding is missing",
           hint: "wrangler.toml の analytics_engine_datasets binding=AE を確認",
         },
-        { status: 500, origin }
+        { status: 500, headers: cors }
       );
     }
 
+    // GET クエリ or POST JSON どっちでも受ける
+    let payload = {};
+    if (request.method === "POST") {
+      try {
+        payload = await request.json();
+      } catch {
+        payload = {};
+      }
+    }
+
+    const type = String(payload.type ?? url.searchParams.get("type") ?? "unknown");
+    const page = String(payload.page ?? url.searchParams.get("page") ?? "");
+    const seriesKey = String(payload.seriesKey ?? url.searchParams.get("seriesKey") ?? "");
+    const mood = String(payload.mood ?? url.searchParams.get("mood") ?? "");
+
+    const country = request.headers.get("cf-ipcountry") || "";
+    const ua = request.headers.get("user-agent") || "";
+
     try {
-      // blobs は “位置”で見るのが一番安定する
-      // blob1=type / blob2=key / blob3=mood / blob4=page / blob5=country / blob6=ua
+      // blobs の順番を固定する
       env.AE.writeDataPoint({
-        blobs: [type, key, mood, page, country, ua],
+        blobs: [type, page, seriesKey, mood, country, ua],
         doubles: [1],
       });
 
-      return json(
-        {
-          ok: true,
-          wrote: true,
-          type,
-          key,
-          mood,
-          page,
-          ts: Date.now(),
-        },
-        { status: 200, origin }
+      return Response.json(
+        { ok: true, wrote: true, type, page, seriesKey, mood, ts: Date.now() },
+        { status: 200, headers: cors }
       );
     } catch (e) {
-      return json(
+      return Response.json(
         {
           ok: false,
           error: String(e && (e.message || e)),
           stack: e && e.stack ? String(e.stack) : "",
         },
-        { status: 500, origin }
+        { status: 500, headers: cors }
       );
     }
   },
