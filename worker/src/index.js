@@ -1,6 +1,33 @@
+function json(data, status = 200, extraHeaders = {}) {
+  const body = JSON.stringify(data);
+  return new Response(body, {
+    status,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      ...extraHeaders,
+    },
+  });
+}
+
+function corsHeaders(request) {
+  const origin = request.headers.get("Origin") || "*";
+  return {
+    "access-control-allow-origin": origin,
+    "access-control-allow-methods": "GET,POST,OPTIONS",
+    "access-control-allow-headers": "content-type",
+    "access-control-max-age": "86400",
+    "vary": "Origin",
+  };
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // CORS preflight
+    if (request.method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: corsHeaders(request) });
+    }
 
     // 疎通確認
     if (url.searchParams.get("ping") === "1") {
@@ -14,21 +41,21 @@ export default {
     if (wantsCollect) {
       const type = url.searchParams.get("type") || "unknown";
 
-      // ここが undefined だと 1101 になるので先に返す
+      // AE バインディング確認
       if (!env || !env.AE || typeof env.AE.writeDataPoint !== "function") {
-        return Response.json(
+        return json(
           {
             ok: false,
             error: "AE binding is missing",
             hint:
-              "Cloudflare Worker bindings must include Analytics Engine binding named AE",
+              "wrangler.toml の [[analytics_engine_datasets]] binding が AE になっているか確認",
           },
-          { status: 500 }
+          500,
+          corsHeaders(request)
         );
       }
 
       try {
-        // まずは最小構成で書く（indexes無しでOK）
         env.AE.writeDataPoint({
           blobs: [
             type,
@@ -38,18 +65,20 @@ export default {
           doubles: [1],
         });
 
-        return Response.json(
+        return json(
           { ok: true, wrote: true, type, ts: Date.now() },
-          { status: 200 }
+          200,
+          corsHeaders(request)
         );
       } catch (e) {
-        return Response.json(
+        return json(
           {
             ok: false,
             error: String(e && (e.message || e)),
             stack: e && e.stack ? String(e.stack) : "",
           },
-          { status: 500 }
+          500,
+          corsHeaders(request)
         );
       }
     }
