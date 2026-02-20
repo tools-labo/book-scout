@@ -1,111 +1,140 @@
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
+export interface Env {
+  AE: AnalyticsEngineDataset;
+}
 
-    // CORS（GitHub Pages から叩くので入れておく）
-    const cors = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    };
+const SCHEMA = "v2";
 
-    if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: cors });
+// blobs の並びを“絶対固定”する（空でも必ず埋める）
+function toBlobs(e: any, req: Request): string[] {
+  const cf: any = (req as any).cf || {};
+  const ua = req.headers.get("user-agent") || "";
+  const method = req.method || "";
+  const url = new URL(req.url);
+
+  const type = String(e?.type ?? "");
+  const page = String(e?.page ?? "");
+  const seriesKey = String(e?.seriesKey ?? "");
+  const mood = String(e?.mood ?? "");
+  const genre = String(e?.genre ?? "");
+  const aud = String(e?.aud ?? "");
+  const mag = String(e?.mag ?? "");
+
+  const country = String(cf?.country ?? "");
+
+  const path = url.pathname || "";
+  const ref = req.headers.get("referer") || "";
+
+  // blob1..blob12 を固定
+  return [
+    type,      // blob1
+    SCHEMA,    // blob2
+    page,      // blob3
+    seriesKey, // blob4
+    mood,      // blob5
+    genre,     // blob6
+    aud,       // blob7
+    mag,       // blob8
+    country,   // blob9
+    ua,        // blob10
+    method,    // blob11
+    path,      // blob12
+    ref,       // blob13（任意。入れても害なし）
+  ];
+}
+
+function jsonResponse(obj: any, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "GET,POST,OPTIONS",
+      "access-control-allow-headers": "content-type",
+    },
+  });
+}
+
+async function readBody(req: Request) {
+  // GETでも POSTでも受ける（運用で詰まらない）
+  if (req.method === "GET") {
+    const u = new URL(req.url);
+    // ?payload=... を許容（使わなくてもOK）
+    const p = u.searchParams.get("payload");
+    if (p) {
+      try { return JSON.parse(p); } catch { return null; }
     }
-
-    // 疎通確認
-    if (url.searchParams.get("ping") === "1") {
-      return new Response("pong", { status: 200, headers: cors });
+    return null;
+  }
+  if (req.method === "POST") {
+    const ct = req.headers.get("content-type") || "";
+    if (ct.includes("application/json")) {
+      try { return await req.json(); } catch { return null; }
     }
-
-    // /collect か ?write=1 のどちらでも収集
-    const wantsCollect =
-      url.pathname === "/collect" || url.searchParams.get("write") === "1";
-
-    if (!wantsCollect) {
-      return new Response("Not Found", { status: 404, headers: cors });
-    }
-
-    // AE バインディング確認
-    if (!env || !env.AE || typeof env.AE.writeDataPoint !== "function") {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          error: "AE binding is missing",
-          hint: "wrangler.toml の analytics_engine_datasets の binding が AE になっているか確認",
-        }),
-        { status: 500, headers: { ...cors, "Content-Type": "application/json" } }
-      );
-    }
-
-    // ---- 固定スキーマ（ここが最重要：列ズレ防止） ----
-    // blobs は「固定長・固定順」で必ず埋める
-    const schema = "v2";
-    const type = url.searchParams.get("type") || "unknown";
-    const page = url.searchParams.get("page") || "";
-    const seriesKey = url.searchParams.get("seriesKey") || "";
-    const mood = url.searchParams.get("mood") || "";
-    const genre = url.searchParams.get("genre") || "";
-    const aud = url.searchParams.get("aud") || "";
-    const mag = url.searchParams.get("mag") || "";
-
-    const country = request.headers.get("cf-ipcountry") || "";
-    const ua = request.headers.get("user-agent") || "";
-    const path = url.pathname || "";
-
-    // rid は index1 に入って AE 側で見やすい（CSVの index1 列）
-    const rid =
-      (crypto && crypto.randomUUID && crypto.randomUUID()) ||
-      `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-
-    // blobs: 12個固定（空は ""）
-    const blobs = [
-      type,      // blob1
-      schema,    // blob2
-      page,      // blob3
-      seriesKey, // blob4
-      mood,      // blob5
-      genre,     // blob6
-      aud,       // blob7
-      mag,       // blob8
-      country,   // blob9
-      ua,        // blob10
-      request.method || "", // blob11
-      path,      // blob12
-    ];
-
+    // text/plain でも受ける
     try {
-      env.AE.writeDataPoint({
-        indexes: [rid],
-        blobs,
-        doubles: [1],
-      });
-
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          wrote: true,
-          rid,
-          schema,
-          type,
-          page,
-          seriesKey,
-          mood,
-          genre,
-          aud,
-          mag,
-          ts: Date.now(),
-        }),
-        { status: 200, headers: { ...cors, "Content-Type": "application/json" } }
-      );
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          error: String(e && (e.message || e)),
-        }),
-        { status: 500, headers: { ...cors, "Content-Type": "application/json" } }
-      );
+      const t = await req.text();
+      return t ? JSON.parse(t) : null;
+    } catch {
+      return null;
     }
+  }
+  return null;
+}
+
+export default {
+  async fetch(req: Request, env: Env): Promise<Response> {
+    if (req.method === "OPTIONS") return jsonResponse({ ok: true });
+
+    const url = new URL(req.url);
+
+    // ヘルスチェック
+    if (url.pathname === "/" || url.pathname === "/health") {
+      return jsonResponse({ ok: true, service: "book-scout-events", schema: SCHEMA });
+    }
+
+    if (url.pathname !== "/collect") {
+      return jsonResponse({ ok: false, error: "not_found" }, 404);
+    }
+
+    const body = await readBody(req);
+    // body が無い場合も“デバッグしやすく”エラーを返す
+    if (!body || typeof body !== "object") {
+      return jsonResponse({ ok: false, wrote: false, error: "invalid_json" }, 400);
+    }
+
+    // rid はクライアントから来てもOK、無ければ生成
+    const rid = String(body?.rid ?? crypto.randomUUID());
+
+    // 必須：type（これが無いと集計できない）
+    const type = String(body?.type ?? "");
+    if (!type) {
+      return jsonResponse({ ok: false, wrote: false, rid, error: "missing_type" }, 400);
+    }
+
+    const blobs = toBlobs({ ...body, rid }, req);
+
+    // index1 は rid で固定（後で追跡できる）
+    env.AE.writeDataPoint({
+      indexes: [rid],
+      blobs,
+      // 数値が欲しければここに足す（今は不要）
+      doubles: [1],
+    });
+
+    // 返却も固定（あなたが確認しやすい形）
+    return jsonResponse({
+      ok: true,
+      wrote: true,
+      rid,
+      schema: SCHEMA,
+      type: blobs[0],
+      page: blobs[2],
+      seriesKey: blobs[3],
+      mood: blobs[4],
+      genre: blobs[5],
+      aud: blobs[6],
+      mag: blobs[7],
+      ts: Date.now(),
+    });
   },
 };
