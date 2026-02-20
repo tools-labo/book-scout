@@ -1,0 +1,10 @@
+name = "book-scout-events"
+main = "worker/src/index.js"
+compatibility_date = "2026-02-20"
+
+[observability]
+enabled = true
+
+[[analytics_engine_datasets]]
+binding = "AE"
+dataset = "book_scout_events"
