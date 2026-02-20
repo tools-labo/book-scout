@@ -8,8 +8,9 @@ export default {
       "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     };
+
     if (request.method === "OPTIONS") {
-      return new Response("", { status: 204, headers: corsHeaders });
+      return new Response(null, { status: 204, headers: corsHeaders });
     }
 
     // 疎通確認
@@ -17,77 +18,41 @@ export default {
       return new Response("pong", { status: 200, headers: corsHeaders });
     }
 
-    // /collect or ?write=1 で受ける（GETでもPOSTでもOK）
-    const wantsCollect =
-      url.pathname === "/collect" || url.searchParams.get("write") === "1";
-    if (!wantsCollect) {
-      return new Response("Not Found", { status: 404, headers: corsHeaders });
-    }
+    // 収集エンドポイント
+    // - /collect?type=vote&page=work&seriesKey=xxx&mood=hot
+    // - /collect?type=list_filter&page=list&mood=satisfying,hot
+    if (url.pathname === "/collect") {
+      const type = url.searchParams.get("type") || "unknown";
+      const page = url.searchParams.get("page") || "";
+      const seriesKey = url.searchParams.get("seriesKey") || "";
+      const mood = url.searchParams.get("mood") || "";
 
-    // パラメータ取得（POST JSON も対応）
-    let payload = {};
-    if (request.method === "POST") {
-      const ct = request.headers.get("content-type") || "";
-      if (ct.includes("application/json")) {
-        try {
-          payload = await request.json();
-        } catch {
-          payload = {};
-        }
+      const country = request.headers.get("cf-ipcountry") || "";
+
+      if (!env?.AE?.writeDataPoint) {
+        return Response.json(
+          { ok: false, error: "AE binding is missing (binding name must be AE)" },
+          { status: 500, headers: corsHeaders }
+        );
       }
-    }
 
-    const type = String(url.searchParams.get("type") ?? payload.type ?? "unknown");
-    const page = String(url.searchParams.get("page") ?? payload.page ?? "");
-    const seriesKey = String(
-      url.searchParams.get("seriesKey") ?? payload.seriesKey ?? ""
-    );
-    const mood = String(url.searchParams.get("mood") ?? payload.mood ?? "");
-
-    const country = request.headers.get("cf-ipcountry") || "";
-    const ua = request.headers.get("user-agent") || "";
-
-    // AE binding チェック
-    if (!env || !env.AE || typeof env.AE.writeDataPoint !== "function") {
-      return Response.json(
-        {
-          ok: false,
-          error: "AE binding is missing",
-          hint: "wrangler.toml の analytics_engine_datasets binding=AE を確認",
-        },
-        { status: 500, headers: corsHeaders }
-      );
-    }
-
-    try {
-      // ★ スキーマ固定：blobs の並びを絶対に変えない
-      // blob1=type, blob2=page, blob3=seriesKey, blob4=mood, blob5=country, blob6=ua
+      // blobs の並びを固定（重要）
+      // blob1: type
+      // blob2: page
+      // blob3: seriesKey
+      // blob4: mood
+      // blob5: country
       env.AE.writeDataPoint({
-        blobs: [type, page, seriesKey, mood, country, ua],
+        blobs: [type, page, seriesKey, mood, country],
         doubles: [1],
       });
 
       return Response.json(
-        {
-          ok: true,
-          wrote: true,
-          type,
-          page,
-          seriesKey,
-          mood,
-          ts: Date.now(),
-        },
+        { ok: true, wrote: true, type, page, seriesKey, mood, ts: Date.now() },
         { status: 200, headers: corsHeaders }
       );
-    } catch (e) {
-      return Response.json(
-        {
-          ok: false,
-          error: String(e && (e.message || e)),
-          stack: e && e.stack ? String(e.stack) : "",
-        },
-        { status: 500, headers: corsHeaders }
-      );
     }
+
+    return new Response("Not Found", { status: 404, headers: corsHeaders });
   },
 };
