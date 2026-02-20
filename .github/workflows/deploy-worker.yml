@@ -1,34 +1,27 @@
-name: Deploy Worker
+name: Deploy Cloudflare Worker
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
     paths:
       - "worker/**"
+      - "wrangler.toml"
       - ".github/workflows/deploy-worker.yml"
+  workflow_dispatch: {}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
-      # ★ Node を明示（これが無いと npx 周りが不安定になりやすい）
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      # ★ まず wrangler を入れて、バージョン表示で「どこで落ちたか」を明確化
-      - name: Install Wrangler
-        run: npm i -g wrangler@3
-
-      - name: Wrangler version
-        run: wrangler --version
-
-      # ★ deploy（worker/ を作業ディレクトリに）
       - name: Deploy
-        working-directory: worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          wranglerVersion: "4"
+          command: "deploy"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: wrangler deploy
