@@ -2,119 +2,91 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // ---- CORS（GitHub Pages -> Workers の fetch 対応）
-    const corsHeaders = {
+    // CORS（GitHub Pages から叩くので入れておく）
+    const cors = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Max-Age": "86400",
     };
 
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders });
+      return new Response(null, { status: 204, headers: cors });
     }
 
-    // ---- 疎通確認
+    // 疎通確認
     if (url.searchParams.get("ping") === "1") {
-      return new Response("pong", { status: 200, headers: corsHeaders });
+      return new Response("pong", { status: 200, headers: cors });
     }
 
-    // ---- 収集（/collect と ?write=1 の両方対応）
+    // /collect か ?write=1 のどちらでも収集
     const wantsCollect =
       url.pathname === "/collect" || url.searchParams.get("write") === "1";
 
     if (!wantsCollect) {
-      return new Response("Not Found", { status: 404, headers: corsHeaders });
+      return new Response("Not Found", { status: 404, headers: cors });
     }
 
-    // ---- AE binding が無いときの明示エラー（1101対策）
+    // AE バインディング確認
     if (!env || !env.AE || typeof env.AE.writeDataPoint !== "function") {
-      return Response.json(
-        {
+      return new Response(
+        JSON.stringify({
           ok: false,
           error: "AE binding is missing",
-          hint: "wrangler.toml の analytics_engine_datasets binding=AE を確認",
-        },
-        { status: 500, headers: corsHeaders }
+          hint: "wrangler.toml の analytics_engine_datasets の binding が AE になっているか確認",
+        }),
+        { status: 500, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
 
-    // ---- 入力（GET or POST JSON）
-    let payload = {};
-    if (request.method === "POST") {
-      const ct = request.headers.get("content-type") || "";
-      if (ct.includes("application/json")) {
-        try {
-          payload = (await request.json()) || {};
-        } catch {
-          payload = {};
-        }
-      }
-    }
-
-    const qp = (k) => url.searchParams.get(k) || "";
-    const p = (k) => (payload && payload[k] != null ? String(payload[k]) : "");
-
-    const type = p("type") || qp("type") || "unknown"; // 例: list_filter / vote / work_view
-    const page = p("page") || qp("page") || ""; // home/list/work 等
-    const seriesKey = p("seriesKey") || qp("seriesKey") || ""; // 作品キー
-    const mood = p("mood") || qp("mood") || ""; // mood ids を , で連結
-    const genre = p("genre") || qp("genre") || ""; // genre を , で連結（任意）
-    const aud = p("aud") || qp("aud") || ""; // 少年/青年/少女/女性/その他（任意）
-    const mag = p("mag") || qp("mag") || ""; // 連載誌（任意）
+    // ---- 固定スキーマ（ここが最重要：列ズレ防止） ----
+    // blobs は「固定長・固定順」で必ず埋める
+    const schema = "v2";
+    const type = url.searchParams.get("type") || "unknown";
+    const page = url.searchParams.get("page") || "";
+    const seriesKey = url.searchParams.get("seriesKey") || "";
+    const mood = url.searchParams.get("mood") || "";
+    const genre = url.searchParams.get("genre") || "";
+    const aud = url.searchParams.get("aud") || "";
+    const mag = url.searchParams.get("mag") || "";
 
     const country = request.headers.get("cf-ipcountry") || "";
     const ua = request.headers.get("user-agent") || "";
-    const ref = request.headers.get("referer") || "";
     const path = url.pathname || "";
 
-    // ---- blobs の “順番・意味・個数” を固定する（これが最重要）
-    // blob1  : type
-    // blob2  : schemaVersion
-    // blob3  : page
-    // blob4  : seriesKey
-    // blob5  : mood
-    // blob6  : genre
-    // blob7  : aud
-    // blob8  : mag
-    // blob9  : country
-    // blob10 : userAgent (短縮)
-    // blob11 : referer (短縮)
-    // blob12 : path
-    const SCHEMA = "v2";
-    const cut = (s, n) => {
-      const x = String(s || "");
-      return x.length > n ? x.slice(0, n) : x;
-    };
+    // rid は index1 に入って AE 側で見やすい（CSVの index1 列）
+    const rid =
+      (crypto && crypto.randomUUID && crypto.randomUUID()) ||
+      `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
-    const rid = crypto.randomUUID();
+    // blobs: 12個固定（空は ""）
+    const blobs = [
+      type,      // blob1
+      schema,    // blob2
+      page,      // blob3
+      seriesKey, // blob4
+      mood,      // blob5
+      genre,     // blob6
+      aud,       // blob7
+      mag,       // blob8
+      country,   // blob9
+      ua,        // blob10
+      request.method || "", // blob11
+      path,      // blob12
+    ];
 
     try {
       env.AE.writeDataPoint({
-        blobs: [
-          type,
-          SCHEMA,
-          page,
-          seriesKey,
-          mood,
-          genre,
-          aud,
-          mag,
-          country,
-          cut(ua, 180),
-          cut(ref, 180),
-          path,
-        ],
+        indexes: [rid],
+        blobs,
         doubles: [1],
-        indexes: [rid], // index1 に必ず rid を入れる（確認が一発でできる）
       });
 
-      return Response.json(
-        {
+      return new Response(
+        JSON.stringify({
           ok: true,
           wrote: true,
           rid,
-          schema: SCHEMA,
+          schema,
           type,
           page,
           seriesKey,
@@ -123,17 +95,16 @@ export default {
           aud,
           mag,
           ts: Date.now(),
-        },
-        { status: 200, headers: corsHeaders }
+        }),
+        { status: 200, headers: { ...cors, "Content-Type": "application/json" } }
       );
     } catch (e) {
-      return Response.json(
-        {
+      return new Response(
+        JSON.stringify({
           ok: false,
           error: String(e && (e.message || e)),
-          stack: e && e.stack ? String(e.stack) : "",
-        },
-        { status: 500, headers: corsHeaders }
+        }),
+        { status: 500, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
   },
