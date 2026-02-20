@@ -73,7 +73,7 @@ function setStatus(msg) {
 }
 
 /* =======================
- * 正規化
+ * 表示前の正規化
  * ======================= */
 function formatYmd(s) {
   const t = toText(s);
@@ -89,6 +89,31 @@ function normalizeImgUrl(u) {
   try { x = encodeURI(raw); } catch { x = raw; }
   x = x.replaceAll("+", "%2B");
   return x;
+}
+
+/* =======================
+ * Events (Cloudflare Worker)
+ * ======================= */
+const EVENTS_ENDPOINT = "https://book-scout-events.dx7qqdcchs.workers.dev/collect";
+
+function sendEvent(type, payload = {}) {
+  const t = toText(type) || "unknown";
+  const page =
+    payload.page ||
+    (location.pathname.endsWith("/work.html") ? "work" :
+     location.pathname.endsWith("/list.html") ? "list" : "home");
+
+  const seriesKey = toText(payload.seriesKey);
+  const mood = toText(payload.mood);
+
+  const u = new URL(EVENTS_ENDPOINT);
+  u.searchParams.set("type", t);
+  u.searchParams.set("page", page);
+  if (seriesKey) u.searchParams.set("seriesKey", seriesKey);
+  if (mood) u.searchParams.set("mood", mood);
+
+  // 失敗してもUIは止めない
+  fetch(u.toString(), { method: "GET", mode: "cors", cache: "no-store" }).catch(() => {});
 }
 
 /* =======================
@@ -118,7 +143,7 @@ function ensureAmazonAffiliate(urlLike) {
 }
 
 function patchAmazonAnchors(root = document) {
-  const as = root?.querySelectorAll?.('a[href]') || [];
+  const as = root?.querySelectorAll?.("a[href]") || [];
   for (const a of as) {
     const href = a.getAttribute("href") || "";
     if (!href) continue;
@@ -133,25 +158,6 @@ function patchAmazonAnchors(root = document) {
       parts.add("noopener");
       a.setAttribute("rel", Array.from(parts).join(" "));
     }
-  }
-}
-
-/* =======================
- * Analytics Engine 送信
- * ======================= */
-const WORKER_COLLECT_URL = "https://book-scout-events.dx7qqdcchs.workers.dev/collect";
-
-async function sendEvent({ type, page, seriesKey, mood }) {
-  try {
-    // GETでもいいけど、URL長くなるのでPOSTに寄せる
-    await fetch(WORKER_COLLECT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type, page, seriesKey, mood }),
-      keepalive: true,
-    });
-  } catch {
-    // 失敗してもUXを壊さない（ログは捨てる）
   }
 }
 
@@ -286,8 +292,8 @@ function parseMoodQuery() {
 
 function setMoodQuery(ids) {
   const p = qs();
-  const clean = (ids || []).map(toText).filter(Boolean).slice(0, QUICK_MAX);
-  if (clean.length) p.set("mood", clean.join(","));
+  const cleanIds = (ids || []).map(toText).filter(Boolean).slice(0, QUICK_MAX);
+  if (cleanIds.length) p.set("mood", cleanIds.join(","));
   else p.delete("mood");
   const url = `${location.pathname}?${p.toString()}`;
   history.replaceState(null, "", url);
@@ -318,8 +324,7 @@ function matchesQuickDef(it, def) {
   if (matchesAny(genres, noneGenres)) return false;
   if (matchesAny(tags, noneTags)) return false;
 
-  const hit = matchesAny(genres, anyGenres) || matchesAny(tags, anyTags);
-  return !!hit;
+  return matchesAny(genres, anyGenres) || matchesAny(tags, anyTags);
 }
 
 function quickCounts(allItems, defs) {
@@ -331,6 +336,90 @@ function quickCounts(allItems, defs) {
     }
   }
   return map;
+}
+
+function renderQuickHome({ defs, counts }) {
+  const root = document.getElementById("quickFiltersHome");
+  if (!root) return;
+  if (!defs?.length) { root.innerHTML = ""; return; }
+
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
+  root.innerHTML = `
+    <div class="pills">
+      ${defs.map(d => {
+        const n = counts.get(d.id) || 0;
+        const href = `./list.html?mood=${encodeURIComponent(d.id)}${vq}`;
+        return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(d.label)} <span style="opacity:.7;">(${n})</span></a>`;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderQuickListUI({ defs, counts, selectedIds, onToggle }) {
+  const root = document.getElementById("quickFiltersList");
+  if (!root) return;
+  if (!defs?.length) { root.innerHTML = ""; return; }
+
+  const selected = new Set(selectedIds || []);
+
+  root.innerHTML = `
+    <div class="pills">
+      ${defs.map(d => {
+        const isOn = selected.has(d.id);
+        const n = counts.get(d.id) || 0;
+        return `
+          <button
+            type="button"
+            class="pill"
+            data-mood="${esc(d.id)}"
+            aria-pressed="${isOn ? "true" : "false"}"
+            style="${isOn ? "outline:2px solid currentColor; outline-offset:1px;" : ""}"
+          >
+            ${esc(d.label)} <span style="opacity:.7;">(${n})</span>
+          </button>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  root.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-mood]");
+    if (!btn) return;
+    const id = btn.getAttribute("data-mood") || "";
+    if (!id) return;
+    onToggle(id);
+  };
+}
+
+function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters }) {
+  const hint = document.getElementById("quickFiltersHint");
+  if (!hint) return;
+
+  const selected = (selectedIds || []).filter(Boolean);
+  if (!selected.length) { hint.innerHTML = ""; return; }
+
+  const labels = selected.map(id => defs.find(d => d.id === id)?.label || id);
+  const msg = `気分: <b>${esc(labels.join(" × "))}</b>（AND / 最大2）`;
+  hint.innerHTML = msg;
+
+  if (itemsAfterAllFilters.length === 0 && selected.length >= 2) {
+    const v = qs().get("v");
+    const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+    const links = selected.map(id => {
+      const lab = defs.find(d => d.id === id)?.label || id;
+      const href = `./list.html?mood=${encodeURIComponent(id)}${vq}`;
+      return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(lab)}だけにする</a>`;
+    }).join("");
+
+    const clearHref = `./list.html${vq ? `?v=${encodeURIComponent(v)}` : ""}`;
+    hint.innerHTML = `
+      ${msg}<br/>
+      <div style="margin-top:8px;">0件です。ORで広げるなら：</div>
+      <div class="pills" style="margin-top:6px;">${links}<a class="pill" href="${esc(clearHref)}" style="text-decoration:none;">気分を解除</a></div>
+    `;
+  }
 }
 
 /* =======================
@@ -357,7 +446,167 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
 }
 
 /* =======================
- * list.html（気分フィルターAND）
+ * 共通：横一列カード列（もっと見る）
+ * ======================= */
+function renderCardRow({ items, limit = 18, moreHref = "" }) {
+  const v = qs().get("v");
+  const cards = (items || []).slice(0, limit).map((it) => {
+    const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+    const img = normalizeImgUrl(imgRaw);
+    const key = encodeURIComponent(seriesKey);
+
+    return `
+      <a class="row-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+        <div class="row-thumb">
+          ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+        </div>
+        <div class="row-title">${esc(seriesKey || title)}</div>
+      </a>
+    `;
+  }).join("");
+
+  const moreCard = moreHref
+    ? `
+      <a class="row-card row-more" href="${esc(moreHref)}" aria-label="もっと見る">
+        <div class="row-thumb row-more-thumb">
+          <div class="row-more-icon">→</div>
+        </div>
+        <div class="row-title row-more-title">もっと見る</div>
+      </a>
+    `
+    : "";
+
+  return `<div class="row-scroll">${cards}${moreCard}</div>`;
+}
+
+/* =======================
+ * Home：ジャンル・カテゴリー
+ * ======================= */
+function setGenreAllLink(activeTab) {
+  const a = document.getElementById("genreAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const q = encodeURIComponent(activeTab.match.join(","));
+  a.href = `./list.html?genre=${q}${vq}`;
+}
+
+function setAudienceAllLink(activeAudValue) {
+  const a = document.getElementById("audienceAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  a.href = `./list.html?aud=${encodeURIComponent(activeAudValue)}${vq}`;
+}
+
+function genreCountMap(allItems) {
+  const map = new Map();
+  for (const t of GENRE_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    for (const t of GENRE_TABS) {
+      if (hasAnyGenre(it, t.match)) map.set(t.id, (map.get(t.id) || 0) + 1);
+    }
+  }
+  return map;
+}
+
+function categoryCountMap(allItems) {
+  const map = new Map();
+  for (const t of CATEGORY_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    const label = getFirstAudienceLabel(it);
+    const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
+    if (!tab) continue;
+    map.set(tab.id, (map.get(tab.id) || 0) + 1);
+  }
+  return map;
+}
+
+function renderGenreTabsRow({ data, activeId }) {
+  const tabs = document.getElementById("genreTabs");
+  const row = document.getElementById("genreRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(data?.items) ? data.items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const counts = genreCountMap(all);
+  const active = GENRE_TABS.find(x => x.id === activeId) || GENRE_TABS[0];
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${GENRE_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-genre="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const picked = all.filter(it => hasAnyGenre(it, active.match));
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const moreHref = `./list.html?genre=${encodeURIComponent(active.match.join(","))}${vq}`;
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+  setGenreAllLink(active);
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-genre]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-genre") || "";
+    if (!next || next === active.id) return;
+    setHomeState({ g: next });
+    renderGenreTabsRow({ data, activeId: next });
+  };
+}
+
+function renderAudienceTabsRow({ data, activeAudId }) {
+  const tabs = document.getElementById("audienceTabs");
+  const row = document.getElementById("audienceRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(data?.items) ? data.items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const counts = categoryCountMap(all);
+  const active = CATEGORY_TABS.find(x => x.id === activeAudId) || CATEGORY_TABS[0];
+  const audValue = active.value;
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${CATEGORY_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-aud="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const picked = all.filter(it => getFirstAudienceLabel(it) === audValue);
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const moreHref = `./list.html?aud=${encodeURIComponent(audValue)}${vq}`;
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+  setAudienceAllLink(audValue);
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-aud]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-aud") || "";
+    if (!next || next === active.id) return;
+    setHomeState({ a: next });
+    renderAudienceTabsRow({ data, activeAudId: next });
+  };
+}
+
+/* =======================
+ * list.html（気分AND）
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -370,6 +619,7 @@ function renderList(data, quickDefs) {
   const magazineWanted = parseOneQueryParam("mag");
 
   const moodSelected = parseMoodQuery();
+
   const moodDefsById = new Map((quickDefs || []).map(d => [d.id, d]));
   const moodActiveDefs = moodSelected.map(id => moodDefsById.get(id)).filter(Boolean);
 
@@ -384,63 +634,46 @@ function renderList(data, quickDefs) {
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
 
-  // フィルター操作を送信（1回の操作で1イベント）
-  // mood を押したタイミングで送る（下の onToggle 内）
+  // list側：気分UI
   if (document.getElementById("quickFiltersList")) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
     const counts = quickCounts(all, defs);
 
-    const rootUi = document.getElementById("quickFiltersList");
-    const selected = new Set(moodSelected);
+    const clear = document.getElementById("moodClearLink");
+    if (clear) {
+      const v = qs().get("v");
+      clear.href = v ? `./list.html?v=${encodeURIComponent(v)}` : "./list.html";
+    }
 
-    rootUi.innerHTML = `
-      <div class="pills">
-        ${defs.map(d => {
-          const isOn = selected.has(d.id);
-          const n = counts.get(d.id) || 0;
-          return `
-            <button
-              type="button"
-              class="pill"
-              data-mood="${esc(d.id)}"
-              aria-pressed="${isOn ? "true" : "false"}"
-              style="${isOn ? "outline:2px solid currentColor; outline-offset:1px;" : ""}"
-            >
-              ${esc(d.label)} <span style="opacity:.7;">(${n})</span>
-            </button>
-          `;
-        }).join("")}
-      </div>
-    `;
+    renderQuickListUI({
+      defs,
+      counts,
+      selectedIds: moodSelected,
+      onToggle: (id) => {
+        const cur = parseMoodQuery();
+        const set = new Set(cur);
 
-    rootUi.onclick = (ev) => {
-      const btn = ev.target?.closest?.("button[data-mood]");
-      if (!btn) return;
-      const id = btn.getAttribute("data-mood") || "";
-      if (!id) return;
+        if (set.has(id)) set.delete(id);
+        else {
+          if (set.size >= QUICK_MAX) return;
+          set.add(id);
+        }
 
-      const cur = parseMoodQuery();
-      const set = new Set(cur);
+        const next = Array.from(set);
+        setMoodQuery(next);
 
-      if (set.has(id)) set.delete(id);
-      else {
-        if (set.size >= QUICK_MAX) return;
-        set.add(id);
+        // フィルター操作をイベント化
+        sendEvent("list_filter", { page: "list" });
+
+        renderList(data, quickDefs);
       }
+    });
 
-      const next = Array.from(set);
-      setMoodQuery(next);
-
-      // list_filter を送る（mood は複数なので join で入れる）
-      sendEvent({
-        type: "list_filter",
-        page: "list",
-        seriesKey: "",
-        mood: next.join(","),
-      });
-
-      renderList(data, quickDefs);
-    };
+    renderQuickHint({
+      selectedIds: moodSelected,
+      defs,
+      itemsAfterAllFilters: items
+    });
   }
 
   if (!items.length) {
@@ -503,51 +736,8 @@ function renderList(data, quickDefs) {
 }
 
 /* =======================
- * work.html：読み味投票（vote）
+ * work.html（読み味ボタン＋vote送信）
  * ======================= */
-function renderVoteUI({ quickDefs, seriesKey }) {
-  const root = document.getElementById("voteBox");
-  if (!root) return;
-
-  const defs = Array.isArray(quickDefs) ? quickDefs : [];
-  if (!defs.length || !seriesKey) { root.innerHTML = ""; return; }
-
-  root.innerHTML = `
-    <div class="d-sub" style="margin-top:14px;">読み味（投票）</div>
-    <div class="pills">
-      ${defs.map(d => `
-        <button type="button" class="pill" data-vote="${esc(d.id)}">
-          ${esc(d.label)}
-        </button>
-      `).join("")}
-    </div>
-    <div class="d-sub" id="voteStatus" style="margin-top:8px;"></div>
-  `;
-
-  root.onclick = (ev) => {
-    const btn = ev.target?.closest?.("button[data-vote]");
-    if (!btn) return;
-    const mood = btn.getAttribute("data-vote") || "";
-    if (!mood) return;
-
-    // 連打対策（同一作品×同一moodは10秒抑止）
-    const k = `vote:${seriesKey}:${mood}`;
-    const now = Date.now();
-    const last = Number(localStorage.getItem(k) || "0");
-    if (now - last < 10000) {
-      const st = document.getElementById("voteStatus");
-      if (st) st.textContent = "投票しました（少し待ってね）";
-      return;
-    }
-    localStorage.setItem(k, String(now));
-
-    sendEvent({ type: "vote", page: "work", seriesKey, mood });
-
-    const st = document.getElementById("voteStatus");
-    if (st) st.textContent = `投票: ${mood}`;
-  };
-}
-
 function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
   if (!detail) return;
@@ -584,6 +774,22 @@ function renderWork(data, quickDefs) {
     magazine ? `連載誌: ${esc(magazine)}` : null,
   ].filter(Boolean).join(" / ");
 
+  // 読み味（quick_filters）ボタン
+  const defs = Array.isArray(quickDefs) ? quickDefs : [];
+  const voteButtons = defs.length
+    ? `
+      <div class="d-sub" style="margin-top:14px;">読み味（押すと投票されます）</div>
+      <div class="pills" id="votePills">
+        ${defs.map(d => `
+          <button type="button" class="pill" data-vote="${esc(d.id)}" style="cursor:pointer;">
+            ${esc(d.label)}
+          </button>
+        `).join("")}
+      </div>
+      <div class="d-sub" id="voteStatus" style="margin-top:8px;"></div>
+    `
+    : "";
+
   detail.innerHTML = `
     <div class="d-title">${esc(seriesKey || title)}</div>
     ${metaParts ? `<div class="d-sub">${metaParts}</div>` : ""}
@@ -598,15 +804,30 @@ function renderWork(data, quickDefs) {
     ${genresJa.length ? `<div class="d-sub" style="margin-top:12px;">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
     ${tagsJa.length ? `<div class="d-sub" style="margin-top:8px;">タグ:</div>${pills(tagsJa)}` : ""}
 
+    ${voteButtons}
+
     ${synopsis ? `
       <div class="d-sub" style="margin-top:14px;">あらすじ</div>
       <div class="d-text">${esc(synopsis)}</div>
     ` : ""}
-
-    <div id="voteBox"></div>
   `;
 
-  renderVoteUI({ quickDefs, seriesKey });
+  // voteクリック
+  const pillsRoot = document.getElementById("votePills");
+  if (pillsRoot) {
+    pillsRoot.onclick = (ev) => {
+      const btn = ev.target?.closest?.("button[data-vote]");
+      if (!btn) return;
+      const mood = btn.getAttribute("data-vote") || "";
+      if (!mood) return;
+
+      sendEvent("vote", { page: "work", seriesKey, mood });
+
+      const st = document.getElementById("voteStatus");
+      if (st) st.textContent = "投票しました";
+      setTimeout(() => { if (st) st.textContent = ""; }, 1200);
+    };
+  }
 }
 
 async function run() {
@@ -619,7 +840,16 @@ async function run() {
     const quick = await loadJson(quickUrl, { bust: !!v });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // list / work
+    const st = getHomeState();
+    renderGenreTabsRow({ data, activeId: st.g });
+    renderAudienceTabsRow({ data, activeAudId: st.a });
+
+    if (document.getElementById("quickFiltersHome")) {
+      const all = Array.isArray(data?.items) ? data.items : [];
+      const counts = quickCounts(all, quickDefs);
+      renderQuickHome({ defs: quickDefs, counts });
+    }
+
     renderList(data, quickDefs);
     renderWork(data, quickDefs);
 
