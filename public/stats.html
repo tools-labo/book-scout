@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOOKスカウト｜ランキング</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1><a href="./index.html" style="color:inherit;text-decoration:none;">BOOKスカウト</a></h1>
+    <p class="sub"><a href="./list.html" style="color:inherit;">← リストへ</a></p>
+  </header>
+
+  <main class="wrap">
+    <div id="status" class="status"></div>
+
+    <!-- 人気（閲覧数） -->
+    <section class="section" style="margin-top:10px;">
+      <div class="section-head">
+        <h2 class="section-title">人気（閲覧数）</h2>
+      </div>
+      <p class="section-sub">作品詳細が表示された回数（同一セッションは1回）</p>
+      <section id="rankViews" class="grid"></section>
+    </section>
+
+    <!-- お気に入り -->
+    <section class="section" style="margin-top:18px;">
+      <div class="section-head">
+        <h2 class="section-title">お気に入り</h2>
+      </div>
+      <p class="section-sub">ONにした回数（端末ローカルのON操作のみカウント）</p>
+      <section id="rankFav" class="grid"></section>
+    </section>
+
+    <!-- 気分投票の傾向 -->
+    <section class="section" style="margin-top:18px;">
+      <div class="section-head">
+        <h2 class="section-title">みんなの気分（投票傾向）</h2>
+      </div>
+      <p class="section-sub">人気ランキングではなく、読み味の傾向を見るための集計</p>
+      <div id="moodDist" class="card" style="padding:12px;"></div>
+    </section>
+
+    <!-- 運用確認（イベント種類） -->
+    <section class="section" style="margin-top:18px;">
+      <div class="section-head">
+        <h2 class="section-title">イベント種類（運用確認）</h2>
+      </div>
+      <div id="typeCounts" class="card" style="padding:12px;"></div>
+    </section>
+  </main>
+
+  <script>
+    function qs() { return new URLSearchParams(location.search); }
+
+    async function loadJson(url, { bust = false } = {}) {
+      const r = await fetch(url, { cache: bust ? "no-store" : "default" });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return await r.json();
+    }
+
+    function esc(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function toText(v) {
+      if (v == null) return "";
+      if (typeof v === "string") return v.trim();
+      if (typeof v === "number" || typeof v === "boolean") return String(v);
+      if (Array.isArray(v)) return v.map(toText).filter(Boolean).join(" / ");
+      if (typeof v === "object") {
+        const keys = ["title","name","label","value","text","display"];
+        for (const k of keys) {
+          if (v[k] != null) {
+            const t = toText(v[k]);
+            if (t) return t;
+          }
+        }
+        return "";
+      }
+      return "";
+    }
+
+    function normalizeImgUrl(u) {
+      const raw = toText(u);
+      if (!raw) return "";
+      let x = "";
+      try { x = encodeURI(raw); } catch { x = raw; }
+      x = x.replaceAll("+", "%2B");
+      return x;
+    }
+
+    function setStatus(msg) {
+      const s = document.getElementById("status");
+      if (s) s.textContent = msg;
+    }
+
+    function getWorkMap(items) {
+      const map = new Map();
+      for (const it of (items || [])) {
+        const seriesKey = toText(it?.seriesKey);
+        if (!seriesKey) continue;
+        map.set(seriesKey, it);
+      }
+      return map;
+    }
+
+    function cardHtml({ seriesKey, n, work }) {
+      const key = encodeURIComponent(seriesKey);
+      const title = toText(work?.vol1?.title) || seriesKey;
+      const img = normalizeImgUrl(toText(work?.vol1?.image));
+      const author = toText(work?.vol1?.author);
+      const publisher = toText(work?.vol1?.publisher);
+
+      const meta = [author, publisher].filter(Boolean).join(" / ");
+
+      return `
+        <article class="card">
+          <div class="card-row">
+            <div class="thumb">
+              ${img ? `<a href="./work.html?key=${key}"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
+            </div>
+            <div class="meta">
+              <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey)}</a></div>
+              ${meta ? `<div class="sub">${esc(meta)}</div>` : ""}
+              <div class="sub">回数: <b>${esc(n)}</b></div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function kvListHtml(rows, labelKey, valueKey) {
+      if (!rows?.length) return `<div class="status">データがまだありません</div>`;
+      const lines = rows.map(r => {
+        const k = toText(r?.[labelKey]);
+        const v = toText(r?.[valueKey]);
+        return `<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);">
+          <div>${esc(k || "-")}</div>
+          <div style="font-variant-numeric:tabular-nums;white-space:nowrap;"><b>${esc(v || "0")}</b></div>
+        </div>`;
+      }).join("");
+      return `<div>${lines}</div>`;
+    }
+
+    async function run() {
+      try {
+        const v = qs().get("v");
+        const bust = !!v;
+        const vq = v ? `?v=${encodeURIComponent(v)}` : "";
+
+        // works（作品情報）
+        const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
+        const workMap = getWorkMap(works?.items || []);
+
+        // metrics
+        const typeCounts = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
+        const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
+        const favBySeries = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
+        const voteByMood = await loadJson(`./data/metrics/wae/vote_by_mood.json${vq}`, { bust }).catch(() => null);
+
+        // 人気（閲覧数）
+        {
+          const root = document.getElementById("rankViews");
+          const rows = Array.isArray(viewBySeries) ? viewBySeries : (viewBySeries?.data || []);
+          if (!root) {}
+          else if (!rows?.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
+          else {
+            const top = rows.slice(0, 30).map(r => {
+              const seriesKey = toText(r?.seriesKey);
+              const n = toText(r?.n);
+              const work = workMap.get(seriesKey);
+              return seriesKey ? cardHtml({ seriesKey, n, work }) : "";
+            }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
+          }
+        }
+
+        // お気に入り
+        {
+          const root = document.getElementById("rankFav");
+          const rows = Array.isArray(favBySeries) ? favBySeries : (favBySeries?.data || []);
+          if (!root) {}
+          else if (!rows?.length) root.innerHTML = `<div class="status">まだ集計データがありません（favorite_by_series.json 未生成）</div>`;
+          else {
+            const top = rows.slice(0, 30).map(r => {
+              const seriesKey = toText(r?.seriesKey);
+              const n = toText(r?.n);
+              const work = workMap.get(seriesKey);
+              return seriesKey ? cardHtml({ seriesKey, n, work }) : "";
+            }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
+          }
+        }
+
+        // mood投票傾向
+        {
+          const box = document.getElementById("moodDist");
+          const rows = Array.isArray(voteByMood) ? voteByMood : (voteByMood?.data || []);
+          if (box) box.innerHTML = kvListHtml(rows.slice(0, 50), "mood", "n");
+        }
+
+        // type別
+        {
+          const box = document.getElementById("typeCounts");
+          const rows = Array.isArray(typeCounts) ? typeCounts : (typeCounts?.data || []);
+          if (box) box.innerHTML = kvListHtml(rows.slice(0, 50), "type", "n");
+        }
+
+        setStatus("");
+      } catch (e) {
+        console.error(e);
+        setStatus("集計データの読み込みに失敗しました（まだJSONが無い可能性あり）");
+      }
+    }
+
+    run();
+  </script>
+</body>
+</html>
