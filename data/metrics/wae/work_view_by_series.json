@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T11:33:46.098Z",
+  "updatedAt": "2026-02-21T12:53:41.333Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -25,6 +25,10 @@
     },
     {
       "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "seriesKey": "おやすみプンプン",
       "n": "1"
     },
     {
@@ -53,7 +57,7 @@
     }
   ],
   "raw": {
-    "rows": 9,
-    "rows_before_limit_at_least": 12
+    "rows": 10,
+    "rows_before_limit_at_least": 13
   }
 }

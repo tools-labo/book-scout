@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T11:33:46.098Z",
+  "updatedAt": "2026-02-21T12:53:41.333Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,39 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-21 12:52:40",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "おやすみプンプン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 12:52:31",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "おやすみプンプン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 12:52:19",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-21 10:37:32",
       "type": "work_view",
@@ -621,7 +654,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=moving",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -632,7 +665,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "",
+      "mood": "mood=moving",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -830,7 +863,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=tearjerker,moving",
+      "mood": "mood=tearjerker",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -841,7 +874,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=tearjerker",
+      "mood": "mood=tearjerker,moving",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1402,7 +1435,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=messy",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1413,7 +1446,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "",
+      "mood": "mood=messy",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1490,7 +1523,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "",
+      "mood": "mood=heart_throb",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1501,7 +1534,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1545,7 +1578,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=hot",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1556,7 +1589,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "",
+      "mood": "mood=hot",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1578,7 +1611,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "",
+      "mood": "mood=hot",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1589,7 +1622,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=hot",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -2209,43 +2242,10 @@
       "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 15:56:18",
-      "type": "list_filter",
-      "schema": "list",
-      "page": "",
-      "seriesKey": "",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 15:56:13",
-      "type": "vote",
-      "schema": "work",
-      "page": "葬送のフリーレン",
-      "seriesKey": "funny",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 15:56:01",
-      "type": "vote",
-      "schema": "work",
-      "page": "聲の形",
-      "seriesKey": "moving",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 235
+    "rows_before_limit_at_least": 238
   }
 }
