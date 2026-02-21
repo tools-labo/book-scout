@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト</title>
-  <head>
-<meta name="google-site-verification" content="zkQ88T_zDkSppLKcCnloW6YbiVl43N3LWB-ANp6U_XQ" />
 
-  <link rel="stylesheet" href="./style.css" />
-</head>
+  <!-- Google Search Console verification -->
+  <meta name="google-site-verification" content="zkQ88T_zDkSppLKcCnloW6YbiVl43N3LWB-ANp6U_XQ" />
+
   <link rel="stylesheet" href="./style.css" />
 
   <!-- 追加：スクロールで隠す/出す（style.cssを触らなくても動く最低限） -->
@@ -22,12 +21,8 @@
       transition: transform 180ms ease;
       will-change: transform;
     }
-    .gheader.is-hidden {
-      transform: translateY(-110%);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .gheader { transition: none; }
-    }
+    .gheader.is-hidden { transform: translateY(-110%); }
+    @media (prefers-reduced-motion: reduce) { .gheader { transition: none; } }
   </style>
 </head>
 
@@ -100,37 +95,29 @@
       let lastY = window.scrollY || 0;
       let ticking = false;
 
-      // ちょい触れで出る（“少しでも”の感覚を残しつつ、ガタつき防止に最小しきい値）
-      const SHOW_THRESHOLD = 2;   // 上方向に2px動いたら出す
-      const HIDE_THRESHOLD = 8;   // 下方向は8px以上で隠す（誤動作抑止）
-      const TOP_KEEP = 12;        // 先頭付近は常に表示
+      const SHOW_THRESHOLD = 2;
+      const HIDE_THRESHOLD = 8;
+      const TOP_KEEP = 12;
 
       function onScroll() {
         const y = window.scrollY || 0;
         const dy = y - lastY;
 
-        // 先頭付近は必ず表示
         if (y <= TOP_KEEP) {
           header.classList.remove("is-hidden");
           lastY = y;
           return;
         }
-
-        // 下に進んだら隠す
         if (dy > HIDE_THRESHOLD) {
           header.classList.add("is-hidden");
           lastY = y;
           return;
         }
-
-        // 上に戻したら出す（少しでも）
         if (dy < -SHOW_THRESHOLD) {
           header.classList.remove("is-hidden");
           lastY = y;
           return;
         }
-
-        // 微小な揺れは lastY を更新しない（ぶれ防止）
       }
 
       window.addEventListener("scroll", () => {
@@ -144,7 +131,7 @@
     })();
   </script>
 
-  <!-- app.js ロード（既存） -->
+  <!-- app.js ロード -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
