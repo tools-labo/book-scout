@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T13:51:41.317Z",
+  "updatedAt": "2026-02-21T14:43:00.914Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -32,7 +32,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "70"
+      "n": "71"
     },
     {
       "genre": "",
@@ -213,14 +213,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Fantasy",
+      "mood": "mood=hot,heart_throb",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=hot,heart_throb",
+      "mood": "genre=Fantasy",
       "n": "1"
     },
     {
@@ -289,6 +289,6 @@
   ],
   "raw": {
     "rows": 37,
-    "rows_before_limit_at_least": 161
+    "rows_before_limit_at_least": 162
   }
 }

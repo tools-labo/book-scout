@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T13:51:41.317Z",
+  "updatedAt": "2026-02-21T14:43:00.914Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,28 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-21 14:00:53",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "21世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 14:00:32",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-21 13:00:39",
       "type": "list_filter",
@@ -2220,32 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:31:10",
-      "type": "vote",
-      "schema": "work",
-      "page": "トモちゃんは女の子!",
-      "seriesKey": "healing",
-      "mood": "JP",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:31:00",
-      "type": "vote",
-      "schema": "work",
-      "page": "ドメスティックな彼女",
-      "seriesKey": "heart_throb",
-      "mood": "JP",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 251
+    "rows_before_limit_at_least": 253
   }
 }
