@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T08:49:53.840Z",
+  "updatedAt": "2026-02-21T09:44:04.932Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,28 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-21 09:31:41",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 09:31:10",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-21 07:55:57",
       "type": "list_filter",
@@ -2220,32 +2242,10 @@
       "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 14:55:42",
-      "type": "vote",
-      "schema": "ようこそ実力至上主義の教室へ",
-      "page": "satisfying",
-      "seriesKey": "work",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 14:55:27",
-      "type": "vote",
-      "schema": "フルーツバスケット",
-      "page": "moving",
-      "seriesKey": "work",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 226
+    "rows_before_limit_at_least": 228
   }
 }
