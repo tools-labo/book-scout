@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T08:47:42.743Z",
+  "updatedAt": "2026-02-21T08:49:53.840Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -35,255 +35,255 @@
       "n": "64"
     },
     {
-      "genre": "mood=tearjerker",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=tearjerker",
       "n": "10"
     },
     {
-      "genre": "mood=heart_throb",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=heart_throb",
       "n": "8"
     },
     {
-      "genre": "mood=page_turner",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=page_turner",
       "n": "8"
     },
     {
-      "genre": "mood=messy",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=funny",
       "n": "6"
     },
     {
-      "genre": "mood=funny",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "6"
-    },
-    {
-      "genre": "JP",
-      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "mag": "",
-      "mood": "",
-      "n": "5"
-    },
-    {
-      "genre": "mood=moving",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "5"
-    },
-    {
-      "genre": "genre=Action",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "4"
-    },
-    {
-      "genre": "aud=少女",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "4"
-    },
-    {
-      "genre": "mood=hot",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "4"
-    },
-    {
-      "genre": "mood=healing",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "4"
-    },
-    {
-      "genre": "aud=少年",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "3"
-    },
-    {
-      "genre": "mood=tearjerker,moving",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "mood=funny,heart_throb",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "aud=少女&mood=heart_throb",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "mood=satisfying",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "mood=page_turner,funny",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "mood=healing,satisfying",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "JP",
+      "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=messy",
+      "n": "6"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=moving",
+      "n": "5"
+    },
+    {
+      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "aud": "",
+      "mag": "",
+      "mood": "JP",
+      "n": "5"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=healing",
+      "n": "4"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=hot",
+      "n": "4"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action",
+      "n": "4"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "aud=少女",
+      "n": "4"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "aud=少年",
+      "n": "3"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "aud=少女&mood=heart_throb",
+      "n": "2"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=page_turner,funny",
+      "n": "2"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=satisfying",
+      "n": "2"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=tearjerker,moving",
+      "n": "2"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=funny,heart_throb",
+      "n": "2"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
-      "genre": "mood=page_turner,hot",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少女&mood=satisfying,funny",
       "n": "1"
     },
     {
-      "genre": "mood=heart_throb,healing",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少女&mood=heart_throb,moving",
       "n": "1"
     },
     {
-      "genre": "mood=hot,messy",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=hot,messy",
       "n": "1"
     },
     {
-      "genre": "genre=Action&mood=tearjerker",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "genre=Action&mood=tearjerker",
       "n": "1"
     },
     {
-      "genre": "genre=Fantasy",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
-      "genre": "genre=Action&mood=moving",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少女&mood=satisfying",
       "n": "1"
     },
     {
-      "genre": "mood=satisfying,moving",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少女&mood=funny",
       "n": "1"
     },
     {
-      "genre": "mood=heart_throb,moving",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "genre=Fantasy",
       "n": "1"
     },
     {
-      "genre": "aud=青年",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=hot,heart_throb",
       "n": "1"
     },
     {
-      "genre": "aud=少女&mood=satisfying",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=moving,healing",
       "n": "1"
     },
     {
-      "genre": "genre=Action&mood=heart_throb",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=heart_throb,healing",
       "n": "1"
     },
     {
-      "genre": "aud=少女&mood=funny",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=heart_throb,moving",
       "n": "1"
     },
     {
-      "genre": "aud=少女&mood=satisfying,funny",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=青年",
       "n": "1"
     },
     {
-      "genre": "aud=少女&mood=heart_throb,moving",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "JP",
       "n": "1"
     },
     {
-      "genre": "mood=messy,satisfying",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=satisfying,moving",
       "n": "1"
     },
     {
-      "genre": "mood=moving,healing",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=healing,satisfying",
       "n": "1"
     },
     {
-      "genre": "mood=hot,heart_throb",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=page_turner,hot",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=messy,satisfying",
       "n": "1"
     }
   ],

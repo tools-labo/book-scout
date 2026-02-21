@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T08:47:42.743Z",
+  "updatedAt": "2026-02-21T08:49:53.840Z",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -17,27 +17,27 @@
     {
       "id": "work_view_by_series",
       "file": "work_view_by_series.json",
-      "rows": 1
+      "rows": 4
     },
     {
       "id": "vote_by_series",
       "file": "vote_by_series.json",
-      "rows": 12
+      "rows": 5
     },
     {
       "id": "vote_by_mood",
       "file": "vote_by_mood.json",
-      "rows": 7
+      "rows": 4
     },
     {
       "id": "vote_by_mood_series",
       "file": "vote_by_mood_series.json",
-      "rows": 16
+      "rows": 5
     },
     {
       "id": "favorite_by_series",
       "file": "favorite_by_series.json",
-      "rows": 2
+      "rows": 4
     },
     {
       "id": "list_filter_by_query",
