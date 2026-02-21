@@ -1,48 +1,34 @@
 // scripts/metrics/export_wae_metrics.mjs
+// Cloudflare Analytics Engine (WAE) を SQL で集計して JSON に吐き出す
+//
+// 必要ENV:
+// - CLOUDFLARE_ACCOUNT_ID
+// - CLOUDFLARE_AE_READ_TOKEN   (Analytics Engine を読む権限のあるトークン)
+//
+// 出力先（GitHub Pagesで参照できる場所）
+// - public/data/metrics/__verify_latest.json
+// - public/data/metrics/type_counts.json
+// - public/data/metrics/mood_counts.json
+// - public/data/metrics/work_counts.json
+
 import fs from "node:fs/promises";
 import path from "node:path";
 
+const DATASET = "book_scout_events";
 const OUT_DIR = "public/data/metrics";
 
-// ===== 設定 =====
-const DATASET = "book_scout_events";
-
-// blob割り当て（Worker側 writeDataPoint の blobs 配列順）
-const B = {
-  type: "blob1",
-  page: "blob2",
-  seriesKey: "blob3",
-  mood: "blob4",
-  genre: "blob5",
-  aud: "blob6",
-  mag: "blob7",
-};
-
-const D1 = "double1";
-
-function nowIso() {
-  return new Date().toISOString();
+function norm(s) {
+  return String(s ?? "").trim();
 }
 
-async function ensureDir(p) {
-  await fs.mkdir(p, { recursive: true });
-}
-
-async function saveJson(file, obj) {
-  await ensureDir(path.dirname(file));
-  await fs.writeFile(file, JSON.stringify(obj, null, 2));
-}
-
-function envOrThrow(k) {
-  const v = String(process.env[k] || "").trim();
-  if (!v) throw new Error(`Missing env: ${k}`);
-  return v;
+async function saveJson(p, obj) {
+  await fs.mkdir(path.dirname(p), { recursive: true });
+  await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
 async function sql({ accountId, token, query }) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`;
 
-  // ★ここが修正点：body に SQL を “そのまま” 送る（JSONではない）
   const r = await fetch(url, {
     method: "POST",
     headers: {
@@ -61,208 +47,137 @@ async function sql({ accountId, token, query }) {
   }
 
   if (!r.ok) {
-    throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 300)}`);
+    throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 800)}`);
   }
-  if (!json?.success) {
-    throw new Error(`Cloudflare API success=false: ${text.slice(0, 300)}`);
+  if (!json) {
+    throw new Error(`Cloudflare API invalid JSON: ${text.slice(0, 800)}`);
   }
 
-  // result は配列
-  return Array.isArray(json.result) ? json.result : [];
+  // 返り値形式の差を吸収
+  // 1) success/result 形式
+  if (Object.prototype.hasOwnProperty.call(json, "success")) {
+    if (!json.success) {
+      throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
+    }
+    return Array.isArray(json.result) ? json.result : [];
+  }
+
+  // 2) meta/data 形式（success無し）
+  if (Array.isArray(json.data)) return json.data;
+
+  // 3) 念のため
+  if (Array.isArray(json.rows)) return json.rows;
+
+  throw new Error(`Cloudflare API unknown response shape: ${text.slice(0, 800)}`);
 }
 
-function toNum(v) {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : 0;
+// schema=v2 想定（Workerが書いている blobs の並び）
+// blobs[0]=type, blobs[1]=page, blobs[2]=seriesKey, blobs[3]=mood, blobs[4]=genre, blobs[5]=aud, blobs[6]=mag
+function qVerifyLatest(limit = 20) {
+  return `
+SELECT
+  blobs[0] AS type,
+  blobs[1] AS page,
+  blobs[2] AS seriesKey,
+  blobs[3] AS mood,
+  blobs[4] AS genre,
+  blobs[5] AS aud,
+  blobs[6] AS mag,
+  timestamp AS ts
+FROM ${DATASET}
+WHERE blobs[0] = '__verify'
+ORDER BY ts DESC
+LIMIT ${Number(limit) || 20}
+`;
 }
 
-function pickStr(v) {
-  return (v == null ? "" : String(v)).trim();
+function qTypeCounts(days = 30) {
+  return `
+SELECT
+  blobs[0] AS type,
+  COUNT(*) AS n
+FROM ${DATASET}
+WHERE timestamp >= NOW() - INTERVAL '${Number(days) || 30}' DAY
+GROUP BY type
+ORDER BY n DESC
+`;
+}
+
+function qMoodCounts(days = 30) {
+  return `
+SELECT
+  blobs[3] AS mood,
+  COUNT(*) AS n
+FROM ${DATASET}
+WHERE blobs[0] = 'vote'
+  AND timestamp >= NOW() - INTERVAL '${Number(days) || 30}' DAY
+  AND blobs[3] != ''
+GROUP BY mood
+ORDER BY n DESC
+`;
+}
+
+function qWorkCounts(days = 30) {
+  return `
+SELECT
+  blobs[2] AS seriesKey,
+  COUNT(*) AS n
+FROM ${DATASET}
+WHERE blobs[0] = 'work_view'
+  AND timestamp >= NOW() - INTERVAL '${Number(days) || 30}' DAY
+  AND blobs[2] != ''
+GROUP BY seriesKey
+ORDER BY n DESC
+LIMIT 200
+`;
 }
 
 async function main() {
-  const accountId = envOrThrow("CLOUDFLARE_ACCOUNT_ID");
-  const token = envOrThrow("CLOUDFLARE_API_TOKEN");
+  const accountId = norm(process.env.CLOUDFLARE_ACCOUNT_ID);
+  const token = norm(process.env.CLOUDFLARE_AE_READ_TOKEN);
 
-  const SINCE_DAYS = 90;
+  if (!accountId) throw new Error("Missing env: CLOUDFLARE_ACCOUNT_ID");
+  if (!token) throw new Error("Missing env: CLOUDFLARE_AE_READ_TOKEN");
 
-  // ===== 0) __verify 最新5件（列ズレ確認） =====
-  const verifyRows = await sql({
-    accountId,
-    token,
-    query: `
-      SELECT
-        ${B.type}  AS type,
-        ${B.page}  AS page,
-        ${B.seriesKey} AS seriesKey,
-        ${B.mood}  AS mood,
-        ${B.genre} AS genre,
-        ${B.aud}   AS aud,
-        ${B.mag}   AS mag,
-        ${D1}      AS c,
-        timestamp
-      FROM ${DATASET}
-      WHERE ${B.type}='__verify'
-      ORDER BY timestamp DESC
-      LIMIT 5
-    `,
-  });
-
-  await saveJson(`${OUT_DIR}/__verify_latest.json`, {
+  // 直近verify（列ズレ確認用）
+  const verifyLatest = await sql({ accountId, token, query: qVerifyLatest(30) });
+  await saveJson(path.join(OUT_DIR, "__verify_latest.json"), {
     version: 1,
-    updatedAt: nowIso(),
-    note:
-      "最新の__verify（列ズレ確認用）。type/page/seriesKey/mood/genre/aud/mag が期待通りか見る。",
-    items: verifyRows,
+    updatedAt: new Date().toISOString(),
+    dataset: DATASET,
+    rows: verifyLatest,
   });
 
-  // ===== 1) work_view：作品別表示数 =====
-  const workViewBySeries = await sql({
-    accountId,
-    token,
-    query: `
-      SELECT
-        ${B.seriesKey} AS seriesKey,
-        SUM(${D1}) AS count
-      FROM ${DATASET}
-      WHERE ${B.type}='work_view'
-        AND timestamp > now() - INTERVAL '${SINCE_DAYS}' DAY
-      GROUP BY ${B.seriesKey}
-      ORDER BY count DESC
-      LIMIT 5000
-    `,
-  });
-
-  await saveJson(`${OUT_DIR}/work_view_by_series.json`, {
+  // type集計
+  const typeCounts = await sql({ accountId, token, query: qTypeCounts(30) });
+  await saveJson(path.join(OUT_DIR, "type_counts.json"), {
     version: 1,
-    updatedAt: nowIso(),
-    windowDays: SINCE_DAYS,
-    totalSeries: workViewBySeries.length,
-    items: workViewBySeries.map((r) => ({
-      seriesKey: pickStr(r.seriesKey),
-      count: toNum(r.count),
-    })),
+    updatedAt: new Date().toISOString(),
+    dataset: DATASET,
+    rows: typeCounts,
   });
 
-  // ===== 2) list_filter：フィルター利用（組合せ） =====
-  const listFilterByCombo = await sql({
-    accountId,
-    token,
-    query: `
-      SELECT
-        ${B.page} AS page,
-        ${B.genre} AS genre,
-        ${B.aud} AS aud,
-        ${B.mag} AS mag,
-        ${B.mood} AS mood,
-        SUM(${D1}) AS count
-      FROM ${DATASET}
-      WHERE ${B.type}='list_filter'
-        AND timestamp > now() - INTERVAL '${SINCE_DAYS}' DAY
-      GROUP BY page, genre, aud, mag, mood
-      ORDER BY count DESC
-      LIMIT 5000
-    `,
-  });
-
-  await saveJson(`${OUT_DIR}/list_filter_by_combo.json`, {
+  // mood(vote)集計
+  const moodCounts = await sql({ accountId, token, query: qMoodCounts(30) });
+  await saveJson(path.join(OUT_DIR, "mood_counts.json"), {
     version: 1,
-    updatedAt: nowIso(),
-    windowDays: SINCE_DAYS,
-    items: listFilterByCombo.map((r) => ({
-      page: pickStr(r.page),
-      genre: pickStr(r.genre),
-      aud: pickStr(r.aud),
-      mag: pickStr(r.mag),
-      mood: pickStr(r.mood),
-      count: toNum(r.count),
-    })),
+    updatedAt: new Date().toISOString(),
+    dataset: DATASET,
+    rows: moodCounts,
   });
 
-  // ===== 3) vote：mood別 =====
-  const voteByMood = await sql({
-    accountId,
-    token,
-    query: `
-      SELECT
-        ${B.mood} AS mood,
-        SUM(${D1}) AS count
-      FROM ${DATASET}
-      WHERE ${B.type}='vote'
-        AND timestamp > now() - INTERVAL '${SINCE_DAYS}' DAY
-      GROUP BY ${B.mood}
-      ORDER BY count DESC
-      LIMIT 1000
-    `,
-  });
-
-  await saveJson(`${OUT_DIR}/vote_by_mood.json`, {
+  // 作品別(work_view)集計
+  const workCounts = await sql({ accountId, token, query: qWorkCounts(30) });
+  await saveJson(path.join(OUT_DIR, "work_counts.json"), {
     version: 1,
-    updatedAt: nowIso(),
-    windowDays: SINCE_DAYS,
-    items: voteByMood.map((r) => ({
-      mood: pickStr(r.mood),
-      count: toNum(r.count),
-    })),
+    updatedAt: new Date().toISOString(),
+    dataset: DATASET,
+    rows: workCounts,
   });
 
-  // ===== 4) vote：作品別 =====
-  const voteBySeries = await sql({
-    accountId,
-    token,
-    query: `
-      SELECT
-        ${B.seriesKey} AS seriesKey,
-        SUM(${D1}) AS count
-      FROM ${DATASET}
-      WHERE ${B.type}='vote'
-        AND timestamp > now() - INTERVAL '${SINCE_DAYS}' DAY
-      GROUP BY ${B.seriesKey}
-      ORDER BY count DESC
-      LIMIT 5000
-    `,
-  });
-
-  await saveJson(`${OUT_DIR}/vote_by_series.json`, {
-    version: 1,
-    updatedAt: nowIso(),
-    windowDays: SINCE_DAYS,
-    totalSeries: voteBySeries.length,
-    items: voteBySeries.map((r) => ({
-      seriesKey: pickStr(r.seriesKey),
-      count: toNum(r.count),
-    })),
-  });
-
-  // ===== 5) favorite：作品別 =====
-  const favoriteBySeries = await sql({
-    accountId,
-    token,
-    query: `
-      SELECT
-        ${B.seriesKey} AS seriesKey,
-        SUM(${D1}) AS count
-      FROM ${DATASET}
-      WHERE ${B.type}='favorite'
-        AND timestamp > now() - INTERVAL '${SINCE_DAYS}' DAY
-      GROUP BY ${B.seriesKey}
-      ORDER BY count DESC
-      LIMIT 5000
-    `,
-  });
-
-  await saveJson(`${OUT_DIR}/favorite_by_series.json`, {
-    version: 1,
-    updatedAt: nowIso(),
-    windowDays: SINCE_DAYS,
-    totalSeries: favoriteBySeries.length,
-    items: favoriteBySeries.map((r) => ({
-      seriesKey: pickStr(r.seriesKey),
-      count: toNum(r.count),
-    })),
-  });
-
-  console.log(`[metrics] wrote JSON files into ${OUT_DIR}`);
+  console.log(
+    `[metrics] ok dataset=${DATASET} verify=${verifyLatest.length} type=${typeCounts.length} mood=${moodCounts.length} work=${workCounts.length} -> ${OUT_DIR}`
+  );
 }
 
 main().catch((e) => {
