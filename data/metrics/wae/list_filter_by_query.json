@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T03:13:45.829Z",
+  "updatedAt": "2026-02-21T04:46:03.285Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -32,7 +32,28 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "13"
+      "n": "44"
+    },
+    {
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "9"
+    },
+    {
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "6"
+    },
+    {
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "6"
     },
     {
       "genre": "JP",
@@ -42,6 +63,83 @@
       "n": "5"
     },
     {
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "5"
+    },
+    {
+      "genre": "mood=healing",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "4"
+    },
+    {
+      "genre": "mood=funny",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "4"
+    },
+    {
+      "genre": "mood=hot",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "4"
+    },
+    {
+      "genre": "mood=moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "4"
+    },
+    {
+      "genre": "genre=Action",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "4"
+    },
+    {
+      "genre": "mood=satisfying",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "2"
+    },
+    {
+      "genre": "aud=少女&mood=heart_throb",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "2"
+    },
+    {
+      "genre": "mood=tearjerker,moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "2"
+    },
+    {
+      "genre": "mood=funny,heart_throb",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "2"
+    },
+    {
+      "genre": "aud=少女",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "2"
+    },
+    {
       "genre": "JP",
       "aud": "",
       "mag": "",
@@ -49,14 +147,35 @@
       "n": "1"
     },
     {
-      "genre": "mood=satisfying",
+      "genre": "mood=heart_throb,healing",
       "aud": "",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "mood=moving",
+      "genre": "mood=page_turner,funny",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=Action&mood=tearjerker",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=Fantasy",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=hot,messy",
       "aud": "",
       "mag": "",
       "mood": "",
@@ -70,6 +189,41 @@
       "n": "1"
     },
     {
+      "genre": "mood=heart_throb,moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=Action&mood=moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=Action&mood=heart_throb",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=healing,satisfying",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "aud=少女&mood=heart_throb,moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
       "genre": "mood=messy,satisfying",
       "aud": "",
       "mag": "",
@@ -77,7 +231,14 @@
       "n": "1"
     },
     {
-      "genre": "mood=messy",
+      "genre": "mood=moving,healing",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=hot,heart_throb",
       "aud": "",
       "mag": "",
       "mood": "",
@@ -85,7 +246,7 @@
     }
   ],
   "raw": {
-    "rows": 8,
-    "rows_before_limit_at_least": 17
+    "rows": 31,
+    "rows_before_limit_at_least": 113
   }
 }

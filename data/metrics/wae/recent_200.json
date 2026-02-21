@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T03:13:45.829Z",
+  "updatedAt": "2026-02-21T04:46:03.285Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -39,6 +39,976 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-21 04:39:52",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:51",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:49",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:46",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "aud=少女",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:46",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "aud=少女&mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:44",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "aud=少女&mood=heart_throb,moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:43",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "aud=少女&mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:41",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "aud=少女",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:19",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Fantasy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:11",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:06",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker,moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:06",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:05",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:04",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:03",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:02",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:39:01",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:59",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:58",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:57",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:56",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:55",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=healing",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:54",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=healing",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:54",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=healing,satisfying",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:53",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:52",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:51",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:50",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:50",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:49",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:48",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:47",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:46",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:45",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:44",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=moving,healing",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:43",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:42",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker,moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:38:40",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:56",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:47",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action&mood=moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:45",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:44",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action&mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:41",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:37",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action&mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:34",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "genre=Action",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:13",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:13",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:12",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=hot",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:12",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:11",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:11",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:10",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:09",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:08",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:07",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:03:07",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:53",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=healing",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:52",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:47",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=satisfying",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:46",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:39",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:38",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:36",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:36",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:35",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:34",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=hot,heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:34",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=hot",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:33",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:32",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:31",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb,moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:30",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:30",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:29",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:28",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:27",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=tearjerker",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:26",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=hot",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:26",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:21",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=hot,messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:19",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:19",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=hot",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:17",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=funny",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:16",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=funny,heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:15",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=funny",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:14",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=funny,heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:13",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=funny",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:09",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:06",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:05",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:03",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:02",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=healing",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:02:01",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb,healing",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:01:59",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:01:58",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=funny",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:01:58",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:01:53",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner,funny",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:01:52",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=page_turner",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 04:01:43",
+      "type": "work_view",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "東京卍リベンジャーズ",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-20 23:51:43",
       "type": "__verify",
@@ -811,7 +1781,7 @@
     }
   ],
   "raw": {
-    "rows": 77,
-    "rows_before_limit_at_least": 77
+    "rows": 174,
+    "rows_before_limit_at_least": 174
   }
 }

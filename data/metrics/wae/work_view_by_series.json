@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T03:13:45.829Z",
+  "updatedAt": "2026-02-21T04:46:03.285Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -14,9 +14,14 @@
       "type": "UInt64"
     }
   ],
-  "rows": [],
+  "rows": [
+    {
+      "seriesKey": "work",
+      "n": "1"
+    }
+  ],
   "raw": {
-    "rows": 0,
-    "rows_before_limit_at_least": 0
+    "rows": 1,
+    "rows_before_limit_at_least": 1
   }
 }
