@@ -64,12 +64,11 @@ async function cfSql({ accountId, token, sql }) {
     return json.result ?? {};
   }
 
-  // B) wrapper なし（= これが今の君のログ）
+  // B) wrapper なし
   if (json && (Array.isArray(json.meta) || Array.isArray(json.data))) {
     return json;
   }
 
-  // 想定外
   throw new Error(`Cloudflare API unknown response: ${text.slice(0, 800)}`);
 }
 
@@ -153,6 +152,21 @@ ORDER BY n DESC
 `;
 }
 
+/** ★追加：お気に入り（シリーズ別） */
+function qFavoritesBySeries(dataset, days = 30) {
+  return `
+SELECT
+  ${COL.seriesKey} AS seriesKey,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${COL.type} = 'favorite'
+  AND ${COL.seriesKey} != ''
+GROUP BY ${COL.seriesKey}
+ORDER BY n DESC
+`;
+}
+
 function qListFilterByQueryKey(dataset, days = 30) {
   return `
 SELECT
@@ -172,15 +186,12 @@ ORDER BY n DESC
 async function main() {
   const accountId = norm(process.env.CLOUDFLARE_ACCOUNT_ID);
   const token =
-    norm(process.env.CLOUDFLARE_AE_READ_TOKEN) ||
-    norm(process.env.CLOUDFLARE_API_TOKEN);
+    norm(process.env.CLOUDFLARE_AE_READ_TOKEN) || norm(process.env.CLOUDFLARE_API_TOKEN);
   const dataset = norm(process.env.CLOUDFLARE_AE_DATASET) || DEFAULT_DATASET;
 
   if (!accountId) throw new Error("Missing env: CLOUDFLARE_ACCOUNT_ID");
   if (!token) {
-    throw new Error(
-      "Missing env: CLOUDFLARE_AE_READ_TOKEN (or CLOUDFLARE_API_TOKEN)"
-    );
+    throw new Error("Missing env: CLOUDFLARE_AE_READ_TOKEN (or CLOUDFLARE_API_TOKEN)");
   }
 
   const days = Number(process.env.CLOUDFLARE_AE_DAYS || 30);
@@ -194,6 +205,10 @@ async function main() {
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
     { id: "vote_by_series", sql: qVotesBySeries(dataset, days) },
     { id: "vote_by_mood", sql: qVotesByMood(dataset, days) },
+
+    // ★追加
+    { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
+
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
   ];
 
@@ -213,9 +228,7 @@ async function main() {
     };
 
     await saveJson(`${OUT_DIR}/${q.id}.json`, out[q.id]);
-    console.log(
-      `[wae] wrote ${OUT_DIR}/${q.id}.json rows=${out[q.id].rows.length}`
-    );
+    console.log(`[wae] wrote ${OUT_DIR}/${q.id}.json rows=${out[q.id].rows.length}`);
   }
 
   await saveJson(`${OUT_DIR}/index.json`, {
