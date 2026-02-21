@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-02-19T12:40:24.377Z",
+  "updatedAt": "2026-02-21T05:15:36.478Z",
   "total": 152,
   "ok": 152,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 148,
-    "skippedAniList": 4,
-    "skippedWiki": 4,
-    "skippedAmazon": 4,
+    "skippedPerfect": 152,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
@@ -24,17 +24,10 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 4,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "イノサン :: audiences[]",
-        "ドロヘドロ :: audiences[]",
-        "文豪ストレイドッグス :: audiences[]",
-        "盾の勇者の成り上がり :: audiences[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -6537,73 +6530,6 @@
       "meta": null
     },
     {
-      "seriesKey": "三日間の幸福",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088811216",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088811216?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088811215",
-        "asin": "4088811216",
-        "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックス)",
-        "synopsis": "自分の寿命をお金に換える店にたどり着いた青年・朽木は、人生をほとんど売り渡し残り三ヶ月を監視役のミヤギと過ごすことに。限られた時間の中で彼が見つける“幸福”とは。",
-        "image": "https://m.media-amazon.com/images/I/51dIoHt2ZmL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "田口 囁一",
-        "releaseDate": "2017-07-04T00:00:01Z",
-        "magazine": "ガンガンJOKER",
-        "magazines": [
-          "ガンガンJOKER"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 98361,
-        "genres": [
-          "Drama",
-          "Psychological",
-          "Romance",
-          "Slice of Life",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Philosophy",
-          "Urban Fantasy",
-          "Urban",
-          "Male Protagonist",
-          "Primarily Adult Cast",
-          "Seinen",
-          "Hikikomori",
-          "Heterosexual",
-          "Writing",
-          "Suicide",
-          "Photography",
-          "Drawing",
-          "Mopeds",
-          "College",
-          "Autobiographical",
-          "Amnesia"
-        ],
-        "tags": [
-          "哲学",
-          "現代ファンタジー",
-          "都会",
-          "青年向け",
-          "ひきこもり",
-          "執筆",
-          "写真",
-          "絵・作画",
-          "原付",
-          "大学",
-          "自伝（作者体験）",
-          "記憶喪失"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
       "seriesKey": "不滅のあなたへ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063958426",
@@ -8135,6 +8061,62 @@
           "学園",
           "古典文学",
           "いじめ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "寿命を買い取ってもらった。一年につき、一万円で。",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/寿命を買い取ってもらった%E3%80%82一年につき、一万円で%E3%80%82-1-ジャンプコミックス-田口-囁一/dp/4088811216",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088811216?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088811215",
+        "asin": "4088811216",
+        "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックス)",
+        "synopsis": "無気力に生きていた青年クスノキは、寿命を買い取る店に辿り着き、大半の寿命を売って余命3か月となる。残りの時間を監視員ミヤギと共に過ごしながら、人生の意味と向き合っていく。",
+        "image": "https://m.media-amazon.com/images/I/51dIoHt2ZmL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "田口 囁一",
+        "releaseDate": "2017-07-04T00:00:01Z",
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 97553,
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Coming of Age",
+          "Philosophy",
+          "Male Protagonist",
+          "Primarily Adult Cast",
+          "Urban Fantasy",
+          "Heterosexual",
+          "Suicide",
+          "Shounen",
+          "Drawing",
+          "Photography",
+          "Mopeds"
+        ],
+        "tags": [
+          "成長譚",
+          "哲学",
+          "現代ファンタジー",
+          "少年向け",
+          "絵・作画",
+          "写真",
+          "原付"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
