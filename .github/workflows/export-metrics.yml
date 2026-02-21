@@ -1,4 +1,4 @@
-name: Export WAE metrics
+name: Export WAE metrics + Deploy Pages
 
 on:
   workflow_dispatch: {}
@@ -7,12 +7,22 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: export-metrics-pages
+  cancel-in-progress: true
 
 jobs:
-  export:
+  export_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
 
       - uses: actions/setup-node@v4
         with:
@@ -29,19 +39,44 @@ jobs:
         run: node scripts/metrics/export_wae_metrics.mjs
 
       - name: Commit & push metrics
+        id: commit
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # ★重要：未追跡も含めて staged に載せる（ここが今回の詰まりポイント）
           git add data/metrics
 
-          # staged に何も無ければ終了
           if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes."
             exit 0
           fi
 
           git commit -m "metrics: update wae exports"
           git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # 変更があった時だけ Pages を更新する
+      - name: Prepare site root (sync data -> public/data)
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          rm -rf public/data
+          mkdir -p public/data
+          if [ -d data ]; then
+            cp -R data/* public/data/ || true
+          fi
+
+      - uses: actions/configure-pages@v5
+        if: steps.commit.outputs.changed == 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.commit.outputs.changed == 'true'
+        with:
+          path: public
+
+      - uses: actions/deploy-pages@v4
+        if: steps.commit.outputs.changed == 'true'
