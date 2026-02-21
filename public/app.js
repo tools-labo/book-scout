@@ -284,10 +284,16 @@ function hasMagazine(it, mag) {
 }
 
 /* =======================
- * 気分（クイックフィルター）
+ * 気分（クイックフィルター）仕様A
+ * - tags のみ参照（genres無視）
+ * - 各フィルターは「一致タグ数>=2」で成立
+ * - list は AND（最大2）
+ * - 並び順は合算スコア（=一致タグ数合計）降順
+ * - 0件ならOR提案しない
  * ======================= */
 const QUICK_FILTERS_PATH = "./data/lane2/quick_filters.json";
 const QUICK_MAX = 2;
+const QUICK_MIN_HITS = 2;
 
 function parseMoodQuery() {
   const raw = toText(qs().get("mood"));
@@ -305,41 +311,78 @@ function setMoodQuery(ids) {
   history.replaceState(null, "", url);
 }
 
-function itGenresTags(it) {
-  const genres = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
-  const tags = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-  return { genres, tags };
+// 作品の tags（ユニーク）を取り出す
+function itTags(it) {
+  const raw = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
+  return Array.from(new Set(raw));
 }
 
-function matchesAny(list, wanted) {
-  if (!wanted?.length) return false;
-  const set = new Set(list || []);
-  return wanted.some(x => set.has(x));
+function toTagList(def, path) {
+  // def.matchAny.tags / def.matchNone.tags のみを見る（genresは見ない）
+  const arr = (path || []).map(toText).filter(Boolean);
+  return Array.from(new Set(arr));
 }
 
-function matchesQuickDef(it, def) {
-  if (!def) return false;
-  const { genres, tags } = itGenresTags(it);
-
-  const anyGenres = (def.matchAny?.genres || []).map(toText).filter(Boolean);
-  const anyTags = (def.matchAny?.tags || []).map(toText).filter(Boolean);
-
-  const noneGenres = (def.matchNone?.genres || []).map(toText).filter(Boolean);
-  const noneTags = (def.matchNone?.tags || []).map(toText).filter(Boolean);
-
-  if (matchesAny(genres, noneGenres)) return false;
-  if (matchesAny(tags, noneTags)) return false;
-
-  const hit = matchesAny(genres, anyGenres) || matchesAny(tags, anyTags);
-  return !!hit;
+function countTagHits(itTagSet, wantedTags) {
+  if (!wantedTags?.length) return 0;
+  let n = 0;
+  for (const t of wantedTags) if (itTagSet.has(t)) n++;
+  return n;
 }
 
+// 1フィルターの判定とスコア
+function quickEval(it, def) {
+  if (!def) return { ok: false, hits: 0 };
+
+  const tags = itTags(it);
+  const tagSet = new Set(tags);
+
+  const anyTags = toTagList(def, def.matchAny?.tags || []);
+  const noneTags = toTagList(def, def.matchNone?.tags || []);
+
+  // matchNone に当たったら即NG（1個でも一致したらNG）
+  if (noneTags.length) {
+    for (const t of noneTags) {
+      if (tagSet.has(t)) return { ok: false, hits: 0 };
+    }
+  }
+
+  // matchAny.tags の一致数（ユニーク）を数える
+  const hits = countTagHits(tagSet, anyTags);
+
+  // 仕様：>=2 で成立
+  if (hits >= QUICK_MIN_HITS) return { ok: true, hits };
+  return { ok: false, hits };
+}
+
+// AND判定（複数フィルター）と合算スコア
+function quickEvalAll(it, defs) {
+  if (!defs?.length) return { ok: true, score: 0, hitsById: {} };
+
+  let score = 0;
+  const hitsById = {};
+
+  for (const def of defs) {
+    const r = quickEval(it, def);
+    hitsById[def.id] = r.hits;
+
+    // AND：各フィルターが成立してないとNG
+    if (!r.ok) return { ok: false, score: 0, hitsById };
+
+    score += r.hits;
+  }
+
+  return { ok: true, score, hitsById };
+}
+
+// 単体フィルターの件数（>=2成立件数）
 function quickCounts(allItems, defs) {
   const map = new Map();
   for (const d of defs) map.set(d.id, 0);
+
   for (const it of allItems) {
     for (const d of defs) {
-      if (matchesQuickDef(it, d)) map.set(d.id, (map.get(d.id) || 0) + 1);
+      if (quickEval(it, d).ok) map.set(d.id, (map.get(d.id) || 0) + 1);
     }
   }
   return map;
@@ -414,24 +457,12 @@ function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters }) {
   }
 
   const labels = selected.map(id => defs.find(d => d.id === id)?.label || id);
-  const msg = `気分: <b>${esc(labels.join(" × "))}</b>（AND / 最大2）`;
+  const msg = `気分: <b>${esc(labels.join(" × "))}</b>（AND / 最大2 / 各フィルターはタグ一致2以上）`;
   hint.innerHTML = msg;
 
-  if (itemsAfterAllFilters.length === 0 && selected.length >= 2) {
-    const v = qs().get("v");
-    const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-    const links = selected.map(id => {
-      const lab = defs.find(d => d.id === id)?.label || id;
-      const href = `./list.html?mood=${encodeURIComponent(id)}${vq}`;
-      return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(lab)}だけにする</a>`;
-    }).join("");
-
-    const clearHref = `./list.html${vq ? `?v=${encodeURIComponent(v)}` : ""}`;
-    hint.innerHTML = `
-      ${msg}<br/>
-      <div style="margin-top:8px;">0件です。ORで広げるなら：</div>
-      <div class="pills" style="margin-top:6px;">${links}<a class="pill" href="${esc(clearHref)}" style="text-decoration:none;">気分を解除</a></div>
-    `;
+  // 仕様：0件でも OR 提案しない（ここで終わり）
+  if (itemsAfterAllFilters.length === 0) {
+    hint.innerHTML = `${msg}<br/><span style="opacity:.8;">該当なし</span>`;
   }
 }
 
@@ -629,7 +660,7 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * list.html（気分フィルターAND）
+ * list.html（気分フィルターAND + スコア順）
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -638,26 +669,44 @@ function renderList(data, quickDefs) {
   const all = Array.isArray(data?.items) ? data.items : [];
 
   const genreWanted = parseGenreQuery();
-  const audienceWanted = parseOneQueryParam("aud");
+  const audienceWanted = parseOneQueryParam("aud"); // 少年/青年/…
   const magazineWanted = parseOneQueryParam("mag");
   const moodSelected = parseMoodQuery();
 
   const moodDefsById = new Map((quickDefs || []).map(d => [d.id, d]));
   const moodActiveDefs = moodSelected.map(id => moodDefsById.get(id)).filter(Boolean);
 
-  const items = all
+  // まず通常フィルター
+  const base = all
     .filter((it) => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
     .filter((it) => hasAudience(it, audienceWanted))
-    .filter((it) => hasMagazine(it, magazineWanted))
-    .filter((it) => {
-      if (!moodActiveDefs.length) return true;
-      return moodActiveDefs.every(def => matchesQuickDef(it, def));
+    .filter((it) => hasMagazine(it, magazineWanted));
+
+  // 気分 AND + スコア
+  const scored = [];
+  if (moodActiveDefs.length) {
+    for (const it of base) {
+      const r = quickEvalAll(it, moodActiveDefs);
+      if (!r.ok) continue;
+      scored.push({ it, score: r.score });
+    }
+    // 合算スコア降順（同点はseriesKeyで安定化）
+    scored.sort((a, b) => {
+      const ds = (b.score || 0) - (a.score || 0);
+      if (ds) return ds;
+      const ak = toText(pick(a.it, ["seriesKey"])) || "";
+      const bk = toText(pick(b.it, ["seriesKey"])) || "";
+      return ak.localeCompare(bk);
     });
+  } else {
+    for (const it of base) scored.push({ it, score: 0 });
+  }
+
+  const items = scored.map(x => x.it);
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
 
   // 計測：list の絞り込み状態（描画のたびに 1 回だけ）
-  // mood は「選択IDをカンマ」で送る
   const moodParam = moodSelected.join(",");
   trackEvent({
     type: "list_filter",
@@ -692,13 +741,14 @@ function renderList(data, quickDefs) {
 
         if (set.has(id)) set.delete(id);
         else {
-          if (set.size >= QUICK_MAX) return;
+          if (set.size >= QUICK_MAX) return; // 2個制限
           set.add(id);
         }
 
         const next = Array.from(set);
         setMoodQuery(next);
 
+        // URL変更だけだと再描画されないので、その場で再描画
         renderList(data, quickDefs);
       }
     });
@@ -706,8 +756,7 @@ function renderList(data, quickDefs) {
     renderQuickHint({
       selectedIds: moodSelected,
       defs,
-      itemsAfterAllFilters: items,
-      allItems: all
+      itemsAfterAllFilters: items
     });
   }
 
@@ -771,7 +820,7 @@ function renderList(data, quickDefs) {
 }
 
 /* =======================
- * work.html（投票ボタンを追加）
+ * work.html（投票ボタン）
  * ======================= */
 function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
@@ -846,6 +895,9 @@ function renderWork(data, quickDefs) {
 
     ${voteButtons}
   `;
+
+  // 計測：work_view（詳細表示）
+  trackEvent({ type: "work_view", page: "work", seriesKey, mood: "" });
 
   // 投票クリック → AE に vote を送る
   const vp = document.getElementById("votePills");
