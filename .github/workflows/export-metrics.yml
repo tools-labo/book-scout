@@ -1,12 +1,17 @@
-name: Export WAE metrics to JSON
+name: Export WAE metrics
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "17 2 * * *" # JST 11:17（適当。後で変えてOK）
+    # 1時間おき（必要なら後で変える）
+    - cron: "15 * * * *"
 
 permissions:
   contents: write
+
+concurrency:
+  group: export-wae-metrics
+  cancel-in-progress: true
 
 jobs:
   export:
@@ -18,15 +23,20 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Export metrics from Analytics Engine
+      - name: Install deps
+        run: npm install
+
+      - name: Export WAE metrics
         run: node scripts/metrics/export_wae_metrics.mjs
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_AE_READ_TOKEN: ${{ secrets.CLOUDFLARE_AE_READ_TOKEN }}
 
-      - name: Commit & push (only if changed)
+      - name: Commit metrics JSON
         run: |
           set -euo pipefail
+
           if git diff --quiet; then
             echo "No changes."
             exit 0
@@ -35,6 +45,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add public/data/metrics
-          git commit -m "metrics: export WAE aggregates"
+          # 変更が出る想定の場所だけ add（必要ならパスを合わせて）
+          git add data/metrics || true
+          git add data/lane2/metrics || true
+          git add data/wae || true
+
+          # 何も staged されてなければ終了
+          if git diff --cached --quiet; then
+            echo "No staged changes."
+            exit 0
+          fi
+
+          git commit -m "metrics: export wae"
           git push origin "HEAD:${GITHUB_REF_NAME}"
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
