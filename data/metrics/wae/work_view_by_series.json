@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T05:55:03.633Z",
+  "updatedAt": "2026-02-21T07:00:39.344Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,11 +17,11 @@
   "rows": [
     {
       "seriesKey": "work",
-      "n": "3"
+      "n": "6"
     }
   ],
   "raw": {
     "rows": 1,
-    "rows_before_limit_at_least": 3
+    "rows_before_limit_at_least": 6
   }
 }
