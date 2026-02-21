@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-21T05:15:36.478Z",
+  "updatedAt": "2026-02-21T05:30:58.588Z",
   "total": 152,
   "droppedTotal": 0,
   "droppedSeriesKeys": [],
@@ -5369,6 +5369,46 @@
       ],
       "meta": {
         "anilistId": 145235,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "寿命を買い取ってもらった。一年につき、一万円で。",
+      "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックス)",
+      "author": "田口 囁一",
+      "publisher": "集英社",
+      "releaseDate": "2017-07-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51dIoHt2ZmL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/寿命を買い取ってもらった%E3%80%82一年につき、一万円で%E3%80%82-1-ジャンプコミックス-田口-囁一/dp/4088811216",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088811216?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088811215",
+      "asin": "4088811216",
+      "synopsis": "無気力に生きていた青年クスノキは、寿命を買い取る店に辿り着き、大半の寿命を売って余命3か月となる。残りの時間を監視員ミヤギと共に過ごしながら、人生の意味と向き合っていく。",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "成長譚",
+        "哲学",
+        "現代ファンタジー",
+        "少年向け",
+        "絵・作画",
+        "写真",
+        "原付"
+      ],
+      "meta": {
+        "anilistId": 97553,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
