@@ -1,21 +1,29 @@
 // scripts/metrics/export_wae_metrics.mjs
-// Cloudflare Analytics Engine (WAE) を SQL で集計して JSON に吐き出す
-//
-// 必要ENV:
-// - CLOUDFLARE_ACCOUNT_ID
-// - CLOUDFLARE_AE_READ_TOKEN   (Analytics Engine を読む権限のあるトークン)
-//
-// 出力先（GitHub Pagesで参照できる場所）
-// - public/data/metrics/__verify_latest.json
-// - public/data/metrics/type_counts.json
-// - public/data/metrics/mood_counts.json
-// - public/data/metrics/work_counts.json
-
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const DATASET = "book_scout_events";
-const OUT_DIR = "public/data/metrics";
+const OUT_DIR = "data/metrics/wae";
+const DEFAULT_DATASET = "book_scout_events";
+
+// Worker側の writeDataPoint の blobs 配列に合わせる（v2）
+// blob1: type
+// blob2: page
+// blob3: seriesKey
+// blob4: mood
+// blob5: genre
+// blob6: aud
+// blob7: mag
+// double1: 1（カウント用）
+const COL = {
+  type: "blob1",
+  page: "blob2",
+  seriesKey: "blob3",
+  mood: "blob4",
+  genre: "blob5",
+  aud: "blob6",
+  mag: "blob7",
+  weight: "double1",
+};
 
 function norm(s) {
   return String(s ?? "").trim();
@@ -26,16 +34,15 @@ async function saveJson(p, obj) {
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
-async function sql({ accountId, token, query }) {
+async function cfSql({ accountId, token, sql }) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`;
-
   const r = await fetch(url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      "content-type": "text/plain; charset=utf-8",
+      "content-type": "text/plain",
     },
-    body: String(query || "").trim(),
+    body: sql,
   });
 
   const text = await r.text();
@@ -47,137 +54,171 @@ async function sql({ accountId, token, query }) {
   }
 
   if (!r.ok) {
-    throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 800)}`);
-  }
-  if (!json) {
-    throw new Error(`Cloudflare API invalid JSON: ${text.slice(0, 800)}`);
-  }
-
-  // 返り値形式の差を吸収
-  // 1) success/result 形式
-  if (Object.prototype.hasOwnProperty.call(json, "success")) {
-    if (!json.success) {
-      throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
-    }
-    return Array.isArray(json.result) ? json.result : [];
+    throw new Error(
+      `Cloudflare API HTTP ${r.status}: ${text.slice(0, 500)}`
+    );
   }
 
-  // 2) meta/data 形式（success無し）
-  if (Array.isArray(json.data)) return json.data;
+  if (!json?.success) {
+    throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
+  }
 
-  // 3) 念のため
-  if (Array.isArray(json.rows)) return json.rows;
-
-  throw new Error(`Cloudflare API unknown response shape: ${text.slice(0, 800)}`);
+  return json?.result ?? {};
 }
 
-// schema=v2 想定（Workerが書いている blobs の並び）
-// blobs[0]=type, blobs[1]=page, blobs[2]=seriesKey, blobs[3]=mood, blobs[4]=genre, blobs[5]=aud, blobs[6]=mag
-function qVerifyLatest(limit = 20) {
-  return `
-SELECT
-  blobs[0] AS type,
-  blobs[1] AS page,
-  blobs[2] AS seriesKey,
-  blobs[3] AS mood,
-  blobs[4] AS genre,
-  blobs[5] AS aud,
-  blobs[6] AS mag,
-  timestamp AS ts
-FROM ${DATASET}
-WHERE blobs[0] = '__verify'
-ORDER BY ts DESC
-LIMIT ${Number(limit) || 20}
-`;
+// sampling を考慮したカウント（推奨）
+// COUNT() ではなく SUM(_sample_interval) を使う  [oai_citation:1‡Cloudflare Docs](https://developers.cloudflare.com/analytics/analytics-engine/sql-api/)
+function sumCountExpr() {
+  return "SUM(_sample_interval) AS n";
 }
 
-function qTypeCounts(days = 30) {
+function whereRecent(days = 30) {
+  return `timestamp > NOW() - INTERVAL '${Number(days)}' DAY`;
+}
+
+function qTypeCounts(dataset, days = 30) {
   return `
 SELECT
-  blobs[0] AS type,
-  COUNT(*) AS n
-FROM ${DATASET}
-WHERE timestamp >= NOW() - INTERVAL '${Number(days) || 30}' DAY
-GROUP BY type
+  ${COL.type} AS type,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+GROUP BY ${COL.type}
 ORDER BY n DESC
 `;
 }
 
-function qMoodCounts(days = 30) {
+function qRecent(dataset, limit = 200) {
   return `
 SELECT
-  blobs[3] AS mood,
-  COUNT(*) AS n
-FROM ${DATASET}
-WHERE blobs[0] = 'vote'
-  AND timestamp >= NOW() - INTERVAL '${Number(days) || 30}' DAY
-  AND blobs[3] != ''
-GROUP BY mood
+  timestamp,
+  ${COL.type} AS type,
+  ${COL.page} AS page,
+  ${COL.seriesKey} AS seriesKey,
+  ${COL.mood} AS mood,
+  ${COL.genre} AS genre,
+  ${COL.aud} AS aud,
+  ${COL.mag} AS mag
+FROM ${dataset}
+ORDER BY timestamp DESC
+LIMIT ${Number(limit)}
+`;
+}
+
+function qWorkViewsBySeries(dataset, days = 30) {
+  return `
+SELECT
+  ${COL.seriesKey} AS seriesKey,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${COL.type} = 'work_view'
+  AND ${COL.seriesKey} != ''
+GROUP BY ${COL.seriesKey}
 ORDER BY n DESC
 `;
 }
 
-function qWorkCounts(days = 30) {
+function qVotesBySeries(dataset, days = 30) {
   return `
 SELECT
-  blobs[2] AS seriesKey,
-  COUNT(*) AS n
-FROM ${DATASET}
-WHERE blobs[0] = 'work_view'
-  AND timestamp >= NOW() - INTERVAL '${Number(days) || 30}' DAY
-  AND blobs[2] != ''
-GROUP BY seriesKey
+  ${COL.seriesKey} AS seriesKey,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${COL.type} = 'vote'
+  AND ${COL.seriesKey} != ''
+GROUP BY ${COL.seriesKey}
 ORDER BY n DESC
-LIMIT 200
+`;
+}
+
+function qVotesByMood(dataset, days = 30) {
+  return `
+SELECT
+  ${COL.mood} AS mood,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${COL.type} = 'vote'
+  AND ${COL.mood} != ''
+GROUP BY ${COL.mood}
+ORDER BY n DESC
+`;
+}
+
+function qListFilterByQueryKey(dataset, days = 30) {
+  // list_filter の「クエリ別」集計（genre/aud/mag/mood の組み合わせ）
+  // 空は空で残しておく（後でUI側の正規化に合わせやすい）
+  return `
+SELECT
+  ${COL.genre} AS genre,
+  ${COL.aud} AS aud,
+  ${COL.mag} AS mag,
+  ${COL.mood} AS mood,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${COL.type} = 'list_filter'
+GROUP BY ${COL.genre}, ${COL.aud}, ${COL.mag}, ${COL.mood}
+ORDER BY n DESC
 `;
 }
 
 async function main() {
   const accountId = norm(process.env.CLOUDFLARE_ACCOUNT_ID);
-  const token = norm(process.env.CLOUDFLARE_AE_READ_TOKEN);
+  const token =
+    norm(process.env.CLOUDFLARE_AE_READ_TOKEN) ||
+    norm(process.env.CLOUDFLARE_API_TOKEN);
+  const dataset = norm(process.env.CLOUDFLARE_AE_DATASET) || DEFAULT_DATASET;
 
   if (!accountId) throw new Error("Missing env: CLOUDFLARE_ACCOUNT_ID");
-  if (!token) throw new Error("Missing env: CLOUDFLARE_AE_READ_TOKEN");
+  if (!token) {
+    throw new Error(
+      "Missing env: CLOUDFLARE_AE_READ_TOKEN (or CLOUDFLARE_API_TOKEN)"
+    );
+  }
 
-  // 直近verify（列ズレ確認用）
-  const verifyLatest = await sql({ accountId, token, query: qVerifyLatest(30) });
-  await saveJson(path.join(OUT_DIR, "__verify_latest.json"), {
-    version: 1,
-    updatedAt: new Date().toISOString(),
-    dataset: DATASET,
-    rows: verifyLatest,
+  const days = Number(process.env.CLOUDFLARE_AE_DAYS || 30);
+
+  const now = new Date().toISOString();
+  const meta = { version: 1, updatedAt: now, dataset, days };
+
+  const queries = [
+    { id: "type_counts", sql: qTypeCounts(dataset, days) },
+    { id: "recent_200", sql: qRecent(dataset, 200) },
+    { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
+    { id: "vote_by_series", sql: qVotesBySeries(dataset, days) },
+    { id: "vote_by_mood", sql: qVotesByMood(dataset, days) },
+    { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
+  ];
+
+  const out = {};
+
+  for (const q of queries) {
+    const res = await cfSql({ accountId, token, sql: q.sql });
+    // res: { meta: [...], data: [...] } を想定（CloudflareのSQL APIレスポンス）
+    out[q.id] = {
+      ...meta,
+      id: q.id,
+      columns: Array.isArray(res?.meta) ? res.meta : [],
+      rows: Array.isArray(res?.data) ? res.data : [],
+    };
+
+    await saveJson(`${OUT_DIR}/${q.id}.json`, out[q.id]);
+    console.log(`[wae] wrote ${OUT_DIR}/${q.id}.json rows=${out[q.id].rows.length}`);
+  }
+
+  await saveJson(`${OUT_DIR}/index.json`, {
+    ...meta,
+    outputs: queries.map((q) => ({
+      id: q.id,
+      file: `${q.id}.json`,
+      rows: out[q.id]?.rows?.length ?? 0,
+    })),
   });
 
-  // type集計
-  const typeCounts = await sql({ accountId, token, query: qTypeCounts(30) });
-  await saveJson(path.join(OUT_DIR, "type_counts.json"), {
-    version: 1,
-    updatedAt: new Date().toISOString(),
-    dataset: DATASET,
-    rows: typeCounts,
-  });
-
-  // mood(vote)集計
-  const moodCounts = await sql({ accountId, token, query: qMoodCounts(30) });
-  await saveJson(path.join(OUT_DIR, "mood_counts.json"), {
-    version: 1,
-    updatedAt: new Date().toISOString(),
-    dataset: DATASET,
-    rows: moodCounts,
-  });
-
-  // 作品別(work_view)集計
-  const workCounts = await sql({ accountId, token, query: qWorkCounts(30) });
-  await saveJson(path.join(OUT_DIR, "work_counts.json"), {
-    version: 1,
-    updatedAt: new Date().toISOString(),
-    dataset: DATASET,
-    rows: workCounts,
-  });
-
-  console.log(
-    `[metrics] ok dataset=${DATASET} verify=${verifyLatest.length} type=${typeCounts.length} mood=${moodCounts.length} work=${workCounts.length} -> ${OUT_DIR}`
-  );
+  console.log(`[wae] done -> ${OUT_DIR}/index.json`);
 }
 
 main().catch((e) => {
