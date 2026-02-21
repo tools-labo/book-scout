@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:57:29.679Z",
+  "updatedAt": "2026-02-21T12:58:53.550Z",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -27,17 +27,17 @@
     {
       "id": "vote_by_mood",
       "file": "vote_by_mood.json",
-      "rows": 4
+      "rows": 5
     },
     {
       "id": "vote_by_mood_series",
       "file": "vote_by_mood_series.json",
-      "rows": 6
+      "rows": 7
     },
     {
       "id": "favorite_by_series",
       "file": "favorite_by_series.json",
-      "rows": 6
+      "rows": 7
     },
     {
       "id": "list_filter_by_query",

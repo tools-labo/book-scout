@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:57:29.679Z",
+  "updatedAt": "2026-02-21T12:58:53.550Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -44,6 +44,28 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-02-21 12:56:47",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 12:56:43",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
       "timestamp": "2026-02-21 12:56:36",
       "type": "work_view",
       "schema": "v2",
@@ -55,12 +77,45 @@
       "mag": ""
     },
     {
+      "timestamp": "2026-02-21 12:56:32",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 12:56:22",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "genre=Action",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
       "timestamp": "2026-02-21 12:56:05",
       "type": "list_filter",
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
       "mood": "mood=satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 12:56:02",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -2187,65 +2242,10 @@
       "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:04:28",
-      "type": "vote",
-      "schema": "work",
-      "page": "ニセコイ",
-      "seriesKey": "heart_throb",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:04:20",
-      "type": "vote",
-      "schema": "work",
-      "page": "トモダチゲーム",
-      "seriesKey": "page_turner",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:04:12",
-      "type": "vote",
-      "schema": "work",
-      "page": "チェンソーマン",
-      "seriesKey": "page_turner",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:04:11",
-      "type": "vote",
-      "schema": "work",
-      "page": "チェンソーマン",
-      "seriesKey": "funny",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:04:03",
-      "type": "vote",
-      "schema": "work",
-      "page": "ダンダダン",
-      "seriesKey": "funny",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 243
+    "rows_before_limit_at_least": 248
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:57:29.679Z",
+  "updatedAt": "2026-02-21T12:58:53.550Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -35,6 +35,16 @@
       "n": "5"
     },
     {
+      "mood": "page_turner",
+      "seriesKey": "ドラゴンボール",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ドラゴンボール",
+      "n": "2"
+    },
+    {
       "mood": "satisfying",
       "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
@@ -43,15 +53,10 @@
       "mood": "satisfying",
       "seriesKey": "終末のワルキューレ",
       "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 6,
-    "rows_before_limit_at_least": 10
+    "rows": 7,
+    "rows_before_limit_at_least": 12
   }
 }

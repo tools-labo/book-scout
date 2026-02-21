@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:57:29.679Z",
+  "updatedAt": "2026-02-21T12:58:53.550Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -77,6 +77,13 @@
       "n": "5"
     },
     {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action",
+      "n": "5"
+    },
+    {
       "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "aud": "",
       "mag": "",
@@ -95,13 +102,6 @@
       "aud": "",
       "mag": "",
       "mood": "mood=hot",
-      "n": "4"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action",
       "n": "4"
     },
     {
@@ -289,6 +289,6 @@
   ],
   "raw": {
     "rows": 37,
-    "rows_before_limit_at_least": 158
+    "rows_before_limit_at_least": 159
   }
 }
