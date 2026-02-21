@@ -167,7 +167,25 @@ a { color: inherit; text-decoration: none; }
 .meta .sub { color: var(--muted); font-size: 12px; margin: 6px 0; line-height: 1.35; }
 
 .pills { display:flex; flex-wrap:wrap; gap: 6px; margin: 6px 0 0; }
-.pill { background: var(--chip); border: 1px solid var(--line); color: #d9d9d9; font-size: 11px; padding: 4px 8px; border-radius: 999px; }
+
+/* 重要：数字変化で幅がズレないようにする */
+.pill {
+  background: var(--chip);
+  border: 1px solid var(--line);
+  color: #d9d9d9;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+
+  white-space: nowrap;                 /* ボタン内で改行させない */
+  font-variant-numeric: tabular-nums;  /* 数字の桁幅を揃える */
+}
+
+.qcount-wrap{
+  display:inline-block;
+  width: 4ch;          /* 9999まで想定で固定幅 */
+  text-align: right;
+}
 
 .syn { margin-top: 10px; }
 .syn summary { cursor: pointer; color: var(--muted); font-size: 12px; user-select: none; }
@@ -185,23 +203,3 @@ a { color: inherit; text-decoration: none; }
 .d-img { width: 150px; height: 214px; object-fit: cover; border-radius: 12px; }
 .d-links { display:flex; flex-direction: column; gap: 8px; flex: 1; }
 .d-text { font-size: 14px; line-height: 1.75; color: #e2e2e2; white-space: pre-wrap; }
-
-/* =======================
- * Buttons inside .pill (for quick filters / votes)
- * ======================= */
-.pill{
-  cursor: pointer;
-}
-button.pill{
-  appearance: none;
-  -webkit-appearance: none;
-  border: 1px solid var(--line);
-  background: var(--chip);
-  color: #d9d9d9;
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 999px;
-}
-button.pill:active{
-  transform: translateY(1px);
-}
