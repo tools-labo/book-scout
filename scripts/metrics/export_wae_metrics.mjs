@@ -5,15 +5,7 @@ import path from "node:path";
 const OUT_DIR = "data/metrics/wae";
 const DEFAULT_DATASET = "book_scout_events";
 
-// Worker側の writeDataPoint の blobs 配列に合わせる（v2）
-// blob1: type
-// blob2: page
-// blob3: seriesKey
-// blob4: mood
-// blob5: genre
-// blob6: aud
-// blob7: mag
-// double1: 1（カウント用）
+// v2 schema (Worker writeDataPoint の blobs の順番)
 const COL = {
   type: "blob1",
   page: "blob2",
@@ -22,7 +14,6 @@ const COL = {
   genre: "blob5",
   aud: "blob6",
   mag: "blob7",
-  weight: "double1",
 };
 
 function norm(s) {
@@ -34,8 +25,16 @@ async function saveJson(p, obj) {
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
+/**
+ * Cloudflare Analytics Engine SQL API はレスポンス形が2種類ある:
+ *  A) { success:true, result:{ meta:[...], data:[...], ... } }
+ *  B) { meta:[...], data:[...], ... }  // 直接 result 相当が返るケース
+ *
+ * → 両方を受ける
+ */
 async function cfSql({ accountId, token, sql }) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`;
+
   const r = await fetch(url, {
     method: "POST",
     headers: {
@@ -46,28 +45,35 @@ async function cfSql({ accountId, token, sql }) {
   });
 
   const text = await r.text();
-  let json = null;
+  let json;
   try {
     json = JSON.parse(text);
   } catch {
-    json = null;
+    throw new Error(`Cloudflare API returned non-JSON: ${text.slice(0, 500)}`);
   }
 
   if (!r.ok) {
-    throw new Error(
-      `Cloudflare API HTTP ${r.status}: ${text.slice(0, 500)}`
-    );
+    throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 800)}`);
   }
 
-  if (!json?.success) {
-    throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
+  // A) wrapper あり
+  if (typeof json?.success === "boolean") {
+    if (!json.success) {
+      throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
+    }
+    return json.result ?? {};
   }
 
-  return json?.result ?? {};
+  // B) wrapper なし（= これが今の君のログ）
+  if (json && (Array.isArray(json.meta) || Array.isArray(json.data))) {
+    return json;
+  }
+
+  // 想定外
+  throw new Error(`Cloudflare API unknown response: ${text.slice(0, 800)}`);
 }
 
 // sampling を考慮したカウント（推奨）
-// COUNT() ではなく SUM(_sample_interval) を使う  [oai_citation:1‡Cloudflare Docs](https://developers.cloudflare.com/analytics/analytics-engine/sql-api/)
 function sumCountExpr() {
   return "SUM(_sample_interval) AS n";
 }
@@ -148,8 +154,6 @@ ORDER BY n DESC
 }
 
 function qListFilterByQueryKey(dataset, days = 30) {
-  // list_filter の「クエリ別」集計（genre/aud/mag/mood の組み合わせ）
-  // 空は空で残しておく（後でUI側の正規化に合わせやすい）
   return `
 SELECT
   ${COL.genre} AS genre,
@@ -197,16 +201,21 @@ async function main() {
 
   for (const q of queries) {
     const res = await cfSql({ accountId, token, sql: q.sql });
-    // res: { meta: [...], data: [...] } を想定（CloudflareのSQL APIレスポンス）
     out[q.id] = {
       ...meta,
       id: q.id,
       columns: Array.isArray(res?.meta) ? res.meta : [],
       rows: Array.isArray(res?.data) ? res.data : [],
+      raw: {
+        rows: res?.rows ?? null,
+        rows_before_limit_at_least: res?.rows_before_limit_at_least ?? null,
+      },
     };
 
     await saveJson(`${OUT_DIR}/${q.id}.json`, out[q.id]);
-    console.log(`[wae] wrote ${OUT_DIR}/${q.id}.json rows=${out[q.id].rows.length}`);
+    console.log(
+      `[wae] wrote ${OUT_DIR}/${q.id}.json rows=${out[q.id].rows.length}`
+    );
   }
 
   await saveJson(`${OUT_DIR}/index.json`, {
