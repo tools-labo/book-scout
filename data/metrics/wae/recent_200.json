@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T08:32:04.459Z",
+  "updatedAt": "2026-02-21T08:32:58.007Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -475,7 +475,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "",
+      "genre": "mood=moving",
       "aud": "",
       "mag": ""
     },
@@ -485,7 +485,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=moving",
+      "genre": "",
       "aud": "",
       "mag": ""
     },
@@ -665,7 +665,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=tearjerker",
+      "genre": "mood=tearjerker,moving",
       "aud": "",
       "mag": ""
     },
@@ -675,7 +675,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=tearjerker,moving",
+      "genre": "mood=tearjerker",
       "aud": "",
       "mag": ""
     },
@@ -1185,7 +1185,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "",
+      "genre": "mood=messy",
       "aud": "",
       "mag": ""
     },
@@ -1195,7 +1195,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=messy",
+      "genre": "",
       "aud": "",
       "mag": ""
     },
@@ -1265,7 +1265,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=heart_throb",
+      "genre": "",
       "aud": "",
       "mag": ""
     },
@@ -1275,7 +1275,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "",
+      "genre": "mood=heart_throb",
       "aud": "",
       "mag": ""
     },
@@ -1315,7 +1315,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "",
+      "genre": "mood=hot",
       "aud": "",
       "mag": ""
     },
@@ -1325,7 +1325,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=hot",
+      "genre": "",
       "aud": "",
       "mag": ""
     },
@@ -1345,7 +1345,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "mood=hot",
+      "genre": "",
       "aud": "",
       "mag": ""
     },
@@ -1355,7 +1355,7 @@
       "page": "v2",
       "seriesKey": "list",
       "mood": "",
-      "genre": "",
+      "genre": "mood=hot",
       "aud": "",
       "mag": ""
     },
@@ -1930,11 +1930,11 @@
       "mag": ""
     },
     {
-      "timestamp": "2026-02-20 15:56:10",
+      "timestamp": "2026-02-20 15:56:13",
       "type": "vote",
       "page": "work",
       "seriesKey": "葬送のフリーレン",
-      "mood": "moving",
+      "mood": "funny",
       "genre": "JP",
       "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "mag": ""

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T08:32:04.459Z",
+  "updatedAt": "2026-02-21T08:32:58.007Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -19,6 +19,11 @@
     }
   ],
   "rows": [
+    {
+      "mood": "funny",
+      "seriesKey": "葬送のフリーレン",
+      "n": "2"
+    },
     {
       "mood": "funny",
       "seriesKey": "ダンダダン",
@@ -78,11 +83,6 @@
       "mood": "moving",
       "seriesKey": "聲の形",
       "n": "3"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "葬送のフリーレン",
-      "n": "2"
     },
     {
       "mood": "page_turner",
