@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T09:44:04.932Z",
+  "updatedAt": "2026-02-21T10:39:56.218Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,7 +17,23 @@
   "rows": [
     {
       "seriesKey": "アイアムアヒーロー",
-      "n": "3"
+      "n": "4"
+    },
+    {
+      "seriesKey": "キングダム",
+      "n": "1"
+    },
+    {
+      "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
+      "n": "1"
     },
     {
       "seriesKey": "三日間の幸福",
@@ -30,10 +46,14 @@
     {
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 4,
-    "rows_before_limit_at_least": 6
+    "rows": 9,
+    "rows_before_limit_at_least": 12
   }
 }

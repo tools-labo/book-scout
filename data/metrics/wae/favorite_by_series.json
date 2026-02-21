@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T09:44:04.932Z",
+  "updatedAt": "2026-02-21T10:39:56.218Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -30,10 +30,14 @@
     {
       "seriesKey": "orange [オレンジ]",
       "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 4,
-    "rows_before_limit_at_least": 7
+    "rows": 5,
+    "rows_before_limit_at_least": 8
   }
 }
