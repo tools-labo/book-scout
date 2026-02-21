@@ -1,4 +1,3 @@
-<!-- public/stats.html（全差し替え：ランキングカードを list と同じ情報量に） -->
 <!doctype html>
 <html lang="ja">
 <head>
@@ -34,12 +33,21 @@
       <section id="rankFav" class="grid"></section>
     </section>
 
-    <!-- 投票（気分の総数） -->
+    <!-- 投票（総合） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
-        <h2 class="section-title">投票（気分の総数）</h2>
+        <h2 class="section-title">投票が多い作品（総合）</h2>
       </div>
-      <p class="section-sub">人気ランキングではなく、読み味の傾向を見るための集計</p>
+      <p class="section-sub">人気ではなく「読み味データが集まっている」作品の確認用</p>
+      <section id="rankVotes" class="grid"></section>
+    </section>
+
+    <!-- みんなの気分（合計） -->
+    <section class="section" style="margin-top:18px;">
+      <div class="section-head">
+        <h2 class="section-title">みんなの気分（投票数の合計）</h2>
+      </div>
+      <p class="section-sub">気分ごとの投票数（作品ランキングではない）</p>
       <div id="moodTotals" class="card" style="padding:12px;"></div>
     </section>
 
@@ -74,7 +82,14 @@
       if (v == null) return "";
       if (typeof v === "string") return v.trim();
       if (typeof v === "number" || typeof v === "boolean") return String(v);
-      if (Array.isArray(v)) return v.map(toText).filter(Boolean).join(" / ");
+
+      if (Array.isArray(v)) {
+        const xs = v.map(toText).filter(Boolean);
+        const seen = new Set();
+        const uniq = xs.filter(x => (seen.has(x) ? false : (seen.add(x), true)));
+        return uniq.join(" / ");
+      }
+
       if (typeof v === "object") {
         const keys = ["name","ja","jp","label","value","text","title","publisher","company","display","brand","manufacturer"];
         for (const k of keys) {
@@ -86,6 +101,26 @@
         return "";
       }
       return "";
+    }
+
+    function pick(it, keys) {
+      for (const k of keys) {
+        const v = k.includes(".")
+          ? k.split(".").reduce((o, kk) => (o ? o[kk] : undefined), it)
+          : it?.[k];
+        if (Array.isArray(v)) return v;
+        if (toText(v)) return v;
+      }
+      return null;
+    }
+    function pickArr(it, keys) {
+      for (const k of keys) {
+        const v = k.includes(".")
+          ? k.split(".").reduce((o, kk) => (o ? o[kk] : undefined), it)
+          : it?.[k];
+        if (Array.isArray(v) && v.length) return v;
+      }
+      return [];
     }
 
     function formatYmd(s) {
@@ -109,6 +144,35 @@
       if (s) s.textContent = msg;
     }
 
+    const GENRE_JA = {
+      Action: "アクション",
+      Adventure: "冒険",
+      Comedy: "コメディ",
+      Drama: "ドラマ",
+      Fantasy: "ファンタジー",
+      Horror: "ホラー",
+      Mystery: "ミステリー",
+      Psychological: "心理",
+      Romance: "恋愛",
+      "Sci-Fi": "SF",
+      "Slice of Life": "日常",
+      Sports: "スポーツ",
+      Supernatural: "超常",
+      Thriller: "サスペンス",
+    };
+
+    function mapGenres(genres) {
+      if (!Array.isArray(genres)) return [];
+      return genres
+        .map((g) => {
+          const s = toText(g);
+          if (!s) return null;
+          if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
+          return GENRE_JA[s] || null;
+        })
+        .filter(Boolean);
+    }
+
     function pills(list) {
       const xs = (list || []).map(toText).filter(Boolean);
       if (!xs.length) return "";
@@ -118,14 +182,13 @@
     function getWorkMap(items) {
       const map = new Map();
       for (const it of (items || [])) {
-        const seriesKey = toText(it?.seriesKey);
+        const seriesKey = toText(pick(it, ["seriesKey"]));
         if (!seriesKey) continue;
         map.set(seriesKey, it);
       }
       return map;
     }
 
-    // quick_filters.json から mood id -> label
     function getMoodLabelMap(quick) {
       const map = new Map();
       const defs = Array.isArray(quick?.items) ? quick.items : [];
@@ -137,20 +200,30 @@
       return map;
     }
 
+    function pickRows(obj) {
+      if (!obj) return [];
+      if (Array.isArray(obj)) return obj;
+      if (Array.isArray(obj?.rows)) return obj.rows;
+      if (Array.isArray(obj?.data)) return obj.data;
+      return [];
+    }
+
     function rankCardHtml({ seriesKey, n, work }) {
       const key = encodeURIComponent(seriesKey);
-      const vol1 = work?.vol1 || {};
 
-      const title = toText(vol1?.title) || seriesKey || "(無題)";
-      const author = toText(vol1?.author);
-      const release = formatYmd(vol1?.releaseDate);
-      const publisher = toText(vol1?.publisher);
-      const magazine = toText(vol1?.magazine);
-      const img = normalizeImgUrl(toText(vol1?.image));
+      const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
+      const author = toText(pick(work, ["author", "vol1.author"])) || "";
+      const release = formatYmd(pick(work, ["releaseDate", "vol1.releaseDate"])) || "";
+      const publisher = toText(pick(work, ["publisher", "vol1.publisher"])) || "";
+      const magazine = toText(pick(work, ["magazine", "vol1.magazine"])) || "";
 
-      const genres = Array.isArray(vol1?.genres) ? vol1.genres.map(toText).filter(Boolean) : [];
-      const tags = Array.isArray(vol1?.tags) ? vol1.tags.map(toText).filter(Boolean).slice(0, 10) : [];
-      const synopsis = toText(vol1?.synopsis);
+      const imgRaw = toText(pick(work, ["image", "vol1.image"])) || "";
+      const img = normalizeImgUrl(imgRaw);
+
+      const genresJa = mapGenres(pickArr(work, ["genres", "vol1.genres"]));
+      const tagsJa = pickArr(work, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
+
+      const synopsis = toText(pick(work, ["synopsis", "vol1.synopsis"])) || "";
 
       const metaParts = [
         author ? author : null,
@@ -169,13 +242,12 @@
               }
             </div>
             <div class="meta">
-              <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey)}</a></div>
+              <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
               ${metaParts ? `<div class="sub">${esc(metaParts)}</div>` : ""}
-
               <div class="sub">回数: <b>${esc(n)}</b></div>
 
-              ${genres.length ? `<div class="sub">ジャンル: ${esc(genres.join(" / "))}</div>` : ""}
-              ${tags.length ? `<div class="sub">タグ:</div>${pills(tags)}` : ""}
+              ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
+              ${tagsJa.length ? `<div class="sub">タグ:</div>${pills(tagsJa)}` : ""}
 
               ${synopsis ? `
                 <details class="syn">
@@ -202,32 +274,22 @@
       return `<div>${lines}</div>`;
     }
 
-    function pickRows(obj) {
-      if (!obj) return [];
-      if (Array.isArray(obj)) return obj;
-      if (Array.isArray(obj?.rows)) return obj.rows;
-      if (Array.isArray(obj?.data)) return obj.data;
-      return [];
-    }
-
     async function run() {
       try {
         const v = qs().get("v");
         const bust = !!v;
         const vq = v ? `?v=${encodeURIComponent(v)}` : "";
 
-        // works（作品情報）
         const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
         const workMap = getWorkMap(works?.items || []);
 
-        // quick filters（moodラベル）
         const quick = await loadJson(`./data/lane2/quick_filters.json${vq}`, { bust }).catch(() => null);
         const moodLabel = getMoodLabelMap(quick);
 
-        // metrics
         const typeCounts = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
         const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
         const favBySeries = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
+        const voteBySeries = await loadJson(`./data/metrics/wae/vote_by_series.json${vq}`, { bust }).catch(() => null);
         const voteByMood = await loadJson(`./data/metrics/wae/vote_by_mood.json${vq}`, { bust }).catch(() => null);
 
         // 人気（閲覧数）
@@ -264,17 +326,33 @@
           }
         }
 
-        // 投票（気分の総数）…mood id -> label に変換、謎の "JP" などはここで吸収
+        // 投票（総合）※作品ランキング
+        {
+          const root = document.getElementById("rankVotes");
+          const rows = pickRows(voteBySeries);
+          if (!root) {}
+          else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
+          else {
+            const top = rows.slice(0, 30).map(r => {
+              const seriesKey = toText(r?.seriesKey);
+              const n = toText(r?.n);
+              const work = workMap.get(seriesKey);
+              return seriesKey ? rankCardHtml({ seriesKey, n, work }) : "";
+            }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
+          }
+        }
+
+        // みんなの気分（合計）…id -> label に変換
         {
           const box = document.getElementById("moodTotals");
           const rows = pickRows(voteByMood);
 
           const cleaned = rows
-            .map(r => ({
-              mood: moodLabel.get(toText(r?.mood)) || toText(r?.mood),
-              n: toText(r?.n),
-              _rawMood: toText(r?.mood),
-            }))
+            .map(r => {
+              const raw = toText(r?.mood);
+              return { mood: (moodLabel.get(raw) || raw), n: toText(r?.n) };
+            })
             .filter(x => x.mood);
 
           if (box) box.innerHTML = kvListHtml(cleaned.slice(0, 50), "mood", "n");
