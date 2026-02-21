@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T07:56:51.074Z",
+  "updatedAt": "2026-02-21T08:32:04.459Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -16,24 +16,16 @@
   ],
   "rows": [
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "work",
+      "n": "4"
+    },
+    {
+      "seriesKey": "list",
       "n": "3"
-    },
-    {
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "2"
-    },
-    {
-      "seriesKey": "【推しの子】",
-      "n": "1"
-    },
-    {
-      "seriesKey": "orange [オレンジ]",
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 4,
+    "rows": 2,
     "rows_before_limit_at_least": 7
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T07:56:51.074Z",
+  "updatedAt": "2026-02-21T08:32:04.459Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -16,60 +16,56 @@
   ],
   "rows": [
     {
-      "seriesKey": "work",
-      "n": "16"
-    },
-    {
-      "seriesKey": "funny",
-      "n": "5"
-    },
-    {
-      "seriesKey": "血の轍",
-      "n": "5"
-    },
-    {
-      "seriesKey": "heart_throb",
+      "seriesKey": "聲の形",
       "n": "4"
     },
     {
-      "seriesKey": "moving",
+      "seriesKey": "トモちゃんは女の子!",
       "n": "3"
     },
     {
-      "seriesKey": "hot",
-      "n": "3"
-    },
-    {
-      "seriesKey": "healing",
+      "seriesKey": "チェンソーマン",
       "n": "2"
     },
     {
-      "seriesKey": "page_turner",
+      "seriesKey": "鋼の錬金術師",
       "n": "2"
     },
     {
-      "seriesKey": "tearjerker",
+      "seriesKey": "葬送のフリーレン",
+      "n": "2"
+    },
+    {
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
-      "seriesKey": "薫る花は凛と咲く",
+      "seriesKey": "ダンダダン",
       "n": "1"
     },
     {
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
-      "seriesKey": "終末のワルキューレ",
+      "seriesKey": "ブルーロック",
       "n": "1"
     },
     {
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "トモダチゲーム",
+      "n": "1"
+    },
+    {
+      "seriesKey": "スーパーの裏でヤニ吸うふたり",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 44
+    "rows": 12,
+    "rows_before_limit_at_least": 19
   }
 }

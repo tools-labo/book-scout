@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-21T08:32:04.459Z",
+  "dataset": "book_scout_events",
+  "days": 30,
+  "id": "vote_by_mood_series",
+  "columns": [
+    {
+      "name": "mood",
+      "type": "String"
+    },
+    {
+      "name": "seriesKey",
+      "type": "String"
+    },
+    {
+      "name": "n",
+      "type": "UInt64"
+    }
+  ],
+  "rows": [
+    {
+      "mood": "funny",
+      "seriesKey": "ダンダダン",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "鋼の錬金術師",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "チェンソーマン",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "トモちゃんは女の子!",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "スーパーの裏でヤニ吸うふたり",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "トモちゃんは女の子!",
+      "n": "2"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "ドメスティックな彼女",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "ニセコイ",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "鬼滅の刃",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ブルーロック",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "鋼の錬金術師",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "聲の形",
+      "n": "3"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "葬送のフリーレン",
+      "n": "2"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "チェンソーマン",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "トモダチゲーム",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "聲の形",
+      "n": "1"
+    }
+  ],
+  "raw": {
+    "rows": 16,
+    "rows_before_limit_at_least": 19
+  }
+}
