@@ -5,15 +5,27 @@ import path from "node:path";
 const OUT_DIR = "data/metrics/wae";
 const DEFAULT_DATASET = "book_scout_events";
 
-// v2 schema (Worker writeDataPoint の blobs の順番)
+/**
+ * v2 schema (Worker writeDataPoint blobs order)
+ * blobs[1]=type
+ * blobs[2]=schema ('v2')
+ * blobs[3]=page
+ * blobs[4]=seriesKey
+ * blobs[5]=mood
+ * blobs[6]=genre
+ * blobs[7]=aud
+ * blobs[8]=mag
+ * ... (country, ua, method, path ...)
+ */
 const COL = {
   type: "blob1",
-  page: "blob2",
-  seriesKey: "blob3",
-  mood: "blob4",
-  genre: "blob5",
-  aud: "blob6",
-  mag: "blob7",
+  schema: "blob2",
+  page: "blob3",
+  seriesKey: "blob4",
+  mood: "blob5",
+  genre: "blob6",
+  aud: "blob7",
+  mag: "blob8",
 };
 
 function norm(s) {
@@ -25,13 +37,6 @@ async function saveJson(p, obj) {
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
-/**
- * Cloudflare Analytics Engine SQL API はレスポンス形が2種類ある:
- *  A) { success:true, result:{ meta:[...], data:[...], ... } }
- *  B) { meta:[...], data:[...], ... }  // 直接 result 相当が返るケース
- *
- * → 両方を受ける
- */
 async function cfSql({ accountId, token, sql }) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`;
 
@@ -56,18 +61,12 @@ async function cfSql({ accountId, token, sql }) {
     throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 800)}`);
   }
 
-  // A) wrapper あり
   if (typeof json?.success === "boolean") {
-    if (!json.success) {
-      throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
-    }
+    if (!json.success) throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
     return json.result ?? {};
   }
 
-  // B) wrapper なし
-  if (json && (Array.isArray(json.meta) || Array.isArray(json.data))) {
-    return json;
-  }
+  if (json && (Array.isArray(json.meta) || Array.isArray(json.data))) return json;
 
   throw new Error(`Cloudflare API unknown response: ${text.slice(0, 800)}`);
 }
@@ -152,7 +151,6 @@ ORDER BY n DESC
 `;
 }
 
-/** ★追加：お気に入り（シリーズ別） */
 function qFavoritesBySeries(dataset, days = 30) {
   return `
 SELECT
@@ -185,14 +183,11 @@ ORDER BY n DESC
 
 async function main() {
   const accountId = norm(process.env.CLOUDFLARE_ACCOUNT_ID);
-  const token =
-    norm(process.env.CLOUDFLARE_AE_READ_TOKEN) || norm(process.env.CLOUDFLARE_API_TOKEN);
+  const token = norm(process.env.CLOUDFLARE_AE_READ_TOKEN) || norm(process.env.CLOUDFLARE_API_TOKEN);
   const dataset = norm(process.env.CLOUDFLARE_AE_DATASET) || DEFAULT_DATASET;
 
   if (!accountId) throw new Error("Missing env: CLOUDFLARE_ACCOUNT_ID");
-  if (!token) {
-    throw new Error("Missing env: CLOUDFLARE_AE_READ_TOKEN (or CLOUDFLARE_API_TOKEN)");
-  }
+  if (!token) throw new Error("Missing env: CLOUDFLARE_AE_READ_TOKEN (or CLOUDFLARE_API_TOKEN)");
 
   const days = Number(process.env.CLOUDFLARE_AE_DAYS || 30);
 
@@ -205,10 +200,7 @@ async function main() {
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
     { id: "vote_by_series", sql: qVotesBySeries(dataset, days) },
     { id: "vote_by_mood", sql: qVotesByMood(dataset, days) },
-
-    // ★追加
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
-
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
   ];
 
