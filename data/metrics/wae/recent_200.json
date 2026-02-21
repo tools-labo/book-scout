@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:58:53.550Z",
+  "updatedAt": "2026-02-21T13:10:51.407Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,39 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-21 13:00:39",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 13:00:35",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "21世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 13:00:32",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-21 12:56:47",
       "type": "vote",
@@ -2209,43 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:30:40",
-      "type": "vote",
-      "schema": "work",
-      "page": "スーパーの裏でヤニ吸うふたり",
-      "seriesKey": "healing",
-      "mood": "JP",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:30:10",
-      "type": "list_filter",
-      "schema": "list",
-      "page": "",
-      "seriesKey": "mood=messy",
-      "mood": "JP",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 16:04:39",
-      "type": "vote",
-      "schema": "work",
-      "page": "ブルーロック",
-      "seriesKey": "hot",
-      "mood": "JP",
-      "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 248
+    "rows_before_limit_at_least": 251
   }
 }
