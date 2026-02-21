@@ -4,17 +4,10 @@ import path from "node:path";
 
 const OUT_DIR = "public/data/metrics";
 
-// ===== 設定（あなたの運用に合わせて固定） =====
+// ===== 設定 =====
 const DATASET = "book_scout_events";
 
 // blob割り当て（Worker側 writeDataPoint の blobs 配列順）
-// blob1: type
-// blob2: page
-// blob3: seriesKey
-// blob4: mood
-// blob5: genre
-// blob6: aud
-// blob7: mag
 const B = {
   type: "blob1",
   page: "blob2",
@@ -25,7 +18,6 @@ const B = {
   mag: "blob7",
 };
 
-// double1 を「1カウント」として使う
 const D1 = "double1";
 
 function nowIso() {
@@ -49,13 +41,15 @@ function envOrThrow(k) {
 
 async function sql({ accountId, token, query }) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`;
+
+  // ★ここが修正点：body に SQL を “そのまま” 送る（JSONではない）
   const r = await fetch(url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
+      "content-type": "text/plain; charset=utf-8",
     },
-    body: JSON.stringify({ query }),
+    body: String(query || "").trim(),
   });
 
   const text = await r.text();
@@ -72,7 +66,9 @@ async function sql({ accountId, token, query }) {
   if (!json?.success) {
     throw new Error(`Cloudflare API success=false: ${text.slice(0, 300)}`);
   }
-  return json?.result || [];
+
+  // result は配列
+  return Array.isArray(json.result) ? json.result : [];
 }
 
 function toNum(v) {
@@ -88,10 +84,9 @@ async function main() {
   const accountId = envOrThrow("CLOUDFLARE_ACCOUNT_ID");
   const token = envOrThrow("CLOUDFLARE_API_TOKEN");
 
-  // 期間：直近90日（必要なら後で伸ばす）
   const SINCE_DAYS = 90;
 
-  // ===== 0) デバッグ：__verify の最新5件（列ズレ確認用） =====
+  // ===== 0) __verify 最新5件（列ズレ確認） =====
   const verifyRows = await sql({
     accountId,
     token,
@@ -116,11 +111,12 @@ async function main() {
   await saveJson(`${OUT_DIR}/__verify_latest.json`, {
     version: 1,
     updatedAt: nowIso(),
-    note: "最新の__verify（列ズレ確認用）。type/page/seriesKey/mood/genre/aud/mag が期待通りか見る。",
+    note:
+      "最新の__verify（列ズレ確認用）。type/page/seriesKey/mood/genre/aud/mag が期待通りか見る。",
     items: verifyRows,
   });
 
-  // ===== 1) work_view：作品別 表示数（直近90日） =====
+  // ===== 1) work_view：作品別表示数 =====
   const workViewBySeries = await sql({
     accountId,
     token,
@@ -148,8 +144,7 @@ async function main() {
     })),
   });
 
-  // ===== 2) list_filter：フィルター利用回数（直近90日） =====
-  // 使ったクエリの中身（genre/aud/mag/mood）は URL クエリをそのまま送る想定で集計する
+  // ===== 2) list_filter：フィルター利用（組合せ） =====
   const listFilterByCombo = await sql({
     accountId,
     token,
@@ -184,7 +179,7 @@ async function main() {
     })),
   });
 
-  // ===== 3) vote：mood別 投票数（直近90日） =====
+  // ===== 3) vote：mood別 =====
   const voteByMood = await sql({
     accountId,
     token,
@@ -211,7 +206,7 @@ async function main() {
     })),
   });
 
-  // ===== 4) vote：作品別 投票数（直近90日） =====
+  // ===== 4) vote：作品別 =====
   const voteBySeries = await sql({
     accountId,
     token,
@@ -239,7 +234,7 @@ async function main() {
     })),
   });
 
-  // ===== 5) favorite：作品別 お気に入り数（直近90日） =====
+  // ===== 5) favorite：作品別 =====
   const favoriteBySeries = await sql({
     accountId,
     token,
