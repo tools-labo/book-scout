@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T16:46:48.954Z",
+  "updatedAt": "2026-02-21T17:40:08.854Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -24,6 +24,18 @@
       "n": "2"
     },
     {
+      "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "キングダム",
+      "n": "1"
+    },
+    {
       "seriesKey": "21世紀少年",
       "n": "1"
     },
@@ -44,12 +56,16 @@
       "n": "1"
     },
     {
+      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "n": "1"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 8,
-    "rows_before_limit_at_least": 11
+    "rows": 12,
+    "rows_before_limit_at_least": 15
   }
 }

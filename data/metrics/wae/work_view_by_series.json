@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T16:46:48.954Z",
+  "updatedAt": "2026-02-21T17:40:08.854Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -28,6 +28,18 @@
       "n": "2"
     },
     {
+      "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "カグラバチ",
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
       "n": "1"
     },
@@ -48,6 +60,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
       "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
@@ -56,7 +72,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "n": "1"
+    },
+    {
       "seriesKey": "東京卍リベンジャーズ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
       "n": "1"
     },
     {
@@ -65,7 +89,7 @@
     }
   ],
   "raw": {
-    "rows": 12,
-    "rows_before_limit_at_least": 17
+    "rows": 18,
+    "rows_before_limit_at_least": 23
   }
 }

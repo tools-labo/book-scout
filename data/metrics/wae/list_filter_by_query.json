@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T16:46:48.954Z",
+  "updatedAt": "2026-02-21T17:40:08.854Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -32,7 +32,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "71"
+      "n": "73"
     },
     {
       "genre": "",
@@ -46,7 +46,7 @@
       "aud": "",
       "mag": "",
       "mood": "mood=heart_throb",
-      "n": "8"
+      "n": "9"
     },
     {
       "genre": "",
@@ -94,13 +94,6 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=healing",
-      "n": "4"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
       "mood": "mood=hot",
       "n": "4"
     },
@@ -109,6 +102,13 @@
       "aud": "",
       "mag": "",
       "mood": "aud=少女",
+      "n": "4"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=healing",
       "n": "4"
     },
     {
@@ -124,6 +124,13 @@
       "mag": "",
       "mood": "aud=少年",
       "n": "3"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=funny,heart_throb",
+      "n": "2"
     },
     {
       "genre": "",
@@ -150,13 +157,6 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=funny,heart_throb",
-      "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
       "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
@@ -171,6 +171,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=hot,messy",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "aud=少女&mood=heart_throb,moving",
       "n": "1"
     },
@@ -178,7 +185,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=hot,messy",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
@@ -192,7 +199,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Action&mood=moving",
+      "mood": "mood=heart_throb,healing",
       "n": "1"
     },
     {
@@ -234,7 +241,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,healing",
+      "mood": "mood=heart_throb,satisfying",
       "n": "1"
     },
     {
@@ -288,7 +295,7 @@
     }
   ],
   "raw": {
-    "rows": 37,
-    "rows_before_limit_at_least": 162
+    "rows": 38,
+    "rows_before_limit_at_least": 166
   }
 }

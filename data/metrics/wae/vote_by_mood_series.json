@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T16:46:48.954Z",
+  "updatedAt": "2026-02-21T17:40:08.854Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -20,6 +20,21 @@
   ],
   "rows": [
     {
+      "mood": "funny",
+      "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "n": "1"
+    },
+    {
       "mood": "heart_throb",
       "seriesKey": "薫る花は凛と咲く",
       "n": "1"
@@ -33,6 +48,11 @@
       "mood": "messy",
       "seriesKey": "血の轍",
       "n": "5"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
     },
     {
       "mood": "page_turner",
@@ -53,10 +73,20 @@
       "mood": "satisfying",
       "seriesKey": "終末のワルキューレ",
       "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 7,
-    "rows_before_limit_at_least": 12
+    "rows": 13,
+    "rows_before_limit_at_least": 18
   }
 }
