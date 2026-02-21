@@ -15,8 +15,9 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <section class="home-actions">
+    <section class="home-actions" style="display:flex; gap:10px; flex-wrap:wrap;">
       <a class="btn" href="./list.html">作品リストへ</a>
+      <a class="btn" href="./stats.html" style="background:#ff69b4;">ランキング</a>
     </section>
 
     <!-- 気分（導線リンク） -->
@@ -54,7 +55,6 @@
     </section>
   </main>
 
-  <!-- ★ ?v= が付いている時だけ app.js も ?v= で読み込む -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
