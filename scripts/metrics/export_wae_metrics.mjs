@@ -6,15 +6,30 @@ const OUT_DIR = "data/metrics/wae";
 const DEFAULT_DATASET = "book_scout_events";
 const QUICK_FILTERS_PATH = "data/lane2/quick_filters.json";
 
-// v2 schema (Worker writeDataPoint の blobs の順番)
+/**
+ * Worker(v2) が writeDataPoint してる blobs の並び（実態）
+ *  blob1: type
+ *  blob2: schema ("v2")
+ *  blob3: page ("work" / "list" / "debug" ...)
+ *  blob4: seriesKey
+ *  blob5: mood
+ *  blob6: genre
+ *  blob7: aud
+ *  blob8: mag
+ *  blob9: country
+ *  blob10: user-agent
+ *  blob11: method
+ *  blob12: path
+ */
 const COL = {
   type: "blob1",
-  page: "blob2",
-  seriesKey: "blob3",
-  mood: "blob4",
-  genre: "blob5",
-  aud: "blob6",
-  mag: "blob7",
+  schema: "blob2",
+  page: "blob3",
+  seriesKey: "blob4",
+  mood: "blob5",
+  genre: "blob6",
+  aud: "blob7",
+  mag: "blob8",
 };
 
 function norm(s) {
@@ -26,11 +41,6 @@ async function saveJson(p, obj) {
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
-/**
- * Cloudflare Analytics Engine SQL API はレスポンス形が2種類ある:
- *  A) { success:true, result:{ meta:[...], data:[...], ... } }
- *  B) { meta:[...], data:[...], ... }  // 直接 result 相当が返るケース
- */
 async function cfSql({ accountId, token, sql }) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`;
 
@@ -55,6 +65,7 @@ async function cfSql({ accountId, token, sql }) {
     throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 800)}`);
   }
 
+  // A) wrapper あり
   if (typeof json?.success === "boolean") {
     if (!json.success) {
       throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
@@ -62,6 +73,7 @@ async function cfSql({ accountId, token, sql }) {
     return json.result ?? {};
   }
 
+  // B) wrapper なし
   if (json && (Array.isArray(json.meta) || Array.isArray(json.data))) {
     return json;
   }
@@ -79,7 +91,6 @@ function whereRecent(days = 30) {
 }
 
 function sqlQuote(s) {
-  // シンプルに ' を '' へ
   return `'${String(s).replaceAll("'", "''")}'`;
 }
 
@@ -87,8 +98,9 @@ async function loadAllowedMoodIds() {
   try {
     const raw = await fs.readFile(QUICK_FILTERS_PATH, "utf-8");
     const json = JSON.parse(raw);
-    const ids = Array.isArray(json?.items) ? json.items.map((x) => norm(x?.id)).filter(Boolean) : [];
-    // 重複排除
+    const ids = Array.isArray(json?.items)
+      ? json.items.map((x) => norm(x?.id)).filter(Boolean)
+      : [];
     return Array.from(new Set(ids));
   } catch {
     return [];
@@ -96,7 +108,7 @@ async function loadAllowedMoodIds() {
 }
 
 function whereMoodIn(ids) {
-  if (!ids?.length) return "1=1"; // フォールバック（ただし通常は ids がある）
+  if (!ids?.length) return "1=1";
   const list = ids.map(sqlQuote).join(", ");
   return `${COL.mood} IN (${list})`;
 }
@@ -118,6 +130,7 @@ function qRecent(dataset, limit = 200) {
 SELECT
   timestamp,
   ${COL.type} AS type,
+  ${COL.schema} AS schema,
   ${COL.page} AS page,
   ${COL.seriesKey} AS seriesKey,
   ${COL.mood} AS mood,
@@ -175,7 +188,7 @@ ORDER BY n DESC
 `;
 }
 
-// ★追加：mood別 × 作品別（トップ3表示用）
+// mood別 × 作品別（トップ3表示用）
 function qVotesByMoodSeries(dataset, days = 30, allowedMoodIds = []) {
   return `
 SELECT
@@ -193,7 +206,7 @@ ORDER BY mood ASC, n DESC
 `;
 }
 
-// ★お気に入り（シリーズ別）
+// お気に入り（シリーズ別）
 function qFavoritesBySeries(dataset, days = 30) {
   return `
 SELECT
@@ -243,15 +256,10 @@ async function main() {
     { id: "type_counts", sql: qTypeCounts(dataset, days) },
     { id: "recent_200", sql: qRecent(dataset, 200) },
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
-
-    // vote（ゴミ除外済み）
     { id: "vote_by_series", sql: qVotesBySeries(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood", sql: qVotesByMood(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood_series", sql: qVotesByMoodSeries(dataset, days, allowedMoodIds) },
-
-    // favorite
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
-
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
   ];
 
