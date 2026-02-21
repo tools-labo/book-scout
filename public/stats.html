@@ -48,6 +48,53 @@
     }
     .gnav a:active{ transform: translateY(1px); }
 
+    /* ===== ジャンル絞り込み（ヘッダー内） ===== */
+    .rank-genres{
+      display:flex;
+      gap: 8px;
+      padding: 10px 14px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.01);
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .rank-genre{
+      flex: 0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--fg);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .rank-genre:active{ transform: translateY(1px); }
+    .rank-genre.is-active{
+      border-color: rgba(43,97,255,0.65);
+      background: rgba(43,97,255,0.18);
+    }
+    .rank-genre .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 26px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-weight: 1000;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
     /* ===== タブ（閲覧 / お気に入り） ===== */
     .rank-tabs{
       display:flex;
@@ -92,6 +139,7 @@
       font-weight: 1000;
       font-size: 11px;
       font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
 
     /* ===== ランキング一覧 ===== */
@@ -218,6 +266,9 @@
         <a href="./stats.html">ランキング</a>
       </nav>
     </div>
+
+    <!-- ジャンル -->
+    <div class="rank-genres" role="tablist" aria-label="ジャンル絞り込み" id="rankGenreTabs"></div>
 
     <!-- タブ -->
     <div class="rank-tabs" role="tablist" aria-label="ランキング切り替え">
@@ -449,6 +500,70 @@
       `;
     }
 
+    // ===== ジャンル絞り込み（stats専用）=====
+    const RANK_GENRE_TABS = [
+      { id: "all",    label: "すべて", match: [] },
+      { id: "action", label: "アクション・バトル", match: ["Action"] },
+      { id: "fantasy",label: "ファンタジー・異世界", match: ["Fantasy"] },
+      { id: "sf",     label: "SF", match: ["Sci-Fi"] },
+      { id: "horror", label: "ホラー", match: ["Horror"] },
+      { id: "mystery",label: "ミステリー・サスペンス", match: ["Mystery", "Thriller"] },
+      { id: "romance",label: "恋愛・ラブコメ", match: ["Romance"] },
+      { id: "slice",  label: "日常", match: ["Slice of Life"] },
+      { id: "sports", label: "スポーツ", match: ["Sports"] },
+      { id: "drama",  label: "ヒューマンドラマ", match: ["Drama"] },
+      { id: "other",  label: "その他", match: ["Adventure", "Psychological", "Supernatural"] },
+    ];
+
+    function getRankGenreState() {
+      const id = toText(qs().get("rg")) || "all";
+      return RANK_GENRE_TABS.some(t => t.id === id) ? id : "all";
+    }
+
+    function setRankGenreState(nextId) {
+      const p = qs();
+      const clean = toText(nextId) || "all";
+      if (clean === "all") p.delete("rg");
+      else p.set("rg", clean);
+      const url = `${location.pathname}?${p.toString()}`;
+      history.replaceState(null, "", url);
+    }
+
+    function hasAnyGenre(work, wanted) {
+      if (!wanted?.length) return true;
+      const g = pickArr(work, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
+      return wanted.some(x => g.includes(x));
+    }
+
+    function renderRankGenreTabs(activeId) {
+      const root = document.getElementById("rankGenreTabs");
+      if (!root) return;
+
+      root.innerHTML = RANK_GENRE_TABS.map(t => `
+        <button
+          class="rank-genre ${t.id === activeId ? "is-active" : ""}"
+          type="button"
+          data-rg="${esc(t.id)}"
+          role="tab"
+          aria-selected="${t.id === activeId ? "true" : "false"}"
+        >
+          ${esc(t.label)} <span class="badge" id="badgeRg_${esc(t.id)}">-</span>
+        </button>
+      `).join("");
+
+      root.onclick = (ev) => {
+        const btn = ev.target?.closest?.("button[data-rg]");
+        if (!btn) return;
+        const next = btn.getAttribute("data-rg") || "all";
+        if (next === getRankGenreState()) return;
+
+        setRankGenreState(next);
+
+        // 表示をリセットして再描画（タブ状態は維持）
+        applyGenreAndRerender();
+      };
+    }
+
     // ===== 状態 =====
     const MAX_ROWS = 100;
     const STEP = 50; // まず50件表示→もう一度で100件
@@ -456,8 +571,15 @@
       tab: "views",
       viewsShown: 0,
       favShown: 0,
+
+      // 元データ（全件）
+      viewsAll: [],
+      favAll: [],
+
+      // 絞り込み後
       viewsRows: [],
       favRows: [],
+
       workMap: new Map()
     };
 
@@ -483,6 +605,23 @@
       if (pFav)   pFav.style.display   = (next === "fav") ? "" : "none";
     }
 
+    function updateMoreButton(kind) {
+      if (kind === "views") {
+        const btn = document.getElementById("moreViews");
+        if (!btn) return;
+        const hasMore = state.viewsShown < Math.min(MAX_ROWS, state.viewsRows.length);
+        btn.disabled = !hasMore;
+        btn.textContent = hasMore ? "もっと見る" : "ここまで";
+      }
+      if (kind === "fav") {
+        const btn = document.getElementById("moreFav");
+        if (!btn) return;
+        const hasMore = state.favShown < Math.min(MAX_ROWS, state.favRows.length);
+        btn.disabled = !hasMore;
+        btn.textContent = hasMore ? "もっと見る" : "ここまで";
+      }
+    }
+
     function renderMore(kind) {
       if (kind === "views") {
         const root = document.getElementById("rankViews");
@@ -496,20 +635,14 @@
           const n = toText(r?.n);
           const work = state.workMap.get(seriesKey);
           const rank = state.viewsShown + i + 1;
-          return seriesKey ? rankItemHtml({ rank, seriesKey, n, unit: "view", work }) : "";
+          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "view", work }) : "";
         }).join("");
 
         if (state.viewsShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
         else root.insertAdjacentHTML("beforeend", html);
 
         state.viewsShown = next;
-
-        const btn = document.getElementById("moreViews");
-        if (btn) {
-          const hasMore = state.viewsShown < Math.min(MAX_ROWS, state.viewsRows.length);
-          btn.disabled = !hasMore;
-          btn.textContent = hasMore ? "もっと見る" : "ここまで";
-        }
+        updateMoreButton("views");
       }
 
       if (kind === "fav") {
@@ -524,21 +657,92 @@
           const n = toText(r?.n);
           const work = state.workMap.get(seriesKey);
           const rank = state.favShown + i + 1;
-          return seriesKey ? rankItemHtml({ rank, seriesKey, n, unit: "fav", work }) : "";
+          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "fav", work }) : "";
         }).join("");
 
         if (state.favShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
         else root.insertAdjacentHTML("beforeend", html);
 
         state.favShown = next;
-
-        const btn = document.getElementById("moreFav");
-        if (btn) {
-          const hasMore = state.favShown < Math.min(MAX_ROWS, state.favRows.length);
-          btn.disabled = !hasMore;
-          btn.textContent = hasMore ? "もっと見る" : "ここまで";
-        }
+        updateMoreButton("fav");
       }
+    }
+
+    function setBadges() {
+      const bViews = document.getElementById("badgeViews");
+      const bFav   = document.getElementById("badgeFav");
+      if (bViews) bViews.textContent = String(Math.min(MAX_ROWS, state.viewsRows.length || 0));
+      if (bFav)   bFav.textContent   = String(Math.min(MAX_ROWS, state.favRows.length || 0));
+    }
+
+    function setGenreCountBadges() {
+      // 各ジャンルボタンの右の数字は「そのジャンルに絞った時の閲覧数ランキング件数」を表示（=works母数ではなくランキング母数）
+      for (const t of RANK_GENRE_TABS) {
+        const el = document.getElementById(`badgeRg_${t.id}`);
+        if (!el) continue;
+
+        if (!t.match?.length) {
+          // all
+          el.textContent = String(Math.min(MAX_ROWS, state.viewsAll.length || 0));
+          continue;
+        }
+
+        let n = 0;
+        for (const r of state.viewsAll) {
+          const sk = toText(r?.seriesKey);
+          if (!sk) continue;
+          const w = state.workMap.get(sk);
+          if (!w) continue;
+          if (hasAnyGenre(w, t.match)) n++;
+        }
+        el.textContent = String(Math.min(MAX_ROWS, n));
+      }
+    }
+
+    function applyGenreAndRerender() {
+      const activeId = getRankGenreState();
+      const tab = RANK_GENRE_TABS.find(t => t.id === activeId) || RANK_GENRE_TABS[0];
+
+      // タブUI
+      renderRankGenreTabs(tab.id);
+
+      // 絞り込み
+      if (!tab.match?.length) {
+        state.viewsRows = state.viewsAll.slice();
+        state.favRows = state.favAll.slice();
+      } else {
+        state.viewsRows = state.viewsAll.filter(r => {
+          const sk = toText(r?.seriesKey);
+          const w = state.workMap.get(sk);
+          return w ? hasAnyGenre(w, tab.match) : false;
+        });
+        state.favRows = state.favAll.filter(r => {
+          const sk = toText(r?.seriesKey);
+          const w = state.workMap.get(sk);
+          return w ? hasAnyGenre(w, tab.match) : false;
+        });
+      }
+
+      // badges（絞り込み後）
+      setBadges();
+
+      // 「もっと見る」を含めて描画をリセット
+      state.viewsShown = 0;
+      state.favShown = 0;
+
+      const rv = document.getElementById("rankViews");
+      const rf = document.getElementById("rankFav");
+      if (rv) rv.innerHTML = "";
+      if (rf) rf.innerHTML = "";
+
+      renderMore("views");
+      renderMore("fav");
+
+      // タブ状態は維持
+      setTab(state.tab);
+
+      // ジャンルボタンの数字（ランキング母数）
+      setGenreCountBadges();
     }
 
     // ===== ヘッダー：下スクロールで隠す/上で出す =====
@@ -598,23 +802,11 @@
         const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
         const favBySeries  = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
 
-        state.viewsRows = pickRows(viewBySeries);
-        state.favRows   = pickRows(favBySeries);
+        state.viewsAll = pickRows(viewBySeries);
+        state.favAll   = pickRows(favBySeries);
 
-        // badges（全体行数を表示）
-        const bViews = document.getElementById("badgeViews");
-        const bFav   = document.getElementById("badgeFav");
-        if (bViews) bViews.textContent = String(Math.min(MAX_ROWS, state.viewsRows.length || 0));
-        if (bFav)   bFav.textContent   = String(Math.min(MAX_ROWS, state.favRows.length || 0));
-
-        // 初期描画：両方とも最初のSTEPまでは作っておく（切替が軽い）
-        state.viewsShown = 0;
-        state.favShown = 0;
-        renderMore("views");
-        renderMore("fav");
-
-        // 初期は閲覧
-        setTab("views");
+        // 初期tabは閲覧
+        state.tab = "views";
 
         // タブ操作
         document.querySelectorAll(".rank-tab[data-tab]").forEach(btn => {
@@ -630,6 +822,9 @@
 
         const moreFav = document.getElementById("moreFav");
         if (moreFav) moreFav.addEventListener("click", () => renderMore("fav"), { passive: true });
+
+        // 初期描画（ジャンル適用込み）
+        applyGenreAndRerender();
 
         setStatus("");
       } catch (e) {
