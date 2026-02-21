@@ -97,6 +97,99 @@ function trackEvent({ type, page, seriesKey = "", mood = "" }) {
 }
 
 /* =======================
+ * work_view：同一セッション内で同一作品は1回だけ
+ * ======================= */
+function trackWorkViewOnce(seriesKey) {
+  const sk = toText(seriesKey);
+  if (!sk) return;
+
+  try {
+    const k = `work_view:${sk}`;
+    if (sessionStorage.getItem(k) === "1") return;
+    sessionStorage.setItem(k, "1");
+  } catch {
+    // sessionStorage不可でも最低限は送ってOK
+  }
+
+  trackEvent({ type: "work_view", page: "work", seriesKey: sk, mood: "" });
+}
+
+/* =======================
+ * Favorite（端末内だけ保持）
+ * - ONにした時だけイベント送信
+ * ======================= */
+function favKey(seriesKey) {
+  return `fav:${toText(seriesKey)}`;
+}
+function isFav(seriesKey) {
+  const sk = toText(seriesKey);
+  if (!sk) return false;
+  try { return localStorage.getItem(favKey(sk)) === "1"; } catch { return false; }
+}
+function setFav(seriesKey, on) {
+  const sk = toText(seriesKey);
+  if (!sk) return;
+  try {
+    if (on) localStorage.setItem(favKey(sk), "1");
+    else localStorage.removeItem(favKey(sk));
+  } catch {}
+}
+function favButtonHtml(seriesKey, page) {
+  const sk = esc(seriesKey || "");
+  const pg = esc(page || "");
+  const on = isFav(seriesKey);
+  return `
+    <button
+      type="button"
+      class="fav-btn ${on ? "is-on" : ""}"
+      data-fav="1"
+      data-serieskey="${sk}"
+      data-page="${pg}"
+      aria-pressed="${on ? "true" : "false"}"
+    >
+      <span class="fav-icon" aria-hidden="true">${on ? "♥" : "♡"}</span>
+      <span class="fav-text">お気に入り</span>
+    </button>
+  `;
+}
+function refreshFavButtons(root = document) {
+  const btns = root.querySelectorAll?.("button[data-fav='1']") || [];
+  for (const btn of btns) {
+    const sk = btn.getAttribute("data-serieskey") || "";
+    const on = isFav(sk);
+    btn.classList.toggle("is-on", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    const icon = btn.querySelector?.(".fav-icon");
+    if (icon) icon.textContent = on ? "♥" : "♡";
+  }
+}
+function bindFavHandlers(root = document) {
+  // 二重バインド防止
+  if (root.__favBound) return;
+  root.__favBound = true;
+
+  root.addEventListener("click", (ev) => {
+    const btn = ev.target?.closest?.("button[data-fav='1']");
+    if (!btn) return;
+
+    const seriesKey = btn.getAttribute("data-serieskey") || "";
+    const page = btn.getAttribute("data-page") || "";
+    if (!seriesKey) return;
+
+    const currently = isFav(seriesKey);
+    const next = !currently;
+
+    setFav(seriesKey, next);
+    refreshFavButtons(document);
+
+    // ONにしたときだけカウント
+    if (next) {
+      trackEvent({ type: "favorite", page: page || "unknown", seriesKey, mood: "" });
+    }
+  }, { passive: true });
+}
+
+/* =======================
  * normalize
  * ======================= */
 function formatYmd(s) {
@@ -370,7 +463,7 @@ function quickCountsDynamic(baseItems, defs, selectedIds) {
       else condDefs = [selDefs[0], d];
     } else {
       if (selectedSet.has(d.id)) condDefs = selDefs;
-      else condDefs = selDefs; // disabled側は「現在結果」を表示
+      else condDefs = selDefs;
     }
 
     let n = 0;
@@ -521,7 +614,7 @@ function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
 }
 
 /* =======================
- * Home rows（ここは省略なしで必要分だけ）
+ * Home rows
  * ======================= */
 function renderCardRow({ items, limit = 18, moreHref = "" }) {
   const v = qs().get("v");
@@ -624,7 +717,6 @@ function renderGenreTabsRow({ data, activeId }) {
   const moreHref = `./list.html?genre=${encodeURIComponent(active.match.join(","))}${vq}`;
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
-
   setGenreAllLink(active);
 
   tabs.onclick = (ev) => {
@@ -667,7 +759,6 @@ function renderAudienceTabsRow({ data, activeAudId }) {
   const moreHref = `./list.html?aud=${encodeURIComponent(audValue)}${vq}`;
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
-
   setAudienceAllLink(audValue);
 
   tabs.onclick = (ev) => {
@@ -682,7 +773,7 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * list（ここが今回の解除リロード無し）
+ * list（解除リロード無し + お気に入りボタン）
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -719,7 +810,7 @@ function renderList(data, quickDefs) {
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
 
-  // list_filter 計測
+  // list_filter 計測（現状維持）
   const moodParam = moodSelected.join(",");
   trackEvent({
     type: "list_filter",
@@ -740,6 +831,7 @@ function renderList(data, quickDefs) {
       ev.preventDefault();
       setMoodQuery([]);
       renderList(data, quickDefs);
+      refreshFavButtons(document);
     };
   }
 
@@ -764,6 +856,7 @@ function renderList(data, quickDefs) {
 
         setMoodQuery(Array.from(set));
         renderList(data, quickDefs);
+        refreshFavButtons(document);
       }
     });
 
@@ -820,6 +913,10 @@ function renderList(data, quickDefs) {
             ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
             ${tagsJa.length ? `<div class="sub">タグ:</div>${pills(tagsJa)}` : ""}
 
+            <div class="actions">
+              ${favButtonHtml(seriesKey, "list")}
+            </div>
+
             ${synopsis ? `
               <details class="syn">
                 <summary>あらすじ</summary>
@@ -831,10 +928,12 @@ function renderList(data, quickDefs) {
       </article>
     `;
   }).join("");
+
+  refreshFavButtons(document);
 }
 
 /* =======================
- * work（投票）
+ * work（投票 + お気に入り + work_view 1回）
  * ======================= */
 function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
@@ -879,6 +978,7 @@ function renderWork(data, quickDefs) {
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
         ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
+        ${favButtonHtml(seriesKey, "work")}
       </div>
     </div>
     ${synopsis ? `
@@ -888,8 +988,10 @@ function renderWork(data, quickDefs) {
     ${voteButtons}
   `;
 
-  trackEvent({ type: "work_view", page: "work", seriesKey, mood: "" });
+  // work_view：同一セッション1回
+  trackWorkViewOnce(seriesKey);
 
+  // 投票
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -905,6 +1007,8 @@ function renderWork(data, quickDefs) {
       setTimeout(() => { if (st) st.textContent = ""; }, 1200);
     };
   }
+
+  refreshFavButtons(document);
 }
 
 async function run() {
@@ -925,7 +1029,11 @@ async function run() {
     if (document.getElementById("quickFiltersHome")) {
       const all = Array.isArray(data?.items) ? data.items : [];
       const counts = new Map(quickDefs.map(d => [d.id, 0]));
-      for (const it of all) for (const d of quickDefs) if (quickEval(it, d).ok) counts.set(d.id, (counts.get(d.id) || 0) + 1);
+      for (const it of all) {
+        for (const d of quickDefs) {
+          if (quickEval(it, d).ok) counts.set(d.id, (counts.get(d.id) || 0) + 1);
+        }
+      }
       renderQuickHome({ defs: quickDefs, counts });
     }
 
@@ -934,6 +1042,10 @@ async function run() {
     renderWork(data, quickDefs);
 
     patchAmazonAnchors(document);
+
+    // favorite handler（1回だけbind）
+    bindFavHandlers(document);
+    refreshFavButtons(document);
   } catch (e) {
     setStatus("読み込みに失敗しました");
     console.error(e);
