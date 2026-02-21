@@ -5,11 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト</title>
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- 追加：スクロールで隠す/出す（style.cssを触らなくても動く最低限） -->
+  <style>
+    /* gheader は style.css にある前提。無い場合でも最低限は動くように。 */
+    .gheader {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transform: translateY(0);
+      transition: transform 180ms ease;
+      will-change: transform;
+    }
+    .gheader.is-hidden {
+      transform: translateY(-110%);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gheader { transition: none; }
+    }
+  </style>
 </head>
-<body>
-  <header class="header">
-    <h1>BOOKスカウト</h1>
-    <p class="sub">レーン②：Amazon検索で1巻確定できた作品のみ表示</p>
+
+<body class="has-gheader">
+  <!-- 固定ヘッダー（スクロールで自動表示/非表示） -->
+  <header class="gheader" id="gheader">
+    <div class="gheader-inner">
+      <div class="gbrand">
+        <a class="gbrand-title" href="./index.html">BOOKスカウト</a>
+        <div class="gbrand-sub">レーン②：Amazon検索で1巻確定できた作品のみ表示</div>
+      </div>
+
+      <nav class="gnav" aria-label="グローバルナビ">
+        <a class="is-active" href="./index.html">ホーム</a>
+        <a href="./list.html">リスト</a>
+        <a href="./stats.html">ランキング</a>
+      </nav>
+    </div>
   </header>
 
   <main class="wrap">
@@ -55,6 +86,60 @@
     </section>
   </main>
 
+  <!-- ヘッダー：下スクロールで隠す / 上に少しでもスクロールで出す -->
+  <script>
+    (function () {
+      const header = document.getElementById("gheader");
+      if (!header) return;
+
+      let lastY = window.scrollY || 0;
+      let ticking = false;
+
+      // ちょい触れで出る（“少しでも”の感覚を残しつつ、ガタつき防止に最小しきい値）
+      const SHOW_THRESHOLD = 2;   // 上方向に2px動いたら出す
+      const HIDE_THRESHOLD = 8;   // 下方向は8px以上で隠す（誤動作抑止）
+      const TOP_KEEP = 12;        // 先頭付近は常に表示
+
+      function onScroll() {
+        const y = window.scrollY || 0;
+        const dy = y - lastY;
+
+        // 先頭付近は必ず表示
+        if (y <= TOP_KEEP) {
+          header.classList.remove("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        // 下に進んだら隠す
+        if (dy > HIDE_THRESHOLD) {
+          header.classList.add("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        // 上に戻したら出す（少しでも）
+        if (dy < -SHOW_THRESHOLD) {
+          header.classList.remove("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        // 微小な揺れは lastY を更新しない（ぶれ防止）
+      }
+
+      window.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          onScroll();
+        });
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- app.js ロード（既存） -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
