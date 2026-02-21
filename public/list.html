@@ -5,11 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜リスト</title>
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- 追加：スクロールで隠す/出す（style.cssを触らなくても動く最低限） -->
+  <style>
+    .gheader {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transform: translateY(0);
+      transition: transform 180ms ease;
+      will-change: transform;
+    }
+    .gheader.is-hidden {
+      transform: translateY(-110%);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gheader { transition: none; }
+    }
+  </style>
 </head>
-<body>
-  <header class="header">
-    <h1><a href="./index.html" style="color:inherit;text-decoration:none;">BOOKスカウト</a></h1>
-    <p class="sub">レーン②：1巻が確定した作品だけ表示</p>
+
+<body class="has-gheader">
+  <!-- 固定ヘッダー（スクロールで自動表示/非表示） -->
+  <header class="gheader" id="gheader">
+    <div class="gheader-inner">
+      <div class="gbrand">
+        <a class="gbrand-title" href="./index.html">BOOKスカウト</a>
+        <div class="gbrand-sub">レーン②：1巻が確定した作品だけ表示</div>
+      </div>
+
+      <nav class="gnav" aria-label="グローバルナビ">
+        <a href="./index.html">ホーム</a>
+        <a class="is-active" href="./list.html">リスト</a>
+        <a href="./stats.html">ランキング</a>
+      </nav>
+    </div>
   </header>
 
   <main class="wrap">
@@ -29,6 +59,54 @@
     <section id="list" class="grid" style="margin-top:12px;"></section>
   </main>
 
+  <!-- ヘッダー：下スクロールで隠す / 上に少しでもスクロールで出す -->
+  <script>
+    (function () {
+      const header = document.getElementById("gheader");
+      if (!header) return;
+
+      let lastY = window.scrollY || 0;
+      let ticking = false;
+
+      const SHOW_THRESHOLD = 2;   // 上方向に2px動いたら出す
+      const HIDE_THRESHOLD = 8;   // 下方向は8px以上で隠す
+      const TOP_KEEP = 12;        // 先頭付近は常に表示
+
+      function onScroll() {
+        const y = window.scrollY || 0;
+        const dy = y - lastY;
+
+        if (y <= TOP_KEEP) {
+          header.classList.remove("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        if (dy > HIDE_THRESHOLD) {
+          header.classList.add("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        if (dy < -SHOW_THRESHOLD) {
+          header.classList.remove("is-hidden");
+          lastY = y;
+          return;
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          onScroll();
+        });
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- app.js ロード（既存） -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
