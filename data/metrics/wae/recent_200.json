@@ -1,0 +1,817 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-21T03:13:45.829Z",
+  "dataset": "book_scout_events",
+  "days": 30,
+  "id": "recent_200",
+  "columns": [
+    {
+      "name": "timestamp",
+      "type": "DateTime"
+    },
+    {
+      "name": "type",
+      "type": "String"
+    },
+    {
+      "name": "page",
+      "type": "String"
+    },
+    {
+      "name": "seriesKey",
+      "type": "String"
+    },
+    {
+      "name": "mood",
+      "type": "String"
+    },
+    {
+      "name": "genre",
+      "type": "String"
+    },
+    {
+      "name": "aud",
+      "type": "String"
+    },
+    {
+      "name": "mag",
+      "type": "String"
+    }
+  ],
+  "rows": [
+    {
+      "timestamp": "2026-02-20 23:51:43",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 23:51:41",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 23:45:35",
+      "type": "unknown",
+      "page": "v2",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:27:21",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:27:21",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:19:40",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:19:39",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:18:43",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "東京卍リベンジャーズ",
+      "genre": "hot",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:18:26",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "無職転生 ～異世界行ったら本気だす～",
+      "genre": "satisfying",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:18:01",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "終末のワルキューレ",
+      "genre": "satisfying",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:17:47",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "薫る花は凛と咲く",
+      "genre": "heart_throb",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:17:31",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "血の轍",
+      "genre": "messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:17:28",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "血の轍",
+      "genre": "messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:17:28",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "血の轍",
+      "genre": "messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:17:28",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "血の轍",
+      "genre": "messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:17:27",
+      "type": "vote",
+      "page": "v2",
+      "seriesKey": "work",
+      "mood": "血の轍",
+      "genre": "messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:16:41",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:16:40",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=satisfying,moving",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:16:38",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=satisfying",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:16:36",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=messy,satisfying",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:16:34",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 17:15:30",
+      "type": "__verify",
+      "page": "v2",
+      "seriesKey": "debug",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:31:13",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "トモちゃんは女の子!",
+      "mood": "heart_throb",
+      "genre": "JP",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:31:11",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "トモちゃんは女の子!",
+      "mood": "heart_throb",
+      "genre": "JP",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:31:10",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "トモちゃんは女の子!",
+      "mood": "healing",
+      "genre": "JP",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:31:00",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "ドメスティックな彼女",
+      "mood": "heart_throb",
+      "genre": "JP",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:30:40",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "スーパーの裏でヤニ吸うふたり",
+      "mood": "healing",
+      "genre": "JP",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:30:10",
+      "type": "list_filter",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=messy",
+      "genre": "JP",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:04:39",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "ブルーロック",
+      "mood": "hot",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:04:28",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "ニセコイ",
+      "mood": "heart_throb",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:04:20",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "トモダチゲーム",
+      "mood": "page_turner",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:04:12",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "page_turner",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:04:11",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "funny",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:04:03",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "ダンダダン",
+      "mood": "funny",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:03:52",
+      "type": "list_filter",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 16:03:52",
+      "type": "list_filter",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:57:07",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "鬼滅の刃",
+      "mood": "hot",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:56:53",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "鋼の錬金術師",
+      "mood": "hot",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:56:52",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "鋼の錬金術師",
+      "mood": "funny",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:56:18",
+      "type": "list_filter",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:56:13",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "葬送のフリーレン",
+      "mood": "funny",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:56:01",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "聲の形",
+      "mood": "moving",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:55:59",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "聲の形",
+      "mood": "moving",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:55:56",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "聲の形",
+      "mood": "tearjerker",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 15:55:56",
+      "type": "vote",
+      "page": "work",
+      "seriesKey": "聲の形",
+      "mood": "moving",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:56:38",
+      "type": "list_filter",
+      "page": "",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:56:00",
+      "type": "vote",
+      "page": "ワンパンマン",
+      "seriesKey": "satisfying",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:51",
+      "type": "vote",
+      "page": "よつばと！",
+      "seriesKey": "healing",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:43",
+      "type": "vote",
+      "page": "ようこそ実力至上主義の教室へ",
+      "seriesKey": "messy",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:42",
+      "type": "vote",
+      "page": "ようこそ実力至上主義の教室へ",
+      "seriesKey": "satisfying",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:27",
+      "type": "vote",
+      "page": "フルーツバスケット",
+      "seriesKey": "moving",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:26",
+      "type": "vote",
+      "page": "フルーツバスケット",
+      "seriesKey": "tearjerker",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:24",
+      "type": "vote",
+      "page": "フルーツバスケット",
+      "seriesKey": "heart_throb",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:14",
+      "type": "vote",
+      "page": "はじめの一歩",
+      "seriesKey": "hot",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:55:13",
+      "type": "vote",
+      "page": "はじめの一歩",
+      "seriesKey": "satisfying",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:54:57",
+      "type": "vote",
+      "page": "ドラゴンボール",
+      "seriesKey": "hot",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:54:54",
+      "type": "vote",
+      "page": "ドラゴンボール",
+      "seriesKey": "funny",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:54:40",
+      "type": "vote",
+      "page": "ダンジョン飯",
+      "seriesKey": "healing",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:54:18",
+      "type": "vote",
+      "page": "おやすみプンプン",
+      "seriesKey": "messy",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:53:59",
+      "type": "vote",
+      "page": "アオハライド",
+      "seriesKey": "heart_throb",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:53:49",
+      "type": "vote",
+      "page": "アイアムアヒーロー",
+      "seriesKey": "hot",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:53:43",
+      "type": "vote",
+      "page": "アイアムアヒーロー",
+      "seriesKey": "page_turner",
+      "mood": "work",
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:20:08",
+      "type": "vote",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:42",
+      "type": "vote",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:34",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:33",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:32",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:32",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:30",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 14:19:26",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 11:15:57",
+      "type": "list_filter",
+      "page": "JP",
+      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-20 07:20:25",
+      "type": "test",
+      "page": "book-scout-events.dx7qqdcchs.workers.dev",
+      "seriesKey": "GET",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-19 15:43:28",
+      "type": "test",
+      "page": "book-scout-events.dx7qqdcchs.workers.dev",
+      "seriesKey": "GET",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-19 15:43:28",
+      "type": "test",
+      "page": "book-scout-events.dx7qqdcchs.workers.dev",
+      "seriesKey": "GET",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-19 15:43:26",
+      "type": "test",
+      "page": "book-scout-events.dx7qqdcchs.workers.dev",
+      "seriesKey": "GET",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-19 15:43:23",
+      "type": "test",
+      "page": "book-scout-events.dx7qqdcchs.workers.dev",
+      "seriesKey": "GET",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-19 15:42:48",
+      "type": "test",
+      "page": "book-scout-events.dx7qqdcchs.workers.dev",
+      "seriesKey": "GET",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    }
+  ],
+  "raw": {
+    "rows": 77,
+    "rows_before_limit_at_least": 77
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-21T03:13:45.829Z",
+  "dataset": "book_scout_events",
+  "days": 30,
+  "id": "list_filter_by_query",
+  "columns": [
+    {
+      "name": "genre",
+      "type": "String"
+    },
+    {
+      "name": "aud",
+      "type": "String"
+    },
+    {
+      "name": "mag",
+      "type": "String"
+    },
+    {
+      "name": "mood",
+      "type": "String"
+    },
+    {
+      "name": "n",
+      "type": "UInt64"
+    }
+  ],
+  "rows": [
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "13"
+    },
+    {
+      "genre": "JP",
+      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+      "mag": "",
+      "mood": "",
+      "n": "5"
+    },
+    {
+      "genre": "JP",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=messy",
+      "n": "1"
+    },
+    {
+      "genre": "mood=satisfying",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=satisfying,moving",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=messy,satisfying",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "mood=messy",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    }
+  ],
+  "raw": {
+    "rows": 8,
+    "rows_before_limit_at_least": 17
+  }
+}
