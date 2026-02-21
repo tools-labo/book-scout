@@ -98,7 +98,16 @@
 
     function setStatus(msg) {
       const s = document.getElementById("status");
-      if (s) s.textContent = msg || "";
+      if (s) s.textContent = msg;
+    }
+
+    // ★重要：metrics JSON の rows を必ず読む（旧data互換も残す）
+    function getRows(obj) {
+      if (!obj) return [];
+      if (Array.isArray(obj)) return obj;
+      if (Array.isArray(obj.rows)) return obj.rows;
+      if (Array.isArray(obj.data)) return obj.data;
+      return [];
     }
 
     function getWorkMap(items) {
@@ -111,23 +120,13 @@
       return map;
     }
 
-    // export_wae_metrics.mjs の出力は { rows:[...] } 形式
-    // 念のため、昔の形式（配列直 or data）にも対応
-    function getRows(json) {
-      if (!json) return [];
-      if (Array.isArray(json)) return json;
-      if (Array.isArray(json.rows)) return json.rows;
-      if (Array.isArray(json.data)) return json.data;
-      if (json.result) return getRows(json.result);
-      return [];
-    }
-
     function cardHtml({ seriesKey, n, work }) {
       const key = encodeURIComponent(seriesKey);
       const title = toText(work?.vol1?.title) || seriesKey;
       const img = normalizeImgUrl(toText(work?.vol1?.image));
       const author = toText(work?.vol1?.author);
       const publisher = toText(work?.vol1?.publisher);
+
       const meta = [author, publisher].filter(Boolean).join(" / ");
 
       return `
@@ -169,67 +168,64 @@
         const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
         const workMap = getWorkMap(works?.items || []);
 
-        // metrics（全部 rows で読む）
-        const typeCountsJson = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
-        const viewBySeriesJson = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
-        const favBySeriesJson = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
-        const voteByMoodJson = await loadJson(`./data/metrics/wae/vote_by_mood.json${vq}`, { bust }).catch(() => null);
-
-        const typeCounts = getRows(typeCountsJson);
-        const viewBySeries = getRows(viewBySeriesJson);
-        const favBySeries = getRows(favBySeriesJson);
-        const voteByMood = getRows(voteByMoodJson);
+        // metrics（全て rows で読む）
+        const typeCounts = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
+        const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
+        const favBySeries = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
+        const voteByMood = await loadJson(`./data/metrics/wae/vote_by_mood.json${vq}`, { bust }).catch(() => null);
 
         // 人気（閲覧数）
         {
           const root = document.getElementById("rankViews");
-          if (root) {
-            if (!viewBySeries.length) {
-              root.innerHTML = `<div class="status">データがまだありません</div>`;
-            } else {
-              root.innerHTML = viewBySeries.slice(0, 30).map(r => {
-                const seriesKey = toText(r?.seriesKey);
-                const n = toText(r?.n);
-                const work = workMap.get(seriesKey);
-                return seriesKey ? cardHtml({ seriesKey, n, work }) : "";
-              }).join("") || `<div class="status">データがまだありません</div>`;
-            }
+          const rows = getRows(viewBySeries);
+          if (!root) {}
+          else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
+          else {
+            const top = rows.slice(0, 30).map(r => {
+              const seriesKey = toText(r?.seriesKey);
+              const n = toText(r?.n);
+              const work = workMap.get(seriesKey);
+              return seriesKey ? cardHtml({ seriesKey, n, work }) : "";
+            }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
           }
         }
 
         // お気に入り
         {
           const root = document.getElementById("rankFav");
-          if (root) {
-            if (!favBySeries.length) {
-              root.innerHTML = `<div class="status">データがまだありません</div>`;
-            } else {
-              root.innerHTML = favBySeries.slice(0, 30).map(r => {
-                const seriesKey = toText(r?.seriesKey);
-                const n = toText(r?.n);
-                const work = workMap.get(seriesKey);
-                return seriesKey ? cardHtml({ seriesKey, n, work }) : "";
-              }).join("") || `<div class="status">データがまだありません</div>`;
-            }
+          const rows = getRows(favBySeries);
+          if (!root) {}
+          else if (!rows.length) root.innerHTML = `<div class="status">まだ集計データがありません</div>`;
+          else {
+            const top = rows.slice(0, 30).map(r => {
+              const seriesKey = toText(r?.seriesKey);
+              const n = toText(r?.n);
+              const work = workMap.get(seriesKey);
+              return seriesKey ? cardHtml({ seriesKey, n, work }) : "";
+            }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
           }
         }
 
         // mood投票傾向
         {
           const box = document.getElementById("moodDist");
-          if (box) box.innerHTML = kvListHtml(voteByMood.slice(0, 50), "mood", "n");
+          const rows = getRows(voteByMood);
+          if (box) box.innerHTML = kvListHtml(rows.slice(0, 50), "mood", "n");
         }
 
         // type別
         {
           const box = document.getElementById("typeCounts");
-          if (box) box.innerHTML = kvListHtml(typeCounts.slice(0, 50), "type", "n");
+          const rows = getRows(typeCounts);
+          if (box) box.innerHTML = kvListHtml(rows.slice(0, 50), "type", "n");
         }
 
         setStatus("");
       } catch (e) {
         console.error(e);
-        setStatus("集計データの読み込みに失敗しました");
+        setStatus("集計データの読み込みに失敗しました（まだJSONが無い可能性あり）");
       }
     }
 
