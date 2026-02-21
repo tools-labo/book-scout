@@ -6,88 +6,83 @@
   <title>BOOKスカウト｜ランキング</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
-    /* stats専用の見た目強化（既存style.cssを壊さない） */
-    .rank-card { position: relative; }
-    .rank-badge{
+    /* ランキングは「書影＋最小情報」に特化 */
+    .rank-grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
+
+    .rank-item{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .rank-row{
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      padding: 12px;
+      align-items: start;
+    }
+
+    /* 書影枠 */
+    .rank-cover{
+      position: relative;
+      width: 92px;
+      height: 128px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #202433;
+      border: 1px solid var(--line);
+    }
+    .rank-cover img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    /* 書影の上に「順位」と「回数」 */
+    .rank-pill{
       position:absolute;
-      top:10px; left:10px;
-      display:inline-flex;
+      left:6px;
+      right:6px;
+      display:flex;
       align-items:center;
-      justify-content:center;
-      height:26px;
-      padding:0 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,0.06);
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.38);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       color: var(--fg);
       font-weight: 900;
-      font-size: 12px;
-      letter-spacing: .02em;
-      backdrop-filter: blur(6px);
-    }
-    .rank-count{
-      position:absolute;
-      top:10px; right:10px;
-      display:inline-flex;
-      align-items:baseline;
-      gap:6px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(43,97,255,0.12);
-      backdrop-filter: blur(6px);
-    }
-    .rank-count .num{
-      font-weight: 1000;
-      font-size: 20px;
+      font-size: 11px;
       line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .rank-count .unit{
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1;
-    }
-    .rank-meta-strong{
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    .subnote{
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-      margin: 6px 0 10px;
-    }
-
-    .mood-section{
-      border:1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-      margin-top: 12px;
-    }
-    .mood-head{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .mood-title{
-      margin:0;
-      font-size: 16px;
-      font-weight: 1000;
-    }
-    .mood-total{
-      color: var(--muted);
-      font-size: 12px;
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
+    .rank-pill.top{ top: 6px; }
+    .rank-pill.bottom{ bottom: 6px; }
+
+    .rank-pill .k{ opacity: .9; }
+    .rank-pill .v{ font-weight: 1000; }
+
+    /* 右側：作品情報は list と同程度（ただし“回数”は書影側に寄せる） */
+    .rank-meta .title{
+      font-weight: 900;
+      margin-bottom: 6px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    .rank-meta .sub{
+      color: var(--muted);
+      font-size: 12px;
+      margin: 6px 0;
+      line-height: 1.35;
+    }
+    .rank-meta .pills{ margin-top: 6px; }
   </style>
 </head>
 <body>
@@ -102,47 +97,19 @@
     <!-- 人気（閲覧数） -->
     <section class="section" style="margin-top:10px;">
       <div class="section-head">
-        <h2 class="section-title">人気（閲覧数）</h2>
+        <h2 class="section-title">人気（閲覧数）TOP10</h2>
       </div>
       <p class="section-sub">作品詳細が表示された回数（同一セッションは1回）</p>
-      <section id="rankViews" class="grid"></section>
+      <section id="rankViews" class="rank-grid"></section>
     </section>
 
     <!-- お気に入り -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
-        <h2 class="section-title">お気に入り</h2>
+        <h2 class="section-title">お気に入り TOP10</h2>
       </div>
       <p class="section-sub">ONにした回数（端末ローカルのON操作のみカウント）</p>
-      <section id="rankFav" class="grid"></section>
-    </section>
-
-    <!-- 投票（総合Top3） -->
-    <section class="section" style="margin-top:18px;">
-      <div class="section-head">
-        <h2 class="section-title">投票が多い作品（総合Top3）</h2>
-      </div>
-      <p class="section-sub">人気ではなく「読み味データが集まっている」作品の確認用</p>
-      <section id="rankVotesTop" class="grid"></section>
-    </section>
-
-    <!-- 投票：気分別トップ3（直近200のvoteから作る） -->
-    <section class="section" style="margin-top:18px;">
-      <div class="section-head">
-        <h2 class="section-title">投票：気分別トップ3</h2>
-      </div>
-      <div class="subnote">
-        直近の投票（recent_200）から作る暫定ランキング。あとで「mood×作品」の集計JSONを自動生成すれば、全期間の正確なTop3にできます。
-      </div>
-      <div id="voteByMoodTop3"></div>
-    </section>
-
-    <!-- 運用確認（イベント種類）※開発終わったら撤去想定 -->
-    <section class="section" style="margin-top:18px;">
-      <div class="section-head">
-        <h2 class="section-title">イベント種類（運用確認）</h2>
-      </div>
-      <div id="typeCounts" class="card" style="padding:12px;"></div>
+      <section id="rankFav" class="rank-grid"></section>
     </section>
   </main>
 
@@ -284,18 +251,7 @@
       return map;
     }
 
-    function getMoodLabelMap(quick) {
-      const map = new Map();
-      const defs = Array.isArray(quick?.items) ? quick.items : [];
-      for (const d of defs) {
-        const id = toText(d?.id);
-        const label = toText(d?.label);
-        if (id) map.set(id, label || id);
-      }
-      return map;
-    }
-
-    function rankCardHtml({ rank, seriesKey, n, work }) {
+    function rankItemHtml({ rank, seriesKey, n, unit, work }) {
       const key = encodeURIComponent(seriesKey);
 
       const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
@@ -320,18 +276,19 @@
       ].filter(Boolean).join(" / ");
 
       return `
-        <article class="card rank-card">
-          <div class="rank-badge">#${esc(rank)}</div>
-          <div class="rank-count"><span class="num">${esc(n)}</span><span class="unit">回</span></div>
-
-          <div class="card-row">
-            <div class="thumb">
-              ${img
-                ? `<a href="./work.html?key=${key}"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
-                : `<div class="thumb-ph"></div>`
-              }
+        <article class="rank-item">
+          <div class="rank-row">
+            <div>
+              <a href="./work.html?key=${key}" aria-label="${esc(title)}">
+                <div class="rank-cover">
+                  ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : ``}
+                  <div class="rank-pill top"><span class="k">#${esc(rank)}</span><span class="v"> </span></div>
+                  <div class="rank-pill bottom"><span class="k">${esc(n)}</span><span class="v">${esc(unit)}</span></div>
+                </div>
+              </a>
             </div>
-            <div class="meta">
+
+            <div class="rank-meta">
               <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
               ${metaParts ? `<div class="sub">${esc(metaParts)}</div>` : ""}
 
@@ -350,62 +307,6 @@
       `;
     }
 
-    function kvListHtml(rows, labelKey, valueKey) {
-      if (!rows?.length) return `<div class="status">データがまだありません</div>`;
-      const lines = rows.map(r => {
-        const k = toText(r?.[labelKey]);
-        const v = toText(r?.[valueKey]);
-        return `<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);">
-          <div>${esc(k || "-")}</div>
-          <div style="font-variant-numeric:tabular-nums;white-space:nowrap;"><b>${esc(v || "0")}</b></div>
-        </div>`;
-      }).join("");
-      return `<div>${lines}</div>`;
-    }
-
-    // recent_200 から vote を集計して mood別トップ3を作る
-    function buildVoteMoodTop3({ recentRows, moodLabelMap }) {
-      // mood -> (seriesKey -> count)
-      const moodMap = new Map();
-
-      for (const r of (recentRows || [])) {
-        const type = toText(r?.type);
-        if (type !== "vote") continue;
-
-        const seriesKey = toText(r?.seriesKey);
-        const mood = toText(r?.mood);
-        if (!seriesKey || !mood) continue;
-
-        if (!moodMap.has(mood)) moodMap.set(mood, new Map());
-        const bySeries = moodMap.get(mood);
-
-        bySeries.set(seriesKey, (bySeries.get(seriesKey) || 0) + 1);
-      }
-
-      // moodごとの総数も作る
-      const out = [];
-      for (const [mood, bySeries] of moodMap.entries()) {
-        let total = 0;
-        const arr = [];
-        for (const [seriesKey, n] of bySeries.entries()) {
-          total += n;
-          arr.push({ seriesKey, n });
-        }
-        arr.sort((a, b) => (b.n - a.n) || a.seriesKey.localeCompare(b.seriesKey, "ja"));
-
-        out.push({
-          mood,
-          label: moodLabelMap.get(mood) || mood,
-          total,
-          top3: arr.slice(0, 3),
-        });
-      }
-
-      // 総投票が多い気分順
-      out.sort((a, b) => (b.total - a.total) || a.label.localeCompare(b.label, "ja"));
-      return out;
-    }
-
     async function run() {
       try {
         const v = qs().get("v");
@@ -415,100 +316,41 @@
         const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
         const workMap = getWorkMap(works?.items || []);
 
-        const quick = await loadJson(`./data/lane2/quick_filters.json${vq}`, { bust }).catch(() => null);
-        const moodLabel = getMoodLabelMap(quick);
-
-        const typeCounts = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
         const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
-        const favBySeries = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
-        const voteBySeries = await loadJson(`./data/metrics/wae/vote_by_series.json${vq}`, { bust }).catch(() => null);
-        const recent200 = await loadJson(`./data/metrics/wae/recent_200.json${vq}`, { bust }).catch(() => null);
+        const favBySeries  = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
 
-        // 人気（閲覧数）
+        // 閲覧TOP10
         {
           const root = document.getElementById("rankViews");
           const rows = pickRows(viewBySeries);
           if (!root) {}
           else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
           else {
-            const top = rows.slice(0, 30).map((r, i) => {
+            const top = rows.slice(0, 10).map((r, i) => {
               const seriesKey = toText(r?.seriesKey);
               const n = toText(r?.n);
               const work = workMap.get(seriesKey);
-              return seriesKey ? rankCardHtml({ rank: i + 1, seriesKey, n, work }) : "";
+              return seriesKey ? rankItemHtml({ rank: i + 1, seriesKey, n, unit: "view", work }) : "";
             }).join("");
             root.innerHTML = top || `<div class="status">データがまだありません</div>`;
           }
         }
 
-        // お気に入り
+        // お気に入りTOP10
         {
           const root = document.getElementById("rankFav");
           const rows = pickRows(favBySeries);
           if (!root) {}
           else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
           else {
-            const top = rows.slice(0, 30).map((r, i) => {
+            const top = rows.slice(0, 10).map((r, i) => {
               const seriesKey = toText(r?.seriesKey);
               const n = toText(r?.n);
               const work = workMap.get(seriesKey);
-              return seriesKey ? rankCardHtml({ rank: i + 1, seriesKey, n, work }) : "";
+              return seriesKey ? rankItemHtml({ rank: i + 1, seriesKey, n, unit: "fav", work }) : "";
             }).join("");
             root.innerHTML = top || `<div class="status">データがまだありません</div>`;
           }
-        }
-
-        // 投票（総合Top3）※要望通りトップ3
-        {
-          const root = document.getElementById("rankVotesTop");
-          const rows = pickRows(voteBySeries);
-          if (!root) {}
-          else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
-          else {
-            const top = rows.slice(0, 3).map((r, i) => {
-              const seriesKey = toText(r?.seriesKey);
-              const n = toText(r?.n);
-              const work = workMap.get(seriesKey);
-              return seriesKey ? rankCardHtml({ rank: i + 1, seriesKey, n, work }) : "";
-            }).join("");
-            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
-          }
-        }
-
-        // 投票：気分別トップ3（recent_200から暫定生成）
-        {
-          const root = document.getElementById("voteByMoodTop3");
-          const rows = pickRows(recent200);
-          const moods = buildVoteMoodTop3({ recentRows: rows, moodLabelMap: moodLabel });
-
-          if (!root) {}
-          else if (!moods.length) {
-            root.innerHTML = `<div class="status">データがまだありません</div>`;
-          } else {
-            root.innerHTML = moods.map(m => {
-              const cards = m.top3.map((x, idx) => {
-                const work = workMap.get(x.seriesKey);
-                return rankCardHtml({ rank: idx + 1, seriesKey: x.seriesKey, n: x.n, work });
-              }).join("");
-
-              return `
-                <section class="mood-section">
-                  <div class="mood-head">
-                    <h3 class="mood-title">${esc(m.label)}</h3>
-                    <div class="mood-total">直近投票: <b>${esc(m.total)}</b></div>
-                  </div>
-                  <div class="grid">${cards || `<div class="status">該当なし</div>`}</div>
-                </section>
-              `;
-            }).join("");
-          }
-        }
-
-        // type別（運用確認）
-        {
-          const box = document.getElementById("typeCounts");
-          const rows = pickRows(typeCounts);
-          if (box) box.innerHTML = kvListHtml(rows.slice(0, 50), "type", "n");
         }
 
         setStatus("");
