@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T07:44:23.317Z",
+  "updatedAt": "2026-02-21T07:56:51.074Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -17,22 +17,26 @@
   "rows": [
     {
       "seriesKey": "work",
-      "n": "9"
+      "n": "16"
     },
     {
-      "seriesKey": "聲の形",
+      "seriesKey": "funny",
+      "n": "5"
+    },
+    {
+      "seriesKey": "血の轍",
+      "n": "5"
+    },
+    {
+      "seriesKey": "heart_throb",
       "n": "4"
     },
     {
+      "seriesKey": "moving",
+      "n": "3"
+    },
+    {
       "seriesKey": "hot",
-      "n": "3"
-    },
-    {
-      "seriesKey": "satisfying",
-      "n": "3"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
       "n": "3"
     },
     {
@@ -40,76 +44,32 @@
       "n": "2"
     },
     {
-      "seriesKey": "messy",
-      "n": "2"
-    },
-    {
-      "seriesKey": "heart_throb",
-      "n": "2"
-    },
-    {
-      "seriesKey": "チェンソーマン",
-      "n": "2"
-    },
-    {
-      "seriesKey": "鋼の錬金術師",
-      "n": "2"
-    },
-    {
-      "seriesKey": "葬送のフリーレン",
-      "n": "2"
-    },
-    {
-      "seriesKey": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "n": "2"
-    },
-    {
-      "seriesKey": "moving",
-      "n": "1"
-    },
-    {
-      "seriesKey": "funny",
-      "n": "1"
-    },
-    {
-      "seriesKey": "鬼滅の刃",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ダンダダン",
-      "n": "1"
-    },
-    {
       "seriesKey": "page_turner",
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "tearjerker",
       "n": "1"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "薫る花は凛と咲く",
       "n": "1"
     },
     {
-      "seriesKey": "ブルーロック",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
     {
-      "seriesKey": "トモダチゲーム",
+      "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
     {
-      "seriesKey": "スーパーの裏でヤニ吸うふたり",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 23,
-    "rows_before_limit_at_least": 46
+    "rows": 13,
+    "rows_before_limit_at_least": 44
   }
 }

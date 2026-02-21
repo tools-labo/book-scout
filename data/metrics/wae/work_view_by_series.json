@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T07:44:23.317Z",
+  "updatedAt": "2026-02-21T07:56:51.074Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -16,12 +16,24 @@
   ],
   "rows": [
     {
-      "seriesKey": "work",
-      "n": "6"
+      "seriesKey": "アイアムアヒーロー",
+      "n": "3"
+    },
+    {
+      "seriesKey": "三日間の幸福",
+      "n": "1"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京卍リベンジャーズ",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 1,
+    "rows": 4,
     "rows_before_limit_at_least": 6
   }
 }
