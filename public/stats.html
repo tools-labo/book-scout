@@ -1,3 +1,4 @@
+<!-- public/stats.html（全差し替え：ランキングカードを list と同じ情報量に） -->
 <!doctype html>
 <html lang="ja">
 <head>
@@ -33,28 +34,19 @@
       <section id="rankFav" class="grid"></section>
     </section>
 
-    <!-- 投票（総合トップ3） -->
+    <!-- 投票（気分の総数） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
-        <h2 class="section-title">投票が多い作品（総合）</h2>
+        <h2 class="section-title">投票（気分の総数）</h2>
       </div>
-      <p class="section-sub">人気ではなく「読み味データが集まっている」作品の確認用</p>
-      <section id="rankVotes" class="grid"></section>
+      <p class="section-sub">人気ランキングではなく、読み味の傾向を見るための集計</p>
+      <div id="moodTotals" class="card" style="padding:12px;"></div>
     </section>
 
-    <!-- 投票（気分別トップ3） -->
+    <!-- 運用確認（イベント種類）※開発終わったら撤去想定 -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
-        <h2 class="section-title">投票：気分別トップ3</h2>
-      </div>
-      <p class="section-sub">各気分ごとに、投票が多い作品を3件だけ表示</p>
-      <div id="voteByMoodTop3"></div>
-    </section>
-
-    <!-- （開発中だけ）イベント種類 -->
-    <section class="section" style="margin-top:18px;">
-      <div class="section-head">
-        <h2 class="section-title">イベント種類（開発確認）</h2>
+        <h2 class="section-title">イベント種類（運用確認）</h2>
       </div>
       <div id="typeCounts" class="card" style="padding:12px;"></div>
     </section>
@@ -84,15 +76,23 @@
       if (typeof v === "number" || typeof v === "boolean") return String(v);
       if (Array.isArray(v)) return v.map(toText).filter(Boolean).join(" / ");
       if (typeof v === "object") {
-        const keys = ["title","name","label","value","text","display","ja","jp"];
+        const keys = ["name","ja","jp","label","value","text","title","publisher","company","display","brand","manufacturer"];
         for (const k of keys) {
           if (v[k] != null) {
             const t = toText(v[k]);
             if (t) return t;
           }
         }
+        return "";
       }
       return "";
+    }
+
+    function formatYmd(s) {
+      const t = toText(s);
+      if (!t) return "";
+      if (t.length >= 10 && /^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
+      return t;
     }
 
     function normalizeImgUrl(u) {
@@ -106,7 +106,13 @@
 
     function setStatus(msg) {
       const s = document.getElementById("status");
-      if (s) s.textContent = msg || "";
+      if (s) s.textContent = msg;
+    }
+
+    function pills(list) {
+      const xs = (list || []).map(toText).filter(Boolean);
+      if (!xs.length) return "";
+      return `<div class="pills">${xs.map(x => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
     }
 
     function getWorkMap(items) {
@@ -119,24 +125,64 @@
       return map;
     }
 
-    function cardHtml({ seriesKey, n, work }) {
+    // quick_filters.json から mood id -> label
+    function getMoodLabelMap(quick) {
+      const map = new Map();
+      const defs = Array.isArray(quick?.items) ? quick.items : [];
+      for (const d of defs) {
+        const id = toText(d?.id);
+        const label = toText(d?.label);
+        if (id) map.set(id, label || id);
+      }
+      return map;
+    }
+
+    function rankCardHtml({ seriesKey, n, work }) {
       const key = encodeURIComponent(seriesKey);
-      const title = toText(work?.vol1?.title) || seriesKey;
-      const img = normalizeImgUrl(toText(work?.vol1?.image));
-      const author = toText(work?.vol1?.author);
-      const publisher = toText(work?.vol1?.publisher);
-      const meta = [author, publisher].filter(Boolean).join(" / ");
+      const vol1 = work?.vol1 || {};
+
+      const title = toText(vol1?.title) || seriesKey || "(無題)";
+      const author = toText(vol1?.author);
+      const release = formatYmd(vol1?.releaseDate);
+      const publisher = toText(vol1?.publisher);
+      const magazine = toText(vol1?.magazine);
+      const img = normalizeImgUrl(toText(vol1?.image));
+
+      const genres = Array.isArray(vol1?.genres) ? vol1.genres.map(toText).filter(Boolean) : [];
+      const tags = Array.isArray(vol1?.tags) ? vol1.tags.map(toText).filter(Boolean).slice(0, 10) : [];
+      const synopsis = toText(vol1?.synopsis);
+
+      const metaParts = [
+        author ? author : null,
+        release ? `発売日: ${release}` : null,
+        publisher ? `出版社: ${publisher}` : null,
+        magazine ? `連載誌: ${magazine}` : null,
+      ].filter(Boolean).join(" / ");
 
       return `
         <article class="card">
           <div class="card-row">
             <div class="thumb">
-              ${img ? `<a href="./work.html?key=${key}"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
+              ${img
+                ? `<a href="./work.html?key=${key}"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+                : `<div class="thumb-ph"></div>`
+              }
             </div>
             <div class="meta">
               <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey)}</a></div>
-              ${meta ? `<div class="sub">${esc(meta)}</div>` : ""}
+              ${metaParts ? `<div class="sub">${esc(metaParts)}</div>` : ""}
+
               <div class="sub">回数: <b>${esc(n)}</b></div>
+
+              ${genres.length ? `<div class="sub">ジャンル: ${esc(genres.join(" / "))}</div>` : ""}
+              ${tags.length ? `<div class="sub">タグ:</div>${pills(tags)}` : ""}
+
+              ${synopsis ? `
+                <details class="syn">
+                  <summary>あらすじ</summary>
+                  <div class="syn-body">${esc(synopsis)}</div>
+                </details>
+              ` : ""}
             </div>
           </div>
         </article>
@@ -156,27 +202,12 @@
       return `<div>${lines}</div>`;
     }
 
-    // export_wae_metrics.mjs が出す形式: { columns:[], rows:[] }
-    function pickRows(json) {
-      if (!json) return [];
-      if (Array.isArray(json)) return json;
-      if (Array.isArray(json.rows)) return json.rows;
-      if (Array.isArray(json.data)) return json.data; // 念のため
+    function pickRows(obj) {
+      if (!obj) return [];
+      if (Array.isArray(obj)) return obj;
+      if (Array.isArray(obj?.rows)) return obj.rows;
+      if (Array.isArray(obj?.data)) return obj.data;
       return [];
-    }
-
-    // seriesKey に紛れ込むゴミ（page名など）を除外
-    function isGarbageSeriesKey(s) {
-      const x = toText(s);
-      if (!x) return true;
-      const bad = new Set(["work","list","debug","index","stats","unknown"]);
-      return bad.has(x);
-    }
-
-    function topNRows(rows, n = 3) {
-      return (rows || [])
-        .filter(r => !isGarbageSeriesKey(r?.seriesKey))
-        .slice(0, n);
     }
 
     async function run() {
@@ -185,132 +216,81 @@
         const bust = !!v;
         const vq = v ? `?v=${encodeURIComponent(v)}` : "";
 
+        // works（作品情報）
         const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
         const workMap = getWorkMap(works?.items || []);
 
+        // quick filters（moodラベル）
         const quick = await loadJson(`./data/lane2/quick_filters.json${vq}`, { bust }).catch(() => null);
-        const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
-        const moodLabelById = new Map(quickDefs.map(d => [toText(d.id), toText(d.label)]));
+        const moodLabel = getMoodLabelMap(quick);
 
-        const typeCountsJson = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
-        const viewBySeriesJson = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
-        const favBySeriesJson  = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
-        const voteBySeriesJson = await loadJson(`./data/metrics/wae/vote_by_series.json${vq}`, { bust }).catch(() => null);
-        const voteByMoodSeriesJson = await loadJson(`./data/metrics/wae/vote_by_mood_series.json${vq}`, { bust }).catch(() => null);
+        // metrics
+        const typeCounts = await loadJson(`./data/metrics/wae/type_counts.json${vq}`, { bust }).catch(() => null);
+        const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
+        const favBySeries = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
+        const voteByMood = await loadJson(`./data/metrics/wae/vote_by_mood.json${vq}`, { bust }).catch(() => null);
 
-        // 人気（閲覧数）トップ3
+        // 人気（閲覧数）
         {
           const root = document.getElementById("rankViews");
-          const rows = topNRows(pickRows(viewBySeriesJson), 3);
+          const rows = pickRows(viewBySeries);
           if (!root) {}
           else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
           else {
-            root.innerHTML = rows.map(r => {
+            const top = rows.slice(0, 30).map(r => {
               const seriesKey = toText(r?.seriesKey);
               const n = toText(r?.n);
               const work = workMap.get(seriesKey);
-              return cardHtml({ seriesKey, n, work });
+              return seriesKey ? rankCardHtml({ seriesKey, n, work }) : "";
             }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
           }
         }
 
-        // お気に入りトップ3
+        // お気に入り
         {
           const root = document.getElementById("rankFav");
-          const rows = topNRows(pickRows(favBySeriesJson), 3);
+          const rows = pickRows(favBySeries);
           if (!root) {}
           else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
           else {
-            root.innerHTML = rows.map(r => {
+            const top = rows.slice(0, 30).map(r => {
               const seriesKey = toText(r?.seriesKey);
               const n = toText(r?.n);
               const work = workMap.get(seriesKey);
-              return cardHtml({ seriesKey, n, work });
+              return seriesKey ? rankCardHtml({ seriesKey, n, work }) : "";
             }).join("");
+            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
           }
         }
 
-        // 投票（総合トップ3）
+        // 投票（気分の総数）…mood id -> label に変換、謎の "JP" などはここで吸収
         {
-          const root = document.getElementById("rankVotes");
-          const rows = topNRows(pickRows(voteBySeriesJson), 3);
-          if (!root) {}
-          else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
-          else {
-            root.innerHTML = rows.map(r => {
-              const seriesKey = toText(r?.seriesKey);
-              const n = toText(r?.n);
-              const work = workMap.get(seriesKey);
-              return cardHtml({ seriesKey, n, work });
-            }).join("");
-          }
+          const box = document.getElementById("moodTotals");
+          const rows = pickRows(voteByMood);
+
+          const cleaned = rows
+            .map(r => ({
+              mood: moodLabel.get(toText(r?.mood)) || toText(r?.mood),
+              n: toText(r?.n),
+              _rawMood: toText(r?.mood),
+            }))
+            .filter(x => x.mood);
+
+          if (box) box.innerHTML = kvListHtml(cleaned.slice(0, 50), "mood", "n");
         }
 
-        // 投票：気分別トップ3
-        {
-          const root = document.getElementById("voteByMoodTop3");
-          const rows = pickRows(voteByMoodSeriesJson)
-            .filter(r => !isGarbageSeriesKey(r?.seriesKey))
-            .filter(r => !!toText(r?.mood));
-
-          if (!root) {}
-          else if (!rows.length) {
-            root.innerHTML = `<div class="status">データがまだありません</div>`;
-          } else {
-            // moodごとに上位3件を作る
-            const byMood = new Map();
-            for (const r of rows) {
-              const mood = toText(r?.mood);
-              if (!mood) continue;
-              if (!byMood.has(mood)) byMood.set(mood, []);
-              byMood.get(mood).push(r);
-            }
-            // もともと SQL で mood ASC, n DESC なので push順のままでOKだが、念のため n desc
-            for (const [m, arr] of byMood.entries()) {
-              arr.sort((a,b) => Number(toText(b?.n)||0) - Number(toText(a?.n)||0));
-              byMood.set(m, arr.slice(0, 3));
-            }
-
-            // 表示順：quick_filters.json の並びを優先
-            const moodOrder = quickDefs.map(d => toText(d.id)).filter(Boolean);
-            const moodKeys = [
-              ...moodOrder.filter(id => byMood.has(id)),
-              ...Array.from(byMood.keys()).filter(id => !moodOrder.includes(id))
-            ];
-
-            root.innerHTML = moodKeys.map(moodId => {
-              const label = moodLabelById.get(moodId) || moodId;
-              const top = byMood.get(moodId) || [];
-              const cards = top.map(r => {
-                const seriesKey = toText(r?.seriesKey);
-                const n = toText(r?.n);
-                const work = workMap.get(seriesKey);
-                return cardHtml({ seriesKey, n, work });
-              }).join("");
-
-              return `
-                <section class="section" style="margin-top:12px;">
-                  <div class="section-head">
-                    <h3 class="section-title" style="font-size:16px;">${esc(label)} トップ3</h3>
-                  </div>
-                  <section class="grid" style="margin-top:8px;">${cards || `<div class="status">データがまだありません</div>`}</section>
-                </section>
-              `;
-            }).join("");
-          }
-        }
-
-        // イベント種類（開発確認）
+        // type別（運用確認）
         {
           const box = document.getElementById("typeCounts");
-          const rows = pickRows(typeCountsJson);
+          const rows = pickRows(typeCounts);
           if (box) box.innerHTML = kvListHtml(rows.slice(0, 50), "type", "n");
         }
 
         setStatus("");
       } catch (e) {
         console.error(e);
-        setStatus("集計データの読み込みに失敗しました");
+        setStatus("集計データの読み込みに失敗しました（まだJSONが無い可能性あり）");
       }
     }
 
