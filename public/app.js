@@ -653,3 +653,479 @@ function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters }) {
     ? `${msg}<br/><span style="opacity:.8;">該当なし</span>`
     : msg;
 }
+
+// public/app.js  (2/2)
+
+function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
+  const s = document.getElementById("status");
+  if (!s) return;
+
+  const parts = [];
+  if (genreWanted?.length) {
+    const ja = genreWanted.map((g) => GENRE_JA[g] || g).join(" / ");
+    parts.push(`ジャンル: <b>${esc(ja)}</b>`);
+  }
+  if (audienceWanted) {
+    const tab = CATEGORY_TABS.find(x => x.value === audienceWanted);
+    const label = tab?.label || audienceWanted;
+    parts.push(`カテゴリー: <b>${esc(label)}</b>`);
+  }
+  if (magazineWanted) parts.push(`連載誌: <b>${esc(magazineWanted)}</b>`);
+
+  if (!parts.length) { s.textContent = ""; return; }
+  s.innerHTML = `絞り込み：${parts.join(" / ")}`;
+}
+
+/* =======================
+ * Home rows
+ * ======================= */
+function renderCardRow({ items, limit = 18, moreHref = "" }) {
+  const v = qs().get("v");
+  const cards = (items || []).slice(0, limit).map((it) => {
+    const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+    const img = normalizeImgUrl(imgRaw);
+    const key = encodeURIComponent(seriesKey);
+
+    return `
+      <a class="row-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+        <div class="row-thumb">
+          ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+        </div>
+        <div class="row-title">${esc(seriesKey || title)}</div>
+      </a>
+    `;
+  }).join("");
+
+  const moreCard = moreHref
+    ? `
+      <a class="row-card row-more" href="${esc(moreHref)}" aria-label="もっと見る">
+        <div class="row-thumb row-more-thumb">
+          <div class="row-more-icon">→</div>
+        </div>
+        <div class="row-title row-more-title">もっと見る</div>
+      </a>
+    `
+    : "";
+
+  return `<div class="row-scroll">${cards}${moreCard}</div>`;
+}
+
+function setGenreAllLink(activeTab) {
+  const a = document.getElementById("genreAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const q = encodeURIComponent(activeTab.match.join(","));
+  a.href = `./list.html?genre=${q}${vq}`;
+}
+
+function setAudienceAllLink(activeAudValue) {
+  const a = document.getElementById("audienceAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  a.href = `./list.html?aud=${encodeURIComponent(activeAudValue)}${vq}`;
+}
+
+function genreCountMap(allItems) {
+  const map = new Map();
+  for (const t of GENRE_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    for (const t of GENRE_TABS) {
+      if (hasAnyGenre(it, t.match)) map.set(t.id, (map.get(t.id) || 0) + 1);
+    }
+  }
+  return map;
+}
+
+function categoryCountMap(allItems) {
+  const map = new Map();
+  for (const t of CATEGORY_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    const label = getFirstAudienceLabel(it);
+    const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
+    if (!tab) continue;
+    map.set(tab.id, (map.get(tab.id) || 0) + 1);
+  }
+  return map;
+}
+
+function renderGenreTabsRow({ data, activeId }) {
+  const tabs = document.getElementById("genreTabs");
+  const row = document.getElementById("genreRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(data?.items) ? data.items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const counts = genreCountMap(all);
+  const active = GENRE_TABS.find(x => x.id === activeId) || GENRE_TABS[0];
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${GENRE_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-genre="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const picked = all.filter(it => hasAnyGenre(it, active.match));
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const moreHref = `./list.html?genre=${encodeURIComponent(active.match.join(","))}${vq}`;
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+  setGenreAllLink(active);
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-genre]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-genre") || "";
+    if (!next || next === active.id) return;
+
+    setHomeState({ g: next });
+    renderGenreTabsRow({ data, activeId: next });
+  };
+}
+
+function renderAudienceTabsRow({ data, activeAudId }) {
+  const tabs = document.getElementById("audienceTabs");
+  const row = document.getElementById("audienceRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(data?.items) ? data.items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const counts = categoryCountMap(all);
+  const active = CATEGORY_TABS.find(x => x.id === activeAudId) || CATEGORY_TABS[0];
+  const audValue = active.value;
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${CATEGORY_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-aud="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const picked = all.filter(it => getFirstAudienceLabel(it) === audValue);
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const moreHref = `./list.html?aud=${encodeURIComponent(audValue)}${vq}`;
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+  setAudienceAllLink(audValue);
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-aud]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-aud") || "";
+    if (!next || next === active.id) return;
+
+    setHomeState({ a: next });
+    renderAudienceTabsRow({ data, activeAudId: next });
+  };
+}
+
+/* =======================
+ * list（解除リロード無し + お気に入りボタン + クイック動的カウント）
+ * ======================= */
+function renderList(data, quickDefs) {
+  const root = document.getElementById("list");
+  if (!root) return;
+
+  const all = Array.isArray(data?.items) ? data.items : [];
+
+  const genreWanted = parseGenreQuery();
+  const audienceWanted = parseOneQueryParam("aud");
+  const magazineWanted = parseOneQueryParam("mag");
+  const moodSelected = parseMoodQuery();
+
+  const byId = new Map((quickDefs || []).map(d => [d.id, d]));
+  const moodActiveDefs = moodSelected.map(id => byId.get(id)).filter(Boolean);
+
+  // まず大ジャンルで絞る（これが quickCounts の母集団）
+  const base = all
+    .filter((it) => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
+    .filter((it) => hasAudience(it, audienceWanted))
+    .filter((it) => hasMagazine(it, magazineWanted));
+
+  // mood AND + score順（score=ヒット数合算）
+  const scored = [];
+  if (moodActiveDefs.length) {
+    for (const it of base) {
+      const r = quickEvalAll(it, moodActiveDefs);
+      if (!r.ok) continue;
+      scored.push({ it, score: r.score });
+    }
+    scored.sort((a, b) => (b.score - a.score));
+  } else {
+    for (const it of base) scored.push({ it, score: 0 });
+  }
+  const items = scored.map(x => x.it);
+
+  renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
+
+  // list_filter 計測（現状維持）
+  const moodParam = moodSelected.join(",");
+  trackEvent({
+    type: "list_filter",
+    page: "list",
+    seriesKey: "",
+    mood: [
+      genreWanted.length ? `genre=${genreWanted.join(",")}` : "",
+      audienceWanted ? `aud=${audienceWanted}` : "",
+      magazineWanted ? `mag=${magazineWanted}` : "",
+      moodParam ? `mood=${moodParam}` : "",
+    ].filter(Boolean).join("&"),
+  });
+
+  // 解除リンク：遷移させない
+  const clear = document.getElementById("moodClearLink");
+  if (clear) {
+    clear.onclick = (ev) => {
+      ev.preventDefault();
+      setMoodQuery([]);
+      renderList(data, quickDefs);
+      refreshFavButtons(document);
+    };
+  }
+
+  // クイックUI（動的カウント）
+  if (document.getElementById("quickFiltersList")) {
+    const defs = Array.isArray(quickDefs) ? quickDefs : [];
+    const dyn = quickCountsDynamic(base, defs, moodSelected);
+
+    renderQuickListUI({
+      defs,
+      counts: dyn.counts,
+      disabledIds: dyn.disabled,
+      selectedIds: moodSelected,
+      onToggle: (id) => {
+        const cur = parseMoodQuery();
+        const set = new Set(cur);
+
+        if (set.has(id)) set.delete(id);
+        else {
+          if (set.size >= QUICK_MAX) return;
+          set.add(id);
+        }
+
+        setMoodQuery(Array.from(set));
+        renderList(data, quickDefs);
+        refreshFavButtons(document);
+      }
+    });
+
+    renderQuickHint({
+      selectedIds: moodSelected,
+      defs,
+      itemsAfterAllFilters: items
+    });
+  }
+
+  if (!items.length) {
+    root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
+    return;
+  }
+
+  root.innerHTML = items.map((it) => {
+    const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+    const key = encodeURIComponent(seriesKey);
+
+    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+    const author = toText(pick(it, ["author", "vol1.author"])) || "";
+
+    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+    const img = normalizeImgUrl(imgRaw);
+
+    const amzRaw = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
+    const amz = ensureAmazonAffiliate(amzRaw);
+
+    const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
+    const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
+    const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
+
+    const genresJa = mapGenres(pickArr(it, ["genres", "vol1.genres"]));
+    const tagsJa = pickArr(it, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
+    const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
+
+    const metaParts = [
+      author ? esc(author) : null,
+      release ? `発売日: ${esc(release)}` : null,
+      publisher ? `出版社: ${esc(publisher)}` : null,
+      magazine ? `連載誌: ${esc(magazine)}` : null,
+    ].filter(Boolean).join(" / ");
+
+    return `
+      <article class="card">
+        <div class="card-row">
+          <div class="thumb">
+            ${img ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
+          </div>
+          <div class="meta">
+            <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
+            ${metaParts ? `<div class="sub">${metaParts}</div>` : ""}
+
+            ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
+            ${tagsJa.length ? `<div class="sub">タグ:</div>${pills(tagsJa)}` : ""}
+
+            <div class="actions">
+              ${favButtonHtml(seriesKey, "list")}
+            </div>
+
+            ${synopsis ? `
+              <details class="syn">
+                <summary>あらすじ</summary>
+                <div class="syn-body">${esc(synopsis)}</div>
+              </details>
+            ` : ""}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  refreshFavButtons(document);
+}
+
+/* =======================
+ * work（投票 + お気に入り + work_view 1回）
+ * ======================= */
+function renderWork(data, quickDefs) {
+  const detail = document.getElementById("detail");
+  if (!detail) return;
+
+  const key = qs().get("key");
+  if (!key) return;
+
+  const items = Array.isArray(data?.items) ? data.items : [];
+  const it = items.find((x) => toText(pick(x, ["seriesKey"])) === key);
+  if (!it) return;
+
+  const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+  const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+
+  const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+  const img = normalizeImgUrl(imgRaw);
+
+  const amzRaw = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "";
+  const amz = ensureAmazonAffiliate(amzRaw);
+
+  const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
+
+  const defs = Array.isArray(quickDefs) ? quickDefs : [];
+  const voteButtons = defs.length
+    ? `
+      <div class="d-sub" style="margin-top:14px;">読み味投票</div>
+      <div class="pills" id="votePills">
+        ${defs.map(d => `
+          <button type="button" class="pill" data-vote="${esc(d.id)}">
+            ${esc(d.label)}
+          </button>
+        `).join("")}
+      </div>
+      <div class="d-sub" id="voteStatus" style="margin-top:8px;"></div>
+    `
+    : "";
+
+  detail.innerHTML = `
+    <div class="d-title">${esc(seriesKey || title)}</div>
+    <div class="d-row">
+      ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
+      <div class="d-links">
+        ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
+        ${favButtonHtml(seriesKey, "work")}
+      </div>
+    </div>
+    ${synopsis ? `
+      <div class="d-sub" style="margin-top:14px;">あらすじ</div>
+      <div class="d-text">${esc(synopsis)}</div>
+    ` : ""}
+    ${voteButtons}
+  `;
+
+  // work_view：同一セッション1回
+  trackWorkViewOnce(seriesKey);
+
+  // 投票（seriesKey+mood は 24h で1回に抑止）
+  const vp = document.getElementById("votePills");
+  if (vp) {
+    vp.onclick = (ev) => {
+      const btn = ev.target?.closest?.("button[data-vote]");
+      if (!btn) return;
+      const mood = btn.getAttribute("data-vote") || "";
+      if (!mood) return;
+
+      const sent = trackVoteOnce(seriesKey, mood);
+
+      const st = document.getElementById("voteStatus");
+      if (st) {
+        st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
+        setTimeout(() => { if (st) st.textContent = ""; }, 1400);
+      }
+    };
+  }
+
+  refreshFavButtons(document);
+}
+
+/* =======================
+ * run
+ * ======================= */
+async function run() {
+  try {
+    const v = qs().get("v");
+    const worksUrl = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
+    const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
+
+    const data = await loadJson(worksUrl, { bust: !!v });
+    const quick = await loadJson(quickUrl, { bust: !!v });
+    const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
+
+    // Home：ジャンル/カテゴリー
+    const st = getHomeState();
+    renderGenreTabsRow({ data, activeId: st.g });
+    renderAudienceTabsRow({ data, activeAudId: st.a });
+
+    // Home：気分（導線）…「単体押下で何件」なので従来通り
+    if (document.getElementById("quickFiltersHome")) {
+      const all = Array.isArray(data?.items) ? data.items : [];
+      const counts = new Map(quickDefs.map(d => [d.id, 0]));
+      for (const it of all) {
+        for (const d of quickDefs) {
+          if (quickEval(it, d).ok) counts.set(d.id, (counts.get(d.id) || 0) + 1);
+        }
+      }
+      renderQuickHome({ defs: quickDefs, counts });
+    }
+
+    // List / Work
+    renderList(data, quickDefs);
+    renderWork(data, quickDefs);
+
+    // Amazonアフィ付与
+    patchAmazonAnchors(document);
+
+    // favorite handler（1回だけbind）
+    bindFavHandlers(document);
+    refreshFavButtons(document);
+  } catch (e) {
+    setStatus("読み込みに失敗しました");
+    console.error(e);
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", run, { once: true });
+} else {
+  run();
+}
