@@ -6,7 +6,6 @@
   <title>BOOKスカウト｜ランキング</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
-    /* ランキングは「書影＋最小情報」に特化 */
     .rank-grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
 
     .rank-item{
@@ -24,9 +23,46 @@
       align-items: start;
     }
 
-    /* 書影枠 */
+    /* 左：順位→回数→書影 */
+    .rank-left{
+      width: 92px;
+      display:flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .rank-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      color: var(--fg);
+      font-weight: 1000;
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .rank-count{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .rank-count b{ color: var(--fg); font-weight: 1000; }
+
     .rank-cover{
-      position: relative;
       width: 92px;
       height: 128px;
       border-radius: 10px;
@@ -41,35 +77,7 @@
       display:block;
     }
 
-    /* 書影の上に「順位」と「回数」 */
-    .rank-pill{
-      position:absolute;
-      left:6px;
-      right:6px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 6px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.38);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      color: var(--fg);
-      font-weight: 900;
-      font-size: 11px;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-    .rank-pill.top{ top: 6px; }
-    .rank-pill.bottom{ bottom: 6px; }
-
-    .rank-pill .k{ opacity: .9; }
-    .rank-pill .v{ font-weight: 1000; }
-
-    /* 右側：作品情報は list と同程度（ただし“回数”は書影側に寄せる） */
+    /* 右側：list と同程度 */
     .rank-meta .title{
       font-weight: 900;
       margin-bottom: 6px;
@@ -94,7 +102,6 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <!-- 人気（閲覧数） -->
     <section class="section" style="margin-top:10px;">
       <div class="section-head">
         <h2 class="section-title">人気（閲覧数）TOP10</h2>
@@ -103,7 +110,6 @@
       <section id="rankViews" class="rank-grid"></section>
     </section>
 
-    <!-- お気に入り -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">お気に入り TOP10</h2>
@@ -265,7 +271,6 @@
 
       const genresJa = mapGenres(pickArr(work, ["genres", "vol1.genres"]));
       const tagsJa = pickArr(work, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
-
       const synopsis = toText(pick(work, ["synopsis", "vol1.synopsis"])) || "";
 
       const metaParts = [
@@ -278,12 +283,12 @@
       return `
         <article class="rank-item">
           <div class="rank-row">
-            <div>
+            <div class="rank-left">
+              <div class="rank-badge">#${esc(rank)}</div>
+              <div class="rank-count"><b>${esc(n)}</b>&nbsp;${esc(unit)}</div>
               <a href="./work.html?key=${key}" aria-label="${esc(title)}">
                 <div class="rank-cover">
                   ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : ``}
-                  <div class="rank-pill top"><span class="k">#${esc(rank)}</span><span class="v"> </span></div>
-                  <div class="rank-pill bottom"><span class="k">${esc(n)}</span><span class="v">${esc(unit)}</span></div>
                 </div>
               </a>
             </div>
@@ -319,37 +324,33 @@
         const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
         const favBySeries  = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
 
-        // 閲覧TOP10
         {
           const root = document.getElementById("rankViews");
           const rows = pickRows(viewBySeries);
           if (!root) {}
           else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
           else {
-            const top = rows.slice(0, 10).map((r, i) => {
+            root.innerHTML = rows.slice(0, 10).map((r, i) => {
               const seriesKey = toText(r?.seriesKey);
               const n = toText(r?.n);
               const work = workMap.get(seriesKey);
               return seriesKey ? rankItemHtml({ rank: i + 1, seriesKey, n, unit: "view", work }) : "";
-            }).join("");
-            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
+            }).join("") || `<div class="status">データがまだありません</div>`;
           }
         }
 
-        // お気に入りTOP10
         {
           const root = document.getElementById("rankFav");
           const rows = pickRows(favBySeries);
           if (!root) {}
           else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
           else {
-            const top = rows.slice(0, 10).map((r, i) => {
+            root.innerHTML = rows.slice(0, 10).map((r, i) => {
               const seriesKey = toText(r?.seriesKey);
               const n = toText(r?.n);
               const work = workMap.get(seriesKey);
               return seriesKey ? rankItemHtml({ rank: i + 1, seriesKey, n, unit: "fav", work }) : "";
-            }).join("");
-            root.innerHTML = top || `<div class="status">データがまだありません</div>`;
+            }).join("") || `<div class="status">データがまだありません</div>`;
           }
         }
 
