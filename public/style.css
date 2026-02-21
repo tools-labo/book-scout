@@ -203,3 +203,29 @@ a { color: inherit; text-decoration: none; }
 .d-img { width: 150px; height: 214px; object-fit: cover; border-radius: 12px; }
 .d-links { display:flex; flex-direction: column; gap: 8px; flex: 1; }
 .d-text { font-size: 14px; line-height: 1.75; color: #e2e2e2; white-space: pre-wrap; }
+
+/* Favorite button */
+.fav-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  color: var(--fg);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.fav-btn:active{ transform: translateY(1px); }
+.fav-icon{ font-size: 16px; line-height: 1; }
+.fav-text{ color: var(--muted); font-weight: 800; }
+
+.fav-btn.is-on{
+  border-color: rgba(255, 105, 180, 0.75);
+  background: rgba(255, 105, 180, 0.18);
+}
+.fav-btn.is-on .fav-icon{
+  color: rgb(255, 105, 180);
+}
