@@ -229,3 +229,78 @@ a { color: inherit; text-decoration: none; }
 .fav-btn.is-on .fav-icon{
   color: rgb(255, 105, 180);
 }
+
+
+/* =======================
+ * Sticky global header (BOOK☆WALKER風)
+ * ======================= */
+.gheader{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(11,12,16,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.gheader-inner{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.gbrand{
+  display:flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.gbrand-title{
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.gbrand-sub{
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gnav{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.gnav a{
+  display:inline-flex;
+  align-items:center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  color: var(--fg);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.gnav a:active{ transform: translateY(1px); }
+
+.gnav a.is-active{
+  border-color: rgba(43,97,255,0.65);
+  background: rgba(43,97,255,0.18);
+}
+
+/* 既存の .header を使っているページがあるので、固定ヘッダー採用後は余白だけ確保 */
+body.has-gheader .wrap{
+  padding-top: 14px;
+}
