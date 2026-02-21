@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:53:41.333Z",
+  "updatedAt": "2026-02-21T12:57:29.679Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -32,7 +32,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "67"
+      "n": "68"
     },
     {
       "genre": "",
@@ -115,6 +115,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=satisfying",
+      "n": "3"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "aud=少年",
       "n": "3"
     },
@@ -130,13 +137,6 @@
       "aud": "",
       "mag": "",
       "mood": "mood=page_turner,funny",
-      "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=satisfying",
       "n": "2"
     },
     {
@@ -289,6 +289,6 @@
   ],
   "raw": {
     "rows": 37,
-    "rows_before_limit_at_least": 156
+    "rows_before_limit_at_least": 158
   }
 }

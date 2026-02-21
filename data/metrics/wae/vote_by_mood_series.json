@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T12:53:41.333Z",
+  "updatedAt": "2026-02-21T12:57:29.679Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -43,10 +43,15 @@
       "mood": "satisfying",
       "seriesKey": "終末のワルキューレ",
       "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ドラゴンボール",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 5,
-    "rows_before_limit_at_least": 9
+    "rows": 6,
+    "rows_before_limit_at_least": 10
   }
 }
