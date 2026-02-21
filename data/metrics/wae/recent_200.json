@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-21T07:06:40.441Z",
+  "updatedAt": "2026-02-21T07:44:23.317Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -39,6 +39,26 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-21 07:12:02",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 07:11:46",
+      "type": "list_filter",
+      "page": "v2",
+      "seriesKey": "list",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-21 06:51:14",
       "type": "list_filter",
@@ -2018,30 +2038,10 @@
       "genre": "JP",
       "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 14:55:14",
-      "type": "vote",
-      "page": "はじめの一歩",
-      "seriesKey": "hot",
-      "mood": "work",
-      "genre": "JP",
-      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 14:55:13",
-      "type": "vote",
-      "page": "はじめの一歩",
-      "seriesKey": "satisfying",
-      "mood": "work",
-      "genre": "JP",
-      "aud": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 222
+    "rows_before_limit_at_least": 224
   }
 }
