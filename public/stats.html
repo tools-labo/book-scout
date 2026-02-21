@@ -5,7 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜ランキング</title>
   <link rel="stylesheet" href="./style.css" />
+
   <style>
+    /* ===== グローバル固定ヘッダー（下スクロールで隠す/上で出す） ===== */
+    .gheader{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transform: translateY(0);
+      transition: transform 180ms ease;
+      will-change: transform;
+      background: rgba(11,12,16,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .gheader.is-hidden{ transform: translateY(-110%); }
+    @media (prefers-reduced-motion: reduce){
+      .gheader{ transition:none; }
+    }
+    .gheader-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+    .gbrand{ display:flex; flex-direction:column; gap:2px; }
+    .gbrand-title{ font-weight: 1000; font-size: 14px; }
+    .gbrand-sub{ color: var(--muted); font-size: 11px; }
+    .gnav{
+      display:flex; gap: 10px; align-items:center;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .gnav a{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+    }
+    .gnav a:active{ transform: translateY(1px); }
+
+    /* ===== タブ（閲覧 / お気に入り） ===== */
+    .rank-tabs{
+      display:flex;
+      gap: 8px;
+      padding: 10px 14px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.01);
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .rank-tab{
+      flex: 0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--fg);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .rank-tab:active{ transform: translateY(1px); }
+    .rank-tab.is-active{
+      border-color: rgba(43,97,255,0.65);
+      background: rgba(43,97,255,0.18);
+    }
+    .rank-tab .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 26px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-weight: 1000;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ===== ランキング一覧 ===== */
     .rank-grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
 
     .rank-item{
@@ -91,31 +180,77 @@
       line-height: 1.35;
     }
     .rank-meta .pills{ margin-top: 6px; }
+
+    /* ===== もっと見る ===== */
+    .rank-more{
+      margin-top: 10px;
+      display:flex;
+      justify-content:center;
+    }
+    .rank-more button{
+      width: 100%;
+      max-width: 420px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--fg);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .rank-more button:active{ transform: translateY(1px); }
+    .rank-more button[disabled]{ opacity:.5; cursor:not-allowed; }
   </style>
 </head>
+
 <body>
-  <header class="header">
-    <h1><a href="./index.html" style="color:inherit;text-decoration:none;">BOOKスカウト</a></h1>
-    <p class="sub"><a href="./list.html" style="color:inherit;">← リストへ</a></p>
+  <!-- 固定ヘッダー -->
+  <header class="gheader" id="gheader">
+    <div class="gheader-inner">
+      <div class="gbrand">
+        <a class="gbrand-title" href="./index.html">BOOKスカウト</a>
+        <div class="gbrand-sub">ランキング</div>
+      </div>
+
+      <nav class="gnav" aria-label="グローバルナビ">
+        <a href="./index.html">ホーム</a>
+        <a href="./list.html">リスト</a>
+        <a href="./stats.html">ランキング</a>
+      </nav>
+    </div>
+
+    <!-- タブ -->
+    <div class="rank-tabs" role="tablist" aria-label="ランキング切り替え">
+      <button class="rank-tab is-active" type="button" data-tab="views" role="tab" aria-selected="true">
+        閲覧数 <span class="badge" id="badgeViews">-</span>
+      </button>
+      <button class="rank-tab" type="button" data-tab="fav" role="tab" aria-selected="false">
+        お気に入り <span class="badge" id="badgeFav">-</span>
+      </button>
+    </div>
   </header>
 
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <section class="section" style="margin-top:10px;">
+    <!-- 閲覧 -->
+    <section class="section" id="panelViews" role="tabpanel" aria-label="閲覧数ランキング" style="margin-top:10px;">
       <div class="section-head">
-        <h2 class="section-title">人気（閲覧数）TOP10</h2>
+        <h2 class="section-title">人気（閲覧数）</h2>
       </div>
       <p class="section-sub">作品詳細が表示された回数（同一セッションは1回）</p>
       <section id="rankViews" class="rank-grid"></section>
+      <div class="rank-more"><button id="moreViews" type="button">もっと見る</button></div>
     </section>
 
-    <section class="section" style="margin-top:18px;">
+    <!-- お気に入り -->
+    <section class="section" id="panelFav" role="tabpanel" aria-label="お気に入りランキング" style="margin-top:10px; display:none;">
       <div class="section-head">
-        <h2 class="section-title">お気に入り TOP10</h2>
+        <h2 class="section-title">お気に入り</h2>
       </div>
       <p class="section-sub">ONにした回数（端末ローカルのON操作のみカウント）</p>
       <section id="rankFav" class="rank-grid"></section>
+      <div class="rank-more"><button id="moreFav" type="button">もっと見る</button></div>
     </section>
   </main>
 
@@ -280,12 +415,14 @@
         magazine ? `連載誌: ${magazine}` : null,
       ].filter(Boolean).join(" / ");
 
+      const unitLabel = unit === "fav" ? "お気に入り" : "view";
+
       return `
         <article class="rank-item">
           <div class="rank-row">
             <div class="rank-left">
               <div class="rank-badge">#${esc(rank)}</div>
-              <div class="rank-count"><b>${esc(n)}</b>&nbsp;${esc(unit)}</div>
+              <div class="rank-count"><b>${esc(n)}</b>&nbsp;${esc(unitLabel)}</div>
               <a href="./work.html?key=${key}" aria-label="${esc(title)}">
                 <div class="rank-cover">
                   ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : ``}
@@ -312,6 +449,143 @@
       `;
     }
 
+    // ===== 状態 =====
+    const MAX_ROWS = 100;
+    const STEP = 50; // まず50件表示→もう一度で100件
+    let state = {
+      tab: "views",
+      viewsShown: 0,
+      favShown: 0,
+      viewsRows: [],
+      favRows: [],
+      workMap: new Map()
+    };
+
+    function setTab(next) {
+      state.tab = next;
+
+      // tabボタン
+      const tViews = document.querySelector(".rank-tab[data-tab='views']");
+      const tFav   = document.querySelector(".rank-tab[data-tab='fav']");
+      if (tViews) {
+        tViews.classList.toggle("is-active", next === "views");
+        tViews.setAttribute("aria-selected", next === "views" ? "true" : "false");
+      }
+      if (tFav) {
+        tFav.classList.toggle("is-active", next === "fav");
+        tFav.setAttribute("aria-selected", next === "fav" ? "true" : "false");
+      }
+
+      // panel切替
+      const pViews = document.getElementById("panelViews");
+      const pFav   = document.getElementById("panelFav");
+      if (pViews) pViews.style.display = (next === "views") ? "" : "none";
+      if (pFav)   pFav.style.display   = (next === "fav") ? "" : "none";
+    }
+
+    function renderMore(kind) {
+      if (kind === "views") {
+        const root = document.getElementById("rankViews");
+        if (!root) return;
+
+        const next = Math.min(MAX_ROWS, state.viewsShown + STEP);
+        const chunk = state.viewsRows.slice(state.viewsShown, next);
+
+        const html = chunk.map((r, i) => {
+          const seriesKey = toText(r?.seriesKey);
+          const n = toText(r?.n);
+          const work = state.workMap.get(seriesKey);
+          const rank = state.viewsShown + i + 1;
+          return seriesKey ? rankItemHtml({ rank, seriesKey, n, unit: "view", work }) : "";
+        }).join("");
+
+        if (state.viewsShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
+        else root.insertAdjacentHTML("beforeend", html);
+
+        state.viewsShown = next;
+
+        const btn = document.getElementById("moreViews");
+        if (btn) {
+          const hasMore = state.viewsShown < Math.min(MAX_ROWS, state.viewsRows.length);
+          btn.disabled = !hasMore;
+          btn.textContent = hasMore ? "もっと見る" : "ここまで";
+        }
+      }
+
+      if (kind === "fav") {
+        const root = document.getElementById("rankFav");
+        if (!root) return;
+
+        const next = Math.min(MAX_ROWS, state.favShown + STEP);
+        const chunk = state.favRows.slice(state.favShown, next);
+
+        const html = chunk.map((r, i) => {
+          const seriesKey = toText(r?.seriesKey);
+          const n = toText(r?.n);
+          const work = state.workMap.get(seriesKey);
+          const rank = state.favShown + i + 1;
+          return seriesKey ? rankItemHtml({ rank, seriesKey, n, unit: "fav", work }) : "";
+        }).join("");
+
+        if (state.favShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
+        else root.insertAdjacentHTML("beforeend", html);
+
+        state.favShown = next;
+
+        const btn = document.getElementById("moreFav");
+        if (btn) {
+          const hasMore = state.favShown < Math.min(MAX_ROWS, state.favRows.length);
+          btn.disabled = !hasMore;
+          btn.textContent = hasMore ? "もっと見る" : "ここまで";
+        }
+      }
+    }
+
+    // ===== ヘッダー：下スクロールで隠す/上で出す =====
+    (function () {
+      const header = document.getElementById("gheader");
+      if (!header) return;
+
+      let lastY = window.scrollY || 0;
+      let ticking = false;
+
+      const SHOW_THRESHOLD = 2;
+      const HIDE_THRESHOLD = 8;
+      const TOP_KEEP = 12;
+
+      function onScroll() {
+        const y = window.scrollY || 0;
+        const dy = y - lastY;
+
+        if (y <= TOP_KEEP) {
+          header.classList.remove("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        if (dy > HIDE_THRESHOLD) {
+          header.classList.add("is-hidden");
+          lastY = y;
+          return;
+        }
+
+        if (dy < -SHOW_THRESHOLD) {
+          header.classList.remove("is-hidden");
+          lastY = y;
+          return;
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          onScroll();
+        });
+      }, { passive: true });
+    })();
+
     async function run() {
       try {
         const v = qs().get("v");
@@ -319,40 +593,43 @@
         const vq = v ? `?v=${encodeURIComponent(v)}` : "";
 
         const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
-        const workMap = getWorkMap(works?.items || []);
+        state.workMap = getWorkMap(works?.items || []);
 
         const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
         const favBySeries  = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
 
-        {
-          const root = document.getElementById("rankViews");
-          const rows = pickRows(viewBySeries);
-          if (!root) {}
-          else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
-          else {
-            root.innerHTML = rows.slice(0, 10).map((r, i) => {
-              const seriesKey = toText(r?.seriesKey);
-              const n = toText(r?.n);
-              const work = workMap.get(seriesKey);
-              return seriesKey ? rankItemHtml({ rank: i + 1, seriesKey, n, unit: "view", work }) : "";
-            }).join("") || `<div class="status">データがまだありません</div>`;
-          }
-        }
+        state.viewsRows = pickRows(viewBySeries);
+        state.favRows   = pickRows(favBySeries);
 
-        {
-          const root = document.getElementById("rankFav");
-          const rows = pickRows(favBySeries);
-          if (!root) {}
-          else if (!rows.length) root.innerHTML = `<div class="status">データがまだありません</div>`;
-          else {
-            root.innerHTML = rows.slice(0, 10).map((r, i) => {
-              const seriesKey = toText(r?.seriesKey);
-              const n = toText(r?.n);
-              const work = workMap.get(seriesKey);
-              return seriesKey ? rankItemHtml({ rank: i + 1, seriesKey, n, unit: "fav", work }) : "";
-            }).join("") || `<div class="status">データがまだありません</div>`;
-          }
-        }
+        // badges（全体行数を表示）
+        const bViews = document.getElementById("badgeViews");
+        const bFav   = document.getElementById("badgeFav");
+        if (bViews) bViews.textContent = String(Math.min(MAX_ROWS, state.viewsRows.length || 0));
+        if (bFav)   bFav.textContent   = String(Math.min(MAX_ROWS, state.favRows.length || 0));
+
+        // 初期描画：両方とも最初のSTEPまでは作っておく（切替が軽い）
+        state.viewsShown = 0;
+        state.favShown = 0;
+        renderMore("views");
+        renderMore("fav");
+
+        // 初期は閲覧
+        setTab("views");
+
+        // タブ操作
+        document.querySelectorAll(".rank-tab[data-tab]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const next = btn.getAttribute("data-tab") || "views";
+            setTab(next);
+          }, { passive: true });
+        });
+
+        // もっと見る
+        const moreViews = document.getElementById("moreViews");
+        if (moreViews) moreViews.addEventListener("click", () => renderMore("views"), { passive: true });
+
+        const moreFav = document.getElementById("moreFav");
+        if (moreFav) moreFav.addEventListener("click", () => renderMore("fav"), { passive: true });
 
         setStatus("");
       } catch (e) {
