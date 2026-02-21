@@ -1,4 +1,7 @@
-// public/app.js
+// public/app.js  (1/2)
+// - お気に入り / 投票の多重カウント対策：端末ローカルでクールダウン（デフォルト24h）
+// - work_view は同一セッション同一作品は1回だけ（既存）
+// - クイックフィルター：tagsのみ / 2ヒット以上 / AND最大2 / 数字は条件に応じて即時反映 + 数字送り + 幅固定
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -97,6 +100,49 @@ function trackEvent({ type, page, seriesKey = "", mood = "" }) {
 }
 
 /* =======================
+ * 多重カウント抑止（端末ローカル）
+ * - 同一端末で連打/何度も押す対策
+ * - デフォルト24hで同じキーは再送しない
+ * ======================= */
+const EVENT_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+
+function nowMs() { return Date.now(); }
+
+function canSendOnce(key, cooldownMs = EVENT_COOLDOWN_MS) {
+  const k = `evt:${key}`;
+  const t = nowMs();
+  try {
+    const prev = Number(localStorage.getItem(k) || "0");
+    if (prev && (t - prev) < cooldownMs) return false;
+    localStorage.setItem(k, String(t));
+    return true;
+  } catch {
+    // localStorageが死んでても最低限送る（多重抑止は効かないが機能は壊さない）
+    return true;
+  }
+}
+
+// vote: seriesKey + mood で抑止
+function trackVoteOnce(seriesKey, mood) {
+  const sk = toText(seriesKey);
+  const md = toText(mood);
+  if (!sk || !md) return;
+  const key = `vote:${sk}:${md}`;
+  if (!canSendOnce(key)) return;
+  trackEvent({ type: "vote", page: "work", seriesKey: sk, mood: md });
+}
+
+// favorite: seriesKey で抑止（ON操作だけ送る前提）
+function trackFavoriteOnce(seriesKey, page) {
+  const sk = toText(seriesKey);
+  if (!sk) return;
+  const pg = toText(page) || "unknown";
+  const key = `favorite:${sk}`;
+  if (!canSendOnce(key)) return;
+  trackEvent({ type: "favorite", page: pg, seriesKey: sk, mood: "" });
+}
+
+/* =======================
  * work_view：同一セッション内で同一作品は1回だけ
  * ======================= */
 function trackWorkViewOnce(seriesKey) {
@@ -107,16 +153,15 @@ function trackWorkViewOnce(seriesKey) {
     const k = `work_view:${sk}`;
     if (sessionStorage.getItem(k) === "1") return;
     sessionStorage.setItem(k, "1");
-  } catch {
-    // sessionStorage不可でも最低限は送ってOK
-  }
+  } catch {}
 
   trackEvent({ type: "work_view", page: "work", seriesKey: sk, mood: "" });
 }
 
 /* =======================
  * Favorite（端末内だけ保持）
- * - ONにした時だけイベント送信
+ * - UIは自由にON/OFFできる
+ * - イベント送信は「ONにした時」かつクールダウンで抑止
  * ======================= */
 function favKey(seriesKey) {
   return `fav:${toText(seriesKey)}`;
@@ -164,7 +209,6 @@ function refreshFavButtons(root = document) {
   }
 }
 function bindFavHandlers(root = document) {
-  // 二重バインド防止
   if (root.__favBound) return;
   root.__favBound = true;
 
@@ -182,10 +226,8 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
-    // ONにしたときだけカウント
-    if (next) {
-      trackEvent({ type: "favorite", page: page || "unknown", seriesKey, mood: "" });
-    }
+    // ONにしたときだけ送る（+ クールダウンで多重カウント抑止）
+    if (next) trackFavoriteOnce(seriesKey, page || "unknown");
   }, { passive: true });
 }
 
@@ -209,7 +251,7 @@ function normalizeImgUrl(u) {
 }
 
 /* =======================
- * Amazon
+ * Amazon（表示側でアフィ付与）
  * ======================= */
 const AMAZON_ASSOCIATE_TAG = "book-scout-22";
 
@@ -235,7 +277,7 @@ function ensureAmazonAffiliate(urlLike) {
 }
 
 function patchAmazonAnchors(root = document) {
-  const as = root?.querySelectorAll?.('a[href]') || [];
+  const as = root?.querySelectorAll?.("a[href]") || [];
   for (const a of as) {
     const href = a.getAttribute("href") || "";
     if (!href) continue;
@@ -308,7 +350,7 @@ function setHomeState(next) {
 }
 
 /* =======================
- * ジャンル
+ * ジャンル（確定10本）
  * ======================= */
 const GENRE_TABS = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -339,7 +381,7 @@ function parseOneQueryParam(name) {
 }
 
 /* =======================
- * カテゴリー
+ * カテゴリー（旧：読者層）
  * ======================= */
 const CATEGORY_TABS = [
   { id: "shonen", value: "少年", label: "少年マンガ" },
@@ -359,7 +401,7 @@ function hasAudience(it, audLabel) {
 }
 
 /* =======================
- * 連載誌
+ * 連載誌（今は残してるが、将来廃止してもOK）
  * ======================= */
 function hasMagazine(it, mag) {
   if (!mag) return true;
@@ -438,6 +480,8 @@ function quickEvalAll(it, defs) {
   return { ok: true, score };
 }
 
+// 「今の絞り込み条件（genre/aud/mag）」で絞った baseItems を渡す想定。
+// counts は「もしこのボタンも押したら何件になるか」を即時計算。
 function quickCountsDynamic(baseItems, defs, selectedIds) {
   const byId = new Map(defs.map(d => [d.id, d]));
   const sel = (selectedIds || []).filter(Boolean);
@@ -462,8 +506,8 @@ function quickCountsDynamic(baseItems, defs, selectedIds) {
       if (selectedSet.has(d.id)) condDefs = selDefs;
       else condDefs = [selDefs[0], d];
     } else {
-      if (selectedSet.has(d.id)) condDefs = selDefs;
-      else condDefs = selDefs;
+      // 2個選択中：未選択は押せないので「現状結果」を表示
+      condDefs = selDefs;
     }
 
     let n = 0;
@@ -518,7 +562,12 @@ function renderQuickHome({ defs, counts }) {
       ${defs.map(d => {
         const n = counts.get(d.id) || 0;
         const href = `./list.html?mood=${encodeURIComponent(d.id)}${vq}`;
-        return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">${esc(d.label)} <span style="opacity:.7;">(<span class="qcount-wrap"><span class="qcount" data-prev="${n}">${n}</span></span>)</span></a>`;
+        return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">
+          ${esc(d.label)}
+          <span style="opacity:.7;">
+            (<span class="qcount-wrap"><span class="qcount" data-prev="${n}">${n}</span></span>)
+          </span>
+        </a>`;
       }).join("")}
     </div>
   `;
@@ -548,15 +597,19 @@ function renderQuickListUI({ defs, counts, disabledIds, selectedIds, onToggle })
             ${isDisabled ? "disabled" : ""}
             style="${isOn ? "outline:2px solid currentColor; outline-offset:1px;" : ""}${isDisabled ? ";opacity:.5;cursor:not-allowed" : ""}"
           >
-            ${esc(d.label)} <span style="opacity:.7;">(<span class="qcount-wrap"><span class="qcount" data-prev="${n}">${n}</span></span>)</span>
+            ${esc(d.label)}
+            <span style="opacity:.7;">
+              (<span class="qcount-wrap"><span class="qcount" data-prev="${n}">${n}</span></span>)
+            </span>
           </button>
         `;
       }).join("")}
     </div>
   `;
 
+  // 数字送り（初回表示も含めて実行）
   for (const el of root.querySelectorAll(".qcount")) {
-    const prev = Number(el.dataset.prev || el.textContent || "0");
+    const prev = Number(el.dataset.prev || "0");
     const next = Number(el.textContent || "0");
     animateNumber(el, prev, next, 240);
   }
@@ -576,23 +629,17 @@ function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters }) {
   if (!hint) return;
 
   const selected = (selectedIds || []).filter(Boolean);
-  if (!selected.length) {
-    hint.innerHTML = "";
-    return;
-  }
+  if (!selected.length) { hint.innerHTML = ""; return; }
 
   const labels = selected.map(id => defs.find(d => d.id === id)?.label || id);
   const msg = `気分: <b>${esc(labels.join(" × "))}</b>（AND / 最大2）`;
-  hint.innerHTML = msg;
-
-  if (itemsAfterAllFilters.length === 0) {
-    hint.innerHTML = `${msg}<br/><span style="opacity:.8;">該当なし</span>`;
-  }
+  hint.innerHTML = (itemsAfterAllFilters.length === 0)
+    ? `${msg}<br/><span style="opacity:.8;">該当なし</span>`
+    : msg;
 }
 
-/* =======================
- * list banner
- * ======================= */
+// public/app.js  (2/2)
+
 function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
   const s = document.getElementById("status");
   if (!s) return;
@@ -773,7 +820,7 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * list（解除リロード無し + お気に入りボタン）
+ * list（解除リロード無し + お気に入りボタン + クイック動的カウント）
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -786,14 +833,16 @@ function renderList(data, quickDefs) {
   const magazineWanted = parseOneQueryParam("mag");
   const moodSelected = parseMoodQuery();
 
-  const moodDefsById = new Map((quickDefs || []).map(d => [d.id, d]));
-  const moodActiveDefs = moodSelected.map(id => moodDefsById.get(id)).filter(Boolean);
+  const byId = new Map((quickDefs || []).map(d => [d.id, d]));
+  const moodActiveDefs = moodSelected.map(id => byId.get(id)).filter(Boolean);
 
+  // まず大ジャンルで絞る（これが quickCounts の母集団）
   const base = all
     .filter((it) => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
     .filter((it) => hasAudience(it, audienceWanted))
     .filter((it) => hasMagazine(it, magazineWanted));
 
+  // mood AND + score順（score=ヒット数合算）
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -805,7 +854,6 @@ function renderList(data, quickDefs) {
   } else {
     for (const it of base) scored.push({ it, score: 0 });
   }
-
   const items = scored.map(x => x.it);
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
@@ -835,6 +883,7 @@ function renderList(data, quickDefs) {
     };
   }
 
+  // クイックUI（動的カウント）
   if (document.getElementById("quickFiltersList")) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
     const dyn = quickCountsDynamic(base, defs, moodSelected);
@@ -991,7 +1040,7 @@ function renderWork(data, quickDefs) {
   // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  // 投票
+  // 投票（seriesKey+mood は 24h で1回に抑止）
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1000,7 +1049,7 @@ function renderWork(data, quickDefs) {
       const mood = btn.getAttribute("data-vote") || "";
       if (!mood) return;
 
-      trackEvent({ type: "vote", page: "work", seriesKey, mood });
+      trackVoteOnce(seriesKey, mood);
 
       const st = document.getElementById("voteStatus");
       if (st) st.textContent = "投票しました";
@@ -1011,6 +1060,9 @@ function renderWork(data, quickDefs) {
   refreshFavButtons(document);
 }
 
+/* =======================
+ * run
+ * ======================= */
 async function run() {
   try {
     const v = qs().get("v");
@@ -1021,11 +1073,12 @@ async function run() {
     const quick = await loadJson(quickUrl, { bust: !!v });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // Home
+    // Home：ジャンル/カテゴリー
     const st = getHomeState();
     renderGenreTabsRow({ data, activeId: st.g });
     renderAudienceTabsRow({ data, activeAudId: st.a });
 
+    // Home：気分（導線）…「単体押下で何件」なので従来通り
     if (document.getElementById("quickFiltersHome")) {
       const all = Array.isArray(data?.items) ? data.items : [];
       const counts = new Map(quickDefs.map(d => [d.id, 0]));
@@ -1041,6 +1094,7 @@ async function run() {
     renderList(data, quickDefs);
     renderWork(data, quickDefs);
 
+    // Amazonアフィ付与
     patchAmazonAnchors(document);
 
     // favorite handler（1回だけbind）
