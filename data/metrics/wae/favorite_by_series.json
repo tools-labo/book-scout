@@ -3,7 +3,7 @@
   "updatedAt": "2026-02-21T07:06:40.441Z",
   "dataset": "book_scout_events",
   "days": 30,
-  "id": "work_view_by_series",
+  "id": "favorite_by_series",
   "columns": [
     {
       "name": "seriesKey",
@@ -17,11 +17,15 @@
   "rows": [
     {
       "seriesKey": "work",
-      "n": "6"
+      "n": "4"
+    },
+    {
+      "seriesKey": "list",
+      "n": "3"
     }
   ],
   "raw": {
-    "rows": 1,
-    "rows_before_limit_at_least": 6
+    "rows": 2,
+    "rows_before_limit_at_least": 7
   }
 }
