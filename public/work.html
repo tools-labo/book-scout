@@ -5,45 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜作品</title>
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- 追加：スクロールで隠す/出す（style.cssを触らなくても動く最低限） -->
-  <style>
-    .gheader {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transform: translateY(0);
-      transition: transform 180ms ease;
-      will-change: transform;
-    }
-    .gheader.is-hidden {
-      transform: translateY(-110%);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .gheader { transition: none; }
-    }
-
-    /* 追加：フッター（小さめ） */
-    .gfooter {
-      border-top: 1px solid rgba(127,127,127,.35);
-      padding: 14px 0;
-      margin-top: 28px;
-      font-size: 12px;
-      opacity: .85;
-    }
-    .gfooter-inner {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .gfooter a { text-decoration: none; }
-    .gfooter a:hover { text-decoration: underline; }
-  </style>
 </head>
 
 <body class="has-gheader">
-  <!-- 固定ヘッダー（スクロールで自動表示/非表示） -->
   <header class="gheader" id="gheader">
     <div class="gheader-inner">
       <div class="gbrand">
@@ -57,22 +21,21 @@
         <a href="./stats.html">ランキング</a>
       </nav>
     </div>
-
-    <!-- 作品ページだけ：戻る導線をヘッダー内に置く（任意） -->
-    <div class="gsubnav" style="padding:8px 14px;border-top:1px solid var(--line);background:rgba(0,0,0,0.10);">
-      <a href="./list.html" style="color:var(--muted);">← リストへ戻る</a>
-    </div>
   </header>
 
   <main class="wrap">
     <div id="status" class="status"></div>
-    <section class="grid">
+
+    <section class="section" style="margin-top:6px;">
+      <a class="section-link" href="./list.html">← リストへ戻る</a>
+    </section>
+
+    <section class="grid" style="margin-top:12px;">
       <aside id="detail" class="detail">
         <div class="d-title">読み込み中…</div>
       </aside>
     </section>
 
-    <!-- 追加：フッター（作品ページ末尾に小さく表示） -->
     <footer class="gfooter" aria-label="サイトフッター">
       <div class="gfooter-inner">
         <span>© Tools-LABO</span>
@@ -86,7 +49,6 @@
     </footer>
   </main>
 
-  <!-- ヘッダー：下スクロールで隠す / 上に少しでもスクロールで出す -->
   <script>
     (function () {
       const header = document.getElementById("gheader");
@@ -103,37 +65,19 @@
         const y = window.scrollY || 0;
         const dy = y - lastY;
 
-        if (y <= TOP_KEEP) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
-
-        if (dy > HIDE_THRESHOLD) {
-          header.classList.add("is-hidden");
-          lastY = y;
-          return;
-        }
-
-        if (dy < -SHOW_THRESHOLD) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
+        if (y <= TOP_KEEP) { header.classList.remove("is-hidden"); lastY = y; return; }
+        if (dy > HIDE_THRESHOLD) { header.classList.add("is-hidden"); lastY = y; return; }
+        if (dy < -SHOW_THRESHOLD) { header.classList.remove("is-hidden"); lastY = y; return; }
       }
 
       window.addEventListener("scroll", () => {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          onScroll();
-        });
+        requestAnimationFrame(() => { ticking = false; onScroll(); });
       }, { passive: true });
     })();
   </script>
 
-  <!-- ★ ?v= が付いている時だけ app.js も ?v= で読み込む（既存） -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
