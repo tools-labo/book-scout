@@ -1,43 +1,92 @@
 {
-  "updatedAt": "2026-02-22T08:24:49.894Z",
-  "total": 167,
-  "ok": 167,
+  "updatedAt": "2026-02-22T08:28:53.440Z",
+  "total": 180,
+  "ok": 180,
   "ng": 0,
   "stats": {
     "skippedPerfect": 167,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "fetchedAmazonAsins": 13,
+    "magAudienceTodoAdded": 12,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 0,
-      "magazinesEmpty": 0,
+      "magazineEmpty": 4,
+      "magazinesEmpty": 4,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 0,
+      "audiencesOnlyOther": 4,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 0,
-      "magazineLooksCssGarbage": 0,
-      "magazineNotPlausible": 0,
-      "prevNotPerfect": 0,
-      "outNotPerfect": 0
+      "tagsMissingNotHidden": 1,
+      "magazineLooksCssGarbage": 1,
+      "magazineNotPlausible": 1,
+      "prevNotPerfect": 13,
+      "outNotPerfect": 5
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "あしたのジョー :: noVol1",
+        "ザ・ファブル :: noVol1",
+        "ゾン100 ～ゾンビになるまでにしたい100のこと～ :: noVol1",
+        "タコピーの原罪 :: noVol1",
+        "ホーリーランド :: noVol1",
+        "やんちゃギャルの安城さん :: noVol1",
+        "ルリドラゴン :: noVol1",
+        "乙嫁語り :: noVol1",
+        "桜蘭高校ホスト部 :: noVol1",
+        "蜘蛛ですが、なにか？ :: noVol1",
+        "蟲師 :: noVol1",
+        "親愛なる僕へ殺意をこめて :: noVol1"
+      ],
+      "outNotPerfect": [
+        "ゾン100 ～ゾンビになるまでにしたい100のこと～ :: magazine,magazines[]",
+        "タコピーの原罪 :: magazine,magazines[]",
+        "ホーリーランド :: magazine,magazines[]",
+        "乙嫁語り :: tags_missing_en(remain=1,types=string)",
+        "蜘蛛ですが、なにか？ :: magazine,magazines[]"
+      ],
+      "magazineEmpty": [
+        "ゾン100 ～ゾンビになるまでにしたい100のこと～",
+        "タコピーの原罪",
+        "ホーリーランド",
+        "蜘蛛ですが、なにか？"
+      ],
+      "magazinesEmpty": [
+        "ゾン100 ～ゾンビになるまでにしたい100のこと～",
+        "タコピーの原罪",
+        "ホーリーランド",
+        "蜘蛛ですが、なにか？"
+      ],
+      "audiencesOnlyOther": [
+        "ゾン100 ～ゾンビになるまでにしたい100のこと～",
+        "タコピーの原罪",
+        "ホーリーランド",
+        "蜘蛛ですが、なにか？"
+      ],
+      "tagsMissingNotHidden": [
+        "乙嫁語り"
+      ],
+      "magazineLooksCssGarbage": [
+        "蟲師"
+      ],
+      "magazineNotPlausible": [
+        "蟲師"
+      ]
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 0,
+      "chunks": 2,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 13
     }
   },
   "items": [
@@ -902,6 +951,73 @@
           "ドラゴン",
           "妖怪",
           "トランスジェンダー"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "あしたのジョー",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4062607646",
+        "amazonDp": "https://www.amazon.co.jp/dp/4062607646?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784062607643",
+        "asin": "4062607646",
+        "title": "あしたのジョー(1) (講談社漫画文庫 ち 2-1)",
+        "synopsis": "東京の下町に流れ着いた不良少年・矢吹丈は、元ボクサーの丹下段平にその素質を見出される。刑務所での宿敵・力石徹との出会いを経て、丈はリングで己の拳と生き様をぶつけるボクシング道を歩み始める。",
+        "image": "https://m.media-amazon.com/images/I/51E8iHBtJFL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "ちば てつや",
+        "releaseDate": "2000-06-01T00:00:01Z",
+        "magazine": "週刊少年マガジン",
+        "magazines": [
+          "週刊少年マガジン"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "あしたのジョー",
+        "anilistId": 31303,
+        "genres": [
+          "Drama",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags_en": [
+          "Boxing",
+          "Coming of Age",
+          "Male Protagonist",
+          "Rehabilitation",
+          "Orphan",
+          "Anti-Hero",
+          "Urban",
+          "Class Struggle",
+          "Athletics",
+          "Primarily Male Cast",
+          "Shounen",
+          "Delinquents",
+          "Prison",
+          "Foreign",
+          "Yakuza",
+          "War"
+        ],
+        "tags": [
+          "ボクシング",
+          "成長譚",
+          "更生",
+          "孤児",
+          "アンチヒーロー",
+          "都会",
+          "階級闘争",
+          "陸上競技",
+          "少年向け",
+          "不良",
+          "監獄",
+          "海外",
+          "ヤクザ",
+          "戦争"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -2103,6 +2219,72 @@
           "中世",
           "魔女",
           "修道女"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ザ・ファブル",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063825639",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063825639?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063825633",
+        "asin": "4063825639",
+        "title": "ザ・ファブル(1) (ヤングマガジンコミックス)",
+        "synopsis": "天才的な殺し屋“ファブル”は、ボスの命令で大阪に潜伏し一年間一般人として暮らすことになる。仕事を忘れ普通の生活に挑むものの、裏社会の揉め事に巻き込まれ、彼の「休業」が試されていく。",
+        "image": "https://m.media-amazon.com/images/I/51MLDNe10jL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "南 勝久",
+        "releaseDate": "2015-03-06T00:00:01Z",
+        "magazine": "週刊ヤングマガジン",
+        "magazines": [
+          "週刊ヤングマガジン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ザ・ファブル",
+        "anilistId": 94490,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Romance"
+        ],
+        "tags_en": [
+          "Yakuza",
+          "Seinen",
+          "Urban",
+          "Assassins",
+          "Guns",
+          "Primarily Adult Cast",
+          "Crime",
+          "Surreal Comedy",
+          "Found Family",
+          "Nudity",
+          "Revenge",
+          "Disability",
+          "Survival",
+          "Bar",
+          "Heterosexual",
+          "Gore"
+        ],
+        "tags": [
+          "ヤクザ",
+          "青年向け",
+          "都会",
+          "暗殺者",
+          "銃",
+          "犯罪",
+          "不条理コメディ",
+          "疑似家族",
+          "復讐",
+          "障害",
+          "サバイバル",
+          "バー"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -3328,6 +3510,128 @@
           "ロック",
           "大学",
           "OL"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ゾン100 ～ゾンビになるまでにしたい100のこと～",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091575617",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091575617?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091575616",
+        "asin": "4091575617",
+        "title": "ゾン100~ゾンビになるまでにしたい100のこと~ (1) (サンデーGXコミックス)",
+        "synopsis": "ブラック企業で働く天道輝は、生ける屍のような毎日を送っていた。ところが突如起きたゾンビパンデミックをきっかけに“バケーションだ！”と解放され、ゾンビになってしまうまでにやりたい100のことに挑戦し始める。",
+        "image": "https://m.media-amazon.com/images/I/619pYyKSpjL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "麻生 羽呂 / 高田 康太郎",
+        "releaseDate": "2019-03-19T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 104660,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Horror"
+        ],
+        "tags_en": [
+          "Zombie",
+          "Primarily Adult Cast",
+          "Pandemic",
+          "Post-Apocalyptic",
+          "Male Protagonist",
+          "Surreal Comedy",
+          "Slapstick",
+          "Seinen",
+          "Survival",
+          "Work",
+          "Heterosexual",
+          "Gore",
+          "Motorcycles",
+          "Body Horror",
+          "Ensemble Cast",
+          "Philosophy",
+          "Nudity",
+          "Space"
+        ],
+        "tags": [
+          "ゾンビ",
+          "パンデミック",
+          "終末後",
+          "不条理コメディ",
+          "ドタバタ",
+          "青年向け",
+          "サバイバル",
+          "仕事",
+          "バイク",
+          "哲学",
+          "宇宙"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088830490",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088830490?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088830490",
+        "asin": "4088830490",
+        "title": "タコピーの原罪 上 (ジャンプコミックス)",
+        "synopsis": "幸せ星からやって来たタコピーは、地球で出会った少女・静香を笑顔にしようとする。だが彼女の家庭環境は過酷で、タコピーの一途な善意は思わぬ“罪”を引き起こす。純粋な宇宙人と少女の心の痛みを描くダークファンタジー。",
+        "image": "https://m.media-amazon.com/images/I/51lQbMpz0RL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "タイザン5",
+        "releaseDate": "2022-03-04T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "タコピーの原罪",
+        "anilistId": 142568,
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Bullying",
+          "Aliens",
+          "Denpa",
+          "Primarily Child Cast",
+          "Suicide",
+          "Female Protagonist",
+          "Crime",
+          "Shounen",
+          "Memory Manipulation",
+          "Magic",
+          "Coming of Age",
+          "Philosophy",
+          "Clone"
+        ],
+        "tags": [
+          "いじめ",
+          "宇宙人",
+          "子どもが中心",
+          "犯罪",
+          "少年向け",
+          "記憶操作",
+          "魔法",
+          "成長譚",
+          "哲学",
+          "クローン"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -5635,6 +5939,63 @@
       }
     },
     {
+      "seriesKey": "ホーリーランド",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4592137418",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592137418?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784592137412",
+        "asin": "4592137418",
+        "title": "ホーリーランド 1 (ジェッツコミックス)",
+        "synopsis": "学校にも家庭にも居場所のない高校生・神代ユウは、夜の街で独学したボクシングのワンツーを武器に不良たちと闘う。『聖地』を求めて彷徨う彼の成長と痛みを描く青春格闘ドラマ。",
+        "image": "https://m.media-amazon.com/images/I/51BEB70NGYL._SL500_.jpg",
+        "publisher": "白泉社",
+        "author": "森 恒二",
+        "releaseDate": "2001-06-01T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "ホーリーランド",
+        "anilistId": 33285,
+        "genres": [
+          "Action",
+          "Psychological"
+        ],
+        "tags_en": [
+          "Martial Arts",
+          "Gangs",
+          "Delinquents",
+          "Philosophy",
+          "Boxing",
+          "Primarily Male Cast",
+          "Coming of Age",
+          "Bullying",
+          "Male Protagonist",
+          "Seinen",
+          "Educational",
+          "Drugs",
+          "Suicide",
+          "Meta"
+        ],
+        "tags": [
+          "武術",
+          "ギャング",
+          "不良",
+          "哲学",
+          "ボクシング",
+          "成長譚",
+          "いじめ",
+          "青年向け",
+          "教育"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ぼくたちは勉強ができない",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088811119",
@@ -6353,6 +6714,63 @@
       "meta": null
     },
     {
+      "seriesKey": "やんちゃギャルの安城さん",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4785961767",
+        "amazonDp": "https://www.amazon.co.jp/dp/4785961767?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784785961763",
+        "asin": "4785961767",
+        "title": "やんちゃギャルの安城さん 1 (ヤングキングコミックス)",
+        "synopsis": "真面目で奥手な高校生・瀬戸くんの隣には、明るく小悪魔なギャル・安城さん。赤面する瀬戸くんをからかってばかりの彼女だが、少しずつ距離が縮まり、教室内は甘酸っぱい空気に包まれていく学園ラブコメ。",
+        "image": "https://m.media-amazon.com/images/I/51lXwx1UPOL._SL500_.jpg",
+        "publisher": "少年画報社",
+        "author": "加藤 雄一",
+        "releaseDate": "2018-03-12T00:00:01Z",
+        "magazine": "ヤングキング",
+        "magazines": [
+          "ヤングキング"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "やんちゃギャルの安城さん",
+        "anilistId": 101315,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Gyaru",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Seinen",
+          "School",
+          "Coming of Age",
+          "Iyashikei",
+          "Urban",
+          "Tomboy",
+          "Tsundere"
+        ],
+        "tags": [
+          "ギャル",
+          "青年向け",
+          "学園",
+          "成長譚",
+          "癒し系",
+          "都会",
+          "ボーイッシュ",
+          "ツンデレ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ゆびさきと恋々",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4065180627",
@@ -6716,6 +7134,70 @@
       "meta": null
     },
     {
+      "seriesKey": "ルリドラゴン",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/408883285X",
+        "amazonDp": "https://www.amazon.co.jp/dp/408883285X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088832852",
+        "asin": "408883285X",
+        "title": "ルリドラゴン 1 (ジャンプコミックス)",
+        "synopsis": "ごく普通の女子高生・ルリが目覚めると頭に角が生えていた。実は父親が龍で自分は半龍だと知った彼女は、クラスメイトたちの好奇の目にさらされながらも新しい日常を楽しんでいく。",
+        "image": "https://m.media-amazon.com/images/I/51uft2nKG1L._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "眞藤 雅興",
+        "releaseDate": "2022-10-04T00:00:01Z",
+        "magazine": "週刊少年ジャンプ / →少年ジャンプ+、週刊少年ジャンプ（デジタル版限定連載）",
+        "magazines": [
+          "週刊少年ジャンプ",
+          "少年ジャンプ+",
+          "週刊少年ジャンプ(デジタル版限定連載)"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ルリドラゴン",
+        "anilistId": 150440,
+        "genres": [
+          "Comedy",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Monster Girl",
+          "Coming of Age",
+          "Female Protagonist",
+          "Dragons",
+          "School",
+          "Iyashikei",
+          "Urban Fantasy",
+          "Primarily Teen Cast",
+          "Shounen",
+          "Cute Girls Doing Cute Things",
+          "Super Power",
+          "Primarily Female Cast",
+          "Family Life",
+          "Slapstick"
+        ],
+        "tags": [
+          "モンスター娘",
+          "成長譚",
+          "ドラゴン",
+          "学園",
+          "癒し系",
+          "現代ファンタジー",
+          "少年向け",
+          "かわいい女の子の日常",
+          "超能力",
+          "家族もの",
+          "ドタバタ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ワンパンマン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/ワンパンマン-1-ジャンプコミックス-村田-雄介/dp/408870701X",
@@ -7041,6 +7523,103 @@
           "成長譚"
         ],
         "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "乙嫁語り",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4047260762",
+        "amazonDp": "https://www.amazon.co.jp/dp/4047260762?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784047260764",
+        "asin": "4047260762",
+        "title": "乙嫁語り 1巻 (青騎士コミックス)",
+        "synopsis": "19世紀の中央ユーラシアを舞台に、20歳の遊牧民の娘アミルが、定住民の12歳の少年カルルクと結婚する。異文化の嫁ぎ先で、家族や村人たちと日常を送りながら、遊牧民と定住民の生活や風習を丁寧に描く歴史ロマン。",
+        "image": "https://m.media-amazon.com/images/I/51wtFp3bZqL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "森 薫",
+        "releaseDate": "2009-10-15T00:00:01Z",
+        "magazine": "Fellows! → ハルタ → 青騎士 → 移籍先未発表",
+        "magazines": [
+          "Fellows!",
+          "ハルタ",
+          "青騎士",
+          "移籍先未発表"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "乙嫁語り",
+        "anilistId": 41514,
+        "genres": [
+          "Drama",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Ensemble Cast",
+          "Marriage",
+          "Historical",
+          "Female Protagonist",
+          "Heterosexual",
+          "Travel",
+          "Foreign",
+          "Seinen",
+          "Arranged Marriage",
+          "Iyashikei",
+          "Indigenous Cultures",
+          "Environmental",
+          "Desert",
+          "Family Life",
+          "Rural",
+          "Matchmaking",
+          "Educational",
+          "War",
+          "Cohabitation",
+          "Military",
+          "Food",
+          "Religion",
+          "Unrequited Love",
+          "Twins",
+          "Language Barrier",
+          "Archery",
+          "Female Harem",
+          "Polyamorous",
+          "Animals",
+          "Nudity"
+        ],
+        "tags": [
+          "結婚",
+          "歴史",
+          "旅",
+          "海外",
+          "青年向け",
+          "政略結婚",
+          "癒し系",
+          "先住民文化",
+          "環境問題",
+          "砂漠",
+          "家族もの",
+          "田舎",
+          "教育",
+          "戦争",
+          "同棲",
+          "軍事",
+          "グルメ",
+          "宗教",
+          "片思い",
+          "双子",
+          "言語の壁",
+          "弓術",
+          "逆ハーレム",
+          "複数恋愛",
+          "動物"
+        ],
+        "tags_missing_en": [
+          "Matchmaking"
+        ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9977,6 +10556,58 @@
       "meta": null
     },
     {
+      "seriesKey": "桜蘭高校ホスト部",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4592174488",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592174488?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784592174486",
+        "asin": "4592174488",
+        "title": "桜蘭高校ホスト部(クラブ) 1 (花とゆめCOMICS)",
+        "synopsis": "名門・桜蘭学院に特待生として入学した庶民の女子高生ハルヒは、ホスト部の高価な壺を割ってしまい、その弁償のため男装してホストとして働くことに。個性豊かな美男子たちと繰り広げる学園コメディ。",
+        "image": "https://m.media-amazon.com/images/I/51X61kIiAQL._SL500_.jpg",
+        "publisher": "白泉社",
+        "author": "葉鳥ビスコ",
+        "releaseDate": "2003-08-05T00:00:01Z",
+        "magazine": "LaLa",
+        "magazines": [
+          "LaLa"
+        ],
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "桜蘭高校ホスト部",
+        "anilistId": 57029,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "Primarily Adult Cast",
+          "College",
+          "Ghost",
+          "School",
+          "Twins",
+          "Heterosexual",
+          "Male Harem",
+          "Primarily Teen Cast"
+        ],
+        "tags": [
+          "少女",
+          "大学",
+          "幽霊",
+          "学園",
+          "双子",
+          "男性ハーレム"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "極主夫道",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4107721043",
@@ -11074,6 +11705,162 @@
       "meta": null
     },
     {
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4041045517",
+        "amazonDp": "https://www.amazon.co.jp/dp/4041045517?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784041045510",
+        "asin": "4041045517",
+        "title": "蜘蛛ですが、なにか? (1) (角川コミックス・エース)",
+        "synopsis": "クラスごと異世界に転生した女子高生は、なぜか洞窟の中のスライムサイズの蜘蛛として生まれ変わる。危険な迷宮で毒カエルやドラゴンに怯えながら、スキルを駆使しレベルアップして生き抜くサバイバルファンタジー。",
+        "image": "https://m.media-amazon.com/images/I/41ARhQ40nwL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "かかし朝浩",
+        "releaseDate": "2016-07-09T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 86952,
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Isekai",
+          "Seinen",
+          "Monster Girl",
+          "Female Protagonist",
+          "Anti-Hero",
+          "Demons",
+          "Vampire",
+          "Elf",
+          "Ensemble Cast",
+          "Medieval",
+          "Travel",
+          "Anthropomorphism",
+          "Gods",
+          "Magic",
+          "War",
+          "Dungeon",
+          "Dragons",
+          "Dissociative Identities",
+          "Found Family",
+          "Butler",
+          "Swordplay",
+          "Survival",
+          "Robots",
+          "Video Games",
+          "Meta",
+          "Gender Bending"
+        ],
+        "tags": [
+          "異世界",
+          "青年向け",
+          "モンスター娘",
+          "アンチヒーロー",
+          "悪魔",
+          "吸血鬼",
+          "エルフ",
+          "中世",
+          "旅",
+          "擬人化",
+          "神々",
+          "魔法",
+          "戦争",
+          "ダンジョン",
+          "ドラゴン",
+          "多重人格",
+          "疑似家族",
+          "執事",
+          "剣術",
+          "サバイバル",
+          "ロボット",
+          "ゲーム",
+          "性転換"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "蟲師",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063142558",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063142558?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063142556",
+        "asin": "4063142558",
+        "title": "蟲師 (1) アフタヌーンKC (255)",
+        "synopsis": "動植物にも霊にも属さない原初の生命体“蟲”。旅の蟲師・ギンコは、人々の暮らしを脅かす不思議な蟲の事件に立ち向かう。静かな自然と人々の営みを背景に、蟲と共存する者たちの物語が綴られる。",
+        "image": "https://m.media-amazon.com/images/I/21SGReiuNEL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "漆原 友紀",
+        "releaseDate": "2000-11-01T00:00:01Z",
+        "magazine": "アフタヌーンシーズン増刊 / （1999年 - 2002年） / 月刊アフタヌーン / （2003年2月号 - 2008年10月号、 / 2014年1月号 - 2月号、2021年5月号）",
+        "magazines": [
+          "アフタヌーンシーズン増刊",
+          "(1999年 - 2002年)",
+          "月刊アフタヌーン",
+          "(2003年2月号 - 2008年10月号",
+          "2014年1月号 - 2月号",
+          "2021年5月号)"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "蟲師",
+        "anilistId": 30418,
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Mystery",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Travel",
+          "Episodic",
+          "Environmental",
+          "Youkai",
+          "Seinen",
+          "Mythology",
+          "Rural",
+          "Eco-Horror",
+          "Iyashikei",
+          "Philosophy",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "Work",
+          "Historical",
+          "Demons"
+        ],
+        "tags": [
+          "旅",
+          "環境問題",
+          "妖怪",
+          "青年向け",
+          "神話",
+          "田舎",
+          "環境ホラー",
+          "癒し系",
+          "哲学",
+          "現代ファンタジー",
+          "仕事",
+          "歴史",
+          "悪魔"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "血の轍",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091896235",
@@ -11181,6 +11968,87 @@
         ],
         "tags": [
           "幽霊"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "親愛なる僕へ殺意をこめて",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4065128072",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065128072?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065128077",
+        "asin": "4065128072",
+        "title": "親愛なる僕へ殺意をこめて(1) (ヤングマガジンコミックス)",
+        "synopsis": "平凡な大学生・浦島エイジは、連続殺人犯“LL”の息子であることを知らずに育った。ある日、自分の中に別の人格が存在し殺人を犯しているかもしれない事実に直面し、失われた記憶の謎と向き合う。",
+        "image": "https://m.media-amazon.com/images/I/412ewwrTQlL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "伊藤 翔太",
+        "releaseDate": "2018-09-06T00:00:01Z",
+        "magazine": "週刊ヤングマガジン / コミックDAYS",
+        "magazines": [
+          "週刊ヤングマガジン",
+          "コミックDAYS"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "親愛なる僕へ殺意をこめて",
+        "anilistId": 106867,
+        "genres": [
+          "Drama",
+          "Horror",
+          "Mystery",
+          "Psychological",
+          "Slice of Life",
+          "Thriller"
+        ],
+        "tags_en": [
+          "Dissociative Identities",
+          "Revenge",
+          "Crime",
+          "Seinen",
+          "Amnesia",
+          "Police",
+          "Denpa",
+          "Yandere",
+          "Fugitive",
+          "Detective",
+          "Torture",
+          "Male Protagonist",
+          "Anti-Hero",
+          "Prostitution",
+          "Suicide",
+          "Gore",
+          "Gangs",
+          "College",
+          "Adoption",
+          "Nudity",
+          "Orphan",
+          "Body Horror",
+          "Guns",
+          "LGBTQ+ Themes"
+        ],
+        "tags": [
+          "多重人格",
+          "復讐",
+          "犯罪",
+          "青年向け",
+          "記憶喪失",
+          "警察",
+          "ヤンデレ",
+          "逃亡者",
+          "探偵",
+          "アンチヒーロー",
+          "ギャング",
+          "大学",
+          "養子縁組",
+          "孤児",
+          "銃",
+          "LGBTQテーマ"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -12097,6 +12965,80 @@
           "暗殺者",
           "三角関係",
           "ゲーム"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "魔法使いの嫁",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4048995898",
+        "amazonDp": "https://www.amazon.co.jp/dp/4048995898?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784048995894",
+        "asin": "4048995898",
+        "title": "魔法使いの嫁 1 (ブシロードコミックス)",
+        "synopsis": "孤独な15歳の少女・羽鳥チセは、魔法使いの手によってオークションで買われる。人外の魔術師エリアスは彼女を弟子兼花嫁に迎え、チセは不思議と幻想が満ちる英国で、止まった時間を動かし始める。",
+        "image": "https://m.media-amazon.com/images/I/51y8oZmV32L._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "ヤマザキ コレ",
+        "releaseDate": "2024-04-06T00:00:01Z",
+        "magazine": "月刊コミックブレイド / MAGCOMI / 月刊コミックガーデン / コミックグロウル",
+        "magazines": [
+          "月刊コミックブレイド",
+          "MAGCOMI",
+          "月刊コミックガーデン",
+          "コミックグロウル"
+        ],
+        "audiences": [
+          "その他",
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "魔法使いの嫁",
+        "anilistId": 85435,
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Magic",
+          "Female Protagonist",
+          "Bullying",
+          "Foreign",
+          "Mythology",
+          "Rural",
+          "Monster Boy",
+          "Heterosexual",
+          "Shounen",
+          "Urban Fantasy",
+          "Primarily Adult Cast",
+          "School",
+          "Travel",
+          "Fairy",
+          "Werewolf",
+          "Shapeshifting",
+          "Dragons"
+        ],
+        "tags": [
+          "魔法",
+          "いじめ",
+          "海外",
+          "神話",
+          "田舎",
+          "モンスター男子",
+          "少年向け",
+          "現代ファンタジー",
+          "学園",
+          "旅",
+          "妖精",
+          "狼男",
+          "変身能力",
+          "ドラゴン"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"

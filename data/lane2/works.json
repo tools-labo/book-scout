@@ -1,8 +1,13 @@
 {
-  "updatedAt": "2026-02-22T08:24:49.894Z",
-  "total": 167,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-02-22T08:28:53.440Z",
+  "total": 176,
+  "droppedTotal": 4,
+  "droppedSeriesKeys": [
+    "ゾン100 ～ゾンビになるまでにしたい100のこと～",
+    "タコピーの原罪",
+    "ホーリーランド",
+    "蜘蛛ですが、なにか？"
+  ],
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -593,6 +598,53 @@
       ],
       "meta": {
         "anilistId": 55132,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "あしたのジョー",
+      "title": "あしたのジョー(1) (講談社漫画文庫 ち 2-1)",
+      "author": "ちば てつや",
+      "publisher": "講談社",
+      "releaseDate": "2000-06-01T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51E8iHBtJFL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4062607646",
+      "amazonDp": "https://www.amazon.co.jp/dp/4062607646?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784062607643",
+      "asin": "4062607646",
+      "synopsis": "東京の下町に流れ着いた不良少年・矢吹丈は、元ボクサーの丹下段平にその素質を見出される。刑務所での宿敵・力石徹との出会いを経て、丈はリングで己の拳と生き様をぶつけるボクシング道を歩み始める。",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Slice of Life",
+        "Sports"
+      ],
+      "tags": [
+        "ボクシング",
+        "成長譚",
+        "更生",
+        "孤児",
+        "アンチヒーロー",
+        "都会",
+        "階級闘争",
+        "陸上競技",
+        "少年向け",
+        "不良",
+        "監獄",
+        "海外",
+        "ヤクザ",
+        "戦争"
+      ],
+      "meta": {
+        "anilistId": 31303,
+        "wikiTitle": "あしたのジョー",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -1380,6 +1432,52 @@
       "meta": {
         "anilistId": 87321,
         "wikiTitle": "ゴブリンスレイヤー",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "ザ・ファブル",
+      "title": "ザ・ファブル(1) (ヤングマガジンコミックス)",
+      "author": "南 勝久",
+      "publisher": "講談社",
+      "releaseDate": "2015-03-06T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51MLDNe10jL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063825639",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063825639?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063825633",
+      "asin": "4063825639",
+      "synopsis": "天才的な殺し屋“ファブル”は、ボスの命令で大阪に潜伏し一年間一般人として暮らすことになる。仕事を忘れ普通の生活に挑むものの、裏社会の揉め事に巻き込まれ、彼の「休業」が試されていく。",
+      "magazine": "週刊ヤングマガジン",
+      "magazines": [
+        "週刊ヤングマガジン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "ヤクザ",
+        "青年向け",
+        "都会",
+        "暗殺者",
+        "銃",
+        "犯罪",
+        "不条理コメディ",
+        "疑似家族",
+        "復讐",
+        "障害",
+        "サバイバル",
+        "バー"
+      ],
+      "meta": {
+        "anilistId": 94490,
+        "wikiTitle": "ザ・ファブル",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -4229,6 +4327,48 @@
       }
     },
     {
+      "seriesKey": "やんちゃギャルの安城さん",
+      "title": "やんちゃギャルの安城さん 1 (ヤングキングコミックス)",
+      "author": "加藤 雄一",
+      "publisher": "少年画報社",
+      "releaseDate": "2018-03-12T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51lXwx1UPOL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4785961767",
+      "amazonDp": "https://www.amazon.co.jp/dp/4785961767?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784785961763",
+      "asin": "4785961767",
+      "synopsis": "真面目で奥手な高校生・瀬戸くんの隣には、明るく小悪魔なギャル・安城さん。赤面する瀬戸くんをからかってばかりの彼女だが、少しずつ距離が縮まり、教室内は甘酸っぱい空気に包まれていく学園ラブコメ。",
+      "magazine": "ヤングキング",
+      "magazines": [
+        "ヤングキング"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ギャル",
+        "青年向け",
+        "学園",
+        "成長譚",
+        "癒し系",
+        "都会",
+        "ボーイッシュ",
+        "ツンデレ"
+      ],
+      "meta": {
+        "anilistId": 101315,
+        "wikiTitle": "やんちゃギャルの安城さん",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "ゆびさきと恋々",
       "title": "ゆびさきと恋々(1) (デザートコミックス)",
       "author": "森下 suu",
@@ -4488,6 +4628,52 @@
       }
     },
     {
+      "seriesKey": "ルリドラゴン",
+      "title": "ルリドラゴン 1 (ジャンプコミックス)",
+      "author": "眞藤 雅興",
+      "publisher": "集英社",
+      "releaseDate": "2022-10-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51uft2nKG1L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/408883285X",
+      "amazonDp": "https://www.amazon.co.jp/dp/408883285X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088832852",
+      "asin": "408883285X",
+      "synopsis": "ごく普通の女子高生・ルリが目覚めると頭に角が生えていた。実は父親が龍で自分は半龍だと知った彼女は、クラスメイトたちの好奇の目にさらされながらも新しい日常を楽しんでいく。",
+      "magazine": "週刊少年ジャンプ / →少年ジャンプ+、週刊少年ジャンプ（デジタル版限定連載）",
+      "magazines": [
+        "週刊少年ジャンプ",
+        "少年ジャンプ+",
+        "週刊少年ジャンプ(デジタル版限定連載)"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "モンスター娘",
+        "成長譚",
+        "ドラゴン",
+        "学園",
+        "癒し系",
+        "現代ファンタジー",
+        "少年向け",
+        "かわいい女の子の日常",
+        "超能力",
+        "家族もの",
+        "ドタバタ"
+      ],
+      "meta": {
+        "anilistId": 150440,
+        "wikiTitle": "ルリドラゴン",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "ワンパンマン",
       "title": "ワンパンマン 1",
       "author": "村田 雄介",
@@ -4710,6 +4896,66 @@
       "meta": {
         "anilistId": 112981,
         "wikiTitle": "久保さんは僕を許さない",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "乙嫁語り",
+      "title": "乙嫁語り 1巻 (青騎士コミックス)",
+      "author": "森 薫",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2009-10-15T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51wtFp3bZqL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047260762",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047260762?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784047260764",
+      "asin": "4047260762",
+      "synopsis": "19世紀の中央ユーラシアを舞台に、20歳の遊牧民の娘アミルが、定住民の12歳の少年カルルクと結婚する。異文化の嫁ぎ先で、家族や村人たちと日常を送りながら、遊牧民と定住民の生活や風習を丁寧に描く歴史ロマン。",
+      "magazine": "Fellows! → ハルタ → 青騎士 → 移籍先未発表",
+      "magazines": [
+        "Fellows!",
+        "ハルタ",
+        "青騎士",
+        "移籍先未発表"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "結婚",
+        "歴史",
+        "旅",
+        "海外",
+        "青年向け",
+        "政略結婚",
+        "癒し系",
+        "先住民文化",
+        "環境問題",
+        "砂漠",
+        "家族もの",
+        "田舎",
+        "教育",
+        "戦争",
+        "同棲",
+        "軍事",
+        "グルメ",
+        "宗教",
+        "片思い",
+        "双子",
+        "言語の壁",
+        "弓術",
+        "逆ハーレム",
+        "複数恋愛"
+      ],
+      "meta": {
+        "anilistId": 41514,
+        "wikiTitle": "乙嫁語り",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -6667,6 +6913,45 @@
       }
     },
     {
+      "seriesKey": "桜蘭高校ホスト部",
+      "title": "桜蘭高校ホスト部(クラブ) 1 (花とゆめCOMICS)",
+      "author": "葉鳥ビスコ",
+      "publisher": "白泉社",
+      "releaseDate": "2003-08-05T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51X61kIiAQL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592174488",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592174488?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784592174486",
+      "asin": "4592174488",
+      "synopsis": "名門・桜蘭学院に特待生として入学した庶民の女子高生ハルヒは、ホスト部の高価な壺を割ってしまい、その弁償のため男装してホストとして働くことに。個性豊かな美男子たちと繰り広げる学園コメディ。",
+      "magazine": "LaLa",
+      "magazines": [
+        "LaLa"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "大学",
+        "幽霊",
+        "学園",
+        "双子",
+        "男性ハーレム"
+      ],
+      "meta": {
+        "anilistId": 57029,
+        "wikiTitle": "桜蘭高校ホスト部",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "極主夫道",
       "title": "極主夫道 1 (BUNCH COMICS)",
       "author": "おおのこうすけ",
@@ -7426,6 +7711,59 @@
       }
     },
     {
+      "seriesKey": "蟲師",
+      "title": "蟲師 (1) アフタヌーンKC (255)",
+      "author": "漆原 友紀",
+      "publisher": "講談社",
+      "releaseDate": "2000-11-01T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/21SGReiuNEL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063142558",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063142558?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063142556",
+      "asin": "4063142558",
+      "synopsis": "動植物にも霊にも属さない原初の生命体“蟲”。旅の蟲師・ギンコは、人々の暮らしを脅かす不思議な蟲の事件に立ち向かう。静かな自然と人々の営みを背景に、蟲と共存する者たちの物語が綴られる。",
+      "magazine": "アフタヌーンシーズン増刊 / （1999年 - 2002年） / 月刊アフタヌーン / （2003年2月号 - 2008年10月号、 / 2014年1月号 - 2月号、2021年5月号）",
+      "magazines": [
+        "アフタヌーンシーズン増刊",
+        "(1999年 - 2002年)",
+        "月刊アフタヌーン",
+        "(2003年2月号 - 2008年10月号",
+        "2014年1月号 - 2月号",
+        "2021年5月号)"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Mystery",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "旅",
+        "環境問題",
+        "妖怪",
+        "青年向け",
+        "神話",
+        "田舎",
+        "環境ホラー",
+        "癒し系",
+        "哲学",
+        "現代ファンタジー",
+        "仕事",
+        "歴史",
+        "悪魔"
+      ],
+      "meta": {
+        "anilistId": 30418,
+        "wikiTitle": "蟲師",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "血の轍",
       "title": "血の轍 (1) (ビッグコミックス)",
       "author": "押見 修造",
@@ -7504,6 +7842,59 @@
       ],
       "meta": {
         "anilistId": 165265,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "親愛なる僕へ殺意をこめて",
+      "title": "親愛なる僕へ殺意をこめて(1) (ヤングマガジンコミックス)",
+      "author": "伊藤 翔太",
+      "publisher": "講談社",
+      "releaseDate": "2018-09-06T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/412ewwrTQlL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065128072",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065128072?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784065128077",
+      "asin": "4065128072",
+      "synopsis": "平凡な大学生・浦島エイジは、連続殺人犯“LL”の息子であることを知らずに育った。ある日、自分の中に別の人格が存在し殺人を犯しているかもしれない事実に直面し、失われた記憶の謎と向き合う。",
+      "magazine": "週刊ヤングマガジン / コミックDAYS",
+      "magazines": [
+        "週刊ヤングマガジン",
+        "コミックDAYS"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mystery",
+        "Psychological",
+        "Slice of Life",
+        "Thriller"
+      ],
+      "tags": [
+        "多重人格",
+        "復讐",
+        "犯罪",
+        "青年向け",
+        "記憶喪失",
+        "警察",
+        "ヤンデレ",
+        "逃亡者",
+        "探偵",
+        "アンチヒーロー",
+        "ギャング",
+        "大学",
+        "養子縁組",
+        "孤児",
+        "銃",
+        "LGBTQテーマ"
+      ],
+      "meta": {
+        "anilistId": 106867,
+        "wikiTitle": "親愛なる僕へ殺意をこめて",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -8106,6 +8497,59 @@
       ],
       "meta": {
         "anilistId": 99324,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "魔法使いの嫁",
+      "title": "魔法使いの嫁 1 (ブシロードコミックス)",
+      "author": "ヤマザキ コレ",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2024-04-06T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51y8oZmV32L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4048995898",
+      "amazonDp": "https://www.amazon.co.jp/dp/4048995898?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784048995894",
+      "asin": "4048995898",
+      "synopsis": "孤独な15歳の少女・羽鳥チセは、魔法使いの手によってオークションで買われる。人外の魔術師エリアスは彼女を弟子兼花嫁に迎え、チセは不思議と幻想が満ちる英国で、止まった時間を動かし始める。",
+      "magazine": "月刊コミックブレイド / MAGCOMI / 月刊コミックガーデン / コミックグロウル",
+      "magazines": [
+        "月刊コミックブレイド",
+        "MAGCOMI",
+        "月刊コミックガーデン",
+        "コミックグロウル"
+      ],
+      "audiences": [
+        "その他",
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "魔法",
+        "いじめ",
+        "海外",
+        "神話",
+        "田舎",
+        "モンスター男子",
+        "少年向け",
+        "現代ファンタジー",
+        "学園",
+        "旅",
+        "妖精",
+        "狼男",
+        "変身能力",
+        "ドラゴン"
+      ],
+      "meta": {
+        "anilistId": 85435,
+        "wikiTitle": "魔法使いの嫁",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
