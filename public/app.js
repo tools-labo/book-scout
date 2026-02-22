@@ -1,9 +1,8 @@
-// public/app.js (1/2)
-// - Work：発売日 / 出版社 を復活（ジャンルは表示しない）
-// - List：表示は タイトル / 作者 / 連載誌 / タグ + CTA（Amazon/お気に入り）
-// - 書影：詳細へ（Amazonは別ボタン）
-// - 読後感投票：最大2つ（選択状態を保持）
-// ※ 2/2 で Home行（ジャンル/カテゴリー棚）など残りを続けて定義します
+// public/app.js (1/2) FIXED
+// - 2/2(Home棚)が使う hasAnyGenre() / GENRE_JA を復活
+// - Work：発売日 / 出版社 を表示（ジャンルは表示しない）
+// - List：タイトル/作者/連載誌/タグ + Amazon/お気に入り
+// ※ 2/2で Home棚(genre/audience)と run() を出す
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -292,6 +291,33 @@ function patchAmazonAnchors(root = document) {
 }
 
 /* =======================
+ * Genre（内部用：Home棚で必須）
+ * ======================= */
+const GENRE_JA = {
+  Action: "アクション",
+  Adventure: "冒険",
+  Comedy: "コメディ",
+  Drama: "ドラマ",
+  Fantasy: "ファンタジー",
+  Horror: "ホラー",
+  Mystery: "ミステリー",
+  Psychological: "心理",
+  Romance: "恋愛",
+  "Sci-Fi": "SF",
+  "Slice of Life": "日常",
+  Sports: "スポーツ",
+  Supernatural: "超常",
+  Thriller: "サスペンス",
+};
+
+// ★ Home棚（genreCountMap/renderGenreTabsRow）が必ず使う
+function hasAnyGenre(it, wanted) {
+  if (!wanted?.length) return true;
+  const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
+  return wanted.some(x => g.includes(x));
+}
+
+/* =======================
  * pills: tags max 6 +N
  * ======================= */
 function pillsMax6(list) {
@@ -304,7 +330,7 @@ function pillsMax6(list) {
 }
 
 /* =======================
- * Quick filters / state
+ * Quick filters
  * ======================= */
 const QUICK_FILTERS_PATH = "./data/lane2/quick_filters.json";
 const QUICK_MAX = 2;
@@ -419,7 +445,7 @@ function setVotedSet(seriesKey, set){
 }
 
 /* =======================
- * List render（ここまでで list/work が成立）
+ * List render
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -431,7 +457,6 @@ function renderList(data, quickDefs) {
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
   const moodActiveDefs = moodSelected.map(id => byId.get(id)).filter(Boolean);
 
-  // base = 全件（list.htmlは mood だけの絞り込み）
   const base = all.slice();
 
   const scored = [];
@@ -457,7 +482,6 @@ function renderList(data, quickDefs) {
     };
   }
 
-  // quick UI
   if (document.getElementById("quickFiltersList")) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
     const dyn = quickCountsDynamic(base, defs, moodSelected);
@@ -576,7 +600,7 @@ function renderList(data, quickDefs) {
 }
 
 /* =======================
- * Work render（発売日/出版社を復活：ここが今回の最優先）
+ * Work render（発売日/出版社を表示）
  * ======================= */
 function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
@@ -603,7 +627,6 @@ function renderWork(data, quickDefs) {
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
   const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 
-  // ★復活する情報
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
 
@@ -637,7 +660,6 @@ function renderWork(data, quickDefs) {
 
     ${author ? `<div class="d-sub">${esc(author)}</div>` : ""}
     ${magazine ? `<div class="d-sub">連載誌: ${esc(magazine)}</div>` : ""}
-
     ${release ? `<div class="d-sub">発売日: ${esc(release)}</div>` : ""}
     ${publisher ? `<div class="d-sub">出版社: ${esc(publisher)}</div>` : ""}
 
@@ -705,7 +727,10 @@ function renderWork(data, quickDefs) {
   refreshFavButtons(document);
 }
 
-// public/app.js (2/2)
+// public/app.js (2/2) FIXED
+// - Home棚（ジャンル/カテゴリー）
+// - Home気分導線
+// - run()
 
 /* =======================
  * Home：URL state
@@ -725,7 +750,7 @@ function setHomeState(next) {
 }
 
 /* =======================
- * ジャンル（確定10本）※Home棚用
+ * Home：ジャンル棚（確定10本）
  * ======================= */
 const GENRE_TABS = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -740,25 +765,17 @@ const GENRE_TABS = [
   { id: "other", label: "その他", match: ["Adventure", "Psychological", "Supernatural"] },
 ];
 
-/* =======================
- * カテゴリー（旧：読者層）※Home棚用
- * ======================= */
-const CATEGORY_TABS = [
-  { id: "shonen", value: "少年", label: "少年マンガ" },
-  { id: "seinen", value: "青年", label: "青年マンガ" },
-  { id: "shojo", value: "少女", label: "少女マンガ" },
-  { id: "josei", value: "女性", label: "女性マンガ" },
-  { id: "other", value: "その他", label: "その他" },
-];
-
-function getFirstAudienceLabel(it) {
-  const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
-  return arr[0] || "その他";
+function genreCountMap(allItems) {
+  const map = new Map();
+  for (const t of GENRE_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    for (const t of GENRE_TABS) {
+      if (hasAnyGenre(it, t.match)) map.set(t.id, (map.get(t.id) || 0) + 1);
+    }
+  }
+  return map;
 }
 
-/* =======================
- * Home rows
- * ======================= */
 function renderCardRow({ items, limit = 18, moreHref = "" }) {
   const v = qs().get("v");
   const cards = (items || []).slice(0, limit).map((it) => {
@@ -792,29 +809,6 @@ function renderCardRow({ items, limit = 18, moreHref = "" }) {
   return `<div class="row-scroll">${cards}${moreCard}</div>`;
 }
 
-function genreCountMap(allItems) {
-  const map = new Map();
-  for (const t of GENRE_TABS) map.set(t.id, 0);
-  for (const it of allItems) {
-    for (const t of GENRE_TABS) {
-      if (hasAnyGenre(it, t.match)) map.set(t.id, (map.get(t.id) || 0) + 1);
-    }
-  }
-  return map;
-}
-
-function categoryCountMap(allItems) {
-  const map = new Map();
-  for (const t of CATEGORY_TABS) map.set(t.id, 0);
-  for (const it of allItems) {
-    const label = getFirstAudienceLabel(it);
-    const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
-    if (!tab) continue;
-    map.set(tab.id, (map.get(tab.id) || 0) + 1);
-  }
-  return map;
-}
-
 function setGenreAllLink(activeTab) {
   const a = document.getElementById("genreAllLink");
   if (!a) return;
@@ -822,14 +816,6 @@ function setGenreAllLink(activeTab) {
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
   const q = encodeURIComponent(activeTab.match.join(","));
   a.href = `./list.html?genre=${q}${vq}`;
-}
-
-function setAudienceAllLink(activeAudValue) {
-  const a = document.getElementById("audienceAllLink");
-  if (!a) return;
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  a.href = `./list.html?aud=${encodeURIComponent(activeAudValue)}${vq}`;
 }
 
 function renderGenreTabsRow({ data, activeId }) {
@@ -871,6 +857,37 @@ function renderGenreTabsRow({ data, activeId }) {
     setHomeState({ g: next });
     renderGenreTabsRow({ data, activeId: next });
   };
+}
+
+/* =======================
+ * Home：カテゴリー棚
+ * ======================= */
+const CATEGORY_TABS = [
+  { id: "shonen", value: "少年", label: "少年マンガ" },
+  { id: "seinen", value: "青年", label: "青年マンガ" },
+  { id: "shojo", value: "少女", label: "少女マンガ" },
+  { id: "josei", value: "女性", label: "女性マンガ" },
+  { id: "other", value: "その他", label: "その他" },
+];
+
+function categoryCountMap(allItems) {
+  const map = new Map();
+  for (const t of CATEGORY_TABS) map.set(t.id, 0);
+  for (const it of allItems) {
+    const label = getFirstAudienceLabel(it);
+    const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
+    if (!tab) continue;
+    map.set(tab.id, (map.get(tab.id) || 0) + 1);
+  }
+  return map;
+}
+
+function setAudienceAllLink(activeAudValue) {
+  const a = document.getElementById("audienceAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  a.href = `./list.html?aud=${encodeURIComponent(activeAudValue)}${vq}`;
 }
 
 function renderAudienceTabsRow({ data, activeAudId }) {
@@ -916,7 +933,7 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * Home：気分（導線）
+ * Home：気分（導線リンク）
  * ======================= */
 function renderQuickHome({ defs, counts }) {
   const root = document.getElementById("quickFiltersHome");
@@ -955,7 +972,7 @@ async function run() {
     const quick = await loadJson(quickUrl, { bust: !!v });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // Home：棚
+    // Home：ジャンル / カテゴリー
     const st = getHomeState();
     renderGenreTabsRow({ data, activeId: st.g });
     renderAudienceTabsRow({ data, activeAudId: st.a });
@@ -979,7 +996,7 @@ async function run() {
     // Amazonアフィ付与
     patchAmazonAnchors(document);
 
-    // favorite handler（1回だけbind）
+    // favorite handler
     bindFavHandlers(document);
     refreshFavButtons(document);
   } catch (e) {
