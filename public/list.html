@@ -5,45 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜リスト</title>
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- 追加：スクロールで隠す/出す（style.cssを触らなくても動く最低限） -->
-  <style>
-    .gheader {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transform: translateY(0);
-      transition: transform 180ms ease;
-      will-change: transform;
-    }
-    .gheader.is-hidden {
-      transform: translateY(-110%);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .gheader { transition: none; }
-    }
-
-    /* 追加：フッター（小さめ） */
-    .gfooter {
-      border-top: 1px solid rgba(127,127,127,.35);
-      padding: 14px 0;
-      margin-top: 28px;
-      font-size: 12px;
-      opacity: .85;
-    }
-    .gfooter-inner {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .gfooter a { text-decoration: none; }
-    .gfooter a:hover { text-decoration: underline; }
-  </style>
 </head>
 
 <body class="has-gheader">
-  <!-- 固定ヘッダー（スクロールで自動表示/非表示） -->
   <header class="gheader" id="gheader">
     <div class="gheader-inner">
       <div class="gbrand">
@@ -62,7 +26,6 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <!-- 気分フィルター（メイン） -->
     <section class="section" style="margin-top:10px;">
       <div class="section-head">
         <h2 class="section-title">気分で絞り込み</h2>
@@ -75,7 +38,6 @@
 
     <section id="list" class="grid" style="margin-top:12px;"></section>
 
-    <!-- 追加：フッター（リストページ末尾に小さく表示） -->
     <footer class="gfooter" aria-label="サイトフッター">
       <div class="gfooter-inner">
         <span>© Tools-LABO</span>
@@ -89,7 +51,6 @@
     </footer>
   </main>
 
-  <!-- ヘッダー：下スクロールで隠す / 上に少しでもスクロールで出す -->
   <script>
     (function () {
       const header = document.getElementById("gheader");
@@ -98,45 +59,27 @@
       let lastY = window.scrollY || 0;
       let ticking = false;
 
-      const SHOW_THRESHOLD = 2;   // 上方向に2px動いたら出す
-      const HIDE_THRESHOLD = 8;   // 下方向は8px以上で隠す
-      const TOP_KEEP = 12;        // 先頭付近は常に表示
+      const SHOW_THRESHOLD = 2;
+      const HIDE_THRESHOLD = 8;
+      const TOP_KEEP = 12;
 
       function onScroll() {
         const y = window.scrollY || 0;
         const dy = y - lastY;
 
-        if (y <= TOP_KEEP) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
-
-        if (dy > HIDE_THRESHOLD) {
-          header.classList.add("is-hidden");
-          lastY = y;
-          return;
-        }
-
-        if (dy < -SHOW_THRESHOLD) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
+        if (y <= TOP_KEEP) { header.classList.remove("is-hidden"); lastY = y; return; }
+        if (dy > HIDE_THRESHOLD) { header.classList.add("is-hidden"); lastY = y; return; }
+        if (dy < -SHOW_THRESHOLD) { header.classList.remove("is-hidden"); lastY = y; return; }
       }
 
       window.addEventListener("scroll", () => {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          onScroll();
-        });
+        requestAnimationFrame(() => { ticking = false; onScroll(); });
       }, { passive: true });
     })();
   </script>
 
-  <!-- app.js ロード（既存） -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
