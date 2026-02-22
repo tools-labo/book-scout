@@ -1,8 +1,13 @@
 // public/app.js（1/2）FULL REPLACE（FIX）
 // - ✅ 二重定義ゼロ（SyntaxError回避）
 // - ✅ List：renderList をこの 1/2 に含める（list が必ず動く）
-// - ✅ Work：タグ全件表示 + レコメンド3枠は 2/2 側
-// - ✅ Home棚 + run() + 追加JSON読み込みは 2/2 側
+// - ✅ Work：タグ全件表示 + レコメンド3枠
+// - ✅ Home棚（run() は 2/2 側）
+//
+// 【分割ルール】
+// - 1/2 はこのファイル末尾の END マーカーで必ず終わる
+// - 2/2 は START マーカーから必ず始める
+// - token が一致しない場合は貼り間違い
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -1222,6 +1227,9 @@ function renderQuickHome({ defs, counts }) {
   `;
 }
 
+/* END PART 1 - token: A1B2 */
+/* START PART 2 - token: A1B2 */
+
 /* =======================
  * run（work_view / vote も安全に読む）
  * ======================= */
@@ -1304,5 +1312,5 @@ if (document.readyState === "loading") {
 } else {
   run();
 }
-// ====== ここまで public/app.js（2/2）======              
 
+/* END PART 2 - token: A1B2 */
