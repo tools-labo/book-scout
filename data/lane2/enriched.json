@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-02-22T08:50:13.617Z",
-  "total": 180,
-  "ok": 180,
+  "updatedAt": "2026-02-22T09:04:13.628Z",
+  "total": 178,
+  "ok": 178,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 180,
+    "skippedPerfect": 178,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
@@ -5192,57 +5192,6 @@
       "meta": null
     },
     {
-      "seriesKey": "ハピネス",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4063881202",
-        "amazonDp": "https://www.amazon.co.jp/dp/4063881202?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784063881202",
-        "asin": "4063881202",
-        "title": "暴力探偵(3)<完> (アフタヌーンKC)",
-        "synopsis": "息苦しい日常を送る少年は、夜道で謎の少女に出会い人生が一変する。救いのようでいて歪んだ“変化”が始まり、平穏は崩れていく――青春と恐怖が交差するダークドラマ。",
-        "image": "https://m.media-amazon.com/images/I/51S91QryjPL._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "東田 裕介",
-        "releaseDate": "2016-02-05T00:00:01Z",
-        "magazine": "別冊少年マガジン",
-        "magazines": [
-          "別冊少年マガジン"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 37532,
-        "genres": [
-          "Drama",
-          "Ecchi",
-          "Slice of Life"
-        ],
-        "tags_en": [
-          "Anthology",
-          "Seinen",
-          "Nudity",
-          "Idol",
-          "Urban",
-          "School",
-          "Primarily Teen Cast",
-          "Drawing"
-        ],
-        "tags": [
-          "アンソロジー",
-          "青年向け",
-          "アイドル",
-          "都会",
-          "学園",
-          "絵・作画"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
       "seriesKey": "パンドラハーツ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4757518080",
@@ -7421,63 +7370,6 @@
           "先住民文化",
           "歴史",
           "女性主人公"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "久保さんは僕を許さない",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088818288",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088818288?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088818283",
-        "asin": "4088818288",
-        "title": "呪術廻戦 5 (ジャンプコミックス)",
-        "synopsis": "存在感が薄すぎて周囲に気づかれにくい白石くん。そんな彼をなぜか見つけ出しては、ちょっかいをかけてくるのが久保さん。からかいと優しさの距離感が甘くて眩しい青春ラブコメ。",
-        "image": "https://m.media-amazon.com/images/I/51FdGkD+cPL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "芥見 下々",
-        "releaseDate": "2019-05-02T00:00:01Z",
-        "magazine": "週刊ヤングジャンプ",
-        "magazines": [
-          "週刊ヤングジャンプ"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "久保さんは僕を許さない",
-        "anilistId": 112981,
-        "genres": [
-          "Comedy",
-          "Romance",
-          "Slice of Life"
-        ],
-        "tags_en": [
-          "Iyashikei",
-          "Heterosexual",
-          "School",
-          "Primarily Teen Cast",
-          "Female Protagonist",
-          "Male Protagonist",
-          "Chibi",
-          "Cute Girls Doing Cute Things",
-          "Seinen",
-          "Coming of Age"
-        ],
-        "tags": [
-          "癒し系",
-          "異性愛",
-          "学園",
-          "ティーン中心",
-          "女性主人公",
-          "男性主人公",
-          "ちびキャラ",
-          "かわいい女の子の日常",
-          "青年向け",
-          "成長譚"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
