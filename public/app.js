@@ -1,10 +1,11 @@
-// public/app.js (1/2) CLEAN
-// - app.js内の重複定義を完全に除去（SyntaxError対策）
-// - Home：気分/ジャンル/カテゴリーが確実に出る
-// - List：表示は タイトル/作者/連載誌/タグ のみ（ジャンル/出版社/発売日は非表示のまま）
-//        ただし genre/aud/mag のURL絞り込みは内部で復活
-// - Work：発売日/出版社を復活（ジャンルは表示しない）
-// - 読後感投票：最大2つ（選択状態を保持）
+// public/app.js（1/2）FULL REPLACE
+// - 重複定義なし（SyntaxError地雷を排除）
+// - Home：気分/ジャンル/カテゴリー
+// - List：表示=タイトル/作者/連載誌/タグ（genre/aud/mag は内部絞り込みのみ）
+// - Work：発売日/出版社を表示（ジャンルは表示しない）
+// - 読後感投票：最大2つ（選択状態を端末に保持）
+//
+// ※ 2/2で Work + Home棚 + run() を出す
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -74,6 +75,7 @@ function setStatus(msg) {
 
   const d = document.getElementById("detail");
   if (d) { d.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
+
   const l = document.getElementById("list");
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
 }
@@ -177,6 +179,7 @@ function setFav(seriesKey, on) {
     else localStorage.removeItem(favKey(sk));
   } catch {}
 }
+
 function favButtonHtml(seriesKey, page) {
   const sk = esc(seriesKey || "");
   const pg = esc(page || "");
@@ -195,6 +198,7 @@ function favButtonHtml(seriesKey, page) {
     </button>
   `;
 }
+
 function refreshFavButtons(root = document) {
   const btns = root.querySelectorAll?.("button[data-fav='1']") || [];
   for (const btn of btns) {
@@ -206,6 +210,7 @@ function refreshFavButtons(root = document) {
     if (icon) icon.textContent = on ? "♥" : "♡";
   }
 }
+
 function bindFavHandlers(root = document) {
   if (root.__favBound) return;
   root.__favBound = true;
@@ -224,6 +229,7 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
+    // ONにしたときだけ送る
     if (next) void trackFavoriteOnce(seriesKey, page || "unknown");
   }, { passive: true });
 }
@@ -295,23 +301,6 @@ function patchAmazonAnchors(root = document) {
 /* =======================
  * Genre（内部用）
  * ======================= */
-const GENRE_JA = {
-  Action: "アクション",
-  Adventure: "冒険",
-  Comedy: "コメディ",
-  Drama: "ドラマ",
-  Fantasy: "ファンタジー",
-  Horror: "ホラー",
-  Mystery: "ミステリー",
-  Psychological: "心理",
-  Romance: "恋愛",
-  "Sci-Fi": "SF",
-  "Slice of Life": "日常",
-  Sports: "スポーツ",
-  Supernatural: "超常",
-  Thriller: "サスペンス",
-};
-
 function hasAnyGenre(it, wanted) {
   if (!wanted?.length) return true;
   const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
@@ -482,10 +471,10 @@ function renderList(data, quickDefs) {
 
   const all = Array.isArray(data?.items) ? data.items : [];
 
-  // ★ 内部絞り込みを復活（表示は増やさない）
-  const genreWanted = parseGenreQuery();      // "Action,Sports" など
-  const audienceWanted = parseOneQueryParam("aud"); // "少年" など
-  const magazineWanted = parseOneQueryParam("mag"); // 任意
+  // 内部絞り込み（表示は増やさない）
+  const genreWanted = parseGenreQuery();
+  const audienceWanted = parseOneQueryParam("aud");
+  const magazineWanted = parseOneQueryParam("mag");
 
   const moodSelected = parseMoodQuery();
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
@@ -496,6 +485,7 @@ function renderList(data, quickDefs) {
     .filter(it => hasAudience(it, audienceWanted))
     .filter(it => hasMagazine(it, magazineWanted));
 
+  // mood AND + score順
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -509,6 +499,7 @@ function renderList(data, quickDefs) {
   }
   const items = scored.map(x => x.it);
 
+  // 解除
   const clear = document.getElementById("moodClearLink");
   if (clear) {
     clear.onclick = (ev) => {
@@ -519,12 +510,13 @@ function renderList(data, quickDefs) {
     };
   }
 
-  if (document.getElementById("quickFiltersList")) {
+  // クイックUI（動的カウント）
+  const qRoot = document.getElementById("quickFiltersList");
+  if (qRoot) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
     const dyn = quickCountsDynamic(base, defs, moodSelected);
 
-    const rootQ = document.getElementById("quickFiltersList");
-    rootQ.innerHTML = `
+    qRoot.innerHTML = `
       <div class="pills">
         ${defs.map(d => {
           const isOn = moodSelected.includes(d.id);
@@ -547,7 +539,7 @@ function renderList(data, quickDefs) {
       </div>
     `;
 
-    rootQ.onclick = (ev) => {
+    qRoot.onclick = (ev) => {
       const btn = ev.target?.closest?.("button[data-mood]");
       if (!btn || btn.disabled) return;
       const id = btn.getAttribute("data-mood") || "";
@@ -560,6 +552,7 @@ function renderList(data, quickDefs) {
         if (set.size >= QUICK_MAX) return;
         set.add(id);
       }
+
       setMoodQuery(Array.from(set));
       renderList(data, quickDefs);
       refreshFavButtons(document);
@@ -635,13 +628,13 @@ function renderList(data, quickDefs) {
 
   refreshFavButtons(document);
 }
-// public/app.js (2/2) CLEAN
-// - Work render（発売日/出版社を表示、ジャンル非表示）
-// - Home：気分/ジャンル/カテゴリー棚
+// public/app.js（2/2）FULL REPLACE
+// - Work（発売日/出版社）
+// - Home（気分/ジャンル/カテゴリー）
 // - run()
 
 /* =======================
- * Work render（発売日/出版社を表示）
+ * Work render（発売日/出版社を表示、ジャンルは表示しない）
  * ======================= */
 function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
@@ -725,7 +718,7 @@ function renderWork(data, quickDefs) {
   // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  // vote（最大2 + 選択状態保持、送信はvoteOnceで抑止）
+  // vote：最大2 + 選択状態保持、送信はvoteOnceで抑止
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1037,6 +1030,8 @@ async function run() {
     // favorite handler
     bindFavHandlers(document);
     refreshFavButtons(document);
+
+    setStatus("");
   } catch (e) {
     setStatus("読み込みに失敗しました");
     console.error(e);
