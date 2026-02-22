@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T22:43:21.874Z",
+  "updatedAt": "2026-02-22T23:39:31.173Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -40,23 +40,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "君のことが大大大大大好きな100人の彼女",
-      "n": "2"
-    },
-    {
       "seriesKey": "ReLIFE",
-      "n": "2"
-    },
-    {
-      "seriesKey": "血の轍",
-      "n": "2"
-    },
-    {
-      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
-      "n": "2"
-    },
-    {
-      "seriesKey": "監獄学園",
       "n": "2"
     },
     {
@@ -64,11 +48,27 @@
       "n": "2"
     },
     {
-      "seriesKey": "カグラバチ",
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "n": "2"
+    },
+    {
+      "seriesKey": "血の轍",
+      "n": "2"
+    },
+    {
+      "seriesKey": "監獄学園",
+      "n": "2"
+    },
+    {
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
-      "seriesKey": "アカメが斬る！",
+      "seriesKey": "カグラバチ",
       "n": "1"
     },
     {
@@ -112,11 +112,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "サンケンロック",
+      "seriesKey": "ブルーピリオド",
       "n": "1"
     },
     {
-      "seriesKey": "ブルーピリオド",
+      "seriesKey": "アカメが斬る！",
       "n": "1"
     },
     {
@@ -128,15 +128,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "キングダム",
-      "n": "1"
-    },
-    {
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -229,7 +225,7 @@
     }
   ],
   "raw": {
-    "rows": 53,
-    "rows_before_limit_at_least": 82
+    "rows": 52,
+    "rows_before_limit_at_least": 81
   }
 }
