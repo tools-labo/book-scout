@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-02-22T07:29:16.087Z",
-  "total": 159,
-  "ok": 159,
+  "updatedAt": "2026-02-22T07:41:11.647Z",
+  "total": 158,
+  "ok": 158,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 159,
+    "skippedPerfect": 158,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
@@ -3908,56 +3908,6 @@
           "ツンデレ",
           "クーデレ",
           "野球"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "トニカクカワイイ",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4091294928",
-        "amazonDp": "https://www.amazon.co.jp/dp/4091294928?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784091294920",
-        "asin": "4091294928",
-        "title": "よふかしのうた (1) (少年サンデーコミックス)",
-        "synopsis": "ある夜、運命の出会いを果たしたナサは、謎の美少女・司に一目惚れ。彼女が提示した条件は“結婚”だった。新婚生活の甘さと不思議が同居する、ピュアで笑える夫婦ラブコメ。",
-        "image": "https://m.media-amazon.com/images/I/51a6-Zb8h0L._SL500_.jpg",
-        "publisher": "小学館",
-        "author": "コトヤマ",
-        "releaseDate": "2019-11-18T00:00:01Z",
-        "magazine": "週刊少年サンデー",
-        "magazines": [
-          "週刊少年サンデー"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "トニカクカワイイ",
-        "anilistId": 131822,
-        "genres": [
-          "Drama",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Female Protagonist",
-          "Philosophy",
-          "Urban Fantasy",
-          "Historical",
-          "Rural",
-          "Shounen",
-          "Medicine"
-        ],
-        "tags": [
-          "女性主人公",
-          "哲学",
-          "現代ファンタジー",
-          "歴史",
-          "田舎",
-          "少年向け",
-          "医療"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
