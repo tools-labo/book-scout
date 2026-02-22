@@ -1,11 +1,11 @@
 // public/app.js（1/2）FULL REPLACE
-// - 重複定義なし（SyntaxError地雷を排除）
-// - Home：気分/ジャンル/カテゴリー
-// - List：表示=タイトル/作者/連載誌/タグ（genre/aud/mag は内部絞り込みのみ）
-// - Work：発売日/出版社を表示（ジャンルは表示しない）
-// - 読後感投票：最大2つ（選択状態を端末に保持）
+// - Work：タグ全件表示
+// - Work：レコメンド 3枠（各3件）
+//   ①似ている作品：idf(レアタグ)合計 + 共通タグ>=2
+//   ②同じ読後感：vote集計がある時だけ（投票>=5の候補）/ 無ければ①で埋め
+//   ③ジャンル×カテゴリー人気：work_view 上位
 //
-// ※ 2/2で Work + Home棚 + run() を出す
+// ※ 2/2で Work + Home棚 + run() を出す（読み込み追加含む）
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -229,7 +229,6 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
-    // ONにしたときだけ送る
     if (next) void trackFavoriteOnce(seriesKey, page || "unknown");
   }, { passive: true });
 }
@@ -336,8 +335,9 @@ function hasMagazine(it, mag) {
 }
 
 /* =======================
- * pills: tags max 6 +N
+ * pills
  * ======================= */
+// list用：max6
 function pillsMax6(list) {
   const xs = (list || []).map(toText).filter(Boolean);
   if (!xs.length) return "";
@@ -345,6 +345,13 @@ function pillsMax6(list) {
   const rest = xs.length - head.length;
   const more = rest > 0 ? `<span class="pill">+${rest}</span>` : "";
   return `<div class="pills">${head.map(x => `<span class="pill">${esc(x)}</span>`).join("")}${more}</div>`;
+}
+
+// work用：全件表示
+function pillsAll(list) {
+  const xs = (list || []).map(toText).filter(Boolean);
+  if (!xs.length) return "";
+  return `<div class="pills">${xs.map(x => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
 }
 
 /* =======================
@@ -463,180 +470,226 @@ function setVotedSet(seriesKey, set){
 }
 
 /* =======================
- * List render
+ * Reco helpers
  * ======================= */
-function renderList(data, quickDefs) {
-  const root = document.getElementById("list");
-  if (!root) return;
+function clamp3(arr){
+  return (arr || []).filter(Boolean).slice(0, 3);
+}
 
-  const all = Array.isArray(data?.items) ? data.items : [];
-
-  // 内部絞り込み（表示は増やさない）
-  const genreWanted = parseGenreQuery();
-  const audienceWanted = parseOneQueryParam("aud");
-  const magazineWanted = parseOneQueryParam("mag");
-
-  const moodSelected = parseMoodQuery();
-  const byId = new Map((quickDefs || []).map(d => [d.id, d]));
-  const moodActiveDefs = moodSelected.map(id => byId.get(id)).filter(Boolean);
-
-  const base = all
-    .filter(it => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
-    .filter(it => hasAudience(it, audienceWanted))
-    .filter(it => hasMagazine(it, magazineWanted));
-
-  // mood AND + score順
-  const scored = [];
-  if (moodActiveDefs.length) {
-    for (const it of base) {
-      const r = quickEvalAll(it, moodActiveDefs);
-      if (!r.ok) continue;
-      scored.push({ it, score: r.score });
-    }
-    scored.sort((a, b) => (b.score - a.score));
-  } else {
-    for (const it of base) scored.push({ it, score: 0 });
-  }
-  const items = scored.map(x => x.it);
-
-  // 解除
-  const clear = document.getElementById("moodClearLink");
-  if (clear) {
-    clear.onclick = (ev) => {
-      ev.preventDefault();
-      setMoodQuery([]);
-      renderList(data, quickDefs);
-      refreshFavButtons(document);
-    };
-  }
-
-  // クイックUI（動的カウント）
-  const qRoot = document.getElementById("quickFiltersList");
-  if (qRoot) {
-    const defs = Array.isArray(quickDefs) ? quickDefs : [];
-    const dyn = quickCountsDynamic(base, defs, moodSelected);
-
-    qRoot.innerHTML = `
-      <div class="pills">
-        ${defs.map(d => {
-          const isOn = moodSelected.includes(d.id);
-          const isDisabled = (!isOn && moodSelected.length >= QUICK_MAX);
-          const n = dyn.counts.get(d.id) || 0;
-          return `
-            <button
-              type="button"
-              class="pill ${isOn ? "is-on" : ""}"
-              data-mood="${esc(d.id)}"
-              aria-pressed="${isOn ? "true" : "false"}"
-              ${isDisabled ? "disabled" : ""}
-              style="${isDisabled ? "opacity:.5;cursor:not-allowed" : ""}"
-            >
-              ${esc(d.label)}
-              <span style="opacity:.7;">(<span class="qcount-wrap"><span class="qcount">${n}</span></span>)</span>
-            </button>
-          `;
-        }).join("")}
-      </div>
-    `;
-
-    qRoot.onclick = (ev) => {
-      const btn = ev.target?.closest?.("button[data-mood]");
-      if (!btn || btn.disabled) return;
-      const id = btn.getAttribute("data-mood") || "";
-      if (!id) return;
-
-      const cur = parseMoodQuery();
-      const set = new Set(cur);
-      if (set.has(id)) set.delete(id);
-      else {
-        if (set.size >= QUICK_MAX) return;
-        set.add(id);
-      }
-
-      setMoodQuery(Array.from(set));
-      renderList(data, quickDefs);
-      refreshFavButtons(document);
-    };
-
-    const hint = document.getElementById("quickFiltersHint");
-    if (hint) {
-      if (!moodSelected.length) hint.textContent = "";
-      else hint.innerHTML = `気分: <b>${esc(moodSelected.map(id => byId.get(id)?.label || id).join(" × "))}</b>（AND / 最大2）`;
-    }
-  }
-
-  if (!items.length) {
-    root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
-    return;
-  }
-
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-
-  root.innerHTML = items.map((it) => {
-    const seriesKey = toText(pick(it, ["seriesKey"])) || "";
-    const key = encodeURIComponent(seriesKey);
-
-    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
-    const author = toText(pick(it, ["author", "vol1.author"])) || "";
-    const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
-
-    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
-    const img = normalizeImgUrl(imgRaw);
-
-    const amzRaw = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
-    const amz = ensureAmazonAffiliate(amzRaw);
-
-    const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-    const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
-
-    return `
-      <article class="card">
-        <div class="card-row">
-          <div class="thumb">
-            ${
-              img
-                ? `<a href="./work.html?key=${key}${vq}" aria-label="${esc(title)}"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
-                : `<div class="thumb-ph"></div>`
-            }
-          </div>
-
-          <div class="meta">
-            <div class="title"><a href="./work.html?key=${key}${vq}">${esc(seriesKey || title)}</a></div>
-
-            ${author ? `<div class="sub">${esc(author)}</div>` : ""}
-            ${magazine ? `<div class="sub">連載誌: ${esc(magazine)}</div>` : ""}
-
-            ${tagsJa.length ? `<div class="sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
-
-            <div class="actions">
-              ${amz && amz !== "#" ? `<a class="amz-mini" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
-              ${favButtonHtml(seriesKey, "list")}
+function recGridHtml(title, items){
+  const xs = (items || []).filter(Boolean);
+  if (!xs.length) return "";
+  return `
+    <div class="rec-block">
+      <div class="rec-head"><div class="rec-title">${esc(title)}</div></div>
+      <div class="rec-grid">
+        ${xs.map(x => `
+          <a class="rec-item" href="./work.html?key=${encodeURIComponent(x.seriesKey)}" aria-label="${esc(x.title)}">
+            <div class="rec-cover">
+              ${x.img ? `<img src="${esc(x.img)}" alt="${esc(x.title)}">` : `<div class="thumb-ph"></div>`}
             </div>
+            <div class="rec-name">${esc(x.seriesKey || x.title)}</div>
+          </a>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
 
-            ${synopsis ? `
-              <details class="syn">
-                <summary>あらすじ</summary>
-                <div class="syn-body">${esc(synopsis)}</div>
-              </details>
-            ` : ""}
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
+function buildViewsMap(rows){
+  const map = new Map();
+  for (const r of (rows || [])) {
+    const sk = toText(r?.seriesKey);
+    if (!sk) continue;
+    map.set(sk, Number(r?.n || 0));
+  }
+  return map;
+}
 
-  refreshFavButtons(document);
+function buildTagDf(items){
+  const df = new Map();
+  for (const it of (items || [])) {
+    const tags = itTags(it);
+    for (const t of tags) df.set(t, (df.get(t) || 0) + 1);
+  }
+  return df;
+}
+
+function idfOf(tag, df, N){
+  const d = df.get(tag) || 0;
+  // log((N+1)/(d+1)) をベースに、0になりすぎないよう +1 しておく
+  return Math.log((N + 1) / (d + 1)) + 1;
+}
+
+function tagSimilarTop3({ baseIt, allItems, df }) {
+  const baseKey = toText(pick(baseIt, ["seriesKey"]));
+  const baseTags = new Set(itTags(baseIt));
+  const N = Math.max(1, (allItems || []).length);
+
+  const scored = [];
+  for (const it of (allItems || [])) {
+    const sk = toText(pick(it, ["seriesKey"]));
+    if (!sk || sk === baseKey) continue;
+
+    const tags = itTags(it);
+    let common = 0;
+    let score = 0;
+
+    for (const t of tags) {
+      if (!baseTags.has(t)) continue;
+      common++;
+      score += idfOf(t, df, N);
+    }
+    if (common < 2) continue;
+
+    scored.push({ it, score, common });
+  }
+
+  scored.sort((a,b) => (b.score - a.score) || (b.common - a.common));
+  const top = scored.slice(0, 3).map(x => x.it);
+
+  return top;
 }
 // public/app.js（2/2）FULL REPLACE
-// - Work（発売日/出版社）
-// - Home（気分/ジャンル/カテゴリー）
-// - run()
+// - Work：タグ全件表示 + レコメンド3枠（各3件）
+//   ①似ている作品（idf共通タグ）
+//   ②同じ読後感（vote集計がある時だけ。投票合計>=5の作品からコサイン類似）
+//   ③このジャンル×カテゴリーで人気（work_view上位）
+// - Home：気分/ジャンル/カテゴリー（現状維持）
+// - run：work_view JSON / vote JSON を追加で読み込み（無ければ安全にスキップ）
 
 /* =======================
- * Work render（発売日/出版社を表示、ジャンルは表示しない）
+ * List render（1/2の続きで宣言済み）
  * ======================= */
-function renderWork(data, quickDefs) {
+
+/* =======================
+ * Work reco (vote cosine)
+ * ======================= */
+const VOTE_AGG_PATH = "./data/metrics/wae/vote_by_series_mood.json"; // 無ければOK
+const VOTE_MIN_TOTAL = 5; // 少数暴れ対策（将来は調整可）
+
+function buildVoteMatrix(voteRows) {
+  // voteRows: [{seriesKey, mood, n}] 想定（rows/dataでもOKにする）
+  const rows = Array.isArray(voteRows?.rows) ? voteRows.rows
+    : Array.isArray(voteRows?.data) ? voteRows.data
+    : Array.isArray(voteRows) ? voteRows
+    : [];
+
+  const bySeries = new Map(); // sk -> Map(mood -> n)
+  const totals = new Map();   // sk -> total votes
+
+  for (const r of rows) {
+    const sk = toText(r?.seriesKey);
+    const mood = toText(r?.mood);
+    const n = Number(r?.n || 0);
+    if (!sk || !mood || !Number.isFinite(n)) continue;
+
+    if (!bySeries.has(sk)) bySeries.set(sk, new Map());
+    const m = bySeries.get(sk);
+    m.set(mood, (m.get(mood) || 0) + n);
+
+    totals.set(sk, (totals.get(sk) || 0) + n);
+  }
+
+  return { bySeries, totals };
+}
+
+function cosineSim(aMap, bMap) {
+  // aMap/bMap: Map(key->value)
+  if (!aMap || !bMap) return 0;
+
+  let dot = 0;
+  let a2 = 0;
+  let b2 = 0;
+
+  for (const [, v] of aMap) a2 += (v * v);
+  for (const [, v] of bMap) b2 += (v * v);
+  if (a2 <= 0 || b2 <= 0) return 0;
+
+  // dot only on intersection
+  for (const [k, av] of aMap) {
+    const bv = bMap.get(k);
+    if (bv != null) dot += av * bv;
+  }
+
+  return dot / (Math.sqrt(a2) * Math.sqrt(b2));
+}
+
+function voteSimilarTop3({ baseKey, allItems, voteMatrix }) {
+  if (!voteMatrix?.bySeries?.size) return [];
+
+  const baseVec = voteMatrix.bySeries.get(baseKey);
+  if (!baseVec) return [];
+
+  const scored = [];
+  for (const it of (allItems || [])) {
+    const sk = toText(pick(it, ["seriesKey"]));
+    if (!sk || sk === baseKey) continue;
+
+    const total = voteMatrix.totals.get(sk) || 0;
+    if (total < VOTE_MIN_TOTAL) continue;
+
+    const vec = voteMatrix.bySeries.get(sk);
+    if (!vec) continue;
+
+    const sim = cosineSim(baseVec, vec);
+    if (sim <= 0) continue;
+
+    scored.push({ it, sim, total });
+  }
+
+  scored.sort((a, b) => (b.sim - a.sim) || (b.total - a.total));
+  return scored.slice(0, 3).map(x => x.it);
+}
+
+/* =======================
+ * Popular in same genre×audience (work_view)
+ * ======================= */
+function pickFirstGenre(it) {
+  const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
+  return g[0] || "";
+}
+function pickFirstAudience(it) {
+  return getFirstAudienceLabel(it) || "その他";
+}
+
+function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
+  const baseKey = toText(pick(baseIt, ["seriesKey"]));
+  const g0 = pickFirstGenre(baseIt);
+  const a0 = pickFirstAudience(baseIt);
+
+  if (!g0 || !a0) return [];
+
+  const scored = [];
+  for (const it of (allItems || [])) {
+    const sk = toText(pick(it, ["seriesKey"]));
+    if (!sk || sk === baseKey) continue;
+
+    const g = pickFirstGenre(it);
+    const a = pickFirstAudience(it);
+    if (g !== g0) continue;
+    if (a !== a0) continue;
+
+    const v = viewsMap?.get(sk) || 0;
+    scored.push({ it, v });
+  }
+
+  scored.sort((a, b) => (b.v - a.v));
+  return scored.slice(0, 3).map(x => x.it);
+}
+
+/* =======================
+ * Work render（タグ全件 + レコメンド）
+ * ======================= */
+function toRecItem(it) {
+  const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+  const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+  const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+  const img = normalizeImgUrl(imgRaw);
+  return { seriesKey, title, img };
+}
+
+function renderWork(data, quickDefs, { viewsMap, voteMatrix } = {}) {
   const detail = document.getElementById("detail");
   if (!detail) return;
 
@@ -664,6 +717,7 @@ function renderWork(data, quickDefs) {
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
 
+  // ---- vote box（現状維持）----
   const defs = Array.isArray(quickDefs) ? quickDefs : [];
   const voted = getVotedSet(seriesKey);
 
@@ -689,6 +743,37 @@ function renderWork(data, quickDefs) {
     `
     : "";
 
+  // ---- reco: ①タグidf ②読後感類似 ③ジャンル×カテゴリー人気 ----
+  const df = buildTagDf(items);
+  const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: items, df })).map(toRecItem);
+
+  let simByVotes = [];
+  if (voteMatrix?.bySeries?.size) {
+    simByVotes = clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: items, voteMatrix })).map(toRecItem);
+  }
+  // ②が空なら①で埋める（ただし重複は除外）
+  if (!simByVotes.length) {
+    const used = new Set(simByTags.map(x => x.seriesKey));
+    simByVotes = clamp3(items
+      .filter(x => {
+        const sk = toText(pick(x, ["seriesKey"]));
+        return sk && sk !== seriesKey && !used.has(sk);
+      })
+      .slice(0, 3)
+      .map(toRecItem)
+    );
+  }
+
+  const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: items, viewsMap })).map(toRecItem);
+
+  const recoHtml = `
+    <div class="rec-wrap">
+      ${recGridHtml("似ている作品", simByTags)}
+      ${recGridHtml("同じ読後感の作品", simByVotes)}
+      ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
+    </div>
+  `;
+
   detail.innerHTML = `
     <div class="d-title">${esc(seriesKey || title)}</div>
 
@@ -697,7 +782,7 @@ function renderWork(data, quickDefs) {
     ${release ? `<div class="d-sub">発売日: ${esc(release)}</div>` : ""}
     ${publisher ? `<div class="d-sub">出版社: ${esc(publisher)}</div>` : ""}
 
-    ${tagsJa.length ? `<div class="d-sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
+    ${tagsJa.length ? `<div class="d-sub">タグ</div>${pillsAll(tagsJa)}` : ""}
 
     <div class="d-row" style="margin-top:10px;">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
@@ -713,6 +798,8 @@ function renderWork(data, quickDefs) {
     ` : ""}
 
     ${voteBox}
+
+    ${recoHtml}
   `;
 
   // work_view：同一セッション1回
@@ -999,9 +1086,34 @@ async function run() {
     const worksUrl = v ? `./data/lane2/works.json?v=${encodeURIComponent(v)}` : "./data/lane2/works.json";
     const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
 
+    // 追加：ランキング集計（work_view / vote）
+    const viewUrl = v ? `./data/metrics/wae/work_view_by_series.json?v=${encodeURIComponent(v)}` : "./data/metrics/wae/work_view_by_series.json";
+    const voteUrl = v ? `${VOTE_AGG_PATH}?v=${encodeURIComponent(v)}` : VOTE_AGG_PATH;
+
     const data = await loadJson(worksUrl, { bust: !!v });
     const quick = await loadJson(quickUrl, { bust: !!v });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
+
+    // work_view map（無ければ空）
+    let viewsMap = new Map();
+    try{
+      const viewJson = await loadJson(viewUrl, { bust: !!v });
+      const rows = Array.isArray(viewJson?.rows) ? viewJson.rows
+        : Array.isArray(viewJson?.data) ? viewJson.data
+        : Array.isArray(viewJson) ? viewJson : [];
+      viewsMap = buildViewsMap(rows);
+    }catch{
+      viewsMap = new Map();
+    }
+
+    // vote matrix（無ければ null）
+    let voteMatrix = null;
+    try{
+      const voteJson = await loadJson(voteUrl, { bust: !!v });
+      voteMatrix = buildVoteMatrix(voteJson);
+    }catch{
+      voteMatrix = null;
+    }
 
     // Home：ジャンル/カテゴリー
     const st = getHomeState();
@@ -1022,7 +1134,7 @@ async function run() {
 
     // List / Work
     renderList(data, quickDefs);
-    renderWork(data, quickDefs);
+    renderWork(data, quickDefs, { viewsMap, voteMatrix });
 
     // Amazonアフィ付与
     patchAmazonAnchors(document);
