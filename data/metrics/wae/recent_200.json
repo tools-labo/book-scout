@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T10:44:38.154Z",
+  "updatedAt": "2026-02-22T11:33:48.635Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,204 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-22 11:22:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:21:52",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:05:34",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:02:03",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:01:54",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:01:42",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:01:37",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:00:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:00:13",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:00:12",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:00:11",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=heart_throb,satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:00:11",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:00:10",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 10:59:33",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "やがて君になる",
+      "mood": "heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 10:59:02",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "やがて君になる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 10:58:38",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "アオのハコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 10:57:50",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 10:54:40",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "【推しの子】",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-22 10:22:51",
       "type": "work_view",
@@ -2044,208 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:50",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=page_turner",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:49",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=page_turner",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:48",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:47",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=heart_throb",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:46",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:45",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=moving",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:44",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=moving,healing",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:43",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=moving",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:42",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=tearjerker,moving",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:40",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=tearjerker",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:56",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:47",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action&mood=moving",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:45",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:44",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action&mood=tearjerker",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:41",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:37",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action&mood=heart_throb",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:34",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "genre=Action",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:03:13",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 328
+    "rows_before_limit_at_least": 346
   }
 }

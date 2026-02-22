@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T10:44:38.154Z",
+  "updatedAt": "2026-02-22T11:33:48.635Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -17,7 +17,7 @@
   "rows": [
     {
       "seriesKey": "アイアムアヒーロー",
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -33,6 +33,10 @@
     },
     {
       "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -89,7 +93,7 @@
     }
   ],
   "raw": {
-    "rows": 18,
-    "rows_before_limit_at_least": 21
+    "rows": 19,
+    "rows_before_limit_at_least": 23
   }
 }

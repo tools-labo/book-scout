@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T10:44:38.154Z",
+  "updatedAt": "2026-02-22T11:33:48.635Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -21,11 +21,6 @@
   "rows": [
     {
       "mood": "funny",
-      "seriesKey": "暗殺教室",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "ザ・ファブル",
       "n": "1"
     },
@@ -37,6 +32,11 @@
     {
       "mood": "funny",
       "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
@@ -56,12 +56,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "監獄学園",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -70,8 +65,18 @@
       "n": "1"
     },
     {
+      "mood": "healing",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
       "mood": "heart_throb",
       "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "やがて君になる",
       "n": "1"
     },
     {
@@ -91,17 +96,17 @@
     },
     {
       "mood": "messy",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
       "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
       "mood": "messy",
       "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -121,12 +126,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "ドラゴンボール",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -146,12 +151,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -171,7 +176,7 @@
     }
   ],
   "raw": {
-    "rows": 30,
-    "rows_before_limit_at_least": 36
+    "rows": 31,
+    "rows_before_limit_at_least": 37
   }
 }
