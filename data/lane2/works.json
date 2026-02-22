@@ -1,10 +1,8 @@
 {
-  "updatedAt": "2026-02-22T07:21:41.149Z",
-  "total": 158,
-  "droppedTotal": 1,
-  "droppedSeriesKeys": [
-    "私たちの幸せな時間"
-  ],
+  "updatedAt": "2026-02-22T07:27:41.612Z",
+  "total": 159,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -6715,6 +6713,47 @@
       "meta": {
         "anilistId": 85442,
         "wikiTitle": "盾の勇者の成り上がり",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "私たちの幸せな時間",
+      "title": "私たちの幸せな時間 (Bunch Comics Extra)",
+      "author": "佐原 ミズ / 孔 枝泳 / 蓮池 薫",
+      "publisher": "新潮社",
+      "releaseDate": "2008-12-09T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51HUz6scozL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/410771439X",
+      "amazonDp": "https://www.amazon.co.jp/dp/410771439X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784107714398",
+      "asin": "410771439X",
+      "synopsis": "自殺未遂を繰り返す元歌手の美那は、伯母の修道女に頼まれ死刑囚の少年・由との面会を重ねる。毎週木曜日の限られた時間の中で、互いの過去と罪を語り合い、生きる意味を探していく。",
+      "magazine": "週刊コミックバンチ",
+      "magazines": [
+        "週刊コミックバンチ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Music",
+        "Psychological",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "青年向け",
+        "更生",
+        "哲学",
+        "監獄",
+        "修道女",
+        "宗教",
+        "クラシック音楽"
+      ],
+      "meta": {
+        "anilistId": 41734,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },

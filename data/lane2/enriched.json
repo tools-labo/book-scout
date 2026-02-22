@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-02-22T07:21:41.149Z",
+  "updatedAt": "2026-02-22T07:27:41.612Z",
   "total": 159,
   "ok": 159,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 157,
-    "skippedAniList": 2,
+    "skippedPerfect": 158,
+    "skippedAniList": 1,
     "skippedWiki": 1,
-    "skippedAmazon": 2,
+    "skippedAmazon": 1,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 1,
-      "magazinesEmpty": 1,
+      "magazineEmpty": 0,
+      "magazinesEmpty": 0,
       "audiencesEmpty": 0,
       "audiencesOnlyOther": 1,
       "anilistMissing": 0,
@@ -24,22 +24,12 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 2,
-      "outNotPerfect": 1
+      "prevNotPerfect": 1,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "君は放課後インソムニア :: tags_missing_en(remain=2,types=string)",
-        "私たちの幸せな時間 :: magazine,magazines[],tags_missing_en(remain=1,types=string)"
-      ],
-      "outNotPerfect": [
         "私たちの幸せな時間 :: magazine,magazines[]"
-      ],
-      "magazineEmpty": [
-        "私たちの幸せな時間"
-      ],
-      "magazinesEmpty": [
-        "私たちの幸せな時間"
       ],
       "audiencesOnlyOther": [
         "私たちの幸せな時間"
@@ -10065,13 +10055,15 @@
         "publisher": "新潮社",
         "author": "佐原 ミズ / 孔 枝泳 / 蓮池 薫",
         "releaseDate": "2008-12-09T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "週刊コミックバンチ",
+        "magazines": [
+          "週刊コミックバンチ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "私たちの幸せな時間",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 41734,
         "genres": [
           "Drama",
