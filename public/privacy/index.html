@@ -7,30 +7,14 @@
   <link rel="stylesheet" href="../style.css" />
 
   <style>
-    /* 最低限の読みやすさ（style.cssに依存しすぎない） */
+    /* プライバシーページ固有：本文の読みやすさだけ */
     .pp-wrap { max-width: 860px; margin: 0 auto; padding: 18px 14px 40px; }
-    .pp-wrap h1 { font-size: 20px; margin: 12px 0 6px; }
-    .pp-wrap h2 { font-size: 15px; margin: 22px 0 6px; }
-    .pp-wrap p, .pp-wrap li { font-size: 13px; line-height: 1.75; }
+    .pp-wrap h1 { font-size: 20px; margin: 12px 0 6px; font-weight: 1000; letter-spacing: -0.02em; }
+    .pp-wrap h2 { font-size: 15px; margin: 22px 0 6px; font-weight: 1000; letter-spacing: -0.01em; }
+    .pp-wrap p, .pp-wrap li { font-size: 13px; line-height: 1.8; color: var(--fg); }
     .pp-wrap ul { padding-left: 18px; }
-    .pp-meta { margin-top: 12px; color: var(--muted); font-size: 12px; }
-
-    /* 共通フッター（小さめ） */
-    .gfooter {
-      border-top: 1px solid rgba(127,127,127,.35);
-      padding: 14px 0;
-      margin-top: 28px;
-      font-size: 12px;
-      opacity: .85;
-    }
-    .gfooter-inner {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .gfooter a { text-decoration: none; }
-    .gfooter a:hover { text-decoration: underline; }
+    .pp-meta { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .pp-wrap a { color: var(--blue); text-decoration: underline; text-underline-offset: 0.15em; }
   </style>
 </head>
 
