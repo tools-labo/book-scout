@@ -1,8 +1,12 @@
 {
-  "updatedAt": "2026-02-22T07:41:11.647Z",
-  "total": 158,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-02-22T07:52:33.706Z",
+  "total": 165,
+  "droppedTotal": 3,
+  "droppedSeriesKeys": [
+    "うみべの女の子",
+    "マイ・ブロークン・マリコ",
+    "帰ってください! 阿久津さん"
+  ],
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -162,6 +166,50 @@
       ],
       "meta": {
         "anilistId": 30743,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "title": "3月のライオン (1) (ヤングアニマルコミックス)",
+      "author": "羽海野 チカ",
+      "publisher": "白泉社",
+      "releaseDate": "2008-02-22T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51aMASBzCCL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592145119",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592145119?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784592145110",
+      "asin": "4592145119",
+      "synopsis": "棋士として生きる少年・桐山零は家も家族も失い孤独に生きていた。下町に暮らす川本三姉妹や友人たちと出会い、将棋と人との関わりを通じて自分の居場所を取り戻そうとする。",
+      "magazine": "ヤングアニマル",
+      "magazines": [
+        "ヤングアニマル"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "家族もの",
+        "哲学",
+        "更生",
+        "青年向け",
+        "疑似家族",
+        "いじめ",
+        "癒し系",
+        "グルメ",
+        "養子縁組",
+        "部活",
+        "三角関係"
+      ],
+      "meta": {
+        "anilistId": 31224,
+        "wikiTitle": "3月のライオン",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3752,6 +3800,52 @@
       }
     },
     {
+      "seriesKey": "ぼくは麻理のなか",
+      "title": "ぼくは麻理のなか(1) (アクションコミックス)",
+      "author": "押見 修造",
+      "publisher": "双葉社",
+      "releaseDate": "2012-12-07T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/512WPZ7UsLL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4575841706",
+      "amazonDp": "https://www.amazon.co.jp/dp/4575841706?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784575841701",
+      "asin": "4575841706",
+      "synopsis": "引きこもりの大学生・小森は、コンビニで見かける女子高生“天使”を密かに崇拝していた。ある朝目覚めると彼は彼女の体に入れ替わっており、彼女の生活を送る中で失踪した本当の麻理を探し始める。",
+      "magazine": "漫画アクション",
+      "magazines": [
+        "漫画アクション"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Ecchi",
+        "Mystery",
+        "Psychological",
+        "Thriller"
+      ],
+      "tags": [
+        "多重人格",
+        "性転換",
+        "青年向け",
+        "哲学",
+        "ひきこもり",
+        "LGBTQテーマ",
+        "更生",
+        "学園",
+        "片思い",
+        "いじめ",
+        "障害"
+      ],
+      "meta": {
+        "anilistId": 66267,
+        "wikiTitle": "ぼくは麻理のなか",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "ホムンクルス",
       "title": "ホムンクルス (1) (BIG SPIRITS COMICS)",
       "author": "山本 英夫",
@@ -5275,6 +5369,54 @@
       }
     },
     {
+      "seriesKey": "嘘喰い",
+      "title": "嘘喰い 1 (ヤングジャンプコミックス)",
+      "author": "迫 稔雄",
+      "publisher": "集英社",
+      "releaseDate": "2006-09-19T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51SlLg8VmnL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/408877146X",
+      "amazonDp": "https://www.amazon.co.jp/dp/408877146X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088771465",
+      "asin": "408877146X",
+      "synopsis": "天才ギャンブラー“嘘喰い”こと斑目貘は、裏社会の賭博組織『賭郎』が用意する命懸けのゲームに挑む。高度な心理戦と命の駆け引きの中、彼は賭郎の頂点を目指す。",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Psychological",
+        "Thriller"
+      ],
+      "tags": [
+        "ギャンブル",
+        "デスゲーム",
+        "青年向け",
+        "犯罪",
+        "哲学",
+        "記憶喪失",
+        "武術",
+        "記憶操作",
+        "ポーカー",
+        "アンチヒーロー",
+        "マフィア",
+        "LGBTQテーマ",
+        "童話",
+        "銃",
+        "宇宙人"
+      ],
+      "meta": {
+        "anilistId": 39982,
+        "wikiTitle": "嘘喰い",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "地獄楽",
       "title": "地獄楽 1 (ジャンプコミックス)",
       "author": "賀来 ゆうじ",
@@ -5391,6 +5533,47 @@
       }
     },
     {
+      "seriesKey": "夫婦以上、恋人未満。",
+      "title": "夫婦以上、恋人未満。 (1) (角川コミックス・エース)",
+      "author": "金丸 祐基",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2018-10-26T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/511wHjXwq2L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041074843",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041074843?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784041074848",
+      "asin": "4041074843",
+      "synopsis": "消極的な高校生・八ッ瀬大和は、学校のカリキュラム“夫婦実習”でギャルの渡辺明里と仮想夫婦として同居することに。お互いのパートナー交換を目指して始まった共同生活で、次第に素直になれない恋心が芽生えていく。",
+      "magazine": "ヤングエース",
+      "magazines": [
+        "ヤングエース"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "三角関係",
+        "ギャル",
+        "学園",
+        "家族もの",
+        "少年向け",
+        "同棲",
+        "偽装恋愛"
+      ],
+      "meta": {
+        "anilistId": 105011,
+        "wikiTitle": "夫婦以上、恋人未満。",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "孤高の人",
       "title": "孤高の人 1 (ヤングジャンプコミックス)",
       "author": "坂本 眞一",
@@ -5498,6 +5681,52 @@
       "meta": {
         "anilistId": 74489,
         "wikiTitle": "宝石の国",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "寄生獣",
+      "title": "新装版 寄生獣(1) (KCデラックス)",
+      "author": "岩明 均",
+      "publisher": "講談社",
+      "releaseDate": "2014-08-08T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51BGA7Ql5RL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063770486",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063770486?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063770483",
+      "asin": "4063770486",
+      "synopsis": "ある日、宇宙から飛来した寄生生物が人々の脳を乗っ取って社会に潜伏する。高校生の泉新一は右手のみを寄生したミギーと奇妙な共生生活を送りながら、人間と寄生生物の戦いに巻き込まれていく。",
+      "magazine": "モーニングオープン増刊 / 月刊アフタヌーン / コミックDAYS（フルカラー再掲）",
+      "magazines": [
+        "モーニングオープン増刊",
+        "月刊アフタヌーン",
+        "コミックDAYS(フルカラー再掲)"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Drama",
+        "Horror",
+        "Psychological",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "青年向け",
+        "宇宙人",
+        "環境問題",
+        "超能力",
+        "変身能力",
+        "哲学",
+        "学園",
+        "不良",
+        "三角関係"
+      ],
+      "meta": {
+        "anilistId": 30401,
+        "wikiTitle": "寄生獣",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -5927,6 +6156,57 @@
       "meta": {
         "anilistId": 54705,
         "wikiTitle": "惡の華",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "政宗くんのリベンジ",
+      "title": "政宗くんのリベンジ (1) (IDコミックス REXコミックス)",
+      "author": "竹岡 葉月",
+      "publisher": "一迅社",
+      "releaseDate": "2013-04-27T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/61OGbCAw-RL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4758063729",
+      "amazonDp": "https://www.amazon.co.jp/dp/4758063729?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784758063722",
+      "asin": "4758063729",
+      "synopsis": "幼い頃太っていた真壁政宗は、金持ち令嬢の安達垣愛姫に「豚足」と嘲られ復讐を誓う。激痩せしてイケメンへと変身した彼は転校生として愛姫に接近し、彼女を恋に落とした上で振るという“リベンジ計画”を実行する。",
+      "magazine": "月刊ComicREX",
+      "magazines": [
+        "月刊ComicREX"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "学園",
+        "復讐",
+        "お嬢様",
+        "逆ハーレム",
+        "少年向け",
+        "三角関係",
+        "ツンデレ",
+        "いじめ",
+        "クーデレ",
+        "マフィア",
+        "パロディ",
+        "女装・男装",
+        "オタク文化",
+        "ドタバタ",
+        "海外",
+        "メイド",
+        "コスプレ",
+        "日焼け肌",
+        "銃"
+      ],
+      "meta": {
+        "anilistId": 76716,
+        "wikiTitle": "政宗くんのリベンジ",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -7360,6 +7640,48 @@
       "meta": {
         "anilistId": 30044,
         "wikiTitle": "銀魂",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "銃夢",
+      "title": "銃夢 1 (ヤングジャンプコミックス)",
+      "author": "木城 ゆきと",
+      "publisher": "集英社",
+      "releaseDate": "1991-09-01T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51v3h42SkrL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088750713",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088750713?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088750712",
+      "asin": "4088750713",
+      "synopsis": "スクラップの町でサイボーグ医師イドに拾われた記憶喪失の少女ガリィは、研ぎ澄まされた戦闘センスでモーターボールなどの死闘に挑む。過去を求めながら、鉄と血の未来世界を生きる。",
+      "magazine": "ビジネスジャンプ",
+      "magazines": [
+        "ビジネスジャンプ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "サイバーパンク",
+        "記憶喪失",
+        "青年向け",
+        "ディストピア",
+        "ロボット",
+        "サイボーグ",
+        "終末後",
+        "砂漠",
+        "武術",
+        "コズミックホラー"
+      ],
+      "meta": {
+        "anilistId": 30768,
+        "wikiTitle": "銃夢",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },

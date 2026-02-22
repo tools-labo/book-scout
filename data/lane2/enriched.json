@@ -1,43 +1,84 @@
 {
-  "updatedAt": "2026-02-22T07:41:11.647Z",
-  "total": 158,
-  "ok": 158,
+  "updatedAt": "2026-02-22T07:52:33.706Z",
+  "total": 168,
+  "ok": 168,
   "ng": 0,
   "stats": {
     "skippedPerfect": 158,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "fetchedAmazonAsins": 10,
+    "magAudienceTodoAdded": 5,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 0,
-      "magazinesEmpty": 0,
+      "magazineEmpty": 3,
+      "magazinesEmpty": 3,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 0,
+      "audiencesOnlyOther": 6,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 0,
+      "tagsMissingNotHidden": 2,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 0,
-      "outNotPerfect": 0
+      "prevNotPerfect": 10,
+      "outNotPerfect": 4
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "3月のライオン :: noVol1",
+        "うみべの女の子 :: noVol1",
+        "ぼくは麻理のなか :: noVol1",
+        "マイ・ブロークン・マリコ :: noVol1",
+        "嘘喰い :: noVol1",
+        "夫婦以上、恋人未満。 :: noVol1",
+        "寄生獣 :: noVol1",
+        "帰ってください! 阿久津さん :: noVol1",
+        "政宗くんのリベンジ :: noVol1",
+        "銃夢 :: noVol1"
+      ],
+      "outNotPerfect": [
+        "3月のライオン :: tags_missing_en(remain=2,types=string)",
+        "うみべの女の子 :: magazine,magazines[],tags_missing_en(remain=2,types=string)",
+        "マイ・ブロークン・マリコ :: magazine,magazines[]",
+        "帰ってください! 阿久津さん :: magazine,magazines[]"
+      ],
+      "tagsMissingNotHidden": [
+        "3月のライオン",
+        "うみべの女の子"
+      ],
+      "magazineEmpty": [
+        "うみべの女の子",
+        "マイ・ブロークン・マリコ",
+        "帰ってください! 阿久津さん"
+      ],
+      "magazinesEmpty": [
+        "うみべの女の子",
+        "マイ・ブロークン・マリコ",
+        "帰ってください! 阿久津さん"
+      ],
+      "audiencesOnlyOther": [
+        "うみべの女の子",
+        "ぼくは麻理のなか",
+        "マイ・ブロークン・マリコ",
+        "帰ってください! 阿久津さん",
+        "政宗くんのリベンジ",
+        "銃夢"
+      ]
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 0,
+      "chunks": 1,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 10
     }
   },
   "items": [
@@ -285,6 +326,73 @@
           "拡張現実（AR）"
         ],
         "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4592145119",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592145119?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784592145110",
+        "asin": "4592145119",
+        "title": "3月のライオン (1) (ヤングアニマルコミックス)",
+        "synopsis": "棋士として生きる少年・桐山零は家も家族も失い孤独に生きていた。下町に暮らす川本三姉妹や友人たちと出会い、将棋と人との関わりを通じて自分の居場所を取り戻そうとする。",
+        "image": "https://m.media-amazon.com/images/I/51aMASBzCCL._SL500_.jpg",
+        "publisher": "白泉社",
+        "author": "羽海野 チカ",
+        "releaseDate": "2008-02-22T00:00:01Z",
+        "magazine": "ヤングアニマル",
+        "magazines": [
+          "ヤングアニマル"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "3月のライオン",
+        "anilistId": 31224,
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Coming of Age",
+          "Family Life",
+          "Philosophy",
+          "Rehabilitation",
+          "Seinen",
+          "Shogi",
+          "Found Family",
+          "Male Protagonist",
+          "Bullying",
+          "Iyashikei",
+          "Board Game",
+          "Food",
+          "Heterosexual",
+          "Adoption",
+          "School Club",
+          "Love Triangle"
+        ],
+        "tags": [
+          "成長譚",
+          "家族もの",
+          "哲学",
+          "更生",
+          "青年向け",
+          "疑似家族",
+          "いじめ",
+          "癒し系",
+          "グルメ",
+          "養子縁組",
+          "部活",
+          "三角関係"
+        ],
+        "tags_missing_en": [
+          "Shogi",
+          "Board Game"
+        ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1247,6 +1355,74 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "うみべの女の子",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4778321383",
+        "amazonDp": "https://www.amazon.co.jp/dp/4778321383?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784778321383",
+        "asin": "4778321383",
+        "title": "うみべの女の子 1 (F×COMICS)",
+        "synopsis": "静かな海辺の町に暮らす中学生の小梅と磯辺。好奇心から始まった身体の関係は、やがて嫉妬や戸惑いを呼び、揺れる感情と共に二人の思春期を描く。",
+        "image": "https://m.media-amazon.com/images/I/41P-vxBeEKL._SL500_.jpg",
+        "publisher": "太田出版",
+        "author": "浅野 いにお",
+        "releaseDate": "2011-03-17T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "うみべの女の子",
+        "anilistId": 47353,
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Psychosexual",
+          "Coming of Age",
+          "Seinen",
+          "Nudity",
+          "Rural",
+          "Primarily Teen Cast",
+          "Heterosexual",
+          "Coastal",
+          "School",
+          "Suicide",
+          "Male Protagonist",
+          "Masturbation",
+          "Anti-Hero",
+          "Bisexual",
+          "Fellatio",
+          "Drugs",
+          "Scat",
+          "Baseball",
+          "Crossdressing",
+          "Anal Sex"
+        ],
+        "tags": [
+          "成長譚",
+          "青年向け",
+          "田舎",
+          "海辺",
+          "学園",
+          "アンチヒーロー",
+          "バイセクシュアル",
+          "野球",
+          "女装・男装"
+        ],
+        "tags_missing_en": [
+          "Fellatio",
+          "Anal Sex"
+        ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -5645,6 +5821,75 @@
       "meta": null
     },
     {
+      "seriesKey": "ぼくは麻理のなか",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4575841706",
+        "amazonDp": "https://www.amazon.co.jp/dp/4575841706?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784575841701",
+        "asin": "4575841706",
+        "title": "ぼくは麻理のなか(1) (アクションコミックス)",
+        "synopsis": "引きこもりの大学生・小森は、コンビニで見かける女子高生“天使”を密かに崇拝していた。ある朝目覚めると彼は彼女の体に入れ替わっており、彼女の生活を送る中で失踪した本当の麻理を探し始める。",
+        "image": "https://m.media-amazon.com/images/I/512WPZ7UsLL._SL500_.jpg",
+        "publisher": "双葉社",
+        "author": "押見 修造",
+        "releaseDate": "2012-12-07T00:00:01Z",
+        "magazine": "漫画アクション",
+        "magazines": [
+          "漫画アクション"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ぼくは麻理のなか",
+        "anilistId": 66267,
+        "genres": [
+          "Drama",
+          "Ecchi",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags_en": [
+          "Female Protagonist",
+          "Dissociative Identities",
+          "Gender Bending",
+          "Seinen",
+          "Philosophy",
+          "Denpa",
+          "Hikikomori",
+          "Psychosexual",
+          "LGBTQ+ Themes",
+          "Primarily Female Cast",
+          "Rehabilitation",
+          "School",
+          "Male Protagonist",
+          "Masturbation",
+          "Unrequited Love",
+          "Nudity",
+          "Primarily Teen Cast",
+          "Bullying",
+          "Disability"
+        ],
+        "tags": [
+          "多重人格",
+          "性転換",
+          "青年向け",
+          "哲学",
+          "ひきこもり",
+          "LGBTQテーマ",
+          "更生",
+          "学園",
+          "片思い",
+          "いじめ",
+          "障害"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ホムンクルス",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091870716",
@@ -5770,6 +6015,62 @@
           "三角関係",
           "いじめ",
           "都会"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "マイ・ブロークン・マリコ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4040642465",
+        "amazonDp": "https://www.amazon.co.jp/dp/4040642465?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784040642468",
+        "asin": "4040642465",
+        "title": "マイ・ブロークン・マリコ (BRIDGE COMICS)",
+        "synopsis": "OLのトモヨは、虐待を受けていた親友マリコの突然の死を知り、遺骨を抱えて旅に出る。苦しい過去と向き合いながら、マリコの魂を慰めるために彼女なりの別れを探すロードムービー的ドラマ。",
+        "image": "https://m.media-amazon.com/images/I/51Fc6Kh0BXL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "平庫 ワカ",
+        "releaseDate": "2020-01-08T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "マイ・ブロークン・マリコ",
+        "anilistId": 112579,
+        "genres": [
+          "Drama",
+          "Psychological"
+        ],
+        "tags_en": [
+          "Female Protagonist",
+          "Suicide",
+          "Coastal",
+          "Primarily Adult Cast",
+          "Josei",
+          "Coming of Age",
+          "Primarily Female Cast",
+          "Tomboy",
+          "Yuri",
+          "Rape",
+          "Rehabilitation",
+          "LGBTQ+ Themes",
+          "Philosophy",
+          "Denpa"
+        ],
+        "tags": [
+          "海辺",
+          "女性向け",
+          "成長譚",
+          "ボーイッシュ",
+          "百合",
+          "更生",
+          "LGBTQテーマ",
+          "哲学"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -7894,6 +8195,78 @@
       }
     },
     {
+      "seriesKey": "嘘喰い",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/408877146X",
+        "amazonDp": "https://www.amazon.co.jp/dp/408877146X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088771465",
+        "asin": "408877146X",
+        "title": "嘘喰い 1 (ヤングジャンプコミックス)",
+        "synopsis": "天才ギャンブラー“嘘喰い”こと斑目貘は、裏社会の賭博組織『賭郎』が用意する命懸けのゲームに挑む。高度な心理戦と命の駆け引きの中、彼は賭郎の頂点を目指す。",
+        "image": "https://m.media-amazon.com/images/I/51SlLg8VmnL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "迫 稔雄",
+        "releaseDate": "2006-09-19T00:00:01Z",
+        "magazine": "週刊ヤングジャンプ",
+        "magazines": [
+          "週刊ヤングジャンプ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "嘘喰い",
+        "anilistId": 39982,
+        "genres": [
+          "Action",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags_en": [
+          "Gambling",
+          "Death Game",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Male Protagonist",
+          "Crime",
+          "Philosophy",
+          "Amnesia",
+          "Martial Arts",
+          "Memory Manipulation",
+          "Poker",
+          "Anti-Hero",
+          "Primarily Male Cast",
+          "Mafia",
+          "Gore",
+          "Terrorism",
+          "LGBTQ+ Themes",
+          "Fairy Tale",
+          "Guns",
+          "Aliens"
+        ],
+        "tags": [
+          "ギャンブル",
+          "デスゲーム",
+          "青年向け",
+          "犯罪",
+          "哲学",
+          "記憶喪失",
+          "武術",
+          "記憶操作",
+          "ポーカー",
+          "アンチヒーロー",
+          "マフィア",
+          "LGBTQテーマ",
+          "童話",
+          "銃",
+          "宇宙人"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "地獄楽",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/地獄楽-1-ジャンプコミックス-賀来-ゆうじ/dp/4088814711",
@@ -8072,6 +8445,62 @@
       "meta": null
     },
     {
+      "seriesKey": "夫婦以上、恋人未満。",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4041074843",
+        "amazonDp": "https://www.amazon.co.jp/dp/4041074843?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784041074848",
+        "asin": "4041074843",
+        "title": "夫婦以上、恋人未満。 (1) (角川コミックス・エース)",
+        "synopsis": "消極的な高校生・八ッ瀬大和は、学校のカリキュラム“夫婦実習”でギャルの渡辺明里と仮想夫婦として同居することに。お互いのパートナー交換を目指して始まった共同生活で、次第に素直になれない恋心が芽生えていく。",
+        "image": "https://m.media-amazon.com/images/I/511wHjXwq2L._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "金丸 祐基",
+        "releaseDate": "2018-10-26T00:00:01Z",
+        "magazine": "ヤングエース",
+        "magazines": [
+          "ヤングエース"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "夫婦以上、恋人未満。",
+        "anilistId": 105011,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Ecchi",
+          "Romance"
+        ],
+        "tags_en": [
+          "Heterosexual",
+          "Love Triangle",
+          "Gyaru",
+          "Male Protagonist",
+          "School",
+          "Family Life",
+          "Shounen",
+          "Meta",
+          "Cohabitation",
+          "Nudity",
+          "Fake Relationship"
+        ],
+        "tags": [
+          "三角関係",
+          "ギャル",
+          "学園",
+          "家族もの",
+          "少年向け",
+          "同棲",
+          "偽装恋愛"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "孤高の人",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088774264",
@@ -8241,6 +8670,70 @@
           "海外",
           "学園",
           "仕事"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "寄生獣",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063770486",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063770486?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063770483",
+        "asin": "4063770486",
+        "title": "新装版 寄生獣(1) (KCデラックス)",
+        "synopsis": "ある日、宇宙から飛来した寄生生物が人々の脳を乗っ取って社会に潜伏する。高校生の泉新一は右手のみを寄生したミギーと奇妙な共生生活を送りながら、人間と寄生生物の戦いに巻き込まれていく。",
+        "image": "https://m.media-amazon.com/images/I/51BGA7Ql5RL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "岩明 均",
+        "releaseDate": "2014-08-08T00:00:01Z",
+        "magazine": "モーニングオープン増刊 / 月刊アフタヌーン / コミックDAYS（フルカラー再掲）",
+        "magazines": [
+          "モーニングオープン増刊",
+          "月刊アフタヌーン",
+          "コミックDAYS(フルカラー再掲)"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "寄生獣",
+        "anilistId": 30401,
+        "genres": [
+          "Action",
+          "Drama",
+          "Horror",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Male Protagonist",
+          "Seinen",
+          "Body Horror",
+          "Aliens",
+          "Environmental",
+          "Super Power",
+          "Gore",
+          "Shapeshifting",
+          "Philosophy",
+          "Heterosexual",
+          "School",
+          "Delinquents",
+          "Love Triangle",
+          "Nudity"
+        ],
+        "tags": [
+          "青年向け",
+          "宇宙人",
+          "環境問題",
+          "超能力",
+          "変身能力",
+          "哲学",
+          "学園",
+          "不良",
+          "三角関係"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -8633,6 +9126,63 @@
       "meta": null
     },
     {
+      "seriesKey": "帰ってください! 阿久津さん",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4041093570",
+        "amazonDp": "https://www.amazon.co.jp/dp/4041093570?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784041093573",
+        "asin": "4041093570",
+        "title": "帰ってください! 阿久津さん (1) (角川コミックス・エース)",
+        "synopsis": "真面目な男子・大山の部屋に、クラスの不良少女・阿久津さんが日常的に入り浸る。距離感ゼロで甘えたりからかったりする阿久津さんに振り回されながら、大山は彼女への特別な想いに気付き始める。",
+        "image": "https://m.media-amazon.com/images/I/51NllSsQmKL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "長岡 太一",
+        "releaseDate": "2020-06-04T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "帰ってください! 阿久津さん",
+        "anilistId": 113501,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Iyashikei",
+          "Tsundere",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Gyaru",
+          "Heterosexual",
+          "Delinquents",
+          "Episodic",
+          "Seinen",
+          "Tomboy",
+          "Nudity",
+          "School",
+          "Bullying"
+        ],
+        "tags": [
+          "癒し系",
+          "ツンデレ",
+          "ギャル",
+          "不良",
+          "青年向け",
+          "ボーイッシュ",
+          "学園",
+          "いじめ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "彼女、お借りします",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4065102219",
@@ -8867,6 +9417,84 @@
           "都会",
           "脅迫",
           "女装・男装"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "政宗くんのリベンジ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4758063729",
+        "amazonDp": "https://www.amazon.co.jp/dp/4758063729?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784758063722",
+        "asin": "4758063729",
+        "title": "政宗くんのリベンジ (1) (IDコミックス REXコミックス)",
+        "synopsis": "幼い頃太っていた真壁政宗は、金持ち令嬢の安達垣愛姫に「豚足」と嘲られ復讐を誓う。激痩せしてイケメンへと変身した彼は転校生として愛姫に接近し、彼女を恋に落とした上で振るという“リベンジ計画”を実行する。",
+        "image": "https://m.media-amazon.com/images/I/61OGbCAw-RL._SL500_.jpg",
+        "publisher": "一迅社",
+        "author": "竹岡 葉月",
+        "releaseDate": "2013-04-27T00:00:01Z",
+        "magazine": "月刊ComicREX",
+        "magazines": [
+          "月刊ComicREX"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "政宗くんのリベンジ",
+        "anilistId": 76716,
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "School",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Revenge",
+          "Heterosexual",
+          "Ojou-sama",
+          "Female Harem",
+          "Shounen",
+          "Love Triangle",
+          "Tsundere",
+          "Bullying",
+          "Kuudere",
+          "Mafia",
+          "Parody",
+          "Crossdressing",
+          "Otaku Culture",
+          "Slapstick",
+          "Foreign",
+          "Nudity",
+          "Maids",
+          "Cosplay",
+          "Tanned Skin",
+          "Guns"
+        ],
+        "tags": [
+          "学園",
+          "復讐",
+          "お嬢様",
+          "逆ハーレム",
+          "少年向け",
+          "三角関係",
+          "ツンデレ",
+          "いじめ",
+          "クーデレ",
+          "マフィア",
+          "パロディ",
+          "女装・男装",
+          "オタク文化",
+          "ドタバタ",
+          "海外",
+          "メイド",
+          "コスプレ",
+          "日焼け肌",
+          "銃"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -10989,6 +11617,66 @@
           "LGBTQテーマ",
           "性転換",
           "多重人格"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "銃夢",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088750713",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088750713?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088750712",
+        "asin": "4088750713",
+        "title": "銃夢 1 (ヤングジャンプコミックス)",
+        "synopsis": "スクラップの町でサイボーグ医師イドに拾われた記憶喪失の少女ガリィは、研ぎ澄まされた戦闘センスでモーターボールなどの死闘に挑む。過去を求めながら、鉄と血の未来世界を生きる。",
+        "image": "https://m.media-amazon.com/images/I/51v3h42SkrL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "木城 ゆきと",
+        "releaseDate": "1991-09-01T00:00:01Z",
+        "magazine": "ビジネスジャンプ",
+        "magazines": [
+          "ビジネスジャンプ"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "銃夢",
+        "anilistId": 30768,
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Cyberpunk",
+          "Female Protagonist",
+          "Amnesia",
+          "Seinen",
+          "Dystopian",
+          "Robots",
+          "Cyborg",
+          "Post-Apocalyptic",
+          "Desert",
+          "Martial Arts",
+          "Gore",
+          "Nudity",
+          "Cosmic Horror",
+          "Heterosexual"
+        ],
+        "tags": [
+          "サイバーパンク",
+          "記憶喪失",
+          "青年向け",
+          "ディストピア",
+          "ロボット",
+          "サイボーグ",
+          "終末後",
+          "砂漠",
+          "武術",
+          "コズミックホラー"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
