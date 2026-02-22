@@ -622,3 +622,65 @@ button{ font-family:inherit; }
 @media (max-width: 340px){
   .rec-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* =======================
+ * Hero
+ * ======================= */
+.hero{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 10px 0 18px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.hero-media{
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hero-img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-copy{
+  min-width: 0;
+}
+
+.hero-title{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 1000;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.hero-lead{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hero-cta{
+  margin-top: 12px;
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 横幅があるときは左右2カラム */
+@media (min-width: 860px){
+  .hero{
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+  }
+  .hero-title{ font-size: 26px; }
+}
