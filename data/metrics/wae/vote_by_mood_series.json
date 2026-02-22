@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T07:06:09.711Z",
+  "updatedAt": "2026-02-22T07:48:34.717Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -22,6 +22,16 @@
     {
       "mood": "funny",
       "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
@@ -71,6 +81,11 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
@@ -86,7 +101,7 @@
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 18
+    "rows": 16,
+    "rows_before_limit_at_least": 21
   }
 }

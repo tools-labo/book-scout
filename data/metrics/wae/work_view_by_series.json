@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T07:06:09.711Z",
+  "updatedAt": "2026-02-22T07:48:34.717Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -29,6 +29,14 @@
     },
     {
       "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
@@ -72,6 +80,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "トニカクカワイイ",
+      "n": "1"
+    },
+    {
       "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
       "n": "1"
     },
@@ -86,10 +98,14 @@
     {
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
+    },
+    {
+      "seriesKey": "スキップとローファー",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 18,
-    "rows_before_limit_at_least": 23
+    "rows": 22,
+    "rows_before_limit_at_least": 27
   }
 }

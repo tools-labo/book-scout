@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T07:06:09.711Z",
+  "updatedAt": "2026-02-22T07:48:34.717Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,149 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-22 07:46:27",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "監獄学園",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:46:25",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "監獄学園",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:45:40",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:45:39",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:45:35",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:45:34",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:44:50",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:42:51",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:32:25",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:31:29",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "トニカクカワイイ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:31:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "スキップとローファー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:30:33",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 07:30:23",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "aud=その他",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-22 00:41:42",
       "type": "list_filter",
@@ -2099,153 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:02:05",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=page_turner",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:02:03",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:02:02",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=healing",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:02:01",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=heart_throb,healing",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:01:59",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=heart_throb",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:01:58",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=funny",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:01:58",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:01:53",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=page_turner,funny",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:01:52",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=page_turner",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:01:43",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "東京卍リベンジャーズ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 23:51:43",
-      "type": "__verify",
-      "schema": "v2",
-      "page": "debug",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 23:51:41",
-      "type": "__verify",
-      "schema": "v2",
-      "page": "debug",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-20 23:45:35",
-      "type": "unknown",
-      "schema": "v2",
-      "page": "",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 274
+    "rows_before_limit_at_least": 287
   }
 }
