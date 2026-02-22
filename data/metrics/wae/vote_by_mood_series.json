@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T14:43:41.536Z",
+  "updatedAt": "2026-02-22T15:39:13.174Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -21,11 +21,6 @@
   "rows": [
     {
       "mood": "funny",
-      "seriesKey": "暗殺教室",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "ザ・ファブル",
       "n": "1"
     },
@@ -36,12 +31,17 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "監獄学園",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "1"
     },
     {
@@ -51,17 +51,17 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "桜蘭高校ホスト部",
+      "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -75,8 +75,23 @@
       "n": "1"
     },
     {
+      "mood": "healing",
+      "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
       "mood": "heart_throb",
-      "seriesKey": "やがて君になる",
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "ニセコイ",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
       "n": "1"
     },
     {
@@ -86,7 +101,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "桜蘭高校ホスト部",
+      "seriesKey": "彼女、お借りします",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "やがて君になる",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
@@ -106,6 +131,16 @@
     },
     {
       "mood": "messy",
+      "seriesKey": "ぼくは麻理のなか",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
       "seriesKey": "3月のライオン",
       "n": "1"
     },
@@ -115,8 +150,8 @@
       "n": "1"
     },
     {
-      "mood": "messy",
-      "seriesKey": "ぼくは麻理のなか",
+      "mood": "moving",
+      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
@@ -126,12 +161,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "よつばと！",
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "聲の形",
+      "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
@@ -141,7 +181,22 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "蜘蛛ですが、なにか？",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "進撃の巨人",
       "n": "1"
     },
     {
@@ -151,7 +206,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -166,7 +221,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ReLIFE",
+      "n": "2"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -176,17 +241,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ReLIFE",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "タコピーの原罪",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 33,
-    "rows_before_limit_at_least": 39
+    "rows": 45,
+    "rows_before_limit_at_least": 52
   }
 }

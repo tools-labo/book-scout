@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T14:43:41.536Z",
+  "updatedAt": "2026-02-22T15:39:13.174Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -20,12 +20,16 @@
       "n": "4"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ReLIFE",
       "n": "2"
     },
     {
-      "seriesKey": "ReLIFE",
-      "n": "1"
+      "seriesKey": "3月のライオン",
+      "n": "2"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "2"
     },
     {
       "seriesKey": "銀魂",
@@ -48,7 +52,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
       "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -61,10 +73,6 @@
     },
     {
       "seriesKey": "orange [オレンジ]",
-      "n": "1"
-    },
-    {
-      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -93,7 +101,7 @@
     }
   ],
   "raw": {
-    "rows": 19,
-    "rows_before_limit_at_least": 23
+    "rows": 21,
+    "rows_before_limit_at_least": 27
   }
 }
