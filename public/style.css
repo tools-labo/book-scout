@@ -627,6 +627,7 @@ button{ font-family:inherit; }
  * Hero（左テキスト / 右画像）
  * - index.html側が hero-inner/hero-text/hero-actions でも
  *   旧版 hero-copy/hero-cta でも崩れないように両対応
+ * - 画像がデカすぎないように「幅上限 + 高さ上限」を追加
  * ======================= */
 .hero{
   margin: 10px 0 18px;
@@ -680,15 +681,18 @@ button{ font-family:inherit; }
 .hero-media{
   display:flex;
   justify-content:center;
-  align-items:center;
+  align-items:flex-end;     /* 下寄せで安定 */
   min-width: 0;
 }
+
+/* 画像：デカすぎ防止（スマホで高さも抑える） */
 .hero-media img,
 .hero-img{
-  width: 100%;
-  height: auto;
   display:block;
-  max-width: 360px;
+  width: min(100%, 360px);  /* スマホは360px上限 */
+  height: auto;
+  max-height: 320px;        /* 縦が伸びすぎるのを抑える */
+  object-fit: contain;
 }
 
 /* 横幅があるときは左右2カラム（左=テキスト / 右=画像） */
@@ -699,6 +703,11 @@ button{ font-family:inherit; }
   }
   .hero-media{
     justify-content:flex-end;
+  }
+  .hero-media img,
+  .hero-img{
+    width: min(100%, 420px); /* PCは少し大きく */
+    max-height: 380px;
   }
   .hero-title{ font-size: 26px; }
 }
