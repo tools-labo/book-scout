@@ -1,22 +1,22 @@
 {
-  "updatedAt": "2026-02-22T08:38:58.648Z",
+  "updatedAt": "2026-02-22T08:50:13.617Z",
   "total": 180,
   "ok": 180,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 175,
-    "skippedAniList": 5,
-    "skippedWiki": 5,
-    "skippedAmazon": 5,
+    "skippedPerfect": 180,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 4,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
       "magazineEmpty": 0,
       "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 1,
+      "audiencesOnlyOther": 0,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
@@ -24,21 +24,10 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 5,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "ゾン100 ～ゾンビになるまでにしたい100のこと～ :: magazine,magazines[]",
-        "タコピーの原罪 :: magazine,magazines[]",
-        "ホーリーランド :: magazine,magazines[]",
-        "乙嫁語り :: tags_missing_en(remain=1,types=string)",
-        "蜘蛛ですが、なにか？ :: magazine,magazines[]"
-      ],
-      "audiencesOnlyOther": [
-        "ゾン100 ～ゾンビになるまでにしたい100のこと～"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
