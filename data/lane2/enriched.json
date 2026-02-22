@@ -1,92 +1,54 @@
 {
-  "updatedAt": "2026-02-22T08:28:53.440Z",
+  "updatedAt": "2026-02-22T08:38:58.648Z",
   "total": 180,
   "ok": 180,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 167,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 13,
-    "magAudienceTodoAdded": 12,
+    "skippedPerfect": 175,
+    "skippedAniList": 5,
+    "skippedWiki": 5,
+    "skippedAmazon": 5,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 4,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 4,
-      "magazinesEmpty": 4,
+      "magazineEmpty": 0,
+      "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 4,
+      "audiencesOnlyOther": 1,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 1,
-      "magazineLooksCssGarbage": 1,
-      "magazineNotPlausible": 1,
-      "prevNotPerfect": 13,
-      "outNotPerfect": 5
+      "tagsMissingNotHidden": 0,
+      "magazineLooksCssGarbage": 0,
+      "magazineNotPlausible": 0,
+      "prevNotPerfect": 5,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "あしたのジョー :: noVol1",
-        "ザ・ファブル :: noVol1",
-        "ゾン100 ～ゾンビになるまでにしたい100のこと～ :: noVol1",
-        "タコピーの原罪 :: noVol1",
-        "ホーリーランド :: noVol1",
-        "やんちゃギャルの安城さん :: noVol1",
-        "ルリドラゴン :: noVol1",
-        "乙嫁語り :: noVol1",
-        "桜蘭高校ホスト部 :: noVol1",
-        "蜘蛛ですが、なにか？ :: noVol1",
-        "蟲師 :: noVol1",
-        "親愛なる僕へ殺意をこめて :: noVol1"
-      ],
-      "outNotPerfect": [
         "ゾン100 ～ゾンビになるまでにしたい100のこと～ :: magazine,magazines[]",
         "タコピーの原罪 :: magazine,magazines[]",
         "ホーリーランド :: magazine,magazines[]",
         "乙嫁語り :: tags_missing_en(remain=1,types=string)",
         "蜘蛛ですが、なにか？ :: magazine,magazines[]"
       ],
-      "magazineEmpty": [
-        "ゾン100 ～ゾンビになるまでにしたい100のこと～",
-        "タコピーの原罪",
-        "ホーリーランド",
-        "蜘蛛ですが、なにか？"
-      ],
-      "magazinesEmpty": [
-        "ゾン100 ～ゾンビになるまでにしたい100のこと～",
-        "タコピーの原罪",
-        "ホーリーランド",
-        "蜘蛛ですが、なにか？"
-      ],
       "audiencesOnlyOther": [
-        "ゾン100 ～ゾンビになるまでにしたい100のこと～",
-        "タコピーの原罪",
-        "ホーリーランド",
-        "蜘蛛ですが、なにか？"
-      ],
-      "tagsMissingNotHidden": [
-        "乙嫁語り"
-      ],
-      "magazineLooksCssGarbage": [
-        "蟲師"
-      ],
-      "magazineNotPlausible": [
-        "蟲師"
+        "ゾン100 ～ゾンビになるまでにしたい100のこと～"
       ]
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 2,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 13
+      "successItems": 0
     }
   },
   "items": [
@@ -3529,12 +3491,14 @@
         "publisher": "小学館",
         "author": "麻生 羽呂 / 高田 康太郎",
         "releaseDate": "2019-03-19T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊サンデーGX",
+        "magazines": [
+          "月刊サンデーGX"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 104660,
         "genres": [
@@ -3593,13 +3557,15 @@
         "publisher": "集英社",
         "author": "タイザン5",
         "releaseDate": "2022-03-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "タコピーの原罪",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 142568,
         "genres": [
           "Drama",
@@ -5951,13 +5917,15 @@
         "publisher": "白泉社",
         "author": "森 恒二",
         "releaseDate": "2001-06-01T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ヤングアニマル",
+        "magazines": [
+          "ヤングアニマル"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ホーリーランド",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 33285,
         "genres": [
           "Action",
@@ -7603,6 +7571,7 @@
           "砂漠",
           "家族もの",
           "田舎",
+          "お見合い",
           "教育",
           "戦争",
           "同棲",
@@ -7617,9 +7586,7 @@
           "複数恋愛",
           "動物"
         ],
-        "tags_missing_en": [
-          "Matchmaking"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -11717,12 +11684,14 @@
         "publisher": "KADOKAWA",
         "author": "かかし朝浩",
         "releaseDate": "2016-07-09T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ヤングエースUP",
+        "magazines": [
+          "ヤングエースUP"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 86952,
         "genres": [
