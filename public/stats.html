@@ -1,3 +1,4 @@
+<!-- public/stats.html（全差し替え） -->
 <!doctype html>
 <html lang="ja">
 <head>
@@ -173,6 +174,7 @@
       return map;
     }
 
+    // ★ ここがポイント：rank-meta ではなく meta にする（listと同じタイポが当たる）
     function rankItemHtml({ rank, seriesKey, n, unit, work }) {
       const key = encodeURIComponent(seriesKey);
 
@@ -184,7 +186,6 @@
       const img = normalizeImgUrl(imgRaw);
 
       const tagsJa = pickArr(work, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-
       const unitLabel = unit === "fav" ? "お気に入り" : "閲覧";
 
       return `
@@ -198,7 +199,7 @@
               </a>
             </div>
 
-            <div class="rank-meta">
+            <div class="meta">
               <div class="rank-topline">
                 <span class="rank-pos">${esc(rank)}位</span>
                 <span class="rank-metric">
@@ -443,6 +444,7 @@
       setGenreCountBadges();
     }
 
+    // ヘッダー：下スクロールで隠す/上で出す
     (function () {
       const header = document.getElementById("gheader");
       if (!header) return;
