@@ -1,9 +1,11 @@
 // public/app.js  (1/2)
+// - 白背景テーマ対応（CSS側）
+// - List/Rank：表示情報を絞る（タイトル/作者/連載誌/タグ）
+// - 書影リンク：詳細へ（Amazonは別ボタン）
+// - Work：投票は「読後感はどれ？」、最大2つ選択（UIで状態表示）
 // - お気に入り / 投票の多重カウント対策：端末ローカルでクールダウン（デフォルト24h）
 // - work_view は同一セッション同一作品は1回だけ（既存）
 // - クイックフィルター：tagsのみ / 2ヒット以上 / AND最大2 / 数字は条件に応じて即時反映 + 数字送り + 幅固定
-// - 巻き戻し防止：イベント抑止キーにバージョン prefix（将来の仕様変更で一括無効化できる）
-// - 巻き戻し防止：抑止された時もUIで分かるように track*Once が true/false を返す
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -106,12 +108,9 @@ function trackEvent({ type, page, seriesKey = "", mood = "" }) {
 
 /* =======================
  * 多重カウント抑止（端末ローカル）
- * - 同一端末で連打/何度も押す対策
- * - デフォルト24hで同じキーは再送しない
- * - 巻き戻し防止：キーにバージョン prefix を入れる
  * ======================= */
 const EVENT_COOLDOWN_MS = 24 * 60 * 60 * 1000;
-const EVENT_KEY_PREFIX = "evt:v1:"; // ←仕様変更時は v2 に上げれば過去の抑止を一括無効化できる
+const EVENT_KEY_PREFIX = "evt:v1:";
 
 function nowMs() { return Date.now(); }
 
@@ -124,12 +123,10 @@ function canSendOnce(key, cooldownMs = EVENT_COOLDOWN_MS) {
     localStorage.setItem(k, String(t));
     return true;
   } catch {
-    // localStorageが死んでても最低限送る（多重抑止は効かないが機能は壊さない）
     return true;
   }
 }
 
-// vote: seriesKey + mood で抑止
 function trackVoteOnce(seriesKey, mood) {
   const sk = toText(seriesKey);
   const md = toText(mood);
@@ -140,7 +137,6 @@ function trackVoteOnce(seriesKey, mood) {
   return true;
 }
 
-// favorite: seriesKey で抑止（ON操作だけ送る前提）
 function trackFavoriteOnce(seriesKey, page) {
   const sk = toText(seriesKey);
   if (!sk) return false;
@@ -162,9 +158,7 @@ function trackWorkViewOnce(seriesKey) {
     const k = `work_view:${sk}`;
     if (sessionStorage.getItem(k) === "1") return false;
     sessionStorage.setItem(k, "1");
-  } catch {
-    // sessionStorage不可でも送ってOK
-  }
+  } catch {}
 
   trackEvent({ type: "work_view", page: "work", seriesKey: sk, mood: "" });
   return true;
@@ -172,8 +166,6 @@ function trackWorkViewOnce(seriesKey) {
 
 /* =======================
  * Favorite（端末内だけ保持）
- * - UIは自由にON/OFFできる
- * - イベント送信は「ONにした時」かつクールダウンで抑止
  * ======================= */
 function favKey(seriesKey) {
   return `fav:${toText(seriesKey)}`;
@@ -238,11 +230,8 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
-    // ONにしたときだけ送る（+ クールダウンで多重カウント抑止）
     if (next) {
-      const sent = trackFavoriteOnce(seriesKey, page || "unknown");
-      // 送れなかった（=抑止された）場合でもUIは壊さない。通知は stats 側では不要なのでここでは何もしない。
-      void sent;
+      void trackFavoriteOnce(seriesKey, page || "unknown");
     }
   }, { passive: true });
 }
@@ -250,13 +239,6 @@ function bindFavHandlers(root = document) {
 /* =======================
  * 表示前の正規化
  * ======================= */
-function formatYmd(s) {
-  const t = toText(s);
-  if (!t) return "";
-  if (t.length >= 10 && /^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
-  return t;
-}
-
 function normalizeImgUrl(u) {
   const raw = toText(u);
   if (!raw) return "";
@@ -312,7 +294,7 @@ function patchAmazonAnchors(root = document) {
 }
 
 /* =======================
- * Genre map
+ * Genre map（内部用）
  * ======================= */
 const GENRE_JA = {
   Action: "アクション",
@@ -331,21 +313,19 @@ const GENRE_JA = {
   Thriller: "サスペンス",
 };
 
-function mapGenres(genres) {
-  if (!Array.isArray(genres)) return [];
-  return genres
-    .map((g) => {
-      const s = toText(g);
-      if (!s) return null;
-      if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
-      return GENRE_JA[s] || null;
-    })
-    .filter(Boolean);
+function hasAnyGenre(it, wanted) {
+  const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
+  return wanted.some(x => g.includes(x));
 }
 
-function pills(list) {
-  if (!list?.length) return "";
-  return `<div class="pills">${list.map((x) => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
+/* pills: tags max 6 +N */
+function pillsMax6(list) {
+  const xs = (list || []).map(toText).filter(Boolean);
+  if (!xs.length) return "";
+  const head = xs.slice(0, 6);
+  const rest = xs.length - head.length;
+  const more = rest > 0 ? `<span class="pill">+${rest}</span>` : "";
+  return `<div class="pills">${head.map(x => `<span class="pill">${esc(x)}</span>`).join("")}${more}</div>`;
 }
 
 /* =======================
@@ -381,11 +361,6 @@ const GENRE_TABS = [
   { id: "other", label: "その他", match: ["Adventure", "Psychological", "Supernatural"] },
 ];
 
-function hasAnyGenre(it, wanted) {
-  const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
-  return wanted.some(x => g.includes(x));
-}
-
 function parseGenreQuery() {
   const raw = toText(qs().get("genre"));
   if (!raw) return [];
@@ -417,7 +392,7 @@ function hasAudience(it, audLabel) {
 }
 
 /* =======================
- * 連載誌（今は残してるが、将来廃止してもOK）
+ * 連載誌
  * ======================= */
 function hasMagazine(it, mag) {
   if (!mag) return true;
@@ -454,19 +429,16 @@ function itTags(it) {
   const raw = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
   return Array.from(new Set(raw));
 }
-
 function toTagList(arr) {
   const xs = (arr || []).map(toText).filter(Boolean);
   return Array.from(new Set(xs));
 }
-
 function countTagHits(tagSet, wantedTags) {
   if (!wantedTags?.length) return 0;
   let n = 0;
   for (const t of wantedTags) if (tagSet.has(t)) n++;
   return n;
 }
-
 function quickEval(it, def) {
   if (!def) return { ok: false, hits: 0 };
 
@@ -483,7 +455,6 @@ function quickEval(it, def) {
   const hits = countTagHits(tagSet, anyTags);
   return { ok: hits >= QUICK_MIN_HITS, hits };
 }
-
 function quickEvalAll(it, defs) {
   if (!defs?.length) return { ok: true, score: 0 };
 
@@ -496,8 +467,6 @@ function quickEvalAll(it, defs) {
   return { ok: true, score };
 }
 
-// 「今の絞り込み条件（genre/aud/mag）」で絞った baseItems を渡す想定。
-// counts は「もしこのボタンも押したら何件になるか」を即時計算。
 function quickCountsDynamic(baseItems, defs, selectedIds) {
   const byId = new Map(defs.map(d => [d.id, d]));
   const sel = (selectedIds || []).filter(Boolean);
@@ -516,15 +485,9 @@ function quickCountsDynamic(baseItems, defs, selectedIds) {
   for (const d of defs) {
     let condDefs = [];
 
-    if (sel.length === 0) {
-      condDefs = [d];
-    } else if (sel.length === 1) {
-      if (selectedSet.has(d.id)) condDefs = selDefs;
-      else condDefs = [selDefs[0], d];
-    } else {
-      // 2個選択中：未選択は押せないので「現状結果」を表示
-      condDefs = selDefs;
-    }
+    if (sel.length === 0) condDefs = [d];
+    else if (sel.length === 1) condDefs = (selectedSet.has(d.id)) ? selDefs : [selDefs[0], d];
+    else condDefs = selDefs;
 
     let n = 0;
     for (const it of baseItems) {
@@ -563,7 +526,7 @@ function animateNumber(el, from, to, durationMs = 240) {
 }
 
 /* =======================
- * Quick UI render（固定幅カウント）
+ * Quick UI render
  * ======================= */
 function renderQuickHome({ defs, counts }) {
   const root = document.getElementById("quickFiltersHome");
@@ -607,11 +570,11 @@ function renderQuickListUI({ defs, counts, disabledIds, selectedIds, onToggle })
         return `
           <button
             type="button"
-            class="pill"
+            class="pill ${isOn ? "is-on" : ""}"
             data-mood="${esc(d.id)}"
             aria-pressed="${isOn ? "true" : "false"}"
             ${isDisabled ? "disabled" : ""}
-            style="${isOn ? "outline:2px solid currentColor; outline-offset:1px;" : ""}${isDisabled ? ";opacity:.5;cursor:not-allowed" : ""}"
+            style="${isDisabled ? "opacity:.5;cursor:not-allowed" : ""}"
           >
             ${esc(d.label)}
             <span style="opacity:.7;">
@@ -623,7 +586,6 @@ function renderQuickListUI({ defs, counts, disabledIds, selectedIds, onToggle })
     </div>
   `;
 
-  // 数字送り（初回表示も含めて実行）
   for (const el of root.querySelectorAll(".qcount")) {
     const prev = Number(el.dataset.prev || "0");
     const next = Number(el.textContent || "0");
@@ -654,7 +616,8 @@ function renderQuickHint({ selectedIds, defs, itemsAfterAllFilters }) {
     : msg;
 }
 
-// public/app.js  (2/2)
+
+// public/app.js (2/2)
 
 function renderFilterBanner({ genreWanted, audienceWanted, magazineWanted }) {
   const s = document.getElementById("status");
@@ -836,7 +799,7 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * list（解除リロード無し + お気に入りボタン + クイック動的カウント）
+ * list（表示情報を絞る + 書影リンクは詳細へ）
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -852,13 +815,11 @@ function renderList(data, quickDefs) {
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
   const moodActiveDefs = moodSelected.map(id => byId.get(id)).filter(Boolean);
 
-  // まず大ジャンルで絞る（これが quickCounts の母集団）
   const base = all
     .filter((it) => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
     .filter((it) => hasAudience(it, audienceWanted))
     .filter((it) => hasMagazine(it, magazineWanted));
 
-  // mood AND + score順（score=ヒット数合算）
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -874,7 +835,6 @@ function renderList(data, quickDefs) {
 
   renderFilterBanner({ genreWanted, audienceWanted, magazineWanted });
 
-  // list_filter 計測（現状維持）
   const moodParam = moodSelected.join(",");
   trackEvent({
     type: "list_filter",
@@ -888,7 +848,6 @@ function renderList(data, quickDefs) {
     ].filter(Boolean).join("&"),
   });
 
-  // 解除リンク：遷移させない
   const clear = document.getElementById("moodClearLink");
   if (clear) {
     clear.onclick = (ev) => {
@@ -899,7 +858,6 @@ function renderList(data, quickDefs) {
     };
   }
 
-  // クイックUI（動的カウント）
   if (document.getElementById("quickFiltersList")) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
     const dyn = quickCountsDynamic(base, defs, moodSelected);
@@ -937,12 +895,16 @@ function renderList(data, quickDefs) {
     return;
   }
 
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
   root.innerHTML = items.map((it) => {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
     const key = encodeURIComponent(seriesKey);
 
     const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
     const author = toText(pick(it, ["author", "vol1.author"])) || "";
+    const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
     const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
     const img = normalizeImgUrl(imgRaw);
@@ -950,35 +912,30 @@ function renderList(data, quickDefs) {
     const amzRaw = toText(pick(it, ["amazonDp", "vol1.amazonDp", "amazonUrl", "vol1.amazonUrl"])) || "#";
     const amz = ensureAmazonAffiliate(amzRaw);
 
-    const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
-    const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
-    const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
-
-    const genresJa = mapGenres(pickArr(it, ["genres", "vol1.genres"]));
-    const tagsJa = pickArr(it, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
+    const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
     const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
-
-    const metaParts = [
-      author ? esc(author) : null,
-      release ? `発売日: ${esc(release)}` : null,
-      publisher ? `出版社: ${esc(publisher)}` : null,
-      magazine ? `連載誌: ${esc(magazine)}` : null,
-    ].filter(Boolean).join(" / ");
 
     return `
       <article class="card">
         <div class="card-row">
           <div class="thumb">
-            ${img ? `<a href="${esc(amz)}" target="_blank" rel="nofollow noopener"><img src="${esc(img)}" alt="${esc(title)}"/></a>` : `<div class="thumb-ph"></div>`}
+            ${
+              img
+                ? `<a href="./work.html?key=${key}${vq}" aria-label="${esc(title)}"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+                : `<div class="thumb-ph"></div>`
+            }
           </div>
-          <div class="meta">
-            <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
-            ${metaParts ? `<div class="sub">${metaParts}</div>` : ""}
 
-            ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
-            ${tagsJa.length ? `<div class="sub">タグ:</div>${pills(tagsJa)}` : ""}
+          <div class="meta">
+            <div class="title"><a href="./work.html?key=${key}${vq}">${esc(seriesKey || title)}</a></div>
+
+            ${author ? `<div class="sub">${esc(author)}</div>` : ""}
+            ${magazine ? `<div class="sub">連載誌: ${esc(magazine)}</div>` : ""}
+
+            ${tagsJa.length ? `<div class="sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
 
             <div class="actions">
+              ${amz && amz !== "#" ? `<a class="amz-mini" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
               ${favButtonHtml(seriesKey, "list")}
             </div>
 
@@ -998,8 +955,34 @@ function renderList(data, quickDefs) {
 }
 
 /* =======================
- * work（投票 + お気に入り + work_view 1回）
+ * work：読後感投票（最大2つ）
  * ======================= */
+const VOTE_MAX = 2;
+const VOTE_STATE_PREFIX = "vote_sel:v1:";
+
+function voteStateKey(seriesKey){
+  return `${VOTE_STATE_PREFIX}${toText(seriesKey)}`;
+}
+function getVotedSet(seriesKey){
+  const sk = toText(seriesKey);
+  if (!sk) return new Set();
+  try{
+    const raw = localStorage.getItem(voteStateKey(sk)) || "";
+    const ids = raw.split(",").map(s => s.trim()).filter(Boolean);
+    return new Set(ids);
+  }catch{
+    return new Set();
+  }
+}
+function setVotedSet(seriesKey, set){
+  const sk = toText(seriesKey);
+  if (!sk) return;
+  try{
+    const arr = Array.from(set || []).map(toText).filter(Boolean).slice(0, VOTE_MAX);
+    localStorage.setItem(voteStateKey(sk), arr.join(","));
+  }catch{}
+}
+
 function renderWork(data, quickDefs) {
   const detail = document.getElementById("detail");
   if (!detail) return;
@@ -1021,42 +1004,60 @@ function renderWork(data, quickDefs) {
   const amz = ensureAmazonAffiliate(amzRaw);
 
   const synopsis = toText(pick(it, ["synopsis", "vol1.synopsis"])) || "";
+  const author = toText(pick(it, ["author", "vol1.author"])) || "";
+  const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
+  const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 
   const defs = Array.isArray(quickDefs) ? quickDefs : [];
-  const voteButtons = defs.length
+  const voted = getVotedSet(seriesKey);
+
+  const voteBox = defs.length
     ? `
-      <div class="d-sub" style="margin-top:14px;">読み味投票</div>
-      <div class="pills" id="votePills">
-        ${defs.map(d => `
-          <button type="button" class="pill" data-vote="${esc(d.id)}">
-            ${esc(d.label)}
-          </button>
-        `).join("")}
+      <div class="vote-box">
+        <div class="vote-head">
+          <h3 class="vote-title">読後感はどれ？</h3>
+        </div>
+        <p class="vote-note">当てはまるものをタップして投票（最大2つ）。</p>
+        <div class="pills" id="votePills">
+          ${defs.map(d => {
+            const on = voted.has(d.id);
+            return `
+              <button type="button" class="pill ${on ? "is-on" : ""}" data-vote="${esc(d.id)}" aria-pressed="${on ? "true" : "false"}">
+                ${esc(d.label)}
+              </button>
+            `;
+          }).join("")}
+        </div>
+        <div class="vote-status" id="voteStatus"></div>
       </div>
-      <div class="d-sub" id="voteStatus" style="margin-top:8px;"></div>
     `
     : "";
 
   detail.innerHTML = `
     <div class="d-title">${esc(seriesKey || title)}</div>
-    <div class="d-row">
+
+    ${author ? `<div class="d-sub">${esc(author)}</div>` : ""}
+    ${magazine ? `<div class="d-sub">連載誌: ${esc(magazine)}</div>` : ""}
+    ${tagsJa.length ? `<div class="d-sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
+
+    <div class="d-row" style="margin-top:10px;">
       ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
       <div class="d-links">
         ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
         ${favButtonHtml(seriesKey, "work")}
       </div>
     </div>
+
     ${synopsis ? `
       <div class="d-sub" style="margin-top:14px;">あらすじ</div>
       <div class="d-text">${esc(synopsis)}</div>
     ` : ""}
-    ${voteButtons}
+
+    ${voteBox}
   `;
 
-  // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  // 投票（seriesKey+mood は 24h で1回に抑止）
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1065,9 +1066,34 @@ function renderWork(data, quickDefs) {
       const mood = btn.getAttribute("data-vote") || "";
       if (!mood) return;
 
-      const sent = trackVoteOnce(seriesKey, mood);
-
       const st = document.getElementById("voteStatus");
+      const set = getVotedSet(seriesKey);
+
+      const isOn = set.has(mood);
+
+      if (isOn) {
+        set.delete(mood);
+        setVotedSet(seriesKey, set);
+        btn.classList.remove("is-on");
+        btn.setAttribute("aria-pressed", "false");
+        if (st) st.textContent = "選択を外しました";
+        setTimeout(() => { if (st) st.textContent = ""; }, 1200);
+        return;
+      }
+
+      if (set.size >= VOTE_MAX) {
+        if (st) st.textContent = "最大2つまで選べます";
+        setTimeout(() => { if (st) st.textContent = ""; }, 1400);
+        return;
+      }
+
+      set.add(mood);
+      setVotedSet(seriesKey, set);
+
+      btn.classList.add("is-on");
+      btn.setAttribute("aria-pressed", "true");
+
+      const sent = trackVoteOnce(seriesKey, mood);
       if (st) {
         st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
         setTimeout(() => { if (st) st.textContent = ""; }, 1400);
@@ -1091,12 +1117,10 @@ async function run() {
     const quick = await loadJson(quickUrl, { bust: !!v });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // Home：ジャンル/カテゴリー
     const st = getHomeState();
     renderGenreTabsRow({ data, activeId: st.g });
     renderAudienceTabsRow({ data, activeAudId: st.a });
 
-    // Home：気分（導線）…「単体押下で何件」なので従来通り
     if (document.getElementById("quickFiltersHome")) {
       const all = Array.isArray(data?.items) ? data.items : [];
       const counts = new Map(quickDefs.map(d => [d.id, 0]));
@@ -1108,14 +1132,11 @@ async function run() {
       renderQuickHome({ defs: quickDefs, counts });
     }
 
-    // List / Work
     renderList(data, quickDefs);
     renderWork(data, quickDefs);
 
-    // Amazonアフィ付与
     patchAmazonAnchors(document);
 
-    // favorite handler（1回だけbind）
     bindFavHandlers(document);
     refreshFavButtons(document);
   } catch (e) {
