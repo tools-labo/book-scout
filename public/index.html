@@ -14,6 +14,7 @@
     <div class="gheader-inner">
       <div class="gbrand">
         <a class="gbrand-title" href="./index.html">BOOKスカウト</a>
+        <!-- サブ文言は消す -->
       </div>
 
       <nav class="gnav" aria-label="グローバルナビ">
@@ -28,29 +29,24 @@
     <div id="status" class="status"></div>
 
     <!-- Hero -->
-    <section class="hero" aria-label="BOOKスカウトの紹介" style="margin-top:10px;">
-      <div class="hero-media" style="border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff;">
-        <img
-          src="./assets/hero-mock.png"
-          alt="BOOKスカウトの画面イメージ"
-          style="width:100%; height:auto; display:block;"
-        />
-      </div>
+    <section class="hero" aria-label="BOOKスカウトの紹介">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1 class="hero-title">みんなで育てる、マンガ選び。</h1>
+          <p class="hero-sub">
+            サクッと絞って迷わない。投票・お気に入りの1タップで育てるランキング。
+          </p>
 
-      <div class="hero-copy" style="margin-top:12px;">
-        <div style="font-size:18px; font-weight:1000; letter-spacing:-0.02em;">
-          サクッと絞って迷わない。投票・お気に入りの1タップで育てるランキング。
+          <div class="hero-actions">
+            <a class="btn" href="./list.html">作品リストへ</a>
+            <a class="btn pink" href="./stats.html">ランキング</a>
+          </div>
         </div>
-        <div style="margin-top:6px; color:var(--muted); font-size:12px; line-height:1.6;">
-          気分・ジャンル・カテゴリーで探して、いいと思った作品に投票／お気に入り。みんなの反応でランキングが育ちます。
-        </div>
-      </div>
 
-      <div class="home-actions" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-        <a class="btn" href="./list.html">作品リストへ</a>
-        <a class="btn pink" href="./stats.html">ランキング</a>
-        <!-- 「追加ボタン」は後で実装予定：ここは置き場所だけ確保 -->
-        <!-- <a class="btn-ghost" href="./add.html">作品を追加</a> -->
+        <div class="hero-media">
+          <!-- 透過画像：ファイル名そのまま -->
+          <img class="hero-img" src="./assets/hero-mock.png" alt="BOOKスカウトの画面イメージ" loading="eager" decoding="async" />
+        </div>
       </div>
     </section>
 
