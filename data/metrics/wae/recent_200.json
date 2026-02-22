@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T17:40:52.189Z",
+  "updatedAt": "2026-02-22T18:54:07.987Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,28 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-22 18:21:24",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 17:44:45",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-22 15:42:43",
       "type": "work_view",
@@ -2220,32 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:59:24",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=funny",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:59:24",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 397
+    "rows_before_limit_at_least": 399
   }
 }
