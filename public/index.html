@@ -5,46 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト</title>
 
-  <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="zkQ88T_zDkSppLKcCnloW6YbiVl43N3LWB-ANp6U_XQ" />
-
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- 追加：スクロールで隠す/出す（style.cssを触らなくても動く最低限） -->
-  <style>
-    /* gheader は style.css にある前提。無い場合でも最低限は動くように。 */
-    .gheader {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transform: translateY(0);
-      transition: transform 180ms ease;
-      will-change: transform;
-    }
-    .gheader.is-hidden { transform: translateY(-110%); }
-    @media (prefers-reduced-motion: reduce) { .gheader { transition: none; } }
-
-    /* 追加：フッター（小さめ） */
-    .gfooter {
-      border-top: 1px solid rgba(127,127,127,.35);
-      padding: 14px 0;
-      margin-top: 28px;
-      font-size: 12px;
-      opacity: .85;
-    }
-    .gfooter-inner {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .gfooter a { text-decoration: none; }
-    .gfooter a:hover { text-decoration: underline; }
-  </style>
 </head>
 
 <body class="has-gheader">
-  <!-- 固定ヘッダー（スクロールで自動表示/非表示） -->
   <header class="gheader" id="gheader">
     <div class="gheader-inner">
       <div class="gbrand">
@@ -65,10 +30,9 @@
 
     <section class="home-actions" style="display:flex; gap:10px; flex-wrap:wrap;">
       <a class="btn" href="./list.html">作品リストへ</a>
-      <a class="btn" href="./stats.html" style="background:#ff69b4;">ランキング</a>
+      <a class="btn pink" href="./stats.html">ランキング</a>
     </section>
 
-    <!-- 気分（導線リンク） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">気分で探す</h2>
@@ -78,7 +42,6 @@
       <div id="quickFiltersHome"></div>
     </section>
 
-    <!-- ジャンル -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">ジャンル</h2>
@@ -90,7 +53,6 @@
       <div id="genreRow"></div>
     </section>
 
-    <!-- カテゴリー（旧：読者層） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">カテゴリー</h2>
@@ -102,7 +64,6 @@
       <div id="audienceRow"></div>
     </section>
 
-    <!-- 追加：フッター（トップページ末尾に小さく表示） -->
     <footer class="gfooter" aria-label="サイトフッター">
       <div class="gfooter-inner">
         <span>© Tools-LABO</span>
@@ -116,7 +77,6 @@
     </footer>
   </main>
 
-  <!-- ヘッダー：下スクロールで隠す / 上に少しでもスクロールで出す -->
   <script>
     (function () {
       const header = document.getElementById("gheader");
@@ -133,35 +93,19 @@
         const y = window.scrollY || 0;
         const dy = y - lastY;
 
-        if (y <= TOP_KEEP) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
-        if (dy > HIDE_THRESHOLD) {
-          header.classList.add("is-hidden");
-          lastY = y;
-          return;
-        }
-        if (dy < -SHOW_THRESHOLD) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
+        if (y <= TOP_KEEP) { header.classList.remove("is-hidden"); lastY = y; return; }
+        if (dy > HIDE_THRESHOLD) { header.classList.add("is-hidden"); lastY = y; return; }
+        if (dy < -SHOW_THRESHOLD) { header.classList.remove("is-hidden"); lastY = y; return; }
       }
 
       window.addEventListener("scroll", () => {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          onScroll();
-        });
+        requestAnimationFrame(() => { ticking = false; onScroll(); });
       }, { passive: true });
     })();
   </script>
 
-  <!-- app.js ロード -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
