@@ -5,271 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜ランキング</title>
   <link rel="stylesheet" href="./style.css" />
-
-  <style>
-    /* ===== グローバル固定ヘッダー（下スクロールで隠す/上で出す） ===== */
-    .gheader{
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      transform: translateY(0);
-      transition: transform 180ms ease;
-      will-change: transform;
-      background: rgba(11,12,16,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
-    .gheader.is-hidden{ transform: translateY(-110%); }
-    @media (prefers-reduced-motion: reduce){
-      .gheader{ transition:none; }
-    }
-    .gheader-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 12px 14px;
-    }
-    .gbrand{ display:flex; flex-direction:column; gap:2px; }
-    .gbrand-title{ font-weight: 1000; font-size: 14px; }
-    .gbrand-sub{ color: var(--muted); font-size: 11px; }
-    .gnav{
-      display:flex; gap: 10px; align-items:center;
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-    .gnav a{
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--muted);
-    }
-    .gnav a:active{ transform: translateY(1px); }
-
-    /* ===== ジャンル絞り込み（ヘッダー内） ===== */
-    .rank-genres{
-      display:flex;
-      gap: 8px;
-      padding: 10px 14px;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.01);
-      overflow-x:auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .rank-genre{
-      flex: 0 0 auto;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--fg);
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-    .rank-genre:active{ transform: translateY(1px); }
-    .rank-genre.is-active{
-      border-color: rgba(43,97,255,0.65);
-      background: rgba(43,97,255,0.18);
-    }
-    .rank-genre .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width: 26px;
-      height: 18px;
-      padding: 0 6px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      font-weight: 1000;
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    /* ===== タブ（閲覧 / お気に入り） ===== */
-    .rank-tabs{
-      display:flex;
-      gap: 8px;
-      padding: 10px 14px;
-      border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.01);
-      overflow-x:auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .rank-tab{
-      flex: 0 0 auto;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--fg);
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-    .rank-tab:active{ transform: translateY(1px); }
-    .rank-tab.is-active{
-      border-color: rgba(43,97,255,0.65);
-      background: rgba(43,97,255,0.18);
-    }
-    .rank-tab .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width: 26px;
-      height: 18px;
-      padding: 0 6px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      font-weight: 1000;
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    /* ===== ランキング一覧 ===== */
-    .rank-grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
-
-    .rank-item{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .rank-row{
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 12px;
-      padding: 12px;
-      align-items: start;
-    }
-
-    /* 左：順位→回数→書影 */
-    .rank-left{
-      width: 92px;
-      display:flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .rank-badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height: 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      color: var(--fg);
-      font-weight: 1000;
-      font-size: 12px;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .rank-count{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height: 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.02);
-      color: var(--muted);
-      font-weight: 900;
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-    .rank-count b{ color: var(--fg); font-weight: 1000; }
-
-    .rank-cover{
-      width: 92px;
-      height: 128px;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #202433;
-      border: 1px solid var(--line);
-    }
-    .rank-cover img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    /* 右側：list と同程度 */
-    .rank-meta .title{
-      font-weight: 900;
-      margin-bottom: 6px;
-      font-size: 18px;
-      line-height: 1.2;
-    }
-    .rank-meta .sub{
-      color: var(--muted);
-      font-size: 12px;
-      margin: 6px 0;
-      line-height: 1.35;
-    }
-    .rank-meta .pills{ margin-top: 6px; }
-
-    /* ===== もっと見る ===== */
-    .rank-more{
-      margin-top: 10px;
-      display:flex;
-      justify-content:center;
-    }
-    .rank-more button{
-      width: 100%;
-      max-width: 420px;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--fg);
-      font-weight: 900;
-      cursor: pointer;
-    }
-    .rank-more button:active{ transform: translateY(1px); }
-    .rank-more button[disabled]{ opacity:.5; cursor:not-allowed; }
-
-    /* 追加：フッター（小さめ） */
-    .gfooter{
-      border-top: 1px solid rgba(127,127,127,.35);
-      padding: 14px 0;
-      margin-top: 28px;
-      font-size: 12px;
-      opacity: .85;
-    }
-    .gfooter-inner{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-    .gfooter a{ text-decoration:none; }
-    .gfooter a:hover{ text-decoration:underline; }
-  </style>
 </head>
 
 <body>
-  <!-- 固定ヘッダー -->
   <header class="gheader" id="gheader">
     <div class="gheader-inner">
       <div class="gbrand">
@@ -280,14 +18,12 @@
       <nav class="gnav" aria-label="グローバルナビ">
         <a href="./index.html">ホーム</a>
         <a href="./list.html">リスト</a>
-        <a href="./stats.html">ランキング</a>
+        <a class="is-active" href="./stats.html">ランキング</a>
       </nav>
     </div>
 
-    <!-- ジャンル -->
     <div class="rank-genres" role="tablist" aria-label="ジャンル絞り込み" id="rankGenreTabs"></div>
 
-    <!-- タブ -->
     <div class="rank-tabs" role="tablist" aria-label="ランキング切り替え">
       <button class="rank-tab is-active" type="button" data-tab="views" role="tab" aria-selected="true">
         閲覧数 <span class="badge" id="badgeViews">-</span>
@@ -301,7 +37,6 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <!-- 閲覧 -->
     <section class="section" id="panelViews" role="tabpanel" aria-label="閲覧数ランキング" style="margin-top:10px;">
       <div class="section-head">
         <h2 class="section-title">人気（閲覧数）</h2>
@@ -311,7 +46,6 @@
       <div class="rank-more"><button id="moreViews" type="button">もっと見る</button></div>
     </section>
 
-    <!-- お気に入り -->
     <section class="section" id="panelFav" role="tabpanel" aria-label="お気に入りランキング" style="margin-top:10px; display:none;">
       <div class="section-head">
         <h2 class="section-title">お気に入り</h2>
@@ -321,7 +55,6 @@
       <div class="rank-more"><button id="moreFav" type="button">もっと見る</button></div>
     </section>
 
-    <!-- 追加：フッター（ランキングページ末尾に小さく表示） -->
     <footer class="gfooter" aria-label="サイトフッター">
       <div class="gfooter-inner">
         <span>© Tools-LABO</span>
@@ -399,13 +132,6 @@
       return [];
     }
 
-    function formatYmd(s) {
-      const t = toText(s);
-      if (!t) return "";
-      if (t.length >= 10 && /^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
-      return t;
-    }
-
     function normalizeImgUrl(u) {
       const raw = toText(u);
       if (!raw) return "";
@@ -420,39 +146,13 @@
       if (s) s.textContent = msg;
     }
 
-    const GENRE_JA = {
-      Action: "アクション",
-      Adventure: "冒険",
-      Comedy: "コメディ",
-      Drama: "ドラマ",
-      Fantasy: "ファンタジー",
-      Horror: "ホラー",
-      Mystery: "ミステリー",
-      Psychological: "心理",
-      Romance: "恋愛",
-      "Sci-Fi": "SF",
-      "Slice of Life": "日常",
-      Sports: "スポーツ",
-      Supernatural: "超常",
-      Thriller: "サスペンス",
-    };
-
-    function mapGenres(genres) {
-      if (!Array.isArray(genres)) return [];
-      return genres
-        .map((g) => {
-          const s = toText(g);
-          if (!s) return null;
-          if (GENRE_JA[s] == null && /[ぁ-んァ-ヶ一-龠]/.test(s)) return s;
-          return GENRE_JA[s] || null;
-        })
-        .filter(Boolean);
-    }
-
-    function pills(list) {
+    function pillsMax6(list) {
       const xs = (list || []).map(toText).filter(Boolean);
       if (!xs.length) return "";
-      return `<div class="pills">${xs.map(x => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
+      const head = xs.slice(0, 6);
+      const rest = xs.length - head.length;
+      const more = rest > 0 ? `<span class="pill">+${rest}</span>` : "";
+      return `<div class="pills">${head.map(x => `<span class="pill">${esc(x)}</span>`).join("")}${more}</div>`;
     }
 
     function pickRows(obj) {
@@ -478,32 +178,19 @@
 
       const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
       const author = toText(pick(work, ["author", "vol1.author"])) || "";
-      const release = formatYmd(pick(work, ["releaseDate", "vol1.releaseDate"])) || "";
-      const publisher = toText(pick(work, ["publisher", "vol1.publisher"])) || "";
       const magazine = toText(pick(work, ["magazine", "vol1.magazine"])) || "";
 
       const imgRaw = toText(pick(work, ["image", "vol1.image"])) || "";
       const img = normalizeImgUrl(imgRaw);
 
-      const genresJa = mapGenres(pickArr(work, ["genres", "vol1.genres"]));
-      const tagsJa = pickArr(work, ["tags", "vol1.tags"]).slice(0, 10).map(toText).filter(Boolean);
-      const synopsis = toText(pick(work, ["synopsis", "vol1.synopsis"])) || "";
+      const tagsJa = pickArr(work, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 
-      const metaParts = [
-        author ? author : null,
-        release ? `発売日: ${release}` : null,
-        publisher ? `出版社: ${publisher}` : null,
-        magazine ? `連載誌: ${magazine}` : null,
-      ].filter(Boolean).join(" / ");
-
-      const unitLabel = unit === "fav" ? "お気に入り" : "view";
+      const unitLabel = unit === "fav" ? "お気に入り" : "閲覧";
 
       return `
         <article class="rank-item">
           <div class="rank-row">
-            <div class="rank-left">
-              <div class="rank-badge">#${esc(rank)}</div>
-              <div class="rank-count"><b>${esc(n)}</b>&nbsp;${esc(unitLabel)}</div>
+            <div>
               <a href="./work.html?key=${key}" aria-label="${esc(title)}">
                 <div class="rank-cover">
                   ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : ``}
@@ -512,25 +199,25 @@
             </div>
 
             <div class="rank-meta">
+              <div class="rank-topline">
+                <span class="rank-pos">${esc(rank)}位</span>
+                <span class="rank-metric">
+                  <span class="num">${esc(n)}</span>
+                  <span class="lbl">${esc(unitLabel)}</span>
+                </span>
+              </div>
+
               <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
-              ${metaParts ? `<div class="sub">${esc(metaParts)}</div>` : ""}
+              ${author ? `<div class="sub">${esc(author)}</div>` : ""}
+              ${magazine ? `<div class="sub">連載誌: ${esc(magazine)}</div>` : ""}
 
-              ${genresJa.length ? `<div class="sub">ジャンル: ${esc(genresJa.join(" / "))}</div>` : ""}
-              ${tagsJa.length ? `<div class="sub">タグ:</div>${pills(tagsJa)}` : ""}
-
-              ${synopsis ? `
-                <details class="syn">
-                  <summary>あらすじ</summary>
-                  <div class="syn-body">${esc(synopsis)}</div>
-                </details>
-              ` : ""}
+              ${tagsJa.length ? `<div class="sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
             </div>
           </div>
         </article>
       `;
     }
 
-    // ===== ジャンル絞り込み（stats専用）=====
     const RANK_GENRE_TABS = [
       { id: "all",    label: "すべて", match: [] },
       { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -588,35 +275,26 @@
         if (next === getRankGenreState()) return;
 
         setRankGenreState(next);
-
-        // 表示をリセットして再描画（タブ状態は維持）
         applyGenreAndRerender();
       };
     }
 
-    // ===== 状態 =====
     const MAX_ROWS = 100;
-    const STEP = 50; // まず50件表示→もう一度で100件
+    const STEP = 50;
     let state = {
       tab: "views",
       viewsShown: 0,
       favShown: 0,
-
-      // 元データ（全件）
       viewsAll: [],
       favAll: [],
-
-      // 絞り込み後
       viewsRows: [],
       favRows: [],
-
       workMap: new Map()
     };
 
     function setTab(next) {
       state.tab = next;
 
-      // tabボタン
       const tViews = document.querySelector(".rank-tab[data-tab='views']");
       const tFav   = document.querySelector(".rank-tab[data-tab='fav']");
       if (tViews) {
@@ -628,7 +306,6 @@
         tFav.setAttribute("aria-selected", next === "fav" ? "true" : "false");
       }
 
-      // panel切替
       const pViews = document.getElementById("panelViews");
       const pFav   = document.getElementById("panelFav");
       if (pViews) pViews.style.display = (next === "views") ? "" : "none";
@@ -706,13 +383,11 @@
     }
 
     function setGenreCountBadges() {
-      // 各ジャンルボタンの右の数字は「そのジャンルに絞った時の閲覧数ランキング件数」を表示（=works母数ではなくランキング母数）
       for (const t of RANK_GENRE_TABS) {
         const el = document.getElementById(`badgeRg_${t.id}`);
         if (!el) continue;
 
         if (!t.match?.length) {
-          // all
           el.textContent = String(Math.min(MAX_ROWS, state.viewsAll.length || 0));
           continue;
         }
@@ -733,10 +408,8 @@
       const activeId = getRankGenreState();
       const tab = RANK_GENRE_TABS.find(t => t.id === activeId) || RANK_GENRE_TABS[0];
 
-      // タブUI
       renderRankGenreTabs(tab.id);
 
-      // 絞り込み
       if (!tab.match?.length) {
         state.viewsRows = state.viewsAll.slice();
         state.favRows = state.favAll.slice();
@@ -753,10 +426,8 @@
         });
       }
 
-      // badges（絞り込み後）
       setBadges();
 
-      // 「もっと見る」を含めて描画をリセット
       state.viewsShown = 0;
       state.favShown = 0;
 
@@ -768,14 +439,10 @@
       renderMore("views");
       renderMore("fav");
 
-      // タブ状態は維持
       setTab(state.tab);
-
-      // ジャンルボタンの数字（ランキング母数）
       setGenreCountBadges();
     }
 
-    // ===== ヘッダー：下スクロールで隠す/上で出す =====
     (function () {
       const header = document.getElementById("gheader");
       if (!header) return;
@@ -791,32 +458,15 @@
         const y = window.scrollY || 0;
         const dy = y - lastY;
 
-        if (y <= TOP_KEEP) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
-
-        if (dy > HIDE_THRESHOLD) {
-          header.classList.add("is-hidden");
-          lastY = y;
-          return;
-        }
-
-        if (dy < -SHOW_THRESHOLD) {
-          header.classList.remove("is-hidden");
-          lastY = y;
-          return;
-        }
+        if (y <= TOP_KEEP) { header.classList.remove("is-hidden"); lastY = y; return; }
+        if (dy > HIDE_THRESHOLD) { header.classList.add("is-hidden"); lastY = y; return; }
+        if (dy < -SHOW_THRESHOLD) { header.classList.remove("is-hidden"); lastY = y; return; }
       }
 
       window.addEventListener("scroll", () => {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          onScroll();
-        });
+        requestAnimationFrame(() => { ticking = false; onScroll(); });
       }, { passive: true });
     })();
 
@@ -835,10 +485,8 @@
         state.viewsAll = pickRows(viewBySeries);
         state.favAll   = pickRows(favBySeries);
 
-        // 初期tabは閲覧
         state.tab = "views";
 
-        // タブ操作
         document.querySelectorAll(".rank-tab[data-tab]").forEach(btn => {
           btn.addEventListener("click", () => {
             const next = btn.getAttribute("data-tab") || "views";
@@ -846,16 +494,13 @@
           }, { passive: true });
         });
 
-        // もっと見る
         const moreViews = document.getElementById("moreViews");
         if (moreViews) moreViews.addEventListener("click", () => renderMore("views"), { passive: true });
 
         const moreFav = document.getElementById("moreFav");
         if (moreFav) moreFav.addEventListener("click", () => renderMore("fav"), { passive: true });
 
-        // 初期描画（ジャンル適用込み）
         applyGenreAndRerender();
-
         setStatus("");
       } catch (e) {
         console.error(e);
