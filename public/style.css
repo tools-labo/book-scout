@@ -624,10 +624,10 @@ button{ font-family:inherit; }
 }
 
 /* =======================
- * Hero（左テキスト / 右画像）
- * - index.html側が hero-inner/hero-text/hero-actions でも
- *   旧版 hero-copy/hero-cta でも崩れないように両対応
- * - 画像がデカすぎないように「幅上限 + 高さ上限」を追加
+ * Hero（マンバ寄せ：左テキスト / 右画像）
+ * - スマホでも基本は横並び（崩れ防止で極小幅のみ縦）
+ * - 画像は「高さ」で制御してデカくならないようにする
+ * - index.html 新旧クラス両対応
  * ======================= */
 .hero{
   margin: 10px 0 18px;
@@ -639,18 +639,26 @@ button{ font-family:inherit; }
 
 /* 新版(index.html想定) */
 .hero-inner{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  align-items: center;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
 }
 
-/* 旧版(class名だけ違うケース) */
+/* 旧版（hero直下に hero-copy/hero-media があるケース）も同じ挙動に寄せる */
 .hero{
   display:block;
 }
-.hero .hero-copy,
-.hero .hero-text{
+.hero > .hero-copy,
+.hero > .hero-text,
+.hero > .hero-media{
+  min-width: 0;
+}
+
+/* テキスト側（左） */
+.hero-copy,
+.hero-text{
+  flex: 1 1 62%;
   min-width: 0;
 }
 
@@ -661,6 +669,7 @@ button{ font-family:inherit; }
   letter-spacing: -0.02em;
   line-height: 1.15;
 }
+
 .hero-lead,
 .hero-sub{
   margin: 10px 0 0;
@@ -677,37 +686,60 @@ button{ font-family:inherit; }
   flex-wrap: wrap;
 }
 
-/* 画像側 */
+/* 画像側（右） */
 .hero-media{
+  flex: 0 0 38%;
   display:flex;
-  justify-content:center;
-  align-items:flex-end;     /* 下寄せで安定 */
+  justify-content:flex-end;
+  align-items:flex-end;
   min-width: 0;
 }
 
-/* 画像：デカすぎ防止（スマホで高さも抑える） */
+/* “横幅100%” はやめて、最大高さで制御する（デカ過ぎ防止） */
 .hero-media img,
 .hero-img{
   display:block;
-  width: min(100%, 360px);  /* スマホは360px上限 */
-  height: auto;
-  max-height: 320px;        /* 縦が伸びすぎるのを抑える */
+  width: auto;
+  height: 220px;          /* ←スマホの基準サイズ */
+  max-height: 220px;
+  max-width: 100%;
   object-fit: contain;
 }
 
-/* 横幅があるときは左右2カラム（左=テキスト / 右=画像） */
+/* 画面が広い時は少しだけ大きく */
+@media (min-width: 520px){
+  .hero-media img,
+  .hero-img{
+    height: 260px;
+    max-height: 260px;
+  }
+}
+
+/* PCは2カラムのまま、見出しだけ強く */
 @media (min-width: 860px){
+  .hero-inner{ gap: 16px; }
+  .hero-title{ font-size: 28px; }
+  .hero-media img,
+  .hero-img{
+    height: 300px;
+    max-height: 300px;
+  }
+}
+
+/* 極端に狭い端末だけ縦積みにフォールバック */
+@media (max-width: 340px){
   .hero-inner{
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 16px;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .hero-media{
-    justify-content:flex-end;
+    justify-content:center;
   }
   .hero-media img,
   .hero-img{
-    width: min(100%, 420px); /* PCは少し大きく */
-    max-height: 380px;
+    height: auto;
+    max-height: 260px;
+    width: 100%;
   }
-  .hero-title{ font-size: 26px; }
 }
