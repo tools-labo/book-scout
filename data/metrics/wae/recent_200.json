@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T18:54:07.987Z",
+  "updatedAt": "2026-02-22T19:36:15.996Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -742,7 +742,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb,satisfying",
+      "mood": "mood=heart_throb",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -753,7 +753,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb",
+      "mood": "mood=heart_throb,satisfying",
       "genre": "",
       "aud": "",
       "mag": ""
@@ -1457,6 +1457,17 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "しまなみ誰そ彼",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-21 17:04:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "サンケンロック",
       "mood": "",
       "genre": "",
       "aud": "",
@@ -2231,21 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 05:02:27",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "aud=青年",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 399
+    "rows_before_limit_at_least": 400
   }
 }
