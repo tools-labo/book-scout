@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-02-22T08:14:09.937Z",
-  "total": 168,
+  "updatedAt": "2026-02-22T08:24:49.894Z",
+  "total": 167,
   "droppedTotal": 0,
   "droppedSeriesKeys": [],
   "items": [
@@ -853,50 +853,6 @@
       ],
       "meta": {
         "anilistId": 30436,
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      }
-    },
-    {
-      "seriesKey": "うみべの女の子",
-      "title": "うみべの女の子 1 (F×COMICS)",
-      "author": "浅野 いにお",
-      "publisher": "太田出版",
-      "releaseDate": "2011-03-17T00:00:01Z",
-      "image": "https://m.media-amazon.com/images/I/41P-vxBeEKL._SL500_.jpg",
-      "amazonUrl": "https://www.amazon.co.jp/dp/4778321383",
-      "amazonDp": "https://www.amazon.co.jp/dp/4778321383?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-      "isbn13": "9784778321383",
-      "asin": "4778321383",
-      "synopsis": "静かな海辺の町に暮らす中学生の小梅と磯辺。好奇心から始まった身体の関係は、やがて嫉妬や戸惑いを呼び、揺れる感情と共に二人の思春期を描く。",
-      "magazine": "マンガ・エロティクス・エフ",
-      "magazines": [
-        "マンガ",
-        "エロティクス",
-        "エフ"
-      ],
-      "audiences": [
-        "その他"
-      ],
-      "magazineSource": "manual_override",
-      "genres": [
-        "Drama",
-        "Psychological",
-        "Romance",
-        "Slice of Life"
-      ],
-      "tags": [
-        "成長譚",
-        "青年向け",
-        "田舎",
-        "海辺",
-        "学園",
-        "アンチヒーロー",
-        "バイセクシュアル",
-        "野球",
-        "女装・男装"
-      ],
-      "meta": {
-        "anilistId": 47353,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },

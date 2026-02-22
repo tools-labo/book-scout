@@ -1,22 +1,22 @@
 {
-  "updatedAt": "2026-02-22T08:14:09.937Z",
-  "total": 168,
-  "ok": 168,
+  "updatedAt": "2026-02-22T08:24:49.894Z",
+  "total": 167,
+  "ok": 167,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 164,
-    "skippedAniList": 4,
-    "skippedWiki": 4,
-    "skippedAmazon": 4,
+    "skippedPerfect": 167,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 4,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
       "magazineEmpty": 0,
       "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 2,
+      "audiencesOnlyOther": 0,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
@@ -24,21 +24,10 @@
       "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 4,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "3月のライオン :: tags_missing_en(remain=2,types=string)",
-        "うみべの女の子 :: magazine,magazines[]",
-        "マイ・ブロークン・マリコ :: magazine,magazines[]",
-        "帰ってください! 阿久津さん :: magazine,magazines[]"
-      ],
-      "audiencesOnlyOther": [
-        "うみべの女の子",
-        "マイ・ブロークン・マリコ"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
@@ -1322,75 +1311,6 @@
           "片思い",
           "カルト",
           "ヤンデレ"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "うみべの女の子",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4778321383",
-        "amazonDp": "https://www.amazon.co.jp/dp/4778321383?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784778321383",
-        "asin": "4778321383",
-        "title": "うみべの女の子 1 (F×COMICS)",
-        "synopsis": "静かな海辺の町に暮らす中学生の小梅と磯辺。好奇心から始まった身体の関係は、やがて嫉妬や戸惑いを呼び、揺れる感情と共に二人の思春期を描く。",
-        "image": "https://m.media-amazon.com/images/I/41P-vxBeEKL._SL500_.jpg",
-        "publisher": "太田出版",
-        "author": "浅野 いにお",
-        "releaseDate": "2011-03-17T00:00:01Z",
-        "magazine": "マンガ・エロティクス・エフ",
-        "magazines": [
-          "マンガ",
-          "エロティクス",
-          "エフ"
-        ],
-        "audiences": [
-          "その他"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 47353,
-        "genres": [
-          "Drama",
-          "Psychological",
-          "Romance",
-          "Slice of Life"
-        ],
-        "tags_en": [
-          "Psychosexual",
-          "Coming of Age",
-          "Seinen",
-          "Nudity",
-          "Rural",
-          "Primarily Teen Cast",
-          "Heterosexual",
-          "Coastal",
-          "School",
-          "Suicide",
-          "Male Protagonist",
-          "Masturbation",
-          "Anti-Hero",
-          "Bisexual",
-          "Fellatio",
-          "Drugs",
-          "Scat",
-          "Baseball",
-          "Crossdressing",
-          "Anal Sex"
-        ],
-        "tags": [
-          "成長譚",
-          "青年向け",
-          "田舎",
-          "海辺",
-          "学園",
-          "アンチヒーロー",
-          "バイセクシュアル",
-          "野球",
-          "女装・男装"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
