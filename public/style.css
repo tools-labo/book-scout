@@ -11,9 +11,9 @@
   --pink:#ff69b4;
   --pink-weak: rgba(255,105,180,0.14);
 
-  /* Cover size (list/rank) */
-  --cover-w: 104px;
-  --cover-h: 148px;
+  /* Cover size (list/rank) : BOOK☆WALKER寄せで大きめ */
+  --cover-w: 118px;
+  --cover-h: 168px;
 }
 
 *{ box-sizing:border-box; }
@@ -26,7 +26,8 @@ body{
 a{ color:inherit; text-decoration:none; }
 button{ font-family:inherit; }
 
-.wrap{ max-width:980px; margin:0 auto; padding:14px; }
+/* 余白を詰めて横幅を活かす */
+.wrap{ max-width:980px; margin:0 auto; padding: 12px; }
 .status{ color:var(--muted); margin: 8px 0 12px; }
 
 /* Buttons */
@@ -105,7 +106,7 @@ button{ font-family:inherit; }
 .gheader-inner{
   max-width: 980px;
   margin: 0 auto;
-  padding: 10px 14px;
+  padding: 10px 12px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -270,28 +271,34 @@ button{ font-family:inherit; }
 .row-more-title{ color: var(--muted); font-weight: 900; }
 
 /* =======================
- * List / Rank cards (one-row)
+ * List / Rank : カード廃止 → 仕切り線だけ
  * ======================= */
-.grid{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+.grid{ display:grid; grid-template-columns: 1fr; }
 
+/* article.card / article.rank-item を “透明” にして線だけに */
 .card, .rank-item{
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
 }
 
+/* 行：下線で区切る */
 .card-row, .rank-row{
   display:grid;
   grid-template-columns: var(--cover-w) 1fr;
   gap: 12px;
-  padding: 12px;
+  padding: 14px 0;
   align-items: start;
+  border-bottom: 1px solid var(--line);
 }
 
-.thumb, .rank-thumb{ width: var(--cover-w); }
+/* 末尾だけ線を消す（JS変更不要） */
+.grid > .card:last-child .card-row{ border-bottom: 0; }
+.rank-grid > .rank-item:last-child .rank-row{ border-bottom: 0; }
 
-.thumb img, .rank-cover img{
+.thumb{ width: var(--cover-w); }
+.thumb img{
   width: var(--cover-w);
   height: var(--cover-h);
   object-fit: contain;
@@ -300,7 +307,6 @@ button{ font-family:inherit; }
   background: #fff;
   border: 1px solid var(--line);
 }
-
 .thumb-ph{
   width:var(--cover-w);
   height:var(--cover-h);
@@ -317,27 +323,34 @@ button{ font-family:inherit; }
   border-radius: 0;
   overflow:hidden;
 }
+.rank-cover img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+}
 
-.meta .title{
+.meta .title, .rank-meta .title{
   font-weight: 1000;
   margin-bottom: 6px;
   font-size: 18px;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
-.meta .title a{
+.meta .title a, .rank-meta .title a{
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.meta .sub{
+.meta .sub, .rank-meta .sub{
   color: var(--muted);
   font-size: 12px;
   margin: 6px 0;
   line-height: 1.35;
 }
 
+/* tags */
 .pills{ display:flex; flex-wrap:wrap; gap: 6px; margin: 6px 0 0; }
 .pill{
   background: var(--chip);
@@ -396,8 +409,8 @@ button{ font-family:inherit; }
 .d-sub{ color: var(--muted); font-size: 12px; margin-bottom: 10px; line-height: 1.4; }
 .d-row{ display:flex; gap: 12px; align-items:flex-start; flex-wrap: wrap; }
 .d-img{
-  width: 150px;
-  height: 214px;
+  width: 160px;
+  height: 228px;
   object-fit: contain;
   border-radius: 0;
   background:#fff;
@@ -455,9 +468,9 @@ button{ font-family:inherit; }
 .rank-genres, .rank-tabs{
   display:flex;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-top: 1px solid var(--line);
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.85);
   overflow-x:auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -481,25 +494,8 @@ button{ font-family:inherit; }
   border-color: rgba(43,97,255,0.45);
   background: var(--blue-weak);
 }
-.rank-genre .badge, .rank-tab .badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width: 26px;
-  height: 18px;
-  padding: 0 6px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: #fff;
-  color: var(--muted);
-  font-weight: 1000;
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-}
 
-.rank-grid{ display:grid; grid-template-columns: 1fr; gap: 12px; }
-
-/* Rank badges / metric */
+/* Rank metric line */
 .rank-topline{
   display:flex;
   align-items:center;
@@ -521,6 +517,10 @@ button{ font-family:inherit; }
   color: var(--fg);
   white-space: nowrap;
 }
+.rank-pos.is-1{ border-color: rgba(234,179,8,0.55); background: rgba(234,179,8,0.10); }
+.rank-pos.is-2{ border-color: rgba(148,163,184,0.55); background: rgba(148,163,184,0.12); }
+.rank-pos.is-3{ border-color: rgba(180,83,9,0.45);  background: rgba(180,83,9,0.10); }
+
 .rank-metric{
   display:flex;
   align-items: baseline;
@@ -537,6 +537,8 @@ button{ font-family:inherit; }
   font-size: 11px;
   font-weight: 900;
 }
+.rank-metric.is-fav .num{ color: var(--pink); }
+.rank-metric.is-view .num{ color: var(--blue); }
 
 .rank-more{ margin-top: 10px; display:flex; justify-content:center; }
 .rank-more button{
