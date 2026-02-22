@@ -1,43 +1,71 @@
 {
-  "updatedAt": "2026-02-21T05:36:04.810Z",
-  "total": 151,
-  "ok": 151,
+  "updatedAt": "2026-02-22T07:08:22.626Z",
+  "total": 159,
+  "ok": 159,
   "ng": 0,
   "stats": {
     "skippedPerfect": 151,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "fetchedAmazonAsins": 8,
+    "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 0,
-      "magazinesEmpty": 0,
+      "magazineEmpty": 1,
+      "magazinesEmpty": 1,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 0,
+      "audiencesOnlyOther": 1,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 0,
+      "tagsMissingNotHidden": 2,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 0,
-      "outNotPerfect": 0
+      "prevNotPerfect": 8,
+      "outNotPerfect": 2
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "からかい上手の高木さん :: noVol1",
+        "ゴブリンスレイヤー :: noVol1",
+        "スキップとローファー :: noVol1",
+        "となりの怪物くん :: noVol1",
+        "君は放課後インソムニア :: noVol1",
+        "無限の住人 :: noVol1",
+        "私たちの幸せな時間 :: noVol1",
+        "銀魂 :: noVol1"
+      ],
+      "outNotPerfect": [
+        "君は放課後インソムニア :: tags_missing_en(remain=2,types=string)",
+        "私たちの幸せな時間 :: magazine,magazines[],tags_missing_en(remain=1,types=string)"
+      ],
+      "tagsMissingNotHidden": [
+        "君は放課後インソムニア",
+        "私たちの幸せな時間"
+      ],
+      "magazineEmpty": [
+        "私たちの幸せな時間"
+      ],
+      "magazinesEmpty": [
+        "私たちの幸せな時間"
+      ],
+      "audiencesOnlyOther": [
+        "私たちの幸せな時間"
+      ]
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 0,
+      "chunks": 1,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 8
     }
   },
   "items": [
@@ -1617,6 +1645,46 @@
       "meta": null
     },
     {
+      "seriesKey": "からかい上手の高木さん",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091250157",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091250157?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091250155",
+        "asin": "4091250157",
+        "title": "からかい上手の高木さん (1) (ゲッサン少年サンデーコミックススペシャル)",
+        "synopsis": "中学生の西片は、いつも隣の席の高木さんに絶妙なタイミングでからかわれている。仕返しをしようとするものの悉く失敗し、やがて二人のやり取りにはほのかな恋心が混ざり始める。",
+        "image": "https://m.media-amazon.com/images/I/51g3RhKRFmL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "山本 崇一朗",
+        "releaseDate": "2014-06-12T00:00:01Z",
+        "magazine": "ゲッサン",
+        "magazines": [
+          "ゲッサン"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "からかい上手の高木さん",
+        "anilistId": 138552,
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Full Color",
+          "School"
+        ],
+        "tags": [
+          "フルカラー",
+          "学園"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ギヴン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4403664490",
@@ -1931,6 +1999,72 @@
           "監獄",
           "鉄道",
           "動物"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ゴブリンスレイヤー",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4757551169",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757551169?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784757551169",
+        "asin": "4757551169",
+        "title": "ゴブリンスレイヤー(1) (ビッグガンガンコミックス)",
+        "synopsis": "駆け出しの女神官が初任務でゴブリンに襲われた時、彼女を救ったのはゴブリン退治専門の剣士だった。村を蹂躙した過去を持つ彼は、仲間と共に執念深くゴブリンを狩り続ける。",
+        "image": "https://m.media-amazon.com/images/I/61kGbaz7sSL._SL500_.jpg",
+        "publisher": "スクウェア・エニックス",
+        "author": "蝸牛 くも / 黒瀬 浩介",
+        "releaseDate": "2016-09-13T00:00:01Z",
+        "magazine": "月刊ビッグガンガン",
+        "magazines": [
+          "月刊ビッグガンガン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ゴブリンスレイヤー",
+        "anilistId": 87321,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Seinen",
+          "Revenge",
+          "Goblin",
+          "Gore",
+          "Male Protagonist",
+          "Anti-Hero",
+          "Love Triangle",
+          "Rape",
+          "Female Harem",
+          "Swordplay",
+          "Magic",
+          "Nudity",
+          "Elf",
+          "Medieval",
+          "Witch",
+          "Nun"
+        ],
+        "tags": [
+          "青年向け",
+          "復讐",
+          "ゴブリン",
+          "アンチヒーロー",
+          "三角関係",
+          "逆ハーレム",
+          "剣術",
+          "魔法",
+          "エルフ",
+          "中世",
+          "魔女",
+          "修道女"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -2873,6 +3007,67 @@
       "meta": null
     },
     {
+      "seriesKey": "スキップとローファー",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4065142091",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065142091?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065142097",
+        "asin": "4065142091",
+        "title": "スキップとローファー(1) (アフタヌーンKC)",
+        "synopsis": "田舎育ちの優等生・岩倉美津未は、国家公務員を夢見て東京の名門高校に進学する。天然な彼女は都会のペースに戸惑いながらも、自由人の志摩をはじめ個性豊かな仲間と出会い、友情と恋に揺れながら成長していく。",
+        "image": "https://m.media-amazon.com/images/I/51B9SWiLOkL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "高松 美咲",
+        "releaseDate": "2019-01-23T00:00:01Z",
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "スキップとローファー",
+        "anilistId": 109285,
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Coming of Age",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "School",
+          "Heterosexual",
+          "Male Protagonist",
+          "Rural",
+          "Iyashikei",
+          "Seinen",
+          "Urban",
+          "LGBTQ+ Themes",
+          "Acting",
+          "Transgender",
+          "Love Triangle"
+        ],
+        "tags": [
+          "成長譚",
+          "学園",
+          "田舎",
+          "癒し系",
+          "青年向け",
+          "都会",
+          "LGBTQテーマ",
+          "演技",
+          "トランスジェンダー",
+          "三角関係"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ソウルイーター",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4757512236",
@@ -3686,6 +3881,61 @@
           "医療",
           "ケンタウロス",
           "少年向け"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "となりの怪物くん",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063655407",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063655407?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063655407",
+        "asin": "4063655407",
+        "title": "となりの怪物くん(1) (デザートコミックス)",
+        "synopsis": "成績優秀だが友達に無関心な女子高生・水谷雫は、不登校の暴れん坊・吉田春にプリントを届けたことをきっかけに懐かれてしまう。突拍子もない春に戸惑いながらも、次第に本当の自分と向き合っていく。",
+        "image": "https://m.media-amazon.com/images/I/51YasSHMsfL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "ろびこ",
+        "releaseDate": "2009-01-13T00:00:01Z",
+        "magazine": "デザート",
+        "magazines": [
+          "デザート"
+        ],
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "となりの怪物くん",
+        "anilistId": 43702,
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "School",
+          "Shoujo",
+          "Love Triangle",
+          "Delinquents",
+          "Coming of Age",
+          "Heterosexual",
+          "Tsundere",
+          "Kuudere",
+          "Female Protagonist",
+          "Baseball"
+        ],
+        "tags": [
+          "学園",
+          "少女",
+          "三角関係",
+          "不良",
+          "成長譚",
+          "ツンデレ",
+          "クーデレ",
+          "野球"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -7565,6 +7815,68 @@
       "meta": null
     },
     {
+      "seriesKey": "君は放課後インソムニア",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4098603950",
+        "amazonDp": "https://www.amazon.co.jp/dp/4098603950?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784098603954",
+        "asin": "4098603950",
+        "title": "君は放課後インソムニア (1) (BIG SPIRITS COMICS)",
+        "synopsis": "不眠症に悩む男子高校生・丸太は、同じ症状を抱えるクラスメイトの伊咲と出会う。二人は学校の旧天文台を秘密基地にして眠りを分け合ううち、星や宇宙への興味と淡い恋心を育んでいく。",
+        "image": "https://m.media-amazon.com/images/I/516mh2KGdAL._SL500_.jpg",
+        "publisher": "小学館サービス",
+        "author": "オジロ マコト",
+        "releaseDate": "2019-09-12T00:00:01Z",
+        "magazine": "ビッグコミックスピリッツ",
+        "magazines": [
+          "ビッグコミックスピリッツ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "君は放課後インソムニア",
+        "anilistId": 110473,
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Coming of Age",
+          "Astronomy",
+          "Iyashikei",
+          "Heterosexual",
+          "School",
+          "School Club",
+          "Photography",
+          "Seinen",
+          "Disability",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Outdoor Activities",
+          "Camping",
+          "Tomboy"
+        ],
+        "tags": [
+          "成長譚",
+          "癒し系",
+          "学園",
+          "部活",
+          "写真",
+          "青年向け",
+          "障害",
+          "アウトドア",
+          "ボーイッシュ"
+        ],
+        "tags_missing_en": [
+          "Astronomy",
+          "Camping"
+        ],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "呪術廻戦",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/呪術廻戦-1-ジャンプコミックス-芥見-下々/dp/4088815165",
@@ -9563,6 +9875,71 @@
       "meta": null
     },
     {
+      "seriesKey": "無限の住人",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063140903",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063140903?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063140903",
+        "asin": "4063140903",
+        "title": "無限の住人 1 (アフタヌーンKC)",
+        "synopsis": "不死身の用心棒・万次は、罪を償うため千人斬りを誓う。両親を仇討ちしたい少女・凜を守ることになった彼は、剣客集団“逸刀流”と対峙しながら、血と宿命の旅を歩む。",
+        "image": "https://m.media-amazon.com/images/I/311pYM+b5wL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "沙村 広明",
+        "releaseDate": "1994-09-01T00:00:01Z",
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "無限の住人",
+        "anilistId": 30658,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Martial Arts",
+          "Revenge",
+          "Samurai",
+          "Swordplay",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Anti-Hero",
+          "Historical",
+          "Gore",
+          "Demons",
+          "Philosophy",
+          "Prison",
+          "Rape",
+          "Urban Fantasy",
+          "Fugitive",
+          "Torture"
+        ],
+        "tags": [
+          "武術",
+          "復讐",
+          "侍",
+          "剣術",
+          "青年向け",
+          "アンチヒーロー",
+          "歴史",
+          "悪魔",
+          "哲学",
+          "監獄",
+          "現代ファンタジー",
+          "逃亡者"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "監獄学園",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063820432",
@@ -9683,6 +10060,63 @@
           "中世"
         ],
         "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "私たちの幸せな時間",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/410771439X",
+        "amazonDp": "https://www.amazon.co.jp/dp/410771439X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784107714398",
+        "asin": "410771439X",
+        "title": "私たちの幸せな時間 (Bunch Comics Extra)",
+        "synopsis": "自殺未遂を繰り返す元歌手の美那は、伯母の修道女に頼まれ死刑囚の少年・由との面会を重ねる。毎週木曜日の限られた時間の中で、互いの過去と罪を語り合い、生きる意味を探していく。",
+        "image": "https://m.media-amazon.com/images/I/51HUz6scozL._SL500_.jpg",
+        "publisher": "新潮社",
+        "author": "佐原 ミズ / 孔 枝泳 / 蓮池 薫",
+        "releaseDate": "2008-12-09T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "私たちの幸せな時間",
+        "anilistId": 41734,
+        "genres": [
+          "Drama",
+          "Music",
+          "Psychological",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Female Protagonist",
+          "Seinen",
+          "Rehabilitation",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "Heterosexual",
+          "Prison",
+          "Suicide",
+          "Rape",
+          "Nun",
+          "Religion",
+          "Classical Music"
+        ],
+        "tags": [
+          "青年向け",
+          "更生",
+          "哲学",
+          "監獄",
+          "修道女",
+          "宗教"
+        ],
+        "tags_missing_en": [
+          "Classical Music"
+        ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10543,6 +10977,101 @@
         "source": "manual_batch",
         "addedAt": "2026-02-13"
       }
+    },
+    {
+      "seriesKey": "銀魂",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088736230",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088736230?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088736235",
+        "asin": "4088736230",
+        "title": "銀魂-ぎんたま- 1",
+        "synopsis": "宇宙人に支配され刀が禁じられた江戸で、侍魂を失わない万事屋店主・坂田銀時が、仲間の神楽や新八とともに騒動を巻き起こす。緩さと熱さが同居したギャグとバトルの時代劇。",
+        "image": "https://m.media-amazon.com/images/I/519NNIUuOBL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "空知 英秋",
+        "releaseDate": "2004-04-02T00:00:01Z",
+        "magazine": "週刊少年ジャンプ / ジャンプGIGA / 銀魂公式アプリ（完結編）",
+        "magazines": [
+          "週刊少年ジャンプ",
+          "ジャンプGIGA",
+          "銀魂公式アプリ(完結編)"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "銀魂",
+        "anilistId": 30044,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Found Family",
+          "Samurai",
+          "Parody",
+          "Meta",
+          "Swordplay",
+          "Male Protagonist",
+          "Aliens",
+          "Philosophy",
+          "Episodic",
+          "Shounen",
+          "Historical",
+          "Space",
+          "Ensemble Cast",
+          "Anachronism",
+          "Police",
+          "War",
+          "Conspiracy",
+          "Dystopian",
+          "Fugitive",
+          "Robots",
+          "Ninja",
+          "Assassins",
+          "Homeless",
+          "Ghost",
+          "Idol",
+          "Shrine Maiden",
+          "Crossdressing",
+          "LGBTQ+ Themes",
+          "Gender Bending",
+          "Dissociative Identities"
+        ],
+        "tags": [
+          "疑似家族",
+          "侍",
+          "パロディ",
+          "剣術",
+          "宇宙人",
+          "哲学",
+          "少年向け",
+          "歴史",
+          "宇宙",
+          "警察",
+          "戦争",
+          "陰謀",
+          "ディストピア",
+          "逃亡者",
+          "ロボット",
+          "忍者",
+          "暗殺者",
+          "ホームレス",
+          "幽霊",
+          "アイドル",
+          "巫女",
+          "女装・男装",
+          "LGBTQテーマ",
+          "性転換",
+          "多重人格"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
     },
     {
       "seriesKey": "鋼の錬金術師",
