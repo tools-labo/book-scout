@@ -37,7 +37,7 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <!-- 閲覧 -->
+    <!-- 人気 -->
     <section class="section" id="panelViews" role="tabpanel" aria-label="人気ランキング" style="margin-top:10px;">
       <div class="section-head">
         <h2 class="section-title">人気ランキング</h2>
@@ -52,7 +52,7 @@
       <div class="section-head">
         <h2 class="section-title">支持率ランキング</h2>
       </div>
-      <p class="section-sub">※ 支持率＝（お気に入り数 ÷ この条件内のお気に入り総数）×100</p>
+      <p class="section-sub">※ 支持率＝（お気に入り数 ÷ 閲覧数）×100（閲覧数10以上のみ）</p>
       <section id="rankFav" class="rank-grid"></section>
       <div class="rank-more"><button id="moreFav" type="button">もっと見る</button></div>
     </section>
@@ -175,7 +175,7 @@
       return map;
     }
 
-    // ---- Rank item HTML（favは%表示） ----
+    // ---- Rank item HTML ----
     function posClass(rank){
       if (rank === 1) return "is-1";
       if (rank === 2) return "is-2";
@@ -184,13 +184,12 @@
     }
 
     function fmtPct(x){
-      if (!Number.isFinite(x)) return "0%";
+      if (!Number.isFinite(x) || x <= 0) return "0%";
       if (x >= 10) return `${Math.round(x)}%`;
-      // 10%未満は1桁小数で視認性を上げる（0.0〜9.9）
-      return `${Math.round(x * 10) / 10}%`;
+      return `${Math.round(x * 10) / 10}%`; // 0.0〜9.9
     }
 
-    function rankItemHtml({ rank, seriesKey, n, unit, work, favTotal }) {
+    function rankItemHtml({ rank, seriesKey, unit, work, views, fav, supportPct }) {
       const key = encodeURIComponent(seriesKey);
 
       const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
@@ -202,12 +201,12 @@
 
       const tagsJa = pickArr(work, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 
-      const nNum = Number(n || 0);
       const isFav = unit === "fav";
-      const rate = (isFav && favTotal > 0) ? (nNum / favTotal * 100) : 0;
-
-      const numText = isFav ? fmtPct(rate) : String(nNum || 0);
+      const numText = isFav ? fmtPct(supportPct) : String(Number(views || 0));
       const lblText = isFav ? "支持率" : "閲覧";
+
+      // 支持率では「お気に入り/閲覧」も小さく補助表示（意味が伝わる）
+      const aux = isFav ? `お気に入り: ${Number(fav||0)} / 閲覧: ${Number(views||0)}` : "";
 
       return `
         <article class="rank-item">
@@ -232,6 +231,7 @@
               <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
               ${author ? `<div class="sub">${esc(author)}</div>` : ""}
               ${magazine ? `<div class="sub">連載誌: ${esc(magazine)}</div>` : ""}
+              ${aux ? `<div class="sub">${esc(aux)}</div>` : ""}
 
               ${tagsJa.length ? `<div class="sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
             </div>
@@ -302,6 +302,16 @@
       };
     }
 
+    // ---- 支持率（B案） ----
+    const MIN_VIEWS_FOR_SUPPORT = 10; // ←確定
+    const WEIGHT_FULL_AT = 20;        // views>=20 で満額（w=1）
+
+    function weightByViews(views) {
+      const v = Number(views || 0);
+      if (v <= 0) return 0;
+      return Math.min(1, v / WEIGHT_FULL_AT);
+    }
+
     // ---- 状態 ----
     const MAX_ROWS = 100;
     const STEP = 50;
@@ -313,11 +323,11 @@
       viewsAll: [],
       favAll: [],
       viewsRows: [],
-      favRows: [],
+      favRows: [],       // favRows は “支持率用に整形済みの配列” を入れる
       workMap: new Map(),
 
-      // 支持率母数（絞り込み後 favRows の合計）
-      favTotal: 0
+      // viewsBySeries
+      viewMap: new Map()
     };
 
     function setTab(next) {
@@ -367,10 +377,12 @@
 
         const html = chunk.map((r, i) => {
           const seriesKey = toText(r?.seriesKey);
-          const n = Number(r?.n || 0);
+          const views = Number(r?.n || 0);
           const work = state.workMap.get(seriesKey);
           const rank = state.viewsShown + i + 1;
-          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "view", work, favTotal: state.favTotal }) : "";
+          return (seriesKey && work)
+            ? rankItemHtml({ rank, seriesKey, unit: "view", work, views, fav: 0, supportPct: 0 })
+            : "";
         }).join("");
 
         if (state.viewsShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
@@ -389,10 +401,19 @@
 
         const html = chunk.map((r, i) => {
           const seriesKey = toText(r?.seriesKey);
-          const n = Number(r?.n || 0);
           const work = state.workMap.get(seriesKey);
           const rank = state.favShown + i + 1;
-          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "fav", work, favTotal: state.favTotal }) : "";
+          return (seriesKey && work)
+            ? rankItemHtml({
+                rank,
+                seriesKey,
+                unit: "fav",
+                work,
+                views: r.views,
+                fav: r.fav,
+                supportPct: r.supportPct
+              })
+            : "";
         }).join("");
 
         if (state.favShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
@@ -403,31 +424,76 @@
       }
     }
 
+    function buildViewMap(viewRows) {
+      const m = new Map();
+      for (const r of (viewRows || [])) {
+        const sk = toText(r?.seriesKey);
+        if (!sk) continue;
+        m.set(sk, Number(r?.n || 0));
+      }
+      return m;
+    }
+
+    function buildSupportRows(favRowsRaw, viewMap) {
+      const out = [];
+
+      for (const r of (favRowsRaw || [])) {
+        const sk = toText(r?.seriesKey);
+        if (!sk) continue;
+
+        const fav = Number(r?.n || 0);
+        const views = Number(viewMap.get(sk) || 0);
+
+        // views 条件
+        if (views < MIN_VIEWS_FOR_SUPPORT) continue;
+
+        // support% は表示用
+        const supportPct = (views > 0) ? (fav / views * 100) : 0;
+
+        // score は並び替え用（暴れ対策）
+        const w = weightByViews(views);
+        const score = (views > 0) ? ((fav / views) * w) : 0;
+
+        out.push({ seriesKey: sk, fav, views, supportPct, score });
+      }
+
+      // 降順：score → views → fav
+      out.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        if (b.views !== a.views) return b.views - a.views;
+        return b.fav - a.fav;
+      });
+
+      return out;
+    }
+
     function applyGenreAndRerender() {
       const activeId = getRankGenreState();
       const tab = RANK_GENRE_TABS.find(t => t.id === activeId) || RANK_GENRE_TABS[0];
 
       renderRankGenreTabs(tab.id);
 
-      // 絞り込み
+      // Popular（閲覧数）：ジャンル絞り込み
       if (!tab.match?.length) {
         state.viewsRows = state.viewsAll.slice();
-        state.favRows = state.favAll.slice();
       } else {
         state.viewsRows = state.viewsAll.filter(r => {
           const sk = toText(r?.seriesKey);
           const w = state.workMap.get(sk);
           return w ? hasAnyGenre(w, tab.match) : false;
         });
-        state.favRows = state.favAll.filter(r => {
+      }
+
+      // Support：ジャンル絞り込みは favAll を先に絞ってから計算
+      let favBase = state.favAll.slice();
+      if (tab.match?.length) {
+        favBase = favBase.filter(r => {
           const sk = toText(r?.seriesKey);
           const w = state.workMap.get(sk);
           return w ? hasAnyGenre(w, tab.match) : false;
         });
       }
-
-      // 支持率母数（絞り込み後 favRows の合計）
-      state.favTotal = state.favRows.reduce((acc, r) => acc + Number(r?.n || 0), 0);
+      state.favRows = buildSupportRows(favBase, state.viewMap);
 
       // 描画リセット
       state.viewsShown = 0;
@@ -487,6 +553,9 @@
 
         state.viewsAll = pickRows(viewBySeries);
         state.favAll   = pickRows(favBySeries);
+
+        // view map（支持率計算用）
+        state.viewMap = buildViewMap(state.viewsAll);
 
         // 初期tabは人気
         state.tab = "views";
