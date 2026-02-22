@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T08:48:40.790Z",
+  "updatedAt": "2026-02-22T09:45:23.723Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -60,16 +60,36 @@
       "n": "1"
     },
     {
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
       "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "n": "1"
+    },
+    {
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ようこそ実力至上主義の教室へ",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 16
+    "rows": 18,
+    "rows_before_limit_at_least": 21
   }
 }

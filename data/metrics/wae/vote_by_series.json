@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T08:48:40.790Z",
+  "updatedAt": "2026-02-22T09:45:23.723Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -17,10 +17,14 @@
   "rows": [
     {
       "seriesKey": "血の轍",
-      "n": "5"
+      "n": "6"
     },
     {
       "seriesKey": "ドラゴンボール",
+      "n": "3"
+    },
+    {
+      "seriesKey": "3月のライオン",
       "n": "3"
     },
     {
@@ -28,7 +32,19 @@
       "n": "2"
     },
     {
+      "seriesKey": "よつばと！",
+      "n": "2"
+    },
+    {
       "seriesKey": "しまなみ誰そ彼",
+      "n": "2"
+    },
+    {
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "2"
+    },
+    {
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
     {
@@ -40,11 +56,31 @@
       "n": "1"
     },
     {
+      "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
       "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
+      "seriesKey": "聲の形",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
       "seriesKey": "薫る花は凛と咲く",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぼくは麻理のなか",
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -69,7 +105,7 @@
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 21
+    "rows": 22,
+    "rows_before_limit_at_least": 36
   }
 }

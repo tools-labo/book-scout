@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T08:48:40.790Z",
+  "updatedAt": "2026-02-22T09:45:23.723Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -21,6 +21,31 @@
   "rows": [
     {
       "mood": "funny",
+      "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ぐらんぶる",
       "n": "1"
     },
@@ -35,13 +60,18 @@
       "n": "1"
     },
     {
-      "mood": "funny",
-      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "mood": "healing",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
-      "mood": "funny",
-      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "mood": "healing",
+      "seriesKey": "よつばと！",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "1"
     },
     {
@@ -57,11 +87,41 @@
     {
       "mood": "messy",
       "seriesKey": "血の轍",
-      "n": "5"
+      "n": "6"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "ぼくは麻理のなか",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "3月のライオン",
+      "n": "1"
     },
     {
       "mood": "messy",
       "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "よつばと！",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "聲の形",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -77,6 +137,11 @@
     {
       "mood": "satisfying",
       "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -98,10 +163,15 @@
       "mood": "tearjerker",
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "タコピーの原罪",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 16,
-    "rows_before_limit_at_least": 21
+    "rows": 30,
+    "rows_before_limit_at_least": 36
   }
 }
