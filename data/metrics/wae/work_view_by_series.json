@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T13:12:08.348Z",
+  "updatedAt": "2026-02-22T13:52:33.208Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -28,11 +28,11 @@
       "n": "4"
     },
     {
-      "seriesKey": "監獄学園",
-      "n": "2"
+      "seriesKey": "ドラゴンボール",
+      "n": "3"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "監獄学園",
       "n": "2"
     },
     {
@@ -166,6 +166,6 @@
   ],
   "raw": {
     "rows": 37,
-    "rows_before_limit_at_least": 53
+    "rows_before_limit_at_least": 54
   }
 }
