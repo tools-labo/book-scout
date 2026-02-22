@@ -1,12 +1,8 @@
 {
-  "updatedAt": "2026-02-22T07:52:33.706Z",
-  "total": 165,
-  "droppedTotal": 3,
-  "droppedSeriesKeys": [
-    "うみべの女の子",
-    "マイ・ブロークン・マリコ",
-    "帰ってください! 阿久津さん"
-  ],
+  "updatedAt": "2026-02-22T08:14:09.937Z",
+  "total": 168,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -199,9 +195,11 @@
         "哲学",
         "更生",
         "青年向け",
+        "将棋",
         "疑似家族",
         "いじめ",
         "癒し系",
+        "ボードゲーム",
         "グルメ",
         "養子縁組",
         "部活",
@@ -855,6 +853,50 @@
       ],
       "meta": {
         "anilistId": 30436,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "うみべの女の子",
+      "title": "うみべの女の子 1 (F×COMICS)",
+      "author": "浅野 いにお",
+      "publisher": "太田出版",
+      "releaseDate": "2011-03-17T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/41P-vxBeEKL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4778321383",
+      "amazonDp": "https://www.amazon.co.jp/dp/4778321383?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784778321383",
+      "asin": "4778321383",
+      "synopsis": "静かな海辺の町に暮らす中学生の小梅と磯辺。好奇心から始まった身体の関係は、やがて嫉妬や戸惑いを呼び、揺れる感情と共に二人の思春期を描く。",
+      "magazine": "マンガ・エロティクス・エフ",
+      "magazines": [
+        "マンガ",
+        "エロティクス",
+        "エフ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "青年向け",
+        "田舎",
+        "海辺",
+        "学園",
+        "アンチヒーロー",
+        "バイセクシュアル",
+        "野球",
+        "女装・男装"
+      ],
+      "meta": {
+        "anilistId": 47353,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3932,6 +3974,45 @@
       }
     },
     {
+      "seriesKey": "マイ・ブロークン・マリコ",
+      "title": "マイ・ブロークン・マリコ (BRIDGE COMICS)",
+      "author": "平庫 ワカ",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2020-01-08T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51Fc6Kh0BXL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040642465",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040642465?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784040642468",
+      "asin": "4040642465",
+      "synopsis": "OLのトモヨは、虐待を受けていた親友マリコの突然の死を知り、遺骨を抱えて旅に出る。苦しい過去と向き合いながら、マリコの魂を慰めるために彼女なりの別れを探すロードムービー的ドラマ。",
+      "magazine": "COMIC BRIDGE",
+      "magazines": [
+        "COMIC BRIDGE"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Psychological"
+      ],
+      "tags": [
+        "海辺",
+        "女性向け",
+        "成長譚",
+        "ボーイッシュ",
+        "百合",
+        "更生",
+        "LGBTQテーマ",
+        "哲学"
+      ],
+      "meta": {
+        "anilistId": 112579,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "マギ",
       "title": "マギ 1 (少年サンデーコミックス)",
       "author": "大高 忍",
@@ -5996,6 +6077,47 @@
       "meta": {
         "anilistId": 109501,
         "wikiTitle": "山田くんとLv999の恋をする",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "帰ってください! 阿久津さん",
+      "title": "帰ってください! 阿久津さん (1) (角川コミックス・エース)",
+      "author": "長岡 太一",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2020-06-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51NllSsQmKL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041093570",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041093570?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784041093573",
+      "asin": "4041093570",
+      "synopsis": "真面目な男子・大山の部屋に、クラスの不良少女・阿久津さんが日常的に入り浸る。距離感ゼロで甘えたりからかったりする阿久津さんに振り回されながら、大山は彼女への特別な想いに気付き始める。",
+      "magazine": "ヤングエースUP",
+      "magazines": [
+        "ヤングエースUP"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "癒し系",
+        "ツンデレ",
+        "ギャル",
+        "不良",
+        "青年向け",
+        "ボーイッシュ",
+        "学園",
+        "いじめ"
+      ],
+      "meta": {
+        "anilistId": 113501,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },

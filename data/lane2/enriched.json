@@ -1,84 +1,54 @@
 {
-  "updatedAt": "2026-02-22T07:52:33.706Z",
+  "updatedAt": "2026-02-22T08:14:09.937Z",
   "total": 168,
   "ok": 168,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 158,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 10,
-    "magAudienceTodoAdded": 5,
+    "skippedPerfect": 164,
+    "skippedAniList": 4,
+    "skippedWiki": 4,
+    "skippedAmazon": 4,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 4,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 3,
-      "magazinesEmpty": 3,
+      "magazineEmpty": 0,
+      "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 6,
+      "audiencesOnlyOther": 2,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 2,
+      "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 10,
-      "outNotPerfect": 4
+      "prevNotPerfect": 4,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "3月のライオン :: noVol1",
-        "うみべの女の子 :: noVol1",
-        "ぼくは麻理のなか :: noVol1",
-        "マイ・ブロークン・マリコ :: noVol1",
-        "嘘喰い :: noVol1",
-        "夫婦以上、恋人未満。 :: noVol1",
-        "寄生獣 :: noVol1",
-        "帰ってください! 阿久津さん :: noVol1",
-        "政宗くんのリベンジ :: noVol1",
-        "銃夢 :: noVol1"
-      ],
-      "outNotPerfect": [
         "3月のライオン :: tags_missing_en(remain=2,types=string)",
-        "うみべの女の子 :: magazine,magazines[],tags_missing_en(remain=2,types=string)",
+        "うみべの女の子 :: magazine,magazines[]",
         "マイ・ブロークン・マリコ :: magazine,magazines[]",
         "帰ってください! 阿久津さん :: magazine,magazines[]"
       ],
-      "tagsMissingNotHidden": [
-        "3月のライオン",
-        "うみべの女の子"
-      ],
-      "magazineEmpty": [
-        "うみべの女の子",
-        "マイ・ブロークン・マリコ",
-        "帰ってください! 阿久津さん"
-      ],
-      "magazinesEmpty": [
-        "うみべの女の子",
-        "マイ・ブロークン・マリコ",
-        "帰ってください! 阿久津さん"
-      ],
       "audiencesOnlyOther": [
         "うみべの女の子",
-        "ぼくは麻理のなか",
-        "マイ・ブロークン・マリコ",
-        "帰ってください! 阿久津さん",
-        "政宗くんのリベンジ",
-        "銃夢"
+        "マイ・ブロークン・マリコ"
       ]
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 10
+      "successItems": 0
     }
   },
   "items": [
@@ -381,18 +351,17 @@
           "哲学",
           "更生",
           "青年向け",
+          "将棋",
           "疑似家族",
           "いじめ",
           "癒し系",
+          "ボードゲーム",
           "グルメ",
           "養子縁組",
           "部活",
           "三角関係"
         ],
-        "tags_missing_en": [
-          "Shogi",
-          "Board Game"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1372,13 +1341,17 @@
         "publisher": "太田出版",
         "author": "浅野 いにお",
         "releaseDate": "2011-03-17T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "マンガ・エロティクス・エフ",
+        "magazines": [
+          "マンガ",
+          "エロティクス",
+          "エフ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "うみべの女の子",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 47353,
         "genres": [
           "Drama",
@@ -1419,10 +1392,7 @@
           "野球",
           "女装・男装"
         ],
-        "tags_missing_en": [
-          "Fellatio",
-          "Anal Sex"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -6034,13 +6004,15 @@
         "publisher": "KADOKAWA",
         "author": "平庫 ワカ",
         "releaseDate": "2020-01-08T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "COMIC BRIDGE",
+        "magazines": [
+          "COMIC BRIDGE"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "マイ・ブロークン・マリコ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 112579,
         "genres": [
           "Drama",
@@ -9138,13 +9110,15 @@
         "publisher": "KADOKAWA",
         "author": "長岡 太一",
         "releaseDate": "2020-06-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ヤングエースUP",
+        "magazines": [
+          "ヤングエースUP"
         ],
-        "magazineSource": null,
-        "wikiTitle": "帰ってください! 阿久津さん",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 113501,
         "genres": [
           "Comedy",
