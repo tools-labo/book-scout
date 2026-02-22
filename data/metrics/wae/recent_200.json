@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T11:33:48.635Z",
+  "updatedAt": "2026-02-22T13:12:08.348Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,72 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-22 12:48:18",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 12:46:44",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 12:28:39",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 12:26:31",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "【推しの子】",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:53:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヴァニタスの手記",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
+    {
+      "timestamp": "2026-02-22 11:42:02",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-22 11:22:14",
       "type": "work_view",
@@ -2176,76 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:54",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=healing",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:54",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=healing,satisfying",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:53",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:52",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=page_turner",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:51",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 04:38:50",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 346
+    "rows_before_limit_at_least": 352
   }
 }

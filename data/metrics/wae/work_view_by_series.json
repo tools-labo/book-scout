@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T11:33:48.635Z",
+  "updatedAt": "2026-02-22T13:12:08.348Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,15 +17,15 @@
   "rows": [
     {
       "seriesKey": "アイアムアヒーロー",
-      "n": "7"
+      "n": "9"
     },
     {
       "seriesKey": "【推しの子】",
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "監獄学園",
@@ -44,7 +44,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "ハピネス",
       "n": "1"
     },
     {
@@ -65,6 +65,10 @@
     },
     {
       "seriesKey": "カグラバチ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴァニタスの手記",
       "n": "1"
     },
     {
@@ -140,6 +144,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "n": "1"
+    },
+    {
       "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
       "n": "1"
     },
@@ -152,12 +160,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ハピネス",
+      "seriesKey": "血の轍",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 35,
-    "rows_before_limit_at_least": 47
+    "rows": 37,
+    "rows_before_limit_at_least": 53
   }
 }
