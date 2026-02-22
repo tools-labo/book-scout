@@ -624,12 +624,11 @@ button{ font-family:inherit; }
 }
 
 /* =======================
- * Hero
+ * Hero（左テキスト / 右画像）
+ * - index.html側が hero-inner/hero-text/hero-actions でも
+ *   旧版 hero-copy/hero-cta でも崩れないように両対応
  * ======================= */
 .hero{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
   margin: 10px 0 18px;
   padding: 12px;
   border: 1px solid var(--line);
@@ -637,20 +636,20 @@ button{ font-family:inherit; }
   background: #fff;
 }
 
-.hero-media{
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
+/* 新版(index.html想定) */
+.hero-inner{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: center;
 }
 
-.hero-img{
-  width: 100%;
-  height: auto;
-  display: block;
+/* 旧版(class名だけ違うケース) */
+.hero{
+  display:block;
 }
-
-.hero-copy{
+.hero .hero-copy,
+.hero .hero-text{
   min-width: 0;
 }
 
@@ -661,26 +660,45 @@ button{ font-family:inherit; }
   letter-spacing: -0.02em;
   line-height: 1.15;
 }
-
-.hero-lead{
+.hero-lead,
+.hero-sub{
   margin: 10px 0 0;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
 }
 
-.hero-cta{
+.hero-cta,
+.hero-actions{
   margin-top: 12px;
   display:flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-/* 横幅があるときは左右2カラム */
+/* 画像側 */
+.hero-media{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-width: 0;
+}
+.hero-media img,
+.hero-img{
+  width: 100%;
+  height: auto;
+  display:block;
+  max-width: 360px;
+}
+
+/* 横幅があるときは左右2カラム（左=テキスト / 右=画像） */
 @media (min-width: 860px){
-  .hero{
+  .hero-inner{
     grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
+    gap: 16px;
+  }
+  .hero-media{
+    justify-content:flex-end;
   }
   .hero-title{ font-size: 26px; }
 }
