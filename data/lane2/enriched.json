@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-02-22T07:08:22.626Z",
+  "updatedAt": "2026-02-22T07:21:41.149Z",
   "total": 159,
   "ok": 159,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 151,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 8,
-    "magAudienceTodoAdded": 1,
+    "skippedPerfect": 157,
+    "skippedAniList": 2,
+    "skippedWiki": 1,
+    "skippedAmazon": 2,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
@@ -21,30 +21,19 @@
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
       "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 2,
+      "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 8,
-      "outNotPerfect": 2
+      "prevNotPerfect": 2,
+      "outNotPerfect": 1
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "からかい上手の高木さん :: noVol1",
-        "ゴブリンスレイヤー :: noVol1",
-        "スキップとローファー :: noVol1",
-        "となりの怪物くん :: noVol1",
-        "君は放課後インソムニア :: noVol1",
-        "無限の住人 :: noVol1",
-        "私たちの幸せな時間 :: noVol1",
-        "銀魂 :: noVol1"
-      ],
-      "outNotPerfect": [
         "君は放課後インソムニア :: tags_missing_en(remain=2,types=string)",
         "私たちの幸せな時間 :: magazine,magazines[],tags_missing_en(remain=1,types=string)"
       ],
-      "tagsMissingNotHidden": [
-        "君は放課後インソムニア",
-        "私たちの幸せな時間"
+      "outNotPerfect": [
+        "私たちの幸せな時間 :: magazine,magazines[]"
       ],
       "magazineEmpty": [
         "私たちの幸せな時間"
@@ -60,12 +49,12 @@
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 8
+      "successItems": 0
     }
   },
   "items": [
@@ -7859,6 +7848,7 @@
         ],
         "tags": [
           "成長譚",
+          "天文学",
           "癒し系",
           "学園",
           "部活",
@@ -7866,12 +7856,10 @@
           "青年向け",
           "障害",
           "アウトドア",
+          "キャンプ",
           "ボーイッシュ"
         ],
-        "tags_missing_en": [
-          "Astronomy",
-          "Camping"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10112,11 +10100,10 @@
           "哲学",
           "監獄",
           "修道女",
-          "宗教"
+          "宗教",
+          "クラシック音楽"
         ],
-        "tags_missing_en": [
-          "Classical Music"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
