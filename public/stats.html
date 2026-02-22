@@ -1,4 +1,3 @@
-<!-- public/stats.html（全差し替え） -->
 <!doctype html>
 <html lang="ja">
 <head>
@@ -27,10 +26,10 @@
 
     <div class="rank-tabs" role="tablist" aria-label="ランキング切り替え">
       <button class="rank-tab is-active" type="button" data-tab="views" role="tab" aria-selected="true">
-        閲覧数 <span class="badge" id="badgeViews">-</span>
+        人気ランキング
       </button>
       <button class="rank-tab" type="button" data-tab="fav" role="tab" aria-selected="false">
-        お気に入り <span class="badge" id="badgeFav">-</span>
+        支持率ランキング
       </button>
     </div>
   </header>
@@ -38,20 +37,22 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <section class="section" id="panelViews" role="tabpanel" aria-label="閲覧数ランキング" style="margin-top:10px;">
+    <!-- 閲覧 -->
+    <section class="section" id="panelViews" role="tabpanel" aria-label="人気ランキング" style="margin-top:10px;">
       <div class="section-head">
-        <h2 class="section-title">人気（閲覧数）</h2>
+        <h2 class="section-title">人気ランキング</h2>
       </div>
-      <p class="section-sub">作品詳細が表示された回数（同一セッションは1回）</p>
+      <p class="section-sub">※ 閲覧数＝作品詳細が表示された回数（同一セッションは1回）</p>
       <section id="rankViews" class="rank-grid"></section>
       <div class="rank-more"><button id="moreViews" type="button">もっと見る</button></div>
     </section>
 
-    <section class="section" id="panelFav" role="tabpanel" aria-label="お気に入りランキング" style="margin-top:10px; display:none;">
+    <!-- 支持率 -->
+    <section class="section" id="panelFav" role="tabpanel" aria-label="支持率ランキング" style="margin-top:10px; display:none;">
       <div class="section-head">
-        <h2 class="section-title">お気に入り</h2>
+        <h2 class="section-title">支持率ランキング</h2>
       </div>
-      <p class="section-sub">ONにした回数（端末ローカルのON操作のみカウント）</p>
+      <p class="section-sub">※ 支持率＝（お気に入り数 ÷ この条件内のお気に入り総数）×100</p>
       <section id="rankFav" class="rank-grid"></section>
       <div class="rank-more"><button id="moreFav" type="button">もっと見る</button></div>
     </section>
@@ -174,8 +175,22 @@
       return map;
     }
 
-    // ★ ここがポイント：rank-meta ではなく meta にする（listと同じタイポが当たる）
-    function rankItemHtml({ rank, seriesKey, n, unit, work }) {
+    // ---- Rank item HTML（favは%表示） ----
+    function posClass(rank){
+      if (rank === 1) return "is-1";
+      if (rank === 2) return "is-2";
+      if (rank === 3) return "is-3";
+      return "";
+    }
+
+    function fmtPct(x){
+      if (!Number.isFinite(x)) return "0%";
+      if (x >= 10) return `${Math.round(x)}%`;
+      // 10%未満は1桁小数で視認性を上げる（0.0〜9.9）
+      return `${Math.round(x * 10) / 10}%`;
+    }
+
+    function rankItemHtml({ rank, seriesKey, n, unit, work, favTotal }) {
       const key = encodeURIComponent(seriesKey);
 
       const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
@@ -186,7 +201,13 @@
       const img = normalizeImgUrl(imgRaw);
 
       const tagsJa = pickArr(work, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-      const unitLabel = unit === "fav" ? "お気に入り" : "閲覧";
+
+      const nNum = Number(n || 0);
+      const isFav = unit === "fav";
+      const rate = (isFav && favTotal > 0) ? (nNum / favTotal * 100) : 0;
+
+      const numText = isFav ? fmtPct(rate) : String(nNum || 0);
+      const lblText = isFav ? "支持率" : "閲覧";
 
       return `
         <article class="rank-item">
@@ -199,12 +220,12 @@
               </a>
             </div>
 
-            <div class="meta">
+            <div class="rank-meta">
               <div class="rank-topline">
-                <span class="rank-pos">${esc(rank)}位</span>
-                <span class="rank-metric">
-                  <span class="num">${esc(n)}</span>
-                  <span class="lbl">${esc(unitLabel)}</span>
+                <span class="rank-pos ${posClass(rank)}">${esc(rank)}位</span>
+                <span class="rank-metric ${isFav ? "is-fav" : "is-view"}">
+                  <span class="num">${esc(numText)}</span>
+                  <span class="lbl">${esc(lblText)}</span>
                 </span>
               </div>
 
@@ -219,6 +240,7 @@
       `;
     }
 
+    // ---- ジャンル絞り込み（stats専用） ----
     const RANK_GENRE_TABS = [
       { id: "all",    label: "すべて", match: [] },
       { id: "action", label: "アクション・バトル", match: ["Action"] },
@@ -265,7 +287,7 @@
           role="tab"
           aria-selected="${t.id === activeId ? "true" : "false"}"
         >
-          ${esc(t.label)} <span class="badge" id="badgeRg_${esc(t.id)}">-</span>
+          ${esc(t.label)}
         </button>
       `).join("");
 
@@ -280,8 +302,10 @@
       };
     }
 
+    // ---- 状態 ----
     const MAX_ROWS = 100;
     const STEP = 50;
+
     let state = {
       tab: "views",
       viewsShown: 0,
@@ -290,7 +314,10 @@
       favAll: [],
       viewsRows: [],
       favRows: [],
-      workMap: new Map()
+      workMap: new Map(),
+
+      // 支持率母数（絞り込み後 favRows の合計）
+      favTotal: 0
     };
 
     function setTab(next) {
@@ -340,10 +367,10 @@
 
         const html = chunk.map((r, i) => {
           const seriesKey = toText(r?.seriesKey);
-          const n = toText(r?.n);
+          const n = Number(r?.n || 0);
           const work = state.workMap.get(seriesKey);
           const rank = state.viewsShown + i + 1;
-          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "view", work }) : "";
+          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "view", work, favTotal: state.favTotal }) : "";
         }).join("");
 
         if (state.viewsShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
@@ -362,10 +389,10 @@
 
         const html = chunk.map((r, i) => {
           const seriesKey = toText(r?.seriesKey);
-          const n = toText(r?.n);
+          const n = Number(r?.n || 0);
           const work = state.workMap.get(seriesKey);
           const rank = state.favShown + i + 1;
-          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "fav", work }) : "";
+          return (seriesKey && work) ? rankItemHtml({ rank, seriesKey, n, unit: "fav", work, favTotal: state.favTotal }) : "";
         }).join("");
 
         if (state.favShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
@@ -376,41 +403,13 @@
       }
     }
 
-    function setBadges() {
-      const bViews = document.getElementById("badgeViews");
-      const bFav   = document.getElementById("badgeFav");
-      if (bViews) bViews.textContent = String(Math.min(MAX_ROWS, state.viewsRows.length || 0));
-      if (bFav)   bFav.textContent   = String(Math.min(MAX_ROWS, state.favRows.length || 0));
-    }
-
-    function setGenreCountBadges() {
-      for (const t of RANK_GENRE_TABS) {
-        const el = document.getElementById(`badgeRg_${t.id}`);
-        if (!el) continue;
-
-        if (!t.match?.length) {
-          el.textContent = String(Math.min(MAX_ROWS, state.viewsAll.length || 0));
-          continue;
-        }
-
-        let n = 0;
-        for (const r of state.viewsAll) {
-          const sk = toText(r?.seriesKey);
-          if (!sk) continue;
-          const w = state.workMap.get(sk);
-          if (!w) continue;
-          if (hasAnyGenre(w, t.match)) n++;
-        }
-        el.textContent = String(Math.min(MAX_ROWS, n));
-      }
-    }
-
     function applyGenreAndRerender() {
       const activeId = getRankGenreState();
       const tab = RANK_GENRE_TABS.find(t => t.id === activeId) || RANK_GENRE_TABS[0];
 
       renderRankGenreTabs(tab.id);
 
+      // 絞り込み
       if (!tab.match?.length) {
         state.viewsRows = state.viewsAll.slice();
         state.favRows = state.favAll.slice();
@@ -427,8 +426,10 @@
         });
       }
 
-      setBadges();
+      // 支持率母数（絞り込み後 favRows の合計）
+      state.favTotal = state.favRows.reduce((acc, r) => acc + Number(r?.n || 0), 0);
 
+      // 描画リセット
       state.viewsShown = 0;
       state.favShown = 0;
 
@@ -440,8 +441,8 @@
       renderMore("views");
       renderMore("fav");
 
+      // タブ状態維持
       setTab(state.tab);
-      setGenreCountBadges();
     }
 
     // ヘッダー：下スクロールで隠す/上で出す
@@ -487,8 +488,10 @@
         state.viewsAll = pickRows(viewBySeries);
         state.favAll   = pickRows(favBySeries);
 
+        // 初期tabは人気
         state.tab = "views";
 
+        // タブ操作
         document.querySelectorAll(".rank-tab[data-tab]").forEach(btn => {
           btn.addEventListener("click", () => {
             const next = btn.getAttribute("data-tab") || "views";
@@ -496,6 +499,7 @@
           }, { passive: true });
         });
 
+        // もっと見る
         const moreViews = document.getElementById("moreViews");
         if (moreViews) moreViews.addEventListener("click", () => renderMore("views"), { passive: true });
 
