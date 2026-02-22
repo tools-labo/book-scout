@@ -1,8 +1,10 @@
-// public/app.js (1/2) FIXED
-// - 2/2(Home棚)が使う hasAnyGenre() / GENRE_JA を復活
-// - Work：発売日 / 出版社 を表示（ジャンルは表示しない）
-// - List：タイトル/作者/連載誌/タグ + Amazon/お気に入り
-// ※ 2/2で Home棚(genre/audience)と run() を出す
+// public/app.js (1/2) CLEAN
+// - app.js内の重複定義を完全に除去（SyntaxError対策）
+// - Home：気分/ジャンル/カテゴリーが確実に出る
+// - List：表示は タイトル/作者/連載誌/タグ のみ（ジャンル/出版社/発売日は非表示のまま）
+//        ただし genre/aud/mag のURL絞り込みは内部で復活
+// - Work：発売日/出版社を復活（ジャンルは表示しない）
+// - 読後感投票：最大2つ（選択状態を保持）
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -291,7 +293,7 @@ function patchAmazonAnchors(root = document) {
 }
 
 /* =======================
- * Genre（内部用：Home棚で必須）
+ * Genre（内部用）
  * ======================= */
 const GENRE_JA = {
   Action: "アクション",
@@ -310,11 +312,38 @@ const GENRE_JA = {
   Thriller: "サスペンス",
 };
 
-// ★ Home棚（genreCountMap/renderGenreTabsRow）が必ず使う
 function hasAnyGenre(it, wanted) {
   if (!wanted?.length) return true;
   const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
   return wanted.some(x => g.includes(x));
+}
+
+/* =======================
+ * List：URL絞り込み（内部だけ）
+ * ======================= */
+function parseGenreQuery() {
+  const raw = toText(qs().get("genre"));
+  if (!raw) return [];
+  return raw.split(",").map(s => s.trim()).filter(Boolean);
+}
+function parseOneQueryParam(name) {
+  const raw = toText(qs().get(name));
+  return raw ? raw.trim() : "";
+}
+function getFirstAudienceLabel(it) {
+  const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
+  return arr[0] || "その他";
+}
+function hasAudience(it, audLabel) {
+  if (!audLabel) return true;
+  return getFirstAudienceLabel(it) === audLabel;
+}
+function hasMagazine(it, mag) {
+  if (!mag) return true;
+  const ms = pickArr(it, ["magazines", "vol1.magazines"]).map(toText).filter(Boolean);
+  const m1 = toText(pick(it, ["magazine", "vol1.magazine"]));
+  if (ms.length) return ms.includes(mag);
+  return m1.includes(mag);
 }
 
 /* =======================
@@ -453,11 +482,19 @@ function renderList(data, quickDefs) {
 
   const all = Array.isArray(data?.items) ? data.items : [];
 
+  // ★ 内部絞り込みを復活（表示は増やさない）
+  const genreWanted = parseGenreQuery();      // "Action,Sports" など
+  const audienceWanted = parseOneQueryParam("aud"); // "少年" など
+  const magazineWanted = parseOneQueryParam("mag"); // 任意
+
   const moodSelected = parseMoodQuery();
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
   const moodActiveDefs = moodSelected.map(id => byId.get(id)).filter(Boolean);
 
-  const base = all.slice();
+  const base = all
+    .filter(it => (genreWanted.length ? hasAnyGenre(it, genreWanted) : true))
+    .filter(it => hasAudience(it, audienceWanted))
+    .filter(it => hasMagazine(it, magazineWanted));
 
   const scored = [];
   if (moodActiveDefs.length) {
@@ -598,6 +635,10 @@ function renderList(data, quickDefs) {
 
   refreshFavButtons(document);
 }
+// public/app.js (2/2) CLEAN
+// - Work render（発売日/出版社を表示、ジャンル非表示）
+// - Home：気分/ジャンル/カテゴリー棚
+// - run()
 
 /* =======================
  * Work render（発売日/出版社を表示）
@@ -681,8 +722,10 @@ function renderWork(data, quickDefs) {
     ${voteBox}
   `;
 
+  // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
+  // vote（最大2 + 選択状態保持、送信はvoteOnceで抑止）
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -727,11 +770,6 @@ function renderWork(data, quickDefs) {
   refreshFavButtons(document);
 }
 
-// public/app.js (2/2) FIXED
-// - Home棚（ジャンル/カテゴリー）
-// - Home気分導線
-// - run()
-
 /* =======================
  * Home：URL state
  * ======================= */
@@ -752,7 +790,7 @@ function setHomeState(next) {
 /* =======================
  * Home：ジャンル棚（確定10本）
  * ======================= */
-const GENRE_TABS = [
+const HOME_GENRE_TABS = [
   { id: "action", label: "アクション・バトル", match: ["Action"] },
   { id: "fantasy", label: "ファンタジー・異世界", match: ["Fantasy"] },
   { id: "sf", label: "SF", match: ["Sci-Fi"] },
@@ -767,9 +805,9 @@ const GENRE_TABS = [
 
 function genreCountMap(allItems) {
   const map = new Map();
-  for (const t of GENRE_TABS) map.set(t.id, 0);
+  for (const t of HOME_GENRE_TABS) map.set(t.id, 0);
   for (const it of allItems) {
-    for (const t of GENRE_TABS) {
+    for (const t of HOME_GENRE_TABS) {
       if (hasAnyGenre(it, t.match)) map.set(t.id, (map.get(t.id) || 0) + 1);
     }
   }
@@ -827,11 +865,11 @@ function renderGenreTabsRow({ data, activeId }) {
   if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
 
   const counts = genreCountMap(all);
-  const active = GENRE_TABS.find(x => x.id === activeId) || GENRE_TABS[0];
+  const active = HOME_GENRE_TABS.find(x => x.id === activeId) || HOME_GENRE_TABS[0];
 
   tabs.innerHTML = `
     <div class="tabrow">
-      ${GENRE_TABS.map((t) => `
+      ${HOME_GENRE_TABS.map((t) => `
         <button class="tab ${t.id === active.id ? "is-active" : ""}" data-genre="${esc(t.id)}" type="button">
           <span class="tab-label">${esc(t.label)}</span>
           <span class="badge">${counts.get(t.id) || 0}</span>
@@ -862,7 +900,7 @@ function renderGenreTabsRow({ data, activeId }) {
 /* =======================
  * Home：カテゴリー棚
  * ======================= */
-const CATEGORY_TABS = [
+const HOME_CATEGORY_TABS = [
   { id: "shonen", value: "少年", label: "少年マンガ" },
   { id: "seinen", value: "青年", label: "青年マンガ" },
   { id: "shojo", value: "少女", label: "少女マンガ" },
@@ -872,10 +910,10 @@ const CATEGORY_TABS = [
 
 function categoryCountMap(allItems) {
   const map = new Map();
-  for (const t of CATEGORY_TABS) map.set(t.id, 0);
+  for (const t of HOME_CATEGORY_TABS) map.set(t.id, 0);
   for (const it of allItems) {
     const label = getFirstAudienceLabel(it);
-    const tab = CATEGORY_TABS.find(x => x.value === label) || CATEGORY_TABS.find(x => x.id === "other");
+    const tab = HOME_CATEGORY_TABS.find(x => x.value === label) || HOME_CATEGORY_TABS.find(x => x.id === "other");
     if (!tab) continue;
     map.set(tab.id, (map.get(tab.id) || 0) + 1);
   }
@@ -899,12 +937,12 @@ function renderAudienceTabsRow({ data, activeAudId }) {
   if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
 
   const counts = categoryCountMap(all);
-  const active = CATEGORY_TABS.find(x => x.id === activeAudId) || CATEGORY_TABS[0];
+  const active = HOME_CATEGORY_TABS.find(x => x.id === activeAudId) || HOME_CATEGORY_TABS[0];
   const audValue = active.value;
 
   tabs.innerHTML = `
     <div class="tabrow">
-      ${CATEGORY_TABS.map((t) => `
+      ${HOME_CATEGORY_TABS.map((t) => `
         <button class="tab ${t.id === active.id ? "is-active" : ""}" data-aud="${esc(t.id)}" type="button">
           <span class="tab-label">${esc(t.label)}</span>
           <span class="badge">${counts.get(t.id) || 0}</span>
@@ -972,7 +1010,7 @@ async function run() {
     const quick = await loadJson(quickUrl, { bust: !!v });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // Home：ジャンル / カテゴリー
+    // Home：ジャンル/カテゴリー
     const st = getHomeState();
     renderGenreTabsRow({ data, activeId: st.g });
     renderAudienceTabsRow({ data, activeAudId: st.a });
