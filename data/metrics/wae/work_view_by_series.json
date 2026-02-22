@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T09:45:23.723Z",
+  "updatedAt": "2026-02-22T10:44:38.154Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,10 +17,10 @@
   "rows": [
     {
       "seriesKey": "アイアムアヒーロー",
-      "n": "4"
+      "n": "5"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
@@ -32,15 +32,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "ドラゴンボール",
+      "n": "2"
+    },
+    {
       "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
       "seriesKey": "ReLIFE",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ハピネス",
       "n": "1"
     },
     {
@@ -64,7 +64,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "カグラバチ",
       "n": "1"
     },
     {
@@ -77,6 +77,10 @@
     },
     {
       "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アカメが斬る！",
       "n": "1"
     },
     {
@@ -144,12 +148,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "カグラバチ",
+      "seriesKey": "ハピネス",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 33,
-    "rows_before_limit_at_least": 39
+    "rows": 34,
+    "rows_before_limit_at_least": 42
   }
 }
