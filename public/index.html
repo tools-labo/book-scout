@@ -23,6 +23,23 @@
     }
     .gheader.is-hidden { transform: translateY(-110%); }
     @media (prefers-reduced-motion: reduce) { .gheader { transition: none; } }
+
+    /* 追加：フッター（小さめ） */
+    .gfooter {
+      border-top: 1px solid rgba(127,127,127,.35);
+      padding: 14px 0;
+      margin-top: 28px;
+      font-size: 12px;
+      opacity: .85;
+    }
+    .gfooter-inner {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .gfooter a { text-decoration: none; }
+    .gfooter a:hover { text-decoration: underline; }
   </style>
 </head>
 
@@ -84,6 +101,19 @@
       <div id="audienceTabs"></div>
       <div id="audienceRow"></div>
     </section>
+
+    <!-- 追加：フッター（トップページ末尾に小さく表示） -->
+    <footer class="gfooter" aria-label="サイトフッター">
+      <div class="gfooter-inner">
+        <span>© Tools-LABO</span>
+        <a href="./privacy/">プライバシーポリシー</a>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfF73yZ69HH-FASKEYSkp98zM92o4dtQLtiQs7BzLRuwsobfA/viewform?pli=1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >お問い合わせ</a>
+      </div>
+    </footer>
   </main>
 
   <!-- ヘッダー：下スクロールで隠す / 上に少しでもスクロールで出す -->
