@@ -1,8 +1,8 @@
 // worker/src/index.js
 // FULL REPLACE
 // - rate 対応：payload.rating(1..5) を doubles[0] に入れる（type=rate の時だけ）
-// - それ以外は doubles[0]=1
-// - blobs は現状維持（v2, blob15=kv）
+// - ★rate のキー（rec/art）は blob5(mood) に必ず入る：mood が空なら k を採用
+// - blobs は固定（schema=v2, blob15=kv）
 
 const SCHEMA = "v2";
 
@@ -15,25 +15,31 @@ function toBlobs(e, req) {
   const type = String(e?.type ?? "");
   const page = String(e?.page ?? "");
   const seriesKey = String(e?.seriesKey ?? "");
-  const mood = String(e?.mood ?? "");
+
+  const k = String(e?.k ?? "");
+  const v = String(e?.v ?? "");
+
+  // ★ここ：rate の時は k を mood として扱えるようにする（集計互換）
+  const moodRaw = String(e?.mood ?? "");
+  const mood = moodRaw || k;
+
   const genre = String(e?.genre ?? "");
   const aud = String(e?.aud ?? "");
   const mag = String(e?.mag ?? "");
 
   const country = String(cf?.country ?? "");
+
   const path = url.pathname || "";
   const ref = req.headers.get("referer") || "";
 
   const sid = String(e?.sid ?? "");
-  const k = String(e?.k ?? "");
-  const v = String(e?.v ?? "");
 
   return [
     type,       // blob1
     SCHEMA,     // blob2
     page,       // blob3
     seriesKey,  // blob4
-    mood,       // blob5（vote: moodId / rate: k）
+    mood,       // blob5（vote: moodId / rate: rec|art）
     genre,      // blob6
     aud,        // blob7
     mag,        // blob8
@@ -117,7 +123,6 @@ export default {
 
     const blobs = toBlobs({ ...body, rid }, req);
 
-    // ★ rate の時だけ rating を doubles[0] に入れる
     let d0 = 1;
     if (type === "rate") {
       const r = clampRating(body?.rating);
@@ -139,10 +144,7 @@ export default {
       type: blobs[0],
       page: blobs[2],
       seriesKey: blobs[3],
-      mood: blobs[4],
-      genre: blobs[5],
-      aud: blobs[6],
-      mag: blobs[7],
+      key: blobs[4],       // rateなら rec/art がここに来る
       sid: blobs[13],
       kv: blobs[14],
       rating: type === "rate" ? d0 : null,
