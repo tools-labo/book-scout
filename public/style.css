@@ -594,7 +594,7 @@ button{ font-family:inherit; }
 /* 書影 */
 .rec-cover{
   width: 100%;
-  aspect-ratio: 3 / 4.25;  /* だいたい縦長マンガ比率 */
+  aspect-ratio: 3 / 4.25;
   border: 1px solid var(--line);
   background: #fff;
   overflow: hidden;
@@ -624,10 +624,68 @@ button{ font-family:inherit; }
 }
 
 /* =======================
+ * Home：人気ランキング棚（しっかり見せる）
+ * - rec-gridと同じ書影サイズ感
+ * - 3列×2段（6件）想定
+ * ======================= */
+.home-rank-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.home-rank-item{ display:block; }
+.home-rank-cover{
+  width:100%;
+  aspect-ratio: 3 / 4.25;
+  border: 1px solid var(--line);
+  background:#fff;
+  overflow:hidden;
+  position: relative;
+}
+.home-rank-cover img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+}
+.home-rank-badge{
+  position:absolute;
+  top: 8px;
+  left: 8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.92);
+  font-weight: 1000;
+  font-size: 12px;
+  color: var(--fg);
+  white-space: nowrap;
+}
+.home-rank-name{
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.25;
+  display:-webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+}
+.home-rank-metric{
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 340px){
+  .home-rank-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* =======================
  * Hero（マンバ寄せ：左テキスト / 右画像）
- * - スマホでも基本は横並び（崩れ防止で極小幅のみ縦）
- * - 画像は「高さ」で制御してデカくならないようにする
- * - index.html 新旧クラス両対応
  * ======================= */
 .hero{
   margin: 10px 0 18px;
@@ -636,32 +694,23 @@ button{ font-family:inherit; }
   border-radius: 14px;
   background: #fff;
 }
-
-/* 新版(index.html想定) */
 .hero-inner{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap: 12px;
 }
-
-/* 旧版（hero直下に hero-copy/hero-media があるケース）も同じ挙動に寄せる */
-.hero{
-  display:block;
-}
+.hero{ display:block; }
 .hero > .hero-copy,
 .hero > .hero-text,
 .hero > .hero-media{
   min-width: 0;
 }
-
-/* テキスト側（左） */
 .hero-copy,
 .hero-text{
   flex: 1 1 62%;
   min-width: 0;
 }
-
 .hero-title{
   margin: 0;
   font-size: 22px;
@@ -669,7 +718,6 @@ button{ font-family:inherit; }
   letter-spacing: -0.02em;
   line-height: 1.15;
 }
-
 .hero-lead,
 .hero-sub{
   margin: 10px 0 0;
@@ -677,7 +725,6 @@ button{ font-family:inherit; }
   font-size: 13px;
   line-height: 1.6;
 }
-
 .hero-cta,
 .hero-actions{
   margin-top: 12px;
@@ -685,8 +732,6 @@ button{ font-family:inherit; }
   gap: 10px;
   flex-wrap: wrap;
 }
-
-/* 画像側（右） */
 .hero-media{
   flex: 0 0 38%;
   display:flex;
@@ -694,19 +739,15 @@ button{ font-family:inherit; }
   align-items:flex-end;
   min-width: 0;
 }
-
-/* “横幅100%” はやめて、最大高さで制御する（デカ過ぎ防止） */
 .hero-media img,
 .hero-img{
   display:block;
   width: auto;
-  height: 220px;          /* ←スマホの基準サイズ */
+  height: 220px;
   max-height: 220px;
   max-width: 100%;
   object-fit: contain;
 }
-
-/* 画面が広い時は少しだけ大きく */
 @media (min-width: 520px){
   .hero-media img,
   .hero-img{
@@ -714,8 +755,6 @@ button{ font-family:inherit; }
     max-height: 260px;
   }
 }
-
-/* PCは2カラムのまま、見出しだけ強く */
 @media (min-width: 860px){
   .hero-inner{ gap: 16px; }
   .hero-title{ font-size: 28px; }
@@ -725,17 +764,13 @@ button{ font-family:inherit; }
     max-height: 300px;
   }
 }
-
-/* 極端に狭い端末だけ縦積みにフォールバック */
 @media (max-width: 340px){
   .hero-inner{
     display:grid;
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  .hero-media{
-    justify-content:center;
-  }
+  .hero-media{ justify-content:center; }
   .hero-media img,
   .hero-img{
     height: auto;
