@@ -1,13 +1,8 @@
 {
-  "updatedAt": "2026-02-23T03:43:48.358Z",
-  "total": 194,
-  "droppedTotal": 4,
-  "droppedSeriesKeys": [
-    "ケンガンアシュラ",
-    "大ダーク",
-    "幸色のワンルーム",
-    "月刊少女野崎くん"
-  ],
+  "updatedAt": "2026-02-23T04:11:35.241Z",
+  "total": 198,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -374,15 +369,14 @@
       "isbn13": "9784040668758",
       "asin": "4040668758",
       "synopsis": "現代日本の少年スバルは、突然異世界へ召喚される。銀髪の少女と出会い、彼女を助けようとするが命を落とす。しかし気が付くと時間が巻き戻っていた。死ぬ度にやり直す“死に戻り”の力で、運命に抗い少女を救おうと奮闘する。",
-      "magazine": "小説家になろう / 月刊コミックアライブ（外伝）",
+      "magazine": "月刊コミックアライブ",
       "magazines": [
-        "小説家になろう",
-        "月刊コミックアライブ(外伝)"
+        "月刊コミックアライブ"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
-      "magazineSource": "wikipedia",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Adventure",
@@ -392,34 +386,8 @@
         "Romance",
         "Thriller"
       ],
-      "tags": [
-        "異世界",
-        "魔女",
-        "コズミックホラー",
-        "政治",
-        "障害",
-        "天文学",
-        "記憶操作",
-        "魔法",
-        "カルト",
-        "エルフ",
-        "記憶喪失",
-        "双子",
-        "多重人格",
-        "片思い",
-        "メイド",
-        "ひきこもり",
-        "暗殺者",
-        "三角関係",
-        "ドラゴン",
-        "年齢退行",
-        "ヤンデレ",
-        "獣耳",
-        "女装・男装"
-      ],
       "meta": {
         "anilistId": 85737,
-        "wikiTitle": "Re:ゼロから始める異世界生活",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -777,15 +745,6 @@
         "Romance",
         "Slice of Life"
       ],
-      "tags": [
-        "OL",
-        "仕事",
-        "オフィス",
-        "青年向け",
-        "障害",
-        "結婚",
-        "三角関係"
-      ],
       "meta": {
         "anilistId": 105332,
         "wikiTitle": "あせとせっけん",
@@ -817,26 +776,6 @@
         "Comedy",
         "Sci-Fi",
         "Supernatural"
-      ],
-      "tags": [
-        "超能力",
-        "少年向け",
-        "現代ファンタジー",
-        "怪獣",
-        "多重人格",
-        "武術",
-        "ゾンビ",
-        "コズミックホラー",
-        "記憶操作",
-        "疑似家族",
-        "戦争",
-        "終末後",
-        "宇宙人",
-        "リアルロボット",
-        "剣術",
-        "アイドル",
-        "呪い",
-        "ボクシング"
       ],
       "meta": {
         "anilistId": 114791,
@@ -908,30 +847,17 @@
         "イブニング"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
-      "magazineSource": "wikipedia",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Drama",
         "Psychological",
         "Sci-Fi"
       ],
-      "tags": [
-        "サイボーグ",
-        "青年向け",
-        "超能力",
-        "哲学",
-        "都会",
-        "逃亡者",
-        "ロボット",
-        "犯罪",
-        "宇宙人",
-        "いじめ"
-      ],
       "meta": {
         "anilistId": 85226,
-        "wikiTitle": "いぬやしき",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -1568,6 +1494,35 @@
       "meta": {
         "anilistId": 87395,
         "wikiTitle": "ぐらんぶる",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "ケンガンアシュラ",
+      "title": "ケンガンアシュラ (1) (裏少年サンデーコミックス)",
+      "author": "だろめおん / サンドロビッチ ヤバ子",
+      "publisher": "小学館",
+      "releaseDate": "2012-12-18T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51jDgXXDf-L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091241107",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091241107?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784091241108",
+      "asin": "4091241107",
+      "synopsis": "企業が拳で全てを決める裏社会。冴えない会社員・山下一夫は、謎の闘技者・十鬼蛇王馬と出会い、企業同士の代理戦争“拳願仕合”に巻き込まれる。王馬の異常な強さに惹かれつつ、巨大な組織の陰謀へ立ち向かう。",
+      "magazine": "裏サンデー",
+      "magazines": [
+        "裏サンデー"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Sports"
+      ],
+      "meta": {
+        "anilistId": 86265,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -6323,6 +6278,37 @@
       }
     },
     {
+      "seriesKey": "大ダーク",
+      "title": "大ダーク (1) (ゲッサン少年サンデーコミックス)",
+      "author": "林田 球",
+      "publisher": "小学館",
+      "releaseDate": "2019-11-12T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51-Hi9mYmJL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091294863",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091294863?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784091294869",
+      "asin": "4091294863",
+      "synopsis": "宇宙の闇を漂う少年ザハ＝サンコは、骨に願いを叶える力があると噂され命を狙われている。宇宙船襲撃や陰謀に巻き込まれる中、骨を求める者たちの正体を探りつつ仲間と生き延びるSFダークファンタジー。",
+      "magazine": "月刊少年サンデー",
+      "magazines": [
+        "月刊少年サンデー"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Horror",
+        "Sci-Fi"
+      ],
+      "meta": {
+        "anilistId": 105263,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "夫婦以上、恋人未満。",
       "title": "夫婦以上、恋人未満。 (1) (角川コミックス・エース)",
       "author": "金丸 祐基",
@@ -6960,6 +6946,36 @@
       }
     },
     {
+      "seriesKey": "幸色のワンルーム",
+      "title": "幸色のワンルーム(1) (ガンガンコミックスpixiv)",
+      "author": "はくり",
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2017-02-22T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51-uTWgmYfL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757552645",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757552645?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784757552647",
+      "asin": "4757552645",
+      "synopsis": "虐待の家から逃げ出した少女・幸は誘拐されるが、その誘拐犯との一つ屋根の下で初めて安らぎを知る。世間にとっては犯罪者と被害者の二人が、社会の正しさと自分たちの幸せの間で揺れながら共に逃避行を続ける。",
+      "magazine": "ガンガンpixiv",
+      "magazines": [
+        "ガンガンpixiv"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Slice of Life"
+      ],
+      "meta": {
+        "anilistId": 100557,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "幽☆遊☆白書",
       "title": "幽★遊★白書 1 (ジャンプコミックス)",
       "author": "冨樫 義博",
@@ -7436,6 +7452,35 @@
       "meta": {
         "anilistId": 69883,
         "wikiTitle": "暗殺教室",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
+      "title": "月刊少女野崎くん(1) (ガンガンコミックスONLINE)",
+      "author": "椿 いづみ",
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2012-04-20T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51uP0o5v6FL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/475753566X",
+      "amazonDp": "https://www.amazon.co.jp/dp/475753566X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784757535664",
+      "asin": "475753566X",
+      "synopsis": "片思いの相手・野崎梅太郎に告白しようとした高校生の佐倉千代は、なぜか彼の漫画のアシスタントになってしまう。堅物な少女漫画家男子と天然系女子が織りなすハイテンションコメディ。",
+      "magazine": "ガンガンONLINE",
+      "magazines": [
+        "ガンガンONLINE"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "meta": {
+        "anilistId": 59211,
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },

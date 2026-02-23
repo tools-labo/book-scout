@@ -1,48 +1,34 @@
 {
-  "updatedAt": "2026-02-23T03:43:48.358Z",
+  "updatedAt": "2026-02-23T04:11:35.241Z",
   "total": 198,
   "ok": 198,
   "ng": 0,
   "stats": {
-    "skippedPerfect": 178,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 20,
-    "magAudienceTodoAdded": 5,
+    "skippedPerfect": 190,
+    "skippedAniList": 8,
+    "skippedWiki": 8,
+    "skippedAmazon": 8,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 3,
     "perfectNotMetReasons": {
       "noPrevVol1": 0,
       "amazonMissing": 0,
-      "magazineEmpty": 4,
-      "magazinesEmpty": 4,
+      "magazineEmpty": 0,
+      "magazinesEmpty": 0,
       "audiencesEmpty": 0,
-      "audiencesOnlyOther": 7,
+      "audiencesOnlyOther": 3,
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
-      "tagsJaEmpty": 0,
-      "tagsMissingNotHidden": 5,
+      "tagsJaEmpty": 8,
+      "tagsMissingNotHidden": 8,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
-      "prevNotPerfect": 20,
+      "prevNotPerfect": 8,
       "outNotPerfect": 8
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "Re:ゼロから始める異世界生活 :: noVol1",
-        "アクタージュ act-age :: noVol1",
-        "あせとせっけん :: noVol1",
-        "アンデッドアンラック :: noVol1",
-        "いぬやしき :: noVol1",
-        "ケンガンアシュラ :: noVol1",
-        "ささやくように恋を唄う :: noVol1",
-        "ジョジョの奇妙な冒険 The JOJOLands :: noVol1",
-        "なまいきざかり。 :: noVol1",
-        "るろうに剣心 -明治剣客浪漫譚- :: noVol1",
-        "僕だけがいない街 :: noVol1",
-        "大ダーク :: noVol1"
-      ],
-      "outNotPerfect": [
         "Re:ゼロから始める異世界生活 :: tags_missing_en(remain=1,types=string)",
         "あせとせっけん :: tags_missing_en(remain=1,types=string)",
         "アンデッドアンラック :: tags_missing_en(remain=1,types=string)",
@@ -52,11 +38,22 @@
         "幸色のワンルーム :: magazine,magazines[]",
         "月刊少女野崎くん :: magazine,magazines[]"
       ],
-      "audiencesOnlyOther": [
+      "outNotPerfect": [
+        "Re:ゼロから始める異世界生活 :: tagsJa[],tags_missing_en(remain=24,types=string)",
+        "あせとせっけん :: tagsJa[],tags_missing_en(remain=8,types=string)",
+        "アンデッドアンラック :: tagsJa[],tags_missing_en(remain=19,types=string)",
+        "いぬやしき :: tagsJa[],tags_missing_en(remain=11,types=string)",
+        "ケンガンアシュラ :: tagsJa[],tags_missing_en(remain=10,types=string)",
+        "大ダーク :: tagsJa[],tags_missing_en(remain=16,types=string)",
+        "幸色のワンルーム :: tagsJa[],tags_missing_en(remain=10,types=string)",
+        "月刊少女野崎くん :: tagsJa[],tags_missing_en(remain=14,types=string)"
+      ],
+      "tagsJaEmpty": [
         "Re:ゼロから始める異世界生活",
+        "あせとせっけん",
+        "アンデッドアンラック",
         "いぬやしき",
         "ケンガンアシュラ",
-        "ささやくように恋を唄う",
         "大ダーク",
         "幸色のワンルーム",
         "月刊少女野崎くん"
@@ -66,16 +63,12 @@
         "あせとせっけん",
         "アンデッドアンラック",
         "いぬやしき",
-        "大ダーク"
-      ],
-      "magazineEmpty": [
         "ケンガンアシュラ",
         "大ダーク",
         "幸色のワンルーム",
         "月刊少女野崎くん"
       ],
-      "magazinesEmpty": [
-        "ケンガンアシュラ",
+      "audiencesOnlyOther": [
         "大ダーク",
         "幸色のワンルーム",
         "月刊少女野崎くん"
@@ -85,12 +78,12 @@
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 2,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 20
+      "successItems": 0
     }
   },
   "items": [
@@ -629,15 +622,15 @@
         "publisher": "KADOKAWA",
         "author": "マツセ ダイチ",
         "releaseDate": "2014-10-23T00:00:01Z",
-        "magazine": "月刊コミックアライブ（外伝）",
+        "magazine": "月刊コミックアライブ",
         "magazines": [
-          "月刊コミックアライブ(外伝)"
+          "月刊コミックアライブ"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "Re:ゼロから始める異世界生活",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85737,
         "genres": [
           "Action",
@@ -680,33 +673,32 @@
           "Kemonomimi",
           "Crossdressing"
         ],
-        "tags": [
-          "異世界",
-          "魔女",
-          "コズミックホラー",
-          "政治",
-          "障害",
-          "天文学",
-          "記憶操作",
-          "魔法",
-          "カルト",
-          "エルフ",
-          "記憶喪失",
-          "双子",
-          "多重人格",
-          "片思い",
-          "メイド",
-          "ひきこもり",
-          "暗殺者",
-          "三角関係",
-          "ドラゴン",
-          "年齢退行",
-          "ヤンデレ",
-          "獣耳",
-          "女装・男装"
-        ],
+        "tags": [],
         "tags_missing_en": [
-          "Time Loop"
+          "Time Loop",
+          "Isekai",
+          "Witch",
+          "Cosmic Horror",
+          "Politics",
+          "Disability",
+          "Astronomy",
+          "Memory Manipulation",
+          "Magic",
+          "Cult",
+          "Elf",
+          "Amnesia",
+          "Twins",
+          "Dissociative Identities",
+          "Unrequited Love",
+          "Maids",
+          "Hikikomori",
+          "Assassins",
+          "Love Triangle",
+          "Dragons",
+          "Age Regression",
+          "Yandere",
+          "Kemonomimi",
+          "Crossdressing"
         ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1224,17 +1216,16 @@
           "Nudity",
           "Love Triangle"
         ],
-        "tags": [
-          "OL",
-          "仕事",
-          "オフィス",
-          "青年向け",
-          "障害",
-          "結婚",
-          "三角関係"
-        ],
+        "tags": [],
         "tags_missing_en": [
-          "Sweat"
+          "Sweat",
+          "Office Lady",
+          "Work",
+          "Office",
+          "Seinen",
+          "Disability",
+          "Marriage",
+          "Love Triangle"
         ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1299,28 +1290,27 @@
           "Curses",
           "Boxing"
         ],
-        "tags": [
-          "超能力",
-          "少年向け",
-          "現代ファンタジー",
-          "怪獣",
-          "多重人格",
-          "武術",
-          "ゾンビ",
-          "コズミックホラー",
-          "記憶操作",
-          "疑似家族",
-          "戦争",
-          "終末後",
-          "宇宙人",
-          "リアルロボット",
-          "剣術",
-          "アイドル",
-          "呪い",
-          "ボクシング"
-        ],
+        "tags": [],
         "tags_missing_en": [
-          "Time Loop"
+          "Super Power",
+          "Shounen",
+          "Urban Fantasy",
+          "Kaiju",
+          "Dissociative Identities",
+          "Martial Arts",
+          "Zombie",
+          "Cosmic Horror",
+          "Memory Manipulation",
+          "Found Family",
+          "War",
+          "Time Loop",
+          "Post-Apocalyptic",
+          "Aliens",
+          "Real Robot",
+          "Swordplay",
+          "Idol",
+          "Curses",
+          "Boxing"
         ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1416,10 +1406,10 @@
           "イブニング"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "いぬやしき",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85226,
         "genres": [
           "Action",
@@ -1444,20 +1434,19 @@
           "Bullying",
           "Rape"
         ],
-        "tags": [
-          "サイボーグ",
-          "青年向け",
-          "超能力",
-          "哲学",
-          "都会",
-          "逃亡者",
-          "ロボット",
-          "犯罪",
-          "宇宙人",
-          "いじめ"
-        ],
+        "tags": [],
         "tags_missing_en": [
-          "Elderly Protagonist"
+          "Cyborg",
+          "Seinen",
+          "Super Power",
+          "Philosophy",
+          "Urban",
+          "Fugitive",
+          "Robots",
+          "Crime",
+          "Elderly Protagonist",
+          "Aliens",
+          "Bullying"
         ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -2442,13 +2431,15 @@
         "publisher": "小学館",
         "author": "だろめおん / サンドロビッチ ヤバ子",
         "releaseDate": "2012-12-18T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "裏サンデー",
+        "magazines": [
+          "裏サンデー"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ケンガンアシュラ",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 86265,
         "genres": [
           "Action",
@@ -2471,19 +2462,19 @@
           "4-koma",
           "Historical"
         ],
-        "tags": [
-          "武術",
-          "プロレス",
-          "ボクシング",
-          "陸上競技",
-          "少年向け",
-          "復讐",
-          "ヤンデレ",
-          "ギャンブル",
-          "4コマ",
-          "歴史"
+        "tags": [],
+        "tags_missing_en": [
+          "Martial Arts",
+          "Wrestling",
+          "Boxing",
+          "Athletics",
+          "Shounen",
+          "Revenge",
+          "Yandere",
+          "Gambling",
+          "4-koma",
+          "Historical"
         ],
-        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9563,12 +9554,14 @@
         "publisher": "小学館",
         "author": "林田 球",
         "releaseDate": "2019-11-12T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊少年サンデー",
+        "magazines": [
+          "月刊少年サンデー"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 105263,
         "genres": [
@@ -9598,25 +9591,24 @@
           "Nudity",
           "Age Regression"
         ],
-        "tags": [
-          "宇宙",
-          "不条理コメディ",
-          "宇宙人",
-          "ディストピア",
-          "アンチヒーロー",
-          "少年向け",
-          "変身",
-          "カルト",
-          "無性別",
-          "悪魔",
-          "コズミックホラー",
-          "グルメ",
-          "奴隷",
-          "年齢退行"
-        ],
+        "tags": [],
         "tags_missing_en": [
+          "Space",
+          "Surreal Comedy",
+          "Aliens",
+          "Dystopian",
+          "Anti-Hero",
+          "Shounen",
+          "Henshin",
           "Skeleton",
-          "Space Opera"
+          "Cult",
+          "Agender",
+          "Demons",
+          "Cosmic Horror",
+          "Food",
+          "Space Opera",
+          "Slavery",
+          "Age Regression"
         ],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -10556,13 +10548,15 @@
         "publisher": "スクウェア・エニックス",
         "author": "はくり",
         "releaseDate": "2017-02-22T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ガンガンpixiv",
+        "magazines": [
+          "ガンガンpixiv"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "幸色のワンルーム",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 100557,
         "genres": [
           "Drama",
@@ -10588,19 +10582,19 @@
           "Delinquents",
           "Primarily Adult Cast"
         ],
-        "tags": [
-          "更生",
-          "いじめ",
-          "犯罪",
-          "哲学",
-          "疑似家族",
-          "探偵",
-          "ヤンデレ",
-          "ホームレス",
-          "海辺",
-          "不良"
+        "tags": [],
+        "tags_missing_en": [
+          "Rehabilitation",
+          "Bullying",
+          "Crime",
+          "Philosophy",
+          "Found Family",
+          "Detective",
+          "Yandere",
+          "Homeless",
+          "Coastal",
+          "Delinquents"
         ],
-        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -11345,13 +11339,15 @@
         "publisher": "スクウェア・エニックス",
         "author": "椿 いづみ",
         "releaseDate": "2012-04-20T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ガンガンONLINE",
+        "magazines": [
+          "ガンガンONLINE"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "月刊少女野崎くん",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 59211,
         "genres": [
           "Comedy",
@@ -11377,23 +11373,23 @@
           "Bisexual",
           "College"
         ],
-        "tags": [
-          "絵・作画",
-          "パロディ",
-          "4コマ",
-          "仕事",
-          "学園",
-          "オタク文化",
-          "片思い",
-          "ボーイッシュ",
-          "ツンデレ",
-          "部活",
-          "少年向け",
-          "教育",
-          "バイセクシュアル",
-          "大学"
+        "tags": [],
+        "tags_missing_en": [
+          "Drawing",
+          "Parody",
+          "4-koma",
+          "Work",
+          "School",
+          "Otaku Culture",
+          "Unrequited Love",
+          "Tomboy",
+          "Tsundere",
+          "School Club",
+          "Shounen",
+          "Educational",
+          "Bisexual",
+          "College"
         ],
-        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
