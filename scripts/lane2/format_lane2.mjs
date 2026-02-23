@@ -1,32 +1,21 @@
-// scripts/lane2/format_lane2.mjs（FULL REPLACE）
+// scripts/lane2/format_lane2.mjs
+// FULL REPLACE
+// - input: data/lane2/enriched/index.json + enriched_XXX.json
+// - output: data/lane2/works/index.json + works_XXX.json
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const IN_ENRICHED = "data/lane2/enriched.json";
+const IN_ENRICH_DIR = "data/lane2/enriched";
+const IN_ENRICH_INDEX = `${IN_ENRICH_DIR}/index.json`;
 
-// legacy (互換用)
-const OUT_WORKS_LEGACY = "data/lane2/works.json";
-
-// new split outputs
-const OUT_DIR = "data/lane2/works";
-const OUT_INDEX = "data/lane2/works/index.json";
-
-// shard settings
+const OUT_WORKS_DIR = "data/lane2/works";
+const OUT_WORKS_INDEX = `${OUT_WORKS_DIR}/index.json`;
+const OUT_WORKS_PREFIX = "works_";
 const SHARD_SIZE = 200;
 
-async function loadJson(p, fallback) {
-  try {
-    return JSON.parse(await fs.readFile(p, "utf8"));
-  } catch {
-    return fallback;
-  }
+function norm(s) {
+  return String(s ?? "").trim();
 }
-async function saveJson(p, obj) {
-  await fs.mkdir(path.dirname(p), { recursive: true });
-  await fs.writeFile(p, JSON.stringify(obj, null, 2));
-}
-
-function norm(s) { return String(s ?? "").trim(); }
 function uniq(arr) {
   const out = [];
   const seen = new Set();
@@ -38,6 +27,27 @@ function uniq(arr) {
     out.push(s);
   }
   return out;
+}
+
+async function loadJson(p, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(p, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+async function loadJsonStrict(p) {
+  const txt = await fs.readFile(p, "utf8");
+  try {
+    return JSON.parse(txt);
+  } catch (e) {
+    const msg = e?.message ? String(e.message) : String(e);
+    throw new Error(`[lane2:format] JSON parse failed: ${p} (${msg})`);
+  }
+}
+async function saveJson(p, obj) {
+  await fs.mkdir(path.dirname(p), { recursive: true });
+  await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
 function compact(obj) {
@@ -57,7 +67,11 @@ function compact(obj) {
   return out;
 }
 
-// ★フロント必須（現行仕様）
+function shardFileName(prefix, i) {
+  return `${prefix}${String(i).padStart(3, "0")}.json`;
+}
+
+// ★フロント必須（あなたのUI要件に合わせ）
 function isFrontRequiredFilled(v) {
   const req = {
     title: norm(v?.title),
@@ -71,6 +85,7 @@ function isFrontRequiredFilled(v) {
     magazine: norm(v?.magazine),
     audiencesOk: Array.isArray(v?.audiences) && v.audiences.length > 0,
   };
+
   return !!(
     req.title &&
     req.author &&
@@ -85,30 +100,86 @@ function isFrontRequiredFilled(v) {
   );
 }
 
-function pad3(n) { return String(n).padStart(3, "0"); }
-function shardFileName(i) { return `works_${pad3(i)}.json`; }
+async function loadEnrichedItems() {
+  const idx = await loadJsonStrict(IN_ENRICH_INDEX);
+  const shards = Array.isArray(idx?.shards) ? idx.shards : [];
+  const all = [];
 
-function toListItem(full) {
-  // List/Home用の軽量形（author/synopsis無し）
-  return compact({
-    seriesKey: full.seriesKey ?? null,
-    title: full.title ?? null,
-    image: full.image ?? null,
-    amazonDp: full.amazonDp ?? null,
-    amazonUrl: full.amazonUrl ?? null,
-    magazine: full.magazine ?? null,
-    magazines: full.magazines ?? null,
-    audiences: full.audiences ?? null,
-    genres: full.genres ?? null,
-    tags: full.tags ?? null, // 既に max24
-    publisher: full.publisher ?? null,
-    releaseDate: full.releaseDate ?? null,
+  for (const sh of shards) {
+    const file = norm(sh?.file);
+    if (!file) continue;
+    const p = path.join(IN_ENRICH_DIR, file);
+    const j = await loadJson(p, { items: [] });
+    const items = Array.isArray(j?.items) ? j.items : [];
+    all.push(...items);
+  }
+
+  return { idx, items: all };
+}
+
+async function writeWorksSharded({ items, dropped, updatedAt }) {
+  await fs.mkdir(OUT_WORKS_DIR, { recursive: true });
+
+  const total = items.length;
+  const nShards = Math.max(1, Math.ceil(total / SHARD_SIZE));
+
+  const shards = [];
+  const lookup = {};
+  const listItems = [];
+
+  for (let i = 0; i < nShards; i++) {
+    const slice = items.slice(i * SHARD_SIZE, (i + 1) * SHARD_SIZE);
+    const file = shardFileName(OUT_WORKS_PREFIX, i);
+
+    shards.push({ file, count: slice.length });
+
+    for (const it of slice) {
+      const sk = norm(it?.seriesKey);
+      if (!sk) continue;
+      lookup[sk] = i;
+
+      // index 用の軽量リスト（list.html がこれだけで回る想定）
+      listItems.push(
+        compact({
+          seriesKey: it.seriesKey ?? null,
+          title: it.title ?? null,
+          image: it.image ?? null,
+          amazonDp: it.amazonDp ?? null,
+          amazonUrl: it.amazonUrl ?? null,
+          magazine: it.magazine ?? null,
+          magazines: it.magazines ?? [],
+          audiences: it.audiences ?? [],
+          genres: it.genres ?? [],
+          tags: it.tags ?? [],
+          publisher: it.publisher ?? null,
+          releaseDate: it.releaseDate ?? null,
+        })
+      );
+    }
+
+    await saveJson(path.join(OUT_WORKS_DIR, file), {
+      version: 1,
+      shard: i,
+      count: slice.length,
+      items: slice,
+    });
+  }
+
+  await saveJson(OUT_WORKS_INDEX, {
+    version: 1,
+    updatedAt: updatedAt,
+    total,
+    droppedTotal: dropped.length,
+    droppedSeriesKeys: dropped,
+    shardSize: SHARD_SIZE,
+    shards,
+    lookup,
+    listItems,
   });
 }
 
 async function main() {
-  const src = await loadJson(IN_ENRICHED, { items: [], stats: {} });
-  const items = Array.isArray(src?.items) ? src.items : [];
+  const { idx, items } = await loadEnrichedItems();
 
   const kept = [];
   const dropped = [];
@@ -143,7 +214,6 @@ async function main() {
         isbn13: v?.isbn13 ?? null,
         asin: v?.asin ?? null,
 
-        // Work詳細で表示
         synopsis: v?.synopsis ?? null,
 
         // 連載誌（表示と分類に使う）
@@ -161,70 +231,12 @@ async function main() {
     );
   }
 
-  const updatedAt = src?.updatedAt ?? new Date().toISOString();
+  const updatedAt = norm(idx?.updatedAt) || new Date().toISOString();
 
-  // --- legacy works.json（互換） ---
-  const legacy = {
-    updatedAt,
-    total: kept.length,
-    droppedTotal: dropped.length,
-    droppedSeriesKeys: dropped,
-    items: kept,
-  };
-  await saveJson(OUT_WORKS_LEGACY, legacy);
-
-  // --- new split outputs ---
-  await fs.mkdir(OUT_DIR, { recursive: true });
-
-  const shards = [];
-  const lookup = {}; // seriesKey -> shardIndex
-  const listItems = [];
-
-  let shardIndex = 0;
-  for (let i = 0; i < kept.length; i += SHARD_SIZE) {
-    const chunk = kept.slice(i, i + SHARD_SIZE);
-    const file = shardFileName(shardIndex);
-
-    // shard: full items
-    const shardObj = {
-      updatedAt,
-      shardIndex,
-      shardSize: SHARD_SIZE,
-      total: chunk.length,
-      items: chunk,
-    };
-    await saveJson(path.join(OUT_DIR, file), shardObj);
-
-    // index metadata
-    shards.push({ file, count: chunk.length });
-
-    // lookup + listItems
-    for (const it of chunk) {
-      const sk = norm(it?.seriesKey);
-      if (!sk) continue;
-      lookup[sk] = shardIndex;
-      listItems.push(toListItem(it));
-    }
-
-    shardIndex++;
-  }
-
-  const indexObj = {
-    version: 1,
-    updatedAt,
-    total: kept.length,
-    droppedTotal: dropped.length,
-    droppedSeriesKeys: dropped,
-    shardSize: SHARD_SIZE,
-    shards,         // [{file,count}]
-    lookup,         // { seriesKey: shardIndex }
-    listItems,      // List/Home用（author/synopsis無し）
-  };
-
-  await saveJson(OUT_INDEX, indexObj);
+  await writeWorksSharded({ items: kept, dropped, updatedAt });
 
   console.log(
-    `[lane2:format] total_in=${items.length} total_out=${kept.length} dropped=${dropped.length} -> ${OUT_WORKS_LEGACY} + ${OUT_INDEX} + ${OUT_DIR}/works_*.json`
+    `[lane2:format] total_in=${items.length} total_out=${kept.length} dropped=${dropped.length} -> ${OUT_WORKS_INDEX}`
   );
 }
 
