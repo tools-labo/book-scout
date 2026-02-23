@@ -111,12 +111,16 @@
         "publisher": "講談社",
         "author": "CLAMP",
         "releaseDate": "2003-07-25T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングマガジン → 別冊少年マガジン",
+        "magazines": [
+          "週刊ヤングマガジン",
+          "別冊少年マガジン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年",
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30010,
         "genres": [
@@ -1043,6 +1047,7 @@
           "School"
         ],
         "tags": [
+          "落語",
           "成長譚",
           "演技",
           "仕事",
@@ -1053,9 +1058,7 @@
           "家族もの",
           "学園"
         ],
-        "tags_missing_en": [
-          "Rakugo"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2666,6 +2669,7 @@
         "tags": [
           "青年向け",
           "成長譚",
+          "寝取られ（NTR）",
           "学園",
           "三角関係",
           "バイセクシュアル",
@@ -2674,9 +2678,7 @@
           "百合",
           "片思い"
         ],
-        "tags_missing_en": [
-          "Netorare"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2932,12 +2934,14 @@
         "publisher": "集英社",
         "author": "アミュー",
         "releaseDate": "2012-11-02T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ジャンプSQ.",
+        "magazines": [
+          "ジャンプSQ."
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 75143,
         "genres": [
@@ -3259,13 +3263,15 @@
         "publisher": "集英社",
         "author": "田中 靖規",
         "releaseDate": "2018-02-02T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "サマータイムレンダ",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 102989,
         "genres": [
           "Action",
@@ -3318,6 +3324,7 @@
           "神話",
           "犯罪",
           "神々",
+          "水泳",
           "宗教",
           "コズミックホラー",
           "三角関係",
@@ -3326,9 +3333,7 @@
           "歴史",
           "片思い"
         ],
-        "tags_missing_en": [
-          "Swimming"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -6483,12 +6488,14 @@
         "publisher": "竹書房",
         "author": "外薗 昌也 / 谷口 世磨",
         "releaseDate": "2017-07-27T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "LINEマンガ",
+        "magazines": [
+          "LINEマンガ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 103082,
         "genres": [
@@ -8241,12 +8248,11 @@
           "銃",
           "ロボット",
           "柔道",
+          "水泳",
           "サイボーグ",
           "バンド"
         ],
-        "tags_missing_en": [
-          "Swimming"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8791,13 +8797,15 @@
         "publisher": "白泉社",
         "author": "天乃 忍",
         "releaseDate": "2012-01-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "LaLa",
+        "magazines": [
+          "LaLa"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ラストゲーム",
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 60315,
         "genres": [
           "Comedy",
@@ -10790,11 +10798,10 @@
           "ちびキャラ",
           "学園",
           "LGBTQテーマ",
+          "男女混合ハーレム",
           "怪獣"
         ],
-        "tags_missing_en": [
-          "Mixed Gender Harem"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10962,13 +10969,15 @@
         "publisher": "講談社",
         "author": "大羽 隆廣",
         "releaseDate": "2014-05-09T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "マンガボックス",
+        "magazines": [
+          "マンガボックス"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "天空侵犯",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85388,
         "genres": [
           "Action",
@@ -11222,12 +11231,14 @@
         "publisher": "KADOKAWA",
         "author": "丈",
         "releaseDate": "2018-07-09T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ドラドラしゃーぷ#",
+        "magazines": [
+          "ドラドラしゃーぷ#"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 101724,
         "genres": [

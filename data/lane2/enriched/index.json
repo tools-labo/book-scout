@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T11:20:56.140Z",
+  "updatedAt": "2026-02-23T11:55:33.584Z",
   "total": 226,
   "shardSize": 200,
   "shards": [
@@ -245,32 +245,18 @@
     "total": 226,
     "ok": 226,
     "ng": 0,
-    "skippedPerfect": 203,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 23,
-    "magAudienceTodoAdded": 2,
+    "skippedPerfect": 213,
+    "skippedAniList": 13,
+    "skippedWiki": 13,
+    "skippedAmazon": 13,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 4,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 23,
-      "outNotPerfect": 13
+      "prevNotPerfect": 13,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "×××ホリック :: noVol1",
-        "アオアシ :: noVol1",
-        "あかね噺 :: noVol1",
-        "アヤシモン :: noVol1",
-        "カッコウの許嫁 :: noVol1",
-        "クズの本懐 :: noVol1",
-        "この音とまれ！ :: noVol1",
-        "サマータイムレンダ :: noVol1",
-        "たいようのいえ :: noVol1",
-        "パンプキンナイト :: noVol1",
-        "ひげを剃る。そして女子高生を拾う。 :: noVol1",
-        "ヒナまつり :: noVol1"
-      ],
-      "outNotPerfect": [
         "×××ホリック :: magazine,magazines[]",
         "あかね噺 :: tags_missing_en(remain=1)",
         "クズの本懐 :: tags_missing_en(remain=1)",
@@ -286,73 +272,21 @@
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 12,
-      "seriesKeys": [
-        "×××ホリック",
-        "あかね噺",
-        "クズの本懐",
-        "この音とまれ！",
-        "サマータイムレンダ",
-        "パンプキンナイト",
-        "めだかボックス",
-        "ラストゲーム",
-        "夜桜さんちの大作戦",
-        "天空侵犯",
-        "宇崎ちゃんは遊びたい！",
-        "賭ケグルイ"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 7,
-          "samples": [
-            "×××ホリック",
-            "この音とまれ！",
-            "サマータイムレンダ",
-            "パンプキンナイト",
-            "ラストゲーム",
-            "天空侵犯",
-            "宇崎ちゃんは遊びたい！"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 7,
-          "samples": [
-            "×××ホリック",
-            "この音とまれ！",
-            "サマータイムレンダ",
-            "パンプキンナイト",
-            "ラストゲーム",
-            "天空侵犯",
-            "宇崎ちゃんは遊びたい！"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 6,
-          "samples": [
-            "あかね噺",
-            "クズの本懐",
-            "サマータイムレンダ",
-            "めだかボックス",
-            "夜桜さんちの大作戦",
-            "賭ケグルイ"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 3,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 23
+      "successItems": 0
     }
   }
 }

@@ -627,6 +627,7 @@
           "LGBTQテーマ",
           "アンチヒーロー",
           "ポーカー",
+          "悪役令嬢",
           "デスゲーム",
           "双子",
           "部活",
@@ -640,9 +641,7 @@
           "片思い",
           "家族もの"
         ],
-        "tags_missing_en": [
-          "Villainess"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -895,13 +894,15 @@
         "publisher": "集英社",
         "author": "伊科田 海",
         "releaseDate": "2019-12-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "道産子ギャルはなまらめんこい",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 111403,
         "genres": [
           "Comedy",

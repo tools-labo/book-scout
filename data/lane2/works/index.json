@@ -1,18 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T11:20:56.140Z",
-  "total": 218,
-  "droppedTotal": 8,
-  "droppedSeriesKeys": [
-    "×××ホリック",
-    "この音とまれ！",
-    "サマータイムレンダ",
-    "パンプキンナイト",
-    "ラストゲーム",
-    "天空侵犯",
-    "宇崎ちゃんは遊びたい！",
-    "道産子ギャルはなまらめんこい"
-  ],
+  "updatedAt": "2026-02-23T11:55:33.584Z",
+  "total": 226,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -21,11 +12,12 @@
     },
     {
       "file": "works_001.json",
-      "count": 18
+      "count": 26
     }
   ],
   "lookup": {
     "【推しの子】": 0,
+    "×××ホリック": 0,
     "20世紀少年": 0,
     "21世紀少年": 0,
     "3月のライオン": 0,
@@ -65,10 +57,12 @@
     "ぐらんぶる": 0,
     "ケンガンアシュラ": 0,
     "ゴールデンカムイ": 0,
+    "この音とまれ！": 0,
     "ゴブリンスレイヤー": 0,
     "ザ・ファブル": 0,
     "ささやくように恋を唄う": 0,
     "さびしすぎてレズ風俗に行きましたレポ": 0,
+    "サマータイムレンダ": 0,
     "サンケンロック": 0,
     "しまなみ誰そ彼": 0,
     "ジャガーン": 0,
@@ -112,6 +106,7 @@
     "バクマン。": 0,
     "はじめの一歩": 0,
     "パンドラハーツ": 0,
+    "パンプキンナイト": 0,
     "ひげを剃る。そして女子高生を拾う。": 0,
     "ヒナまつり": 0,
     "ビリーバット": 0,
@@ -143,6 +138,7 @@
     "ヨコハマ買い出し紀行": 0,
     "よつばと！": 0,
     "よふかしのうた": 0,
+    "ラストゲーム": 0,
     "リアル": 0,
     "ルリドラゴン": 0,
     "るろうに剣心 -明治剣客浪漫譚-": 0,
@@ -172,9 +168,11 @@
     "夜桜さんちの大作戦": 0,
     "大ダーク": 0,
     "天国大魔境": 0,
+    "天空侵犯": 0,
     "夫婦以上、恋人未満。": 0,
     "好きな子がめがねを忘れた": 0,
     "孤高の人": 0,
+    "宇崎ちゃんは遊びたい！": 0,
     "宝石の国": 0,
     "家庭教師ヒットマンREBORN!": 0,
     "寄宿学校のジュリエット": 0,
@@ -218,18 +216,19 @@
     "終わりのセラフ": 0,
     "終末のワルキューレ": 0,
     "聲の形": 0,
-    "葬送のフリーレン": 0,
-    "薫る花は凛と咲く": 0,
-    "薬屋のひとりごと": 0,
-    "蜘蛛ですが、なにか？": 0,
-    "蟲師": 0,
-    "血の轍": 0,
-    "見える子ちゃん": 0,
+    "葬送のフリーレン": 1,
+    "薫る花は凛と咲く": 1,
+    "薬屋のひとりごと": 1,
+    "蜘蛛ですが、なにか？": 1,
+    "蟲師": 1,
+    "血の轍": 1,
+    "見える子ちゃん": 1,
     "親愛なる僕へ殺意をこめて": 1,
     "賭ケグルイ": 1,
     "超人X": 1,
     "転生したらスライムだった件": 1,
     "進撃の巨人": 1,
+    "道産子ギャルはなまらめんこい": 1,
     "銀魂": 1,
     "銃夢": 1,
     "鋼の錬金術師": 1,
@@ -295,6 +294,47 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2020-07-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "×××ホリック",
+      "title": "×××HOLiC(1) (KCDX)",
+      "image": "https://m.media-amazon.com/images/I/51kdqbLXkvL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063347524?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063347524",
+      "magazine": "週刊ヤングマガジン → 別冊少年マガジン",
+      "magazines": [
+        "週刊ヤングマガジン",
+        "別冊少年マガジン"
+      ],
+      "audiences": [
+        "青年",
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Mystery",
+        "Supernatural"
+      ],
+      "tags": [
+        "魔法",
+        "妖怪",
+        "神話",
+        "幽霊",
+        "青年向け",
+        "クロスオーバー",
+        "呪い",
+        "クローン",
+        "魔女",
+        "哲学",
+        "現代ファンタジー",
+        "記憶操作",
+        "学園",
+        "百合",
+        "ボーイズラブ"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2003-07-25T00:00:01Z"
     },
     {
       "seriesKey": "20世紀少年",
@@ -771,6 +811,7 @@
         "Drama"
       ],
       "tags": [
+        "落語",
         "成長譚",
         "演技",
         "仕事",
@@ -1635,6 +1676,7 @@
       "tags": [
         "青年向け",
         "成長譚",
+        "寝取られ（NTR）",
         "学園",
         "三角関係",
         "バイセクシュアル",
@@ -1769,6 +1811,40 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2015-01-19T00:00:01Z"
+    },
+    {
+      "seriesKey": "この音とまれ！",
+      "title": "この音とまれ! 1",
+      "image": "https://m.media-amazon.com/images/I/51gGCZfyUkL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088705459?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088705459",
+      "magazine": "ジャンプSQ.",
+      "magazines": [
+        "ジャンプSQ."
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Music",
+        "Romance"
+      ],
+      "tags": [
+        "部活",
+        "学園",
+        "バンド",
+        "成長譚",
+        "少年向け",
+        "いじめ",
+        "不良",
+        "疑似家族",
+        "疎遠な家族",
+        "教師",
+        "メイド"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2012-11-02T00:00:01Z"
     },
     {
       "seriesKey": "ゴブリンスレイヤー",
@@ -1911,6 +1987,52 @@
       ],
       "publisher": "イースト・プレス",
       "releaseDate": "2016-06-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "サマータイムレンダ",
+      "title": "サマータイムレンダ 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51zZl21onbL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088813391?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088813391",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery",
+        "Supernatural",
+        "Thriller"
+      ],
+      "tags": [
+        "田舎",
+        "少年向け",
+        "サバイバル",
+        "悪魔",
+        "現代ファンタジー",
+        "タイムループ",
+        "変身能力",
+        "宇宙人",
+        "日焼け肌",
+        "多重人格",
+        "神話",
+        "犯罪",
+        "神々",
+        "水泳",
+        "宗教",
+        "コズミックホラー",
+        "三角関係",
+        "アウトドア",
+        "記憶喪失",
+        "歴史",
+        "片思い"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2018-02-02T00:00:01Z"
     },
     {
       "seriesKey": "サンケンロック",
@@ -3612,6 +3734,40 @@
       "releaseDate": "2006-10-27T00:00:01Z"
     },
     {
+      "seriesKey": "パンプキンナイト",
+      "title": "パンプキンナイト 1 (バンブーコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51c71gSznLL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4801960065?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4801960065",
+      "magazine": "LINEマンガ",
+      "magazines": [
+        "LINEマンガ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Horror",
+        "Psychological"
+      ],
+      "tags": [
+        "復讐",
+        "アンチヒーロー",
+        "いじめ",
+        "多重人格",
+        "不条理コメディ",
+        "ヤンデレ",
+        "青年向け",
+        "学園",
+        "政治",
+        "バイク",
+        "トランスジェンダー",
+        "女装男子"
+      ],
+      "publisher": "竹書房",
+      "releaseDate": "2017-07-27T00:00:01Z"
+    },
+    {
       "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "title": "ひげを剃る。そして女子高生を拾う。 (1) (角川コミックス・エース)",
       "image": "https://m.media-amazon.com/images/I/51AkyU+zjdL._SL500_.jpg",
@@ -4523,6 +4679,7 @@
         "銃",
         "ロボット",
         "柔道",
+        "水泳",
         "サイボーグ",
         "バンド"
       ],
@@ -4821,6 +4978,37 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2019-11-18T00:00:01Z"
+    },
+    {
+      "seriesKey": "ラストゲーム",
+      "title": "ラストゲーム 1 (花とゆめCOMICS)",
+      "image": "https://m.media-amazon.com/images/I/510zUVaYOxL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592193431?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592193431",
+      "magazine": "LaLa",
+      "magazines": [
+        "LaLa"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "ツンデレ",
+        "クーデレ",
+        "大学",
+        "三角関係",
+        "部活",
+        "成長譚",
+        "学園",
+        "復讐"
+      ],
+      "publisher": "白泉社",
+      "releaseDate": "2012-01-04T00:00:01Z"
     },
     {
       "seriesKey": "リアル",
@@ -5872,6 +6060,7 @@
         "ちびキャラ",
         "学園",
         "LGBTQテーマ",
+        "男女混合ハーレム",
         "怪獣"
       ],
       "publisher": "集英社",
@@ -5956,6 +6145,46 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2018-07-23T00:00:01Z"
+    },
+    {
+      "seriesKey": "天空侵犯",
+      "title": "天空侵犯(1) (KCデラックス)",
+      "image": "https://m.media-amazon.com/images/I/61CI9ossT8L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063769798?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063769798",
+      "magazine": "マンガボックス",
+      "magazines": [
+        "マンガボックス"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Horror",
+        "Mystery"
+      ],
+      "tags": [
+        "デスゲーム",
+        "サバイバル",
+        "記憶喪失",
+        "バトルロイヤル",
+        "都会",
+        "異世界",
+        "神々",
+        "コズミックホラー",
+        "超能力",
+        "記憶操作",
+        "少年向け",
+        "銃",
+        "多重人格",
+        "LGBTQテーマ",
+        "百合",
+        "剣術",
+        "ディストピア"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2014-05-09T00:00:01Z"
     },
     {
       "seriesKey": "夫婦以上、恋人未満。",
@@ -6058,6 +6287,37 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2008-04-18T00:00:01Z"
+    },
+    {
+      "seriesKey": "宇崎ちゃんは遊びたい！",
+      "title": "宇崎ちゃんは遊びたい! 1 (ドラゴンコミックスエイジ)",
+      "image": "https://m.media-amazon.com/images/I/51ypMiJ3hHL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040727797?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040727797",
+      "magazine": "ドラドラしゃーぷ#",
+      "magazines": [
+        "ドラドラしゃーぷ#"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ツンデレ",
+        "大学",
+        "ボーイッシュ",
+        "青年向け",
+        "ドタバタ",
+        "癒し系",
+        "いじめ"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2018-07-09T00:00:01Z"
     },
     {
       "seriesKey": "宝石の国",
@@ -8053,6 +8313,7 @@
         "LGBTQテーマ",
         "アンチヒーロー",
         "ポーカー",
+        "悪役令嬢",
         "デスゲーム",
         "双子",
         "部活",
@@ -8193,6 +8454,41 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2010-03-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "道産子ギャルはなまらめんこい",
+      "title": "道産子ギャルはなまらめんこい 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/518al7vz01L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088821653?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088821653",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ギャル",
+        "成長譚",
+        "雪景色",
+        "学園",
+        "三角関係",
+        "少年向け",
+        "逆ハーレム",
+        "田舎",
+        "結婚",
+        "都会",
+        "ゲーム"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2019-12-04T00:00:01Z"
     },
     {
       "seriesKey": "銀魂",
