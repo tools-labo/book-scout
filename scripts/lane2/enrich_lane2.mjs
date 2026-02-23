@@ -1,5 +1,9 @@
 // scripts/lane2/enrich_lane2.mjs
-// ===== 1/2（全差し替え：今回対応=雑誌名の正規化で audience 辞書一致を安定化）=====
+// FULL REPLACE
+// - enriched.json 巨大問題の根本対策：sharded output (index.json + enriched_000.json...)
+// - prevEnriched は sharded を優先して読む（無ければ旧 enriched.json を読む）
+// - 出力は sharded のみ（旧 enriched.json は更新しない）
+
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -19,26 +23,28 @@ const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
 const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;
 const CACHE_AMZ = `${CACHE_DIR}/amazon.json`;
 
-const OUT_ENRICHED = "data/lane2/enriched.json";
+// ★旧（互換読み取り用：書き出しはしない）
+const LEGACY_ENRICHED = "data/lane2/enriched.json";
+
+// ★新：sharded enriched
+const OUT_ENRICH_DIR = "data/lane2/enriched";
+const OUT_ENRICH_INDEX = `${OUT_ENRICH_DIR}/index.json`;
+const OUT_ENRICH_PREFIX = "enriched_";
+const ENRICH_SHARD_SIZE = 200;
+
 const OUT_MAG_TODO = "data/lane2/magazine_todo.json";
 
-function nowIso() {
-  return new Date().toISOString();
-}
+function nowIso() { return new Date().toISOString(); }
 
 async function loadJson(p, fallback) {
-  try {
-    return JSON.parse(await fs.readFile(p, "utf8"));
-  } catch {
-    return fallback;
-  }
+  try { return JSON.parse(await fs.readFile(p, "utf8")); }
+  catch { return fallback; }
 }
 
 async function loadJsonStrict(p) {
   const txt = await fs.readFile(p, "utf8");
-  try {
-    return JSON.parse(txt);
-  } catch (e) {
+  try { return JSON.parse(txt); }
+  catch (e) {
     const msg = e?.message ? String(e.message) : String(e);
     throw new Error(`[lane2:enrich] JSON parse failed: ${p} (${msg})`);
   }
@@ -49,9 +55,11 @@ async function saveJson(p, obj) {
   await fs.writeFile(p, JSON.stringify(obj, null, 2));
 }
 
-function norm(s) {
-  return String(s ?? "").trim();
+async function fileExists(p) {
+  try { await fs.stat(p); return true; } catch { return false; }
 }
+
+function norm(s) { return String(s ?? "").trim(); }
 
 function normTagKey(s) {
   return String(s ?? "")
@@ -67,16 +75,14 @@ function normTagKey(s) {
 }
 
 /**
- * ★今回の対応：雑誌名の辞書一致を安定化する正規化
- * - NBSP / 全角スペース / ゼロ幅文字 / 連続空白 / NFKC を統一
- * - audience辞書のキーも、作品側magazinesも、両方この関数を通す
+ * 雑誌名の辞書一致を安定化する正規化
  */
 function normMagazineKey(s) {
   return String(s ?? "")
-    .replace(/\u00A0/g, " ") // NBSP
-    .replace(/[\u200B-\u200D\uFEFF]/g, "") // zero-width / BOM
-    .replace(/[　]/g, " ") // full-width space
-    .replace(/\s+/g, " ") // collapse spaces
+    .replace(/\u00A0/g, " ")
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .replace(/[　]/g, " ")
+    .replace(/\s+/g, " ")
     .trim()
     .normalize("NFKC");
 }
@@ -88,9 +94,8 @@ function toHalfWidth(s) {
     .replace(/[）]/g, ")")
     .replace(/[　]/g, " ");
 }
-function normLoose(s) {
-  return norm(s).replace(/\s+/g, "");
-}
+function normLoose(s) { return norm(s).replace(/\s+/g, ""); }
+
 function uniq(arr) {
   const out = [];
   const seen = new Set();
@@ -103,19 +108,100 @@ function uniq(arr) {
   }
   return out;
 }
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
+
+function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
 function assertNonEmptySeries(sorted) {
-  if (!Array.isArray(sorted)) {
-    throw new Error("[lane2:enrich] series items is not an array");
-  }
+  if (!Array.isArray(sorted)) throw new Error("[lane2:enrich] series items is not an array");
   if (sorted.length === 0) {
-    throw new Error(
-      "[lane2:enrich] series has 0 items after normalization. Refusing to overwrite outputs."
-    );
+    throw new Error("[lane2:enrich] series has 0 items after normalization. Refusing to overwrite outputs.");
   }
+}
+
+/* -----------------------
+ * Sharded IO helpers (enriched)
+ * ----------------------- */
+function shardFileName(prefix, i) {
+  return `${prefix}${String(i).padStart(3, "0")}.json`;
+}
+
+async function loadEnrichedSharded() {
+  const idxExists = await fileExists(OUT_ENRICH_INDEX);
+  if (!idxExists) return null;
+
+  const idx = await loadJsonStrict(OUT_ENRICH_INDEX);
+  const shards = Array.isArray(idx?.shards) ? idx.shards : [];
+  if (!shards.length) return { updatedAt: idx?.updatedAt ?? "", total: 0, items: [] };
+
+  const all = [];
+  for (const sh of shards) {
+    const file = norm(sh?.file);
+    if (!file) continue;
+    const p = path.join(OUT_ENRICH_DIR, file);
+    const j = await loadJson(p, { items: [] });
+    const items = Array.isArray(j?.items) ? j.items : [];
+    all.push(...items);
+  }
+  return {
+    updatedAt: idx?.updatedAt ?? "",
+    total: Number(idx?.total || all.length),
+    items: all,
+  };
+}
+
+async function loadPrevEnrichedCompat() {
+  // 1) new sharded
+  try {
+    const sh = await loadEnrichedSharded();
+    if (sh) return sh;
+  } catch (e) {
+    console.log(`[lane2:enrich] warn: failed to read sharded enriched: ${String(e?.message || e)}`);
+  }
+
+  // 2) legacy single file
+  const legacy = await loadJson(LEGACY_ENRICHED, { updatedAt: "", total: 0, items: [] });
+  const items = Array.isArray(legacy?.items) ? legacy.items : [];
+  return { updatedAt: legacy?.updatedAt ?? "", total: Number(legacy?.total || items.length), items };
+}
+
+async function writeEnrichedSharded({ items, updatedAt, stats }) {
+  await fs.mkdir(OUT_ENRICH_DIR, { recursive: true });
+
+  const shards = [];
+  const lookup = {};
+  const total = items.length;
+
+  const shardSize = ENRICH_SHARD_SIZE;
+  const nShards = Math.max(1, Math.ceil(total / shardSize));
+
+  for (let i = 0; i < nShards; i++) {
+    const slice = items.slice(i * shardSize, (i + 1) * shardSize);
+    const file = shardFileName(OUT_ENRICH_PREFIX, i);
+    shards.push({ file, count: slice.length });
+
+    for (const it of slice) {
+      const sk = norm(it?.seriesKey);
+      if (!sk) continue;
+      lookup[sk] = i;
+    }
+
+    await saveJson(path.join(OUT_ENRICH_DIR, file), {
+      version: 1,
+      shard: i,
+      count: slice.length,
+      items: slice,
+    });
+  }
+
+  await saveJson(OUT_ENRICH_INDEX, {
+    version: 1,
+    updatedAt: updatedAt || nowIso(),
+    total,
+    shardSize,
+    shards,
+    lookup,
+    stats: stats || {},
+  });
 }
 
 /* -----------------------
@@ -123,29 +209,22 @@ function assertNonEmptySeries(sorted) {
  * ----------------------- */
 function stripHtml(s) {
   let x = String(s ?? "");
-
-  x = x
-    .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "");
+  x = x.replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<style[\s\S]*?<\/style>/gi, "");
 
   const decodeHtmlEntities = (t) => {
     let y = String(t ?? "");
-
     y = y
       .replace(/&amp;#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
       .replace(/&amp;#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
-
     y = y
       .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
       .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
-
     y = y
       .replace(/&amp;/g, "&")
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, "'");
-
     return y;
   };
 
@@ -171,30 +250,22 @@ function stripHtml(s) {
 function looksCssGarbage(line) {
   const s = norm(line);
   if (!s) return true;
-
   if (s.includes("mw-parser-output")) return true;
   if (s.includes("plainlist")) return true;
-
   if (/[{};]/.test(s)) return true;
   if (/[<>]/.test(s)) return true;
   if (/^[.#]/.test(s)) return true;
   if (/(margin|padding|line-height|list-style|only-child)/i.test(s)) return true;
-
   if (/^(ul|ol|li)$/i.test(s)) return true;
   if (/^none\b/i.test(s)) return true;
-
   if (s.length > 80) return true;
-
   return false;
 }
-
 function isPlausibleMagazineName(name) {
   const s = norm(name);
   if (!s) return false;
   if (looksCssGarbage(s)) return false;
-
   if (!/[ぁ-んァ-ヶ一-龠a-zA-Z0-9]/.test(s)) return false;
-
   return true;
 }
 
@@ -216,39 +287,16 @@ function loadHideSet(hideJson) {
   const arr = Array.isArray(hideJson?.hide) ? hideJson.hide : [];
   return new Set(arr.map((x) => normTagKey(x)).filter(Boolean));
 }
-
-/**
- * ★tags_todo 自動消し込み：
- *  - 既に tag_ja_map に入った（翻訳済み）
- *  - 既に tag_hide に入った（非表示扱い）
- * は todo から削除する
- */
 function cleanupTagTodoSet({ todoSet, tagMap, hideSet }) {
   if (!(todoSet instanceof Set)) return;
   const hs = hideSet instanceof Set ? hideSet : new Set();
   const tm = tagMap && typeof tagMap === "object" ? tagMap : {};
   for (const k of Array.from(todoSet)) {
-    if (!k) {
-      todoSet.delete(k);
-      continue;
-    }
-    if (hs.has(k)) {
-      todoSet.delete(k);
-      continue;
-    }
-    if (Object.prototype.hasOwnProperty.call(tm, k)) {
-      todoSet.delete(k);
-      continue;
-    }
+    if (!k) { todoSet.delete(k); continue; }
+    if (hs.has(k)) { todoSet.delete(k); continue; }
+    if (Object.prototype.hasOwnProperty.call(tm, k)) { todoSet.delete(k); continue; }
   }
 }
-
-/**
- * tagsEn から:
- *  - hide は除外
- *  - tag_ja_map で日本語化
- *  - 未翻訳は tags_missing_en に残し、todoSet に積む（hide は積まない）
- */
 function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
   const outJa = [];
   const missing = [];
@@ -257,8 +305,6 @@ function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
   for (const raw of uniq(tagsEn)) {
     const key = normTagKey(raw);
     if (!key) continue;
-
-    // hide は “表示しない＆未翻訳扱いもしない”
     if (hs.has(key)) continue;
 
     const ja = tagMap[key];
@@ -270,13 +316,8 @@ function applyTagDict({ tagsEn, tagMap, hideSet, todoSet }) {
   }
   return { tags: uniq(outJa), tags_missing_en: uniq(missing) };
 }
-
-/**
- * ★根本対策：過去の enriched に残っている tags_missing_en から todo を毎回再構築する
- */
 function mergeTodoFromPrevMissingTags({ prevEnrichedItems, todoSet, hideSet }) {
   const hs = hideSet instanceof Set ? hideSet : new Set();
-
   for (const it of prevEnrichedItems || []) {
     const miss = Array.isArray(it?.vol1?.tags_missing_en) ? it.vol1.tags_missing_en : [];
     for (const raw of miss) {
@@ -289,7 +330,7 @@ function mergeTodoFromPrevMissingTags({ prevEnrichedItems, todoSet, hideSet }) {
 }
 
 /* -----------------------
- * “充足判定”
+ * 充足判定
  * ----------------------- */
 function hasAniListFilled(prevVol1) {
   return !!(
@@ -301,9 +342,7 @@ function hasAniListFilled(prevVol1) {
     prevVol1.tags_en.length > 0
   );
 }
-function hasMagazineFilled(prevVol1) {
-  return !!(prevVol1 && norm(prevVol1.magazine));
-}
+function hasMagazineFilled(prevVol1) { return !!(prevVol1 && norm(prevVol1.magazine)); }
 function hasAmazonFilled(vol1) {
   return !!(
     vol1 &&
@@ -315,20 +354,14 @@ function hasAmazonFilled(vol1) {
     norm(vol1.title)
   );
 }
-
-/**
- * ★完璧判定（hide対応）
- */
 function isPerfectVol1(prevVol1, hideSet) {
   if (!prevVol1) return false;
-
   if (!hasAmazonFilled(prevVol1)) return false;
   if (!hasMagazineFilled(prevVol1)) return false;
   if (!hasAniListFilled(prevVol1)) return false;
 
   if (!Array.isArray(prevVol1.magazines) || prevVol1.magazines.length === 0) return false;
   if (!Array.isArray(prevVol1.audiences) || prevVol1.audiences.length === 0) return false;
-
   if (!Array.isArray(prevVol1.tags) || prevVol1.tags.length === 0) return false;
 
   const miss = Array.isArray(prevVol1.tags_missing_en) ? prevVol1.tags_missing_en : [];
@@ -340,18 +373,13 @@ function isPerfectVol1(prevVol1, hideSet) {
       .filter((k) => !hs.has(k));
     if (remain.length > 0) return false;
   }
-
   return true;
 }
 
-/**
- * ★DEBUG：perfect に入らない理由を説明する（vol1ベース）
- */
 function explainPerfectFail(vol1, hideSet) {
   const reasons = [];
   if (!vol1) return ["noVol1"];
 
-  // Amazon
   if (!hasAmazonFilled(vol1)) {
     const miss = [];
     if (!norm(vol1.amazonDp)) miss.push("amazonDp");
@@ -362,11 +390,8 @@ function explainPerfectFail(vol1, hideSet) {
     if (!norm(vol1.title)) miss.push("title");
     reasons.push(`amazon(${miss.join("|") || "unknown"})`);
   }
-
-  // Magazine
   if (!hasMagazineFilled(vol1)) reasons.push("magazine");
 
-  // AniList
   if (!hasAniListFilled(vol1)) {
     const miss = [];
     if (!vol1.anilistId) miss.push("anilistId");
@@ -375,42 +400,26 @@ function explainPerfectFail(vol1, hideSet) {
     reasons.push(`anilist(${miss.join("|") || "unknown"})`);
   }
 
-  // arrays
   if (!Array.isArray(vol1.magazines) || vol1.magazines.length === 0) reasons.push("magazines[]");
   if (!Array.isArray(vol1.audiences) || vol1.audiences.length === 0) reasons.push("audiences[]");
   if (!Array.isArray(vol1.tags) || vol1.tags.length === 0) reasons.push("tagsJa[]");
 
-  // tags_missing_en (hide除外後に残るか)
   const miss = Array.isArray(vol1.tags_missing_en) ? vol1.tags_missing_en : [];
   if (miss.length > 0) {
     const hs = hideSet instanceof Set ? hideSet : new Set();
-
-    const remain = [];
-    const types = new Set();
-
-    for (const raw of miss) {
-      types.add(raw === null ? "null" : Array.isArray(raw) ? "array" : typeof raw);
-
-      const key = normTagKey(raw);
-      if (!key) continue;
-      if (hs.has(key)) continue;
-      remain.push(key);
-    }
-
-    if (remain.length > 0) {
-      reasons.push(`tags_missing_en(remain=${remain.length},types=${Array.from(types).join(",")})`);
-    }
+    const remain = miss
+      .map((x) => normTagKey(x))
+      .filter(Boolean)
+      .filter((k) => !hs.has(k));
+    if (remain.length > 0) reasons.push(`tags_missing_en(remain=${remain.length})`);
   }
-
   return reasons;
 }
 
 /* -----------------------
  * perfect未達理由の集計（debug用）
  * ----------------------- */
-function bumpReason(reasons, key) {
-  reasons[key] = (reasons[key] || 0) + 1;
-}
+function bumpReason(reasons, key) { reasons[key] = (reasons[key] || 0) + 1; }
 function pushSample(samples, key, seriesKey, limit = 12) {
   if (!samples[key]) samples[key] = [];
   if (samples[key].length >= limit) return;
@@ -458,9 +467,7 @@ async function fetchAniListBySeriesKey({ seriesKey, cache }) {
     body: JSON.stringify({ query, variables: { search: key } }),
   });
 
-  if (!r.ok) {
-    return { ok: false, reason: `anilist_http_${r.status}` };
-  }
+  if (!r.ok) return { ok: false, reason: `anilist_http_${r.status}` };
 
   const json = await r.json();
   const list = json?.data?.Page?.media;
@@ -470,7 +477,6 @@ async function fetchAniListBySeriesKey({ seriesKey, cache }) {
   }
 
   const s0 = normLoose(toHalfWidth(key));
-
   function scoreMedia(m) {
     let score = 0;
     const titles = [
@@ -478,9 +484,7 @@ async function fetchAniListBySeriesKey({ seriesKey, cache }) {
       m?.title?.romaji,
       m?.title?.english,
       ...(Array.isArray(m?.synonyms) ? m.synonyms : []),
-    ]
-      .filter(Boolean)
-      .map((t) => normLoose(toHalfWidth(t)));
+    ].filter(Boolean).map((t) => normLoose(toHalfWidth(t)));
 
     if (titles.some((t) => t === s0)) score += 1000;
     if (titles.some((t) => t.includes(s0))) score += 300;
@@ -541,7 +545,6 @@ function extractMagazineFromInfoboxHtml(html) {
   if (!m) return null;
 
   const text = stripHtml(m[1]);
-
   const lines = text
     .split("\n")
     .map((x) => norm(x))
@@ -551,7 +554,6 @@ function extractMagazineFromInfoboxHtml(html) {
 
   const joined = lines.join(" / ");
   const cleaned = joined.replace(/\s+/g, " ").trim();
-
   return cleaned || null;
 }
 
@@ -593,9 +595,7 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
     return { ok: true, data: null, found: false };
   }
 
-  const bestHit =
-    results.find((x) => wikiTitleLooksOk({ wikiTitle: x?.title, seriesKey: key })) || null;
-
+  const bestHit = results.find((x) => wikiTitleLooksOk({ wikiTitle: x?.title, seriesKey: key })) || null;
   if (!bestHit?.pageid) {
     cache[key] = null;
     return { ok: true, data: null, found: false };
@@ -610,21 +610,17 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
       redirects: "1",
     });
     pageHtml = p?.parse?.text?.["*"] ?? null;
-  } catch {
-    pageHtml = null;
-  }
+  } catch { pageHtml = null; }
 
   const magazine = extractMagazineFromInfoboxHtml(pageHtml);
   const out = { pageid: bestHit.pageid, title: bestHit.title || null, magazine: magazine || null };
   cache[key] = out;
-
   return { ok: true, data: out, found: true };
 }
 
 /* -----------------------
  * Amazon PA-API (GetItems)
  * ----------------------- */
-
 function hmac(key, data, enc = null) {
   return crypto.createHmac("sha256", key).update(data, "utf8").digest(enc || undefined);
 }
@@ -639,10 +635,7 @@ function toAmzDate(d = new Date()) {
   const hh = pad(d.getUTCHours());
   const mi = pad(d.getUTCMinutes());
   const ss = pad(d.getUTCSeconds());
-  return {
-    amzDate: `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`,
-    dateStamp: `${yyyy}${mm}${dd}`,
-  };
+  return { amzDate: `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`, dateStamp: `${yyyy}${mm}${dd}` };
 }
 function signKey(secretKey, dateStamp, region, service) {
   const kDate = hmac("AWS4" + secretKey, dateStamp);
@@ -650,24 +643,19 @@ function signKey(secretKey, dateStamp, region, service) {
   const kService = hmac(kRegion, service);
   return hmac(kService, "aws4_request");
 }
-
 function isRetryablePaapiStatus(status) {
   return status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
 }
-
 function summarizePaapiError(json, text) {
   const code = json?.Errors?.[0]?.Code || json?.Error?.Code || json?.__type || null;
   const msg = json?.Errors?.[0]?.Message || json?.Error?.Message || null;
-
   const shortText = (() => {
     const t = String(text ?? "");
     if (!t) return null;
     return t.length > 180 ? t.slice(0, 180) + "…" : t;
   })();
-
   return { code, message: msg, shortText };
 }
-
 async function paapiPost({ host, region, accessKey, secretKey, target, path: apiPath, payload }) {
   const service = "ProductAdvertisingAPI";
   const endpoint = `https://${host}${apiPath}`;
@@ -686,19 +674,10 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
   const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
   const payloadHash = sha256Hex(payload);
 
-  const canonicalRequest = [
-    "POST",
-    canonicalUri,
-    canonicalQuery,
-    canonicalHeaders,
-    signedHeaders,
-    payloadHash,
-  ].join("\n");
-
+  const canonicalRequest = ["POST", canonicalUri, canonicalQuery, canonicalHeaders, signedHeaders, payloadHash].join("\n");
   const algorithm = "AWS4-HMAC-SHA256";
   const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
   const stringToSign = [algorithm, amzDate, credentialScope, sha256Hex(canonicalRequest)].join("\n");
-
   const signingKey = signKey(secretKey, dateStamp, region, service);
   const signature = hmac(signingKey, stringToSign, "hex");
 
@@ -725,15 +704,9 @@ async function paapiPost({ host, region, accessKey, secretKey, target, path: api
 
   const txt = await r.text();
   let json = null;
-  try {
-    json = JSON.parse(txt);
-  } catch {
-    json = null;
-  }
+  try { json = JSON.parse(txt); } catch { json = null; }
 
-  if (!r.ok) {
-    return { ok: false, status: r.status, json, text: txt, retryAfter };
-  }
+  if (!r.ok) return { ok: false, status: r.status, json, text: txt, retryAfter };
   return { ok: true, status: r.status, json, retryAfter };
 }
 
@@ -741,7 +714,6 @@ function extractPaapiItem(item) {
   if (!item) return null;
 
   const dp = item?.DetailPageURL ?? null;
-
   const img =
     item?.Images?.Primary?.Large?.URL ||
     item?.Images?.Primary?.Medium?.URL ||
@@ -767,7 +739,6 @@ function extractPaapiItem(item) {
     .filter(Boolean);
 
   const authorFallback = contributors.map((c) => c?.Name).filter(Boolean);
-
   const author = (authorList.length ? authorList : authorFallback).join(" / ") || null;
 
   const releaseDate =
@@ -775,33 +746,18 @@ function extractPaapiItem(item) {
     item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
     null;
 
-  return {
-    amazonDp: dp,
-    image: img,
-    title,
-    publisher,
-    author,
-    releaseDate,
-  };
+  return { amazonDp: dp, image: img, title, publisher, author, releaseDate };
 }
 
-/**
- * cacheAmz[asin] の形式:
- *  - { ok:true, data:{...}, at:"..." }
- *  - { ok:false, kind:"temporary"|"permanent", status:number|null, error:{code,message,shortText}, at:"..." }
- */
 function readCacheAmzEntry(cacheAmz, asin) {
   const v = cacheAmz?.[asin];
   if (!v) return null;
 
   if (v === null) return { legacyNull: true, raw: v };
   if (v && typeof v === "object" && "ok" in v) return v;
-  if (v && typeof v === "object") {
-    return { ok: true, data: v, at: nowIso(), legacyWrapped: true };
-  }
+  if (v && typeof v === "object") return { ok: true, data: v, at: nowIso(), legacyWrapped: true };
   return null;
 }
-
 function writeCacheAmzSuccess(cacheAmz, asin, data) {
   cacheAmz[asin] = { ok: true, data: data ?? null, at: nowIso() };
 }
@@ -816,19 +772,13 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
     if (!a) continue;
 
     const entry = readCacheAmzEntry(cache, a);
-
     if (entry && entry.ok) continue;
 
-    if (entry && entry.ok === false && entry.kind === "temporary") {
-      want.push(a);
-      continue;
-    }
-
+    if (entry && entry.ok === false && entry.kind === "temporary") { want.push(a); continue; }
     if (entry && entry.ok === false && entry.kind === "permanent") continue;
 
     want.push(a);
   }
-
   if (!want.length) return;
 
   if (!creds?.enabled) {
@@ -862,7 +812,6 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
         "ItemInfo.ContentInfo",
       ],
     };
-
     const payload = JSON.stringify(payloadObj);
 
     const max = 4;
@@ -888,13 +837,10 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
 
       const err = summarizePaapiError(res.json, res.text);
       console.log(
-        `[lane2:enrich] paapi http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${waitMs}ms chunk=${chunk.join(
-          ","
-        )} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
+        `[lane2:enrich] paapi http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${waitMs}ms chunk=${chunk.join(",")} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
       );
 
       if (!retryable || attempt === max) break;
-
       await sleep(waitMs);
       wait *= 2;
     }
@@ -905,9 +851,7 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
       const kind = retryable ? "temporary" : "permanent";
       const err = summarizePaapiError(res?.json, res?.text);
 
-      for (const asin of chunk) {
-        writeCacheAmzError(cache, asin, { kind, status, error: err });
-      }
+      for (const asin of chunk) writeCacheAmzError(cache, asin, { kind, status, error: err });
 
       if (stats) {
         stats.paapiFailures++;
@@ -924,29 +868,21 @@ async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
 
     for (const asin of chunk) {
       const it = map.get(asin) || null;
-
       if (!it) {
         writeCacheAmzError(cache, asin, {
           kind: "temporary",
           status: 200,
-          error: {
-            code: "ITEM_NOT_RETURNED",
-            message: "GetItems returned no item for this ASIN",
-            shortText: null,
-          },
+          error: { code: "ITEM_NOT_RETURNED", message: "GetItems returned no item for this ASIN", shortText: null },
         });
         if (stats) stats.paapiMissingItems++;
         continue;
       }
-
       const extracted = extractPaapiItem(it);
       writeCacheAmzSuccess(cache, asin, extracted);
-
       if (stats) stats.paapiSuccessItems++;
     }
 
     if (stats) stats.paapiChunks++;
-
     await sleep(400);
   }
 }
@@ -963,16 +899,13 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
     if (res.ok) return res;
 
     if (res.reason === "anilist_http_429") {
-      console.log(
-        `[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`
-      );
+      console.log(`[lane2:enrich] anilist http_429 seriesKey="${seriesKey}" attempt=${i}/${max} wait=${wait}ms`);
       await sleep(wait);
       wait *= 2;
       continue;
     }
     return res;
   }
-
   return { ok: false, reason: "anilist_http_429_exhausted" };
 }
 
@@ -989,13 +922,9 @@ function splitMagazines(magazineStr) {
     .filter(Boolean);
 
   const mags = parts.flatMap((p) =>
-    p
-      .split("→")
-      .map((x) => norm(x))
-      .filter(Boolean)
+    p.split("→").map((x) => norm(x)).filter(Boolean)
   );
 
-  // ★今回の対応：magazines 側も辞書と同じ正規化で揃える
   return uniq(mags.map(normMagazineKey)).filter(isPlausibleMagazineName);
 }
 
@@ -1005,7 +934,6 @@ function loadMagAudienceMap(json) {
   for (const [aud, mags] of Object.entries(items)) {
     if (!Array.isArray(mags)) continue;
     for (const m of mags) {
-      // ★今回の対応：辞書キーも正規化して格納
       const k = normMagazineKey(m);
       if (!k) continue;
       out.set(k, aud);
@@ -1015,17 +943,13 @@ function loadMagAudienceMap(json) {
 }
 
 function splitByDictOnlyIfAllKnown(raw, magAudienceMap) {
-  // ★今回の対応：ここも雑誌名正規化で統一
   const s = normMagazineKey(raw);
   if (!s) return [];
   if (magAudienceMap.has(s)) return [s];
   if (!/\s/.test(s)) return [s];
 
   const parts = s.split(/\s+/g).map(normMagazineKey).filter(Boolean);
-
-  if (parts.length >= 2 && parts.every((p) => magAudienceMap.has(p))) {
-    return parts;
-  }
+  if (parts.length >= 2 && parts.every((p) => magAudienceMap.has(p))) return parts;
   return [s];
 }
 
@@ -1034,9 +958,7 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
 
   for (const m0 of magazines) {
     const candidates = splitByDictOnlyIfAllKnown(m0, magAudienceMap);
-
     for (const m of candidates) {
-      // ★今回の対応：照合キーも正規化で統一
       const mm = normMagazineKey(m);
       if (!mm) continue;
       if (!isPlausibleMagazineName(mm)) continue;
@@ -1051,122 +973,19 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
   return Array.from(auds);
 }
 
-// ===== 2/2（全差し替え）=====
-
-// scripts/lane2/enrich_lane2.mjs
-// ===== 2/2（全差し替え：今回対応=雑誌名の正規化で audience 辞書一致を安定化）=====
-
-/* -----------------------
- * perfect未達の理由を判定して集計（outVol1ベース）
- * ----------------------- */
-function evalPerfectNotMetReasons({ seriesKey, vol1, hideSet, reasons, samples }) {
-  if (!vol1) {
-    bumpReason(reasons, "noPrevVol1");
-    pushSample(samples, "noPrevVol1", seriesKey);
-    return;
-  }
-
-  // Amazon
-  if (!hasAmazonFilled(vol1)) {
-    bumpReason(reasons, "amazonMissing");
-    pushSample(samples, "amazonMissing", seriesKey);
-  }
-
-  // Magazine
-  const magazine = norm(vol1.magazine);
-  if (!magazine) {
-    bumpReason(reasons, "magazineEmpty");
-    pushSample(samples, "magazineEmpty", seriesKey);
-  } else {
-    if (looksCssGarbage(magazine)) {
-      bumpReason(reasons, "magazineLooksCssGarbage");
-      pushSample(samples, "magazineLooksCssGarbage", seriesKey);
-    }
-    if (!isPlausibleMagazineName(magazine)) {
-      bumpReason(reasons, "magazineNotPlausible");
-      pushSample(samples, "magazineNotPlausible", seriesKey);
-    }
-  }
-
-  // magazines[]
-  if (!Array.isArray(vol1.magazines) || vol1.magazines.length === 0) {
-    bumpReason(reasons, "magazinesEmpty");
-    pushSample(samples, "magazinesEmpty", seriesKey);
-  }
-
-  // audiences[]
-  if (!Array.isArray(vol1.audiences) || vol1.audiences.length === 0) {
-    bumpReason(reasons, "audiencesEmpty");
-    pushSample(samples, "audiencesEmpty", seriesKey);
-  } else {
-    const onlyOther = vol1.audiences.length === 1 && norm(vol1.audiences[0]) === "その他";
-    if (onlyOther) {
-      bumpReason(reasons, "audiencesOnlyOther");
-      pushSample(samples, "audiencesOnlyOther", seriesKey);
-    }
-  }
-
-  // AniList fields
-  if (
-    !(
-      vol1.anilistId &&
-      Array.isArray(vol1.genres) &&
-      vol1.genres.length > 0 &&
-      Array.isArray(vol1.tags_en) &&
-      vol1.tags_en.length > 0
-    )
-  ) {
-    bumpReason(reasons, "anilistMissing");
-    pushSample(samples, "anilistMissing", seriesKey);
-  } else {
-    if (!Array.isArray(vol1.genres) || vol1.genres.length === 0) {
-      bumpReason(reasons, "genresEmpty");
-      pushSample(samples, "genresEmpty", seriesKey);
-    }
-    if (!Array.isArray(vol1.tags_en) || vol1.tags_en.length === 0) {
-      bumpReason(reasons, "tagsEnEmpty");
-      pushSample(samples, "tagsEnEmpty", seriesKey);
-    }
-  }
-
-  // tags (JA)
-  if (!Array.isArray(vol1.tags) || vol1.tags.length === 0) {
-    bumpReason(reasons, "tagsJaEmpty");
-    pushSample(samples, "tagsJaEmpty", seriesKey);
-  }
-
-  // tags_missing_en が hide 以外で残っているか
-  const miss = Array.isArray(vol1.tags_missing_en) ? vol1.tags_missing_en : [];
-  if (miss.length > 0) {
-    const hs = hideSet instanceof Set ? hideSet : new Set();
-    const remain = miss
-      .map((x) => normTagKey(x))
-      .filter(Boolean)
-      .filter((k) => !hs.has(k));
-    if (remain.length > 0) {
-      bumpReason(reasons, "tagsMissingNotHidden");
-      pushSample(samples, "tagsMissingNotHidden", seriesKey);
-    }
-  }
-}
-
 /* -----------------------
  * main
  * ----------------------- */
 async function main() {
   const seriesJson = await loadJsonStrict(IN_SERIES);
   const items = Array.isArray(seriesJson?.items) ? seriesJson.items : null;
-  if (!items) {
-    throw new Error(
-      `[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`
-    );
-  }
+  if (!items) throw new Error(`[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`);
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
-  const magOverrides =
-    magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
+  const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
 
-  const prevEnriched = await loadJson(OUT_ENRICHED, { updatedAt: "", total: 0, items: [] });
+  // ★prev: sharded優先（無ければ旧 enriched.json）
+  const prevEnriched = await loadPrevEnrichedCompat();
   const prevItems = Array.isArray(prevEnriched?.items) ? prevEnriched.items : [];
   const prevMap = new Map(prevItems.map((x) => [norm(x?.seriesKey), x]).filter(([k]) => k));
 
@@ -1176,32 +995,23 @@ async function main() {
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
   const cacheAmz = (await loadJson(CACHE_AMZ, {})) || {};
 
-  // tag dict (display)
   const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: "", map: {} });
   const tagMap = loadTagMap(tagMapJson);
   const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
   const hideSet = loadHideSet(hideJson);
 
-  // todoSet: tags_todo.json をベースにしつつ、過去の enriched の tags_missing_en から毎回再構築して「0消し」を防ぐ
   const todoJson = await loadJson(TAG_TODO, { version: 1, updatedAt: "", tags: [] });
   const todoSet = new Set((todoJson?.tags || []).map((x) => normTagKey(x)).filter(Boolean));
   mergeTodoFromPrevMissingTags({ prevEnrichedItems: prevItems, todoSet, hideSet });
-
-  // 翻訳済み / 非表示 を自動消し込み
   cleanupTagTodoSet({ todoSet, tagMap, hideSet });
 
-  // mag todo (seriesKey)
   const magTodoPrev = await loadJson(OUT_MAG_TODO, { version: 1, updatedAt: "", items: [] });
   const magTodoSet = new Set((magTodoPrev?.items || []).map((x) => norm(x)).filter(Boolean));
 
-  // audience map
   const magAudienceJson = await loadJsonStrict(IN_MAG_AUDIENCE);
   const magAudienceMap = loadMagAudienceMap(magAudienceJson);
-
-  // magazine_audience_todo は “今回のrunで未分類だったものだけ”
   const magAudTodoSet = new Set();
 
-  // PA-API creds
   const accessKey = norm(process.env.AMZ_ACCESS_KEY);
   const secretKey = norm(process.env.AMZ_SECRET_KEY);
   const partnerTag = norm(process.env.AMZ_PARTNER_TAG);
@@ -1237,15 +1047,7 @@ async function main() {
     asinsNeed.push(asin);
   }
 
-  const paapiStats = {
-    paapiChunks: 0,
-    paapiFailures: 0,
-    paapi429: 0,
-    paapi503: 0,
-    paapiMissingItems: 0,
-    paapiSuccessItems: 0,
-  };
-
+  const paapiStats = { paapiChunks: 0, paapiFailures: 0, paapi429: 0, paapi503: 0, paapiMissingItems: 0, paapiSuccessItems: 0 };
   await fetchPaapiByAsins({ asins: asinsNeed, cache: cacheAmz, creds, stats: paapiStats });
 
   const enriched = [];
@@ -1257,28 +1059,7 @@ async function main() {
   let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
 
-  // ★集計
-  const perfectNotMetReasons = {
-    noPrevVol1: 0,
-    amazonMissing: 0,
-    magazineEmpty: 0,
-    magazinesEmpty: 0,
-    audiencesEmpty: 0,
-    audiencesOnlyOther: 0,
-    anilistMissing: 0,
-    genresEmpty: 0,
-    tagsEnEmpty: 0,
-    tagsJaEmpty: 0,
-    tagsMissingNotHidden: 0,
-    magazineLooksCssGarbage: 0,
-    magazineNotPlausible: 0,
-
-    // ★追加：prevVol1 が perfect になっていない（=次runで skippedPerfect に入らない）理由のサマリ
-    prevNotPerfect: 0,
-
-    // ★追加：outVol1 が perfect になっていない（=次runの prev 側に欠損を持ち越す）理由のサマリ
-    outNotPerfect: 0,
-  };
+  const perfectNotMetReasons = { prevNotPerfect: 0, outNotPerfect: 0 };
   const perfectNotMetSamples = {};
 
   for (const x of sorted) {
@@ -1289,24 +1070,15 @@ async function main() {
     const prevVol1 = prev?.vol1 || null;
 
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
-    const manualMagSameAsPrev =
-      !!manualMag && !!norm(prevVol1?.magazine) && norm(prevVol1?.magazine) === manualMag;
+    const manualMagSameAsPrev = !!manualMag && !!norm(prevVol1?.magazine) && norm(prevVol1?.magazine) === manualMag;
 
-    // ★not-perfect(prev) を必ず観測（skippedPerfect 増えない原因の可視化）
     if (!isPerfectVol1(prevVol1, hideSet)) {
       bumpReason(perfectNotMetReasons, "prevNotPerfect");
       const fails = explainPerfectFail(prevVol1, hideSet);
-      if (fails.length > 0) {
-        pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: ${fails.join(",")}`);
-      } else if (!prevVol1) {
-        pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: noVol1`);
-      } else {
-        pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: unknown`);
-      }
+      pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: ${fails.join(",") || "unknown"}`);
     }
 
     // ★完璧は完全スキップ（prevVol1温存）
-    //   ただし manual override が「前回と同じ」ならスキップOK（=差分コミットを減らす）
     if ((manualMagSameAsPrev || !manualMag) && isPerfectVol1(prevVol1, hideSet)) {
       magTodoSet.delete(seriesKey);
 
@@ -1359,8 +1131,7 @@ async function main() {
     const afterSize = magAudTodoSet.size;
     if (afterSize > beforeSize) magAudienceTodoAdded += afterSize - beforeSize;
 
-    const audiencesOnlyOther =
-      Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
+    const audiencesOnlyOther = Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
 
     // AniList
     let anilistId = prevVol1?.anilistId ?? null;
@@ -1459,32 +1230,17 @@ async function main() {
       tags: uniq(tagsJa),
       tags_missing_en: uniq(tagsMissing),
 
-      source:
-        "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)",
+      source: "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)",
     };
 
     enriched.push({ seriesKey, vol1: outVol1, meta: x?.meta || null });
     ok++;
 
-    // ★not-perfect(out) を観測（次runで prev 側に残る欠損の可視化）
     if (!isPerfectVol1(outVol1, hideSet)) {
       bumpReason(perfectNotMetReasons, "outNotPerfect");
       const fails = explainPerfectFail(outVol1, hideSet);
-      if (fails.length > 0) {
-        pushSampleLine(perfectNotMetSamples, "outNotPerfect", `${seriesKey} :: ${fails.join(",")}`);
-      } else {
-        pushSampleLine(perfectNotMetSamples, "outNotPerfect", `${seriesKey} :: unknown`);
-      }
+      pushSampleLine(perfectNotMetSamples, "outNotPerfect", `${seriesKey} :: ${fails.join(",") || "unknown"}`);
     }
-
-    // 既存の詳細理由集計（outVol1ベース）
-    evalPerfectNotMetReasons({
-      seriesKey,
-      vol1: outVol1,
-      hideSet,
-      reasons: perfectNotMetReasons,
-      samples: perfectNotMetSamples,
-    });
   }
 
   cleanupTagTodoSet({ todoSet, tagMap, hideSet });
@@ -1509,21 +1265,22 @@ async function main() {
     items: Array.from(magAudTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  await saveJson(OUT_ENRICHED, {
+  // ★ここが本題：enriched を sharded で保存
+  await writeEnrichedSharded({
+    items: enriched,
     updatedAt: nowIso(),
-    total: sorted.length,
-    ok,
-    ng,
     stats: {
+      total: sorted.length,
+      ok,
+      ng,
       skippedPerfect,
       skippedAniList: skippedAni,
-      skippedWiki: skippedWiki,
+      skippedWiki,
       skippedAmazon: skippedAmz,
       fetchedAmazonAsins: asinsNeed.length,
       magAudienceTodoAdded,
       perfectNotMetReasons,
       perfectNotMetSamples,
-
       paapi: {
         host: creds.host,
         region: creds.region,
@@ -1536,7 +1293,6 @@ async function main() {
         successItems: paapiStats.paapiSuccessItems,
       },
     },
-    items: enriched,
   });
 
   await saveJson(CACHE_ANILIST, cacheAniList);
@@ -1544,7 +1300,7 @@ async function main() {
   await saveJson(CACHE_AMZ, cacheAmz);
 
   console.log(
-    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(perfect=${skippedPerfect}, anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) fetchedAmazonAsins=${asinsNeed.length} -> ${OUT_ENRICHED}`
+    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(perfect=${skippedPerfect}, anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) fetchedAmazonAsins=${asinsNeed.length} -> ${OUT_ENRICH_INDEX}`
   );
 }
 
