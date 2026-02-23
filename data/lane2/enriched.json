@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-23T04:11:35.241Z",
+  "updatedAt": "2026-02-23T04:17:12.594Z",
   "total": 198,
   "ok": 198,
   "ng": 0,
@@ -20,25 +20,15 @@
       "anilistMissing": 0,
       "genresEmpty": 0,
       "tagsEnEmpty": 0,
-      "tagsJaEmpty": 8,
-      "tagsMissingNotHidden": 8,
+      "tagsJaEmpty": 0,
+      "tagsMissingNotHidden": 0,
       "magazineLooksCssGarbage": 0,
       "magazineNotPlausible": 0,
       "prevNotPerfect": 8,
-      "outNotPerfect": 8
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "Re:ゼロから始める異世界生活 :: tags_missing_en(remain=1,types=string)",
-        "あせとせっけん :: tags_missing_en(remain=1,types=string)",
-        "アンデッドアンラック :: tags_missing_en(remain=1,types=string)",
-        "いぬやしき :: tags_missing_en(remain=1,types=string)",
-        "ケンガンアシュラ :: magazine,magazines[]",
-        "大ダーク :: magazine,magazines[],tags_missing_en(remain=2,types=string)",
-        "幸色のワンルーム :: magazine,magazines[]",
-        "月刊少女野崎くん :: magazine,magazines[]"
-      ],
-      "outNotPerfect": [
         "Re:ゼロから始める異世界生活 :: tagsJa[],tags_missing_en(remain=24,types=string)",
         "あせとせっけん :: tagsJa[],tags_missing_en(remain=8,types=string)",
         "アンデッドアンラック :: tagsJa[],tags_missing_en(remain=19,types=string)",
@@ -47,26 +37,6 @@
         "大ダーク :: tagsJa[],tags_missing_en(remain=16,types=string)",
         "幸色のワンルーム :: tagsJa[],tags_missing_en(remain=10,types=string)",
         "月刊少女野崎くん :: tagsJa[],tags_missing_en(remain=14,types=string)"
-      ],
-      "tagsJaEmpty": [
-        "Re:ゼロから始める異世界生活",
-        "あせとせっけん",
-        "アンデッドアンラック",
-        "いぬやしき",
-        "ケンガンアシュラ",
-        "大ダーク",
-        "幸色のワンルーム",
-        "月刊少女野崎くん"
-      ],
-      "tagsMissingNotHidden": [
-        "Re:ゼロから始める異世界生活",
-        "あせとせっけん",
-        "アンデッドアンラック",
-        "いぬやしき",
-        "ケンガンアシュラ",
-        "大ダーク",
-        "幸色のワンルーム",
-        "月刊少女野崎くん"
       ],
       "audiencesOnlyOther": [
         "大ダーク",
@@ -673,33 +643,33 @@
           "Kemonomimi",
           "Crossdressing"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Time Loop",
-          "Isekai",
-          "Witch",
-          "Cosmic Horror",
-          "Politics",
-          "Disability",
-          "Astronomy",
-          "Memory Manipulation",
-          "Magic",
-          "Cult",
-          "Elf",
-          "Amnesia",
-          "Twins",
-          "Dissociative Identities",
-          "Unrequited Love",
-          "Maids",
-          "Hikikomori",
-          "Assassins",
-          "Love Triangle",
-          "Dragons",
-          "Age Regression",
-          "Yandere",
-          "Kemonomimi",
-          "Crossdressing"
+        "tags": [
+          "タイムループ",
+          "異世界",
+          "魔女",
+          "コズミックホラー",
+          "政治",
+          "障害",
+          "天文学",
+          "記憶操作",
+          "魔法",
+          "カルト",
+          "エルフ",
+          "記憶喪失",
+          "双子",
+          "多重人格",
+          "片思い",
+          "メイド",
+          "ひきこもり",
+          "暗殺者",
+          "三角関係",
+          "ドラゴン",
+          "年齢退行",
+          "ヤンデレ",
+          "獣耳",
+          "女装・男装"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1216,17 +1186,17 @@
           "Nudity",
           "Love Triangle"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Sweat",
-          "Office Lady",
-          "Work",
-          "Office",
-          "Seinen",
-          "Disability",
-          "Marriage",
-          "Love Triangle"
+        "tags": [
+          "汗",
+          "OL",
+          "仕事",
+          "オフィス",
+          "青年向け",
+          "障害",
+          "結婚",
+          "三角関係"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1290,28 +1260,28 @@
           "Curses",
           "Boxing"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Super Power",
-          "Shounen",
-          "Urban Fantasy",
-          "Kaiju",
-          "Dissociative Identities",
-          "Martial Arts",
-          "Zombie",
-          "Cosmic Horror",
-          "Memory Manipulation",
-          "Found Family",
-          "War",
-          "Time Loop",
-          "Post-Apocalyptic",
-          "Aliens",
-          "Real Robot",
-          "Swordplay",
-          "Idol",
-          "Curses",
-          "Boxing"
+        "tags": [
+          "超能力",
+          "少年向け",
+          "現代ファンタジー",
+          "怪獣",
+          "多重人格",
+          "武術",
+          "ゾンビ",
+          "コズミックホラー",
+          "記憶操作",
+          "疑似家族",
+          "戦争",
+          "タイムループ",
+          "終末後",
+          "宇宙人",
+          "リアルロボット",
+          "剣術",
+          "アイドル",
+          "呪い",
+          "ボクシング"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1434,20 +1404,20 @@
           "Bullying",
           "Rape"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Cyborg",
-          "Seinen",
-          "Super Power",
-          "Philosophy",
-          "Urban",
-          "Fugitive",
-          "Robots",
-          "Crime",
-          "Elderly Protagonist",
-          "Aliens",
-          "Bullying"
+        "tags": [
+          "サイボーグ",
+          "青年向け",
+          "超能力",
+          "哲学",
+          "都会",
+          "逃亡者",
+          "ロボット",
+          "犯罪",
+          "高齢主人公",
+          "宇宙人",
+          "いじめ"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2462,19 +2432,19 @@
           "4-koma",
           "Historical"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Martial Arts",
-          "Wrestling",
-          "Boxing",
-          "Athletics",
-          "Shounen",
-          "Revenge",
-          "Yandere",
-          "Gambling",
-          "4-koma",
-          "Historical"
+        "tags": [
+          "武術",
+          "プロレス",
+          "ボクシング",
+          "陸上競技",
+          "少年向け",
+          "復讐",
+          "ヤンデレ",
+          "ギャンブル",
+          "4コマ",
+          "歴史"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9591,25 +9561,25 @@
           "Nudity",
           "Age Regression"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Space",
-          "Surreal Comedy",
-          "Aliens",
-          "Dystopian",
-          "Anti-Hero",
-          "Shounen",
-          "Henshin",
-          "Skeleton",
-          "Cult",
-          "Agender",
-          "Demons",
-          "Cosmic Horror",
-          "Food",
-          "Space Opera",
-          "Slavery",
-          "Age Regression"
+        "tags": [
+          "宇宙",
+          "不条理コメディ",
+          "宇宙人",
+          "ディストピア",
+          "アンチヒーロー",
+          "少年向け",
+          "変身",
+          "スケルトン",
+          "カルト",
+          "無性別",
+          "悪魔",
+          "コズミックホラー",
+          "グルメ",
+          "スペースオペラ",
+          "奴隷",
+          "年齢退行"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -10582,19 +10552,19 @@
           "Delinquents",
           "Primarily Adult Cast"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Rehabilitation",
-          "Bullying",
-          "Crime",
-          "Philosophy",
-          "Found Family",
-          "Detective",
-          "Yandere",
-          "Homeless",
-          "Coastal",
-          "Delinquents"
+        "tags": [
+          "更生",
+          "いじめ",
+          "犯罪",
+          "哲学",
+          "疑似家族",
+          "探偵",
+          "ヤンデレ",
+          "ホームレス",
+          "海辺",
+          "不良"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -11373,23 +11343,23 @@
           "Bisexual",
           "College"
         ],
-        "tags": [],
-        "tags_missing_en": [
-          "Drawing",
-          "Parody",
-          "4-koma",
-          "Work",
-          "School",
-          "Otaku Culture",
-          "Unrequited Love",
-          "Tomboy",
-          "Tsundere",
-          "School Club",
-          "Shounen",
-          "Educational",
-          "Bisexual",
-          "College"
+        "tags": [
+          "絵・作画",
+          "パロディ",
+          "4コマ",
+          "仕事",
+          "学園",
+          "オタク文化",
+          "片思い",
+          "ボーイッシュ",
+          "ツンデレ",
+          "部活",
+          "少年向け",
+          "教育",
+          "バイセクシュアル",
+          "大学"
         ],
+        "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
