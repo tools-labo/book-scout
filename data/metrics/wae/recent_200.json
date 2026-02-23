@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T15:39:31.717Z",
+  "updatedAt": "2026-02-23T15:46:24.470Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -47,6 +47,102 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-23 15:45:31",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ディー・グレイマン",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-02-23 15:45:25",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヴァニタスの手記",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:45:10",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ガチアクタ",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:45:09",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ガチアクタ",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:45:05",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:45:04",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:44:57",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:44:55",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
     {
       "timestamp": "2026-02-23 15:13:17",
       "type": "rate",
@@ -2350,106 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:50:30",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:46:27",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "監獄学園",
-      "mood": "funny",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:46:25",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "監獄学園",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:45:40",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "銀魂",
-      "mood": "satisfying",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:45:39",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "銀魂",
-      "mood": "funny",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:45:35",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "銀魂",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:45:34",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "銀魂",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 07:44:50",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 480
+    "rows_before_limit_at_least": 488
   }
 }
