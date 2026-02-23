@@ -1,12 +1,15 @@
 // public/app.js（1/2）FULL REPLACE
 // - 二重定義ゼロ（SyntaxError回避）
 // - List / Work / Home の関数定義はここに全部入れる（run() だけ 2/2）
-// - Home：人気ランキング棚（閲覧数 work_view 上位6件）を追加
+// - Home：人気ランキング棚（閲覧数 work_view 上位6件）
+// - Home：ジャンル/カテゴリー棚は「日替わりランダム18件」表示（Homeだけ）
+// - Home：棚の説明テキストは出さない（見出しのみ）
 //
 // 【分割ルール】
 // - 1/2 はこの END マーカーで必ず終わる
 // - 2/2 は START マーカーから必ず始める
 // - token が一致しない場合は貼り間違い
+// token: A1B2
 
 function qs() { return new URLSearchParams(location.search); }
 
@@ -230,6 +233,7 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
+    // ONにしたときだけ送る
     if (next) void trackFavoriteOnce(seriesKey, page || "unknown");
   }, { passive: true });
 }
@@ -1050,15 +1054,42 @@ function renderCardRow({ items, limit = 18, moreHref = "" }) {
   return `<div class="row-scroll">${cards}${moreCard}</div>`;
 }
 
-function setGenreAllLink(activeTab) {
-  const a = document.getElementById("genreAllLink");
-  if (!a) return;
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  const q = encodeURIComponent(activeTab.match.join(","));
-  a.href = `./list.html?genre=${q}${vq}`;
+/* --- 日替わりランダム（Home専用）--- */
+function daySeedStr() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${dd}`;
+}
+function mulberry32(a) {
+  return function() {
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function hash32(str) {
+  const s = String(str || "");
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+function shuffleWithSeed(arr, seedStr) {
+  const a = (arr || []).slice();
+  const rnd = mulberry32(hash32(seedStr));
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
+/* --- Home ジャンル/カテゴリー：日替わり18件にする --- */
 function renderGenreTabsRow({ data, activeId }) {
   const tabs = document.getElementById("genreTabs");
   const row = document.getElementById("genreRow");
@@ -1081,7 +1112,9 @@ function renderGenreTabsRow({ data, activeId }) {
     </div>
   `;
 
-  const picked = all.filter(it => hasAnyGenre(it, active.match));
+  const pickedAll = all.filter(it => hasAnyGenre(it, active.match));
+  const picked = shuffleWithSeed(pickedAll, `genre:${active.id}:${daySeedStr()}`);
+
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
   const moreHref = `./list.html?genre=${encodeURIComponent(active.match.join(","))}${vq}`;
@@ -1098,6 +1131,15 @@ function renderGenreTabsRow({ data, activeId }) {
     setHomeState({ g: next });
     renderGenreTabsRow({ data, activeId: next });
   };
+}
+
+function setGenreAllLink(activeTab) {
+  const a = document.getElementById("genreAllLink");
+  if (!a) return;
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+  const q = encodeURIComponent(activeTab.match.join(","));
+  a.href = `./list.html?genre=${q}${vq}`;
 }
 
 /* =======================
@@ -1154,7 +1196,9 @@ function renderAudienceTabsRow({ data, activeAudId }) {
     </div>
   `;
 
-  const picked = all.filter(it => getFirstAudienceLabel(it) === audValue);
+  const pickedAll = all.filter(it => getFirstAudienceLabel(it) === audValue);
+  const picked = shuffleWithSeed(pickedAll, `aud:${active.id}:${daySeedStr()}`);
+
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
   const moreHref = `./list.html?aud=${encodeURIComponent(audValue)}${vq}`;
@@ -1201,7 +1245,7 @@ function renderQuickHome({ defs, counts }) {
 }
 
 /* =======================
- * Home：人気ランキング（閲覧数）
+ * Home：人気ランキング（閲覧数） - 閲覧数は表示しない
  * ======================= */
 function renderHomePopular({ data, viewsMap, limit = 6 }) {
   const root = document.getElementById("homePopular");
@@ -1249,7 +1293,6 @@ function renderHomePopular({ data, viewsMap, limit = 6 }) {
               <div class="home-rank-badge">${idx + 1}位</div>
             </div>
             <div class="home-rank-name">${esc(r.seriesKey || title)}</div>
-            <div class="home-rank-metric">${esc(String(r.n))} 閲覧</div>
           </a>
         `;
       }).join("")}
@@ -1261,10 +1304,12 @@ function renderHomePopular({ data, viewsMap, limit = 6 }) {
 
 /* START PART 2 - token: A1B2 */
 
-/* =======================
- * run（work_view / vote も安全に読む）
- * - Home：人気ランキング棚（#homePopular）があれば描画
- * ======================= */
+// public/app.js（2/2）FULL REPLACE
+// - run（work_view / vote を安全に読む）
+// - Home：人気ランキング棚（#homePopular）があれば描画
+// - Home：ジャンル/カテゴリー棚は日替わりランダム18件（1/2側のrenderGenreTabsRow/renderAudienceTabsRowが対応）
+// - ほかのページは要素があるものだけ勝手に描画
+
 async function run() {
   try {
     const v = qs().get("v");
@@ -1309,11 +1354,13 @@ async function run() {
       renderHomePopular({ data, viewsMap, limit: 6 });
     }
 
-    // Home：ジャンル/カテゴリー（index.html に要素がある時だけ）
+    // Home：ジャンル（要素がある時だけ）
     if (document.getElementById("genreTabs") && document.getElementById("genreRow")) {
       const st = getHomeState();
       renderGenreTabsRow({ data, activeId: st.g });
     }
+
+    // Home：カテゴリー（要素がある時だけ）
     if (document.getElementById("audienceTabs") && document.getElementById("audienceRow")) {
       const st = getHomeState();
       renderAudienceTabsRow({ data, activeAudId: st.a });
