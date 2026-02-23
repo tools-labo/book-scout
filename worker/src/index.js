@@ -1,20 +1,11 @@
 // worker/src/index.js
 // FULL REPLACE
-// - JSビルドなので TypeScript(interface / 型注釈) を完全撤去
-// - GETは query params でも受ける（app.js がPOSTでもOK）
-// - blobs の並びは固定（schema=v2）
-// - ✅ rate: doubles[0] に ★(1..5) を格納（案A）
-// - ✅ rate: 集計しやすいよう blob5(mood) に k(rec/art) を入れる（moodが空でもOK）
+// - rate 対応：payload.rating(1..5) を doubles[0] に入れる（type=rate の時だけ）
+// - それ以外は doubles[0]=1
+// - blobs は現状維持（v2, blob15=kv）
 
 const SCHEMA = "v2";
 
-// 安全に数値化（NaNなら null）
-function toNum(v) {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : null;
-}
-
-// blobs の並びを“絶対固定”する（空でも必ず埋める）
 function toBlobs(e, req) {
   const cf = req.cf || {};
   const ua = req.headers.get("user-agent") || "";
@@ -24,34 +15,25 @@ function toBlobs(e, req) {
   const type = String(e?.type ?? "");
   const page = String(e?.page ?? "");
   const seriesKey = String(e?.seriesKey ?? "");
-
-  const k = String(e?.k ?? ""); // rate 用キー（rec/art）
-  const v = String(e?.v ?? ""); // rate 用値（1..5）
-
-  // blob5 は “mood” 列として集計で使ってるので：
-  // - vote: mood をそのまま
-  // - rate: mood に k(rec/art) を入れる
-  const moodRaw = String(e?.mood ?? "");
-  const mood = (type === "rate") ? (k || moodRaw) : moodRaw;
-
+  const mood = String(e?.mood ?? "");
   const genre = String(e?.genre ?? "");
   const aud = String(e?.aud ?? "");
   const mag = String(e?.mag ?? "");
 
   const country = String(cf?.country ?? "");
-
   const path = url.pathname || "";
   const ref = req.headers.get("referer") || "";
 
   const sid = String(e?.sid ?? "");
+  const k = String(e?.k ?? "");
+  const v = String(e?.v ?? "");
 
-  // blob1..blob15 を固定
   return [
     type,       // blob1
     SCHEMA,     // blob2
     page,       // blob3
     seriesKey,  // blob4
-    mood,       // blob5  (vote: mood / rate: k)
+    mood,       // blob5（vote: moodId / rate: k）
     genre,      // blob6
     aud,        // blob7
     mag,        // blob8
@@ -61,7 +43,7 @@ function toBlobs(e, req) {
     path,       // blob12
     ref,        // blob13
     sid,        // blob14
-    `${k}:${v}` // blob15（任意KV。デバッグ用）
+    `${k}:${v}` // blob15
   ];
 }
 
@@ -80,20 +62,17 @@ function jsonResponse(obj, status = 200) {
 async function readBody(req) {
   const url = new URL(req.url);
 
-  // GET: query params を素直に読む（sendBeacon/POST じゃない場合の保険）
   if (req.method === "GET") {
     const obj = {};
     for (const [k, v] of url.searchParams.entries()) obj[k] = v;
     return Object.keys(obj).length ? obj : null;
   }
 
-  // POST: JSON
   if (req.method === "POST") {
     const ct = req.headers.get("content-type") || "";
     if (ct.includes("application/json")) {
       try { return await req.json(); } catch { return null; }
     }
-    // text/plain でも受ける
     try {
       const t = await req.text();
       return t ? JSON.parse(t) : null;
@@ -105,13 +84,19 @@ async function readBody(req) {
   return null;
 }
 
+function clampRating(x) {
+  const n = Number(x);
+  if (!Number.isFinite(n)) return null;
+  if (n < 1 || n > 5) return null;
+  return n;
+}
+
 export default {
   async fetch(req, env) {
     if (req.method === "OPTIONS") return jsonResponse({ ok: true });
 
     const url = new URL(req.url);
 
-    // ヘルスチェック
     if (url.pathname === "/" || url.pathname === "/health") {
       return jsonResponse({ ok: true, service: "book-scout-events", schema: SCHEMA });
     }
@@ -125,39 +110,25 @@ export default {
       return jsonResponse({ ok: false, wrote: false, error: "invalid_payload" }, 400);
     }
 
-    // rid はクライアントから来てもOK、無ければ生成
     const rid = String(body?.rid ?? crypto.randomUUID());
 
-    // 必須：type
     const type = String(body?.type ?? "");
-    if (!type) {
-      return jsonResponse({ ok: false, wrote: false, rid, error: "missing_type" }, 400);
-    }
-
-    // rate の場合：k(rec/art) と v(1..5) を要求（欠けてても書くが、doublesは1に落とす）
-    const k = String(body?.k ?? "");
-    const v = String(body?.v ?? "");
-    const rating = toNum(v);
+    if (!type) return jsonResponse({ ok: false, wrote: false, rid, error: "missing_type" }, 400);
 
     const blobs = toBlobs({ ...body, rid }, req);
 
-    // doubles:
-    // - rate: ★(1..5) を double1 に入れる
-    // - それ以外: 1（カウント用）
-    const doubles = (() => {
-      if (type !== "rate") return [1];
+    // ★ rate の時だけ rating を doubles[0] に入れる
+    let d0 = 1;
+    if (type === "rate") {
+      const r = clampRating(body?.rating);
+      if (r == null) return jsonResponse({ ok: false, wrote: false, rid, error: "invalid_rating" }, 400);
+      d0 = r;
+    }
 
-      // ★は1..5のみ受ける（それ以外は集計崩れ防止で 1 に落とす）
-      if (rating != null && rating >= 1 && rating <= 5) return [rating];
-
-      return [1];
-    })();
-
-    // index1 は rid（追跡用）
     env.AE.writeDataPoint({
       indexes: [rid],
       blobs,
-      doubles,
+      doubles: [d0],
     });
 
     return jsonResponse({
@@ -168,16 +139,13 @@ export default {
       type: blobs[0],
       page: blobs[2],
       seriesKey: blobs[3],
-      mood: blobs[4],      // vote: mood / rate: k
+      mood: blobs[4],
       genre: blobs[5],
       aud: blobs[6],
       mag: blobs[7],
       sid: blobs[13],
       kv: blobs[14],
-      double1: doubles[0],
-      // デバッグ用：rate の生値も返す（不要なら消してOK）
-      k,
-      v,
+      rating: type === "rate" ? d0 : null,
       ts: Date.now(),
     });
   },
