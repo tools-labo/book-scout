@@ -124,7 +124,25 @@ function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "
       ts: Date.now(),
     };
 
-    // sendBeacon（POST相当）を優先
+    // ★ rating は doubles に載せたいので数値も明示（Worker側が読む想定）
+    if (payload.type === "rate") {
+      const r = Number(payload.v || 0);
+      payload.rating = Number.isFinite(r) ? r : 0;
+    }
+
+    // rate だけは sendBeacon を使わず fetch で確実に送る（iOSで落ちるケース回避）
+    if (payload.type === "rate") {
+      fetch(EVENTS_ENDPOINT, {
+        method: "POST",
+        mode: "cors",
+        keepalive: true,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
+      return true;
+    }
+
+    // それ以外は sendBeacon（POST相当）を優先
     if (navigator.sendBeacon) {
       const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
       const ok = navigator.sendBeacon(EVENTS_ENDPOINT, blob);
