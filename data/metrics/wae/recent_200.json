@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T14:57:10.914Z",
+  "updatedAt": "2026-02-23T15:04:46.145Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -47,6 +47,18 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-23 15:03:37",
+      "type": "rate",
+      "schema": "v2",
+      "page": "debug",
+      "seriesKey": "__debug__",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
     {
       "timestamp": "2026-02-23 12:03:22",
       "type": "work_view",
@@ -2434,22 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-21 17:03:13",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "カグラバチ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 463
+    "rows_before_limit_at_least": 464
   }
 }
