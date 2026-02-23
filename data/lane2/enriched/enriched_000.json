@@ -1,7 +1,7 @@
 {
   "version": 1,
   "shard": 0,
-  "count": 198,
+  "count": 200,
   "items": [
     {
       "seriesKey": "【推しの子】",
@@ -2173,6 +2173,68 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ギョ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091860818",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091860818?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091860811",
+        "asin": "4091860818",
+        "title": "ギョ (1) (ビッグコミックス)",
+        "synopsis": "伊豆の海岸に上がった足付きの魚が、やがて東京中にあふれ出す。悪臭を放つ謎の生物に次第に人間も侵され、恋人を探す青年・毅と香織は、世界を覆う恐怖の正体に迫る。",
+        "image": "https://m.media-amazon.com/images/I/61AXqoIosfL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "伊藤 潤二",
+        "releaseDate": "2002-02-28T00:00:01Z",
+        "magazine": "ビッグコミックスピリッツ",
+        "magazines": [
+          "ビッグコミックスピリッツ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ギョ",
+        "anilistId": 30909,
+        "genres": [
+          "Drama",
+          "Horror",
+          "Mystery",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Seinen",
+          "Body Horror",
+          "Animals",
+          "Gore",
+          "Male Protagonist",
+          "Cosmic Horror",
+          "Primarily Adult Cast",
+          "Survival",
+          "Pandemic",
+          "Coastal",
+          "Urban",
+          "Circus",
+          "Cyborg",
+          "Nudity"
+        ],
+        "tags": [
+          "青年向け",
+          "動物",
+          "コズミックホラー",
+          "サバイバル",
+          "パンデミック",
+          "海辺",
+          "都会",
+          "サーカス",
+          "サイボーグ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6002,6 +6064,99 @@
       "meta": null
     },
     {
+      "seriesKey": "プラチナエンド",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088806379",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088806379?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088806372",
+        "asin": "4088806379",
+        "title": "プラチナエンド 1 (ジャンプコミックス)",
+        "synopsis": "両親を亡くし絶望していた中学生・架橋明日は、天使ナッセに救われ三つの神の力を授かり次の神候補に選ばれる。十三人の候補者による生死を賭けた戦いの中で、明日は生きる意味と正義を問われていくダークファンタジー。",
+        "image": "https://m.media-amazon.com/images/I/51FMbRTaZRL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "小畑 健",
+        "releaseDate": "2016-02-04T00:00:01Z",
+        "magazine": "ジャンプスクエア",
+        "magazines": [
+          "ジャンプスクエア"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "プラチナエンド",
+        "anilistId": 86526,
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Gods",
+          "Angels",
+          "Shounen",
+          "Cosmic Horror",
+          "Urban",
+          "Battle Royale",
+          "Survival",
+          "Male Protagonist",
+          "Superhero",
+          "Suicide",
+          "Philosophy",
+          "Crime",
+          "Politics",
+          "Religion",
+          "Heterosexual",
+          "Memory Manipulation",
+          "Super Power",
+          "Coming of Age",
+          "Conspiracy",
+          "Bullying",
+          "Ensemble Cast",
+          "Denpa",
+          "Guns",
+          "Yandere",
+          "Cult",
+          "Urban Fantasy",
+          "Nudity",
+          "Kuudere",
+          "Ghost",
+          "Zombie"
+        ],
+        "tags": [
+          "神々",
+          "天使",
+          "少年向け",
+          "コズミックホラー",
+          "都会",
+          "バトルロイヤル",
+          "サバイバル",
+          "スーパーヒーロー",
+          "哲学",
+          "犯罪",
+          "政治",
+          "宗教",
+          "記憶操作",
+          "超能力",
+          "成長譚",
+          "陰謀",
+          "いじめ",
+          "銃",
+          "ヤンデレ",
+          "カルト",
+          "現代ファンタジー",
+          "クーデレ",
+          "幽霊",
+          "ゾンビ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ブラッククローバー",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/ブラッククローバー-1-ジャンプコミックス-田畠-裕基/dp/4088804163",
@@ -6074,6 +6229,68 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "プラネテス",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063287351",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063287351?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063287356",
+        "asin": "4063287351",
+        "title": "プラネテス(1) (モーニングKC)",
+        "synopsis": "宇宙ゴミ除去を請け負う会社で働く新人宇宙飛行士ハチマキたちが、人類の宇宙進出の裏に潜む危険と夢に向き合いながら、仲間との絆や自身の夢を見つめ直していくリアルなSFドラマ。",
+        "image": "https://m.media-amazon.com/images/I/514biCzI3NL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "幸村 誠",
+        "releaseDate": "2001-01-22T00:00:01Z",
+        "magazine": "モーニング",
+        "magazines": [
+          "モーニング"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "プラネテス",
+        "anilistId": 30481,
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Work",
+          "Space",
+          "Philosophy",
+          "Environmental",
+          "Seinen",
+          "Politics",
+          "Family Life",
+          "Educational",
+          "Terrorism",
+          "Male Protagonist",
+          "Iyashikei",
+          "Heterosexual",
+          "Primarily Adult Cast",
+          "Episodic",
+          "Nudity"
+        ],
+        "tags": [
+          "仕事",
+          "宇宙",
+          "哲学",
+          "環境問題",
+          "青年向け",
+          "政治",
+          "家族もの",
+          "教育",
+          "癒し系"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9526,6 +9743,83 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "天国大魔境",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4065123077",
+        "amazonDp": null,
+        "isbn13": "9784065123070",
+        "asin": "4065123077",
+        "title": null,
+        "synopsis": "壁に守られた施設で暮らす子どもたちと、怪物が跋扈する荒廃した外の世界。外界の少年少女・マルとキルコは“天国”を求めて旅に出る。二つの世界が交差する黙示録的冒険譚。",
+        "image": null,
+        "publisher": null,
+        "author": null,
+        "releaseDate": null,
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "天国大魔境",
+        "anilistId": 101942,
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Mystery"
+        ],
+        "tags_en": [
+          "Post-Apocalyptic",
+          "Seinen",
+          "Male Protagonist",
+          "Survival",
+          "Dystopian",
+          "Achronological Order",
+          "Female Protagonist",
+          "Travel",
+          "Gender Bending",
+          "Conspiracy",
+          "Super Power",
+          "Heterosexual",
+          "Artificial Intelligence",
+          "Bisexual",
+          "Amnesia",
+          "Nudity",
+          "Transgender",
+          "Rape",
+          "Orphan",
+          "Yuri",
+          "Guns",
+          "Demons",
+          "Gore"
+        ],
+        "tags": [
+          "終末後",
+          "青年向け",
+          "サバイバル",
+          "ディストピア",
+          "時系列シャッフル",
+          "旅",
+          "性転換",
+          "陰謀",
+          "超能力",
+          "人工知能",
+          "バイセクシュアル",
+          "記憶喪失",
+          "トランスジェンダー",
+          "孤児",
+          "百合",
+          "銃",
+          "悪魔"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -14187,186 +14481,6 @@
           "狼男",
           "変身能力",
           "ドラゴン"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "魔都精兵のスレイブ",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088817869",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088817869?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088817866",
-        "asin": "4088817869",
-        "title": "魔都精兵のスレイブ 1 (ジャンプコミックス)",
-        "synopsis": "異界“魔都”が現れ、侵入した女性が能力を得る世界。高校生の和倉優希は、妹を守ろうとして魔都に迷い込み、強力な“魔都防衛隊”の総帥・羽前京香に救われて彼女の奴隷となり、共に異形と戦うバトルアクション。",
-        "image": "https://m.media-amazon.com/images/I/51wlnhvZOuL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "竹村 洋平",
-        "releaseDate": "2019-03-04T00:00:01Z",
-        "magazine": "少年ジャンプ+",
-        "magazines": [
-          "少年ジャンプ+"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 106064,
-        "genres": [
-          "Action",
-          "Adventure",
-          "Drama",
-          "Ecchi",
-          "Fantasy",
-          "Romance"
-        ],
-        "tags_en": [
-          "Male Protagonist",
-          "Super Power",
-          "Slavery",
-          "Heterosexual",
-          "Primarily Female Cast",
-          "Nudity",
-          "Female Harem",
-          "Shounen",
-          "Creature Taming",
-          "Demons",
-          "Henshin",
-          "Urban Fantasy",
-          "Gods",
-          "Swordplay",
-          "MILF",
-          "Love Triangle",
-          "Guns",
-          "Matriarchy",
-          "Threesome",
-          "Shapeshifting",
-          "Monster Girl",
-          "Aliens",
-          "Isekai",
-          "Bullying"
-        ],
-        "tags": [
-          "超能力",
-          "奴隷",
-          "逆ハーレム",
-          "少年向け",
-          "魔物使い",
-          "悪魔",
-          "変身",
-          "現代ファンタジー",
-          "神々",
-          "剣術",
-          "年上女性",
-          "三角関係",
-          "銃",
-          "女系社会",
-          "変身能力",
-          "モンスター娘",
-          "宇宙人",
-          "異世界",
-          "いじめ"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "黒執事",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/475751963X",
-        "amazonDp": "https://www.amazon.co.jp/dp/475751963X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784757519633",
-        "asin": "475751963X",
-        "title": "黒執事(1) (Gファンタジーコミックス)",
-        "synopsis": "若き主人シエルに仕える執事セバスチャンは、完璧な所作と冷徹さであらゆる依頼をこなす。裏社会の事件に関わりながら、主従の契約が導く耽美で妖しい執事譚が幕を開ける。",
-        "image": "https://m.media-amazon.com/images/I/51RoA7t9kiL._SL500_.jpg",
-        "publisher": "スクウェア・エニックス",
-        "author": "枢 やな",
-        "releaseDate": "2007-02-27T00:00:01Z",
-        "magazine": "月刊Gファンタジー",
-        "magazines": [
-          "月刊Gファンタジー"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "黒執事",
-        "anilistId": 33866,
-        "genres": [
-          "Action",
-          "Fantasy",
-          "Mystery",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Demons",
-          "Revenge",
-          "Crime",
-          "Historical",
-          "Butler",
-          "Anti-Hero",
-          "Orphan",
-          "Male Protagonist",
-          "Twins",
-          "Royal Affairs",
-          "Foreign",
-          "Detective",
-          "Cult",
-          "Shounen",
-          "Found Family",
-          "Magic",
-          "Circus",
-          "Mythology",
-          "Maids",
-          "Assassins",
-          "Steampunk",
-          "LGBTQ+ Themes",
-          "Travel",
-          "Urban Fantasy",
-          "Medicine",
-          "Anachronism",
-          "Zombie",
-          "Crossdressing",
-          "Rape",
-          "Fugitive"
-        ],
-        "tags": [
-          "悪魔",
-          "復讐",
-          "犯罪",
-          "歴史",
-          "執事",
-          "アンチヒーロー",
-          "孤児",
-          "男性主人公",
-          "双子",
-          "王侯貴族",
-          "海外",
-          "探偵",
-          "カルト",
-          "少年向け",
-          "疑似家族",
-          "魔法",
-          "サーカス",
-          "神話",
-          "メイド",
-          "暗殺者",
-          "スチームパンク",
-          "LGBTQテーマ",
-          "旅",
-          "現代ファンタジー",
-          "医療",
-          "時代錯誤",
-          "ゾンビ",
-          "女装・男装",
-          "逃亡者"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"

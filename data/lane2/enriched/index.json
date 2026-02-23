@@ -1,12 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T06:36:05.172Z",
-  "total": 198,
+  "updatedAt": "2026-02-23T07:24:07.749Z",
+  "total": 203,
   "shardSize": 200,
   "shards": [
     {
       "file": "enriched_000.json",
-      "count": 198
+      "count": 200
+    },
+    {
+      "file": "enriched_001.json",
+      "count": 3
     }
   ],
   "lookup": {
@@ -40,6 +44,7 @@
     "ガチアクタ": 0,
     "からかい上手の高木さん": 0,
     "ギヴン": 0,
+    "ギョ": 0,
     "キングダム": 0,
     "ぐらんぶる": 0,
     "ケンガンアシュラ": 0,
@@ -92,7 +97,9 @@
     "パンドラハーツ": 0,
     "ビリーバット": 0,
     "ファイアパンチ": 0,
+    "プラチナエンド": 0,
     "ブラッククローバー": 0,
+    "プラネテス": 0,
     "フルーツバスケット": 0,
     "ブルーピリオド": 0,
     "ブルーロック": 0,
@@ -141,6 +148,7 @@
     "地獄楽": 0,
     "地縛少年 花子くん": 0,
     "大ダーク": 0,
+    "天国大魔境": 0,
     "夫婦以上、恋人未満。": 0,
     "孤高の人": 0,
     "宝石の国": 0,
@@ -206,34 +214,46 @@
     "鬼滅の刃": 0,
     "魔入りました！入間くん": 0,
     "魔法使いの嫁": 0,
-    "魔都精兵のスレイブ": 0,
-    "黒執事": 0
+    "魔都精兵のスレイブ": 1,
+    "黒執事": 1,
+    "黒岩メダカに私の可愛いが通じない": 1
   },
   "stats": {
-    "total": 198,
-    "ok": 198,
+    "total": 203,
+    "ok": 203,
     "ng": 0,
     "skippedPerfect": 198,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
+    "fetchedAmazonAsins": 5,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 0,
-      "outNotPerfect": 0
+      "prevNotPerfect": 5,
+      "outNotPerfect": 1
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "ギョ :: noVol1",
+        "プラチナエンド :: noVol1",
+        "プラネテス :: noVol1",
+        "天国大魔境 :: noVol1",
+        "黒岩メダカに私の可愛いが通じない :: noVol1"
+      ],
+      "outNotPerfect": [
+        "天国大魔境 :: amazon(amazonDp|image|publisher|author|releaseDate|title)"
+      ]
+    },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 0,
+      "chunks": 1,
       "failures": 0,
       "http429": 0,
       "http503": 0,
-      "missingItems": 0,
-      "successItems": 0
+      "missingItems": 1,
+      "successItems": 4
     }
   }
 }
