@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T03:18:33.342Z",
+  "updatedAt": "2026-02-23T05:42:35.885Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -24,23 +24,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "3月のライオン",
-      "n": "2"
-    },
-    {
       "seriesKey": "NARUTO -ナルト-",
       "n": "2"
     },
     {
-      "seriesKey": "銀魂",
-      "n": "1"
+      "seriesKey": "3月のライオン",
+      "n": "2"
     },
     {
-      "seriesKey": "ぐらんぶる",
-      "n": "1"
-    },
-    {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
@@ -72,11 +64,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "アオのハコ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
       "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -88,6 +88,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "n": "1"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
@@ -96,12 +100,20 @@
       "n": "1"
     },
     {
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
       "seriesKey": "ようこそ実力至上主義の教室へ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 21,
-    "rows_before_limit_at_least": 27
+    "rows": 24,
+    "rows_before_limit_at_least": 30
   }
 }
