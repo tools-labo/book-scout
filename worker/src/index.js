@@ -1,3 +1,6 @@
+// worker/src/index.js
+// FULL REPLACE
+
 export interface Env {
   AE: AnalyticsEngineDataset;
 }
@@ -19,26 +22,36 @@ function toBlobs(e: any, req: Request): string[] {
   const aud = String(e?.aud ?? "");
   const mag = String(e?.mag ?? "");
 
+  // ✅追加：匿名セッションID（ログイン不要の鍵）
+  const sid = String(e?.sid ?? "");
+
+  // ✅追加：投票種別・値（vote以外は空でOK）
+  const voteKind = String(e?.k ?? "");   // e.g. "rec" | "art"
+  const voteValue = String(e?.v ?? "");  // e.g. "1".."5"
+
   const country = String(cf?.country ?? "");
 
   const path = url.pathname || "";
   const ref = req.headers.get("referer") || "";
 
-  // blob1..blob12 を固定
+  // blob1..blob15 を固定
   return [
-    type,      // blob1
-    SCHEMA,    // blob2
-    page,      // blob3
-    seriesKey, // blob4
-    mood,      // blob5
-    genre,     // blob6
-    aud,       // blob7
-    mag,       // blob8
-    country,   // blob9
-    ua,        // blob10
-    method,    // blob11
-    path,      // blob12
-    ref,       // blob13（任意。入れても害なし）
+    type,       // blob1
+    SCHEMA,     // blob2
+    page,       // blob3
+    seriesKey,  // blob4
+    mood,       // blob5
+    genre,      // blob6
+    aud,        // blob7
+    mag,        // blob8
+    sid,        // blob9  ✅
+    voteKind,   // blob10 ✅
+    voteValue,  // blob11 ✅
+    country,    // blob12
+    ua,         // blob13
+    method,     // blob14
+    path,       // blob15
+    // ref は欲しければ blob16 に（今回は増やさないでおく）
   ];
 }
 
@@ -55,10 +68,8 @@ function jsonResponse(obj: any, status = 200) {
 }
 
 async function readBody(req: Request) {
-  // GETでも POSTでも受ける（運用で詰まらない）
   if (req.method === "GET") {
     const u = new URL(req.url);
-    // ?payload=... を許容（使わなくてもOK）
     const p = u.searchParams.get("payload");
     if (p) {
       try { return JSON.parse(p); } catch { return null; }
@@ -70,7 +81,6 @@ async function readBody(req: Request) {
     if (ct.includes("application/json")) {
       try { return await req.json(); } catch { return null; }
     }
-    // text/plain でも受ける
     try {
       const t = await req.text();
       return t ? JSON.parse(t) : null;
@@ -87,7 +97,6 @@ export default {
 
     const url = new URL(req.url);
 
-    // ヘルスチェック
     if (url.pathname === "/" || url.pathname === "/health") {
       return jsonResponse({ ok: true, service: "book-scout-events", schema: SCHEMA });
     }
@@ -97,15 +106,12 @@ export default {
     }
 
     const body = await readBody(req);
-    // body が無い場合も“デバッグしやすく”エラーを返す
     if (!body || typeof body !== "object") {
       return jsonResponse({ ok: false, wrote: false, error: "invalid_json" }, 400);
     }
 
-    // rid はクライアントから来てもOK、無ければ生成
     const rid = String(body?.rid ?? crypto.randomUUID());
 
-    // 必須：type（これが無いと集計できない）
     const type = String(body?.type ?? "");
     if (!type) {
       return jsonResponse({ ok: false, wrote: false, rid, error: "missing_type" }, 400);
@@ -113,15 +119,12 @@ export default {
 
     const blobs = toBlobs({ ...body, rid }, req);
 
-    // index1 は rid で固定（後で追跡できる）
     env.AE.writeDataPoint({
       indexes: [rid],
       blobs,
-      // 数値が欲しければここに足す（今は不要）
       doubles: [1],
     });
 
-    // 返却も固定（あなたが確認しやすい形）
     return jsonResponse({
       ok: true,
       wrote: true,
@@ -134,6 +137,9 @@ export default {
       genre: blobs[5],
       aud: blobs[6],
       mag: blobs[7],
+      sid: blobs[8],
+      k: blobs[9],
+      v: blobs[10],
       ts: Date.now(),
     });
   },
