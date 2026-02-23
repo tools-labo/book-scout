@@ -1,3 +1,4 @@
+<!-- public/index.html（FULL REPLACE） -->
 <!doctype html>
 <html lang="ja">
 <head>
@@ -44,7 +45,13 @@
         </div>
 
         <div class="hero-media">
-          <img class="hero-img" src="./assets/hero-mock.png" alt="BOOKスカウトの画面イメージ" loading="eager" decoding="async" />
+          <img
+            class="hero-img"
+            src="./assets/hero-mock.png"
+            alt="BOOKスカウトの画面イメージ"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -55,36 +62,35 @@
         <h2 class="section-title">人気ランキング</h2>
         <a class="section-link" href="./stats.html">もっと見る</a>
       </div>
-      <p class="section-sub">最近よく見られている作品（閲覧数順）。</p>
       <div id="homePopular"></div>
     </section>
 
+    <!-- 読後感で探す（Home） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">読後感で探す</h2>
         <a class="section-link" href="./list.html">一覧へ</a>
       </div>
-      <p class="section-sub">読後感をタップすると、その条件で一覧に移動します。</p>
       <div id="quickFiltersHome"></div>
     </section>
 
+    <!-- ジャンル（Home） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">ジャンル</h2>
         <a id="genreAllLink" class="section-link" href="./list.html">一覧を見る</a>
       </div>
-      <p class="section-sub">タップでジャンル切り替え。深掘りは一覧へ。</p>
 
       <div id="genreTabs"></div>
       <div id="genreRow"></div>
     </section>
 
+    <!-- カテゴリー（Home） -->
     <section class="section" style="margin-top:18px;">
       <div class="section-head">
         <h2 class="section-title">カテゴリー</h2>
         <a id="audienceAllLink" class="section-link" href="./list.html">一覧を見る</a>
       </div>
-      <p class="section-sub">タップでカテゴリー切り替え。深掘りは一覧へ。</p>
 
       <div id="audienceTabs"></div>
       <div id="audienceRow"></div>
