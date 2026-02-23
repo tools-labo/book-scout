@@ -1,11 +1,10 @@
-// public/app.js（1/2）FULL REPLACE（FIX）
-// - ✅ 二重定義ゼロ（SyntaxError回避）
-// - ✅ List：renderList をこの 1/2 に含める（list が必ず動く）
-// - ✅ Work：タグ全件表示 + レコメンド3枠
-// - ✅ Home棚（run() は 2/2 側）
+// public/app.js（1/2）FULL REPLACE
+// - 二重定義ゼロ（SyntaxError回避）
+// - List / Work / Home の関数定義はここに全部入れる（run() だけ 2/2）
+// - Home：人気ランキング棚（閲覧数 work_view 上位6件）を追加
 //
 // 【分割ルール】
-// - 1/2 はこのファイル末尾の END マーカーで必ず終わる
+// - 1/2 はこの END マーカーで必ず終わる
 // - 2/2 は START マーカーから必ず始める
 // - token が一致しない場合は貼り間違い
 
@@ -231,7 +230,6 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
-    // ONにしたときだけ送る
     if (next) void trackFavoriteOnce(seriesKey, page || "unknown");
   }, { passive: true });
 }
@@ -340,7 +338,6 @@ function hasMagazine(it, mag) {
 /* =======================
  * pills
  * ======================= */
-// list用：max6
 function pillsMax6(list) {
   const xs = (list || []).map(toText).filter(Boolean);
   if (!xs.length) return "";
@@ -349,8 +346,6 @@ function pillsMax6(list) {
   const more = rest > 0 ? `<span class="pill">+${rest}</span>` : "";
   return `<div class="pills">${head.map(x => `<span class="pill">${esc(x)}</span>`).join("")}${more}</div>`;
 }
-
-// work用：全件表示
 function pillsAll(list) {
   const xs = (list || []).map(toText).filter(Boolean);
   if (!xs.length) return "";
@@ -426,12 +421,7 @@ function quickCountsDynamic(baseItems, defs, selectedIds) {
   const selDefs = sel.map(id => byId.get(id)).filter(Boolean);
 
   const counts = new Map(defs.map(d => [d.id, 0]));
-  const disabled = new Set();
   const selectedSet = new Set(sel);
-
-  if (sel.length >= QUICK_MAX) {
-    for (const d of defs) if (!selectedSet.has(d.id)) disabled.add(d.id);
-  }
 
   for (const d of defs) {
     let condDefs = [];
@@ -444,7 +434,7 @@ function quickCountsDynamic(baseItems, defs, selectedIds) {
     counts.set(d.id, n);
   }
 
-  return { counts, disabled };
+  return { counts };
 }
 
 /* =======================
@@ -475,9 +465,7 @@ function setVotedSet(seriesKey, set){
 /* =======================
  * Reco helpers（共通タグidf / vote cosine / 人気）
  * ======================= */
-function clamp3(arr){
-  return (arr || []).filter(Boolean).slice(0, 3);
-}
+function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
 
 function recGridHtml(title, items){
   const xs = (items || []).filter(Boolean);
@@ -517,12 +505,10 @@ function buildTagDf(items){
   }
   return df;
 }
-
 function idfOf(tag, df, N){
   const d = df.get(tag) || 0;
   return Math.log((N + 1) / (d + 1)) + 1;
 }
-
 function tagSimilarTop3({ baseIt, allItems, df }) {
   const baseKey = toText(pick(baseIt, ["seriesKey"]));
   const baseTags = new Set(itTags(baseIt));
@@ -583,10 +569,7 @@ function buildVoteMatrix(voteRows) {
 function cosineSim(aMap, bMap) {
   if (!aMap || !bMap) return 0;
 
-  let dot = 0;
-  let a2 = 0;
-  let b2 = 0;
-
+  let dot = 0, a2 = 0, b2 = 0;
   for (const [, v] of aMap) a2 += (v * v);
   for (const [, v] of bMap) b2 += (v * v);
   if (a2 <= 0 || b2 <= 0) return 0;
@@ -595,7 +578,6 @@ function cosineSim(aMap, bMap) {
     const bv = bMap.get(k);
     if (bv != null) dot += av * bv;
   }
-
   return dot / (Math.sqrt(a2) * Math.sqrt(b2));
 }
 
@@ -634,7 +616,6 @@ function pickFirstGenre(it) {
 function pickFirstAudience(it) {
   return getFirstAudienceLabel(it) || "その他";
 }
-
 function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
   const baseKey = toText(pick(baseIt, ["seriesKey"]));
   const g0 = pickFirstGenre(baseIt);
@@ -660,7 +641,7 @@ function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
 }
 
 /* =======================
- * List render（復旧のためここに確実に入れる）
+ * List render
  * ======================= */
 function renderList(data, quickDefs) {
   const root = document.getElementById("list");
@@ -668,7 +649,6 @@ function renderList(data, quickDefs) {
 
   const all = Array.isArray(data?.items) ? data.items : [];
 
-  // 内部絞り込み（表示は増やさない）
   const genreWanted = parseGenreQuery();
   const audienceWanted = parseOneQueryParam("aud");
   const magazineWanted = parseOneQueryParam("mag");
@@ -682,7 +662,6 @@ function renderList(data, quickDefs) {
     .filter(it => hasAudience(it, audienceWanted))
     .filter(it => hasMagazine(it, magazineWanted));
 
-  // mood AND + score順
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -696,7 +675,6 @@ function renderList(data, quickDefs) {
   }
   const items = scored.map(x => x.it);
 
-  // 解除
   const clear = document.getElementById("moodClearLink");
   if (clear) {
     clear.onclick = (ev) => {
@@ -707,7 +685,6 @@ function renderList(data, quickDefs) {
     };
   }
 
-  // クイックUI（動的カウント）
   const qRoot = document.getElementById("quickFiltersList");
   if (qRoot) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
@@ -868,7 +845,6 @@ function renderWork(data, quickDefs, { viewsMap, voteMatrix } = {}) {
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
 
-  // ---- vote box ----
   const defs = Array.isArray(quickDefs) ? quickDefs : [];
   const voted = getVotedSet(seriesKey);
 
@@ -894,7 +870,6 @@ function renderWork(data, quickDefs, { viewsMap, voteMatrix } = {}) {
     `
     : "";
 
-  // ---- reco ①タグidf ②読後感類似 ③ジャンル×カテゴリー人気 ----
   const df = buildTagDf(items);
   const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: items, df })).map(toRecItem);
 
@@ -952,10 +927,8 @@ function renderWork(data, quickDefs, { viewsMap, voteMatrix } = {}) {
     ${recoHtml}
   `;
 
-  // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  // vote：最大2 + 選択状態保持、送信はvoteOnceで抑止
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1201,7 +1174,7 @@ function renderAudienceTabsRow({ data, activeAudId }) {
 }
 
 /* =======================
- * Home：気分（導線リンク）
+ * Home：読後感（導線リンク）
  * ======================= */
 function renderQuickHome({ defs, counts }) {
   const root = document.getElementById("quickFiltersHome");
@@ -1227,11 +1200,70 @@ function renderQuickHome({ defs, counts }) {
   `;
 }
 
+/* =======================
+ * Home：人気ランキング（閲覧数）
+ * ======================= */
+function renderHomePopular({ data, viewsMap, limit = 6 }) {
+  const root = document.getElementById("homePopular");
+  if (!root) return;
+
+  const items = Array.isArray(data?.items) ? data.items : [];
+  if (!items.length || !viewsMap?.size) {
+    root.innerHTML = `<div class="status">データがまだありません</div>`;
+    return;
+  }
+
+  const byKey = new Map();
+  for (const it of items) {
+    const sk = toText(pick(it, ["seriesKey"]));
+    if (sk) byKey.set(sk, it);
+  }
+
+  const ranked = Array.from(viewsMap.entries())
+    .map(([seriesKey, n]) => ({ seriesKey: toText(seriesKey), n: Number(n || 0) }))
+    .filter(x => x.seriesKey && Number.isFinite(x.n) && x.n > 0 && byKey.has(x.seriesKey))
+    .sort((a, b) => (b.n - a.n))
+    .slice(0, limit);
+
+  if (!ranked.length) {
+    root.innerHTML = `<div class="status">データがまだありません</div>`;
+    return;
+  }
+
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
+  root.innerHTML = `
+    <div class="home-rank-grid">
+      ${ranked.map((r, idx) => {
+        const it = byKey.get(r.seriesKey);
+        const title = toText(pick(it, ["title", "vol1.title"])) || r.seriesKey || "(無題)";
+        const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+        const img = normalizeImgUrl(imgRaw);
+        const key = encodeURIComponent(r.seriesKey);
+
+        return `
+          <a class="home-rank-item" href="./work.html?key=${key}${vq}" aria-label="${esc(title)}">
+            <div class="home-rank-cover">
+              ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+              <div class="home-rank-badge">${idx + 1}位</div>
+            </div>
+            <div class="home-rank-name">${esc(r.seriesKey || title)}</div>
+            <div class="home-rank-metric">${esc(String(r.n))} 閲覧</div>
+          </a>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
 /* END PART 1 - token: A1B2 */
+
 /* START PART 2 - token: A1B2 */
 
 /* =======================
  * run（work_view / vote も安全に読む）
+ * - Home：人気ランキング棚（#homePopular）があれば描画
  * ======================= */
 async function run() {
   try {
@@ -1272,12 +1304,22 @@ async function run() {
       voteMatrix = null;
     }
 
-    // Home：ジャンル/カテゴリー
-    const st = getHomeState();
-    renderGenreTabsRow({ data, activeId: st.g });
-    renderAudienceTabsRow({ data, activeAudId: st.a });
+    // Home：人気ランキング棚（index.html に #homePopular がある時だけ）
+    if (document.getElementById("homePopular")) {
+      renderHomePopular({ data, viewsMap, limit: 6 });
+    }
 
-    // Home：気分（導線）
+    // Home：ジャンル/カテゴリー（index.html に要素がある時だけ）
+    if (document.getElementById("genreTabs") && document.getElementById("genreRow")) {
+      const st = getHomeState();
+      renderGenreTabsRow({ data, activeId: st.g });
+    }
+    if (document.getElementById("audienceTabs") && document.getElementById("audienceRow")) {
+      const st = getHomeState();
+      renderAudienceTabsRow({ data, activeAudId: st.a });
+    }
+
+    // Home：読後感（導線）
     if (document.getElementById("quickFiltersHome")) {
       const all = Array.isArray(data?.items) ? data.items : [];
       const counts = new Map(quickDefs.map(d => [d.id, 0]));
@@ -1289,7 +1331,7 @@ async function run() {
       renderQuickHome({ defs: quickDefs, counts });
     }
 
-    // List / Work
+    // List / Work（要素があるページだけ勝手に描画される）
     renderList(data, quickDefs);
     renderWork(data, quickDefs, { viewsMap, voteMatrix });
 
