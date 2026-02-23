@@ -1499,7 +1499,8 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
     };
   }
 
-  // ratings：各項目1回（端末内で固定）
+    // ratings：各項目1回（端末内で固定）
+  // - ただし「投票済み」でも再送信はできる（値は変えない）
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
@@ -1516,13 +1517,29 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
       if (!k || !n) return;
 
       const already = getRatedValue(seriesKey, k);
-      if (already) {
-        if (rateStatus) {
-          rateStatus.textContent = "投票済み（この端末では変更できません）";
-          setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
-        }
-        return;
+      const sendVal = already || n;
+
+      // 未投票なら保存してUI更新
+      if (!already) {
+        setRatedValue(seriesKey, k, n);
+        applyStarsUi(w, n);
       }
+
+      // 送信は 24h で1回だけ（同一seriesKey/k/value）
+      const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
+      if (canSendOnce(onceKey)) {
+        trackEvent({ type: "rate", page: "work", seriesKey, k, v: sendVal });
+      }
+
+      if (rateStatus) {
+        const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
+        rateStatus.textContent = already
+          ? `${label} は投票済み（再送信）`
+          : `${label} を投票しました`;
+        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
+      }
+    }, { passive: true });
+  }
 
       setRatedValue(seriesKey, k, n);
       applyStarsUi(w, n);
