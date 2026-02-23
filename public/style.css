@@ -674,12 +674,7 @@ button{ font-family:inherit; }
   -webkit-box-orient: vertical;
   overflow:hidden;
 }
-.home-rank-metric{
-  margin-top: 4px;
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
+
 @media (max-width: 340px){
   .home-rank-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
