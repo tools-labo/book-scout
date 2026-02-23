@@ -90,22 +90,55 @@ function setStatus(msg) {
  * ======================= */
 const EVENTS_ENDPOINT = "https://book-scout-events.dx7qqdcchs.workers.dev/collect";
 
-function trackEvent({ type, page, seriesKey = "", mood = "" }) {
+// 匿名セッションID（ログイン不要）
+// - 端末ごとに固定
+// - localStorage が死んでも「無いよりマシ」
+const SID_KEY = "sid:v1";
+function getSid() {
   try {
-    const u = new URL(EVENTS_ENDPOINT);
-    u.searchParams.set("type", String(type || "unknown"));
-    u.searchParams.set("page", String(page || ""));
-    if (seriesKey) u.searchParams.set("seriesKey", String(seriesKey));
-    if (mood) u.searchParams.set("mood", String(mood));
+    let sid = localStorage.getItem(SID_KEY) || "";
+    if (!sid) {
+      sid = (crypto?.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now());
+      localStorage.setItem(SID_KEY, sid);
+    }
+    return sid;
+  } catch {
+    return (crypto?.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now());
+  }
+}
 
-    const urlStr = u.toString();
+// 送信は POST(JSON) に統一（Worker と揃える）
+function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "", mag = "", k = "", v = "" }) {
+  try {
+    const payload = {
+      type: String(type || "unknown"),
+      page: String(page || ""),
+      seriesKey: String(seriesKey || ""),
+      mood: String(mood || ""),
+      genre: String(genre || ""),
+      aud: String(aud || ""),
+      mag: String(mag || ""),
+      sid: getSid(),
+      k: String(k || ""),
+      v: String(v || ""),
+      ts: Date.now(),
+    };
 
+    // sendBeacon（POST相当）を優先
     if (navigator.sendBeacon) {
-      const ok = navigator.sendBeacon(urlStr);
+      const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+      const ok = navigator.sendBeacon(EVENTS_ENDPOINT, blob);
       if (ok) return true;
     }
 
-    fetch(urlStr, { method: "GET", mode: "cors", keepalive: true }).catch(() => {});
+    // fallback
+    fetch(EVENTS_ENDPOINT, {
+      method: "POST",
+      mode: "cors",
+      keepalive: true,
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
     return true;
   } catch {
     return false;
