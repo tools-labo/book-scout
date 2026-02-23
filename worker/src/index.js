@@ -1,11 +1,13 @@
 // worker/src/index.js
 // FULL REPLACE
-// - rate 対応：payload.rating(1..5) を doubles[0] に入れる（type=rate の時だけ）
-// - ★rate のキー（rec/art）は blob5(mood) に必ず入る：mood が空なら k を採用
-// - blobs は固定（schema=v2, blob15=kv）
+// - JSビルドなので TypeScript を完全撤去
+// - GETは query params でも受ける（保険）
+// - blobs の並びは固定（schema=v2）
+// - ✅ rate は doubles[0] に 1..5 を保存（recent_200 の rating が効く）
 
 const SCHEMA = "v2";
 
+// blobs の並びを“絶対固定”する（空でも必ず埋める）
 function toBlobs(e, req) {
   const cf = req.cf || {};
   const ua = req.headers.get("user-agent") || "";
@@ -15,41 +17,36 @@ function toBlobs(e, req) {
   const type = String(e?.type ?? "");
   const page = String(e?.page ?? "");
   const seriesKey = String(e?.seriesKey ?? "");
-
-  const k = String(e?.k ?? "");
-  const v = String(e?.v ?? "");
-
-  // ★ここ：rate の時は k を mood として扱えるようにする（集計互換）
-  const moodRaw = String(e?.mood ?? "");
-  const mood = moodRaw || k;
-
+  const mood = String(e?.mood ?? "");
   const genre = String(e?.genre ?? "");
   const aud = String(e?.aud ?? "");
   const mag = String(e?.mag ?? "");
 
   const country = String(cf?.country ?? "");
-
   const path = url.pathname || "";
   const ref = req.headers.get("referer") || "";
 
   const sid = String(e?.sid ?? "");
+  const k = String(e?.k ?? "");
+  const v = String(e?.v ?? "");
 
+  // blob1..blob15 を固定
   return [
-    type,       // blob1
-    SCHEMA,     // blob2
-    page,       // blob3
-    seriesKey,  // blob4
-    mood,       // blob5（vote: moodId / rate: rec|art）
-    genre,      // blob6
-    aud,        // blob7
-    mag,        // blob8
-    country,    // blob9
-    ua,         // blob10
-    method,     // blob11
-    path,       // blob12
-    ref,        // blob13
-    sid,        // blob14
-    `${k}:${v}` // blob15
+    type,      // blob1
+    SCHEMA,    // blob2
+    page,      // blob3
+    seriesKey, // blob4
+    mood,      // blob5
+    genre,     // blob6
+    aud,       // blob7
+    mag,       // blob8
+    country,   // blob9
+    ua,        // blob10
+    method,    // blob11
+    path,      // blob12
+    ref,       // blob13
+    sid,       // blob14
+    `${k}:${v}`// blob15
   ];
 }
 
@@ -90,11 +87,13 @@ async function readBody(req) {
   return null;
 }
 
-function clampRating(x) {
-  const n = Number(x);
-  if (!Number.isFinite(n)) return null;
-  if (n < 1 || n > 5) return null;
-  return n;
+function pickRatingDoubles(body) {
+  const type = String(body?.type ?? "");
+  if (type !== "rate") return [1];
+
+  const n = Number(body?.v ?? 0);
+  if (Number.isFinite(n) && n >= 1 && n <= 5) return [n];
+  return [1];
 }
 
 export default {
@@ -119,21 +118,17 @@ export default {
     const rid = String(body?.rid ?? crypto.randomUUID());
 
     const type = String(body?.type ?? "");
-    if (!type) return jsonResponse({ ok: false, wrote: false, rid, error: "missing_type" }, 400);
+    if (!type) {
+      return jsonResponse({ ok: false, wrote: false, rid, error: "missing_type" }, 400);
+    }
 
     const blobs = toBlobs({ ...body, rid }, req);
-
-    let d0 = 1;
-    if (type === "rate") {
-      const r = clampRating(body?.rating);
-      if (r == null) return jsonResponse({ ok: false, wrote: false, rid, error: "invalid_rating" }, 400);
-      d0 = r;
-    }
+    const doubles = pickRatingDoubles(body);
 
     env.AE.writeDataPoint({
       indexes: [rid],
       blobs,
-      doubles: [d0],
+      doubles,
     });
 
     return jsonResponse({
@@ -144,10 +139,13 @@ export default {
       type: blobs[0],
       page: blobs[2],
       seriesKey: blobs[3],
-      key: blobs[4],       // rateなら rec/art がここに来る
+      mood: blobs[4],
+      genre: blobs[5],
+      aud: blobs[6],
+      mag: blobs[7],
       sid: blobs[13],
       kv: blobs[14],
-      rating: type === "rate" ? d0 : null,
+      rating: doubles[0],
       ts: Date.now(),
     });
   },
