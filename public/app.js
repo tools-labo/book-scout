@@ -1004,6 +1004,8 @@ function renderList(items, quickDefs) {
 // - works split 対応：List/Homeは index.listItems、Workは shard を読む（1 shardだけ）
 // - Work：author/あらすじは表示（Listは非表示）
 // - Home棚が消える原因（未定義）を潰して復旧
+// - ✅ Work：おすすめ度/作画クオリティ（★1〜5）を追加（ログイン不要・端末内で1回抑止）
+// - ✅ イベント：type="rate" / k="rec" or "art" / v="1".."5" を trackEvent で送信
 
 /* =======================
  * Works loader (index/shard)
@@ -1255,6 +1257,64 @@ function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
 }
 
 /* =======================
+ * Rating (★1〜5) - local once
+ * ======================= */
+const RATE_STATE_PREFIX = "rate:v1:"; // rate:v1:<seriesKey>:<k> => "1".."5"
+function rateStateKey(seriesKey, k){ return `${RATE_STATE_PREFIX}${toText(seriesKey)}:${toText(k)}`; }
+function getRatedValue(seriesKey, k){
+  const sk = toText(seriesKey);
+  const kk = toText(k);
+  if (!sk || !kk) return "";
+  try { return toText(localStorage.getItem(rateStateKey(sk, kk)) || ""); } catch { return ""; }
+}
+function setRatedValue(seriesKey, k, v){
+  const sk = toText(seriesKey);
+  const kk = toText(k);
+  const vv = toText(v);
+  if (!sk || !kk || !vv) return;
+  try { localStorage.setItem(rateStateKey(sk, kk), vv); } catch {}
+}
+
+function starsHtml({ idPrefix, label, selected }) {
+  const sel = Number(selected || 0);
+  const btns = [1,2,3,4,5].map(n => {
+    const on = sel >= n;
+    return `
+      <button
+        type="button"
+        class="star-btn ${on ? "is-on" : ""}"
+        data-star="${n}"
+        data-starid="${esc(idPrefix)}"
+        aria-label="${esc(label)} ${n}"
+        aria-pressed="${on ? "true" : "false"}"
+        style="padding:6px 8px; font-size:18px; line-height:1; border:1px solid rgba(0,0,0,.12); background:#fff; border-radius:10px;"
+      >${on ? "★" : "☆"}</button>
+    `;
+  }).join("");
+
+  return `
+    <div class="rate-row" style="margin-top:10px;">
+      <div class="d-sub" style="margin-bottom:6px;">${esc(label)}</div>
+      <div class="rate-stars" data-starwrap="${esc(idPrefix)}" style="display:flex; gap:6px; flex-wrap:wrap;">
+        ${btns}
+      </div>
+    </div>
+  `;
+}
+
+function applyStarsUi(wrapEl, selected){
+  const sel = Number(selected || 0);
+  const btns = wrapEl?.querySelectorAll?.("button[data-star]") || [];
+  for (const b of btns) {
+    const n = Number(b.getAttribute("data-star") || 0);
+    const on = sel >= n && n > 0;
+    b.classList.toggle("is-on", on);
+    b.textContent = on ? "★" : "☆";
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  }
+}
+
+/* =======================
  * Work render（author/あらすじは表示）
  * ======================= */
 async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) {
@@ -1312,6 +1372,24 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
       </div>
     `
     : "";
+
+  // ---- ratings ----
+  const recVal = getRatedValue(seriesKey, "rec");
+  const artVal = getRatedValue(seriesKey, "art");
+
+  const rateBox = `
+    <div class="vote-box" style="margin-top:12px;">
+      <div class="vote-head">
+        <h3 class="vote-title">評価</h3>
+      </div>
+      <p class="vote-note">★を選んで投票（各項目1回）。</p>
+
+      ${starsHtml({ idPrefix: "rec", label: "おすすめ度", selected: recVal })}
+      ${starsHtml({ idPrefix: "art", label: "作画クオリティ", selected: artVal })}
+
+      <div class="vote-status" id="rateStatus"></div>
+    </div>
+  `;
 
   // ---- reco ----
   // Work詳細で使うのは「全件のタグ/ジャンル/カテゴリ情報」なので、
@@ -1371,6 +1449,8 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
 
     ${voteBox}
 
+    ${rateBox}
+
     ${recoHtml}
   `;
 
@@ -1417,6 +1497,45 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
         setTimeout(() => { if (st) st.textContent = ""; }, 1400);
       }
     };
+  }
+
+  // ratings：各項目1回（端末内で固定）
+  const rateStatus = document.getElementById("rateStatus");
+  const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
+  for (const w of wraps) {
+    const id = w.getAttribute("data-starwrap") || "";
+    const cur = getRatedValue(seriesKey, id);
+    applyStarsUi(w, cur);
+
+    w.addEventListener("click", (ev) => {
+      const btn = ev.target?.closest?.("button[data-star]");
+      if (!btn) return;
+
+      const k = btn.getAttribute("data-starid") || "";
+      const n = toText(btn.getAttribute("data-star") || "");
+      if (!k || !n) return;
+
+      const already = getRatedValue(seriesKey, k);
+      if (already) {
+        if (rateStatus) {
+          rateStatus.textContent = "投票済み（この端末では変更できません）";
+          setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
+        }
+        return;
+      }
+
+      setRatedValue(seriesKey, k, n);
+      applyStarsUi(w, n);
+
+      // type=rate / k=rec|art / v=1..5
+      trackEvent({ type: "rate", page: "work", seriesKey, k, v: n });
+
+      if (rateStatus) {
+        const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
+        rateStatus.textContent = `${label} を投票しました`;
+        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
+      }
+    }, { passive: true });
   }
 
   refreshFavButtons(document);
