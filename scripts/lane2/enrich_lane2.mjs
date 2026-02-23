@@ -1265,7 +1265,76 @@ async function main() {
     items: Array.from(magAudTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-  // ★ここが本題：enriched を sharded で保存
+    // ★ここが本題：enriched を sharded で保存（+ notPerfectSummary を index.json 冒頭に出す）
+  // outNotPerfect は "seriesKey :: reason1,reason2" の行が入るので、ここで表示用に再集計する
+  const NOT_PERFECT_KEYS_LIMIT = 80;
+  const NOT_PERFECT_TOP_REASONS = 12;
+  const NOT_PERFECT_REASON_SAMPLES = 8;
+
+  function pushCap(arr, v, cap) {
+    if (!v) return;
+    if (arr.length >= cap) return;
+    arr.push(v);
+  }
+
+  function parseFailLine(line) {
+    const s = String(line ?? "");
+    const parts = s.split("::");
+    const seriesKey = norm(parts[0] ?? "");
+    const rest = norm(parts.slice(1).join("::")); // 念のため :: が増えても壊れない
+    const reasons = rest
+      ? rest.split(",").map((x) => norm(x)).filter(Boolean)
+      : [];
+    return { seriesKey, reasons };
+  }
+
+  const outLines = Array.isArray(perfectNotMetSamples?.outNotPerfect)
+    ? perfectNotMetSamples.outNotPerfect
+    : [];
+
+  // unique seriesKey（表示用）
+  const notPerfectSeriesKeys = [];
+  const seenSk = new Set();
+
+  // reason集計
+  const reasonCounts = {};
+  const reasonSamples = {};
+
+  for (const line of outLines) {
+    const { seriesKey, reasons } = parseFailLine(line);
+    if (seriesKey && !seenSk.has(seriesKey)) {
+      seenSk.add(seriesKey);
+      pushCap(notPerfectSeriesKeys, seriesKey, NOT_PERFECT_KEYS_LIMIT);
+    }
+
+    for (const r of reasons) {
+      if (!r) continue;
+      reasonCounts[r] = (reasonCounts[r] || 0) + 1;
+      if (!reasonSamples[r]) reasonSamples[r] = [];
+      // サンプルは unique じゃなくてもよいが、見た目を整えるため unique にする
+      if (seriesKey && reasonSamples[r].length < NOT_PERFECT_REASON_SAMPLES) {
+        if (!reasonSamples[r].includes(seriesKey)) reasonSamples[r].push(seriesKey);
+      }
+    }
+  }
+
+  const notPerfectTopReasons = Object.entries(reasonCounts)
+    .map(([reason, n]) => ({
+      reason,
+      n,
+      samples: reasonSamples[reason] || [],
+    }))
+    .sort((a, b) => (b.n ?? 0) - (a.n ?? 0))
+    .slice(0, NOT_PERFECT_TOP_REASONS);
+
+  const notPerfectSummary = {
+    // “作品数”として分かりやすいのは unique seriesKey
+    notPerfectTotal: seenSk.size,
+    seriesKeys: notPerfectSeriesKeys,
+    topReasons: notPerfectTopReasons,
+    note: "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。",
+  };
+
   await writeEnrichedSharded({
     items: enriched,
     updatedAt: nowIso(),
@@ -1281,6 +1350,10 @@ async function main() {
       magAudienceTodoAdded,
       perfectNotMetReasons,
       perfectNotMetSamples,
+
+      // ✅追加：index.json 冒頭で一発で分かるやつ
+      notPerfectSummary,
+
       paapi: {
         host: creds.host,
         region: creds.region,
