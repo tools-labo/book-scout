@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T07:56:05.670Z",
+  "updatedAt": "2026-02-23T08:11:05.924Z",
   "total": 203,
   "shardSize": 200,
   "shards": [
@@ -222,31 +222,33 @@
     "total": 203,
     "ok": 203,
     "ng": 0,
-    "skippedPerfect": 202,
-    "skippedAniList": 1,
-    "skippedWiki": 1,
+    "skippedPerfect": 203,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 1,
+    "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 1,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "天国大魔境 :: amazon(amazonDp|image|publisher|author|releaseDate|title)"
-      ]
+    "perfectNotMetSamples": {},
+    "notPerfectSummary": {
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
+      "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 1
+      "successItems": 0
     }
   }
 }
