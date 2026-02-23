@@ -91,9 +91,13 @@ async function cfSql({ accountId, token, sql }) {
   throw new Error(`Cloudflare API unknown response: ${text.slice(0, 800)}`);
 }
 
-// sampling を考慮したカウント
+// sampling を考慮したカウント（SELECT用：alias付き）
 function sumCountExpr() {
   return "SUM(_sample_interval) AS n";
+}
+// HAVING など alias を書けない場所用
+function sumCountRawExpr() {
+  return "SUM(_sample_interval)";
 }
 
 function whereRecent(days = 30) {
@@ -300,6 +304,7 @@ ORDER BY avg DESC, n DESC
 
 // k=rec のランキング（平均★、同率は件数）
 function qRateRecTop(dataset, days = 30, limit = 100) {
+  const minN = 1; // 後で 5 とかに上げてもOK
   return `
 SELECT
   ${COL.seriesKey} AS seriesKey,
@@ -310,7 +315,7 @@ WHERE ${whereRecent(days)}
   AND ${whereRateCommon()}
   AND ${COL.mood} = 'rec'
 GROUP BY ${COL.seriesKey}
-HAVING ${sumCountExpr()} >= 1
+HAVING ${sumCountRawExpr()} >= ${Number(minN)}
 ORDER BY avg DESC, n DESC
 LIMIT ${Number(limit)}
 `;
@@ -318,6 +323,7 @@ LIMIT ${Number(limit)}
 
 // k=art のランキング（平均★、同率は件数）
 function qRateArtTop(dataset, days = 30, limit = 100) {
+  const minN = 1;
   return `
 SELECT
   ${COL.seriesKey} AS seriesKey,
@@ -328,7 +334,7 @@ WHERE ${whereRecent(days)}
   AND ${whereRateCommon()}
   AND ${COL.mood} = 'art'
 GROUP BY ${COL.seriesKey}
-HAVING ${sumCountExpr()} >= 1
+HAVING ${sumCountRawExpr()} >= ${Number(minN)}
 ORDER BY avg DESC, n DESC
 LIMIT ${Number(limit)}
 `;
