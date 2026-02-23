@@ -99,6 +99,76 @@
       "meta": null
     },
     {
+      "seriesKey": "×××ホリック",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063347524",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063347524?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063347524",
+        "asin": "4063347524",
+        "title": "×××HOLiC(1) (KCDX)",
+        "synopsis": "妖怪を引き寄せる体質に悩む四月一日は、“願いを叶える店”の女主人・侑子と出会う。対価を払えば望みは叶うが、代償は必ずついてくる。日常の怪異と人の業を、静かな余韻で描くオカルト奇譚。",
+        "image": "https://m.media-amazon.com/images/I/51kdqbLXkvL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "CLAMP",
+        "releaseDate": "2003-07-25T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 30010,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Magic",
+          "Youkai",
+          "Mythology",
+          "Ghost",
+          "Seinen",
+          "Crossover",
+          "Curses",
+          "Male Protagonist",
+          "Clone",
+          "Witch",
+          "Philosophy",
+          "Denpa",
+          "Urban Fantasy",
+          "Memory Manipulation",
+          "Episodic",
+          "School",
+          "Heterosexual",
+          "Yuri",
+          "Boys' Love"
+        ],
+        "tags": [
+          "魔法",
+          "妖怪",
+          "神話",
+          "幽霊",
+          "青年向け",
+          "クロスオーバー",
+          "呪い",
+          "クローン",
+          "魔女",
+          "哲学",
+          "現代ファンタジー",
+          "記憶操作",
+          "学園",
+          "百合",
+          "ボーイズラブ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "20世紀少年",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091855318/",
@@ -755,6 +825,60 @@
       "meta": null
     },
     {
+      "seriesKey": "アオアシ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091868924",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091868924?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091868923",
+        "asin": "4091868924",
+        "title": "アオアシ 1 (ビッグコミックス)",
+        "synopsis": "愛媛の中学生・青井葦人は、ある出会いをきっかけにJクラブのユースへ挑むことに。才能と現実の壁にぶつかりながら、戦術・技術・メンタルを鍛えて“勝つサッカー”を学んでいく成長譚。",
+        "image": "https://m.media-amazon.com/images/I/6161hZ7XohL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "小林 有吾",
+        "releaseDate": "2015-04-30T00:00:01Z",
+        "magazine": "ビッグコミックスピリッツ",
+        "magazines": [
+          "ビッグコミックスピリッツ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "アオアシ",
+        "anilistId": 107279,
+        "genres": [
+          "Sports"
+        ],
+        "tags_en": [
+          "Football",
+          "Male Protagonist",
+          "School Club",
+          "Primarily Male Cast",
+          "Coming of Age",
+          "Ensemble Cast",
+          "Seinen",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "School",
+          "Bullying",
+          "Love Triangle"
+        ],
+        "tags": [
+          "サッカー",
+          "部活",
+          "成長譚",
+          "青年向け",
+          "学園",
+          "いじめ",
+          "三角関係"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "アオのハコ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088827317",
@@ -875,6 +999,64 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "あかね噺",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088831500",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088831500?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088831503",
+        "asin": "4088831500",
+        "title": "あかね噺 1 (ジャンプコミックス)",
+        "synopsis": "落語家の父が破門された日を境に、少女・朱音は真相に迫るため自ら高座の道へ。厳しい修業と実力主義の世界に飛び込み、芸で人を惹きつける“噺家”を目指して駆け上がる青春落語ストーリー。",
+        "image": "https://m.media-amazon.com/images/I/51HuxLXCUpL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "馬上 鷹将",
+        "releaseDate": "2022-06-03T00:00:01Z",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "あかね噺",
+        "anilistId": 144866,
+        "genres": [
+          "Drama"
+        ],
+        "tags_en": [
+          "Rakugo",
+          "Female Protagonist",
+          "Coming of Age",
+          "Acting",
+          "Primarily Adult Cast",
+          "Work",
+          "Philosophy",
+          "Shounen",
+          "Found Family",
+          "Revenge",
+          "Family Life",
+          "School"
+        ],
+        "tags": [
+          "成長譚",
+          "演技",
+          "仕事",
+          "哲学",
+          "少年向け",
+          "疑似家族",
+          "復讐",
+          "家族もの",
+          "学園"
+        ],
+        "tags_missing_en": [
+          "Rakugo"
+        ],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1144,6 +1326,63 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "アヤシモン",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088830393",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088830393?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088830391",
+        "asin": "4088830393",
+        "title": "アヤシモン 1 (ジャンプコミックス)",
+        "synopsis": "人間離れした怪力を持つ青年マルオは、妖（あやかし）が跋扈する極道の世界へ踏み込む。組織の跡取りと出会い、力だけでは済まない“仁義”と抗争に巻き込まれていく。妖怪×ヤクザの異色バトルが開幕。",
+        "image": "https://m.media-amazon.com/images/I/51OLJ8RCnNL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "賀来 ゆうじ",
+        "releaseDate": "2022-03-04T00:00:01Z",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "アヤシモン",
+        "anilistId": 141261,
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Youkai",
+          "Yakuza",
+          "Male Protagonist",
+          "Shounen",
+          "Female Protagonist",
+          "Urban Fantasy",
+          "Meta",
+          "Surreal Comedy",
+          "Parody",
+          "Motorcycles",
+          "Dragons",
+          "Crossdressing"
+        ],
+        "tags": [
+          "妖怪",
+          "ヤクザ",
+          "少年向け",
+          "現代ファンタジー",
+          "不条理コメディ",
+          "パロディ",
+          "バイク",
+          "ドラゴン",
+          "女装・男装"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2071,6 +2310,69 @@
       "meta": null
     },
     {
+      "seriesKey": "カッコウの許嫁",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/406519380X",
+        "amazonDp": "https://www.amazon.co.jp/dp/406519380X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065193808",
+        "asin": "406519380X",
+        "title": "カッコウの許嫁(1) (講談社コミックス)",
+        "synopsis": "取り違えで育った高校生・海野凪は、名家の娘・天野エリカと“婚約”させられることに。家族の事情と恋心が絡み合い、同居生活は波乱だらけ。血縁と運命に振り回されるドタバタ恋愛劇が始まる。",
+        "image": "https://m.media-amazon.com/images/I/511xsNoVN-L._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "吉河 美希",
+        "releaseDate": "2020-05-15T00:00:01Z",
+        "magazine": "週刊少年マガジン",
+        "magazines": [
+          "週刊少年マガジン"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "カッコウの許嫁",
+        "anilistId": 114383,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance"
+        ],
+        "tags_en": [
+          "Female Harem",
+          "Love Triangle",
+          "Male Protagonist",
+          "Heterosexual",
+          "Inseki",
+          "Tsundere",
+          "Family Life",
+          "School",
+          "Shounen",
+          "Twins",
+          "Cosplay",
+          "Idol",
+          "Meta",
+          "Arranged Marriage",
+          "Cohabitation"
+        ],
+        "tags": [
+          "逆ハーレム",
+          "三角関係",
+          "ツンデレ",
+          "家族もの",
+          "学園",
+          "少年向け",
+          "双子",
+          "コスプレ",
+          "アイドル",
+          "政略結婚",
+          "同棲"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "からかい上手の高木さん",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091250157",
@@ -2317,6 +2619,69 @@
       "meta": null
     },
     {
+      "seriesKey": "クズの本懐",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4757538871",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757538871?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784757538870",
+        "asin": "4757538871",
+        "title": "クズの本懐(1) (ビッグガンガンコミックス)",
+        "synopsis": "見た目は美男美女で羨望の的の花火と麦は、実はお互いに別の人を思いながらつきあっていた。報われない恋の代償として身体を重ねる二人の関係を描く、痛みと欲望の恋愛劇。",
+        "image": "https://m.media-amazon.com/images/I/51uolWtm-nL._SL500_.jpg",
+        "publisher": "スクウェア・エニックス",
+        "author": "横槍 メンゴ",
+        "releaseDate": "2013-02-19T00:00:01Z",
+        "magazine": "月刊ビッグガンガン",
+        "magazines": [
+          "月刊ビッグガンガン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "クズの本懐",
+        "anilistId": 74929,
+        "genres": [
+          "Drama",
+          "Ecchi",
+          "Psychological",
+          "Romance"
+        ],
+        "tags_en": [
+          "Heterosexual",
+          "Seinen",
+          "Coming of Age",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "Netorare",
+          "School",
+          "Love Triangle",
+          "Bisexual",
+          "LGBTQ+ Themes",
+          "Fake Relationship",
+          "Yuri",
+          "Unrequited Love",
+          "Nudity"
+        ],
+        "tags": [
+          "青年向け",
+          "成長譚",
+          "学園",
+          "三角関係",
+          "バイセクシュアル",
+          "LGBTQテーマ",
+          "偽装恋愛",
+          "百合",
+          "片思い"
+        ],
+        "tags_missing_en": [
+          "Netorare"
+        ],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ぐらんぶる",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063879909",
@@ -2551,6 +2916,70 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "この音とまれ！",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088705459",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088705459?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088705453",
+        "asin": "4088705459",
+        "title": "この音とまれ! 1",
+        "synopsis": "廃部寸前の箏曲部に残った部長のもとへ、不良と噂される少年が入部を希望。さらに実力者も加わり、バラバラだった部は“音”を通じて一つになっていく。和楽器×青春の熱量で全国を目指す部活物語。",
+        "image": "https://m.media-amazon.com/images/I/51gGCZfyUkL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "アミュー",
+        "releaseDate": "2012-11-02T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 75143,
+        "genres": [
+          "Drama",
+          "Music",
+          "Romance"
+        ],
+        "tags_en": [
+          "School Club",
+          "School",
+          "Band",
+          "Coming of Age",
+          "Ensemble Cast",
+          "Shounen",
+          "Bullying",
+          "Male Protagonist",
+          "Heterosexual",
+          "Delinquents",
+          "Found Family",
+          "Estranged Family",
+          "Female Protagonist",
+          "Primarily Male Cast",
+          "Primarily Teen Cast",
+          "Teacher",
+          "Nudity",
+          "Maids"
+        ],
+        "tags": [
+          "部活",
+          "学園",
+          "バンド",
+          "成長譚",
+          "少年向け",
+          "いじめ",
+          "不良",
+          "疑似家族",
+          "疎遠な家族",
+          "教師",
+          "メイド"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2814,6 +3243,93 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "サマータイムレンダ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088813391",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088813391?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088813394",
+        "asin": "4088813391",
+        "title": "サマータイムレンダ 1 (ジャンプコミックス)",
+        "synopsis": "幼なじみの死をきっかけに、青年・慎平は故郷の島へ帰る。しかし島には“何かが入れ替わる”不穏な噂が広がっていた。違和感の正体を追うほど、時間と記憶が絡み合い、逃げられないループの入口が見えてくる。",
+        "image": "https://m.media-amazon.com/images/I/51zZl21onbL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "田中 靖規",
+        "releaseDate": "2018-02-02T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "サマータイムレンダ",
+        "anilistId": 102989,
+        "genres": [
+          "Action",
+          "Drama",
+          "Mystery",
+          "Supernatural",
+          "Thriller"
+        ],
+        "tags_en": [
+          "Rural",
+          "Shounen",
+          "Male Protagonist",
+          "Ensemble Cast",
+          "Survival",
+          "Demons",
+          "Urban Fantasy",
+          "Time Loop",
+          "Shapeshifting",
+          "Aliens",
+          "Gore",
+          "Tanned Skin",
+          "Dissociative Identities",
+          "Mythology",
+          "Crime",
+          "Gods",
+          "Swimming",
+          "Religion",
+          "Denpa",
+          "Suicide",
+          "Cosmic Horror",
+          "Love Triangle",
+          "Outdoor Activities",
+          "Amnesia",
+          "Historical",
+          "Nudity",
+          "Unrequited Love",
+          "Heterosexual"
+        ],
+        "tags": [
+          "田舎",
+          "少年向け",
+          "サバイバル",
+          "悪魔",
+          "現代ファンタジー",
+          "タイムループ",
+          "変身能力",
+          "宇宙人",
+          "日焼け肌",
+          "多重人格",
+          "神話",
+          "犯罪",
+          "神々",
+          "宗教",
+          "コズミックホラー",
+          "三角関係",
+          "アウトドア",
+          "記憶喪失",
+          "歴史",
+          "片思い"
+        ],
+        "tags_missing_en": [
+          "Swimming"
+        ],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4097,6 +4613,68 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "たいようのいえ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063656225",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063656225?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063656220",
+        "asin": "4063656225",
+        "title": "たいようのいえ 1 (デザートコミックス)",
+        "synopsis": "母を亡くし家に居場所をなくした高校生・真穂は、幼なじみの弘が一人で暮らす家に身を寄せる。ぎこちない同居生活のなかで、失われた温もりを取り戻し絆を育む成長物語。",
+        "image": "https://m.media-amazon.com/images/I/41L01a9hF1L._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "タアモ",
+        "releaseDate": "2010-09-13T00:00:01Z",
+        "magazine": "デザート",
+        "magazines": [
+          "デザート"
+        ],
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "たいようのいえ",
+        "anilistId": 56736,
+        "genres": [
+          "Drama",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Female Protagonist",
+          "Family Life",
+          "Coming of Age",
+          "Love Triangle",
+          "Shoujo",
+          "Tsundere",
+          "Iyashikei",
+          "Heterosexual",
+          "Cohabitation",
+          "School",
+          "Estranged Family",
+          "Adoption",
+          "Orphan",
+          "Primarily Teen Cast"
+        ],
+        "tags": [
+          "家族もの",
+          "成長譚",
+          "三角関係",
+          "少女",
+          "ツンデレ",
+          "癒し系",
+          "同棲",
+          "学園",
+          "疎遠な家族",
+          "養子縁組",
+          "孤児"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5893,6 +6471,201 @@
       "meta": null
     },
     {
+      "seriesKey": "パンプキンナイト",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4801960065",
+        "amazonDp": "https://www.amazon.co.jp/dp/4801960065?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784801960060",
+        "asin": "4801960065",
+        "title": "パンプキンナイト 1 (バンブーコミックス)",
+        "synopsis": "ある日、女子高生のもとに届く不穏なメッセージ。直後、カボチャのマスクを被った殺人者が現れ、過去の因縁をなぞるように惨劇が連鎖していく。逃げ場のない追跡と復讐の気配が街を覆うスプラッターホラー。",
+        "image": "https://m.media-amazon.com/images/I/51c71gSznLL._SL500_.jpg",
+        "publisher": "竹書房",
+        "author": "外薗 昌也 / 谷口 世磨",
+        "releaseDate": "2017-07-27T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 103082,
+        "genres": [
+          "Horror",
+          "Psychological"
+        ],
+        "tags_en": [
+          "Revenge",
+          "Gore",
+          "Anti-Hero",
+          "Bullying",
+          "Female Protagonist",
+          "Body Horror",
+          "Dissociative Identities",
+          "Surreal Comedy",
+          "Yandere",
+          "Seinen",
+          "School",
+          "Politics",
+          "Male Protagonist",
+          "Motorcycles",
+          "Transgender",
+          "Femboy"
+        ],
+        "tags": [
+          "復讐",
+          "アンチヒーロー",
+          "いじめ",
+          "多重人格",
+          "不条理コメディ",
+          "ヤンデレ",
+          "青年向け",
+          "学園",
+          "政治",
+          "バイク",
+          "トランスジェンダー",
+          "女装男子"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4041083516",
+        "amazonDp": "https://www.amazon.co.jp/dp/4041083516?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784041083512",
+        "asin": "4041083516",
+        "title": "ひげを剃る。そして女子高生を拾う。 (1) (角川コミックス・エース)",
+        "synopsis": "ヤケ酒の帰り道、会社員の吉田は路上で座り込む家出女子高生・沙優と出会う。勢いで始まった同居生活の中で、噛み合わない二人の日常が少しずつ形を変えていく。",
+        "image": "https://m.media-amazon.com/images/I/51AkyU+zjdL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "足立 いまる",
+        "releaseDate": "2019-05-25T00:00:01Z",
+        "magazine": "月刊少年エース",
+        "magazines": [
+          "月刊少年エース"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ひげを剃る。そして女子高生を拾う。",
+        "anilistId": 105791,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "tags_en": [
+          "Male Protagonist",
+          "Love Triangle",
+          "Coming of Age",
+          "Office Lady",
+          "Urban",
+          "Work",
+          "Heterosexual",
+          "Female Harem",
+          "Female Protagonist",
+          "Nudity",
+          "Gyaru",
+          "Shounen"
+        ],
+        "tags": [
+          "三角関係",
+          "成長譚",
+          "OL",
+          "都会",
+          "仕事",
+          "逆ハーレム",
+          "ギャル",
+          "少年向け"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ヒナまつり",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4047273813",
+        "amazonDp": "https://www.amazon.co.jp/dp/4047273813?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784047273818",
+        "asin": "4047273813",
+        "title": "ヒナまつり 1 (ビームコミックス)",
+        "synopsis": "ヤクザの新田の部屋に、超能力を持つ少女ヒナが突然現れる。能力を使うたびに家が壊れる（そして金が飛ぶ）同居生活が始まり、裏社会と超能力者たちを巻き込んで騒動が加速するハートフル寄りギャグ。",
+        "image": "https://m.media-amazon.com/images/I/61vtA7RD0mL._SL500_.jpg",
+        "publisher": "エンターブレイン",
+        "author": "大武 政夫",
+        "releaseDate": "2011-07-15T00:00:01Z",
+        "magazine": "Fellows! / ハルタ",
+        "magazines": [
+          "Fellows!",
+          "ハルタ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ヒナまつり",
+        "anilistId": 66413,
+        "genres": [
+          "Comedy",
+          "Sci-Fi",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Found Family",
+          "Surreal Comedy",
+          "Adoption",
+          "Slapstick",
+          "Family Life",
+          "Super Power",
+          "Yakuza",
+          "Female Protagonist",
+          "Urban Fantasy",
+          "Parenthood",
+          "Coming of Age",
+          "Work",
+          "Ensemble Cast",
+          "Seinen",
+          "Male Protagonist",
+          "Homeless",
+          "Primarily Female Cast",
+          "Urban",
+          "Bar",
+          "School",
+          "Crossdressing"
+        ],
+        "tags": [
+          "疑似家族",
+          "不条理コメディ",
+          "養子縁組",
+          "ドタバタ",
+          "家族もの",
+          "超能力",
+          "ヤクザ",
+          "現代ファンタジー",
+          "親子（子育て）",
+          "成長譚",
+          "仕事",
+          "青年向け",
+          "ホームレス",
+          "都会",
+          "バー",
+          "学園",
+          "女装・男装"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "ビリーバット",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063728129",
@@ -5969,6 +6742,63 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ひるなかの流星",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088467086",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088467086?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088467085",
+        "asin": "4088467086",
+        "title": "ひるなかの流星 1 (マーガレットコミックス)",
+        "synopsis": "田舎育ちのすずめは、親の都合で東京へ転校。初めての都会で出会った担任教師と、同級生との距離が少しずつ変わり、胸の奥の“好き”が形になっていく。まっすぐで不器用な三角関係が動き出す。",
+        "image": "https://m.media-amazon.com/images/I/51xM3q1Si0L._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "やまもり 三香",
+        "releaseDate": "2011-10-25T00:00:01Z",
+        "magazine": "マーガレット",
+        "magazines": [
+          "マーガレット"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ひるなかの流星",
+        "anilistId": 57231,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "Love Triangle",
+          "School",
+          "Female Protagonist",
+          "Heterosexual",
+          "Coming of Age",
+          "Teacher",
+          "Primarily Teen Cast",
+          "Urban",
+          "Tsundere",
+          "Fake Relationship"
+        ],
+        "tags": [
+          "少女",
+          "三角関係",
+          "学園",
+          "成長譚",
+          "教師",
+          "都会",
+          "ツンデレ",
+          "偽装恋愛"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6524,6 +7354,80 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "べるぜバブ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088747321",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088747321?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088747323",
+        "asin": "4088747321",
+        "title": "べるぜバブ 1 (ジャンプコミックス)",
+        "synopsis": "最凶ヤンキー・男鹿辰巳が拾った赤ん坊は、魔界の王子ベル坊だった。悪魔の乳母ヒルダに押しつけられた“子育て”をきっかけに、男鹿のケンカは魔界規模へ転がっていく。",
+        "image": "https://m.media-amazon.com/images/I/517imu63fYL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "田村 隆平",
+        "releaseDate": "2009-07-03T00:00:01Z",
+        "magazine": "週刊少年ジャンプ / 少年ジャンプNEXT!!",
+        "magazines": [
+          "週刊少年ジャンプ",
+          "少年ジャンプNEXT!!"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "べるぜバブ",
+        "anilistId": 40010,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Delinquents",
+          "Shounen",
+          "Demons",
+          "Adoption",
+          "Primarily Male Cast",
+          "School",
+          "Parenthood",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "Coming of Age",
+          "Maids",
+          "Magic",
+          "Battle Royale",
+          "Meta",
+          "Ghost",
+          "Family Life",
+          "Volleyball",
+          "Amnesia",
+          "Dragons"
+        ],
+        "tags": [
+          "不良",
+          "少年向け",
+          "悪魔",
+          "養子縁組",
+          "学園",
+          "親子（子育て）",
+          "現代ファンタジー",
+          "成長譚",
+          "メイド",
+          "魔法",
+          "バトルロイヤル",
+          "幽霊",
+          "家族もの",
+          "バレーボール",
+          "記憶喪失",
+          "ドラゴン"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7256,6 +8160,98 @@
       "meta": null
     },
     {
+      "seriesKey": "めだかボックス",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088747763",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088747763?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088747767",
+        "asin": "4088747763",
+        "title": "めだかボックス 1 (ジャンプコミックス)",
+        "synopsis": "箱庭学園の生徒会長・黒神めだかは、どんな依頼も全力で解決する“目安箱”を設置。幼なじみの善吉とともに、クセ者ぞろいの学園トラブルへ飛び込んでいく学園バトル＆コメディ。",
+        "image": "https://m.media-amazon.com/images/I/51CQvZWK0vL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "暁月 あきら",
+        "releaseDate": "2009-10-02T00:00:01Z",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "めだかボックス",
+        "anilistId": 43949,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Ecchi",
+          "Romance"
+        ],
+        "tags_en": [
+          "Large Breasts",
+          "Coming of Age",
+          "School",
+          "Super Power",
+          "Meta",
+          "Anti-Hero",
+          "Shounen",
+          "Parody",
+          "Surreal Comedy",
+          "Female Protagonist",
+          "Satire",
+          "Martial Arts",
+          "Ensemble Cast",
+          "Chuunibyou",
+          "Yandere",
+          "Male Protagonist",
+          "Nudity",
+          "Primarily Teen Cast",
+          "Assassins",
+          "Card Battle",
+          "Nekomimi",
+          "LGBTQ+ Themes",
+          "Swordplay",
+          "Classic Literature",
+          "Guns",
+          "Robots",
+          "Judo",
+          "Swimming",
+          "Cyborg",
+          "Band"
+        ],
+        "tags": [
+          "成長譚",
+          "学園",
+          "超能力",
+          "アンチヒーロー",
+          "少年向け",
+          "パロディ",
+          "不条理コメディ",
+          "風刺",
+          "武術",
+          "中二病",
+          "ヤンデレ",
+          "暗殺者",
+          "カードバトル",
+          "猫耳",
+          "LGBTQテーマ",
+          "剣術",
+          "古典文学",
+          "銃",
+          "ロボット",
+          "柔道",
+          "サイボーグ",
+          "バンド"
+        ],
+        "tags_missing_en": [
+          "Swimming"
+        ],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "モブサイコ100",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091241026",
@@ -7779,6 +8775,62 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ラストゲーム",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4592193431",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592193431?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784592193432",
+        "asin": "4592193431",
+        "title": "ラストゲーム 1 (花とゆめCOMICS)",
+        "synopsis": "財閥の御曹司・柳は、転校生の久遠に学力でも運動でも初めて負けたことが悔しく、彼女に勝つためだけに付き合おうと画策。しかし長年のライバル関係は、次第に本物の恋心へと変わっていく。",
+        "image": "https://m.media-amazon.com/images/I/510zUVaYOxL._SL500_.jpg",
+        "publisher": "白泉社",
+        "author": "天乃 忍",
+        "releaseDate": "2012-01-04T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "ラストゲーム",
+        "anilistId": 60315,
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Tsundere",
+          "Kuudere",
+          "Primarily Adult Cast",
+          "Heterosexual",
+          "College",
+          "Love Triangle",
+          "School Club",
+          "Coming of Age",
+          "School",
+          "Revenge"
+        ],
+        "tags": [
+          "少女",
+          "ツンデレ",
+          "クーデレ",
+          "大学",
+          "三角関係",
+          "部活",
+          "成長譚",
+          "学園",
+          "復讐"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9674,6 +10726,80 @@
       "meta": null
     },
     {
+      "seriesKey": "夜桜さんちの大作戦",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088821785",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088821785?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088821788",
+        "asin": "4088821785",
+        "title": "夜桜さんちの大作戦 1 (ジャンプコミックス)",
+        "synopsis": "超人見知りの高校生・朝野太陽は、唯一の理解者・六美を守るため“夜桜家”に関わることに。実は六美の家は代々スパイ一家。命を狙われながら、太陽は家族（スパイ）修業に踏み出す。",
+        "image": "https://m.media-amazon.com/images/I/51nqu6EWNwL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "権平 ひつじ",
+        "releaseDate": "2020-02-04T00:00:01Z",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "夜桜さんちの大作戦",
+        "anilistId": 111149,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Espionage",
+          "Shounen",
+          "Family Life",
+          "Heterosexual",
+          "Conspiracy",
+          "Ensemble Cast",
+          "Surreal Comedy",
+          "Assassins",
+          "Marriage",
+          "Male Protagonist",
+          "Swordplay",
+          "Orphan",
+          "Twins",
+          "Guns",
+          "Episodic",
+          "Chibi",
+          "School",
+          "LGBTQ+ Themes",
+          "Mixed Gender Harem",
+          "Kaiju"
+        ],
+        "tags": [
+          "スパイ",
+          "少年向け",
+          "家族もの",
+          "陰謀",
+          "不条理コメディ",
+          "暗殺者",
+          "結婚",
+          "剣術",
+          "孤児",
+          "双子",
+          "銃",
+          "ちびキャラ",
+          "学園",
+          "LGBTQテーマ",
+          "怪獣"
+        ],
+        "tags_missing_en": [
+          "Mixed Gender Harem"
+        ],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "大ダーク",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091294863",
@@ -9824,6 +10950,79 @@
       "meta": null
     },
     {
+      "seriesKey": "天空侵犯",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063769798",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063769798?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063769791",
+        "asin": "4063769798",
+        "title": "天空侵犯(1) (KCデラックス)",
+        "synopsis": "気づけば高層ビルの屋上にいた女子高生・ゆり。仮面の殺人者が徘徊する異様な世界で、生き残るための戦いを強いられる。離ればなれになった兄を探し、屋上の迷宮を進む。",
+        "image": "https://m.media-amazon.com/images/I/61CI9ossT8L._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "大羽 隆廣",
+        "releaseDate": "2014-05-09T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "天空侵犯",
+        "anilistId": 85388,
+        "genres": [
+          "Action",
+          "Horror",
+          "Mystery"
+        ],
+        "tags_en": [
+          "Death Game",
+          "Survival",
+          "Suicide",
+          "Amnesia",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "Battle Royale",
+          "Urban",
+          "Isekai",
+          "Gods",
+          "Cosmic Horror",
+          "Super Power",
+          "Gore",
+          "Memory Manipulation",
+          "Shounen",
+          "Guns",
+          "Dissociative Identities",
+          "LGBTQ+ Themes",
+          "Yuri",
+          "Swordplay",
+          "Dystopian"
+        ],
+        "tags": [
+          "デスゲーム",
+          "サバイバル",
+          "記憶喪失",
+          "バトルロイヤル",
+          "都会",
+          "異世界",
+          "神々",
+          "コズミックホラー",
+          "超能力",
+          "記憶操作",
+          "少年向け",
+          "銃",
+          "多重人格",
+          "LGBTQテーマ",
+          "百合",
+          "剣術",
+          "ディストピア"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "夫婦以上、恋人未満。",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4041074843",
@@ -9876,6 +11075,58 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "好きな子がめがねを忘れた",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4757560265",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757560265?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784757560260",
+        "asin": "4757560265",
+        "title": "好きな子がめがねを忘れた(1) (ガンガンコミックスJOKER)",
+        "synopsis": "隣の席の三重さんは、しょっちゅうめがねを忘れる。彼女が気になる小村くんは、距離が近すぎる“見ようとする”仕草に振り回されながらも、つい手助けしてしまう。",
+        "image": "https://m.media-amazon.com/images/I/51zciQ+2l0L._SL500_.jpg",
+        "publisher": "スクウェア・エニックス",
+        "author": "藤近 小梅",
+        "releaseDate": "2019-02-22T00:00:01Z",
+        "magazine": "月刊ガンガンJOKER",
+        "magazines": [
+          "月刊ガンガンJOKER"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "好きな子がめがねを忘れた",
+        "anilistId": 105641,
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Heterosexual",
+          "Iyashikei",
+          "School",
+          "Disability",
+          "Shounen",
+          "Male Protagonist",
+          "Kuudere",
+          "Coming of Age",
+          "Primarily Child Cast"
+        ],
+        "tags": [
+          "癒し系",
+          "学園",
+          "障害",
+          "少年向け",
+          "クーデレ",
+          "成長譚",
+          "子どもが中心"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9955,6 +11206,64 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "宇崎ちゃんは遊びたい！",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4040727797",
+        "amazonDp": "https://www.amazon.co.jp/dp/4040727797?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784040727790",
+        "asin": "4040727797",
+        "title": "宇崎ちゃんは遊びたい! 1 (ドラゴンコミックスエイジ)",
+        "synopsis": "静かに大学生活を送りたい先輩・桜井の前に、元気すぎる後輩・宇崎花が出現。放っておけない距離感で絡んでくる宇崎に振り回されながら、二人の関係が少しずつ変わっていく賑やかラブコメ。",
+        "image": "https://m.media-amazon.com/images/I/51ypMiJ3hHL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "丈",
+        "releaseDate": "2018-07-09T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 101724,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Large Breasts",
+          "Tsundere",
+          "College",
+          "Heterosexual",
+          "Tomboy",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Slapstick",
+          "Meta",
+          "Episodic",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Iyashikei",
+          "Nudity",
+          "Bullying"
+        ],
+        "tags": [
+          "ツンデレ",
+          "大学",
+          "ボーイッシュ",
+          "青年向け",
+          "ドタバタ",
+          "癒し系",
+          "いじめ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12579,6 +13888,86 @@
       "meta": null
     },
     {
+      "seriesKey": "神様はじめました",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4592185064",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592185064?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784592185062",
+        "asin": "4592185064",
+        "title": "神様はじめました 1 (花とゆめCOMICS)",
+        "synopsis": "家を失った女子高生・奈々生は、成り行きで土地神として神社を任される。神使の巴衛や妖たちと暮らしながら、神さま稼業と恋心に奔走。人間の悩みも妖の事情も飛び込んでくる和風ファンタジー恋愛譚。",
+        "image": "https://m.media-amazon.com/images/I/519w-YER5aL._SL500_.jpg",
+        "publisher": "白泉社",
+        "author": "鈴木ジュリエッタ",
+        "releaseDate": "2008-09-19T00:00:01Z",
+        "magazine": "花とゆめ",
+        "magazines": [
+          "花とゆめ"
+        ],
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "神様はじめました",
+        "anilistId": 38157,
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "Female Protagonist",
+          "Kemonomimi",
+          "Youkai",
+          "Demons",
+          "Coming of Age",
+          "Gods",
+          "Urban Fantasy",
+          "Monster Boy",
+          "School",
+          "Yandere",
+          "Male Harem",
+          "Heterosexual",
+          "Love Triangle",
+          "Amnesia",
+          "Found Family",
+          "Cohabitation",
+          "Historical",
+          "Curses",
+          "Marriage",
+          "Idol",
+          "Age Regression"
+        ],
+        "tags": [
+          "少女",
+          "獣耳",
+          "妖怪",
+          "悪魔",
+          "成長譚",
+          "神々",
+          "現代ファンタジー",
+          "モンスター男子",
+          "学園",
+          "ヤンデレ",
+          "男性ハーレム",
+          "三角関係",
+          "記憶喪失",
+          "疑似家族",
+          "同棲",
+          "歴史",
+          "呪い",
+          "結婚",
+          "アイドル",
+          "年齢退行"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "私たちの幸せな時間",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/410771439X",
@@ -12927,1560 +14316,6 @@
           "映画制作",
           "少年向け",
           "ボーイッシュ"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "葬送のフリーレン",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/葬送のフリーレン-1-少年サンデーコミックス-山田-鐘人/dp/4098501805",
-        "amazonDp": "https://www.amazon.co.jp/dp/4098501805?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784098501809",
-        "asin": "4098501805",
-        "title": "葬送のフリーレン (1) (少年サンデーコミックス)",
-        "synopsis": "魔王を倒した勇者一行の“その後”を描く後日譚ファンタジー。長命のエルフ魔法使いフリーレンは、仲間たちの死や別れを通して、人の時間と想いの重さを知っていく。",
-        "image": "https://m.media-amazon.com/images/I/61jEbyeXcuL._SL500_.jpg",
-        "publisher": "小学館",
-        "author": "山田 鐘人 / アベツカサ",
-        "releaseDate": "2020-08-18T00:00:01Z",
-        "magazine": "週刊少年サンデー",
-        "magazines": [
-          "週刊少年サンデー"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "葬送のフリーレン",
-        "anilistId": 118586,
-        "genres": [
-          "Adventure",
-          "Drama",
-          "Fantasy"
-        ],
-        "tags_en": [
-          "Magic",
-          "Travel",
-          "Elf",
-          "Philosophy",
-          "Female Protagonist",
-          "Demons",
-          "Iyashikei",
-          "Medieval",
-          "Kuudere",
-          "Episodic",
-          "Spearplay",
-          "Heterosexual",
-          "Shounen",
-          "Fairy Tale",
-          "Food",
-          "Dungeon"
-        ],
-        "tags": [
-          "魔法",
-          "旅",
-          "エルフ",
-          "哲学",
-          "女性主人公",
-          "悪魔",
-          "癒し系",
-          "中世",
-          "クーデレ",
-          "一話完結",
-          "槍術",
-          "異性愛",
-          "少年向け",
-          "童話",
-          "グルメ",
-          "ダンジョン"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "薫る花は凛と咲く",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4065266092",
-        "amazonDp": "https://www.amazon.co.jp/dp/4065266092?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784065266090",
-        "asin": "4065266092",
-        "title": "薫る花は凛と咲く(1) (講談社コミックス)",
-        "synopsis": "不良だらけの千鳥高校とお嬢様校・桔梗女子は犬猿の仲。腕っぷしは強いが心優しい千鳥高校2年の紬凛太郎は、家業のケーキ店で桔梗女子の令嬢・和栗薫子と出会い、隣接する2校の壁を越えた恋を育んでいく。",
-        "image": "https://m.media-amazon.com/images/I/51QwCyJkz7L._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "三香見 サカ",
-        "releaseDate": "2022-03-09T00:00:01Z",
-        "magazine": "マガジンポケット",
-        "magazines": [
-          "マガジンポケット"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 140475,
-        "genres": [
-          "Comedy",
-          "Drama",
-          "Romance"
-        ],
-        "tags_en": [
-          "Iyashikei",
-          "Heterosexual",
-          "Primarily Teen Cast",
-          "School",
-          "Male Protagonist",
-          "Shounen",
-          "Female Protagonist",
-          "Coming of Age",
-          "Ensemble Cast",
-          "Philosophy",
-          "Urban",
-          "Food",
-          "Delinquents",
-          "Work"
-        ],
-        "tags": [
-          "癒し系",
-          "学園",
-          "少年向け",
-          "成長譚",
-          "哲学",
-          "都会",
-          "グルメ",
-          "不良",
-          "仕事"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "薬屋のひとりごと",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4757554893",
-        "amazonDp": "https://www.amazon.co.jp/dp/4757554893?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784757554894",
-        "asin": "4757554893",
-        "title": "薬屋のひとりごと(1) (ビッグガンガンコミックス)",
-        "synopsis": "花街育ちの薬師・猫猫は後宮の侍女にされるが、薬学の知識で宮廷に起こる病や毒事件を見抜く。宦官の壬氏に目を掛けられ、謎多き後宮で事件を解決する中華風宮廷ミステリー。",
-        "image": "https://m.media-amazon.com/images/I/51+JlU-68HL._SL500_.jpg",
-        "publisher": "スクウェア・エニックス",
-        "author": "日向夏 / ねこクラゲ",
-        "releaseDate": "2017-09-25T00:00:01Z",
-        "magazine": "月刊ビッグガンガン",
-        "magazines": [
-          "月刊ビッグガンガン"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "薬屋のひとりごと",
-        "anilistId": 99022,
-        "genres": [
-          "Drama",
-          "Mystery"
-        ],
-        "tags_en": [
-          "Female Protagonist",
-          "Medicine",
-          "Detective",
-          "Royal Affairs",
-          "Foreign",
-          "Primarily Female Cast",
-          "Seinen",
-          "Drugs",
-          "Work",
-          "Politics",
-          "Crime",
-          "Episodic",
-          "Maids",
-          "Adoption",
-          "Heterosexual",
-          "Asexual",
-          "Conspiracy",
-          "Ojou-sama",
-          "Chibi",
-          "Suicide",
-          "Religion",
-          "Desert",
-          "Aromantic",
-          "War"
-        ],
-        "tags": [
-          "女性主人公",
-          "医療",
-          "探偵",
-          "王侯貴族",
-          "海外",
-          "女性中心",
-          "青年向け",
-          "仕事",
-          "政治",
-          "犯罪",
-          "一話完結",
-          "メイド",
-          "養子縁組",
-          "異性愛",
-          "アセクシュアル",
-          "陰謀",
-          "お嬢様",
-          "ちびキャラ",
-          "宗教",
-          "砂漠",
-          "恋愛志向なし",
-          "戦争"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4041045517",
-        "amazonDp": "https://www.amazon.co.jp/dp/4041045517?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784041045510",
-        "asin": "4041045517",
-        "title": "蜘蛛ですが、なにか? (1) (角川コミックス・エース)",
-        "synopsis": "クラスごと異世界に転生した女子高生は、なぜか洞窟の中のスライムサイズの蜘蛛として生まれ変わる。危険な迷宮で毒カエルやドラゴンに怯えながら、スキルを駆使しレベルアップして生き抜くサバイバルファンタジー。",
-        "image": "https://m.media-amazon.com/images/I/41ARhQ40nwL._SL500_.jpg",
-        "publisher": "KADOKAWA",
-        "author": "かかし朝浩",
-        "releaseDate": "2016-07-09T00:00:01Z",
-        "magazine": "ヤングエースUP",
-        "magazines": [
-          "ヤングエースUP"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 86952,
-        "genres": [
-          "Adventure",
-          "Comedy",
-          "Fantasy"
-        ],
-        "tags_en": [
-          "Isekai",
-          "Seinen",
-          "Monster Girl",
-          "Female Protagonist",
-          "Anti-Hero",
-          "Demons",
-          "Vampire",
-          "Elf",
-          "Ensemble Cast",
-          "Medieval",
-          "Travel",
-          "Anthropomorphism",
-          "Gods",
-          "Magic",
-          "War",
-          "Dungeon",
-          "Dragons",
-          "Dissociative Identities",
-          "Found Family",
-          "Butler",
-          "Swordplay",
-          "Survival",
-          "Robots",
-          "Video Games",
-          "Meta",
-          "Gender Bending"
-        ],
-        "tags": [
-          "異世界",
-          "青年向け",
-          "モンスター娘",
-          "アンチヒーロー",
-          "悪魔",
-          "吸血鬼",
-          "エルフ",
-          "中世",
-          "旅",
-          "擬人化",
-          "神々",
-          "魔法",
-          "戦争",
-          "ダンジョン",
-          "ドラゴン",
-          "多重人格",
-          "疑似家族",
-          "執事",
-          "剣術",
-          "サバイバル",
-          "ロボット",
-          "ゲーム",
-          "性転換"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "蟲師",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4063142558",
-        "amazonDp": "https://www.amazon.co.jp/dp/4063142558?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784063142556",
-        "asin": "4063142558",
-        "title": "蟲師 (1) アフタヌーンKC (255)",
-        "synopsis": "動植物にも霊にも属さない原初の生命体“蟲”。旅の蟲師・ギンコは、人々の暮らしを脅かす不思議な蟲の事件に立ち向かう。静かな自然と人々の営みを背景に、蟲と共存する者たちの物語が綴られる。",
-        "image": "https://m.media-amazon.com/images/I/21SGReiuNEL._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "漆原 友紀",
-        "releaseDate": "2000-11-01T00:00:01Z",
-        "magazine": "アフタヌーンシーズン増刊 / （1999年 - 2002年） / 月刊アフタヌーン / （2003年2月号 - 2008年10月号、 / 2014年1月号 - 2月号、2021年5月号）",
-        "magazines": [
-          "アフタヌーンシーズン増刊",
-          "(1999年 - 2002年)",
-          "月刊アフタヌーン",
-          "(2003年2月号 - 2008年10月号",
-          "2014年1月号 - 2月号",
-          "2021年5月号)"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "蟲師",
-        "anilistId": 30418,
-        "genres": [
-          "Drama",
-          "Fantasy",
-          "Mystery",
-          "Slice of Life",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Travel",
-          "Episodic",
-          "Environmental",
-          "Youkai",
-          "Seinen",
-          "Mythology",
-          "Rural",
-          "Eco-Horror",
-          "Iyashikei",
-          "Philosophy",
-          "Male Protagonist",
-          "Urban Fantasy",
-          "Work",
-          "Historical",
-          "Demons"
-        ],
-        "tags": [
-          "旅",
-          "環境問題",
-          "妖怪",
-          "青年向け",
-          "神話",
-          "田舎",
-          "環境ホラー",
-          "癒し系",
-          "哲学",
-          "現代ファンタジー",
-          "仕事",
-          "歴史",
-          "悪魔"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "血の轍",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4091896235",
-        "amazonDp": "https://www.amazon.co.jp/dp/4091896235?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784091896230",
-        "asin": "4091896235",
-        "title": "血の轍 (1) (ビッグコミックス)",
-        "synopsis": "平凡な中学生・静一は、過保護な母・静子と穏やかな日々を送っていた。しかし親戚との登山をきっかけに、母の“笑顔の奥”にある歪みが顔を出し始める。親子の距離が静かに崩れていく心理サスペンス。",
-        "image": "https://m.media-amazon.com/images/I/51albKJIglL._SL500_.jpg",
-        "publisher": "小学館",
-        "author": "押見 修造",
-        "releaseDate": "2017-09-08T00:00:01Z",
-        "magazine": "ビッグコミックスペリオール",
-        "magazines": [
-          "ビッグコミックスペリオール"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 98397,
-        "genres": [
-          "Drama",
-          "Horror",
-          "Psychological"
-        ],
-        "tags_en": [
-          "Seinen",
-          "Family Life",
-          "Denpa",
-          "Coming of Age",
-          "Memory Manipulation",
-          "Heterosexual",
-          "Suicide",
-          "Crime",
-          "Male Protagonist",
-          "Amnesia",
-          "Psychosexual",
-          "Bullying",
-          "Anti-Hero",
-          "Philosophy",
-          "Police",
-          "School",
-          "Nudity",
-          "Cosmic Horror",
-          "Tomboy",
-          "Dissociative Identities",
-          "Acting"
-        ],
-        "tags": [
-          "青年向け",
-          "家族もの",
-          "成長譚",
-          "記憶操作",
-          "犯罪",
-          "記憶喪失",
-          "いじめ",
-          "アンチヒーロー",
-          "哲学",
-          "警察",
-          "学園",
-          "コズミックホラー",
-          "ボーイッシュ",
-          "多重人格",
-          "演技"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "見える子ちゃん",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/404065658X",
-        "amazonDp": "https://www.amazon.co.jp/dp/404065658X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784040656588",
-        "asin": "404065658X",
-        "title": "見える子ちゃん 1 (MFC)",
-        "synopsis": "普通の女子高生・みこは、ある日突然おぞましい怪異が見えるようになる。だが彼女は祓いも逃げもせず、“見えていないふり”でやり過ごすことを選ぶ。新感覚ホラーコメディ。",
-        "image": "https://m.media-amazon.com/images/I/515Xp2I6vbL._SL500_.jpg",
-        "publisher": "KADOKAWA",
-        "author": "泉 朝樹",
-        "releaseDate": "2019-04-22T00:00:01Z",
-        "magazine": "カドコミ（コミックウォーカー） → WebComicアパンダ",
-        "magazines": [
-          "カドコミ（コミックウォーカー）",
-          "WebComicアパンダ"
-        ],
-        "audiences": [
-          "その他"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 165265,
-        "genres": [
-          "Comedy",
-          "Horror",
-          "Slice of Life",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Ghost"
-        ],
-        "tags": [
-          "幽霊"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "親愛なる僕へ殺意をこめて",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4065128072",
-        "amazonDp": "https://www.amazon.co.jp/dp/4065128072?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784065128077",
-        "asin": "4065128072",
-        "title": "親愛なる僕へ殺意をこめて(1) (ヤングマガジンコミックス)",
-        "synopsis": "平凡な大学生・浦島エイジは、連続殺人犯“LL”の息子であることを知らずに育った。ある日、自分の中に別の人格が存在し殺人を犯しているかもしれない事実に直面し、失われた記憶の謎と向き合う。",
-        "image": "https://m.media-amazon.com/images/I/412ewwrTQlL._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "伊藤 翔太",
-        "releaseDate": "2018-09-06T00:00:01Z",
-        "magazine": "週刊ヤングマガジン / コミックDAYS",
-        "magazines": [
-          "週刊ヤングマガジン",
-          "コミックDAYS"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "親愛なる僕へ殺意をこめて",
-        "anilistId": 106867,
-        "genres": [
-          "Drama",
-          "Horror",
-          "Mystery",
-          "Psychological",
-          "Slice of Life",
-          "Thriller"
-        ],
-        "tags_en": [
-          "Dissociative Identities",
-          "Revenge",
-          "Crime",
-          "Seinen",
-          "Amnesia",
-          "Police",
-          "Denpa",
-          "Yandere",
-          "Fugitive",
-          "Detective",
-          "Torture",
-          "Male Protagonist",
-          "Anti-Hero",
-          "Prostitution",
-          "Suicide",
-          "Gore",
-          "Gangs",
-          "College",
-          "Adoption",
-          "Nudity",
-          "Orphan",
-          "Body Horror",
-          "Guns",
-          "LGBTQ+ Themes"
-        ],
-        "tags": [
-          "多重人格",
-          "復讐",
-          "犯罪",
-          "青年向け",
-          "記憶喪失",
-          "警察",
-          "ヤンデレ",
-          "逃亡者",
-          "探偵",
-          "アンチヒーロー",
-          "ギャング",
-          "大学",
-          "養子縁組",
-          "孤児",
-          "銃",
-          "LGBTQテーマ"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "超人X",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088921666",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088921666?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088921662",
-        "asin": "4088921666",
-        "title": "超人X 1 (ヤングジャンプコミックス)",
-        "synopsis": "超人の襲撃をきっかけに、高校生の東九と東亜は異能を得てしまう。正義も悪も曖昧な暴力の世界で、二人の選択が狂気と混乱を呼び込んでいく。",
-        "image": "https://m.media-amazon.com/images/I/41RXAXo8yxL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "石田 スイ",
-        "releaseDate": "2021-12-17T00:00:01Z",
-        "magazine": "となりのヤングジャンプ",
-        "magazines": [
-          "となりのヤングジャンプ"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 126693,
-        "genres": [
-          "Action",
-          "Drama",
-          "Fantasy",
-          "Psychological"
-        ],
-        "tags_en": [
-          "Urban Fantasy",
-          "Henshin",
-          "Super Power",
-          "Body Horror",
-          "Seinen",
-          "Gore",
-          "Surreal Comedy",
-          "Male Protagonist",
-          "Drugs",
-          "Conspiracy",
-          "Female Protagonist",
-          "Cosmic Horror",
-          "Religion",
-          "Memory Manipulation",
-          "Coming of Age",
-          "Clone",
-          "Heterosexual"
-        ],
-        "tags": [
-          "現代ファンタジー",
-          "変身",
-          "超能力",
-          "青年向け",
-          "不条理コメディ",
-          "陰謀",
-          "コズミックホラー",
-          "宗教",
-          "記憶操作",
-          "成長譚",
-          "クローン"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "転生したらスライムだった件",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4063765784",
-        "amazonDp": "https://www.amazon.co.jp/dp/4063765784?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784063765786",
-        "asin": "4063765784",
-        "title": "転生したらスライムだった件(1) (シリウスコミックス)",
-        "synopsis": "通り魔に刺されて命を落としたサラリーマンが異世界でスライムに転生し、“捕食者”と“賢者”の能力を得る。彼はモンスターたちと絆を結び、冒険を通じて国づくりと進化を目指す異世界ファンタジー。",
-        "image": "https://m.media-amazon.com/images/I/51cWsdIlymL._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "川上 泰樹 / みっつばー",
-        "releaseDate": "2015-10-30T00:00:01Z",
-        "magazine": "月刊少年シリウス",
-        "magazines": [
-          "月刊少年シリウス"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "転生したらスライムだった件",
-        "anilistId": 86399,
-        "genres": [
-          "Action",
-          "Adventure",
-          "Comedy",
-          "Fantasy"
-        ],
-        "tags_en": [
-          "Isekai",
-          "Kingdom Management",
-          "Politics",
-          "Medieval",
-          "War",
-          "Magic",
-          "Shounen",
-          "Economics",
-          "Monster Girl",
-          "Primarily Adult Cast",
-          "Male Protagonist",
-          "Demons",
-          "Dragons",
-          "Goblin",
-          "Agender",
-          "Rural",
-          "Yuri"
-        ],
-        "tags": [
-          "異世界",
-          "国づくり",
-          "政治",
-          "中世",
-          "戦争",
-          "魔法",
-          "少年向け",
-          "経済",
-          "モンスター娘",
-          "大人中心",
-          "男性主人公",
-          "悪魔",
-          "ドラゴン",
-          "ゴブリン",
-          "無性別",
-          "田舎",
-          "百合"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "進撃の巨人",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/進撃の巨人-1-少年マガジンKC-諫山-創/dp/4063842762",
-        "amazonDp": "https://www.amazon.co.jp/dp/4063842762?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784063842760",
-        "asin": "4063842762",
-        "title": "進撃の巨人（1）",
-        "synopsis": "巨人に支配された世界で、人類は壁の内側で生き延びていた。だが超大型巨人の出現で均衡が崩れ、少年エレンは絶望的な戦いへ踏み出す。",
-        "image": "https://m.media-amazon.com/images/I/51RkDetC0uL._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "諫山 創",
-        "releaseDate": "2010-03-17T00:00:01Z",
-        "magazine": "別冊少年マガジン / 週刊少年マガジン（特別編）",
-        "magazines": [
-          "別冊少年マガジン",
-          "週刊少年マガジン（特別編）"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "進撃の巨人",
-        "anilistId": 53390,
-        "genres": [
-          "Action",
-          "Drama",
-          "Fantasy",
-          "Mystery"
-        ],
-        "tags_en": [
-          "Dystopian",
-          "Anti-Hero",
-          "War",
-          "Philosophy",
-          "Military",
-          "Conspiracy",
-          "Survival",
-          "Kaiju",
-          "Shapeshifting",
-          "Memory Manipulation",
-          "Politics",
-          "Revenge",
-          "Henshin",
-          "Male Protagonist",
-          "Monster Boy",
-          "Terrorism",
-          "Post-Apocalyptic",
-          "Super Power",
-          "Gore",
-          "Body Horror",
-          "Ensemble Cast",
-          "Cosmic Horror",
-          "Cannibalism",
-          "Coming of Age",
-          "Slavery",
-          "Swordplay",
-          "Torture",
-          "Shounen",
-          "Espionage",
-          "Mythology"
-        ],
-        "tags": [
-          "ディストピア",
-          "アンチヒーロー",
-          "戦争",
-          "哲学",
-          "軍事",
-          "陰謀",
-          "サバイバル",
-          "怪獣",
-          "変身能力",
-          "記憶操作",
-          "政治",
-          "復讐",
-          "変身",
-          "男性主人公",
-          "モンスター男子",
-          "終末後",
-          "超能力",
-          "群像劇",
-          "コズミックホラー",
-          "成長譚",
-          "奴隷",
-          "剣術",
-          "少年向け",
-          "スパイ",
-          "神話"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": {
-        "source": "manual_batch",
-        "addedAt": "2026-02-13"
-      }
-    },
-    {
-      "seriesKey": "銀魂",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088736230",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088736230?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088736235",
-        "asin": "4088736230",
-        "title": "銀魂-ぎんたま- 1",
-        "synopsis": "宇宙人に支配され刀が禁じられた江戸で、侍魂を失わない万事屋店主・坂田銀時が、仲間の神楽や新八とともに騒動を巻き起こす。緩さと熱さが同居したギャグとバトルの時代劇。",
-        "image": "https://m.media-amazon.com/images/I/519NNIUuOBL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "空知 英秋",
-        "releaseDate": "2004-04-02T00:00:01Z",
-        "magazine": "週刊少年ジャンプ / ジャンプGIGA / 銀魂公式アプリ（完結編）",
-        "magazines": [
-          "週刊少年ジャンプ",
-          "ジャンプGIGA",
-          "銀魂公式アプリ(完結編)"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "銀魂",
-        "anilistId": 30044,
-        "genres": [
-          "Action",
-          "Comedy",
-          "Drama",
-          "Sci-Fi"
-        ],
-        "tags_en": [
-          "Found Family",
-          "Samurai",
-          "Parody",
-          "Meta",
-          "Swordplay",
-          "Male Protagonist",
-          "Aliens",
-          "Philosophy",
-          "Episodic",
-          "Shounen",
-          "Historical",
-          "Space",
-          "Ensemble Cast",
-          "Anachronism",
-          "Police",
-          "War",
-          "Conspiracy",
-          "Dystopian",
-          "Fugitive",
-          "Robots",
-          "Ninja",
-          "Assassins",
-          "Homeless",
-          "Ghost",
-          "Idol",
-          "Shrine Maiden",
-          "Crossdressing",
-          "LGBTQ+ Themes",
-          "Gender Bending",
-          "Dissociative Identities"
-        ],
-        "tags": [
-          "疑似家族",
-          "侍",
-          "パロディ",
-          "剣術",
-          "宇宙人",
-          "哲学",
-          "少年向け",
-          "歴史",
-          "宇宙",
-          "警察",
-          "戦争",
-          "陰謀",
-          "ディストピア",
-          "逃亡者",
-          "ロボット",
-          "忍者",
-          "暗殺者",
-          "ホームレス",
-          "幽霊",
-          "アイドル",
-          "巫女",
-          "女装・男装",
-          "LGBTQテーマ",
-          "性転換",
-          "多重人格"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "銃夢",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088750713",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088750713?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088750712",
-        "asin": "4088750713",
-        "title": "銃夢 1 (ヤングジャンプコミックス)",
-        "synopsis": "スクラップの町でサイボーグ医師イドに拾われた記憶喪失の少女ガリィは、研ぎ澄まされた戦闘センスでモーターボールなどの死闘に挑む。過去を求めながら、鉄と血の未来世界を生きる。",
-        "image": "https://m.media-amazon.com/images/I/51v3h42SkrL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "木城 ゆきと",
-        "releaseDate": "1991-09-01T00:00:01Z",
-        "magazine": "ビジネスジャンプ",
-        "magazines": [
-          "ビジネスジャンプ"
-        ],
-        "audiences": [
-          "その他"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "銃夢",
-        "anilistId": 30768,
-        "genres": [
-          "Action",
-          "Sci-Fi"
-        ],
-        "tags_en": [
-          "Cyberpunk",
-          "Female Protagonist",
-          "Amnesia",
-          "Seinen",
-          "Dystopian",
-          "Robots",
-          "Cyborg",
-          "Post-Apocalyptic",
-          "Desert",
-          "Martial Arts",
-          "Gore",
-          "Nudity",
-          "Cosmic Horror",
-          "Heterosexual"
-        ],
-        "tags": [
-          "サイバーパンク",
-          "記憶喪失",
-          "青年向け",
-          "ディストピア",
-          "ロボット",
-          "サイボーグ",
-          "終末後",
-          "砂漠",
-          "武術",
-          "コズミックホラー"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "鋼の錬金術師",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/鋼の錬金術師-1-ガンガンコミックス-荒川弘/dp/4757506201",
-        "amazonDp": "https://www.amazon.co.jp/dp/4757506201?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784757506206",
-        "asin": "4757506201",
-        "title": "鋼の錬金術師(1) (ガンガンコミックス)",
-        "synopsis": "亡き母を甦らせようと禁断の人体錬成に挑んだ兄弟は、取り返しのつかない代償を負う。失った身体を取り戻すため、国家錬金術師となったエドとアルは“賢者の石”を求め旅に出る。",
-        "image": "https://m.media-amazon.com/images/I/51Nj8j-sXyL._SL500_.jpg",
-        "publisher": "スクウェア・エニックス",
-        "author": "荒川弘",
-        "releaseDate": "2002-01-22T00:00:01Z",
-        "magazine": "月刊少年ガンガン",
-        "magazines": [
-          "月刊少年ガンガン"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 30025,
-        "genres": [
-          "Action",
-          "Adventure",
-          "Comedy",
-          "Drama",
-          "Fantasy"
-        ],
-        "tags_en": [
-          "Alchemy",
-          "Conspiracy",
-          "Politics",
-          "Philosophy",
-          "Military",
-          "War",
-          "Shounen",
-          "Male Protagonist",
-          "Disability",
-          "Travel",
-          "Steampunk",
-          "Ensemble Cast",
-          "Body Horror",
-          "Super Power",
-          "Magic",
-          "Lost Civilization",
-          "Chimera",
-          "Primarily Adult Cast",
-          "Primarily Male Cast",
-          "Shapeshifting",
-          "Guns",
-          "Gore",
-          "Historical",
-          "Cars",
-          "Tsundere",
-          "Heterosexual",
-          "Kuudere",
-          "Tomboy",
-          "Trains",
-          "Urban Fantasy"
-        ],
-        "tags": [
-          "錬金術",
-          "陰謀",
-          "政治",
-          "哲学",
-          "軍事",
-          "戦争",
-          "少年向け",
-          "障害",
-          "旅",
-          "スチームパンク",
-          "超能力",
-          "魔法",
-          "失われた文明",
-          "キメラ",
-          "変身能力",
-          "銃",
-          "歴史",
-          "車",
-          "ツンデレ",
-          "クーデレ",
-          "ボーイッシュ",
-          "鉄道",
-          "現代ファンタジー"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "陰の実力者になりたくて！",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4041084717",
-        "amazonDp": "https://www.amazon.co.jp/dp/4041084717?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784041084717",
-        "asin": "4041084717",
-        "title": "陰の実力者になりたくて! (1) (角川コミックス・エース)",
-        "synopsis": "陰で暗躍する“実力者”に憧れた少年は異世界へ転生。妄想で作った秘密結社《シャドウガーデン》がなぜか本物の陰謀と噛み合い、勘違いのまま最強ムーブを突き進む。",
-        "image": "https://m.media-amazon.com/images/I/51ylib9aUiL._SL500_.jpg",
-        "publisher": "KADOKAWA",
-        "author": "坂野 杏梨",
-        "releaseDate": "2019-07-25T00:00:01Z",
-        "magazine": "月刊コンプエース",
-        "magazines": [
-          "月刊コンプエース"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 106758,
-        "genres": [
-          "Action",
-          "Comedy",
-          "Fantasy"
-        ],
-        "tags_en": [
-          "Chuunibyou",
-          "Male Protagonist",
-          "Magic",
-          "Cult",
-          "Isekai",
-          "Parody",
-          "Anti-Hero",
-          "Shounen",
-          "Female Harem",
-          "Swordplay",
-          "Elf",
-          "Fugitive",
-          "Kemonomimi",
-          "Satire",
-          "Vampire",
-          "Zombie",
-          "Medieval"
-        ],
-        "tags": [
-          "中二病",
-          "魔法",
-          "カルト",
-          "異世界",
-          "パロディ",
-          "アンチヒーロー",
-          "少年向け",
-          "逆ハーレム",
-          "剣術",
-          "エルフ",
-          "逃亡者",
-          "獣耳",
-          "風刺",
-          "吸血鬼",
-          "ゾンビ",
-          "中世"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "青のフラッグ",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088810457",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088810457?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088810454",
-        "asin": "4088810457",
-        "title": "青のフラッグ 1 (ジャンプコミックス)",
-        "synopsis": "目立たず過ごしたい太一の前に、真っ直ぐな冬優子が現れ人間関係が動き出す。友情、恋、嫉妬が絡み合い、誰もが自分の本音に向き合わされていく青春群像劇。",
-        "image": "https://m.media-amazon.com/images/I/51Bs58HTlsL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "KAITO",
-        "releaseDate": "2017-04-04T00:00:01Z",
-        "magazine": "少年ジャンプ+",
-        "magazines": [
-          "少年ジャンプ+"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 98334,
-        "genres": [
-          "Drama",
-          "Romance"
-        ],
-        "tags_en": [
-          "Coming of Age",
-          "LGBTQ+ Themes",
-          "Love Triangle",
-          "Male Protagonist",
-          "Primarily Teen Cast",
-          "Chibi",
-          "School",
-          "Philosophy",
-          "Bisexual",
-          "Boys' Love",
-          "Baseball",
-          "Ensemble Cast",
-          "Unrequited Love",
-          "Heterosexual",
-          "Rehabilitation",
-          "Yuri"
-        ],
-        "tags": [
-          "成長譚",
-          "LGBTQテーマ",
-          "三角関係",
-          "ちびキャラ",
-          "学園",
-          "哲学",
-          "バイセクシュアル",
-          "ボーイズラブ",
-          "野球",
-          "片思い",
-          "更生",
-          "百合"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "青の祓魔師",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088747097",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088747097?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088747095",
-        "asin": "4088747097",
-        "title": "青の祓魔師 1 (ジャンプコミックス)",
-        "synopsis": "悪魔の血を引く奥村燐は、養父の死をきっかけに自らの出自と向き合う。人を守るため、悪魔を祓う“祓魔師”を目指して学園へ。炎を武器に運命へ挑むバトルファンタジー。",
-        "image": "https://m.media-amazon.com/images/I/51FxW18RIjL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "加藤 和恵",
-        "releaseDate": "2009-08-04T00:00:01Z",
-        "magazine": "ジャンプスクエア",
-        "magazines": [
-          "ジャンプスクエア"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "青の祓魔師",
-        "anilistId": 43492,
-        "genres": [
-          "Action",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Demons",
-          "Male Protagonist",
-          "Shounen",
-          "Conspiracy",
-          "Urban Fantasy",
-          "Twins",
-          "Swordplay",
-          "Primarily Teen Cast",
-          "Primarily Male Cast",
-          "Exorcism",
-          "School",
-          "Religion",
-          "Curses",
-          "Espionage",
-          "Chimera",
-          "Body Horror",
-          "Gore",
-          "Anthropomorphism",
-          "Clone",
-          "Youkai",
-          "Orphan",
-          "Magic",
-          "Ensemble Cast",
-          "Mythology",
-          "Guns",
-          "Kemonomimi",
-          "Heterosexual",
-          "Suicide",
-          "Memory Manipulation",
-          "Kaiju"
-        ],
-        "tags": [
-          "悪魔",
-          "少年向け",
-          "陰謀",
-          "現代ファンタジー",
-          "双子",
-          "剣術",
-          "祓い・除霊",
-          "学園",
-          "宗教",
-          "呪い",
-          "スパイ",
-          "キメラ",
-          "擬人化",
-          "クローン",
-          "妖怪",
-          "孤児",
-          "魔法",
-          "神話",
-          "銃",
-          "獣耳",
-          "記憶操作",
-          "怪獣"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "食戟のソーマ",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4088707214",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088707214?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088707211",
-        "asin": "4088707214",
-        "title": "食戟のソーマ 1 (ジャンプコミックス)",
-        "synopsis": "定食屋の息子・幸平創真は父を超える料理人を目指して修業中。突如名門料理学校に入学し、天才たちと料理で勝負する“食戟”に挑む日々が始まる。",
-        "image": "https://m.media-amazon.com/images/I/51xXfufofiL._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "佐伯 俊 / 森崎 友紀",
-        "releaseDate": "2013-04-04T00:00:01Z",
-        "magazine": "週刊少年ジャンプ",
-        "magazines": [
-          "週刊少年ジャンプ"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "食戟のソーマ",
-        "anilistId": 75757,
-        "genres": [
-          "Comedy",
-          "Drama",
-          "Ecchi"
-        ],
-        "tags_en": [
-          "Food",
-          "School",
-          "Male Protagonist",
-          "Shounen",
-          "Nudity",
-          "Educational",
-          "Tsundere",
-          "Incest",
-          "Desert"
-        ],
-        "tags": [
-          "グルメ",
-          "学園",
-          "男性主人公",
-          "少年向け",
-          "教育",
-          "ツンデレ",
-          "砂漠"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "鬼滅の刃",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/鬼滅の刃-1-ジャンプコミックス-吾峠-呼世晴/dp/4088807235",
-        "amazonDp": "https://www.amazon.co.jp/dp/4088807235?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784088807232",
-        "asin": "4088807235",
-        "title": "鬼滅の刃 1",
-        "synopsis": "家族を鬼に奪われ、妹も鬼へ変貌した少年・炭治郎。妹を人に戻し仇を討つため、剣戟の旅に出る。",
-        "image": "https://m.media-amazon.com/images/I/512K1dmkIML._SL500_.jpg",
-        "publisher": "集英社",
-        "author": "吾峠 呼世晴",
-        "releaseDate": "2016-06-03T00:00:01Z",
-        "magazine": "週刊少年ジャンプ",
-        "magazines": [
-          "週刊少年ジャンプ"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "鬼滅の刃",
-        "anilistId": 87216,
-        "genres": [
-          "Action",
-          "Adventure",
-          "Drama",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Demons",
-          "Shounen",
-          "Swordplay",
-          "Male Protagonist",
-          "Revenge",
-          "Gore",
-          "Historical",
-          "Body Horror",
-          "Rural",
-          "Orphan",
-          "Coming of Age",
-          "Shapeshifting",
-          "Travel",
-          "Oiran",
-          "Trains",
-          "Guns",
-          "Crossdressing",
-          "Age Regression",
-          "Disability",
-          "Polyamorous",
-          "Bisexual",
-          "Youkai",
-          "Religion",
-          "Animals",
-          "Food"
-        ],
-        "tags": [
-          "悪魔",
-          "少年向け",
-          "剣術",
-          "男性主人公",
-          "復讐",
-          "歴史",
-          "田舎",
-          "孤児",
-          "成長譚",
-          "変身能力",
-          "旅",
-          "花魁",
-          "鉄道",
-          "銃",
-          "女装・男装",
-          "年齢退行",
-          "障害",
-          "複数恋愛",
-          "バイセクシュアル",
-          "妖怪",
-          "宗教",
-          "動物",
-          "グルメ"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": {
-        "source": "manual_batch",
-        "addedAt": "2026-02-13"
-      }
-    },
-    {
-      "seriesKey": "魔入りました！入間くん",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4253225160",
-        "amazonDp": "https://www.amazon.co.jp/dp/4253225160?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784253225168",
-        "asin": "4253225160",
-        "title": "魔入りました!入間くん(1): 少年チャンピオン・コミックス",
-        "synopsis": "両親に悪魔へ売られた少年・入間は、人間嫌いの悪魔サリバンの孫として魔界の学校へ通うことに。臆病な彼が個性的な悪魔たちに囲まれて成長していく学園ファンタジー。",
-        "image": "https://m.media-amazon.com/images/I/51OHnCsR-EL._SL500_.jpg",
-        "publisher": "秋田書店",
-        "author": "西 修",
-        "releaseDate": "2017-07-07T00:00:01Z",
-        "magazine": "週刊少年チャンピオン",
-        "magazines": [
-          "週刊少年チャンピオン"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 99324,
-        "genres": [
-          "Comedy",
-          "Fantasy"
-        ],
-        "tags_en": [
-          "Demons",
-          "Found Family",
-          "Ensemble Cast",
-          "School",
-          "Male Protagonist",
-          "Adoption",
-          "Conspiracy",
-          "Magic",
-          "Shounen",
-          "Isekai",
-          "Family Life",
-          "School Club",
-          "Crossdressing",
-          "Idol",
-          "LGBTQ+ Themes",
-          "Assassins",
-          "Love Triangle",
-          "Video Games"
-        ],
-        "tags": [
-          "悪魔",
-          "疑似家族",
-          "学園",
-          "養子縁組",
-          "陰謀",
-          "魔法",
-          "少年向け",
-          "異世界",
-          "家族もの",
-          "部活",
-          "女装・男装",
-          "アイドル",
-          "LGBTQテーマ",
-          "暗殺者",
-          "三角関係",
-          "ゲーム"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "魔法使いの嫁",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4048995898",
-        "amazonDp": "https://www.amazon.co.jp/dp/4048995898?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784048995894",
-        "asin": "4048995898",
-        "title": "魔法使いの嫁 1 (ブシロードコミックス)",
-        "synopsis": "孤独な15歳の少女・羽鳥チセは、魔法使いの手によってオークションで買われる。人外の魔術師エリアスは彼女を弟子兼花嫁に迎え、チセは不思議と幻想が満ちる英国で、止まった時間を動かし始める。",
-        "image": "https://m.media-amazon.com/images/I/51y8oZmV32L._SL500_.jpg",
-        "publisher": "KADOKAWA",
-        "author": "ヤマザキ コレ",
-        "releaseDate": "2024-04-06T00:00:01Z",
-        "magazine": "月刊コミックブレイド / MAGCOMI / 月刊コミックガーデン / コミックグロウル",
-        "magazines": [
-          "月刊コミックブレイド",
-          "MAGCOMI",
-          "月刊コミックガーデン",
-          "コミックグロウル"
-        ],
-        "audiences": [
-          "その他",
-          "青年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "魔法使いの嫁",
-        "anilistId": 85435,
-        "genres": [
-          "Drama",
-          "Fantasy",
-          "Romance",
-          "Slice of Life",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Magic",
-          "Female Protagonist",
-          "Bullying",
-          "Foreign",
-          "Mythology",
-          "Rural",
-          "Monster Boy",
-          "Heterosexual",
-          "Shounen",
-          "Urban Fantasy",
-          "Primarily Adult Cast",
-          "School",
-          "Travel",
-          "Fairy",
-          "Werewolf",
-          "Shapeshifting",
-          "Dragons"
-        ],
-        "tags": [
-          "魔法",
-          "いじめ",
-          "海外",
-          "神話",
-          "田舎",
-          "モンスター男子",
-          "少年向け",
-          "現代ファンタジー",
-          "学園",
-          "旅",
-          "妖精",
-          "狼男",
-          "変身能力",
-          "ドラゴン"
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"

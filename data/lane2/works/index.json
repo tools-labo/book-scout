@@ -1,9 +1,18 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T08:11:05.924Z",
-  "total": 203,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-02-23T11:20:56.140Z",
+  "total": 218,
+  "droppedTotal": 8,
+  "droppedSeriesKeys": [
+    "×××ホリック",
+    "この音とまれ！",
+    "サマータイムレンダ",
+    "パンプキンナイト",
+    "ラストゲーム",
+    "天空侵犯",
+    "宇崎ちゃんは遊びたい！",
+    "道産子ギャルはなまらめんこい"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -12,7 +21,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 3
+      "count": 18
     }
   ],
   "lookup": {
@@ -26,12 +35,15 @@
     "Re:ゼロから始める異世界生活": 0,
     "ReLIFE": 0,
     "アイアムアヒーロー": 0,
+    "アオアシ": 0,
     "アオのハコ": 0,
     "アオハライド": 0,
+    "あかね噺": 0,
     "アカメが斬る！": 0,
     "アクタージュ act-age": 0,
     "あしたのジョー": 0,
     "あせとせっけん": 0,
+    "アヤシモン": 0,
     "アンデッドアンラック": 0,
     "イジらないで、長瀞さん": 0,
     "いぬやしき": 0,
@@ -44,10 +56,12 @@
     "かぐや様は告らせたい～天才たちの恋愛頭脳戦～": 0,
     "カグラバチ": 0,
     "ガチアクタ": 0,
+    "カッコウの許嫁": 0,
     "からかい上手の高木さん": 0,
     "ギヴン": 0,
     "ギョ": 0,
     "キングダム": 0,
+    "クズの本懐": 0,
     "ぐらんぶる": 0,
     "ケンガンアシュラ": 0,
     "ゴールデンカムイ": 0,
@@ -73,6 +87,7 @@
     "その着せ替え人形は恋をする": 0,
     "ソラニン": 0,
     "ゾン100 ～ゾンビになるまでにしたい100のこと～": 0,
+    "たいようのいえ": 0,
     "タコピーの原罪": 0,
     "ダンジョン飯": 0,
     "ダンダダン": 0,
@@ -97,7 +112,10 @@
     "バクマン。": 0,
     "はじめの一歩": 0,
     "パンドラハーツ": 0,
+    "ひげを剃る。そして女子高生を拾う。": 0,
+    "ヒナまつり": 0,
     "ビリーバット": 0,
+    "ひるなかの流星": 0,
     "ファイアパンチ": 0,
     "プラチナエンド": 0,
     "ブラッククローバー": 0,
@@ -105,6 +123,7 @@
     "フルーツバスケット": 0,
     "ブルーピリオド": 0,
     "ブルーロック": 0,
+    "べるぜバブ": 0,
     "ベルセルク": 0,
     "ホーリーランド": 0,
     "ぼくたちは勉強ができない": 0,
@@ -115,6 +134,7 @@
     "マギ": 0,
     "マッシュル-MASHLE-": 0,
     "メイドインアビス": 0,
+    "めだかボックス": 0,
     "モブサイコ100": 0,
     "やがて君になる": 0,
     "やんちゃギャルの安城さん": 0,
@@ -149,9 +169,11 @@
     "嘘喰い": 0,
     "地獄楽": 0,
     "地縛少年 花子くん": 0,
+    "夜桜さんちの大作戦": 0,
     "大ダーク": 0,
     "天国大魔境": 0,
     "夫婦以上、恋人未満。": 0,
+    "好きな子がめがねを忘れた": 0,
     "孤高の人": 0,
     "宝石の国": 0,
     "家庭教師ヒットマンREBORN!": 0,
@@ -190,6 +212,7 @@
     "監獄学園": 0,
     "盾の勇者の成り上がり": 0,
     "神のみぞ知るセカイ": 0,
+    "神様はじめました": 0,
     "私たちの幸せな時間": 0,
     "約束のネバーランド": 0,
     "終わりのセラフ": 0,
@@ -202,20 +225,21 @@
     "蟲師": 0,
     "血の轍": 0,
     "見える子ちゃん": 0,
-    "親愛なる僕へ殺意をこめて": 0,
-    "超人X": 0,
-    "転生したらスライムだった件": 0,
-    "進撃の巨人": 0,
-    "銀魂": 0,
-    "銃夢": 0,
-    "鋼の錬金術師": 0,
-    "陰の実力者になりたくて！": 0,
-    "青のフラッグ": 0,
-    "青の祓魔師": 0,
-    "食戟のソーマ": 0,
-    "鬼滅の刃": 0,
-    "魔入りました！入間くん": 0,
-    "魔法使いの嫁": 0,
+    "親愛なる僕へ殺意をこめて": 1,
+    "賭ケグルイ": 1,
+    "超人X": 1,
+    "転生したらスライムだった件": 1,
+    "進撃の巨人": 1,
+    "銀魂": 1,
+    "銃夢": 1,
+    "鋼の錬金術師": 1,
+    "陰の実力者になりたくて！": 1,
+    "青のフラッグ": 1,
+    "青の祓魔師": 1,
+    "食戟のソーマ": 1,
+    "鬼滅の刃": 1,
+    "魔入りました！入間くん": 1,
+    "魔法使いの嫁": 1,
     "魔都精兵のスレイブ": 1,
     "黒執事": 1,
     "黒岩メダカに私の可愛いが通じない": 1
@@ -631,6 +655,34 @@
       "releaseDate": "2009-08-28T00:00:01Z"
     },
     {
+      "seriesKey": "アオアシ",
+      "title": "アオアシ 1 (ビッグコミックス)",
+      "image": "https://m.media-amazon.com/images/I/6161hZ7XohL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091868924?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091868924",
+      "magazine": "ビッグコミックスピリッツ",
+      "magazines": [
+        "ビッグコミックスピリッツ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Sports"
+      ],
+      "tags": [
+        "サッカー",
+        "部活",
+        "成長譚",
+        "青年向け",
+        "学園",
+        "いじめ",
+        "三角関係"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2015-04-30T00:00:01Z"
+    },
+    {
       "seriesKey": "アオのハコ",
       "title": "アオのハコ 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51tUXcgbZIL._SL500_.jpg",
@@ -701,6 +753,36 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2011-04-13T00:00:01Z"
+    },
+    {
+      "seriesKey": "あかね噺",
+      "title": "あかね噺 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51HuxLXCUpL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088831500?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088831500",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama"
+      ],
+      "tags": [
+        "成長譚",
+        "演技",
+        "仕事",
+        "哲学",
+        "少年向け",
+        "疑似家族",
+        "復讐",
+        "家族もの",
+        "学園"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2022-06-03T00:00:01Z"
     },
     {
       "seriesKey": "アカメが斬る！",
@@ -848,6 +930,37 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2018-10-10T00:00:01Z"
+    },
+    {
+      "seriesKey": "アヤシモン",
+      "title": "アヤシモン 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51OLJ8RCnNL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088830393?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088830393",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Supernatural"
+      ],
+      "tags": [
+        "妖怪",
+        "ヤクザ",
+        "少年向け",
+        "現代ファンタジー",
+        "不条理コメディ",
+        "パロディ",
+        "バイク",
+        "ドラゴン",
+        "女装・男装"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2022-03-04T00:00:01Z"
     },
     {
       "seriesKey": "アンデッドアンラック",
@@ -1334,6 +1447,40 @@
       "releaseDate": "2022-05-17T00:00:01Z"
     },
     {
+      "seriesKey": "カッコウの許嫁",
+      "title": "カッコウの許嫁(1) (講談社コミックス)",
+      "image": "https://m.media-amazon.com/images/I/511xsNoVN-L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/406519380X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/406519380X",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "三角関係",
+        "ツンデレ",
+        "家族もの",
+        "学園",
+        "少年向け",
+        "双子",
+        "コスプレ",
+        "アイドル",
+        "政略結婚",
+        "同棲"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2020-05-15T00:00:01Z"
+    },
+    {
       "seriesKey": "からかい上手の高木さん",
       "title": "からかい上手の高木さん (1) (ゲッサン少年サンデーコミックススペシャル)",
       "image": "https://m.media-amazon.com/images/I/51g3RhKRFmL._SL500_.jpg",
@@ -1465,6 +1612,39 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2006-05-19T00:00:01Z"
+    },
+    {
+      "seriesKey": "クズの本懐",
+      "title": "クズの本懐(1) (ビッグガンガンコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51uolWtm-nL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757538871?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757538871",
+      "magazine": "月刊ビッグガンガン",
+      "magazines": [
+        "月刊ビッグガンガン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Ecchi",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "青年向け",
+        "成長譚",
+        "学園",
+        "三角関係",
+        "バイセクシュアル",
+        "LGBTQテーマ",
+        "偽装恋愛",
+        "百合",
+        "片思い"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2013-02-19T00:00:01Z"
     },
     {
       "seriesKey": "ぐらんぶる",
@@ -2430,6 +2610,40 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2019-03-19T00:00:01Z"
+    },
+    {
+      "seriesKey": "たいようのいえ",
+      "title": "たいようのいえ 1 (デザートコミックス)",
+      "image": "https://m.media-amazon.com/images/I/41L01a9hF1L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063656225?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063656225",
+      "magazine": "デザート",
+      "magazines": [
+        "デザート"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "家族もの",
+        "成長譚",
+        "三角関係",
+        "少女",
+        "ツンデレ",
+        "癒し系",
+        "同棲",
+        "学園",
+        "疎遠な家族",
+        "養子縁組",
+        "孤児"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2010-09-13T00:00:01Z"
     },
     {
       "seriesKey": "タコピーの原罪",
@@ -3398,6 +3612,78 @@
       "releaseDate": "2006-10-27T00:00:01Z"
     },
     {
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "title": "ひげを剃る。そして女子高生を拾う。 (1) (角川コミックス・エース)",
+      "image": "https://m.media-amazon.com/images/I/51AkyU+zjdL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041083516?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041083516",
+      "magazine": "月刊少年エース",
+      "magazines": [
+        "月刊少年エース"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "三角関係",
+        "成長譚",
+        "OL",
+        "都会",
+        "仕事",
+        "逆ハーレム",
+        "ギャル",
+        "少年向け"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2019-05-25T00:00:01Z"
+    },
+    {
+      "seriesKey": "ヒナまつり",
+      "title": "ヒナまつり 1 (ビームコミックス)",
+      "image": "https://m.media-amazon.com/images/I/61vtA7RD0mL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047273813?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047273813",
+      "magazine": "Fellows! / ハルタ",
+      "magazines": [
+        "Fellows!",
+        "ハルタ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Sci-Fi",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "疑似家族",
+        "不条理コメディ",
+        "養子縁組",
+        "ドタバタ",
+        "家族もの",
+        "超能力",
+        "ヤクザ",
+        "現代ファンタジー",
+        "親子（子育て）",
+        "成長譚",
+        "仕事",
+        "青年向け",
+        "ホームレス",
+        "都会",
+        "バー",
+        "学園",
+        "女装・男装"
+      ],
+      "publisher": "エンターブレイン",
+      "releaseDate": "2011-07-15T00:00:01Z"
+    },
+    {
       "seriesKey": "ビリーバット",
       "title": "BILLY BAT(1) (モーニングKC)",
       "image": "https://m.media-amazon.com/images/I/41IQ5TKoDKL._SL500_.jpg",
@@ -3438,6 +3724,38 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2009-06-23T00:00:01Z"
+    },
+    {
+      "seriesKey": "ひるなかの流星",
+      "title": "ひるなかの流星 1 (マーガレットコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51xM3q1Si0L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088467086?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088467086",
+      "magazine": "マーガレット",
+      "magazines": [
+        "マーガレット"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "三角関係",
+        "学園",
+        "成長譚",
+        "教師",
+        "都会",
+        "ツンデレ",
+        "偽装恋愛"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2011-10-25T00:00:01Z"
     },
     {
       "seriesKey": "ファイアパンチ",
@@ -3736,6 +4054,46 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2018-11-16T00:00:01Z"
+    },
+    {
+      "seriesKey": "べるぜバブ",
+      "title": "べるぜバブ 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/517imu63fYL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088747321?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088747321",
+      "magazine": "週刊少年ジャンプ / 少年ジャンプNEXT!!",
+      "magazines": [
+        "週刊少年ジャンプ",
+        "少年ジャンプNEXT!!"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Supernatural"
+      ],
+      "tags": [
+        "不良",
+        "少年向け",
+        "悪魔",
+        "養子縁組",
+        "学園",
+        "親子（子育て）",
+        "現代ファンタジー",
+        "成長譚",
+        "メイド",
+        "魔法",
+        "バトルロイヤル",
+        "幽霊",
+        "家族もの",
+        "バレーボール",
+        "記憶喪失",
+        "ドラゴン"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2009-07-03T00:00:01Z"
     },
     {
       "seriesKey": "ベルセルク",
@@ -4124,6 +4482,52 @@
       ],
       "publisher": "竹書房",
       "releaseDate": "2013-07-31T00:00:01Z"
+    },
+    {
+      "seriesKey": "めだかボックス",
+      "title": "めだかボックス 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51CQvZWK0vL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088747763?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088747763",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "成長譚",
+        "学園",
+        "超能力",
+        "アンチヒーロー",
+        "少年向け",
+        "パロディ",
+        "不条理コメディ",
+        "風刺",
+        "武術",
+        "中二病",
+        "ヤンデレ",
+        "暗殺者",
+        "カードバトル",
+        "猫耳",
+        "LGBTQテーマ",
+        "剣術",
+        "古典文学",
+        "銃",
+        "ロボット",
+        "柔道",
+        "サイボーグ",
+        "バンド"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2009-10-02T00:00:01Z"
     },
     {
       "seriesKey": "モブサイコ100",
@@ -5436,6 +5840,44 @@
       "releaseDate": "2015-05-22T00:00:01Z"
     },
     {
+      "seriesKey": "夜桜さんちの大作戦",
+      "title": "夜桜さんちの大作戦 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51nqu6EWNwL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088821785?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088821785",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "スパイ",
+        "少年向け",
+        "家族もの",
+        "陰謀",
+        "不条理コメディ",
+        "暗殺者",
+        "結婚",
+        "剣術",
+        "孤児",
+        "双子",
+        "銃",
+        "ちびキャラ",
+        "学園",
+        "LGBTQテーマ",
+        "怪獣"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2020-02-04T00:00:01Z"
+    },
+    {
       "seriesKey": "大ダーク",
       "title": "大ダーク (1) (ゲッサン少年サンデーコミックス)",
       "image": "https://m.media-amazon.com/images/I/51-Hi9mYmJL._SL500_.jpg",
@@ -5545,6 +5987,35 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2018-10-26T00:00:01Z"
+    },
+    {
+      "seriesKey": "好きな子がめがねを忘れた",
+      "title": "好きな子がめがねを忘れた(1) (ガンガンコミックスJOKER)",
+      "image": "https://m.media-amazon.com/images/I/51zciQ+2l0L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757560265?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757560265",
+      "magazine": "月刊ガンガンJOKER",
+      "magazines": [
+        "月刊ガンガンJOKER"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "癒し系",
+        "学園",
+        "障害",
+        "少年向け",
+        "クーデレ",
+        "成長譚",
+        "子どもが中心"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2019-02-22T00:00:01Z"
     },
     {
       "seriesKey": "孤高の人",
@@ -7006,6 +7477,50 @@
       "releaseDate": "2008-07-11T00:00:01Z"
     },
     {
+      "seriesKey": "神様はじめました",
+      "title": "神様はじめました 1 (花とゆめCOMICS)",
+      "image": "https://m.media-amazon.com/images/I/519w-YER5aL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592185064?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592185064",
+      "magazine": "花とゆめ",
+      "magazines": [
+        "花とゆめ"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Comedy",
+        "Fantasy",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "少女",
+        "獣耳",
+        "妖怪",
+        "悪魔",
+        "成長譚",
+        "神々",
+        "現代ファンタジー",
+        "モンスター男子",
+        "学園",
+        "ヤンデレ",
+        "男性ハーレム",
+        "三角関係",
+        "記憶喪失",
+        "疑似家族",
+        "同棲",
+        "歴史",
+        "呪い",
+        "結婚",
+        "アイドル",
+        "年齢退行"
+      ],
+      "publisher": "白泉社",
+      "releaseDate": "2008-09-19T00:00:01Z"
+    },
+    {
       "seriesKey": "私たちの幸せな時間",
       "title": "私たちの幸せな時間 (Bunch Comics Extra)",
       "image": "https://m.media-amazon.com/images/I/51HUz6scozL._SL500_.jpg",
@@ -7512,6 +8027,47 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2018-09-06T00:00:01Z"
+    },
+    {
+      "seriesKey": "賭ケグルイ",
+      "title": "賭ケグルイ(1) (ガンガンコミックス JOKER)",
+      "image": "https://m.media-amazon.com/images/I/51fbpdS3ApL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757544499?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757544499",
+      "magazine": "月刊ガンガンJOKER",
+      "magazines": [
+        "月刊ガンガンJOKER"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Psychological"
+      ],
+      "tags": [
+        "ギャンブル",
+        "カードバトル",
+        "学園",
+        "LGBTQテーマ",
+        "アンチヒーロー",
+        "ポーカー",
+        "デスゲーム",
+        "双子",
+        "部活",
+        "お嬢様",
+        "いじめ",
+        "奴隷",
+        "アイドル",
+        "少年向け",
+        "経済",
+        "百合",
+        "片思い",
+        "家族もの"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2014-10-22T00:00:01Z"
     },
     {
       "seriesKey": "超人X",
