@@ -1005,7 +1005,7 @@ function renderList(items, quickDefs) {
 // - Work：author/あらすじは表示（Listは非表示）
 // - Home棚が消える原因（未定義）を潰して復旧
 // - ✅ Work：おすすめ度/作画クオリティ（★1〜5）を追加（ログイン不要・端末内で1回抑止）
-// - ✅ イベント：type="rate" / k="rec" or "art" / v="1".."5" を trackEvent で送信
+// - ✅ イベント：type="rate" / k="rec" or "art" / v="1".."5" を trackEvent で送信（24hで同値1回）
 
 /* =======================
  * Works loader (index/shard)
@@ -1392,8 +1392,6 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
   `;
 
   // ---- reco ----
-  // Work詳細で使うのは「全件のタグ/ジャンル/カテゴリ情報」なので、
-  // split mode の時は listItems を使ってもOK（タグ類は入ってる）。
   const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
   const df = buildTagDf(allForReco);
   const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
@@ -1499,7 +1497,7 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
     };
   }
 
-    // ratings：各項目1回（端末内で固定）
+  // ratings：各項目1回（端末内で固定）
   // - ただし「投票済み」でも再送信はできる（値は変えない）
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
@@ -1512,8 +1510,8 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
       const btn = ev.target?.closest?.("button[data-star]");
       if (!btn) return;
 
-      const k = btn.getAttribute("data-starid") || "";
-      const n = toText(btn.getAttribute("data-star") || "");
+      const k = btn.getAttribute("data-starid") || ""; // "rec" or "art"
+      const n = toText(btn.getAttribute("data-star") || ""); // "1".."5"
       if (!k || !n) return;
 
       const already = getRatedValue(seriesKey, k);
@@ -1536,20 +1534,6 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
         rateStatus.textContent = already
           ? `${label} は投票済み（再送信）`
           : `${label} を投票しました`;
-        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
-      }
-    }, { passive: true });
-  }
-
-      setRatedValue(seriesKey, k, n);
-      applyStarsUi(w, n);
-
-      // type=rate / k=rec|art / v=1..5
-      trackEvent({ type: "rate", page: "work", seriesKey, k, v: n });
-
-      if (rateStatus) {
-        const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
-        rateStatus.textContent = `${label} を投票しました`;
         setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
       }
     }, { passive: true });
