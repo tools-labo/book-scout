@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-22T23:39:31.173Z",
+  "updatedAt": "2026-02-23T03:18:33.342Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,7 +17,7 @@
   "rows": [
     {
       "seriesKey": "アイアムアヒーロー",
-      "n": "9"
+      "n": "10"
     },
     {
       "seriesKey": "【推しの子】",
@@ -28,15 +28,15 @@
       "n": "5"
     },
     {
+      "seriesKey": "3月のライオン",
+      "n": "4"
+    },
+    {
       "seriesKey": "ドラゴンボール",
       "n": "4"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "n": "3"
-    },
-    {
-      "seriesKey": "3月のライオン",
       "n": "3"
     },
     {
@@ -56,6 +56,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "食戟のソーマ",
+      "n": "2"
+    },
+    {
       "seriesKey": "監獄学園",
       "n": "2"
     },
@@ -64,15 +68,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
       "seriesKey": "カグラバチ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "21世紀少年",
       "n": "1"
     },
     {
@@ -120,7 +120,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "20世紀少年",
       "n": "1"
     },
     {
@@ -132,11 +132,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "宝石の国",
       "n": "1"
     },
     {
@@ -144,7 +144,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -161,6 +161,10 @@
     },
     {
       "seriesKey": "やがて君になる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -220,12 +224,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "21世紀少年",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 52,
-    "rows_before_limit_at_least": 81
+    "rows": 53,
+    "rows_before_limit_at_least": 85
   }
 }
