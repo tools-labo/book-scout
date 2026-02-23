@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T11:52:52.186Z",
+  "updatedAt": "2026-02-23T13:23:12.928Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -40,9 +40,49 @@
     {
       "name": "mag",
       "type": "String"
+    },
+    {
+      "name": "rating",
+      "type": "Float64"
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-23 12:03:22",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "3月のライオン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-23 12:03:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "×××ホリック",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-23 12:01:11",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "からかい上手の高木さん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
     {
       "timestamp": "2026-02-23 09:06:41",
       "type": "work_view",
@@ -52,7 +92,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:38",
@@ -63,7 +104,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:34",
@@ -74,7 +116,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:30",
@@ -85,7 +128,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:28",
@@ -96,7 +140,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:25",
@@ -107,7 +152,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:23",
@@ -118,7 +164,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:20",
@@ -129,7 +176,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:18",
@@ -140,7 +188,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:15",
@@ -151,7 +200,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:13",
@@ -162,7 +212,8 @@
       "mood": "moving",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:09",
@@ -173,7 +224,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:06",
@@ -184,7 +236,8 @@
       "mood": "messy",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:48:05",
@@ -195,7 +248,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:59",
@@ -206,7 +260,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:57",
@@ -217,7 +272,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:52",
@@ -228,7 +284,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:31",
@@ -239,7 +296,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:16",
@@ -250,7 +308,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:14",
@@ -261,7 +320,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:11",
@@ -272,7 +332,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:07",
@@ -283,7 +344,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:03",
@@ -294,7 +356,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:47:00",
@@ -305,7 +368,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:46:55",
@@ -316,7 +380,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:46:47",
@@ -327,7 +392,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:33:59",
@@ -338,7 +404,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 06:12:02",
@@ -349,7 +416,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 05:36:17",
@@ -360,7 +428,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:39:04",
@@ -371,7 +440,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:38:30",
@@ -382,7 +452,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:38:19",
@@ -393,7 +464,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:38:18",
@@ -404,7 +476,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:48",
@@ -415,7 +488,8 @@
       "mood": "healing",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:43",
@@ -426,7 +500,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:32",
@@ -437,7 +512,8 @@
       "mood": "satisfying",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:28",
@@ -448,7 +524,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:26",
@@ -459,7 +536,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:19",
@@ -470,7 +548,8 @@
       "mood": "healing",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:17",
@@ -481,7 +560,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:27:10",
@@ -492,7 +572,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:26:47",
@@ -503,7 +584,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:26:44",
@@ -514,7 +596,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:26:14",
@@ -525,7 +608,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:26:01",
@@ -536,7 +620,8 @@
       "mood": "healing",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:25:58",
@@ -547,7 +632,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:25:42",
@@ -558,7 +644,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:25:31",
@@ -569,7 +656,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:25:18",
@@ -580,7 +668,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:25:09",
@@ -591,7 +680,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:55",
@@ -602,7 +692,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:47",
@@ -613,7 +704,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:34",
@@ -624,7 +716,8 @@
       "mood": "tearjerker",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:30",
@@ -635,7 +728,8 @@
       "mood": "hot",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:27",
@@ -646,7 +740,8 @@
       "mood": "page_turner",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:23",
@@ -657,7 +752,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 04:24:22",
@@ -668,7 +764,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 02:06:19",
@@ -679,7 +776,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 00:54:28",
@@ -690,7 +788,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 00:46:14",
@@ -701,7 +800,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-23 00:11:50",
@@ -712,7 +812,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 18:21:24",
@@ -723,7 +824,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 17:44:45",
@@ -734,7 +836,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 15:42:43",
@@ -745,7 +848,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 15:28:13",
@@ -756,7 +860,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:55",
@@ -767,7 +872,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:49",
@@ -778,7 +884,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:44",
@@ -789,7 +896,8 @@
       "mood": "page_turner",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:40",
@@ -800,7 +908,8 @@
       "mood": "messy",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:37",
@@ -811,7 +920,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:31",
@@ -822,7 +932,8 @@
       "mood": "page_turner",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:25",
@@ -833,7 +944,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:16",
@@ -844,7 +956,8 @@
       "mood": "hot",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:07",
@@ -855,7 +968,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:05",
@@ -866,7 +980,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:51:00",
@@ -877,7 +992,8 @@
       "mood": "moving",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:50:59",
@@ -888,7 +1004,8 @@
       "mood": "healing",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:50:53",
@@ -899,7 +1016,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:50:51",
@@ -910,7 +1028,8 @@
       "mood": "tearjerker",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:50:51",
@@ -921,7 +1040,8 @@
       "mood": "moving",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:50:44",
@@ -932,7 +1052,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:50:36",
@@ -943,7 +1064,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:49:04",
@@ -954,7 +1076,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:48:56",
@@ -965,7 +1088,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:48:21",
@@ -976,7 +1100,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:48:16",
@@ -987,7 +1112,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:48:12",
@@ -998,7 +1124,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:48:08",
@@ -1009,7 +1136,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:48:03",
@@ -1020,7 +1148,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:46",
@@ -1031,7 +1160,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:34",
@@ -1042,7 +1172,8 @@
       "mood": "page_turner",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:31",
@@ -1053,7 +1184,8 @@
       "mood": "tearjerker",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:26",
@@ -1064,7 +1196,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:24",
@@ -1075,7 +1208,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:15",
@@ -1086,7 +1220,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:47:10",
@@ -1097,7 +1232,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:46:46",
@@ -1108,7 +1244,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:46:36",
@@ -1119,7 +1256,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:46:26",
@@ -1130,7 +1268,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:46:02",
@@ -1141,7 +1280,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:45:50",
@@ -1152,7 +1292,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:45:30",
@@ -1163,7 +1304,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 14:38:48",
@@ -1174,7 +1316,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 13:57:43",
@@ -1185,7 +1328,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 13:55:10",
@@ -1196,7 +1340,8 @@
       "mood": "hot",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 13:55:09",
@@ -1207,7 +1352,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 13:55:07",
@@ -1218,7 +1364,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 13:25:22",
@@ -1229,7 +1376,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 12:48:18",
@@ -1240,7 +1388,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 12:46:44",
@@ -1251,7 +1400,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 12:28:39",
@@ -1262,7 +1412,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 12:26:31",
@@ -1273,7 +1424,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:53:19",
@@ -1284,7 +1436,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:42:02",
@@ -1295,7 +1448,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:22:14",
@@ -1306,7 +1460,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:21:52",
@@ -1317,7 +1472,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:05:34",
@@ -1328,7 +1484,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:02:03",
@@ -1339,7 +1496,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:01:54",
@@ -1350,7 +1508,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:01:42",
@@ -1361,7 +1520,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:01:37",
@@ -1372,7 +1532,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:00:37",
@@ -1383,7 +1544,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:00:13",
@@ -1394,7 +1556,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:00:12",
@@ -1405,7 +1568,8 @@
       "mood": "mood=satisfying",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:00:11",
@@ -1416,7 +1580,8 @@
       "mood": "mood=heart_throb,satisfying",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:00:11",
@@ -1427,7 +1592,8 @@
       "mood": "mood=heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 11:00:10",
@@ -1438,7 +1604,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:59:33",
@@ -1449,7 +1616,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:59:02",
@@ -1460,7 +1628,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:58:38",
@@ -1471,7 +1640,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:57:50",
@@ -1482,7 +1652,8 @@
       "mood": "mood=heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:54:40",
@@ -1493,7 +1664,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:22:51",
@@ -1504,7 +1676,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:14:37",
@@ -1515,7 +1688,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:14:36",
@@ -1526,7 +1700,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 10:02:28",
@@ -1537,7 +1712,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:58:03",
@@ -1548,7 +1724,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:57:13",
@@ -1559,7 +1736,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:31:32",
@@ -1570,7 +1748,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:02:16",
@@ -1581,7 +1760,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:02:07",
@@ -1592,7 +1772,8 @@
       "mood": "messy",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:02:06",
@@ -1603,7 +1784,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:59",
@@ -1614,7 +1796,8 @@
       "mood": "page_turner",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:55",
@@ -1625,7 +1808,8 @@
       "mood": "satisfying",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:51",
@@ -1636,7 +1820,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:50",
@@ -1647,7 +1832,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:43",
@@ -1658,7 +1844,8 @@
       "mood": "moving",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:42",
@@ -1669,7 +1856,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:32",
@@ -1680,7 +1868,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:14",
@@ -1691,7 +1880,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:13",
@@ -1702,7 +1892,8 @@
       "mood": "heart_throb",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:11",
@@ -1713,7 +1904,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:10",
@@ -1724,7 +1916,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:03",
@@ -1735,7 +1928,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 09:01:02",
@@ -1746,7 +1940,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:57:18",
@@ -1757,7 +1952,8 @@
       "mood": "healing",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:57:16",
@@ -1768,7 +1964,8 @@
       "mood": "moving",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:57:14",
@@ -1779,7 +1976,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:57:11",
@@ -1790,7 +1988,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:56:48",
@@ -1801,7 +2000,8 @@
       "mood": "messy",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:56:47",
@@ -1812,7 +2012,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:56:10",
@@ -1823,7 +2024,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:55:22",
@@ -1834,7 +2036,8 @@
       "mood": "tearjerker",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:55:17",
@@ -1845,7 +2048,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:54:39",
@@ -1856,7 +2060,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:54:37",
@@ -1867,7 +2072,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:53:51",
@@ -1878,7 +2084,8 @@
       "mood": "healing",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:53:44",
@@ -1889,7 +2096,8 @@
       "mood": "messy",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:53:37",
@@ -1900,7 +2108,8 @@
       "mood": "moving",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:53:31",
@@ -1911,7 +2120,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:53:30",
@@ -1922,7 +2132,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 08:53:21",
@@ -1933,7 +2144,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:50:30",
@@ -1944,7 +2156,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:46:27",
@@ -1955,7 +2168,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:46:25",
@@ -1966,7 +2180,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:45:40",
@@ -1977,7 +2192,8 @@
       "mood": "satisfying",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:45:39",
@@ -1988,7 +2204,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:45:35",
@@ -1999,7 +2216,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:45:34",
@@ -2010,7 +2228,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:44:50",
@@ -2021,7 +2240,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:42:51",
@@ -2032,7 +2252,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:32:25",
@@ -2043,7 +2264,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:31:29",
@@ -2054,7 +2276,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:31:09",
@@ -2065,7 +2288,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:30:33",
@@ -2076,7 +2300,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 07:30:23",
@@ -2087,7 +2312,8 @@
       "mood": "aud=その他",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-22 00:41:42",
@@ -2098,7 +2324,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:04:49",
@@ -2109,7 +2336,8 @@
       "mood": "tearjerker",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:04:42",
@@ -2120,7 +2348,8 @@
       "mood": "messy",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:04:28",
@@ -2131,7 +2360,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:04:04",
@@ -2142,7 +2372,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:03:56",
@@ -2153,7 +2384,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:03:46",
@@ -2164,7 +2396,8 @@
       "mood": "funny",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:03:44",
@@ -2175,7 +2408,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:03:39",
@@ -2186,7 +2420,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:03:35",
@@ -2197,7 +2432,8 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-21 17:03:13",
@@ -2208,44 +2444,12 @@
       "mood": "",
       "genre": "",
       "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 17:03:07",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
-      "mood": "funny",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 17:02:59",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 17:02:56",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": ""
+      "mag": "",
+      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 460
+    "rows_before_limit_at_least": 463
   }
 }

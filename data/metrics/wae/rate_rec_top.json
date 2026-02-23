@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-23T13:23:12.928Z",
+  "dataset": "book_scout_events",
+  "days": 30,
+  "id": "rate_rec_top",
+  "columns": [
+    {
+      "name": "seriesKey",
+      "type": "String"
+    },
+    {
+      "name": "avg",
+      "type": "Float64"
+    },
+    {
+      "name": "n",
+      "type": "UInt64"
+    }
+  ],
+  "rows": [],
+  "raw": {
+    "rows": 0,
+    "rows_before_limit_at_least": 0
+  }
+}
