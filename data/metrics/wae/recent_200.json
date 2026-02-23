@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T15:46:24.470Z",
+  "updatedAt": "2026-02-23T16:01:09.738Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -48,11 +48,59 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-02-23 15:45:40",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "黒執事",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-23 15:45:38",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "黒執事",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 2
+    },
+    {
       "timestamp": "2026-02-23 15:45:31",
       "type": "rate",
       "schema": "v2",
       "page": "work",
       "seriesKey": "ディー・グレイマン",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-02-23 15:45:31",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ディー・グレイマン",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-02-23 15:45:25",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヴァニタスの手記",
       "mood": "art",
       "genre": "",
       "aud": "",
@@ -2398,58 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 08:53:37",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "moving",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 08:53:31",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 08:53:30",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 08:53:21",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 488
+    "rows_before_limit_at_least": 492
   }
 }

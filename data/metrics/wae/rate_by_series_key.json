@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T15:46:24.470Z",
+  "updatedAt": "2026-02-23T16:01:09.738Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -24,6 +24,12 @@
   ],
   "rows": [
     {
+      "seriesKey": "ヴァニタスの手記",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "ディー・グレイマン",
       "k": "art",
       "avg": 4,
@@ -31,6 +37,12 @@
     },
     {
       "seriesKey": "ガチアクタ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -49,6 +61,12 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ディー・グレイマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -70,10 +88,16 @@
       "k": "rec",
       "avg": 3,
       "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
+      "k": "rec",
+      "avg": 2,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 8,
-    "rows_before_limit_at_least": 8
+    "rows": 12,
+    "rows_before_limit_at_least": 12
   }
 }
