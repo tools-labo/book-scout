@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T07:24:07.749Z",
+  "updatedAt": "2026-02-23T07:41:11.627Z",
   "total": 203,
   "shardSize": 200,
   "shards": [
@@ -222,23 +222,19 @@
     "total": 203,
     "ok": 203,
     "ng": 0,
-    "skippedPerfect": 198,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
+    "skippedPerfect": 202,
+    "skippedAniList": 1,
+    "skippedWiki": 1,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 5,
+    "fetchedAmazonAsins": 1,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 5,
+      "prevNotPerfect": 1,
       "outNotPerfect": 1
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "ギョ :: noVol1",
-        "プラチナエンド :: noVol1",
-        "プラネテス :: noVol1",
-        "天国大魔境 :: noVol1",
-        "黒岩メダカに私の可愛いが通じない :: noVol1"
+        "天国大魔境 :: amazon(amazonDp|image|publisher|author|releaseDate|title)"
       ],
       "outNotPerfect": [
         "天国大魔境 :: amazon(amazonDp|image|publisher|author|releaseDate|title)"
@@ -253,7 +249,7 @@
       "http429": 0,
       "http503": 0,
       "missingItems": 1,
-      "successItems": 4
+      "successItems": 0
     }
   }
 }
