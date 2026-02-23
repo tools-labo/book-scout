@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T11:55:33.584Z",
+  "updatedAt": "2026-02-23T12:00:40.784Z",
   "total": 226,
   "shardSize": 200,
   "shards": [
@@ -245,32 +245,17 @@
     "total": 226,
     "ok": 226,
     "ng": 0,
-    "skippedPerfect": 213,
-    "skippedAniList": 13,
-    "skippedWiki": 13,
-    "skippedAmazon": 13,
+    "skippedPerfect": 226,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 4,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 13,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "×××ホリック :: magazine,magazines[]",
-        "あかね噺 :: tags_missing_en(remain=1)",
-        "クズの本懐 :: tags_missing_en(remain=1)",
-        "この音とまれ！ :: magazine,magazines[]",
-        "サマータイムレンダ :: magazine,magazines[],tags_missing_en(remain=1)",
-        "パンプキンナイト :: magazine,magazines[]",
-        "めだかボックス :: tags_missing_en(remain=1)",
-        "ラストゲーム :: magazine,magazines[]",
-        "夜桜さんちの大作戦 :: tags_missing_en(remain=1)",
-        "天空侵犯 :: magazine,magazines[]",
-        "宇崎ちゃんは遊びたい！ :: magazine,magazines[]",
-        "賭ケグルイ :: tags_missing_en(remain=1)"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
