@@ -1,4 +1,5 @@
 // scripts/metrics/export_wae_metrics.mjs
+// FULL REPLACE
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -20,6 +21,10 @@ const QUICK_FILTERS_PATH = "data/lane2/quick_filters.json";
  *  blob10: user-agent
  *  blob11: method
  *  blob12: path
+ *
+ * NOTE:
+ * - vote: blob5 = moodId
+ * - rate: blob5 = k ("rec" / "art"), double1 = rating (1..5)
  */
 const COL = {
   type: "blob1",
@@ -30,6 +35,11 @@ const COL = {
   genre: "blob6",
   aud: "blob7",
   mag: "blob8",
+};
+
+// doubles
+const DOUBLE = {
+  rating: "double1",
 };
 
 function norm(s) {
@@ -113,6 +123,9 @@ function whereMoodIn(ids) {
   return `${COL.mood} IN (${list})`;
 }
 
+/* =======================
+ * Common queries
+ * ======================= */
 function qTypeCounts(dataset, days = 30) {
   return `
 SELECT
@@ -136,7 +149,8 @@ SELECT
   ${COL.mood} AS mood,
   ${COL.genre} AS genre,
   ${COL.aud} AS aud,
-  ${COL.mag} AS mag
+  ${COL.mag} AS mag,
+  ${DOUBLE.rating} AS rating
 FROM ${dataset}
 ORDER BY timestamp DESC
 LIMIT ${Number(limit)}
@@ -237,10 +251,92 @@ ORDER BY n DESC
 `;
 }
 
+/* =======================
+ * Rate queries (おすすめ度/作画クオリティ)
+ * - type='rate'
+ * - blob5(mood) = k ('rec' | 'art')
+ * - double1 = rating (1..5)
+ * ======================= */
+function whereRateCommon() {
+  return `
+  ${COL.type} = 'rate'
+  AND ${COL.seriesKey} != ''
+  AND ${COL.mood} != ''
+  AND ${DOUBLE.rating} >= 1
+  AND ${DOUBLE.rating} <= 5
+`;
+}
+
+// series × k で平均★と件数
+function qRateBySeriesKey(dataset, days = 30) {
+  return `
+SELECT
+  ${COL.seriesKey} AS seriesKey,
+  ${COL.mood} AS k,
+  AVG(${DOUBLE.rating}) AS avg,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${whereRateCommon()}
+GROUP BY ${COL.seriesKey}, ${COL.mood}
+ORDER BY k ASC, avg DESC, n DESC
+`;
+}
+
+// k ごとの平均★（全体）
+function qRateByKey(dataset, days = 30) {
+  return `
+SELECT
+  ${COL.mood} AS k,
+  AVG(${DOUBLE.rating}) AS avg,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${whereRateCommon()}
+GROUP BY ${COL.mood}
+ORDER BY avg DESC, n DESC
+`;
+}
+
+// k=rec のランキング（平均★、同率は件数）
+function qRateRecTop(dataset, days = 30, limit = 100) {
+  return `
+SELECT
+  ${COL.seriesKey} AS seriesKey,
+  AVG(${DOUBLE.rating}) AS avg,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${whereRateCommon()}
+  AND ${COL.mood} = 'rec'
+GROUP BY ${COL.seriesKey}
+HAVING ${sumCountExpr()} >= 1
+ORDER BY avg DESC, n DESC
+LIMIT ${Number(limit)}
+`;
+}
+
+// k=art のランキング（平均★、同率は件数）
+function qRateArtTop(dataset, days = 30, limit = 100) {
+  return `
+SELECT
+  ${COL.seriesKey} AS seriesKey,
+  AVG(${DOUBLE.rating}) AS avg,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${whereRateCommon()}
+  AND ${COL.mood} = 'art'
+GROUP BY ${COL.seriesKey}
+HAVING ${sumCountExpr()} >= 1
+ORDER BY avg DESC, n DESC
+LIMIT ${Number(limit)}
+`;
+}
+
 async function main() {
   const accountId = norm(process.env.CLOUDFLARE_ACCOUNT_ID);
-  const token =
-    norm(process.env.CLOUDFLARE_AE_READ_TOKEN) || norm(process.env.CLOUDFLARE_API_TOKEN);
+  const token = norm(process.env.CLOUDFLARE_AE_READ_TOKEN) || norm(process.env.CLOUDFLARE_API_TOKEN);
   const dataset = norm(process.env.CLOUDFLARE_AE_DATASET) || DEFAULT_DATASET;
 
   if (!accountId) throw new Error("Missing env: CLOUDFLARE_ACCOUNT_ID");
@@ -255,12 +351,21 @@ async function main() {
   const queries = [
     { id: "type_counts", sql: qTypeCounts(dataset, days) },
     { id: "recent_200", sql: qRecent(dataset, 200) },
+
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
+
     { id: "vote_by_series", sql: qVotesBySeries(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood", sql: qVotesByMood(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood_series", sql: qVotesByMoodSeries(dataset, days, allowedMoodIds) },
+
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
+
+    // ✅ rate 追加
+    { id: "rate_by_series_key", sql: qRateBySeriesKey(dataset, days) },
+    { id: "rate_by_key", sql: qRateByKey(dataset, days) },
+    { id: "rate_rec_top", sql: qRateRecTop(dataset, days, 200) },
+    { id: "rate_art_top", sql: qRateArtTop(dataset, days, 200) },
   ];
 
   const out = {};
