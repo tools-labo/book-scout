@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T09:06:00.685Z",
+  "updatedAt": "2026-02-23T10:10:50.323Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -43,6 +43,17 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-23 09:06:41",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": ""
+    },
     {
       "timestamp": "2026-02-23 06:48:38",
       "type": "work_view",
@@ -2231,21 +2242,10 @@
       "genre": "",
       "aud": "",
       "mag": ""
-    },
-    {
-      "timestamp": "2026-02-21 17:02:36",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ReLIFE",
-      "mood": "tearjerker",
-      "genre": "",
-      "aud": "",
-      "mag": ""
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 459
+    "rows_before_limit_at_least": 460
   }
 }
