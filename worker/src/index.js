@@ -4,6 +4,7 @@
 // - GETは query params でも受ける（保険）
 // - blobs の並びは固定（schema=v2）
 // - ✅ rate は doubles[0] に 1..5 を保存（recent_200 の rating が効く）
+// - ✅ rate のとき blob5 は mood ではなく k("rec"/"art") を入れる（export 側仕様に合わせる）
 
 const SCHEMA = "v2";
 
@@ -22,31 +23,36 @@ function toBlobs(e, req) {
   const aud = String(e?.aud ?? "");
   const mag = String(e?.mag ?? "");
 
-  const country = String(cf?.country ?? "");
-  const path = url.pathname || "";
-  const ref = req.headers.get("referer") || "";
-
   const sid = String(e?.sid ?? "");
   const k = String(e?.k ?? "");
   const v = String(e?.v ?? "");
 
+  const country = String(cf?.country ?? "");
+  const path = url.pathname || "";
+  const ref = req.headers.get("referer") || "";
+
+  // ✅ export_wae_metrics.mjs の仕様に合わせる
+  // - vote: blob5 = moodId
+  // - rate: blob5 = k ('rec' | 'art')
+  const blob5 = (type === "rate") ? k : mood;
+
   // blob1..blob15 を固定
   return [
-    type,      // blob1
-    SCHEMA,    // blob2
-    page,      // blob3
-    seriesKey, // blob4
-    mood,      // blob5
-    genre,     // blob6
-    aud,       // blob7
-    mag,       // blob8
-    country,   // blob9
-    ua,        // blob10
-    method,    // blob11
-    path,      // blob12
-    ref,       // blob13
-    sid,       // blob14
-    `${k}:${v}`// blob15
+    type,       // blob1
+    SCHEMA,     // blob2
+    page,       // blob3
+    seriesKey,  // blob4
+    blob5,      // blob5  (vote=moodId / rate=k)
+    genre,      // blob6
+    aud,        // blob7
+    mag,        // blob8
+    country,    // blob9
+    ua,         // blob10
+    method,     // blob11
+    path,       // blob12
+    ref,        // blob13
+    sid,        // blob14
+    `${k}:${v}` // blob15  (保険のKV)
   ];
 }
 
@@ -139,7 +145,7 @@ export default {
       type: blobs[0],
       page: blobs[2],
       seriesKey: blobs[3],
-      mood: blobs[4],
+      mood: blobs[4],      // voteならmoodId / rateならk("rec"/"art")
       genre: blobs[5],
       aud: blobs[6],
       mag: blobs[7],
