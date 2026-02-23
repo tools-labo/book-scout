@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T05:42:35.885Z",
+  "updatedAt": "2026-02-23T07:20:23.180Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -121,6 +121,11 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "五等分の花嫁",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "君に届け",
       "n": "1"
     },
@@ -162,7 +167,7 @@
     {
       "mood": "messy",
       "seriesKey": "血の轍",
-      "n": "6"
+      "n": "7"
     },
     {
       "mood": "messy",
@@ -187,6 +192,11 @@
     {
       "mood": "moving",
       "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
@@ -221,11 +231,6 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "【推しの子】",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
@@ -237,6 +242,11 @@
     {
       "mood": "page_turner",
       "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "【推しの子】",
       "n": "1"
     },
     {
@@ -296,7 +306,7 @@
     }
   ],
   "raw": {
-    "rows": 55,
-    "rows_before_limit_at_least": 62
+    "rows": 57,
+    "rows_before_limit_at_least": 65
   }
 }
