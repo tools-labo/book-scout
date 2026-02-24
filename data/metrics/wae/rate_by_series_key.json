@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:42:46.624Z",
+  "updatedAt": "2026-02-24T13:56:28.483Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -60,6 +60,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "監獄学園",
       "k": "art",
       "avg": 3.5,
@@ -73,6 +79,12 @@
     },
     {
       "seriesKey": "銀魂",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -96,6 +108,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "k": "art",
       "avg": 3,
@@ -109,12 +127,6 @@
     },
     {
       "seriesKey": "3月のライオン",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヴィンランド・サガ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -204,6 +216,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ガチアクタ",
       "k": "rec",
       "avg": 3,
@@ -234,6 +252,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "黒執事",
       "k": "rec",
       "avg": 2,
@@ -241,7 +265,7 @@
     }
   ],
   "raw": {
-    "rows": 36,
-    "rows_before_limit_at_least": 39
+    "rows": 40,
+    "rows_before_limit_at_least": 43
   }
 }

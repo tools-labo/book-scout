@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:42:46.624Z",
+  "updatedAt": "2026-02-24T13:56:28.483Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -95,6 +95,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "avg": 3,
       "n": "1"
@@ -105,13 +110,18 @@
       "n": "1"
     },
     {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "黒執事",
       "avg": 2,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 18,
-    "rows_before_limit_at_least": 18
+    "rows": 20,
+    "rows_before_limit_at_least": 20
   }
 }
