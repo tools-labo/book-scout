@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T10:07:51.433Z",
+  "updatedAt": "2026-02-24T11:06:26.559Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -221,11 +221,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "血の轍",
-      "mood": "art",
+      "mood": "rec",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 3
+      "rating": 4
     },
     {
       "timestamp": "2026-02-24 06:01:58",
@@ -233,11 +233,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "血の轍",
-      "mood": "rec",
+      "mood": "art",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 4
+      "rating": 3
     },
     {
       "timestamp": "2026-02-24 06:01:40",
@@ -2225,7 +2225,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb",
+      "mood": "mood=heart_throb,satisfying",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2237,7 +2237,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb,satisfying",
+      "mood": "mood=heart_throb",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2450,6 +2450,6 @@
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 518
+    "rows_before_limit_at_least": 517
   }
 }
