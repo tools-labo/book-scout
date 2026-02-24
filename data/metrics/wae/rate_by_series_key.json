@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:14:10.024Z",
+  "updatedAt": "2026-02-24T13:42:46.624Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -42,13 +42,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "ヴァニタスの手記",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "【推しの子】",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ディー・グレイマン",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -60,13 +66,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "3月のライオン",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -90,7 +90,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "ガチアクタ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -102,13 +102,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "黒執事",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "3月のライオン",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -174,6 +180,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "【推しの子】",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "銀魂",
       "k": "rec",
       "avg": 4,
@@ -192,13 +204,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "ガチアクタ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "アイアムアヒーロー",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -229,7 +241,7 @@
     }
   ],
   "raw": {
-    "rows": 34,
-    "rows_before_limit_at_least": 37
+    "rows": 36,
+    "rows_before_limit_at_least": 39
   }
 }
