@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T16:13:23.084Z",
+  "updatedAt": "2026-02-24T16:27:23.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "type_counts",
@@ -33,7 +33,7 @@
     },
     {
       "type": "favorite",
-      "n": "41"
+      "n": "53"
     },
     {
       "type": "__verify",
@@ -50,6 +50,6 @@
   ],
   "raw": {
     "rows": 8,
-    "rows_before_limit_at_least": 577
+    "rows_before_limit_at_least": 589
   }
 }

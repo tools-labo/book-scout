@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T16:13:23.084Z",
+  "updatedAt": "2026-02-24T16:27:23.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -24,19 +24,23 @@
       "n": "4"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "3"
-    },
-    {
       "seriesKey": "ドラゴンボール",
       "n": "3"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ReLIFE",
+      "n": "3"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "3"
+    },
+    {
+      "seriesKey": "orange [オレンジ]",
       "n": "2"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "キングダム",
       "n": "2"
     },
     {
@@ -44,7 +48,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "21世紀少年",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
@@ -64,11 +68,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "21世紀少年",
+      "n": "1"
+    },
+    {
       "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "アオハライド",
       "n": "1"
     },
     {
@@ -92,11 +100,35 @@
       "n": "1"
     },
     {
+      "seriesKey": "ジョジョの奇妙な冒険 戦闘潮流",
+      "n": "1"
+    },
+    {
       "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
+      "seriesKey": "ささやくように恋を唄う",
+      "n": "1"
+    },
+    {
       "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
+      "n": "1"
+    },
+    {
+      "seriesKey": "サマータイムレンダ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "n": "1"
+    },
+    {
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
       "n": "1"
     },
     {
@@ -128,12 +160,20 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ジョジョの奇妙な冒険 黄金の風",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオアシ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 29,
-    "rows_before_limit_at_least": 41
+    "rows": 39,
+    "rows_before_limit_at_least": 53
   }
 }
