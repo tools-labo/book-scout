@@ -109,7 +109,7 @@ function getSid() {
   }
 }
 
-// 送信は POST(JSON) に統一（Worker と揃える）
+// ✅ 全イベントを fetch(keepalive) に統一（iOSプライベートの sendBeacon 落ち対策）
 function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "", mag = "", k = "", v = "" }) {
   try {
     const payload = {
@@ -126,32 +126,12 @@ function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "
       ts: Date.now(),
     };
 
-    // ★ rating は doubles に載せたいので数値も明示（Worker側が読む想定）
+    // ★ rating は doubles に載せたいので数値も明示（互換のため残す）
     if (payload.type === "rate") {
       const r = Number(payload.v || 0);
       payload.rating = Number.isFinite(r) ? r : 0;
     }
 
-    // rate だけは sendBeacon を使わず fetch で確実に送る（iOSで落ちるケース回避）
-    if (payload.type === "rate") {
-      fetch(EVENTS_ENDPOINT, {
-        method: "POST",
-        mode: "cors",
-        keepalive: true,
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch(() => {});
-      return true;
-    }
-
-    // それ以外は sendBeacon（POST相当）を優先
-    if (navigator.sendBeacon) {
-      const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
-      const ok = navigator.sendBeacon(EVENTS_ENDPOINT, blob);
-      if (ok) return true;
-    }
-
-    // fallback
     fetch(EVENTS_ENDPOINT, {
       method: "POST",
       mode: "cors",
@@ -159,6 +139,7 @@ function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "
       headers: { "content-type": "application/json" },
       body: JSON.stringify(payload),
     }).catch(() => {});
+
     return true;
   } catch {
     return false;
@@ -969,6 +950,31 @@ function renderList(items, quickDefs) {
     .filter(it => hasAudience(it, audienceWanted))
     .filter(it => hasMagazine(it, magazineWanted));
 
+  // ✅ list_filter：同一状態の連打を抑える（5秒）
+  function trackListFilterState(nextMoodIds) {
+    const g = (genreWanted || []).map(toText).filter(Boolean).join(",");
+    const a = toText(audienceWanted);
+    const m = toText(magazineWanted);
+    const mood = (nextMoodIds || []).map(toText).filter(Boolean).join(",");
+
+    // 既存ログ互換のため mood=... 形式
+    const moodVal = mood ? `mood=${mood}` : "";
+
+    const stateKey = `list_filter:${g}|${a}|${m}|${moodVal}`;
+    if (!canSendOnce(stateKey, 5000)) return false;
+
+    trackEvent({
+      type: "list_filter",
+      page: "list",
+      seriesKey: "",
+      mood: moodVal,
+      genre: g ? `genre=${g}` : "",
+      aud: a ? `aud=${a}` : "",
+      mag: m ? `mag=${m}` : "",
+    });
+    return true;
+  }
+
   // mood AND + score順
   const scored = [];
   if (moodActiveDefs.length) {
@@ -988,6 +994,10 @@ function renderList(items, quickDefs) {
   if (clear) {
     clear.onclick = (ev) => {
       ev.preventDefault();
+
+      // ✅ クリア状態を送信
+      trackListFilterState([]);
+
       setMoodQuery([]);
       renderList(all, quickDefs);
       refreshFavButtons(document);
@@ -1037,7 +1047,12 @@ function renderList(items, quickDefs) {
         set.add(id);
       }
 
-      setMoodQuery(Array.from(set));
+      const next = Array.from(set);
+
+      // ✅ 状態送信（5秒クールダウン）
+      trackListFilterState(next);
+
+      setMoodQuery(next);
       renderList(all, quickDefs);
       refreshFavButtons(document);
     };
