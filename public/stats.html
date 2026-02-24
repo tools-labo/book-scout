@@ -31,6 +31,12 @@
       <button class="rank-tab" type="button" data-tab="fav" role="tab" aria-selected="false">
         支持率ランキング
       </button>
+      <button class="rank-tab" type="button" data-tab="rate_rec" role="tab" aria-selected="false">
+        ★おすすめ度
+      </button>
+      <button class="rank-tab" type="button" data-tab="rate_art" role="tab" aria-selected="false">
+        ★作画クオリティ
+      </button>
     </div>
   </header>
 
@@ -57,6 +63,26 @@
       <div class="rank-more"><button id="moreFav" type="button">もっと見る</button></div>
     </section>
 
+    <!-- ★おすすめ度 -->
+    <section class="section" id="panelRateRec" role="tabpanel" aria-label="おすすめ度ランキング" style="margin-top:10px; display:none;">
+      <div class="section-head">
+        <h2 class="section-title">★おすすめ度ランキング</h2>
+      </div>
+      <p class="section-sub">※ 平均★（直近30日）/ n=投票数</p>
+      <section id="rankRateRec" class="rank-grid"></section>
+      <div class="rank-more"><button id="moreRateRec" type="button">もっと見る</button></div>
+    </section>
+
+    <!-- ★作画クオリティ -->
+    <section class="section" id="panelRateArt" role="tabpanel" aria-label="作画クオリティランキング" style="margin-top:10px; display:none;">
+      <div class="section-head">
+        <h2 class="section-title">★作画クオリティランキング</h2>
+      </div>
+      <p class="section-sub">※ 平均★（直近30日）/ n=投票数</p>
+      <section id="rankRateArt" class="rank-grid"></section>
+      <div class="rank-more"><button id="moreRateArt" type="button">もっと見る</button></div>
+    </section>
+
     <footer class="gfooter" aria-label="サイトフッター">
       <div class="gfooter-inner">
         <span>© Tools-LABO</span>
@@ -77,6 +103,9 @@
       const r = await fetch(url, { cache: bust ? "no-store" : "default" });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return await r.json();
+    }
+    async function tryLoadJson(url, { bust = false } = {}) {
+      try { return await loadJson(url, { bust }); } catch { return null; }
     }
 
     function esc(s) {
@@ -175,6 +204,26 @@
       return map;
     }
 
+    // ===== Works loader (split index 優先 / legacy fallback) =====
+    const WORKS_INDEX_PATH = "./data/lane2/works/index.json";
+    const WORKS_LEGACY_PATH = "./data/lane2/works.json";
+
+    async function loadWorksForStats({ bust }) {
+      const v = qs().get("v");
+      const idxUrl = v ? `${WORKS_INDEX_PATH}?v=${encodeURIComponent(v)}` : WORKS_INDEX_PATH;
+
+      const idx = await tryLoadJson(idxUrl, { bust });
+      if (idx && Array.isArray(idx.listItems)) {
+        // listItems だけで stats は成立（author が無い場合は表示しない）
+        return idx.listItems;
+      }
+
+      const legacyUrl = v ? `${WORKS_LEGACY_PATH}?v=${encodeURIComponent(v)}` : WORKS_LEGACY_PATH;
+      const works = await loadJson(legacyUrl, { bust });
+      const items = Array.isArray(works?.items) ? works.items : [];
+      return items;
+    }
+
     // ---- Rank item HTML ----
     function posClass(rank){
       if (rank === 1) return "is-1";
@@ -189,7 +238,13 @@
       return `${Math.round(x * 10) / 10}%`; // 0.0〜9.9
     }
 
-    function rankItemHtml({ rank, seriesKey, unit, work, views, fav, supportPct }) {
+    function fmtStar(avg){
+      const n = Number(avg);
+      if (!Number.isFinite(n) || n <= 0) return "★-";
+      return `★${(Math.round(n * 10) / 10).toFixed(1)}`;
+    }
+
+    function rankItemHtml({ rank, seriesKey, unit, work, views, fav, supportPct, rateAvg, rateN }) {
       const key = encodeURIComponent(seriesKey);
 
       const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
@@ -202,11 +257,17 @@
       const tagsJa = pickArr(work, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 
       const isFav = unit === "fav";
-      const numText = isFav ? fmtPct(supportPct) : String(Number(views || 0));
-      const lblText = isFav ? "支持率" : "閲覧";
+      const isRate = (unit === "rate_rec" || unit === "rate_art");
+
+      const numText = isRate ? fmtStar(rateAvg) : (isFav ? fmtPct(supportPct) : String(Number(views || 0)));
+      const lblText = isRate
+        ? (unit === "rate_rec" ? "おすすめ" : "作画")
+        : (isFav ? "支持率" : "閲覧");
 
       // 支持率では「お気に入り/閲覧」も小さく補助表示（意味が伝わる）
-      const aux = isFav ? `お気に入り: ${Number(fav||0)} / 閲覧: ${Number(views||0)}` : "";
+      const aux = isFav
+        ? `お気に入り: ${Number(fav||0)} / 閲覧: ${Number(views||0)}`
+        : (isRate ? `n=${Number(rateN||0)}` : "");
 
       return `
         <article class="rank-item">
@@ -316,54 +377,77 @@
     const MAX_ROWS = 100;
     const STEP = 50;
 
+    // ★ rating metrics
+    const METRIC_RATE_REC_TOP_PATH = "./data/metrics/wae/rate_rec_top.json";
+    const METRIC_RATE_ART_TOP_PATH = "./data/metrics/wae/rate_art_top.json";
+
     let state = {
       tab: "views",
+
       viewsShown: 0,
       favShown: 0,
+      rateRecShown: 0,
+      rateArtShown: 0,
+
       viewsAll: [],
       favAll: [],
-      viewsRows: [],
-      favRows: [],       // favRows は “支持率用に整形済みの配列” を入れる
-      workMap: new Map(),
+      rateRecAll: [],
+      rateArtAll: [],
 
-      // viewsBySeries
-      viewMap: new Map()
+      viewsRows: [],
+      favRows: [],
+
+      rateRecRows: [],
+      rateArtRows: [],
+
+      workMap: new Map(),
+      viewMap: new Map(),
     };
 
     function setTab(next) {
       state.tab = next;
 
-      const tViews = document.querySelector(".rank-tab[data-tab='views']");
-      const tFav   = document.querySelector(".rank-tab[data-tab='fav']");
-      if (tViews) {
-        tViews.classList.toggle("is-active", next === "views");
-        tViews.setAttribute("aria-selected", next === "views" ? "true" : "false");
-      }
-      if (tFav) {
-        tFav.classList.toggle("is-active", next === "fav");
-        tFav.setAttribute("aria-selected", next === "fav" ? "true" : "false");
-      }
+      document.querySelectorAll(".rank-tab[data-tab]").forEach(btn => {
+        const id = btn.getAttribute("data-tab") || "";
+        const on = (id === next);
+        btn.classList.toggle("is-active", on);
+        btn.setAttribute("aria-selected", on ? "true" : "false");
+      });
 
       const pViews = document.getElementById("panelViews");
       const pFav   = document.getElementById("panelFav");
+      const pRR    = document.getElementById("panelRateRec");
+      const pRA    = document.getElementById("panelRateArt");
+
       if (pViews) pViews.style.display = (next === "views") ? "" : "none";
       if (pFav)   pFav.style.display   = (next === "fav") ? "" : "none";
+      if (pRR)    pRR.style.display    = (next === "rate_rec") ? "" : "none";
+      if (pRA)    pRA.style.display    = (next === "rate_art") ? "" : "none";
     }
 
     function updateMoreButton(kind) {
-      if (kind === "views") {
-        const btn = document.getElementById("moreViews");
+      const setBtn = (id, hasMore) => {
+        const btn = document.getElementById(id);
         if (!btn) return;
-        const hasMore = state.viewsShown < Math.min(MAX_ROWS, state.viewsRows.length);
         btn.disabled = !hasMore;
         btn.textContent = hasMore ? "もっと見る" : "ここまで";
+      };
+
+      if (kind === "views") {
+        const hasMore = state.viewsShown < Math.min(MAX_ROWS, state.viewsRows.length);
+        setBtn("moreViews", hasMore);
       }
       if (kind === "fav") {
-        const btn = document.getElementById("moreFav");
-        if (!btn) return;
         const hasMore = state.favShown < Math.min(MAX_ROWS, state.favRows.length);
-        btn.disabled = !hasMore;
-        btn.textContent = hasMore ? "もっと見る" : "ここまで";
+        setBtn("moreFav", hasMore);
+      }
+      if (kind === "rate_rec") {
+        const hasMore = state.rateRecShown < Math.min(MAX_ROWS, state.rateRecRows.length);
+        setBtn("moreRateRec", hasMore);
+      }
+      if (kind === "rate_art") {
+        const hasMore = state.rateArtShown < Math.min(MAX_ROWS, state.rateArtRows.length);
+        setBtn("moreRateArt", hasMore);
       }
     }
 
@@ -381,7 +465,7 @@
           const work = state.workMap.get(seriesKey);
           const rank = state.viewsShown + i + 1;
           return (seriesKey && work)
-            ? rankItemHtml({ rank, seriesKey, unit: "view", work, views, fav: 0, supportPct: 0 })
+            ? rankItemHtml({ rank, seriesKey, unit: "view", work, views, fav: 0, supportPct: 0, rateAvg: 0, rateN: 0 })
             : "";
         }).join("");
 
@@ -411,7 +495,9 @@
                 work,
                 views: r.views,
                 fav: r.fav,
-                supportPct: r.supportPct
+                supportPct: r.supportPct,
+                rateAvg: 0,
+                rateN: 0
               })
             : "";
         }).join("");
@@ -421,6 +507,76 @@
 
         state.favShown = next;
         updateMoreButton("fav");
+      }
+
+      if (kind === "rate_rec") {
+        const root = document.getElementById("rankRateRec");
+        if (!root) return;
+
+        const next = Math.min(MAX_ROWS, state.rateRecShown + STEP);
+        const chunk = state.rateRecRows.slice(state.rateRecShown, next);
+
+        const html = chunk.map((r, i) => {
+          const seriesKey = toText(r?.seriesKey);
+          const work = state.workMap.get(seriesKey);
+          const rank = state.rateRecShown + i + 1;
+          const avg = Number(r?.avg ?? 0);
+          const n = Number(r?.n ?? 0);
+          return (seriesKey && work)
+            ? rankItemHtml({
+                rank,
+                seriesKey,
+                unit: "rate_rec",
+                work,
+                views: 0,
+                fav: 0,
+                supportPct: 0,
+                rateAvg: avg,
+                rateN: n
+              })
+            : "";
+        }).join("");
+
+        if (state.rateRecShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
+        else root.insertAdjacentHTML("beforeend", html);
+
+        state.rateRecShown = next;
+        updateMoreButton("rate_rec");
+      }
+
+      if (kind === "rate_art") {
+        const root = document.getElementById("rankRateArt");
+        if (!root) return;
+
+        const next = Math.min(MAX_ROWS, state.rateArtShown + STEP);
+        const chunk = state.rateArtRows.slice(state.rateArtShown, next);
+
+        const html = chunk.map((r, i) => {
+          const seriesKey = toText(r?.seriesKey);
+          const work = state.workMap.get(seriesKey);
+          const rank = state.rateArtShown + i + 1;
+          const avg = Number(r?.avg ?? 0);
+          const n = Number(r?.n ?? 0);
+          return (seriesKey && work)
+            ? rankItemHtml({
+                rank,
+                seriesKey,
+                unit: "rate_art",
+                work,
+                views: 0,
+                fav: 0,
+                supportPct: 0,
+                rateAvg: avg,
+                rateN: n
+              })
+            : "";
+        }).join("");
+
+        if (state.rateArtShown === 0) root.innerHTML = html || `<div class="status">データがまだありません</div>`;
+        else root.insertAdjacentHTML("beforeend", html);
+
+        state.rateArtShown = next;
+        updateMoreButton("rate_art");
       }
     }
 
@@ -467,6 +623,15 @@
       return out;
     }
 
+    function normalizeRateTopRows(obj) {
+      const rows = pickRows(obj);
+      return rows.map(r => ({
+        seriesKey: toText(r?.seriesKey),
+        avg: Number(r?.avg ?? 0),
+        n: Number(r?.n ?? 0),
+      })).filter(x => x.seriesKey);
+    }
+
     function applyGenreAndRerender() {
       const activeId = getRankGenreState();
       const tab = RANK_GENRE_TABS.find(t => t.id === activeId) || RANK_GENRE_TABS[0];
@@ -495,17 +660,40 @@
       }
       state.favRows = buildSupportRows(favBase, state.viewMap);
 
+      // Rate rec/art：ジャンル絞り込み（素直に seriesKey で work を見て絞る）
+      if (!tab.match?.length) {
+        state.rateRecRows = state.rateRecAll.slice();
+        state.rateArtRows = state.rateArtAll.slice();
+      } else {
+        state.rateRecRows = state.rateRecAll.filter(r => {
+          const w = state.workMap.get(r.seriesKey);
+          return w ? hasAnyGenre(w, tab.match) : false;
+        });
+        state.rateArtRows = state.rateArtAll.filter(r => {
+          const w = state.workMap.get(r.seriesKey);
+          return w ? hasAnyGenre(w, tab.match) : false;
+        });
+      }
+
       // 描画リセット
       state.viewsShown = 0;
       state.favShown = 0;
+      state.rateRecShown = 0;
+      state.rateArtShown = 0;
 
       const rv = document.getElementById("rankViews");
       const rf = document.getElementById("rankFav");
+      const rrr = document.getElementById("rankRateRec");
+      const rra = document.getElementById("rankRateArt");
       if (rv) rv.innerHTML = "";
       if (rf) rf.innerHTML = "";
+      if (rrr) rrr.innerHTML = "";
+      if (rra) rra.innerHTML = "";
 
       renderMore("views");
       renderMore("fav");
+      renderMore("rate_rec");
+      renderMore("rate_art");
 
       // タブ状態維持
       setTab(state.tab);
@@ -545,17 +733,26 @@
         const bust = !!v;
         const vq = v ? `?v=${encodeURIComponent(v)}` : "";
 
-        const works = await loadJson(`./data/lane2/works.json${vq}`, { bust });
-        state.workMap = getWorkMap(works?.items || []);
+        // works（split優先）
+        const worksItems = await loadWorksForStats({ bust });
+        state.workMap = getWorkMap(worksItems);
 
-        const viewBySeries = await loadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust }).catch(() => null);
-        const favBySeries  = await loadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust }).catch(() => null);
+        // views / fav
+        const viewBySeries = await tryLoadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust });
+        const favBySeries  = await tryLoadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust });
 
         state.viewsAll = pickRows(viewBySeries);
         state.favAll   = pickRows(favBySeries);
 
         // view map（支持率計算用）
         state.viewMap = buildViewMap(state.viewsAll);
+
+        // rate rec/art（無ければ空）
+        const recTop = await tryLoadJson(`${METRIC_RATE_REC_TOP_PATH}${vq}`, { bust });
+        const artTop = await tryLoadJson(`${METRIC_RATE_ART_TOP_PATH}${vq}`, { bust });
+
+        state.rateRecAll = normalizeRateTopRows(recTop);
+        state.rateArtAll = normalizeRateTopRows(artTop);
 
         // 初期tabは人気
         state.tab = "views";
@@ -574,6 +771,12 @@
 
         const moreFav = document.getElementById("moreFav");
         if (moreFav) moreFav.addEventListener("click", () => renderMore("fav"), { passive: true });
+
+        const moreRateRec = document.getElementById("moreRateRec");
+        if (moreRateRec) moreRateRec.addEventListener("click", () => renderMore("rate_rec"), { passive: true });
+
+        const moreRateArt = document.getElementById("moreRateArt");
+        if (moreRateArt) moreRateArt.addEventListener("click", () => renderMore("rate_art"), { passive: true });
 
         applyGenreAndRerender();
         setStatus("");
