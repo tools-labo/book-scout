@@ -4,6 +4,8 @@
 // - Home：ジャンル/カテゴリー棚は「日替わりランダム18件」（作品は表示する）
 // - Home：棚の説明テキストは出さない（見出しのみ）
 // - ✅ List：author/synopsis を完全に非表示（work詳細は表示）
+// - ✅ Home：★おすすめ度/★作画クオリティのランキング棚（要素がある時だけ表示）
+// - ✅ Work：平均★（集計JSONがある時だけ表示）
 //
 // 【分割ルール】
 // - 1/2 はこの END マーカーで必ず終わる
@@ -355,6 +357,13 @@ function patchAmazonAnchors(root = document) {
 const WORKS_INDEX_PATH = "./data/lane2/works/index.json";
 const WORKS_SHARD_DIR = "./data/lane2/works";
 const WORKS_LEGACY_PATH = "./data/lane2/works.json";
+
+/* =======================
+ * metrics paths（★集計）
+ * ======================= */
+const METRIC_RATE_REC_TOP_PATH = "./data/metrics/wae/rate_rec_top.json";
+const METRIC_RATE_ART_TOP_PATH = "./data/metrics/wae/rate_art_top.json";
+const METRIC_RATE_BY_SERIES_KEY_PATH = "./data/metrics/wae/rate_by_series_key.json";
 
 /* =======================
  * Genre（内部用）
@@ -858,6 +867,86 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
 }
 
 /* =======================
+ * Home：★ランキング（おすすめ度 / 作画）
+ * - 要素が無い場合は何もしない
+ * - 表示は作品カードのみ（avg/nは今は出さない）
+ * ======================= */
+function normalizeRateTopRows(json){
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+  return rows
+    .map(r => ({
+      seriesKey: toText(r?.seriesKey),
+      avg: Number(r?.avg ?? 0),
+      n: Number(r?.n ?? 0),
+    }))
+    .filter(x => x.seriesKey);
+}
+
+function renderHomeRateTop({ rootId, titleLabel = "", rows, itemsByKey, limit = 6 }) {
+  const root = document.getElementById(rootId);
+  if (!root) return;
+
+  const xs = (rows || []).filter(Boolean).slice(0, limit).filter(r => itemsByKey.has(r.seriesKey));
+  if (!xs.length) {
+    root.innerHTML = `<div class="status">データがまだありません</div>`;
+    return;
+  }
+
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
+  root.innerHTML = `
+    <div class="home-rank-grid">
+      ${xs.map((r, idx) => {
+        const it = itemsByKey.get(r.seriesKey);
+        const title = toText(pick(it, ["title", "vol1.title"])) || r.seriesKey || "(無題)";
+        const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+        const img = normalizeImgUrl(imgRaw);
+        const key = encodeURIComponent(r.seriesKey);
+
+        return `
+          <a class="home-rank-item" href="./work.html?key=${key}${vq}" aria-label="${esc(title)}">
+            <div class="home-rank-cover">
+              ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+              <div class="home-rank-badge">${idx + 1}位</div>
+            </div>
+            <div class="home-rank-name">${esc(r.seriesKey || title)}</div>
+          </a>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+/* =======================
+ * Work：平均★（rate_by_series_key）
+ * ======================= */
+function buildRateBySeriesKeyMap(json){
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+
+  const map = new Map(); // sk -> { rec:{avg,n}, art:{avg,n} }
+  for (const r of rows) {
+    const sk = toText(r?.seriesKey);
+    const k = toText(r?.k);
+    const avg = Number(r?.avg ?? 0);
+    const n = Number(r?.n ?? 0);
+    if (!sk || !k) continue;
+    if (!map.has(sk)) map.set(sk, {});
+    map.get(sk)[k] = { avg, n };
+  }
+  return map;
+}
+function formatStarAvg(v){
+  const n = Number(v);
+  if (!Number.isFinite(n) || n <= 0) return "";
+  return (Math.round(n * 10) / 10).toFixed(1);
+}
+
+/* =======================
  * List render（author/synopsis は出さない）
  * ======================= */
 function renderList(items, quickDefs) {
@@ -1024,6 +1113,9 @@ function renderList(items, quickDefs) {
 // - Home棚が消える原因（未定義）を潰して復旧
 // - ✅ Work：おすすめ度/作画クオリティ（★1〜5）を追加（ログイン不要・端末内で1回抑止）
 // - ✅ イベント：type="rate" / k="rec" or "art" / v="1".."5" を trackEvent で送信（24hで同値1回）
+// - ✅ Home：★ランキング棚（idが存在する時だけ描画）
+//   - homeRateRec（おすすめ度） / homeRateArt（作画）
+// - ✅ Work：平均★表示（rate_by_series_key.json がある時だけ）
 
 /* =======================
  * Works loader (index/shard)
@@ -1335,7 +1427,7 @@ function applyStarsUi(wrapEl, selected){
 /* =======================
  * Work render（author/あらすじは表示）
  * ======================= */
-async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) {
+async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSeriesMap } = {}) {
   const detail = document.getElementById("detail");
   if (!detail) return;
 
@@ -1395,12 +1487,25 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
   const recVal = getRatedValue(seriesKey, "rec");
   const artVal = getRatedValue(seriesKey, "art");
 
+  // 平均★（集計がある時だけ）
+  let avgLine = "";
+  if (rateSeriesMap?.size && rateSeriesMap.has(seriesKey)) {
+    const rec = rateSeriesMap.get(seriesKey)?.rec;
+    const art = rateSeriesMap.get(seriesKey)?.art;
+
+    const recTxt = rec?.avg ? `おすすめ度: ★${formatStarAvg(rec.avg)} <span style="opacity:.7;">(n=${Number(rec.n || 0)})</span>` : "";
+    const artTxt = art?.avg ? `作画: ★${formatStarAvg(art.avg)} <span style="opacity:.7;">(n=${Number(art.n || 0)})</span>` : "";
+    const join = [recTxt, artTxt].filter(Boolean).join(" / ");
+    if (join) avgLine = `<div class="d-sub" style="margin-top:6px;">平均: ${join}</div>`;
+  }
+
   const rateBox = `
     <div class="vote-box" style="margin-top:12px;">
       <div class="vote-head">
         <h3 class="vote-title">評価</h3>
       </div>
       <p class="vote-note">★を選んで投票（各項目1回）。</p>
+      ${avgLine}
 
       ${starsHtml({ idPrefix: "rec", label: "おすすめ度", selected: recVal })}
       ${starsHtml({ idPrefix: "art", label: "作画クオリティ", selected: artVal })}
@@ -1561,6 +1666,14 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix } = {}) 
 }
 
 /* =======================
+ * metrics loader helpers
+ * ======================= */
+function withV(url){
+  const v = qs().get("v");
+  return v ? `${url}?v=${encodeURIComponent(v)}` : url;
+}
+
+/* =======================
  * run
  * ======================= */
 async function run() {
@@ -1601,9 +1714,45 @@ async function run() {
       voteMatrix = null;
     }
 
+    // ★ rate aggregates（無ければ空）
+    let rateRecTop = [];
+    let rateArtTop = [];
+    let rateSeriesMap = new Map();
+    try {
+      const recJson = await tryLoadJson(withV(METRIC_RATE_REC_TOP_PATH), { bust });
+      rateRecTop = normalizeRateTopRows(recJson);
+    } catch { rateRecTop = []; }
+
+    try {
+      const artJson = await tryLoadJson(withV(METRIC_RATE_ART_TOP_PATH), { bust });
+      rateArtTop = normalizeRateTopRows(artJson);
+    } catch { rateArtTop = []; }
+
+    try {
+      const bySeriesJson = await tryLoadJson(withV(METRIC_RATE_BY_SERIES_KEY_PATH), { bust });
+      rateSeriesMap = bySeriesJson ? buildRateBySeriesKeyMap(bySeriesJson) : new Map();
+    } catch { rateSeriesMap = new Map(); }
+
+    // itemsByKey（home表示用）
+    const itemsByKey = new Map();
+    for (const it of (worksState.listItems || [])) {
+      const sk = toText(pick(it, ["seriesKey"]));
+      if (sk) itemsByKey.set(sk, it);
+    }
+
     // Home：人気ランキング棚
     if (document.getElementById("homePopular")) {
       renderHomePopular({ items: worksState.listItems, viewsMap, limit: 6 });
+    }
+
+    // Home：★おすすめ度ランキング（要素がある時だけ）
+    if (document.getElementById("homeRateRec")) {
+      renderHomeRateTop({ rootId: "homeRateRec", titleLabel: "おすすめ度", rows: rateRecTop, itemsByKey, limit: 6 });
+    }
+
+    // Home：★作画クオリティランキング（要素がある時だけ）
+    if (document.getElementById("homeRateArt")) {
+      renderHomeRateTop({ rootId: "homeRateArt", titleLabel: "作画クオリティ", rows: rateArtTop, itemsByKey, limit: 6 });
     }
 
     // Home：ジャンル棚（作品18件は出す）
@@ -1632,8 +1781,8 @@ async function run() {
     // List
     renderList(worksState.listItems, quickDefs);
 
-    // Work
-    await renderWork(worksState, quickDefs, { viewsMap, voteMatrix });
+    // Work（平均★も渡す）
+    await renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSeriesMap });
 
     // Amazonアフィ付与
     patchAmazonAnchors(document);
