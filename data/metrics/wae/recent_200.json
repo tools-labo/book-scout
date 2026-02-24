@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T15:09:19.860Z",
+  "updatedAt": "2026-02-24T16:13:23.084Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -47,6 +47,54 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-24 15:18:35",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-24 15:16:24",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "とんがり帽子のアトリエ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-24 15:16:21",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-24 15:16:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイアムアヒーロー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
     {
       "timestamp": "2026-02-24 14:32:51",
       "type": "rate",
@@ -2398,58 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:48:56",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "君のことが大大大大大好きな100人の彼女",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:48:21",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ぼくたちは勉強ができない",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:48:16",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ニセコイ",
-      "mood": "heart_throb",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:48:12",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ニセコイ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 573
+    "rows_before_limit_at_least": 577
   }
 }
