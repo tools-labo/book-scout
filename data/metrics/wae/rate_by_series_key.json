@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:56:28.483Z",
+  "updatedAt": "2026-02-24T14:16:03.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -27,16 +27,16 @@
       "seriesKey": "NARUTO -ナルト-",
       "k": "art",
       "avg": 5,
-      "n": "1"
-    },
-    {
-      "seriesKey": "乙嫁語り",
-      "k": "art",
-      "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "ドラゴンボール",
+      "k": "art",
+      "avg": 5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "乙嫁語り",
       "k": "art",
       "avg": 5,
       "n": "1"
@@ -48,13 +48,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "ディー・グレイマン",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "【推しの子】",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -72,10 +72,10 @@
       "n": "2"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "ヴィンランド・サガ",
       "k": "art",
       "avg": 3,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "銀魂",
@@ -84,19 +84,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "ヲタクに恋は難しい",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -132,6 +126,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
       "k": "art",
       "avg": 2,
@@ -144,16 +144,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "ベルセルク",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
       "avg": 5,
-      "n": "2"
+      "n": "3"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -162,10 +168,10 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
-      "avg": 5,
-      "n": "1"
+      "avg": 4.5,
+      "n": "2"
     },
     {
       "seriesKey": "監獄学園",
@@ -180,19 +186,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "血の轍",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "3月のライオン",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ベルセルク",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -216,6 +222,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "【推しの子】",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "東京喰種-トーキョーグール-:re",
       "k": "rec",
       "avg": 3,
@@ -234,25 +246,25 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "東京喰種 トーキョーグール",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種 トーキョーグール",
+      "seriesKey": "ヲタクに恋は難しい",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -265,7 +277,7 @@
     }
   ],
   "raw": {
-    "rows": 40,
-    "rows_before_limit_at_least": 43
+    "rows": 42,
+    "rows_before_limit_at_least": 51
   }
 }

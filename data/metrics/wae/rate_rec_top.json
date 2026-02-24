@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:56:28.483Z",
+  "updatedAt": "2026-02-24T14:16:03.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -22,12 +22,12 @@
     {
       "seriesKey": "NARUTO -ナルト-",
       "avg": 5,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -36,8 +36,8 @@
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "avg": 5,
-      "n": "1"
+      "avg": 4.5,
+      "n": "2"
     },
     {
       "seriesKey": "監獄学園",
@@ -46,6 +46,11 @@
     },
     {
       "seriesKey": "銀魂",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ベルセルク",
       "avg": 4,
       "n": "1"
     },
@@ -121,7 +126,7 @@
     }
   ],
   "raw": {
-    "rows": 20,
-    "rows_before_limit_at_least": 20
+    "rows": 21,
+    "rows_before_limit_at_least": 21
   }
 }

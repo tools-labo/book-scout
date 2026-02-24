@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:56:28.483Z",
+  "updatedAt": "2026-02-24T14:16:03.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -21,19 +21,31 @@
     },
     {
       "seriesKey": "3月のライオン",
+      "n": "6"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
       "n": "5"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "4"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "3"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ReLIFE",
       "n": "3"
     },
     {
-      "seriesKey": "ReLIFE",
-      "n": "3"
+      "seriesKey": "【推しの子】",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "n": "2"
     },
     {
       "seriesKey": "からかい上手の高木さん",
@@ -48,11 +60,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "2"
-    },
-    {
-      "seriesKey": "桜蘭高校ホスト部",
+      "seriesKey": "よつばと！",
       "n": "2"
     },
     {
@@ -60,7 +68,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "よつばと！",
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "2"
     },
     {
@@ -68,15 +76,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "【推しの子】",
-      "n": "2"
-    },
-    {
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
       "n": "1"
     },
     {
@@ -88,19 +92,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
-      "seriesKey": "聲の形",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -108,7 +108,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
@@ -124,7 +128,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -140,11 +144,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
-      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
@@ -152,7 +156,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "暗殺教室",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -164,7 +168,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
@@ -177,7 +181,7 @@
     }
   ],
   "raw": {
-    "rows": 40,
-    "rows_before_limit_at_least": 65
+    "rows": 41,
+    "rows_before_limit_at_least": 72
   }
 }

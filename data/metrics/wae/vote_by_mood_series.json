@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:56:28.483Z",
+  "updatedAt": "2026-02-24T14:16:03.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -19,6 +19,11 @@
     }
   ],
   "rows": [
+    {
+      "mood": "funny",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "2"
+    },
     {
       "mood": "funny",
       "seriesKey": "暗殺教室",
@@ -51,12 +56,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "銀魂",
+      "seriesKey": "ドラゴンボール",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -81,12 +86,12 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
       "mood": "healing",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -121,12 +126,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "五等分の花嫁",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "君に届け",
+      "seriesKey": "五等分の花嫁",
       "n": "1"
     },
     {
@@ -147,7 +152,7 @@
     {
       "mood": "hot",
       "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
+      "n": "2"
     },
     {
       "mood": "hot",
@@ -162,6 +167,16 @@
     {
       "mood": "hot",
       "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ドラゴンボール",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
@@ -181,13 +196,18 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "3月のライオン",
+      "n": "2"
     },
     {
       "mood": "moving",
@@ -211,17 +231,22 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
       "mood": "page_turner",
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
@@ -237,11 +262,6 @@
     {
       "mood": "page_turner",
       "seriesKey": "ドラゴンボール",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -266,12 +286,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -306,7 +326,7 @@
     }
   ],
   "raw": {
-    "rows": 57,
-    "rows_before_limit_at_least": 65
+    "rows": 61,
+    "rows_before_limit_at_least": 72
   }
 }

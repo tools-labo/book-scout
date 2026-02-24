@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T13:56:28.483Z",
+  "updatedAt": "2026-02-24T14:16:03.366Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -20,17 +20,17 @@
   ],
   "rows": [
     {
-      "seriesKey": "乙嫁語り",
-      "avg": 5,
-      "n": "1"
-    },
-    {
       "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
+      "avg": 5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "乙嫁語り",
       "avg": 5,
       "n": "1"
     },
@@ -57,6 +57,11 @@
     {
       "seriesKey": "監獄学園",
       "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "avg": 3,
       "n": "2"
     },
     {
@@ -90,11 +95,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "アイアムアヒーロー",
       "avg": 3,
       "n": "1"
@@ -110,6 +110,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "ベルセルク",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
       "avg": 2,
       "n": "1"
@@ -121,7 +126,7 @@
     }
   ],
   "raw": {
-    "rows": 20,
-    "rows_before_limit_at_least": 20
+    "rows": 21,
+    "rows_before_limit_at_least": 21
   }
 }
