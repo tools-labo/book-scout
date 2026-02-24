@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T07:16:26.029Z",
+  "updatedAt": "2026-02-24T09:06:18.499Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -42,13 +42,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "ヴァニタスの手記",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "ディー・グレイマン",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -56,11 +56,11 @@
     {
       "seriesKey": "監獄学園",
       "k": "art",
-      "avg": 4,
-      "n": "1"
+      "avg": 3.5,
+      "n": "2"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "3月のライオン",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -72,7 +72,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -90,25 +90,37 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "3月のライオン",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "黒執事",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
+      "seriesKey": "銀魂",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ガチアクタ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
       "n": "1"
@@ -126,16 +138,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "幽☆遊☆白書",
+      "k": "rec",
+      "avg": 5,
+      "n": "1"
+    },
+    {
       "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 5,
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "監獄学園",
       "k": "rec",
       "avg": 4,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "3月のライオン",
@@ -150,7 +168,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -168,9 +192,9 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "アイアムアヒーロー",
       "k": "rec",
-      "avg": 4,
+      "avg": 3,
       "n": "1"
     },
     {
@@ -180,13 +204,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -205,7 +229,7 @@
     }
   ],
   "raw": {
-    "rows": 30,
-    "rows_before_limit_at_least": 31
+    "rows": 34,
+    "rows_before_limit_at_least": 37
   }
 }

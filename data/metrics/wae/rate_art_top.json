@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T07:16:26.029Z",
+  "updatedAt": "2026-02-24T09:06:18.499Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -35,11 +35,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ヴァニタスの手記",
       "avg": 4,
       "n": "1"
@@ -48,6 +43,11 @@
       "seriesKey": "ディー・グレイマン",
       "avg": 4,
       "n": "1"
+    },
+    {
+      "seriesKey": "監獄学園",
+      "avg": 3.5,
+      "n": "2"
     },
     {
       "seriesKey": "銀魂",
@@ -90,13 +90,23 @@
       "n": "1"
     },
     {
+      "seriesKey": "ヲタクに恋は難しい",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
       "avg": 2,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 15,
-    "rows_before_limit_at_least": 15
+    "rows": 17,
+    "rows_before_limit_at_least": 17
   }
 }

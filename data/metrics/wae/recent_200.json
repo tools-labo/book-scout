@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T07:16:26.029Z",
+  "updatedAt": "2026-02-24T09:06:18.499Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -47,6 +47,78 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-24 09:02:37",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヲタクに恋は難しい",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-24 09:02:37",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヲタクに恋は難しい",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-24 09:02:20",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "監獄学園",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-24 09:02:19",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "監獄学園",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-02-24 09:01:39",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "幽☆遊☆白書",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-24 09:01:36",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "幽☆遊☆白書",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 2
+    },
     {
       "timestamp": "2026-02-24 06:02:50",
       "type": "rate",
@@ -149,11 +221,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "血の轍",
-      "mood": "rec",
+      "mood": "art",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 4
+      "rating": 3
     },
     {
       "timestamp": "2026-02-24 06:01:58",
@@ -161,11 +233,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "血の轍",
-      "mood": "art",
+      "mood": "rec",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 3
+      "rating": 4
     },
     {
       "timestamp": "2026-02-24 06:01:40",
@@ -2153,7 +2225,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb,satisfying",
+      "mood": "mood=heart_throb",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2165,7 +2237,7 @@
       "schema": "v2",
       "page": "list",
       "seriesKey": "",
-      "mood": "mood=heart_throb",
+      "mood": "mood=heart_throb,satisfying",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2374,82 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:55",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "mood": "satisfying",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:51",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:50",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:43",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "聲の形",
-      "mood": "moving",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:42",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "聲の形",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:32",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "監獄学園",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 511
+    "rows_before_limit_at_least": 518
   }
 }
