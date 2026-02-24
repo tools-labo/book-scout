@@ -283,6 +283,18 @@ button{ font-family:inherit; }
   overflow: visible;
 }
 
+/* ===== perf: 画面外の描画をブラウザに任せる（対応ブラウザで効く） ===== */
+@supports (content-visibility: auto){
+  .card, .rank-item{
+    content-visibility: auto;
+    contain-intrinsic-size: 220px;
+  }
+  .detail{
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+}
+
 /* 行：下線で区切る */
 .card-row, .rank-row{
   display:grid;
@@ -625,8 +637,6 @@ button{ font-family:inherit; }
 
 /* =======================
  * Home：人気ランキング棚（しっかり見せる）
- * - rec-gridと同じ書影サイズ感
- * - 3列×2段（6件）想定
  * ======================= */
 .home-rank-grid{
   display: grid;
