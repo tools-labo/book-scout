@@ -99,10 +99,26 @@
   <script>
     function qs() { return new URLSearchParams(location.search); }
 
+    /* =======================
+     * perf: tiny placeholder
+     * ======================= */
+    const IMG_PLACEHOLDER_SRC =
+      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
+    /* =======================
+     * perf: JSON cache (same session)
+     * - bust=true のときはキャッシュしない
+     * ======================= */
+    const __jsonCache = new Map(); // url -> json
     async function loadJson(url, { bust = false } = {}) {
+      if (!bust && __jsonCache.has(url)) return __jsonCache.get(url);
+
       const r = await fetch(url, { cache: bust ? "no-store" : "default" });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return await r.json();
+      const j = await r.json();
+
+      if (!bust) __jsonCache.set(url, j);
+      return j;
     }
     async function tryLoadJson(url, { bust = false } = {}) {
       try { return await loadJson(url, { bust }); } catch { return null; }
@@ -194,6 +210,57 @@
       return [];
     }
 
+    /* =======================
+     * perf: Lazy images (data-src)
+     * ======================= */
+    let __imgObserver = null;
+
+    function ensureImgObserver() {
+      if (__imgObserver) return __imgObserver;
+
+      if (!("IntersectionObserver" in window)) {
+        __imgObserver = {
+          observe(el) {
+            try {
+              const ds = el.getAttribute("data-src") || "";
+              if (ds) el.setAttribute("src", ds);
+              el.removeAttribute("data-src");
+            } catch {}
+          },
+          unobserve() {},
+          disconnect() {},
+        };
+        return __imgObserver;
+      }
+
+      __imgObserver = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const img = e.target;
+          try {
+            const ds = img.getAttribute("data-src") || "";
+            if (ds) img.setAttribute("src", ds);
+            img.removeAttribute("data-src");
+          } catch {}
+          try { __imgObserver.unobserve(img); } catch {}
+        }
+      }, {
+        root: null,
+        rootMargin: "200px 0px",
+        threshold: 0.01,
+      });
+
+      return __imgObserver;
+    }
+
+    function initLazyImages(root = document) {
+      const obs = ensureImgObserver();
+      const imgs = root?.querySelectorAll?.("img[data-src]") || [];
+      for (const img of imgs) {
+        try { obs.observe(img); } catch {}
+      }
+    }
+
     function getWorkMap(items) {
       const map = new Map();
       for (const it of (items || [])) {
@@ -264,7 +331,6 @@
         ? (unit === "rate_rec" ? "おすすめ" : "作画")
         : (isFav ? "支持率" : "閲覧");
 
-      // 支持率では「お気に入り/閲覧」も小さく補助表示（意味が伝わる）
       const aux = isFav
         ? `お気に入り: ${Number(fav||0)} / 閲覧: ${Number(views||0)}`
         : (isRate ? `n=${Number(rateN||0)}` : "");
@@ -275,7 +341,11 @@
             <div>
               <a href="./work.html?key=${key}" aria-label="${esc(title)}">
                 <div class="rank-cover">
-                  ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : ``}
+                  ${
+                    img
+                      ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async">`
+                      : ``
+                  }
                 </div>
               </a>
             </div>
@@ -364,8 +434,8 @@
     }
 
     // ---- 支持率（B案） ----
-    const MIN_VIEWS_FOR_SUPPORT = 10; // ←確定
-    const WEIGHT_FULL_AT = 20;        // views>=20 で満額（w=1）
+    const MIN_VIEWS_FOR_SUPPORT = 10;
+    const WEIGHT_FULL_AT = 20;
 
     function weightByViews(views) {
       const v = Number(views || 0);
@@ -377,7 +447,6 @@
     const MAX_ROWS = 100;
     const STEP = 50;
 
-    // ★ rating metrics
     const METRIC_RATE_REC_TOP_PATH = "./data/metrics/wae/rate_rec_top.json";
     const METRIC_RATE_ART_TOP_PATH = "./data/metrics/wae/rate_art_top.json";
 
@@ -474,6 +543,7 @@
 
         state.viewsShown = next;
         updateMoreButton("views");
+        initLazyImages(root);
       }
 
       if (kind === "fav") {
@@ -507,6 +577,7 @@
 
         state.favShown = next;
         updateMoreButton("fav");
+        initLazyImages(root);
       }
 
       if (kind === "rate_rec") {
@@ -542,6 +613,7 @@
 
         state.rateRecShown = next;
         updateMoreButton("rate_rec");
+        initLazyImages(root);
       }
 
       if (kind === "rate_art") {
@@ -577,6 +649,7 @@
 
         state.rateArtShown = next;
         updateMoreButton("rate_art");
+        initLazyImages(root);
       }
     }
 
@@ -600,20 +673,16 @@
         const fav = Number(r?.n || 0);
         const views = Number(viewMap.get(sk) || 0);
 
-        // views 条件
         if (views < MIN_VIEWS_FOR_SUPPORT) continue;
 
-        // support% は表示用
         const supportPct = (views > 0) ? (fav / views * 100) : 0;
 
-        // score は並び替え用（暴れ対策）
         const w = weightByViews(views);
         const score = (views > 0) ? ((fav / views) * w) : 0;
 
         out.push({ seriesKey: sk, fav, views, supportPct, score });
       }
 
-      // 降順：score → views → fav
       out.sort((a, b) => {
         if (b.score !== a.score) return b.score - a.score;
         if (b.views !== a.views) return b.views - a.views;
@@ -638,7 +707,6 @@
 
       renderRankGenreTabs(tab.id);
 
-      // Popular（閲覧数）：ジャンル絞り込み
       if (!tab.match?.length) {
         state.viewsRows = state.viewsAll.slice();
       } else {
@@ -649,7 +717,6 @@
         });
       }
 
-      // Support：ジャンル絞り込みは favAll を先に絞ってから計算
       let favBase = state.favAll.slice();
       if (tab.match?.length) {
         favBase = favBase.filter(r => {
@@ -660,7 +727,6 @@
       }
       state.favRows = buildSupportRows(favBase, state.viewMap);
 
-      // Rate rec/art：ジャンル絞り込み（素直に seriesKey で work を見て絞る）
       if (!tab.match?.length) {
         state.rateRecRows = state.rateRecAll.slice();
         state.rateArtRows = state.rateArtAll.slice();
@@ -675,7 +741,6 @@
         });
       }
 
-      // 描画リセット
       state.viewsShown = 0;
       state.favShown = 0;
       state.rateRecShown = 0;
@@ -695,7 +760,6 @@
       renderMore("rate_rec");
       renderMore("rate_art");
 
-      // タブ状態維持
       setTab(state.tab);
     }
 
@@ -733,31 +797,25 @@
         const bust = !!v;
         const vq = v ? `?v=${encodeURIComponent(v)}` : "";
 
-        // works（split優先）
         const worksItems = await loadWorksForStats({ bust });
         state.workMap = getWorkMap(worksItems);
 
-        // views / fav
         const viewBySeries = await tryLoadJson(`./data/metrics/wae/work_view_by_series.json${vq}`, { bust });
         const favBySeries  = await tryLoadJson(`./data/metrics/wae/favorite_by_series.json${vq}`, { bust });
 
         state.viewsAll = pickRows(viewBySeries);
         state.favAll   = pickRows(favBySeries);
 
-        // view map（支持率計算用）
         state.viewMap = buildViewMap(state.viewsAll);
 
-        // rate rec/art（無ければ空）
         const recTop = await tryLoadJson(`${METRIC_RATE_REC_TOP_PATH}${vq}`, { bust });
         const artTop = await tryLoadJson(`${METRIC_RATE_ART_TOP_PATH}${vq}`, { bust });
 
         state.rateRecAll = normalizeRateTopRows(recTop);
         state.rateArtAll = normalizeRateTopRows(artTop);
 
-        // 初期tabは人気
         state.tab = "views";
 
-        // タブ操作
         document.querySelectorAll(".rank-tab[data-tab]").forEach(btn => {
           btn.addEventListener("click", () => {
             const next = btn.getAttribute("data-tab") || "views";
@@ -765,7 +823,6 @@
           }, { passive: true });
         });
 
-        // もっと見る
         const moreViews = document.getElementById("moreViews");
         if (moreViews) moreViews.addEventListener("click", () => renderMore("views"), { passive: true });
 
@@ -779,6 +836,10 @@
         if (moreRateArt) moreRateArt.addEventListener("click", () => renderMore("rate_art"), { passive: true });
 
         applyGenreAndRerender();
+
+        // 念のため（初期描画分）
+        initLazyImages(document);
+
         setStatus("");
       } catch (e) {
         console.error(e);
