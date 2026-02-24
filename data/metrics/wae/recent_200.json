@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T06:03:26.000Z",
+  "updatedAt": "2026-02-24T06:12:39.596Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -48,6 +48,54 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-02-24 06:02:50",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-24 06:02:49",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-02-24 06:02:42",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-02-24 06:02:38",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 2
+    },
+    {
       "timestamp": "2026-02-24 06:02:23",
       "type": "rate",
       "schema": "v2",
@@ -58,6 +106,18 @@
       "aud": "",
       "mag": "",
       "rating": 3
+    },
+    {
+      "timestamp": "2026-02-24 06:02:22",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
     },
     {
       "timestamp": "2026-02-24 06:02:11",
@@ -2386,70 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:14",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "桜蘭高校ホスト部",
-      "mood": "funny",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:13",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "桜蘭高校ホスト部",
-      "mood": "heart_throb",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:11",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "桜蘭高校ホスト部",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:10",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "桜蘭高校ホスト部",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 09:01:03",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "暗殺教室",
-      "mood": "funny",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 506
+    "rows_before_limit_at_least": 511
   }
 }

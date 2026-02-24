@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T06:03:26.000Z",
+  "updatedAt": "2026-02-24T06:12:39.596Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -19,6 +19,11 @@
     }
   ],
   "rows": [
+    {
+      "seriesKey": "乙嫁語り",
+      "avg": 5,
+      "n": "1"
+    },
     {
       "seriesKey": "ドラゴンボール",
       "avg": 5,
@@ -42,6 +47,11 @@
     {
       "seriesKey": "ディー・グレイマン",
       "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "avg": 3,
       "n": "1"
     },
     {
@@ -78,10 +88,15 @@
       "seriesKey": "Re:ゼロから始める異世界生活",
       "avg": 3,
       "n": "1"
+    },
+    {
+      "seriesKey": "キングダム",
+      "avg": 2,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 12,
-    "rows_before_limit_at_least": 12
+    "rows": 15,
+    "rows_before_limit_at_least": 15
   }
 }

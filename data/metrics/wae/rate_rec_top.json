@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T06:03:26.000Z",
+  "updatedAt": "2026-02-24T06:12:39.596Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -35,12 +35,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "銀魂",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "監獄学園",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "血の轍",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "キングダム",
       "avg": 4,
       "n": "1"
     },
@@ -86,7 +96,7 @@
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 13
+    "rows": 15,
+    "rows_before_limit_at_least": 15
   }
 }
