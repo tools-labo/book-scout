@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:16:03.366Z",
+  "updatedAt": "2026-02-24T14:33:38.497Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -22,7 +22,7 @@
     {
       "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -60,9 +60,19 @@
       "n": "2"
     },
     {
+      "seriesKey": "3月のライオン",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "avg": 3,
       "n": "2"
+    },
+    {
+      "seriesKey": "マギ",
+      "avg": 3,
+      "n": "1"
     },
     {
       "seriesKey": "銀魂",
@@ -81,11 +91,6 @@
     },
     {
       "seriesKey": "黒執事",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "3月のライオン",
       "avg": 3,
       "n": "1"
     },
@@ -110,12 +115,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "キングダム",
       "avg": 2,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ベルセルク",
       "avg": 2,
       "n": "1"
     },
@@ -126,7 +131,7 @@
     }
   ],
   "raw": {
-    "rows": 21,
-    "rows_before_limit_at_least": 21
+    "rows": 22,
+    "rows_before_limit_at_least": 22
   }
 }

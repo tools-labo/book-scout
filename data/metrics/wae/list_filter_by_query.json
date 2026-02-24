@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:16:03.366Z",
+  "updatedAt": "2026-02-24T14:33:38.497Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -60,7 +60,7 @@
       "aud": "",
       "mag": "",
       "mood": "mood=funny",
-      "n": "6"
+      "n": "7"
     },
     {
       "genre": "",
@@ -94,6 +94,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=healing",
+      "n": "5"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "mood=hot",
       "n": "4"
     },
@@ -109,13 +116,6 @@
       "aud": "",
       "mag": "",
       "mood": "aud=少女",
-      "n": "4"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=healing",
       "n": "4"
     },
     {
@@ -227,14 +227,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Fantasy",
+      "mood": "mood=hot,heart_throb",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=hot,heart_throb",
+      "mood": "genre=Fantasy",
       "n": "1"
     },
     {
@@ -283,6 +283,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=healing,hot",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "mood=healing,satisfying",
       "n": "1"
     },
@@ -309,7 +316,7 @@
     }
   ],
   "raw": {
-    "rows": 40,
-    "rows_before_limit_at_least": 190
+    "rows": 41,
+    "rows_before_limit_at_least": 193
   }
 }

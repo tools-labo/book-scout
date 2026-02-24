@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:16:03.366Z",
+  "updatedAt": "2026-02-24T14:33:38.497Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -31,22 +31,27 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "監獄学園",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "桜蘭高校ホスト部",
       "n": "1"
     },
     {
@@ -61,12 +66,27 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "銀魂",
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
-      "mood": "funny",
-      "seriesKey": "ザ・ファブル",
+      "mood": "healing",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "よつばと！",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -80,28 +100,28 @@
       "n": "1"
     },
     {
-      "mood": "healing",
-      "seriesKey": "よつばと！",
+      "mood": "heart_throb",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
-      "mood": "healing",
-      "seriesKey": "フルーツバスケット",
+      "mood": "heart_throb",
+      "seriesKey": "からかい上手の高木さん",
       "n": "1"
     },
     {
-      "mood": "healing",
-      "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "ヨコハマ買い出し紀行",
+      "mood": "heart_throb",
+      "seriesKey": "彼女、お借りします",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "五等分の花嫁",
       "n": "1"
     },
     {
@@ -116,32 +136,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ニセコイ",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "彼女、お借りします",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "君に届け",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "五等分の花嫁",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "やがて君になる",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -156,12 +156,17 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "ドラゴンボール",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
@@ -171,23 +176,13 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ドラゴンボール",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
       "mood": "messy",
       "seriesKey": "血の轍",
       "n": "7"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "3月のライオン",
-      "n": "1"
     },
     {
       "mood": "messy",
@@ -205,14 +200,14 @@
       "n": "1"
     },
     {
-      "mood": "moving",
+      "mood": "messy",
       "seriesKey": "3月のライオン",
-      "n": "2"
+      "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "フルーツバスケット",
-      "n": "1"
+      "seriesKey": "3月のライオン",
+      "n": "2"
     },
     {
       "mood": "moving",
@@ -221,7 +216,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "よつばと！",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -231,17 +226,32 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "よつばと！",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
       "mood": "page_turner",
       "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -256,7 +266,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -265,23 +275,18 @@
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "【推しの子】",
-      "n": "1"
-    },
-    {
       "mood": "satisfying",
       "seriesKey": "ドラゴンボール",
-      "n": "2"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
-      "n": "1"
+      "n": "3"
     },
     {
       "mood": "satisfying",
       "seriesKey": "終末のワルキューレ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
     {
@@ -296,8 +301,13 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "3月のライオン",
+      "n": "2"
     },
     {
       "mood": "tearjerker",
@@ -306,7 +316,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
@@ -316,17 +326,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 61,
-    "rows_before_limit_at_least": 72
+    "rows": 62,
+    "rows_before_limit_at_least": 76
   }
 }

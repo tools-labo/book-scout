@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:16:03.366Z",
+  "updatedAt": "2026-02-24T14:33:38.497Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -24,13 +24,13 @@
   ],
   "rows": [
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "k": "art",
       "avg": 5,
-      "n": "2"
+      "n": "3"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "NARUTO -ナルト-",
       "k": "art",
       "avg": 5,
       "n": "2"
@@ -72,10 +72,22 @@
       "n": "2"
     },
     {
+      "seriesKey": "3月のライオン",
+      "k": "art",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "k": "art",
       "avg": 3,
       "n": "2"
+    },
+    {
+      "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
     },
     {
       "seriesKey": "銀魂",
@@ -84,13 +96,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -120,13 +132,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "血の轍",
+      "seriesKey": "マギ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -135,7 +141,7 @@
       "seriesKey": "キングダム",
       "k": "art",
       "avg": 2,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -174,7 +180,19 @@
       "n": "2"
     },
     {
+      "seriesKey": "3月のライオン",
+      "k": "rec",
+      "avg": 4.5,
+      "n": "2"
+    },
+    {
       "seriesKey": "監獄学園",
+      "k": "rec",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "2"
@@ -192,12 +210,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ベルセルク",
       "k": "rec",
       "avg": 4,
@@ -205,12 +217,6 @@
     },
     {
       "seriesKey": "銀魂",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -258,13 +264,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
+      "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -277,7 +283,7 @@
     }
   ],
   "raw": {
-    "rows": 42,
-    "rows_before_limit_at_least": 51
+    "rows": 43,
+    "rows_before_limit_at_least": 57
   }
 }

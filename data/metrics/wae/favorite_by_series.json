@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:16:03.366Z",
+  "updatedAt": "2026-02-24T14:33:38.497Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -24,23 +24,23 @@
       "n": "4"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "n": "3"
     },
     {
-      "seriesKey": "ドラゴンボール",
-      "n": "2"
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "3"
     },
     {
       "seriesKey": "ReLIFE",
       "n": "2"
     },
     {
-      "seriesKey": "桜蘭高校ホスト部",
-      "n": "1"
+      "seriesKey": "キングダム",
+      "n": "2"
     },
     {
-      "seriesKey": "21世紀少年",
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "1"
     },
     {
@@ -60,7 +60,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "21世紀少年",
       "n": "1"
     },
     {
@@ -130,6 +130,6 @@
   ],
   "raw": {
     "rows": 28,
-    "rows_before_limit_at_least": 38
+    "rows_before_limit_at_least": 40
   }
 }

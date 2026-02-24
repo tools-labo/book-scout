@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:16:03.366Z",
+  "updatedAt": "2026-02-24T14:33:38.497Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -20,6 +20,10 @@
       "n": "12"
     },
     {
+      "seriesKey": "3月のライオン",
+      "n": "8"
+    },
+    {
       "seriesKey": "【推しの子】",
       "n": "7"
     },
@@ -28,12 +32,8 @@
       "n": "7"
     },
     {
-      "seriesKey": "3月のライオン",
-      "n": "7"
-    },
-    {
       "seriesKey": "ドラゴンボール",
-      "n": "6"
+      "n": "7"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
@@ -44,11 +44,15 @@
       "n": "3"
     },
     {
+      "seriesKey": "血の轍",
+      "n": "3"
+    },
+    {
       "seriesKey": "食戟のソーマ",
       "n": "3"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "キングダム",
       "n": "3"
     },
     {
@@ -81,10 +85,6 @@
     },
     {
       "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
-      "n": "2"
-    },
-    {
-      "seriesKey": "キングダム",
       "n": "2"
     },
     {
@@ -314,6 +314,6 @@
   ],
   "raw": {
     "rows": 74,
-    "rows_before_limit_at_least": 130
+    "rows_before_limit_at_least": 133
   }
 }
