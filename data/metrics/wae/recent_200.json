@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:33:38.497Z",
+  "updatedAt": "2026-02-24T15:09:19.860Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -54,6 +54,18 @@
       "page": "work",
       "seriesKey": "ドラゴンボール",
       "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-24 14:32:50",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "rec",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -120,6 +132,42 @@
       "rating": 3
     },
     {
+      "timestamp": "2026-02-24 14:32:39",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "マギ",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-02-24 14:32:37",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "マギ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-24 14:32:35",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "マギ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
       "timestamp": "2026-02-24 14:32:33",
       "type": "rate",
       "schema": "v2",
@@ -142,6 +190,30 @@
       "aud": "",
       "mag": "",
       "rating": 4
+    },
+    {
+      "timestamp": "2026-02-24 14:32:30",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-24 14:32:29",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-24 14:32:25",
@@ -2374,82 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:48:08",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "彼女、お借りします",
-      "mood": "heart_throb",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:48:03",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "彼女、お借りします",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:47:46",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ドメスティックな彼女",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:47:34",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "page_turner",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:47:31",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "tearjerker",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-22 14:47:26",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 567
+    "rows_before_limit_at_least": 573
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:33:38.497Z",
+  "updatedAt": "2026-02-24T15:09:19.860Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -84,12 +84,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "血の轍",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "銀魂",
       "k": "art",
       "avg": 3,
@@ -138,6 +132,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
       "k": "art",
       "avg": 2,
@@ -156,16 +156,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 5,
       "n": "3"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
       "avg": 5,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -264,6 +264,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "マギ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3,
@@ -283,7 +289,7 @@
     }
   ],
   "raw": {
-    "rows": 43,
-    "rows_before_limit_at_least": 57
+    "rows": 44,
+    "rows_before_limit_at_least": 59
   }
 }

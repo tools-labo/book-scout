@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:33:38.497Z",
+  "updatedAt": "2026-02-24T15:09:19.860Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -56,6 +56,10 @@
       "n": "3"
     },
     {
+      "seriesKey": "ReLIFE",
+      "n": "2"
+    },
+    {
       "seriesKey": "君のことが大大大大大好きな100人の彼女",
       "n": "2"
     },
@@ -68,11 +72,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "監獄学園",
       "n": "2"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "乙嫁語り",
       "n": "2"
     },
     {
@@ -88,7 +92,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "orange [オレンジ]",
       "n": "2"
     },
     {
@@ -96,11 +100,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "orange [オレンジ]",
-      "n": "2"
-    },
-    {
-      "seriesKey": "あせとせっけん",
+      "seriesKey": "マギ",
       "n": "1"
     },
     {
@@ -108,11 +108,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
       "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
-      "seriesKey": "聲の形",
+      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
@@ -128,7 +132,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "よつばと！",
+      "seriesKey": "21世紀少年",
       "n": "1"
     },
     {
@@ -148,7 +152,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "21世紀少年",
+      "seriesKey": "宝石の国",
       "n": "1"
     },
     {
@@ -164,7 +168,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "あせとせっけん",
       "n": "1"
     },
     {
@@ -308,12 +312,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "聲の形",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 74,
-    "rows_before_limit_at_least": 133
+    "rows": 75,
+    "rows_before_limit_at_least": 134
   }
 }

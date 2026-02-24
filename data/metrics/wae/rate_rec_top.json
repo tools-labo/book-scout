@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T14:33:38.497Z",
+  "updatedAt": "2026-02-24T15:09:19.860Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -20,14 +20,14 @@
   ],
   "rows": [
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "avg": 5,
       "n": "3"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "NARUTO -ナルト-",
       "avg": 5,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -85,6 +85,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "マギ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ガチアクタ",
       "avg": 3,
       "n": "1"
@@ -126,7 +131,7 @@
     }
   ],
   "raw": {
-    "rows": 21,
-    "rows_before_limit_at_least": 21
+    "rows": 22,
+    "rows_before_limit_at_least": 22
   }
 }
