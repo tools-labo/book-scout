@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T05:59:03.484Z",
+  "updatedAt": "2026-02-24T06:03:26.000Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -24,6 +24,18 @@
   ],
   "rows": [
     {
+      "seriesKey": "NARUTO -ナルト-",
+      "k": "art",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "k": "art",
+      "avg": 5,
+      "n": "1"
+    },
+    {
       "seriesKey": "ヴァニタスの手記",
       "k": "art",
       "avg": 4,
@@ -36,7 +48,31 @@
       "n": "1"
     },
     {
+      "seriesKey": "監獄学園",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ガチアクタ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アイアムアヒーロー",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -48,7 +84,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -60,7 +96,37 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "NARUTO -ナルト-",
+      "k": "rec",
+      "avg": 5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "k": "rec",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "k": "rec",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "監獄学園",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -72,9 +138,9 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
-      "avg": 3,
+      "avg": 4,
       "n": "1"
     },
     {
@@ -85,6 +151,18 @@
     },
     {
       "seriesKey": "アイアムアヒーロー",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -97,7 +175,7 @@
     }
   ],
   "raw": {
-    "rows": 12,
-    "rows_before_limit_at_least": 12
+    "rows": 25,
+    "rows_before_limit_at_least": 26
   }
 }

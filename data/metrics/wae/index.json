@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T05:59:03.484Z",
+  "updatedAt": "2026-02-24T06:03:26.000Z",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -47,7 +47,7 @@
     {
       "id": "rate_by_series_key",
       "file": "rate_by_series_key.json",
-      "rows": 12
+      "rows": 25
     },
     {
       "id": "rate_by_key",
@@ -57,12 +57,12 @@
     {
       "id": "rate_rec_top",
       "file": "rate_rec_top.json",
-      "rows": 6
+      "rows": 13
     },
     {
       "id": "rate_art_top",
       "file": "rate_art_top.json",
-      "rows": 6
+      "rows": 12
     }
   ]
 }

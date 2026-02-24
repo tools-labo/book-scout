@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-24T05:59:03.484Z",
+  "updatedAt": "2026-02-24T06:03:26.000Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -20,6 +20,21 @@
   ],
   "rows": [
     {
+      "seriesKey": "ドラゴンボール",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "監獄学園",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "ヴァニタスの手記",
       "avg": 4,
       "n": "1"
@@ -35,7 +50,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "血の轍",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "黒執事",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
       "avg": 3,
       "n": "1"
     },
@@ -51,7 +81,7 @@
     }
   ],
   "raw": {
-    "rows": 6,
-    "rows_before_limit_at_least": 6
+    "rows": 12,
+    "rows_before_limit_at_least": 12
   }
 }
