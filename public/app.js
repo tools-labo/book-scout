@@ -6,6 +6,7 @@
 // - ✅ List：author/synopsis を完全に非表示（work詳細は表示）
 // - ✅ Home：★おすすめ度/★作画クオリティのランキング棚（要素がある時だけ表示）
 // - ✅ Work：平均★（集計JSONがある時だけ表示）
+// - ✅ perf: 画像遅延(Observer) / List段階描画 / 重い計算キャッシュ
 //
 // 【分割ルール】
 // - 1/2 はこの END マーカーで必ず終わる
@@ -15,10 +16,26 @@
 
 function qs() { return new URLSearchParams(location.search); }
 
+/* =======================
+ * perf: tiny placeholder
+ * ======================= */
+const IMG_PLACEHOLDER_SRC =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
+/* =======================
+ * perf: JSON cache (same session)
+ * - bust=true のときはキャッシュしない
+ * ======================= */
+const __jsonCache = new Map(); // url -> json
 async function loadJson(url, { bust = false } = {}) {
+  if (!bust && __jsonCache.has(url)) return __jsonCache.get(url);
+
   const r = await fetch(url, { cache: bust ? "no-store" : "default" });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return await r.json();
+  const j = await r.json();
+
+  if (!bust) __jsonCache.set(url, j);
+  return j;
 }
 async function tryLoadJson(url, { bust = false } = {}) {
   try { return await loadJson(url, { bust }); } catch { return null; }
@@ -85,6 +102,59 @@ function setStatus(msg) {
 
   const l = document.getElementById("list");
   if (l) { l.innerHTML = `<div class="status">${esc(msg)}</div>`; return; }
+}
+
+/* =======================
+ * perf: Lazy images (data-src)
+ * - src は placeholder のまま
+ * - viewport 直前で data-src -> src
+ * ======================= */
+let __imgObserver = null;
+
+function ensureImgObserver() {
+  if (__imgObserver) return __imgObserver;
+
+  if (!("IntersectionObserver" in window)) {
+    __imgObserver = {
+      observe(el) {
+        try {
+          const ds = el.getAttribute("data-src") || "";
+          if (ds) el.setAttribute("src", ds);
+          el.removeAttribute("data-src");
+        } catch {}
+      },
+      unobserve() {},
+      disconnect() {},
+    };
+    return __imgObserver;
+  }
+
+  __imgObserver = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const img = e.target;
+      try {
+        const ds = img.getAttribute("data-src") || "";
+        if (ds) img.setAttribute("src", ds);
+        img.removeAttribute("data-src");
+      } catch {}
+      try { __imgObserver.unobserve(img); } catch {}
+    }
+  }, {
+    root: null,
+    rootMargin: "200px 0px",
+    threshold: 0.01,
+  });
+
+  return __imgObserver;
+}
+
+function initLazyImages(root = document) {
+  const obs = ensureImgObserver();
+  const imgs = root?.querySelectorAll?.("img[data-src]") || [];
+  for (const img of imgs) {
+    try { obs.observe(img); } catch {}
+  }
 }
 
 /* =======================
@@ -569,7 +639,11 @@ function renderCardRow({ items, limit = 18, moreHref = "" }) {
     return `
       <a class="row-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
         <div class="row-thumb">
-          ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+          ${
+            img
+              ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async">`
+              : `<div class="thumb-ph"></div>`
+          }
         </div>
         <div class="row-title">${esc(seriesKey || title)}</div>
       </a>
@@ -666,6 +740,7 @@ function renderGenreTabsRow({ items, activeId }) {
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   setGenreAllLink(active);
+  initLazyImages(row);
 
   tabs.onclick = (ev) => {
     const btn = ev.target?.closest?.("button[data-genre]");
@@ -742,6 +817,7 @@ function renderAudienceTabsRow({ items, activeAudId }) {
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   setAudienceAllLink(audValue);
+  initLazyImages(row);
 
   tabs.onclick = (ev) => {
     const btn = ev.target?.closest?.("button[data-aud]");
@@ -836,7 +912,11 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
         return `
           <a class="home-rank-item" href="./work.html?key=${key}${vq}" aria-label="${esc(title)}">
             <div class="home-rank-cover">
-              ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+              ${
+                img
+                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async">`
+                  : `<div class="thumb-ph"></div>`
+              }
               <div class="home-rank-badge">${idx + 1}位</div>
             </div>
             <div class="home-rank-name">${esc(r.seriesKey || title)}</div>
@@ -845,6 +925,8 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
       }).join("")}
     </div>
   `;
+
+  initLazyImages(root);
 }
 
 /* =======================
@@ -890,7 +972,11 @@ function renderHomeRateTop({ rootId, titleLabel = "", rows, itemsByKey, limit = 
         return `
           <a class="home-rank-item" href="./work.html?key=${key}${vq}" aria-label="${esc(title)}">
             <div class="home-rank-cover">
-              ${img ? `<img src="${esc(img)}" alt="${esc(title)}">` : `<div class="thumb-ph"></div>`}
+              ${
+                img
+                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async">`
+                  : `<div class="thumb-ph"></div>`
+              }
               <div class="home-rank-badge">${idx + 1}位</div>
             </div>
             <div class="home-rank-name">${esc(r.seriesKey || title)}</div>
@@ -899,6 +985,8 @@ function renderHomeRateTop({ rootId, titleLabel = "", rows, itemsByKey, limit = 
       }).join("")}
     </div>
   `;
+
+  initLazyImages(root);
 }
 
 /* =======================
@@ -929,6 +1017,7 @@ function formatStarAvg(v){
 
 /* =======================
  * List render（author/synopsis は出さない）
+ * - perf: 段階描画
  * ======================= */
 function renderList(items, quickDefs) {
   const root = document.getElementById("list");
@@ -1072,7 +1161,12 @@ function renderList(items, quickDefs) {
   const v = qs().get("v");
   const vq = v ? `&v=${encodeURIComponent(v)}` : "";
 
-  root.innerHTML = outItems.map((it) => {
+  // perf: 段階描画（初期を軽くする）
+  root.innerHTML = "";
+  const BATCH = 36;
+  let i = 0;
+
+  function itemHtml(it) {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
     const key = encodeURIComponent(seriesKey);
 
@@ -1093,7 +1187,7 @@ function renderList(items, quickDefs) {
           <div class="thumb">
             ${
               img
-                ? `<a href="./work.html?key=${key}${vq}" aria-label="${esc(title)}"><img src="${esc(img)}" alt="${esc(title)}"/></a>`
+                ? `<a href="./work.html?key=${key}${vq}" aria-label="${esc(title)}"><img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async"/></a>`
                 : `<div class="thumb-ph"></div>`
             }
           </div>
@@ -1113,9 +1207,23 @@ function renderList(items, quickDefs) {
         </div>
       </article>
     `;
-  }).join("");
+  }
 
-  refreshFavButtons(document);
+  function pump() {
+    const end = Math.min(outItems.length, i + BATCH);
+    let html = "";
+    for (; i < end; i++) html += itemHtml(outItems[i]);
+    root.insertAdjacentHTML("beforeend", html);
+
+    initLazyImages(root);
+    refreshFavButtons(document);
+
+    if (i < outItems.length) {
+      requestAnimationFrame(pump);
+    }
+  }
+
+  requestAnimationFrame(pump);
 }
 
 /* END PART 1 - token: A1B2 */
@@ -1131,6 +1239,7 @@ function renderList(items, quickDefs) {
 // - ✅ Home：★ランキング棚（idが存在する時だけ描画）
 //   - homeRateRec（おすすめ度） / homeRateArt（作画）
 // - ✅ Work：平均★表示（rate_by_series_key.json がある時だけ）
+// - ✅ perf: Workの重い計算(DF)をキャッシュ、画像遅延を適用
 
 /* =======================
  * Works loader (index/shard)
@@ -1339,7 +1448,11 @@ function recGridHtml(title, items){
         ${xs.map(x => `
           <a class="rec-item" href="./work.html?key=${encodeURIComponent(x.seriesKey)}" aria-label="${esc(x.title)}">
             <div class="rec-cover">
-              ${x.img ? `<img src="${esc(x.img)}" alt="${esc(x.title)}">` : `<div class="thumb-ph"></div>`}
+              ${
+                x.img
+                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async">`
+                  : `<div class="thumb-ph"></div>`
+              }
             </div>
             <div class="rec-name">${esc(x.seriesKey || x.title)}</div>
           </a>
@@ -1379,6 +1492,19 @@ function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
 
   scored.sort((a, b) => (b.v - a.v));
   return scored.slice(0, 3).map(x => x.it);
+}
+
+/* =======================
+ * perf: DF cache (work reco)
+ * ======================= */
+let __dfCache = null;
+let __dfCacheN = 0;
+function getDfCached(allItems){
+  const N = (allItems || []).length;
+  if (__dfCache && __dfCacheN === N) return __dfCache;
+  __dfCache = buildTagDf(allItems || []);
+  __dfCacheN = N;
+  return __dfCache;
 }
 
 /* =======================
@@ -1531,7 +1657,7 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
   // ---- reco ----
   const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
-  const df = buildTagDf(allForReco);
+  const df = getDfCached(allForReco);
   const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
 
   let simByVotes = [];
@@ -1571,7 +1697,11 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
     ${tagsJa.length ? `<div class="d-sub">タグ</div>${pillsAll(tagsJa)}` : ""}
 
     <div class="d-row" style="margin-top:10px;">
-      ${img ? `<img class="d-img" src="${esc(img)}" alt="${esc(title)}"/>` : ""}
+      ${
+        img
+          ? `<img class="d-img" src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async"/>`
+          : ""
+      }
       <div class="d-links">
         ${amz ? `<a class="btn" href="${esc(amz)}" target="_blank" rel="nofollow noopener">Amazon（1巻）</a>` : ""}
         ${favButtonHtml(seriesKey, "work")}
@@ -1589,6 +1719,8 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
     ${recoHtml}
   `;
+
+  initLazyImages(detail);
 
   // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
@@ -1805,6 +1937,9 @@ async function run() {
     // favorite handler
     bindFavHandlers(document);
     refreshFavButtons(document);
+
+    // 念のため（Home/List/Workに img[data-src] が残っていても拾う）
+    initLazyImages(document);
 
     setStatus("");
   } catch (e) {
