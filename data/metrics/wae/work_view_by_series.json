@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T06:15:26.408Z",
+  "updatedAt": "2026-02-25T08:00:09.548Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -137,6 +137,10 @@
     },
     {
       "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
+      "seriesKey": "サンケンロック",
       "n": "1"
     },
     {
@@ -321,7 +325,7 @@
     }
   ],
   "raw": {
-    "rows": 76,
-    "rows_before_limit_at_least": 138
+    "rows": 77,
+    "rows_before_limit_at_least": 139
   }
 }

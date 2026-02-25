@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T06:15:26.408Z",
+  "updatedAt": "2026-02-25T08:00:09.548Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -593,11 +593,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "ベルセルク",
-      "mood": "rec",
+      "mood": "art",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 4
+      "rating": 2
     },
     {
       "timestamp": "2026-02-24 14:14:40",
@@ -605,11 +605,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "ベルセルク",
-      "mood": "art",
+      "mood": "rec",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 2
+      "rating": 4
     },
     {
       "timestamp": "2026-02-24 14:14:32",
@@ -785,7 +785,7 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "ドラゴンボール",
-      "mood": "funny",
+      "mood": "hot",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -797,7 +797,7 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "ドラゴンボール",
-      "mood": "hot",
+      "mood": "funny",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -845,7 +845,7 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "東京喰種 トーキョーグール",
-      "mood": "rec",
+      "mood": "art",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -857,7 +857,7 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "東京喰種 トーキョーグール",
-      "mood": "art",
+      "mood": "rec",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -1085,11 +1085,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "血の轍",
-      "mood": "rec",
+      "mood": "art",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 4
+      "rating": 3
     },
     {
       "timestamp": "2026-02-24 06:01:58",
@@ -1097,11 +1097,11 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "血の轍",
-      "mood": "art",
+      "mood": "rec",
       "genre": "",
       "aud": "",
       "mag": "",
-      "rating": 3
+      "rating": 4
     },
     {
       "timestamp": "2026-02-24 06:01:40",
@@ -2450,6 +2450,6 @@
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 589
+    "rows_before_limit_at_least": 590
   }
 }
