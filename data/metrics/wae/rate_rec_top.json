@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T11:08:27.131Z",
+  "updatedAt": "2026-02-25T11:52:17.272Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -22,7 +22,7 @@
     {
       "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -41,8 +41,8 @@
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "avg": 4.5,
-      "n": "2"
+      "avg": 4.333333333333333,
+      "n": "3"
     },
     {
       "seriesKey": "監獄学園",
@@ -60,6 +60,16 @@
       "n": "1"
     },
     {
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "バガボンド",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "ベルセルク",
       "avg": 4,
       "n": "1"
@@ -70,32 +80,22 @@
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ディー・グレイマン",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "【推しの子】",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソウルイーター",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "マギ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ガチアクタ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "乙嫁語り",
       "avg": 3,
       "n": "1"
     },
@@ -110,7 +110,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "宝石の国",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ガチアクタ",
       "avg": 3,
       "n": "1"
     },
@@ -131,7 +146,7 @@
     }
   ],
   "raw": {
-    "rows": 22,
-    "rows_before_limit_at_least": 22
+    "rows": 25,
+    "rows_before_limit_at_least": 25
   }
 }

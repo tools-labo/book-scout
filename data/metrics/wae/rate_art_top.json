@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T11:08:27.131Z",
+  "updatedAt": "2026-02-25T11:52:17.272Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -22,7 +22,7 @@
     {
       "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -32,6 +32,16 @@
     {
       "seriesKey": "乙嫁語り",
       "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "バガボンド",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "avg": 4,
       "n": "1"
     },
     {
@@ -50,11 +60,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "監獄学園",
       "avg": 3.5,
       "n": "2"
@@ -66,16 +71,21 @@
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "avg": 3,
-      "n": "2"
+      "avg": 3.3333333333333335,
+      "n": "3"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "血の轍",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "宝石の国",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
       "avg": 3,
       "n": "1"
     },
@@ -85,12 +95,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "銀魂",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "ソウルイーター",
       "avg": 3,
       "n": "1"
     },
@@ -115,6 +125,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "マギ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
       "avg": 2,
       "n": "2"
@@ -131,7 +146,7 @@
     }
   ],
   "raw": {
-    "rows": 22,
-    "rows_before_limit_at_least": 22
+    "rows": 25,
+    "rows_before_limit_at_least": 25
   }
 }

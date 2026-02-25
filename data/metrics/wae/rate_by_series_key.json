@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T11:08:27.131Z",
+  "updatedAt": "2026-02-25T11:52:17.272Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -27,7 +27,7 @@
       "seriesKey": "ドラゴンボール",
       "k": "art",
       "avg": 5,
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -42,9 +42,9 @@
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "バガボンド",
       "k": "art",
-      "avg": 4,
+      "avg": 5,
       "n": "1"
     },
     {
@@ -66,10 +66,10 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "ディー・グレイマン",
       "k": "art",
-      "avg": 3.5,
-      "n": "2"
+      "avg": 4,
+      "n": "1"
     },
     {
       "seriesKey": "3月のライオン",
@@ -78,13 +78,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "監獄学園",
       "k": "art",
-      "avg": 3,
+      "avg": 3.5,
       "n": "2"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "ヴィンランド・サガ",
+      "k": "art",
+      "avg": 3.3333333333333335,
+      "n": "3"
+    },
+    {
+      "seriesKey": "ガチアクタ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -102,12 +108,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "東京喰種 トーキョーグール",
       "k": "art",
       "avg": 3,
@@ -115,6 +115,12 @@
     },
     {
       "seriesKey": "アイアムアヒーロー",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -126,7 +132,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "ソウルイーター",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "マギ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -144,13 +162,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "ベルセルク",
       "k": "art",
       "avg": 2,
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
       "n": "1"
@@ -159,7 +177,7 @@
       "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 5,
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -174,15 +192,21 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "3月のライオン",
       "k": "rec",
       "avg": 4.5,
       "n": "2"
     },
     {
-      "seriesKey": "3月のライオン",
+      "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
-      "avg": 4.5,
+      "avg": 4.333333333333333,
+      "n": "3"
+    },
+    {
+      "seriesKey": "キングダム",
+      "k": "rec",
+      "avg": 4,
       "n": "2"
     },
     {
@@ -192,13 +216,25 @@
       "n": "2"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 4,
-      "n": "2"
+      "n": "1"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ディー・グレイマン",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "バガボンド",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -216,43 +252,25 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ディー・グレイマン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "銀魂",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "アイアムアヒーロー",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "マギ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -264,7 +282,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -277,6 +295,24 @@
     },
     {
       "seriesKey": "ヲタクに恋は難しい",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アイアムアヒーロー",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ガチアクタ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -289,7 +325,7 @@
     }
   ],
   "raw": {
-    "rows": 44,
-    "rows_before_limit_at_least": 59
+    "rows": 50,
+    "rows_before_limit_at_least": 69
   }
 }

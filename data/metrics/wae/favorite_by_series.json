@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T11:08:27.131Z",
+  "updatedAt": "2026-02-25T11:52:17.272Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -92,6 +92,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "ソウルイーター",
+      "n": "1"
+    },
+    {
       "seriesKey": "五等分の花嫁",
       "n": "1"
     },
@@ -173,7 +177,7 @@
     }
   ],
   "raw": {
-    "rows": 39,
-    "rows_before_limit_at_least": 53
+    "rows": 40,
+    "rows_before_limit_at_least": 54
   }
 }
