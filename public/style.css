@@ -434,7 +434,7 @@ button{ font-family:inherit; }
 .syn-body{ margin-top: 8px; font-size: 12px; line-height: 1.6; color: var(--fg); white-space: pre-wrap; }
 
 /* =======================
- * Work detail（密度を上げてプロ寄せ）
+ * Work detail（メイン書影は固定サイズに戻す）
  * ======================= */
 .detail{
   background: var(--card);
@@ -457,15 +457,13 @@ button{ font-family:inherit; }
   line-height: 1.45;
 }
 
+/* ✅ “最初のサイズ感”に寄せる：スマホでも書影を横いっぱいにしない */
 .d-row{
-  display:grid;
-  grid-template-columns: 160px 1fr;
+  display:flex;
   gap: 12px;
-  align-items:start;
+  align-items:flex-start;
+  flex-wrap: wrap; /* 狭い時は下に回る */
   margin-top: 10px;
-}
-@media (max-width: 420px){
-  .d-row{ grid-template-columns: 1fr; }
 }
 
 .d-img{
@@ -475,19 +473,23 @@ button{ font-family:inherit; }
   border-radius: 10px;
   background:#fff;
   border: 1px solid var(--line);
+  display:block;
 }
+
+/* スマホでも固定。中央寄せだけする */
 @media (max-width: 420px){
-  .d-img{ width: 100%; height: auto; aspect-ratio: 3 / 4.25; }
+  .d-img{ margin: 0 auto; }
 }
 
 .d-links{
   display:flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
   min-width: 220px;
 }
 @media (max-width: 420px){
-  .d-links{ min-width: 0; }
+  .d-links{ min-width: 0; width: 100%; }
 }
 
 .d-text{
