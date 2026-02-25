@@ -1404,7 +1404,7 @@ function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
 /* =======================
  * Vote cosine reco
  * ======================= */
-const VOTE_AGG_PATH = "./data/metrics/wae/vote_by_series_mood.json";
+const VOTE_AGG_PATH = "./data/metrics/wae/vote_by_mood_series.json";
 const VOTE_MIN_TOTAL = 5;
 
 function buildVoteMatrix(voteRows) {
