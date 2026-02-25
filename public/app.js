@@ -2052,13 +2052,10 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSe
     }
   } catch {}
 
-  // avg stars (only when opened)
+    // avg stars：avgStarsBox があれば必ず埋める（“読み込み中…”で固まるのを防ぐ）
   try{
-    const hasStarVoted = !!(getRatedValue(seriesKey, "rec") || getRatedValue(seriesKey, "art"));
-    if (hasStarVoted) {
-      const avgBox = document.getElementById("avgStarsBox");
-      if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
-    }
+    const avgBox = document.getElementById("avgStarsBox");
+    if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
   } catch {}
 
   // reco blocks (tags / popular)
