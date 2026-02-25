@@ -1240,6 +1240,8 @@ function renderList(items, quickDefs) {
 //   - homeRateRec（おすすめ度） / homeRateArt（作画）
 // - ✅ Work：平均★表示（rate_by_series_key.json がある時だけ）
 // - ✅ perf: Workの重い計算(DF)をキャッシュ、画像遅延を適用
+// - ✅ Work：投票後に「マスク解除」（平均★/みんなの読後感/同じ読後感の作品）
+// - ✅ Work：解除状態は端末内で保持（投票を外しても戻らない）
 
 /* =======================
  * Works loader (index/shard)
@@ -1566,6 +1568,60 @@ function applyStarsUi(wrapEl, selected){
 }
 
 /* =======================
+ * Work unlock state（投票報酬のマスク解除）
+ * ======================= */
+const WORK_UNLOCK_PREFIX = "work_unlock:v1:";
+function unlockKey(seriesKey){ return `${WORK_UNLOCK_PREFIX}${toText(seriesKey)}`; }
+function isWorkUnlocked(seriesKey){
+  const sk = toText(seriesKey);
+  if (!sk) return false;
+
+  // 既に★評価した端末は常に解除扱い
+  if (getRatedValue(sk, "rec") || getRatedValue(sk, "art")) return true;
+
+  // 投票選択が残っていれば解除
+  const voted = getVotedSet(sk);
+  if (voted?.size) return true;
+
+  // 端末内フラグ
+  try { return localStorage.getItem(unlockKey(sk)) === "1"; } catch { return false; }
+}
+function setWorkUnlocked(seriesKey){
+  const sk = toText(seriesKey);
+  if (!sk) return;
+  try { localStorage.setItem(unlockKey(sk), "1"); } catch {}
+}
+
+/* =======================
+ * Work: みんなの読後感（TOP3）
+ * - voteMatrix があれば seriesKey の mood 分布から作る
+ * ======================= */
+function topMoodsHtml({ seriesKey, voteMatrix, max = 3 }){
+  const sk = toText(seriesKey);
+  if (!sk || !voteMatrix?.bySeries?.size) return "";
+
+  const m = voteMatrix.bySeries.get(sk);
+  if (!m) return "";
+
+  const rows = Array.from(m.entries())
+    .map(([mood, n]) => ({ mood: toText(mood), n: Number(n || 0) }))
+    .filter(x => x.mood && Number.isFinite(x.n) && x.n > 0)
+    .sort((a, b) => (b.n - a.n))
+    .slice(0, max);
+
+  if (!rows.length) return "";
+  const total = rows.reduce((s, r) => s + r.n, 0);
+
+  return `
+    <div class="d-sub" style="margin-top:8px;">みんなの読後感（上位）</div>
+    <div class="pills">
+      ${rows.map(r => `<span class="pill">${esc(r.mood)} <span style="opacity:.7;">(${r.n})</span></span>`).join("")}
+    </div>
+    <div class="d-sub" style="opacity:.75;">※上位のみ表示</div>
+  `;
+}
+
+/* =======================
  * Work render（author/あらすじは表示）
  * ======================= */
 async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSeriesMap } = {}) {
@@ -1598,6 +1654,9 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
 
+  // ---- unlock state ----
+  const unlocked = isWorkUnlocked(seriesKey);
+
   // ---- vote box ----
   const defs = Array.isArray(quickDefs) ? quickDefs : [];
   const voted = getVotedSet(seriesKey);
@@ -1606,9 +1665,11 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
     ? `
       <div class="vote-box">
         <div class="vote-head">
-          <h3 class="vote-title">読後感はどれ？</h3>
+          <h3 class="vote-title">投票で育つ：この作品の「読後感」</h3>
         </div>
-        <p class="vote-note">当てはまるものをタップして投票（最大2つ）。</p>
+        <p class="vote-note">
+          1タップ投票（最大2つ）。集まった投票はランキング・関連作品に反映されます。
+        </p>
         <div class="pills" id="votePills">
           ${defs.map(d => {
             const on = voted.has(d.id);
@@ -1628,16 +1689,17 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   const recVal = getRatedValue(seriesKey, "rec");
   const artVal = getRatedValue(seriesKey, "art");
 
-  // 平均★（集計がある時だけ）
-  let avgLine = "";
-  if (rateSeriesMap?.size && rateSeriesMap.has(seriesKey)) {
+  // ---- 平均★（集計がある時だけ）----
+  function avgStarsHtml(){
+    if (!rateSeriesMap?.size || !rateSeriesMap.has(seriesKey)) return "";
     const rec = rateSeriesMap.get(seriesKey)?.rec;
     const art = rateSeriesMap.get(seriesKey)?.art;
 
     const recTxt = rec?.avg ? `おすすめ度: ★${formatStarAvg(rec.avg)} <span style="opacity:.7;">(n=${Number(rec.n || 0)})</span>` : "";
     const artTxt = art?.avg ? `作画: ★${formatStarAvg(art.avg)} <span style="opacity:.7;">(n=${Number(art.n || 0)})</span>` : "";
     const join = [recTxt, artTxt].filter(Boolean).join(" / ");
-    if (join) avgLine = `<div class="d-sub" style="margin-top:6px;">平均: ${join}</div>`;
+    if (!join) return "";
+    return `<div class="d-sub" style="margin-top:6px;">平均: ${join}</div>`;
   }
 
   const rateBox = `
@@ -1646,7 +1708,15 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
         <h3 class="vote-title">評価</h3>
       </div>
       <p class="vote-note">★を選んで投票（各項目1回）。</p>
-      ${avgLine}
+
+      <div id="avgStarsLocked" style="${unlocked ? "display:none;" : ""}">
+        <div class="d-sub" style="margin-top:6px;">
+          <span style="opacity:.8;">🔒 平均★は投票後に表示</span>
+        </div>
+      </div>
+      <div id="avgStarsUnlocked" style="${unlocked ? "" : "display:none;"}">
+        ${avgStarsHtml()}
+      </div>
 
       ${starsHtml({ idPrefix: "rec", label: "おすすめ度", selected: recVal })}
       ${starsHtml({ idPrefix: "art", label: "作画クオリティ", selected: artVal })}
@@ -1681,8 +1751,49 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   const recoHtml = `
     <div class="rec-wrap">
       ${recGridHtml("似ている作品", simByTags)}
-      ${recGridHtml("同じ読後感の作品", simByVotes)}
+
+      <div id="moodRecoLocked" style="${unlocked ? "display:none;" : ""}">
+        <div class="rec-block">
+          <div class="rec-head"><div class="rec-title">🔒 同じ読後感の作品</div></div>
+          <div class="d-sub" style="opacity:.8;">
+            投票すると「みんなの読後感」や「同じ読後感の作品」が見られます。
+          </div>
+        </div>
+      </div>
+      <div id="moodRecoUnlocked" style="${unlocked ? "" : "display:none;"}">
+        ${recGridHtml("同じ読後感の作品", simByVotes)}
+      </div>
+
       ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
+    </div>
+  `;
+
+  // ---- “報酬カード”（投票で解除される中身の予告）----
+  const rewardTeaser = `
+    <div class="vote-box" style="margin-top:12px;">
+      <div class="vote-head">
+        <h3 class="vote-title">投票すると見えるもの</h3>
+      </div>
+      <div class="d-sub" style="opacity:.85; line-height:1.6;">
+        🔒 平均★ / みんなの読後感 / 同じ読後感の作品
+      </div>
+      <div class="d-sub" style="opacity:.7;">※一度投票（または★評価）すると、この端末では以後表示されます</div>
+    </div>
+  `;
+
+  // ---- みんなの読後感（解除後）----
+  const moodsUnlockedHtml = topMoodsHtml({ seriesKey, voteMatrix, max: 3 });
+  const moodsBlock = `
+    <div class="vote-box" style="margin-top:12px;">
+      <div class="vote-head">
+        <h3 class="vote-title">みんなの読後感</h3>
+      </div>
+      <div id="moodsLocked" style="${unlocked ? "display:none;" : ""}">
+        <div class="d-sub" style="opacity:.8;">🔒 投票すると表示</div>
+      </div>
+      <div id="moodsUnlocked" style="${unlocked ? "" : "display:none;"}">
+        ${moodsUnlockedHtml || `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`}
+      </div>
     </div>
   `;
 
@@ -1715,6 +1826,10 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
     ${voteBox}
 
+    ${!unlocked ? rewardTeaser : ""}
+
+    ${moodsBlock}
+
     ${rateBox}
 
     ${recoHtml}
@@ -1724,6 +1839,25 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
   // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
+
+  function applyUnlockUi() {
+    // localStorageに解除フラグ
+    setWorkUnlocked(seriesKey);
+
+    const ids = [
+      ["avgStarsLocked", false],
+      ["avgStarsUnlocked", true],
+      ["moodsLocked", false],
+      ["moodsUnlocked", true],
+      ["moodRecoLocked", false],
+      ["moodRecoUnlocked", true],
+    ];
+    for (const [id, show] of ids) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      el.style.display = show ? "" : "none";
+    }
+  }
 
   // vote：最大2 + 選択状態保持、送信はvoteOnceで抑止
   const vp = document.getElementById("votePills");
@@ -1760,8 +1894,12 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
       btn.setAttribute("aria-pressed", "true");
 
       const sent = trackVoteOnce(seriesKey, mood);
+
+      // ✅ 投票した瞬間に解除（報酬）
+      applyUnlockUi();
+
       if (st) {
-        st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
+        st.textContent = sent ? "投票しました（マスク解除！）" : "投票済み（しばらくしてから）";
         setTimeout(() => { if (st) st.textContent = ""; }, 1400);
       }
     };
@@ -1793,6 +1931,9 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
         applyStarsUi(w, n);
       }
 
+      // ✅ ★評価でも解除（投票と同等の貢献）
+      applyUnlockUi();
+
       // 送信は 24h で1回だけ（同一seriesKey/k/value）
       const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
       if (canSendOnce(onceKey)) {
@@ -1803,7 +1944,7 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
         const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
         rateStatus.textContent = already
           ? `${label} は投票済み（再送信）`
-          : `${label} を投票しました`;
+          : `${label} を投票しました（マスク解除！）`;
         setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
       }
     }, { passive: true });
