@@ -11,12 +11,23 @@
   --pink:#ff69b4;
   --pink-weak: rgba(255,105,180,0.14);
 
+  /* Professional UI tokens */
+  --radius-lg: 14px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+
+  --shadow-1: 0 6px 18px rgba(17,24,39,.06);
+  --shadow-2: 0 10px 30px rgba(17,24,39,.08);
+
+  --focus: 0 0 0 3px rgba(43,97,255,.16);
+
   /* Cover size (list/rank) : BOOK☆WALKER寄せで大きめ */
   --cover-w: 118px;
   --cover-h: 168px;
 }
 
 *{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust: 100%; }
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", sans-serif;
@@ -25,6 +36,14 @@ body{
 }
 a{ color:inherit; text-decoration:none; }
 button{ font-family:inherit; }
+:where(a, button){ -webkit-tap-highlight-color: transparent; }
+
+:where(button):focus-visible,
+:where(a):focus-visible{
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 12px;
+}
 
 /* 余白を詰めて横幅を活かす */
 .wrap{ max-width:980px; margin:0 auto; padding: 12px; }
@@ -32,13 +51,16 @@ button{ font-family:inherit; }
 
 /* Buttons */
 .btn{
-  display:inline-block;
-  padding: 10px 12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 11px 12px;
   background: var(--blue);
   color:#fff;
   border-radius: 12px;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 900;
+  letter-spacing: .01em;
 }
 .btn:active{ transform: translateY(1px); }
 .btn.pink{ background: var(--pink); }
@@ -47,13 +69,13 @@ button{ font-family:inherit; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding: 9px 10px;
+  padding: 10px 10px;
   border-radius: 12px;
   border: 1px solid var(--line);
   background: #fff;
   color: var(--fg);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
 }
 .btn-ghost:active{ transform: translateY(1px); }
 
@@ -237,7 +259,7 @@ button{ font-family:inherit; }
 .row-thumb{
   width: 84px;
   height: 116px;
-  border-radius: 0;
+  border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: #fff;
@@ -283,7 +305,7 @@ button{ font-family:inherit; }
   overflow: visible;
 }
 
-/* ===== perf: 画面外の描画をブラウザに任せる（対応ブラウザで効く） ===== */
+/* perf: 画面外の描画をブラウザに任せる */
 @supports (content-visibility: auto){
   .card, .rank-item{
     content-visibility: auto;
@@ -305,7 +327,7 @@ button{ font-family:inherit; }
   border-bottom: 1px solid var(--line);
 }
 
-/* 末尾だけ線を消す（JS変更不要） */
+/* 末尾だけ線を消す */
 .grid > .card:last-child .card-row{ border-bottom: 0; }
 .rank-grid > .rank-item:last-child .rank-row{ border-bottom: 0; }
 
@@ -314,7 +336,7 @@ button{ font-family:inherit; }
   width: var(--cover-w);
   height: var(--cover-h);
   object-fit: contain;
-  border-radius: 0;
+  border-radius: 10px;
   display:block;
   background: #fff;
   border: 1px solid var(--line);
@@ -324,7 +346,7 @@ button{ font-family:inherit; }
   height:var(--cover-h);
   background:#f3f4f6;
   border: 1px solid var(--line);
-  border-radius:0;
+  border-radius:10px;
 }
 
 .rank-cover{
@@ -332,7 +354,7 @@ button{ font-family:inherit; }
   height: var(--cover-h);
   background:#fff;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 10px;
   overflow:hidden;
 }
 .rank-cover img{
@@ -362,21 +384,24 @@ button{ font-family:inherit; }
   line-height: 1.35;
 }
 
-/* tags */
+/* =======================
+ * Pills / chips（企業UI寄せ）
+ * ======================= */
 .pills{ display:flex; flex-wrap:wrap; gap: 6px; margin: 6px 0 0; }
 .pill{
-  background: var(--chip);
+  background: #fff;
   border: 1px solid var(--line);
   color: var(--fg);
-  font-size: 11px;
-  padding: 5px 9px;
-  border-radius: 8px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+  cursor: pointer;
 }
 .pill:active{ transform: translateY(1px); }
 .pill.is-on{
-  border-color: rgba(43,97,255,0.45);
+  border-color: rgba(43,97,255,0.50);
   background: var(--blue-weak);
 }
 
@@ -409,33 +434,76 @@ button{ font-family:inherit; }
 .syn-body{ margin-top: 8px; font-size: 12px; line-height: 1.6; color: var(--fg); white-space: pre-wrap; }
 
 /* =======================
- * Work detail
+ * Work detail（密度を上げてプロ寄せ）
  * ======================= */
 .detail{
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 14px;
+  box-shadow: var(--shadow-1);
 }
-.d-title{ font-size: 22px; font-weight: 1000; margin-bottom: 8px; letter-spacing: -0.02em; }
-.d-sub{ color: var(--muted); font-size: 12px; margin-bottom: 10px; line-height: 1.4; }
-.d-row{ display:flex; gap: 12px; align-items:flex-start; flex-wrap: wrap; }
+
+.d-title{
+  font-size: 22px;
+  font-weight: 1000;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.d-sub{
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 8px;
+  line-height: 1.45;
+}
+
+.d-row{
+  display:grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items:start;
+  margin-top: 10px;
+}
+@media (max-width: 420px){
+  .d-row{ grid-template-columns: 1fr; }
+}
+
 .d-img{
   width: 160px;
   height: 228px;
   object-fit: contain;
-  border-radius: 0;
+  border-radius: 10px;
   background:#fff;
   border: 1px solid var(--line);
 }
-.d-links{ display:flex; flex-direction: column; gap: 8px; flex: 1; min-width: 220px; }
-.d-text{ font-size: 14px; line-height: 1.75; color: var(--fg); white-space: pre-wrap; }
+@media (max-width: 420px){
+  .d-img{ width: 100%; height: auto; aspect-ratio: 3 / 4.25; }
+}
 
-/* Vote box */
+.d-links{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+}
+@media (max-width: 420px){
+  .d-links{ min-width: 0; }
+}
+
+.d-text{
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--fg);
+  white-space: pre-wrap;
+}
+
+/* =======================
+ * Vote / Rating cards（企業カード）
+ * ======================= */
 .vote-box{
-  margin-top: 14px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  margin-top: 12px;
+  border: 1px solid rgba(17,24,39,.10);
+  border-radius: var(--radius-lg);
   padding: 12px;
   background: #fff;
 }
@@ -446,9 +514,42 @@ button{ font-family:inherit; }
   gap: 10px;
   margin-bottom: 6px;
 }
-.vote-title{ font-size: 14px; font-weight: 1000; margin:0; }
-.vote-note{ font-size: 12px; color: var(--muted); margin:0; }
-.vote-status{ margin-top:8px; font-size: 12px; color: var(--muted); min-height: 1.2em; }
+.vote-title{
+  font-size: 13px;
+  font-weight: 1000;
+  margin:0;
+  letter-spacing: -0.01em;
+}
+.vote-note{
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.55;
+}
+.vote-status{
+  margin-top:8px;
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+/* 投票枠内の“報酬”カード（JSが inline style で出しても破綻しないように補助） */
+#voteReward{
+  border: 1px solid rgba(17,24,39,.08) !important;
+  background: rgba(17,24,39,.02) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+/* Star buttons（見た目を統一） */
+.star-btn{
+  border: 1px solid rgba(17,24,39,.12);
+  background:#fff;
+  border-radius: 12px;
+}
+.star-btn.is-on{
+  border-color: rgba(43,97,255,.50);
+  background: var(--blue-weak);
+}
 
 /* Favorite button */
 .fav-btn{
@@ -568,26 +669,21 @@ button{ font-family:inherit; }
 .rank-more button[disabled]{ opacity:.5; cursor:not-allowed; }
 
 /* =======================
- * Work：recommend blocks（3列グリッド）
+ * Work：recommend blocks（見た目を締める）
  * ======================= */
 .rec-wrap{
-  margin-top: 16px;
+  margin-top: 14px;
   padding-top: 2px;
 }
-
-.rec-block{
-  margin-top: 14px;
-}
-
+.rec-block{ margin-top: 14px; }
 .rec-head{
   display:flex;
   align-items: baseline;
   justify-content: space-between;
   margin: 0 0 8px;
 }
-
 .rec-title{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 1000;
   letter-spacing: -0.01em;
 }
@@ -599,26 +695,23 @@ button{ font-family:inherit; }
   gap: 10px;
 }
 
-.rec-item{
-  display: block;
-}
+.rec-item{ display: block; }
 
 /* 書影 */
 .rec-cover{
   width: 100%;
   aspect-ratio: 3 / 4.25;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(17,24,39,.10);
   background: #fff;
   overflow: hidden;
+  border-radius: 10px;
 }
-
 .rec-cover img{
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
 }
-
 .rec-name{
   margin-top: 6px;
   font-size: 12px;
@@ -630,7 +723,7 @@ button{ font-family:inherit; }
   overflow: hidden;
 }
 
-/* 画面が極端に狭い時だけ2列に落とす（崩れ防止） */
+/* 画面が極端に狭い時だけ2列に落とす */
 @media (max-width: 340px){
   .rec-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -647,10 +740,11 @@ button{ font-family:inherit; }
 .home-rank-cover{
   width:100%;
   aspect-ratio: 3 / 4.25;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(17,24,39,.10);
   background:#fff;
   overflow:hidden;
   position: relative;
+  border-radius: 10px;
 }
 .home-rank-cover img{
   width:100%;
@@ -668,7 +762,7 @@ button{ font-family:inherit; }
   height: 22px;
   padding: 0 10px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(17,24,39,.10);
   background: rgba(255,255,255,0.92);
   font-weight: 1000;
   font-size: 12px;
@@ -696,8 +790,9 @@ button{ font-family:inherit; }
   margin: 10px 0 18px;
   padding: 12px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   background: #fff;
+  box-shadow: var(--shadow-1);
 }
 .hero-inner{
   display:flex;
