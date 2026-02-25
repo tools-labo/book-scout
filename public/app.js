@@ -1230,8 +1230,6 @@ function renderList(items, quickDefs) {
 
 /* START PART 2 - token: A1B2 */
 
-/* START PART 2 - token: A1B2 */
-
 // public/app.js（2/2）FULL REPLACE
 // - Work：2段階描画（先に表示→あとで埋める）で体感速度UP（プライベート対策）
 // - Work：読後感投票の“報酬”を投票枠内に集約（みんなの読後感 / 同じ読後感の作品）
@@ -1240,6 +1238,7 @@ function renderList(items, quickDefs) {
 // - 解除は最初の1回だけ扱い
 // - ✅ recMiniRow の書影を object-fit: contain に統一（CSS側で制御）
 // - ✅ 評価：平均を右カラム表示（n非表示 / 少数票は—）
+// - ✅ バグ修正：★押下で「読み込み中…」が残らない（avgStarsBox を即時再描画）
 
 /* =======================
  * Works loader (index/shard)
@@ -1767,7 +1766,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
   const key = qs().get("key");
   if (!key) return null;
 
-  // まず最小のローディング骨組み（0.2秒以内の“反応”）
+  // 最小の骨組み（体感反応）
   detail.innerHTML = `
     <div class="d-title">読み込み中…</div>
     <div class="d-sub">作品情報を読み込んでいます</div>
@@ -1869,7 +1868,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
     </div>
   `;
 
-  // reco（後で埋める）
   const recoHtml = `
     <div class="rec-wrap">
       <div id="recoTagsBlock" class="d-sub" style="opacity:.8;">おすすめを読み込み中…</div>
@@ -1913,7 +1911,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
   // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  // vote：最大2 + 選択状態保持、送信はvoteOnceで抑止
   function showVoteRewardIfNeeded({ newly }){
     const locked = document.getElementById("voteRewardLocked");
     const unlockedEl = document.getElementById("voteRewardUnlocked");
@@ -1923,6 +1920,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
     else showToast("投票ありがとう！");
   }
 
+  // vote handlers
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1963,7 +1961,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
       const newly = setUnlocked(seriesKey);
       showVoteRewardIfNeeded({ newly });
 
-      // unlocked側がまだ “読み込み中…” でもOK（後で埋まる）
       if (st) {
         st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
         setTimeout(() => { if (st) st.textContent = ""; }, 900);
@@ -1971,7 +1968,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
     };
   }
 
-  // ratings：各項目1回（端末内で固定）
+  // ratings handlers（ここでは平均は“開くだけ”。中身は Phase2 で埋める／クリックでも埋める）
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
@@ -1999,6 +1996,12 @@ async function renderWorkPhase1(worksState, quickDefs) {
       const unlockedEl = document.getElementById("avgStarsUnlocked");
       if (locked) locked.style.display = "none";
       if (unlockedEl) unlockedEl.style.display = "";
+
+      // ✅ バグ修正：平均枠を“その場で”埋める（読み込み中のまま残らない）
+      try {
+        const avgBox = document.getElementById("avgStarsBox");
+        if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, window.__rateSeriesMap || rateSeriesMap || new Map());
+      } catch {}
 
       const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
       if (canSendOnce(onceKey)) {
@@ -2052,7 +2055,7 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSe
     }
   } catch {}
 
-    // avg stars：avgStarsBox があれば必ず埋める（“読み込み中…”で固まるのを防ぐ）
+  // avg stars：avgStarsBox があれば必ず埋める（“読み込み中…”で固まるのを防ぐ）
   try{
     const avgBox = document.getElementById("avgStarsBox");
     if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
@@ -2074,7 +2077,6 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSe
     }
   } catch {}
 
-  // lazy images after hydrate
   initLazyImages(document);
   refreshFavButtons(document);
 }
@@ -2111,11 +2113,7 @@ async function run() {
       workCtx = await renderWorkPhase1(worksState, quickDefs);
     }
 
-    // metrics は “workなら並列で後から埋める” / それ以外は従来どおり
-    let viewsMap = new Map();
-    let voteMatrix = null;
-    let rateSeriesMap = new Map();
-
+    // metrics を並列取得
     const pViews = (async () => {
       try {
         const viewUrl = v
@@ -2144,12 +2142,13 @@ async function run() {
       } catch { return new Map(); }
     })();
 
-    // Workページ：Phase2（待てるものだけ待って埋める）
+    // Workページ：Phase2
     if (isWorkPage && workCtx) {
-      // 票・平均は早く欲しいので先に待つ
-      [voteMatrix, rateSeriesMap] = await Promise.all([pVote, pRateSeries]);
-      // views は遅れてもいい
-      viewsMap = await pViews;
+      const [voteMatrix, rateSeriesMap] = await Promise.all([pVote, pRateSeries]);
+      const viewsMap = await pViews;
+
+      // ★クリック時にも使えるように保存（renderWorkPhase1 内の保険）
+      try { window.__rateSeriesMap = rateSeriesMap; } catch {}
 
       hydrateWorkExtras({
         it: workCtx.it,
@@ -2161,7 +2160,6 @@ async function run() {
         viewsMap,
       });
 
-      // 共通処理
       patchAmazonAnchors(document);
       bindFavHandlers(document);
       refreshFavButtons(document);
@@ -2171,11 +2169,9 @@ async function run() {
     }
 
     // ---- ここから従来フロー（Home/List/Stats） ----
-    // work_view map
-    viewsMap = await pViews;
-
-    // vote matrix
-    voteMatrix = await pVote;
+    const viewsMap = await pViews;
+    const voteMatrix = await pVote;
+    const rateSeriesMap = await pRateSeries;
 
     // rate aggregates（Home用）
     let rateRecTop = [];
@@ -2189,8 +2185,6 @@ async function run() {
       const artJson = await tryLoadJson(withV(METRIC_RATE_ART_TOP_PATH), { bust });
       rateArtTop = normalizeRateTopRows(artJson);
     } catch { rateArtTop = []; }
-
-    rateSeriesMap = await pRateSeries;
 
     const itemsByKey = new Map();
     for (const it of (worksState.listItems || [])) {
