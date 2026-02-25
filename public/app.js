@@ -1491,35 +1491,17 @@ function recMiniRowHtml(items){
   if (!xs.length) return `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`;
 
   return `
-    <div style="display:flex; gap:10px; overflow:auto; padding: 8px 2px 2px;">
+    <div class="mini-row">
       ${xs.map(x => `
-        <a href="./work.html?key=${encodeURIComponent(x.seriesKey)}"
-           style="min-width:110px; text-decoration:none; color:inherit;">
-          <div style="
-            border:1px solid rgba(17,24,39,.10);
-            border-radius: 12px;
-            overflow:hidden;
-            background:#fff;
-          ">
-            <div style="
-              width:100%;
-              aspect-ratio: 3/4.25;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              background:#fff;
-            ">
-              ${
-                x.img
-                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async"
-                      style="width:100%; height:100%; object-fit:contain; display:block;">`
-                  : `<div class="thumb-ph" style="width:100%; height:100%;"></div>`
-              }
-            </div>
-            <div style="font-size:12px; padding:8px; line-height:1.35;">
-              ${esc(x.seriesKey || x.title)}
-            </div>
+        <a class="mini-card" href="./work.html?key=${encodeURIComponent(x.seriesKey)}">
+          <div class="mini-cover">
+            ${
+              x.img
+                ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async">`
+                : `<div class="thumb-ph"></div>`
+            }
           </div>
+          <div class="mini-title">${esc(x.seriesKey || x.title)}</div>
         </a>
       `).join("")}
     </div>
