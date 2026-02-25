@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T18:14:18.451Z",
+  "updatedAt": "2026-02-25T19:20:20.744Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -148,6 +148,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "サンケンロック",
+      "n": "1"
+    },
+    {
       "seriesKey": "ブルーピリオド",
       "n": "1"
     },
@@ -224,11 +228,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "やがて君になる",
       "n": "1"
     },
     {
-      "seriesKey": "やがて君になる",
+      "seriesKey": "葬送のフリーレン",
       "n": "1"
     },
     {
@@ -361,7 +365,7 @@
     }
   ],
   "raw": {
-    "rows": 86,
-    "rows_before_limit_at_least": 189
+    "rows": 87,
+    "rows_before_limit_at_least": 190
   }
 }
