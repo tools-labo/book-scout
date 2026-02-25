@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T13:42:42.237Z",
+  "updatedAt": "2026-02-25T14:31:29.590Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -27,7 +27,7 @@
       "seriesKey": "ドラゴンボール",
       "k": "art",
       "avg": 5,
-      "n": "4"
+      "n": "9"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -36,19 +36,19 @@
       "n": "3"
     },
     {
-      "seriesKey": "乙嫁語り",
-      "k": "art",
-      "avg": 5,
-      "n": "1"
-    },
-    {
       "seriesKey": "バガボンド",
       "k": "art",
       "avg": 5,
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "乙嫁語り",
+      "k": "art",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴァニタスの手記",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -60,7 +60,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "ディー・グレイマン",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -102,91 +102,19 @@
       "n": "2"
     },
     {
+      "seriesKey": "ガチアクタ",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "k": "art",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "血の轍",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "20世紀少年",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヲタクに恋は難しい",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "宝石の国",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "からかい上手の高木さん",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ガチアクタ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "銀魂",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京喰種 トーキョーグール",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソウルイーター",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -198,19 +126,97 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "20世紀少年",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "ヲタクに恋は難しい",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "約束のネバーランド",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "トモちゃんは女の子!",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "マギ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ReLIFE",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソウルイーター",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "不滅のあなたへ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -228,6 +234,12 @@
       "n": "2"
     },
     {
+      "seriesKey": "チェンソーマン",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
@@ -240,25 +252,25 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドラゴンボール",
+      "k": "rec",
+      "avg": 5,
+      "n": "10"
+    },
+    {
       "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
       "avg": 5,
       "n": "4"
     },
     {
-      "seriesKey": "ドラゴンボール",
-      "k": "rec",
-      "avg": 5,
-      "n": "4"
-    },
-    {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "葬送のフリーレン",
       "k": "rec",
       "avg": 5,
       "n": "1"
     },
     {
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "幽☆遊☆白書",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -276,22 +288,16 @@
       "n": "4"
     },
     {
-      "seriesKey": "【推しの子】",
-      "k": "rec",
-      "avg": 4,
-      "n": "3"
-    },
-    {
       "seriesKey": "監獄学園",
       "k": "rec",
       "avg": 4,
       "n": "3"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "ベルセルク",
@@ -300,31 +306,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "ソウルイーター",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "血の轍",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ディー・グレイマン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "チェンソーマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -336,13 +324,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "銀魂",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -354,43 +336,67 @@
       "n": "1"
     },
     {
+      "seriesKey": "ソウルイーター",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ディー・グレイマン",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "k": "rec",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "不滅のあなたへ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ガチアクタ",
       "k": "rec",
       "avg": 3,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
+      "seriesKey": "宝石の国",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "20世紀少年",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -402,19 +408,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -426,13 +426,43 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
+      "seriesKey": "約束のネバーランド",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "乙嫁語り",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ReLIFE",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "20世紀少年",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "トモちゃんは女の子!",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "不滅のあなたへ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "マギ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -451,7 +481,7 @@
     }
   ],
   "raw": {
-    "rows": 71,
-    "rows_before_limit_at_least": 108
+    "rows": 76,
+    "rows_before_limit_at_least": 126
   }
 }

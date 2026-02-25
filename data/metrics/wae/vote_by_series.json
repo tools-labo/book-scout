@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T13:42:42.237Z",
+  "updatedAt": "2026-02-25T14:31:29.590Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -40,7 +40,7 @@
       "n": "4"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ReLIFE",
       "n": "3"
     },
     {
@@ -60,7 +60,11 @@
       "n": "3"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "タコピーの原罪",
+      "n": "3"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "3"
     },
     {
@@ -92,19 +96,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "やがて君になる",
-      "n": "1"
-    },
-    {
-      "seriesKey": "タコピーの原罪",
-      "n": "1"
-    },
-    {
-      "seriesKey": "なまいきざかり。",
-      "n": "1"
-    },
-    {
       "seriesKey": "ぼくは麻理のなか",
+      "n": "1"
+    },
+    {
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
@@ -124,15 +124,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "なまいきざかり。",
+      "n": "1"
+    },
+    {
       "seriesKey": "ザ・ファブル",
       "n": "1"
     },
     {
       "seriesKey": "乙嫁語り",
-      "n": "1"
-    },
-    {
-      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -148,7 +148,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -168,7 +168,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "seriesKey": "やがて君になる",
       "n": "1"
     },
     {
@@ -176,7 +176,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "聲の形",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
@@ -202,6 +202,6 @@
   ],
   "raw": {
     "rows": 46,
-    "rows_before_limit_at_least": 104
+    "rows_before_limit_at_least": 106
   }
 }

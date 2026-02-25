@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T13:42:42.237Z",
+  "updatedAt": "2026-02-25T14:31:29.590Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -20,12 +20,12 @@
   ],
   "rows": [
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "4"
+      "n": "10"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "NARUTO -ナルト-",
       "avg": 5,
       "n": "4"
     },
@@ -115,6 +115,21 @@
       "n": "1"
     },
     {
+      "seriesKey": "チェンソーマン",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ガチアクタ",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "avg": 3,
       "n": "2"
@@ -131,6 +146,11 @@
     },
     {
       "seriesKey": "ヴァニタスの手記",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "約束のネバーランド",
       "avg": 3,
       "n": "1"
     },
@@ -165,11 +185,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ReLIFE",
       "avg": 3,
       "n": "1"
@@ -196,7 +211,7 @@
     }
   ],
   "raw": {
-    "rows": 35,
-    "rows_before_limit_at_least": 35
+    "rows": 38,
+    "rows_before_limit_at_least": 38
   }
 }
