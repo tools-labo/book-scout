@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T11:52:17.272Z",
+  "updatedAt": "2026-02-25T12:17:13.945Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -20,14 +20,14 @@
   ],
   "rows": [
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "NARUTO -ナルト-",
       "avg": 5,
       "n": "4"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "avg": 5,
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -35,9 +35,9 @@
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
-      "avg": 4.5,
-      "n": "2"
+      "seriesKey": "葬送のフリーレン",
+      "avg": 5,
+      "n": "1"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
@@ -45,9 +45,14 @@
       "n": "3"
     },
     {
+      "seriesKey": "3月のライオン",
+      "avg": 4.333333333333333,
+      "n": "3"
+    },
+    {
       "seriesKey": "監獄学園",
       "avg": 4,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "キングダム",
@@ -55,12 +60,22 @@
       "n": "2"
     },
     {
+      "seriesKey": "【推しの子】",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "銀魂",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "からかい上手の高木さん",
       "avg": 4,
       "n": "1"
     },
@@ -75,17 +90,17 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドロヘドロ",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "血の轍",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "ディー・グレイマン",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "【推しの子】",
       "avg": 4,
       "n": "1"
     },
@@ -100,7 +115,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "不滅のあなたへ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ヴァニタスの手記",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "政宗くんのリベンジ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "1"
     },
@@ -120,12 +150,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "ガチアクタ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "ReLIFE",
       "avg": 3,
       "n": "1"
     },
@@ -146,7 +186,7 @@
     }
   ],
   "raw": {
-    "rows": 25,
-    "rows_before_limit_at_least": 25
+    "rows": 33,
+    "rows_before_limit_at_least": 33
   }
 }
