@@ -878,3 +878,9 @@ button{ font-family:inherit; }
     width: 100%;
   }
 }
+
+/* Work rating avg: compact */
+.star-btn.is-on{
+  border-color: rgba(43,97,255,0.50);
+  background: var(--blue-weak);
+}
