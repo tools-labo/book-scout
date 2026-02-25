@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T14:31:29.590Z",
+  "updatedAt": "2026-02-25T15:09:35.923Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -17,7 +17,7 @@
   "rows": [
     {
       "seriesKey": "ドラゴンボール",
-      "n": "10"
+      "n": "12"
     },
     {
       "seriesKey": "3月のライオン",
@@ -186,6 +186,6 @@
   ],
   "raw": {
     "rows": 42,
-    "rows_before_limit_at_least": 67
+    "rows_before_limit_at_least": 69
   }
 }

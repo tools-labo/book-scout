@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T14:31:29.590Z",
+  "updatedAt": "2026-02-25T15:09:35.923Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -48,8 +48,128 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-02-25 14:30:54",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-25 14:30:53",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-25 14:30:52",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-25 14:30:45",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-25 14:30:44",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-25 14:30:42",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-25 14:30:41",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-25 14:30:36",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-02-25 14:30:34",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
       "timestamp": "2026-02-25 14:30:33",
       "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-25 14:30:32",
+      "type": "work_view",
       "schema": "v2",
       "page": "work",
       "seriesKey": "ドラゴンボール",
@@ -108,6 +228,18 @@
       "rating": 1
     },
     {
+      "timestamp": "2026-02-25 14:30:18",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
       "timestamp": "2026-02-25 14:30:16",
       "type": "rate",
       "schema": "v2",
@@ -118,6 +250,30 @@
       "aud": "",
       "mag": "",
       "rating": 5
+    },
+    {
+      "timestamp": "2026-02-25 14:30:15",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-25 14:30:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
     },
     {
       "timestamp": "2026-02-25 14:30:08",
@@ -166,6 +322,18 @@
       "aud": "",
       "mag": "",
       "rating": 1
+    },
+    {
+      "timestamp": "2026-02-25 14:29:57",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
     },
     {
       "timestamp": "2026-02-25 14:29:56",
@@ -2278,178 +2446,10 @@
       "aud": "",
       "mag": "",
       "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:32:19",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "キングダム",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:32:12",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "キングダム",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:32:00",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:15:17",
-      "type": "rate",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "art",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 4
-    },
-    {
-      "timestamp": "2026-02-24 14:15:15",
-      "type": "rate",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "rec",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 5
-    },
-    {
-      "timestamp": "2026-02-24 14:15:13",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "moving",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:15:12",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "tearjerker",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:15:09",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:15:08",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:15:04",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=healing,hot",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:15:03",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=healing",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:14:58",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:14:55",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=funny,moving",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-24 14:14:54",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "mood=funny",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
     }
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 744
+    "rows_before_limit_at_least": 758
   }
 }
