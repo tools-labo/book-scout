@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T21:48:10.947Z",
+  "updatedAt": "2026-02-25T22:51:44.971Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -36,6 +36,10 @@
       "n": "3"
     },
     {
+      "seriesKey": "キングダム",
+      "n": "2"
+    },
+    {
       "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
@@ -44,15 +48,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "キングダム",
-      "n": "2"
-    },
-    {
       "seriesKey": "マギ",
       "n": "1"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオアシ",
       "n": "1"
     },
     {
@@ -72,15 +76,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "21世紀少年",
-      "n": "1"
-    },
-    {
       "seriesKey": "アオのハコ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "アオハライド",
       "n": "1"
     },
     {
@@ -88,11 +84,23 @@
       "n": "1"
     },
     {
-      "seriesKey": "桜蘭高校ホスト部",
+      "seriesKey": "アオハライド",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
       "seriesKey": "君に届け",
+      "n": "1"
+    },
+    {
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -116,7 +124,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -180,12 +188,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオアシ",
+      "seriesKey": "21世紀少年",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 42,
-    "rows_before_limit_at_least": 69
+    "rows": 44,
+    "rows_before_limit_at_least": 71
   }
 }

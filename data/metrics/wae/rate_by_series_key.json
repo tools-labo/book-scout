@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-25T21:48:10.947Z",
+  "updatedAt": "2026-02-25T22:51:44.971Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -39,7 +39,7 @@
       "seriesKey": "乙嫁語り",
       "k": "art",
       "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "バガボンド",
@@ -96,13 +96,13 @@
       "n": "4"
     },
     {
-      "seriesKey": "その着せ替え人形は恋をする",
+      "seriesKey": "ガチアクタ",
       "k": "art",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "その着せ替え人形は恋をする",
       "k": "art",
       "avg": 3,
       "n": "2"
@@ -112,12 +112,6 @@
       "k": "art",
       "avg": 3,
       "n": "2"
-    },
-    {
-      "seriesKey": "不滅のあなたへ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
     },
     {
       "seriesKey": "政宗くんのリベンジ",
@@ -150,6 +144,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "不滅のあなたへ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
@@ -162,43 +162,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "黒執事",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "約束のネバーランド",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -210,7 +180,43 @@
       "n": "1"
     },
     {
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソウルイーター",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "マギ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -249,6 +255,12 @@
       "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "おやすみプンプン",
+      "k": "art",
+      "avg": 1,
       "n": "1"
     },
     {
@@ -300,13 +312,13 @@
       "n": "3"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ベルセルク",
       "k": "rec",
       "avg": 4,
       "n": "2"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "2"
@@ -318,7 +330,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "銀魂",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -360,13 +372,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ゴールデンカムイ",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "タコピーの原罪",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -378,9 +390,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "ドロヘドロ",
       "k": "rec",
-      "avg": 3,
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
+      "k": "rec",
+      "avg": 3.5,
       "n": "2"
     },
     {
@@ -390,19 +408,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "アイアムアヒーロー",
       "k": "rec",
       "avg": 3,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京喰種 トーキョーグール",
+      "seriesKey": "マギ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -414,13 +426,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "東京喰種 トーキョーグール",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "約束のネバーランド",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -432,13 +444,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "不滅のあなたへ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -450,7 +462,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "20世紀少年",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -462,7 +480,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "政宗くんのリベンジ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -481,7 +499,7 @@
     }
   ],
   "raw": {
-    "rows": 76,
-    "rows_before_limit_at_least": 133
+    "rows": 79,
+    "rows_before_limit_at_least": 138
   }
 }
