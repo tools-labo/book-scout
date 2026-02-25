@@ -1233,8 +1233,10 @@ function renderList(items, quickDefs) {
 // public/app.js（2/2）FULL REPLACE
 // - Work：読後感投票の“報酬”を投票枠内に集約（みんなの読後感 / 同じ読後感の作品）
 // - Step A：トーストで即時フィードバック
-// - 「マスク解除」文言は撤廃（伝わりにくいので）
-// - 解除は最初の1回だけ扱い（2個目投票で“解除”が出ない）
+// - 「マスク解除」文言は撤廃
+// - 解除は最初の1回だけ扱い
+// - ✅ recMiniRow の書影を object-fit: contain に統一（バグ修正）
+// - ✅ 評価：平均を右カラム表示（n非表示 / 少数票は—）
 
 /* =======================
  * Works loader (index/shard)
@@ -1346,7 +1348,6 @@ function showToast(text){
       ${esc(text)}
     </div>
   `;
-  // show
   el.style.opacity = "1";
   el.style.transform = "translateX(-50%) translateY(0)";
 
@@ -1495,15 +1496,23 @@ function recMiniRowHtml(items){
         <a href="./work.html?key=${encodeURIComponent(x.seriesKey)}"
            style="min-width:110px; text-decoration:none; color:inherit;">
           <div style="
-            border:1px solid rgba(0,0,0,.10);
+            border:1px solid rgba(17,24,39,.10);
             border-radius: 12px;
             overflow:hidden;
             background:#fff;
           ">
-            <div style="aspect-ratio: 3/4; display:flex; align-items:center; justify-content:center;">
+            <div style="
+              width:100%;
+              aspect-ratio: 3/4.25;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              background:#fff;
+            ">
               ${
                 x.img
-                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">`
+                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async"
+                      style="width:100%; height:100%; object-fit:contain; display:block;">`
                   : `<div class="thumb-ph" style="width:100%; height:100%;"></div>`
               }
             </div>
@@ -1647,14 +1656,12 @@ function applyStarsUi(wrapEl, selected){
 /* =======================
  * Work unlock state（読後感枠の報酬表示用）
  * ======================= */
-const WORK_UNLOCK_PREFIX = "work_unlock:v2:"; // v2（既存と衝突しない）
+const WORK_UNLOCK_PREFIX = "work_unlock:v2:";
 function unlockKey(seriesKey){ return `${WORK_UNLOCK_PREFIX}${toText(seriesKey)}`; }
 function isUnlocked(seriesKey){
   const sk = toText(seriesKey);
   if (!sk) return false;
-  // 既に解除フラグ
   try { if (localStorage.getItem(unlockKey(sk)) === "1") return true; } catch {}
-  // 読後感投票済み（選択が残ってる）
   const voted = getVotedSet(sk);
   return !!(voted && voted.size);
 }
@@ -1665,7 +1672,7 @@ function setUnlocked(seriesKey){
     const k = unlockKey(sk);
     const prev = localStorage.getItem(k) === "1";
     if (!prev) localStorage.setItem(k, "1");
-    return !prev; // 初回解除なら true
+    return !prev;
   } catch {
     return true;
   }
@@ -1673,7 +1680,6 @@ function setUnlocked(seriesKey){
 
 /* =======================
  * Work: みんなの読後感（投票枠内に表示）
- * - mood は quick_filters の id の想定なので label に変換
  * ======================= */
 function buildMoodLabelMap(defs){
   const m = new Map();
@@ -1771,7 +1777,7 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   const voted = getVotedSet(seriesKey);
   const unlocked = isUnlocked(seriesKey);
 
-  // ---- vote reward content (computed now) ----
+  // ---- vote reward content ----
   const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
 
   let simByVotes = [];
@@ -1825,20 +1831,38 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   // ---- ratings ----
   const recVal = getRatedValue(seriesKey, "rec");
   const artVal = getRatedValue(seriesKey, "art");
-
-  // 平均★（常時表示はせず「★投票したら」表示）
-  function avgStarsHtml(){
-    if (!rateSeriesMap?.size || !rateSeriesMap.has(seriesKey)) return "";
-    const rec = rateSeriesMap.get(seriesKey)?.rec;
-    const art = rateSeriesMap.get(seriesKey)?.art;
-    const recTxt = rec?.avg ? `おすすめ度: ★${formatStarAvg(rec.avg)} <span style="opacity:.7;">(n=${Number(rec.n || 0)})</span>` : "";
-    const artTxt = art?.avg ? `作画: ★${formatStarAvg(art.avg)} <span style="opacity:.7;">(n=${Number(art.n || 0)})</span>` : "";
-    const join = [recTxt, artTxt].filter(Boolean).join(" / ");
-    if (!join) return "";
-    return `<div class="d-sub" style="margin-top:6px;">平均: ${join}</div>`;
-  }
-
   const hasStarVoted = !!(recVal || artVal);
+
+  function avgStarsHtml(){
+    // nは表示しない。ただし少数票の平均は出さない（プロ寄せ）
+    const MIN_N = 3;
+
+    const rec = rateSeriesMap?.get?.(seriesKey)?.rec;
+    const art = rateSeriesMap?.get?.(seriesKey)?.art;
+
+    const recOk = rec?.avg && Number(rec?.n || 0) >= MIN_N;
+    const artOk = art?.avg && Number(art?.n || 0) >= MIN_N;
+
+    const recTxt = recOk ? `★${formatStarAvg(rec.avg)}` : "—";
+    const artTxt = artOk ? `★${formatStarAvg(art.avg)}` : "—";
+
+    return `
+      <div style="display:grid; grid-template-columns: 1fr auto; align-items:center; margin-top:6px;">
+        <div></div>
+        <div style="font-size:12px; color: rgba(107,114,128,.9); font-weight:900;">平均</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr auto; align-items:center; padding:6px 0; border-top:1px solid rgba(17,24,39,.06);">
+        <div style="font-size:12px; color: rgba(107,114,128,.9); font-weight:900;">おすすめ度</div>
+        <div style="font-size:13px; font-weight:1000; font-variant-numeric: tabular-nums;">${recTxt}</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr auto; align-items:center; padding:6px 0; border-top:1px solid rgba(17,24,39,.06);">
+        <div style="font-size:12px; color: rgba(107,114,128,.9); font-weight:900;">作画クオリティ</div>
+        <div style="font-size:13px; font-weight:1000; font-variant-numeric: tabular-nums;">${artTxt}</div>
+      </div>
+    `;
+  }
 
   const rateBox = `
     <div class="vote-box" style="margin-top:12px;">
@@ -1848,10 +1872,13 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
       <p class="vote-note">★を選んで投票（各項目1回）。</p>
 
       <div id="avgStarsLocked" style="${hasStarVoted ? "display:none;" : ""}">
-        <div class="d-sub" style="opacity:.85;">★を投票すると平均★が表示されます。</div>
+        <div class="d-sub" style="opacity:.85;">★を投票すると平均が表示されます。</div>
       </div>
+
       <div id="avgStarsUnlocked" style="${hasStarVoted ? "" : "display:none;"}">
-        ${avgStarsHtml()}
+        <div style="margin-top:10px; padding:10px 12px; border:1px solid rgba(17,24,39,.08); background: rgba(17,24,39,.02); border-radius: 14px;">
+          ${avgStarsHtml()}
+        </div>
       </div>
 
       ${starsHtml({ idPrefix: "rec", label: "おすすめ度", selected: recVal })}
@@ -1900,30 +1927,23 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
     ` : ""}
 
     ${voteBox}
-
     ${rateBox}
-
     ${recoHtml}
   `;
 
   initLazyImages(detail);
 
-  // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  // ---- helpers: reward show ----
   function showVoteRewardIfNeeded({ newly }){
     const locked = document.getElementById("voteRewardLocked");
     const unlockedEl = document.getElementById("voteRewardUnlocked");
     if (locked) locked.style.display = "none";
     if (unlockedEl) unlockedEl.style.display = "";
-
-    // “解除”という言葉は使わない
     if (newly) showToast("投票ありがとう！みんなの傾向を表示しました。");
     else showToast("投票ありがとう！");
   }
 
-  // vote：最大2 + 選択状態保持、送信はvoteOnceで抑止
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1961,7 +1981,6 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
       const sent = trackVoteOnce(seriesKey, mood);
 
-      // 初回だけ“表示しました”扱いにする
       const newly = setUnlocked(seriesKey);
       showVoteRewardIfNeeded({ newly });
 
@@ -1972,7 +1991,7 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
     };
   }
 
-  // ratings：各項目1回（端末内で固定）
+  // ratings
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
@@ -1996,7 +2015,6 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
         applyStarsUi(w, n);
       }
 
-      // ★投票したら平均★枠だけ開く（読後感報酬とは混ぜない）
       const locked = document.getElementById("avgStarsLocked");
       const unlockedEl = document.getElementById("avgStarsUnlocked");
       if (locked) locked.style.display = "none";
