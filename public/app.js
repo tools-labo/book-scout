@@ -1231,17 +1231,10 @@ function renderList(items, quickDefs) {
 /* START PART 2 - token: A1B2 */
 
 // public/app.js（2/2）FULL REPLACE
-// - works split 対応：List/Homeは index.listItems、Workは shard を読む（1 shardだけ）
-// - Work：author/あらすじは表示（Listは非表示）
-// - Home棚が消える原因（未定義）を潰して復旧
-// - ✅ Work：おすすめ度/作画クオリティ（★1〜5）を追加（ログイン不要・端末内で1回抑止）
-// - ✅ イベント：type="rate" / k="rec" or "art" / v="1".."5" を trackEvent で送信（24hで同値1回）
-// - ✅ Home：★ランキング棚（idが存在する時だけ描画）
-//   - homeRateRec（おすすめ度） / homeRateArt（作画）
-// - ✅ Work：平均★表示（rate_by_series_key.json がある時だけ）
-// - ✅ perf: Workの重い計算(DF)をキャッシュ、画像遅延を適用
-// - ✅ Work：投票後に「マスク解除」（平均★/みんなの読後感/同じ読後感の作品）
-// - ✅ Work：解除状態は端末内で保持（投票を外しても戻らない）
+// - Work：読後感投票の“報酬”を投票枠内に集約（みんなの読後感 / 同じ読後感の作品）
+// - Step A：トーストで即時フィードバック
+// - 「マスク解除」文言は撤廃（伝わりにくいので）
+// - 解除は最初の1回だけ扱い（2個目投票で“解除”が出ない）
 
 /* =======================
  * Works loader (index/shard)
@@ -1249,7 +1242,6 @@ function renderList(items, quickDefs) {
 function pad3(n){ return String(n).padStart(3, "0"); }
 
 async function loadWorksIndex({ bust }) {
-  // 1) split index を優先
   const v = qs().get("v");
   const idxUrl = v ? `${WORKS_INDEX_PATH}?v=${encodeURIComponent(v)}` : WORKS_INDEX_PATH;
 
@@ -1258,12 +1250,10 @@ async function loadWorksIndex({ bust }) {
     return { mode: "split", index: idx, listItems: idx.listItems, legacyItems: null };
   }
 
-  // 2) fallback: legacy works.json
   const legacyUrl = v ? `${WORKS_LEGACY_PATH}?v=${encodeURIComponent(v)}` : WORKS_LEGACY_PATH;
   const legacy = await loadJson(legacyUrl, { bust });
 
   const items = Array.isArray(legacy?.items) ? legacy.items : [];
-  // list/home用に軽量化（author/synopsisは落とす）
   const listItems = items.map(it => ({
     seriesKey: it?.seriesKey ?? null,
     title: it?.title ?? null,
@@ -1286,7 +1276,6 @@ async function loadWorkFullByKey({ worksState, key, bust }) {
   const k = toText(key);
   if (!k) return null;
 
-  // split
   if (worksState?.mode === "split") {
     const idx = worksState.index;
     const shardIndex = idx?.lookup?.[k];
@@ -1303,13 +1292,68 @@ async function loadWorkFullByKey({ worksState, key, bust }) {
     return items.find(x => toText(x?.seriesKey) === k) || null;
   }
 
-  // legacy
   if (worksState?.mode === "legacy") {
     const items = Array.isArray(worksState.legacyItems) ? worksState.legacyItems : [];
     return items.find(x => toText(x?.seriesKey) === k) || null;
   }
 
   return null;
+}
+
+/* =======================
+ * Toast（Step A）
+ * ======================= */
+let __toastEl = null;
+let __toastTimer = null;
+
+function ensureToast(){
+  if (__toastEl) return __toastEl;
+  const el = document.createElement("div");
+  el.id = "toast";
+  el.setAttribute("aria-live", "polite");
+  el.setAttribute("aria-atomic", "true");
+  el.style.cssText = `
+    position: fixed;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    z-index: 9999;
+    max-width: min(560px, calc(100vw - 24px));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s ease, transform .18s ease;
+  `;
+  document.body.appendChild(el);
+  __toastEl = el;
+  return el;
+}
+
+function showToast(text){
+  const el = ensureToast();
+  if (__toastTimer) clearTimeout(__toastTimer);
+
+  el.innerHTML = `
+    <div style="
+      pointer-events:none;
+      background: rgba(20,20,20,.92);
+      color:#fff;
+      padding:10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.4;
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+    ">
+      ${esc(text)}
+    </div>
+  `;
+  // show
+  el.style.opacity = "1";
+  el.style.transform = "translateX(-50%) translateY(0)";
+
+  __toastTimer = setTimeout(() => {
+    el.style.opacity = "0";
+    el.style.transform = "translateX(-50%) translateY(6px)";
+  }, 1300);
 }
 
 /* =======================
@@ -1360,7 +1404,7 @@ function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
 /* =======================
  * Vote cosine reco
  * ======================= */
-const VOTE_AGG_PATH = "./data/metrics/wae/vote_by_series_mood.json"; // 無ければOK
+const VOTE_AGG_PATH = "./data/metrics/wae/vote_by_series_mood.json";
 const VOTE_MIN_TOTAL = 5;
 
 function buildVoteMatrix(voteRows) {
@@ -1440,6 +1484,39 @@ function toRecItem(it) {
   const img = normalizeImgUrl(imgRaw);
   return { seriesKey, title, img };
 }
+
+function recMiniRowHtml(items){
+  const xs = (items || []).filter(Boolean);
+  if (!xs.length) return `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`;
+
+  return `
+    <div style="display:flex; gap:10px; overflow:auto; padding: 8px 2px 2px;">
+      ${xs.map(x => `
+        <a href="./work.html?key=${encodeURIComponent(x.seriesKey)}"
+           style="min-width:110px; text-decoration:none; color:inherit;">
+          <div style="
+            border:1px solid rgba(0,0,0,.10);
+            border-radius: 12px;
+            overflow:hidden;
+            background:#fff;
+          ">
+            <div style="aspect-ratio: 3/4; display:flex; align-items:center; justify-content:center;">
+              ${
+                x.img
+                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">`
+                  : `<div class="thumb-ph" style="width:100%; height:100%;"></div>`
+              }
+            </div>
+            <div style="font-size:12px; padding:8px; line-height:1.35;">
+              ${esc(x.seriesKey || x.title)}
+            </div>
+          </div>
+        </a>
+      `).join("")}
+    </div>
+  `;
+}
+
 function recGridHtml(title, items){
   const xs = (items || []).filter(Boolean);
   if (!xs.length) return "";
@@ -1512,7 +1589,7 @@ function getDfCached(allItems){
 /* =======================
  * Rating (★1〜5) - local once
  * ======================= */
-const RATE_STATE_PREFIX = "rate:v1:"; // rate:v1:<seriesKey>:<k> => "1".."5"
+const RATE_STATE_PREFIX = "rate:v1:";
 function rateStateKey(seriesKey, k){ return `${RATE_STATE_PREFIX}${toText(seriesKey)}:${toText(k)}`; }
 function getRatedValue(seriesKey, k){
   const sk = toText(seriesKey);
@@ -1568,61 +1645,97 @@ function applyStarsUi(wrapEl, selected){
 }
 
 /* =======================
- * Work unlock state（投票報酬のマスク解除）
+ * Work unlock state（読後感枠の報酬表示用）
  * ======================= */
-const WORK_UNLOCK_PREFIX = "work_unlock:v1:";
+const WORK_UNLOCK_PREFIX = "work_unlock:v2:"; // v2（既存と衝突しない）
 function unlockKey(seriesKey){ return `${WORK_UNLOCK_PREFIX}${toText(seriesKey)}`; }
-function isWorkUnlocked(seriesKey){
+function isUnlocked(seriesKey){
   const sk = toText(seriesKey);
   if (!sk) return false;
-
-  // 既に★評価した端末は常に解除扱い
-  if (getRatedValue(sk, "rec") || getRatedValue(sk, "art")) return true;
-
-  // 投票選択が残っていれば解除
+  // 既に解除フラグ
+  try { if (localStorage.getItem(unlockKey(sk)) === "1") return true; } catch {}
+  // 読後感投票済み（選択が残ってる）
   const voted = getVotedSet(sk);
-  if (voted?.size) return true;
-
-  // 端末内フラグ
-  try { return localStorage.getItem(unlockKey(sk)) === "1"; } catch { return false; }
+  return !!(voted && voted.size);
 }
-function setWorkUnlocked(seriesKey){
+function setUnlocked(seriesKey){
   const sk = toText(seriesKey);
-  if (!sk) return;
-  try { localStorage.setItem(unlockKey(sk), "1"); } catch {}
+  if (!sk) return false;
+  try {
+    const k = unlockKey(sk);
+    const prev = localStorage.getItem(k) === "1";
+    if (!prev) localStorage.setItem(k, "1");
+    return !prev; // 初回解除なら true
+  } catch {
+    return true;
+  }
 }
 
 /* =======================
- * Work: みんなの読後感（TOP3）
- * - voteMatrix があれば seriesKey の mood 分布から作る
+ * Work: みんなの読後感（投票枠内に表示）
+ * - mood は quick_filters の id の想定なので label に変換
  * ======================= */
-function topMoodsHtml({ seriesKey, voteMatrix, max = 3 }){
+function buildMoodLabelMap(defs){
+  const m = new Map();
+  for (const d of (defs || [])) {
+    const id = toText(d?.id);
+    const label = toText(d?.label) || id;
+    if (id) m.set(id, label);
+  }
+  return m;
+}
+
+function moodTopHtml({ seriesKey, voteMatrix, defs, max = 4 }){
   const sk = toText(seriesKey);
   if (!sk || !voteMatrix?.bySeries?.size) return "";
 
   const m = voteMatrix.bySeries.get(sk);
   if (!m) return "";
 
+  const labelMap = buildMoodLabelMap(defs);
+
   const rows = Array.from(m.entries())
-    .map(([mood, n]) => ({ mood: toText(mood), n: Number(n || 0) }))
+    .map(([mood, n]) => ({ mood: toText(mood), label: labelMap.get(toText(mood)) || toText(mood), n: Number(n || 0) }))
     .filter(x => x.mood && Number.isFinite(x.n) && x.n > 0)
     .sort((a, b) => (b.n - a.n))
     .slice(0, max);
 
   if (!rows.length) return "";
-  const total = rows.reduce((s, r) => s + r.n, 0);
-
   return `
-    <div class="d-sub" style="margin-top:8px;">みんなの読後感（上位）</div>
-    <div class="pills">
-      ${rows.map(r => `<span class="pill">${esc(r.mood)} <span style="opacity:.7;">(${r.n})</span></span>`).join("")}
+    <div class="pills" style="margin-top:6px;">
+      ${rows.map(r => `<span class="pill">${esc(r.label)} <span style="opacity:.7;">(${r.n})</span></span>`).join("")}
     </div>
-    <div class="d-sub" style="opacity:.75;">※上位のみ表示</div>
   `;
 }
 
 /* =======================
- * Work render（author/あらすじは表示）
+ * Work：平均★（rate_by_series_key）
+ * ======================= */
+function buildRateBySeriesKeyMap(json){
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+
+  const map = new Map();
+  for (const r of rows) {
+    const sk = toText(r?.seriesKey);
+    const k = toText(r?.k);
+    const avg = Number(r?.avg ?? 0);
+    const n = Number(r?.n ?? 0);
+    if (!sk || !k) continue;
+    if (!map.has(sk)) map.set(sk, {});
+    map.get(sk)[k] = { avg, n };
+  }
+  return map;
+}
+function formatStarAvg(v){
+  const n = Number(v);
+  if (!Number.isFinite(n) || n <= 0) return "";
+  return (Math.round(n * 10) / 10).toFixed(1);
+}
+
+/* =======================
+ * Work render
  * ======================= */
 async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSeriesMap } = {}) {
   const detail = document.getElementById("detail");
@@ -1654,53 +1767,78 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
 
-  // ---- unlock state ----
-  const unlocked = isWorkUnlocked(seriesKey);
-
-  // ---- vote box ----
   const defs = Array.isArray(quickDefs) ? quickDefs : [];
   const voted = getVotedSet(seriesKey);
+  const unlocked = isUnlocked(seriesKey);
 
-  const voteBox = defs.length
-    ? `
-      <div class="vote-box">
-        <div class="vote-head">
-          <h3 class="vote-title">投票で育つ：この作品の「読後感」</h3>
-        </div>
-        <p class="vote-note">
-          1タップ投票（最大2つ）。集まった投票はランキング・関連作品に反映されます。
-        </p>
-        <div class="pills" id="votePills">
-          ${defs.map(d => {
-            const on = voted.has(d.id);
-            return `
-              <button type="button" class="pill ${on ? "is-on" : ""}" data-vote="${esc(d.id)}" aria-pressed="${on ? "true" : "false"}">
-                ${esc(d.label)}
-              </button>
-            `;
-          }).join("")}
-        </div>
-        <div class="vote-status" id="voteStatus"></div>
+  // ---- vote reward content (computed now) ----
+  const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
+
+  let simByVotes = [];
+  if (voteMatrix?.bySeries?.size) {
+    simByVotes = clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })).map(toRecItem);
+  }
+  const moodTop = moodTopHtml({ seriesKey, voteMatrix, defs, max: 4 });
+
+  const voteBox = defs.length ? `
+    <div class="vote-box" style="margin-top:12px;">
+      <div class="vote-head">
+        <h3 class="vote-title">投票で育つ：この作品の「読後感」</h3>
       </div>
-    `
-    : "";
+      <p class="vote-note">1タップ投票（最大2つ）。集まった投票はランキング・関連作品に反映されます。</p>
+
+      <div class="pills" id="votePills">
+        ${defs.map(d => {
+          const on = voted.has(d.id);
+          return `
+            <button type="button" class="pill ${on ? "is-on" : ""}" data-vote="${esc(d.id)}" aria-pressed="${on ? "true" : "false"}">
+              ${esc(d.label)}
+            </button>
+          `;
+        }).join("")}
+      </div>
+
+      <div id="voteReward" style="
+        margin-top:10px;
+        padding: 10px 10px;
+        border:1px solid rgba(0,0,0,.10);
+        border-radius: 14px;
+        background: rgba(0,0,0,.02);
+      ">
+        <div id="voteRewardLocked" style="${unlocked ? "display:none;" : ""}">
+          <div class="d-sub" style="opacity:.85;">投票すると、ここに「みんなの読後感」と「同じ読後感の作品」が表示されます。</div>
+        </div>
+
+        <div id="voteRewardUnlocked" style="${unlocked ? "" : "display:none;"}">
+          <div class="d-sub" style="font-weight:700;">みんなの読後感</div>
+          ${moodTop || `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`}
+
+          <div class="d-sub" style="margin-top:10px; font-weight:700;">同じ読後感の作品</div>
+          ${recMiniRowHtml(simByVotes)}
+        </div>
+      </div>
+
+      <div class="vote-status" id="voteStatus"></div>
+    </div>
+  ` : "";
 
   // ---- ratings ----
   const recVal = getRatedValue(seriesKey, "rec");
   const artVal = getRatedValue(seriesKey, "art");
 
-  // ---- 平均★（集計がある時だけ）----
+  // 平均★（常時表示はせず「★投票したら」表示）
   function avgStarsHtml(){
     if (!rateSeriesMap?.size || !rateSeriesMap.has(seriesKey)) return "";
     const rec = rateSeriesMap.get(seriesKey)?.rec;
     const art = rateSeriesMap.get(seriesKey)?.art;
-
     const recTxt = rec?.avg ? `おすすめ度: ★${formatStarAvg(rec.avg)} <span style="opacity:.7;">(n=${Number(rec.n || 0)})</span>` : "";
     const artTxt = art?.avg ? `作画: ★${formatStarAvg(art.avg)} <span style="opacity:.7;">(n=${Number(art.n || 0)})</span>` : "";
     const join = [recTxt, artTxt].filter(Boolean).join(" / ");
     if (!join) return "";
     return `<div class="d-sub" style="margin-top:6px;">平均: ${join}</div>`;
   }
+
+  const hasStarVoted = !!(recVal || artVal);
 
   const rateBox = `
     <div class="vote-box" style="margin-top:12px;">
@@ -1709,91 +1847,28 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
       </div>
       <p class="vote-note">★を選んで投票（各項目1回）。</p>
 
-      <div id="avgStarsLocked" style="${unlocked ? "display:none;" : ""}">
-        <div class="d-sub" style="margin-top:6px;">
-          <span style="opacity:.8;">🔒 平均★は投票後に表示</span>
-        </div>
+      <div id="avgStarsLocked" style="${hasStarVoted ? "display:none;" : ""}">
+        <div class="d-sub" style="opacity:.85;">★を投票すると平均★が表示されます。</div>
       </div>
-      <div id="avgStarsUnlocked" style="${unlocked ? "" : "display:none;"}">
+      <div id="avgStarsUnlocked" style="${hasStarVoted ? "" : "display:none;"}">
         ${avgStarsHtml()}
       </div>
 
       ${starsHtml({ idPrefix: "rec", label: "おすすめ度", selected: recVal })}
       ${starsHtml({ idPrefix: "art", label: "作画クオリティ", selected: artVal })}
-
       <div class="vote-status" id="rateStatus"></div>
     </div>
   `;
 
   // ---- reco ----
-  const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
   const df = getDfCached(allForReco);
   const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
-
-  let simByVotes = [];
-  if (voteMatrix?.bySeries?.size) {
-    simByVotes = clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })).map(toRecItem);
-  }
-  if (!simByVotes.length) {
-    const used = new Set(simByTags.map(x => x.seriesKey));
-    simByVotes = clamp3(allForReco
-      .filter(x => {
-        const sk = toText(pick(x, ["seriesKey"]));
-        return sk && sk !== seriesKey && !used.has(sk);
-      })
-      .slice(0, 3)
-      .map(toRecItem)
-    );
-  }
-
   const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
 
   const recoHtml = `
     <div class="rec-wrap">
       ${recGridHtml("似ている作品", simByTags)}
-
-      <div id="moodRecoLocked" style="${unlocked ? "display:none;" : ""}">
-        <div class="rec-block">
-          <div class="rec-head"><div class="rec-title">🔒 同じ読後感の作品</div></div>
-          <div class="d-sub" style="opacity:.8;">
-            投票すると「みんなの読後感」や「同じ読後感の作品」が見られます。
-          </div>
-        </div>
-      </div>
-      <div id="moodRecoUnlocked" style="${unlocked ? "" : "display:none;"}">
-        ${recGridHtml("同じ読後感の作品", simByVotes)}
-      </div>
-
       ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
-    </div>
-  `;
-
-  // ---- “報酬カード”（投票で解除される中身の予告）----
-  const rewardTeaser = `
-    <div class="vote-box" style="margin-top:12px;">
-      <div class="vote-head">
-        <h3 class="vote-title">投票すると見えるもの</h3>
-      </div>
-      <div class="d-sub" style="opacity:.85; line-height:1.6;">
-        🔒 平均★ / みんなの読後感 / 同じ読後感の作品
-      </div>
-      <div class="d-sub" style="opacity:.7;">※一度投票（または★評価）すると、この端末では以後表示されます</div>
-    </div>
-  `;
-
-  // ---- みんなの読後感（解除後）----
-  const moodsUnlockedHtml = topMoodsHtml({ seriesKey, voteMatrix, max: 3 });
-  const moodsBlock = `
-    <div class="vote-box" style="margin-top:12px;">
-      <div class="vote-head">
-        <h3 class="vote-title">みんなの読後感</h3>
-      </div>
-      <div id="moodsLocked" style="${unlocked ? "display:none;" : ""}">
-        <div class="d-sub" style="opacity:.8;">🔒 投票すると表示</div>
-      </div>
-      <div id="moodsUnlocked" style="${unlocked ? "" : "display:none;"}">
-        ${moodsUnlockedHtml || `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`}
-      </div>
     </div>
   `;
 
@@ -1826,10 +1901,6 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
     ${voteBox}
 
-    ${!unlocked ? rewardTeaser : ""}
-
-    ${moodsBlock}
-
     ${rateBox}
 
     ${recoHtml}
@@ -1840,23 +1911,16 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
   // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
-  function applyUnlockUi() {
-    // localStorageに解除フラグ
-    setWorkUnlocked(seriesKey);
+  // ---- helpers: reward show ----
+  function showVoteRewardIfNeeded({ newly }){
+    const locked = document.getElementById("voteRewardLocked");
+    const unlockedEl = document.getElementById("voteRewardUnlocked");
+    if (locked) locked.style.display = "none";
+    if (unlockedEl) unlockedEl.style.display = "";
 
-    const ids = [
-      ["avgStarsLocked", false],
-      ["avgStarsUnlocked", true],
-      ["moodsLocked", false],
-      ["moodsUnlocked", true],
-      ["moodRecoLocked", false],
-      ["moodRecoUnlocked", true],
-    ];
-    for (const [id, show] of ids) {
-      const el = document.getElementById(id);
-      if (!el) continue;
-      el.style.display = show ? "" : "none";
-    }
+    // “解除”という言葉は使わない
+    if (newly) showToast("投票ありがとう！みんなの傾向を表示しました。");
+    else showToast("投票ありがとう！");
   }
 
   // vote：最大2 + 選択状態保持、送信はvoteOnceで抑止
@@ -1878,13 +1942,15 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
         btn.classList.remove("is-on");
         btn.setAttribute("aria-pressed", "false");
         if (st) st.textContent = "選択を外しました";
-        setTimeout(() => { if (st) st.textContent = ""; }, 1200);
+        setTimeout(() => { if (st) st.textContent = ""; }, 900);
+        showToast("選択を外しました");
         return;
       }
 
       if (set.size >= VOTE_MAX) {
         if (st) st.textContent = "最大2つまで選べます";
-        setTimeout(() => { if (st) st.textContent = ""; }, 1400);
+        setTimeout(() => { if (st) st.textContent = ""; }, 1100);
+        showToast("最大2つまで選べます");
         return;
       }
 
@@ -1895,18 +1961,18 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
       const sent = trackVoteOnce(seriesKey, mood);
 
-      // ✅ 投票した瞬間に解除（報酬）
-      applyUnlockUi();
+      // 初回だけ“表示しました”扱いにする
+      const newly = setUnlocked(seriesKey);
+      showVoteRewardIfNeeded({ newly });
 
       if (st) {
-        st.textContent = sent ? "投票しました（マスク解除！）" : "投票済み（しばらくしてから）";
-        setTimeout(() => { if (st) st.textContent = ""; }, 1400);
+        st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
+        setTimeout(() => { if (st) st.textContent = ""; }, 900);
       }
     };
   }
 
   // ratings：各項目1回（端末内で固定）
-  // - ただし「投票済み」でも再送信はできる（値は変えない）
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
@@ -1918,23 +1984,24 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
       const btn = ev.target?.closest?.("button[data-star]");
       if (!btn) return;
 
-      const k = btn.getAttribute("data-starid") || ""; // "rec" or "art"
-      const n = toText(btn.getAttribute("data-star") || ""); // "1".."5"
+      const k = btn.getAttribute("data-starid") || "";
+      const n = toText(btn.getAttribute("data-star") || "");
       if (!k || !n) return;
 
       const already = getRatedValue(seriesKey, k);
       const sendVal = already || n;
 
-      // 未投票なら保存してUI更新
       if (!already) {
         setRatedValue(seriesKey, k, n);
         applyStarsUi(w, n);
       }
 
-      // ✅ ★評価でも解除（投票と同等の貢献）
-      applyUnlockUi();
+      // ★投票したら平均★枠だけ開く（読後感報酬とは混ぜない）
+      const locked = document.getElementById("avgStarsLocked");
+      const unlockedEl = document.getElementById("avgStarsUnlocked");
+      if (locked) locked.style.display = "none";
+      if (unlockedEl) unlockedEl.style.display = "";
 
-      // 送信は 24h で1回だけ（同一seriesKey/k/value）
       const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
       if (canSendOnce(onceKey)) {
         trackEvent({ type: "rate", page: "work", seriesKey, k, v: sendVal });
@@ -1942,11 +2009,10 @@ async function renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSer
 
       if (rateStatus) {
         const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
-        rateStatus.textContent = already
-          ? `${label} は投票済み（再送信）`
-          : `${label} を投票しました（マスク解除！）`;
-        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 1400);
+        rateStatus.textContent = already ? `${label} は投票済み` : `${label} を投票しました`;
+        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 900);
       }
+      showToast(already ? "投票済みです" : "投票ありがとう！");
     }, { passive: true });
   }
 
@@ -1969,15 +2035,12 @@ async function run() {
     const v = qs().get("v");
     const bust = !!v;
 
-    // works
     const worksState = await loadWorksIndex({ bust });
 
-    // quick filters
     const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
     const quick = await loadJson(quickUrl, { bust });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // work_view map（無ければ空）
     let viewsMap = new Map();
     try {
       const viewUrl = v
@@ -1992,7 +2055,6 @@ async function run() {
       viewsMap = new Map();
     }
 
-    // vote matrix（無ければ null）
     let voteMatrix = null;
     try {
       const voteUrl = v ? `${VOTE_AGG_PATH}?v=${encodeURIComponent(v)}` : VOTE_AGG_PATH;
@@ -2002,7 +2064,6 @@ async function run() {
       voteMatrix = null;
     }
 
-    // ★ rate aggregates（無ければ空）
     let rateRecTop = [];
     let rateArtTop = [];
     let rateSeriesMap = new Map();
@@ -2021,41 +2082,29 @@ async function run() {
       rateSeriesMap = bySeriesJson ? buildRateBySeriesKeyMap(bySeriesJson) : new Map();
     } catch { rateSeriesMap = new Map(); }
 
-    // itemsByKey（home表示用）
     const itemsByKey = new Map();
     for (const it of (worksState.listItems || [])) {
       const sk = toText(pick(it, ["seriesKey"]));
       if (sk) itemsByKey.set(sk, it);
     }
 
-    // Home：人気ランキング棚
     if (document.getElementById("homePopular")) {
       renderHomePopular({ items: worksState.listItems, viewsMap, limit: 6 });
     }
-
-    // Home：★おすすめ度ランキング（要素がある時だけ）
     if (document.getElementById("homeRateRec")) {
       renderHomeRateTop({ rootId: "homeRateRec", titleLabel: "おすすめ度", rows: rateRecTop, itemsByKey, limit: 6 });
     }
-
-    // Home：★作画クオリティランキング（要素がある時だけ）
     if (document.getElementById("homeRateArt")) {
       renderHomeRateTop({ rootId: "homeRateArt", titleLabel: "作画クオリティ", rows: rateArtTop, itemsByKey, limit: 6 });
     }
-
-    // Home：ジャンル棚（作品18件は出す）
     if (document.getElementById("genreTabs") && document.getElementById("genreRow")) {
       const st = getHomeState();
       renderGenreTabsRow({ items: worksState.listItems, activeId: st.g });
     }
-
-    // Home：カテゴリー棚（作品18件は出す）
     if (document.getElementById("audienceTabs") && document.getElementById("audienceRow")) {
       const st = getHomeState();
       renderAudienceTabsRow({ items: worksState.listItems, activeAudId: st.a });
     }
-
-    // Home：読後感（導線）
     if (document.getElementById("quickFiltersHome")) {
       const counts = new Map(quickDefs.map(d => [d.id, 0]));
       for (const it of worksState.listItems) {
@@ -2066,20 +2115,13 @@ async function run() {
       renderQuickHome({ defs: quickDefs, counts });
     }
 
-    // List
     renderList(worksState.listItems, quickDefs);
-
-    // Work（平均★も渡す）
     await renderWork(worksState, quickDefs, { viewsMap, voteMatrix, rateSeriesMap });
 
-    // Amazonアフィ付与
     patchAmazonAnchors(document);
 
-    // favorite handler
     bindFavHandlers(document);
     refreshFavButtons(document);
-
-    // 念のため（Home/List/Workに img[data-src] が残っていても拾う）
     initLazyImages(document);
 
     setStatus("");
