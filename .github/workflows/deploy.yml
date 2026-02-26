@@ -1,22 +1,17 @@
 name: Deploy Pages
 
 on:
-  # 手動でも回せる
   workflow_dispatch:
-
-  # lane2 が成功したら自動デプロイ
   workflow_run:
     workflows:
       - "Lane2 - Confirm Vol1 (NDL + Amazon PA-API)"
     types:
       - completed
-
-  # 手元で直接 main にpushした時も一応デプロイ（任意で残す）
   push:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -27,17 +22,13 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
-    # workflow_run の時は成功した場合のみ
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - uses: actions/checkout@v4
         with:
-          # workflow_run でも main を確実に取る
           ref: main
 
-      # public/ を公開ルートにするため、data/ を public/data に同期
       - name: Prepare site root
         run: |
           set -euo pipefail
@@ -46,6 +37,16 @@ jobs:
           if [ -d data ]; then
             cp -R data/* public/data/ || true
           fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build work pages (static /work/<id>/)
+        run: |
+          set -euo pipefail
+          node scripts/build_work_pages.mjs
 
       - uses: actions/configure-pages@v5
 
