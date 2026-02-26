@@ -1,16 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T12:03:32.766Z",
-  "total": 239,
-  "droppedTotal": 6,
-  "droppedSeriesKeys": [
-    "PSYЯEN -サイレン-",
-    "ありふれた職業で世界最強",
-    "ノ・ゾ・キ・ア・ナ",
-    "パラダイス・キス",
-    "君の膵臓をたべたい",
-    "未来日記"
-  ],
+  "updatedAt": "2026-02-26T12:18:11.646Z",
+  "total": 245,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -19,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 39
+      "count": 45
     }
   ],
   "lookup": {
@@ -32,6 +25,7 @@
     "BTOOOM!-ブトゥーム": 0,
     "NARUTO -ナルト-": 0,
     "orange [オレンジ]": 0,
+    "PSYЯEN -サイレン-": 0,
     "Re:ゼロから始める異世界生活": 0,
     "ReLIFE": 0,
     "アイアムアヒーロー": 0,
@@ -46,6 +40,7 @@
     "あしたのジョー": 0,
     "あせとせっけん": 0,
     "アヤシモン": 0,
+    "ありふれた職業で世界最強": 0,
     "アンデッドアンラック": 0,
     "イジらないで、長瀞さん": 0,
     "いぬやしき": 0,
@@ -114,11 +109,13 @@
     "とんがり帽子のアトリエ": 0,
     "なまいきざかり。": 0,
     "ニセコイ": 0,
+    "ノ・ゾ・キ・ア・ナ": 0,
     "ノラガミ": 0,
     "ハイキュー！！": 0,
     "バガボンド": 0,
     "バクマン。": 0,
     "はじめの一歩": 0,
+    "パラダイス・キス": 0,
     "パンドラハーツ": 0,
     "パンプキンナイト": 0,
     "ひげを剃る。そして女子高生を拾う。": 0,
@@ -177,6 +174,7 @@
     "可愛いだけじゃない式守さん": 0,
     "君に届け": 0,
     "君のことが大大大大大好きな100人の彼女": 0,
+    "君の膵臓をたべたい": 0,
     "君は放課後インソムニア": 0,
     "呪術廻戦": 0,
     "嘘喰い": 0,
@@ -215,14 +213,15 @@
     "暁のヨナ": 0,
     "暗殺教室": 0,
     "月刊少女野崎くん": 0,
+    "未来日記": 0,
     "東京卍リベンジャーズ": 0,
     "東京喰種 トーキョーグール": 0,
-    "東京喰種-トーキョーグール-:re": 0,
-    "桃源暗鬼": 0,
-    "桜蘭高校ホスト部": 0,
-    "極主夫道": 0,
-    "極楽街": 0,
-    "気になってる人が男じゃなかった": 0,
+    "東京喰種-トーキョーグール-:re": 1,
+    "桃源暗鬼": 1,
+    "桜蘭高校ホスト部": 1,
+    "極主夫道": 1,
+    "極楽街": 1,
+    "気になってる人が男じゃなかった": 1,
     "炎炎ノ消防隊": 1,
     "無職転生 ～異世界行ったら本気だす～": 1,
     "無限の住人": 1,
@@ -517,12 +516,9 @@
       "image": "https://m.media-amazon.com/images/I/51T7G197mhL._SL500_.jpg",
       "amazonDp": "https://www.amazon.co.jp/dp/4107715167?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
       "amazonUrl": "https://www.amazon.co.jp/dp/4107715167",
-      "magazine": "週刊コミックバンチ / （2009年6月 - 2010年8月） / 月刊コミック@バンチ / （2011年1月 - 2018年3月）",
+      "magazine": "週刊コミックバンチ",
       "magazines": [
-        "週刊コミックバンチ",
-        "(2009年6月 - 2010年8月)",
-        "月刊コミック@バンチ",
-        "(2011年1月 - 2018年3月)"
+        "週刊コミックバンチ"
       ],
       "audiences": [
         "その他"
@@ -627,6 +623,41 @@
       ],
       "publisher": "双葉社",
       "releaseDate": "2013-12-25T00:00:01Z"
+    },
+    {
+      "seriesKey": "PSYЯEN -サイレン-",
+      "title": "PSYREN-サイレン- 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51AAsJnabLL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088745329?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088745329",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "少年向け",
+        "デスゲーム",
+        "ディストピア",
+        "超能力",
+        "異世界",
+        "現代ファンタジー",
+        "終末後",
+        "養子縁組",
+        "双子",
+        "多重人格"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2008-05-02T00:00:01Z"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
@@ -770,6 +801,7 @@
         "Sports"
       ],
       "tags": [
+        "アメリカンフットボール",
         "少年向け",
         "部活"
       ],
@@ -1118,6 +1150,47 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2022-03-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
+      "title": "ありふれた職業で世界最強 1 (ガルドコミックス)",
+      "image": "https://m.media-amazon.com/images/I/61UWgkoNeCL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865541837?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865541837",
+      "magazine": "コミックガルド",
+      "magazines": [
+        "コミックガルド"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Psychological"
+      ],
+      "tags": [
+        "異世界",
+        "ダンジョン",
+        "魔法",
+        "銃",
+        "逆ハーレム",
+        "アンチヒーロー",
+        "吸血鬼",
+        "悪魔",
+        "獣耳",
+        "いじめ",
+        "少年向け",
+        "中二病",
+        "バイク",
+        "ドラゴン",
+        "剣術",
+        "奴隷",
+        "中世"
+      ],
+      "publisher": "オーバーラップ",
+      "releaseDate": "2016-12-25T00:00:01Z"
     },
     {
       "seriesKey": "アンデッドアンラック",
@@ -3187,6 +3260,7 @@
         "Sports"
       ],
       "tags": [
+        "かるた",
         "女性向け",
         "成長譚",
         "部活",
@@ -3772,6 +3846,36 @@
       "releaseDate": "2012-05-02T00:00:01Z"
     },
     {
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "title": "ノ・ゾ・キ・ア・ナ 1 (ビッグコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51TrDJrIpuL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091827268?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091827268",
+      "magazine": "モバMAN",
+      "magazines": [
+        "モバMAN"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "のぞき見",
+        "青年向け",
+        "三角関係",
+        "成長譚",
+        "寝取られ（NTR）",
+        "学園",
+        "LGBTQテーマ"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2009-11-30T00:00:01Z"
+    },
+    {
       "seriesKey": "ノラガミ",
       "title": "ノラガミ(1) (月刊マガジンコミックス)",
       "image": "https://m.media-amazon.com/images/I/518T4+Q4FXL._SL500_.jpg",
@@ -3950,6 +4054,40 @@
       ],
       "publisher": "講談社",
       "releaseDate": "1990-02-09T00:00:01Z"
+    },
+    {
+      "seriesKey": "パラダイス・キス",
+      "title": "Paradise kiss (1) (Feelコミックス)",
+      "image": "https://m.media-amazon.com/images/I/21HXLWJV4TL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4396762194?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4396762194",
+      "magazine": "Zipper",
+      "magazines": [
+        "Zipper"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "女性向け",
+        "成長譚",
+        "ファッション",
+        "学園",
+        "LGBTQテーマ",
+        "バイセクシュアル",
+        "三角関係",
+        "モデル業",
+        "トランスジェンダー",
+        "片思い",
+        "ボーイズラブ",
+        "疑似家族"
+      ],
+      "publisher": "祥伝社",
+      "releaseDate": "2000-04-07T00:00:01Z"
     },
     {
       "seriesKey": "パンドラハーツ",
@@ -5367,10 +5505,9 @@
       "image": "https://m.media-amazon.com/images/I/514dF5u8tXL._SL500_.jpg",
       "amazonDp": "https://www.amazon.co.jp/dp/4088736656?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
       "amazonUrl": "https://www.amazon.co.jp/dp/4088736656",
-      "magazine": "月刊少年ジャンプ（MJ） / 週刊少年ジャンプ（WJ）：番外編",
+      "magazine": "月刊少年ジャンプ",
       "magazines": [
-        "月刊少年ジャンプ(MJ)",
-        "週刊少年ジャンプ(WJ):番外編"
+        "月刊少年ジャンプ"
       ],
       "audiences": [
         "その他"
@@ -5563,9 +5700,9 @@
       "image": "https://m.media-amazon.com/images/I/51yIYqxGlKL._SL500_.jpg",
       "amazonDp": "https://www.amazon.co.jp/dp/4040732049?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
       "amazonUrl": "https://www.amazon.co.jp/dp/4040732049",
-      "magazine": "月刊ドラゴンエイジ",
+      "magazine": "ドラドラしゃーぷ＃",
       "magazines": [
-        "月刊ドラゴンエイジ"
+        "ドラドラしゃーぷ#"
       ],
       "audiences": [
         "その他"
@@ -6200,6 +6337,34 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2020-04-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "君の膵臓をたべたい",
+      "title": "君の膵臓をたべたい(上) (アクションコミックス(月刊アクション))",
+      "image": "https://m.media-amazon.com/images/I/51+Gmof5vIL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4575849251?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4575849251",
+      "magazine": "月刊アクション",
+      "magazines": [
+        "月刊アクション"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "学園",
+        "青年向け",
+        "三角関係",
+        "旅"
+      ],
+      "publisher": "双葉社",
+      "releaseDate": "2017-02-10T00:00:01Z"
     },
     {
       "seriesKey": "君は放課後インソムニア",
@@ -7669,6 +7834,46 @@
       "releaseDate": "2012-04-20T00:00:01Z"
     },
     {
+      "seriesKey": "未来日記",
+      "title": "未来日記 (1) (角川コミックス・エース 129-5)",
+      "image": "https://m.media-amazon.com/images/I/51dPBHspDfL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047138398?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047138398",
+      "magazine": "月刊少年エース",
+      "magazines": [
+        "月刊少年エース"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Mystery",
+        "Psychological",
+        "Supernatural",
+        "Thriller"
+      ],
+      "tags": [
+        "バトルロイヤル",
+        "ヤンデレ",
+        "少年向け",
+        "デスゲーム",
+        "サバイバル",
+        "神々",
+        "スケルトン",
+        "探偵",
+        "孤児",
+        "現代ファンタジー",
+        "犯罪",
+        "カルト",
+        "障害",
+        "バイセクシュアル",
+        "都会"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2006-07-21T00:00:01Z"
+    },
+    {
       "seriesKey": "東京卍リベンジャーズ",
       "title": "東京卍リベンジャーズ(1) (少年マガジンコミックス)",
       "image": "https://m.media-amazon.com/images/I/51+e8gWs-3L._SL500_.jpg",
@@ -7809,6 +8014,27 @@
       ],
       "audiences": [
         "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Mystery",
+        "Supernatural"
+      ],
+      "tags": [
+        "少年向け",
+        "悪魔",
+        "妖怪",
+        "超能力",
+        "戦争",
+        "現代ファンタジー",
+        "銃",
+        "アンチヒーロー",
+        "疑似家族",
+        "復讐",
+        "変身能力",
+        "養子縁組"
       ],
       "publisher": "秋田書店",
       "releaseDate": "2020-10-08T00:00:01Z"

@@ -471,18 +471,15 @@
         "publisher": "新潮社",
         "author": "井上　淳哉",
         "releaseDate": "2009-10-09T00:00:01Z",
-        "magazine": "週刊コミックバンチ / （2009年6月 - 2010年8月） / 月刊コミック@バンチ / （2011年1月 - 2018年3月）",
+        "magazine": "週刊コミックバンチ",
         "magazines": [
-          "週刊コミックバンチ",
-          "(2009年6月 - 2010年8月)",
-          "月刊コミック@バンチ",
-          "(2011年1月 - 2018年3月)"
+          "週刊コミックバンチ"
         ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "BTOOOM!",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 50593,
         "genres": [
           "Action",
@@ -679,12 +676,14 @@
         "publisher": "集英社",
         "author": "岩代 俊明",
         "releaseDate": "2008-05-02T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 33438,
         "genres": [
@@ -988,12 +987,11 @@
           "Male Protagonist"
         ],
         "tags": [
+          "アメリカンフットボール",
           "少年向け",
           "部活"
         ],
-        "tags_missing_en": [
-          "American Football"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -1632,13 +1630,15 @@
         "publisher": "オーバーラップ",
         "author": "RoGa",
         "releaseDate": "2016-12-25T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "コミックガルド",
+        "magazines": [
+          "コミックガルド"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ありふれた職業で世界最強",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 96834,
         "genres": [
           "Action",
@@ -5545,8 +5545,8 @@
         "audiences": [
           "その他"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ちはやふる",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 43245,
         "genres": [
           "Drama",
@@ -5573,6 +5573,7 @@
           "Slapstick"
         ],
         "tags": [
+          "かるた",
           "女性向け",
           "成長譚",
           "部活",
@@ -5586,9 +5587,7 @@
           "いじめ",
           "ドタバタ"
         ],
-        "tags_missing_en": [
-          "Karuta"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -6651,13 +6650,15 @@
         "publisher": "小学館",
         "author": "本名 ワコウ",
         "releaseDate": "2009-11-30T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "モバMAN",
+        "magazines": [
+          "モバMAN"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ノ・ゾ・キ・ア・ナ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 51419,
         "genres": [
           "Drama",
@@ -6678,6 +6679,7 @@
           "LGBTQ+ Themes"
         ],
         "tags": [
+          "のぞき見",
           "青年向け",
           "三角関係",
           "成長譚",
@@ -6685,9 +6687,7 @@
           "学園",
           "LGBTQテーマ"
         ],
-        "tags_missing_en": [
-          "Voyeur"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -7033,12 +7033,14 @@
         "publisher": "祥伝社",
         "author": "あい, 矢沢",
         "releaseDate": "2000-04-07T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "Zipper",
+        "magazines": [
+          "Zipper"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30029,
         "genres": [
@@ -9703,16 +9705,15 @@
         "publisher": "集英社",
         "author": "池田 晃久",
         "releaseDate": "2004-10-04T00:00:01Z",
-        "magazine": "月刊少年ジャンプ（MJ） / 週刊少年ジャンプ（WJ）：番外編",
+        "magazine": "月刊少年ジャンプ",
         "magazines": [
-          "月刊少年ジャンプ(MJ)",
-          "週刊少年ジャンプ(WJ):番外編"
+          "月刊少年ジャンプ"
         ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ロザリオとバンパイア",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30894,
         "genres": [
           "Action",
@@ -10070,15 +10071,15 @@
         "publisher": "KADOKAWA",
         "author": "潮里 潤",
         "releaseDate": "2019-06-08T00:00:01Z",
-        "magazine": "月刊ドラゴンエイジ",
+        "magazine": "ドラドラしゃーぷ＃",
         "magazines": [
-          "月刊ドラゴンエイジ"
+          "ドラドラしゃーぷ#"
         ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "乙女ゲー世界はモブに厳しい世界です",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 104503,
         "genres": [
           "Action",
@@ -11258,13 +11259,15 @@
         "publisher": "双葉社",
         "author": "桐原 いづみ / 住野 よる",
         "releaseDate": "2017-02-10T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊アクション",
+        "magazines": [
+          "月刊アクション"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "君の膵臓をたべたい",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 99609,
         "genres": [
           "Drama",
@@ -14036,13 +14039,15 @@
         "publisher": "KADOKAWA",
         "author": "えすの サカエ",
         "releaseDate": "2006-07-21T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊少年エース",
+        "magazines": [
+          "月刊少年エース"
         ],
-        "magazineSource": null,
-        "wikiTitle": "未来日記",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30584,
         "genres": [
           "Action",

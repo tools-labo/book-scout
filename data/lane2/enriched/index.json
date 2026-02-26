@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T12:03:32.766Z",
+  "updatedAt": "2026-02-26T12:18:11.646Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -263,33 +263,19 @@
   "stats": {
     "total": 245,
     "ok": 245,
-    "ng": 1,
-    "skippedPerfect": 226,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 19,
-    "magAudienceTodoAdded": 9,
+    "ng": 0,
+    "skippedPerfect": 233,
+    "skippedAniList": 11,
+    "skippedWiki": 12,
+    "skippedAmazon": 12,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 7,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 19,
-      "outNotPerfect": 9
+      "prevNotPerfect": 9,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "BTOOOM!-ブトゥーム :: noVol1",
-        "PSYЯEN -サイレン- :: noVol1",
-        "アイシールド21 :: noVol1",
-        "アクメツ :: noVol1",
-        "ありふれた職業で世界最強 :: noVol1",
-        "ヴィジランテ -僕のヒーローアカデミア ILLEGALS- :: noVol1",
-        "カノジョも彼女 :: noVol1",
-        "シャドーハウス :: noVol1",
-        "ちはやふる :: noVol1",
-        "ノ・ゾ・キ・ア・ナ :: noVol1",
-        "パラダイス・キス :: noVol1",
-        "ロザリオとバンパイア :: noVol1"
-      ],
-      "outNotPerfect": [
         "PSYЯEN -サイレン- :: magazine,magazines[]",
         "アイシールド21 :: tags_missing_en(remain=1)",
         "ありふれた職業で世界最強 :: magazine,magazines[]",
@@ -302,79 +288,21 @@
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 9,
-      "seriesKeys": [
-        "PSYЯEN -サイレン-",
-        "アイシールド21",
-        "ありふれた職業で世界最強",
-        "ちはやふる",
-        "ノ・ゾ・キ・ア・ナ",
-        "パラダイス・キス",
-        "君の膵臓をたべたい",
-        "未来日記",
-        "桃源暗鬼"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 6,
-          "samples": [
-            "PSYЯEN -サイレン-",
-            "ありふれた職業で世界最強",
-            "ノ・ゾ・キ・ア・ナ",
-            "パラダイス・キス",
-            "君の膵臓をたべたい",
-            "未来日記"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 6,
-          "samples": [
-            "PSYЯEN -サイレン-",
-            "ありふれた職業で世界最強",
-            "ノ・ゾ・キ・ア・ナ",
-            "パラダイス・キス",
-            "君の膵臓をたべたい",
-            "未来日記"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 3,
-          "samples": [
-            "アイシールド21",
-            "ちはやふる",
-            "ノ・ゾ・キ・ア・ナ"
-          ]
-        },
-        {
-          "reason": "anilist(anilistId|genres[]|tags_en[])",
-          "n": 1,
-          "samples": [
-            "桃源暗鬼"
-          ]
-        },
-        {
-          "reason": "tagsJa[]",
-          "n": 1,
-          "samples": [
-            "桃源暗鬼"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 2,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 19
+      "successItems": 0
     }
   }
 }
