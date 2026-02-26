@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T12:18:11.646Z",
+  "updatedAt": "2026-02-26T12:41:32.311Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -264,29 +264,17 @@
     "total": 245,
     "ok": 245,
     "ng": 0,
-    "skippedPerfect": 233,
-    "skippedAniList": 11,
-    "skippedWiki": 12,
-    "skippedAmazon": 12,
+    "skippedPerfect": 245,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 7,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 9,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "PSYЯEN -サイレン- :: magazine,magazines[]",
-        "アイシールド21 :: tags_missing_en(remain=1)",
-        "ありふれた職業で世界最強 :: magazine,magazines[]",
-        "ちはやふる :: tags_missing_en(remain=1)",
-        "ノ・ゾ・キ・ア・ナ :: magazine,magazines[],tags_missing_en(remain=1)",
-        "パラダイス・キス :: magazine,magazines[]",
-        "君の膵臓をたべたい :: magazine,magazines[]",
-        "未来日記 :: magazine,magazines[]",
-        "桃源暗鬼 :: anilist(anilistId|genres[]|tags_en[]),tagsJa[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
