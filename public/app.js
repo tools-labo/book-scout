@@ -1,20 +1,23 @@
 // public/app.js（1/2）FULL REPLACE
-// - works を分割JSON（works/index.json + works/works_*.json）から読む
+// - ✅ /work/<id>/ 静的URL導線に統一（home/list/reco）
+// - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
+// - works: split JSON（works/index.json + works/works_*.json）対応
 // - Home：人気ランキング（閲覧数 上位6）
-// - Home：ジャンル/カテゴリー棚は「日替わりランダム18件」（作品は表示する）
-// - Home：棚の説明テキストは出さない（見出しのみ）
-// - ✅ List：author/synopsis を完全に非表示（work詳細は表示）
-// - ✅ Home：★おすすめ度/★作画クオリティのランキング棚（要素がある時だけ表示）
-// - ✅ Work：平均★（集計JSONがある時だけ表示）
-// - ✅ perf: 画像遅延(Observer) / List段階描画 / 重い計算キャッシュ
+// - Home：ジャンル/カテゴリー棚は「日替わりランダム18件」
+// - List：author/synopsis を完全に非表示（work詳細は表示）
+// - Home：★おすすめ度/★作画クオリティのランキング棚（要素がある時だけ表示）
+// - Work：平均★（集計JSONがある時だけ表示）
+// - perf: 画像遅延(Observer) / List段階描画 / 重い計算キャッシュ
 //
 // 【分割ルール】
 // - 1/2 はこの END マーカーで必ず終わる
 // - 2/2 は START マーカーから必ず始める
-// - token が一致しない場合は貼り間違い
 // token: A1B2
 
 function qs() { return new URLSearchParams(location.search); }
+
+// ✅ base path: /work/<id>/ 配下でも壊れないようにする
+const BASE = location.pathname.includes("/work/") ? "../../" : "./";
 
 /* =======================
  * perf: tiny placeholder
@@ -24,7 +27,6 @@ const IMG_PLACEHOLDER_SRC =
 
 /* =======================
  * perf: JSON cache (same session)
- * - bust=true のときはキャッシュしない
  * ======================= */
 const __jsonCache = new Map(); // url -> json
 async function loadJson(url, { bust = false } = {}) {
@@ -106,8 +108,6 @@ function setStatus(msg) {
 
 /* =======================
  * perf: Lazy images (data-src)
- * - src は placeholder のまま
- * - viewport 直前で data-src -> src
  * ======================= */
 let __imgObserver = null;
 
@@ -162,9 +162,6 @@ function initLazyImages(root = document) {
  * ======================= */
 const EVENTS_ENDPOINT = "https://book-scout-events.dx7qqdcchs.workers.dev/collect";
 
-// 匿名セッションID（ログイン不要）
-// - 端末ごとに固定
-// - localStorage が死んでも「無いよりマシ」
 const SID_KEY = "sid:v1";
 function getSid() {
   try {
@@ -179,7 +176,7 @@ function getSid() {
   }
 }
 
-// ✅ 全イベントを fetch(keepalive) に統一（iOSプライベートの sendBeacon 落ち対策）
+// ✅ 全イベントを fetch(keepalive) に統一
 function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "", mag = "", k = "", v = "" }) {
   try {
     const payload = {
@@ -196,7 +193,6 @@ function trackEvent({ type, page, seriesKey = "", mood = "", genre = "", aud = "
       ts: Date.now(),
     };
 
-    // ★ rating は doubles に載せたいので数値も明示（互換のため残す）
     if (payload.type === "rate") {
       const r = Number(payload.v || 0);
       payload.rating = Number.isFinite(r) ? r : 0;
@@ -336,7 +332,6 @@ function bindFavHandlers(root = document) {
     setFav(seriesKey, next);
     refreshFavButtons(document);
 
-    // ONにしたときだけ送る
     if (next) void trackFavoriteOnce(seriesKey, page || "unknown");
   }, { passive: true });
 }
@@ -403,18 +398,37 @@ function patchAmazonAnchors(root = document) {
 }
 
 /* =======================
- * works split paths
+ * base64url helpers + work static URL
  * ======================= */
-const WORKS_INDEX_PATH = "./data/lane2/works/index.json";
-const WORKS_SHARD_DIR = "./data/lane2/works";
-const WORKS_LEGACY_PATH = "./data/lane2/works.json";
+function b64urlFromUtf8(s) {
+  const bytes = new TextEncoder().encode(String(s ?? ""));
+  let bin = "";
+  for (const b of bytes) bin += String.fromCharCode(b);
+  const b64 = btoa(bin);
+  return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+function workStaticUrl(seriesKey) {
+  const sk = toText(seriesKey);
+  if (!sk) return `${BASE}list.html`;
+  const id = b64urlFromUtf8(sk);
+  const v = qs().get("v");
+  return `${BASE}work/${id}/` + (v ? `?v=${encodeURIComponent(v)}` : "");
+}
 
 /* =======================
- * metrics paths（★集計）
+ * works split paths（BASE対応）
  * ======================= */
-const METRIC_RATE_REC_TOP_PATH = "./data/metrics/wae/rate_rec_top.json";
-const METRIC_RATE_ART_TOP_PATH = "./data/metrics/wae/rate_art_top.json";
-const METRIC_RATE_BY_SERIES_KEY_PATH = "./data/metrics/wae/rate_by_series_key.json";
+const WORKS_INDEX_PATH = BASE + "data/lane2/works/index.json";
+const WORKS_SHARD_DIR = BASE + "data/lane2/works";
+const WORKS_LEGACY_PATH = BASE + "data/lane2/works.json";
+
+/* =======================
+ * metrics paths（★集計 / BASE対応）
+ * ======================= */
+const METRIC_RATE_REC_TOP_PATH = BASE + "data/metrics/wae/rate_rec_top.json";
+const METRIC_RATE_ART_TOP_PATH = BASE + "data/metrics/wae/rate_art_top.json";
+const METRIC_RATE_BY_SERIES_KEY_PATH = BASE + "data/metrics/wae/rate_by_series_key.json";
 
 /* =======================
  * Genre（内部用）
@@ -456,7 +470,6 @@ function hasMagazine(it, mag) {
 /* =======================
  * pills
  * ======================= */
-// list用：max6
 function pillsMax6(list) {
   const xs = (list || []).map(toText).filter(Boolean);
   if (!xs.length) return "";
@@ -465,7 +478,6 @@ function pillsMax6(list) {
   const more = rest > 0 ? `<span class="pill">+${rest}</span>` : "";
   return `<div class="pills">${head.map(x => `<span class="pill">${esc(x)}</span>`).join("")}${more}</div>`;
 }
-// work用：全件表示
 function pillsAll(list) {
   const xs = (list || []).map(toText).filter(Boolean);
   if (!xs.length) return "";
@@ -473,9 +485,9 @@ function pillsAll(list) {
 }
 
 /* =======================
- * Quick filters
+ * Quick filters（BASE対応）
  * ======================= */
-const QUICK_FILTERS_PATH = "./data/lane2/quick_filters.json";
+const QUICK_FILTERS_PATH = BASE + "data/lane2/quick_filters.json";
 const QUICK_MAX = 2;
 const QUICK_MIN_HITS = 2;
 
@@ -628,16 +640,14 @@ function genreCountMap(allItems) {
  * Home：カード列（18件 + もっと見る）
  * ======================= */
 function renderCardRow({ items, limit = 18, moreHref = "" }) {
-  const v = qs().get("v");
   const cards = (items || []).slice(0, limit).map((it) => {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
     const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
     const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
     const img = normalizeImgUrl(imgRaw);
-    const key = encodeURIComponent(seriesKey);
 
     return `
-      <a class="row-card" href="./work.html?key=${key}${v ? `&v=${encodeURIComponent(v)}` : ""}">
+      <a class="row-card" href="${esc(workStaticUrl(seriesKey))}">
         <div class="row-thumb">
           ${
             img
@@ -702,10 +712,8 @@ function shuffleWithSeed(arr, seedStr) {
 function setGenreAllLink(activeTab) {
   const a = document.getElementById("genreAllLink");
   if (!a) return;
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
   const q = encodeURIComponent(activeTab.match.join(","));
-  a.href = `./list.html?genre=${q}${vq}`;
+  a.href = `${BASE}list.html?genre=${q}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
 }
 
 /* --- Home ジャンル：日替わり18件 --- */
@@ -734,9 +742,7 @@ function renderGenreTabsRow({ items, activeId }) {
   const pickedAll = all.filter(it => hasAnyGenre(it, active.match));
   const picked = shuffleWithSeed(pickedAll, `genre:${active.id}:${daySeedStr()}`);
 
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  const moreHref = `./list.html?genre=${encodeURIComponent(active.match.join(","))}${vq}`;
+  const moreHref = `${BASE}list.html?genre=${encodeURIComponent(active.match.join(","))}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   setGenreAllLink(active);
@@ -779,9 +785,7 @@ function categoryCountMap(allItems) {
 function setAudienceAllLink(activeAudValue) {
   const a = document.getElementById("audienceAllLink");
   if (!a) return;
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  a.href = `./list.html?aud=${encodeURIComponent(activeAudValue)}${vq}`;
+  a.href = `${BASE}list.html?aud=${encodeURIComponent(activeAudValue)}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
 }
 
 /* --- Home カテゴリー：日替わり18件 --- */
@@ -811,9 +815,7 @@ function renderAudienceTabsRow({ items, activeAudId }) {
   const pickedAll = all.filter(it => getFirstAudienceLabel(it) === audValue);
   const picked = shuffleWithSeed(pickedAll, `aud:${active.id}:${daySeedStr()}`);
 
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-  const moreHref = `./list.html?aud=${encodeURIComponent(audValue)}${vq}`;
+  const moreHref = `${BASE}list.html?aud=${encodeURIComponent(audValue)}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   setAudienceAllLink(audValue);
@@ -845,7 +847,7 @@ function renderQuickHome({ defs, counts }) {
     <div class="pills">
       ${defs.map(d => {
         const n = counts.get(d.id) || 0;
-        const href = `./list.html?mood=${encodeURIComponent(d.id)}${vq}`;
+        const href = `${BASE}list.html?mood=${encodeURIComponent(d.id)}${vq}`;
         return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">
           ${esc(d.label)}
           <span style="opacity:.7;">
@@ -858,7 +860,7 @@ function renderQuickHome({ defs, counts }) {
 }
 
 /* =======================
- * Home：人気ランキング（閲覧数） - 閲覧数は表示しない
+ * Home：人気ランキング（閲覧数）
  * ======================= */
 function buildViewsMap(rows){
   const map = new Map();
@@ -897,9 +899,6 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
     return;
   }
 
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-
   root.innerHTML = `
     <div class="home-rank-grid">
       ${ranked.map((r, idx) => {
@@ -907,10 +906,9 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
         const title = toText(pick(it, ["title", "vol1.title"])) || r.seriesKey || "(無題)";
         const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
         const img = normalizeImgUrl(imgRaw);
-        const key = encodeURIComponent(r.seriesKey);
 
         return `
-          <a class="home-rank-item" href="./work.html?key=${key}${vq}" aria-label="${esc(title)}">
+          <a class="home-rank-item" href="${esc(workStaticUrl(r.seriesKey))}" aria-label="${esc(title)}">
             <div class="home-rank-cover">
               ${
                 img
@@ -931,8 +929,6 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
 
 /* =======================
  * Home：★ランキング（おすすめ度 / 作画）
- * - 要素が無い場合は何もしない
- * - 表示は作品カードのみ（avg/nは今は出さない）
  * ======================= */
 function normalizeRateTopRows(json){
   const rows = Array.isArray(json?.rows) ? json.rows
@@ -947,7 +943,7 @@ function normalizeRateTopRows(json){
     .filter(x => x.seriesKey);
 }
 
-function renderHomeRateTop({ rootId, titleLabel = "", rows, itemsByKey, limit = 6 }) {
+function renderHomeRateTop({ rootId, rows, itemsByKey, limit = 6 }) {
   const root = document.getElementById(rootId);
   if (!root) return;
 
@@ -957,9 +953,6 @@ function renderHomeRateTop({ rootId, titleLabel = "", rows, itemsByKey, limit = 
     return;
   }
 
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-
   root.innerHTML = `
     <div class="home-rank-grid">
       ${xs.map((r, idx) => {
@@ -967,10 +960,9 @@ function renderHomeRateTop({ rootId, titleLabel = "", rows, itemsByKey, limit = 
         const title = toText(pick(it, ["title", "vol1.title"])) || r.seriesKey || "(無題)";
         const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
         const img = normalizeImgUrl(imgRaw);
-        const key = encodeURIComponent(r.seriesKey);
 
         return `
-          <a class="home-rank-item" href="./work.html?key=${key}${vq}" aria-label="${esc(title)}">
+          <a class="home-rank-item" href="${esc(workStaticUrl(r.seriesKey))}" aria-label="${esc(title)}">
             <div class="home-rank-cover">
               ${
                 img
@@ -1025,7 +1017,6 @@ function renderList(items, quickDefs) {
 
   const all = Array.isArray(items) ? items : [];
 
-  // 内部絞り込み（表示は増やさない）
   const genreWanted = parseGenreQuery();
   const audienceWanted = parseOneQueryParam("aud");
   const magazineWanted = parseOneQueryParam("mag");
@@ -1039,16 +1030,13 @@ function renderList(items, quickDefs) {
     .filter(it => hasAudience(it, audienceWanted))
     .filter(it => hasMagazine(it, magazineWanted));
 
-  // ✅ list_filter：同一状態の連打を抑える（5秒）
   function trackListFilterState(nextMoodIds) {
     const g = (genreWanted || []).map(toText).filter(Boolean).join(",");
     const a = toText(audienceWanted);
     const m = toText(magazineWanted);
     const mood = (nextMoodIds || []).map(toText).filter(Boolean).join(",");
 
-    // 既存ログ互換のため mood=... 形式
     const moodVal = mood ? `mood=${mood}` : "";
-
     const stateKey = `list_filter:${g}|${a}|${m}|${moodVal}`;
     if (!canSendOnce(stateKey, 5000)) return false;
 
@@ -1064,7 +1052,6 @@ function renderList(items, quickDefs) {
     return true;
   }
 
-  // mood AND + score順
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -1078,22 +1065,17 @@ function renderList(items, quickDefs) {
   }
   const outItems = scored.map(x => x.it);
 
-  // 解除
   const clear = document.getElementById("moodClearLink");
   if (clear) {
     clear.onclick = (ev) => {
       ev.preventDefault();
-
-      // ✅ クリア状態を送信
       trackListFilterState([]);
-
       setMoodQuery([]);
       renderList(all, quickDefs);
       refreshFavButtons(document);
     };
   }
 
-  // クイックUI（動的カウント）
   const qRoot = document.getElementById("quickFiltersList");
   if (qRoot) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
@@ -1137,8 +1119,6 @@ function renderList(items, quickDefs) {
       }
 
       const next = Array.from(set);
-
-      // ✅ 状態送信（5秒クールダウン）
       trackListFilterState(next);
 
       setMoodQuery(next);
@@ -1158,18 +1138,12 @@ function renderList(items, quickDefs) {
     return;
   }
 
-  const v = qs().get("v");
-  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
-
-  // perf: 段階描画（初期を軽くする）
   root.innerHTML = "";
   const BATCH = 36;
   let i = 0;
 
   function itemHtml(it) {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
-    const key = encodeURIComponent(seriesKey);
-
     const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
     const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
 
@@ -1187,13 +1161,13 @@ function renderList(items, quickDefs) {
           <div class="thumb">
             ${
               img
-                ? `<a href="./work.html?key=${key}${vq}" aria-label="${esc(title)}"><img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async"/></a>`
+                ? `<a href="${esc(workStaticUrl(seriesKey))}" aria-label="${esc(title)}"><img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async"/></a>`
                 : `<div class="thumb-ph"></div>`
             }
           </div>
 
           <div class="meta">
-            <div class="title"><a href="./work.html?key=${key}${vq}">${esc(seriesKey || title)}</a></div>
+            <div class="title"><a href="${esc(workStaticUrl(seriesKey))}">${esc(seriesKey || title)}</a></div>
 
             ${magazine ? `<div class="sub">連載誌: ${esc(magazine)}</div>` : ""}
 
@@ -1218,9 +1192,7 @@ function renderList(items, quickDefs) {
     initLazyImages(root);
     refreshFavButtons(document);
 
-    if (i < outItems.length) {
-      requestAnimationFrame(pump);
-    }
+    if (i < outItems.length) requestAnimationFrame(pump);
   }
 
   requestAnimationFrame(pump);
@@ -1231,14 +1203,13 @@ function renderList(items, quickDefs) {
 /* START PART 2 - token: A1B2 */
 
 // public/app.js（2/2）FULL REPLACE
-// - Work：2段階描画（先に表示→あとで埋める）で体感速度UP（プライベート対策）
+// - ✅ /work/<id>/ 静的URL導線に統一（reco含む）
+// - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
+// - Work：2段階描画（先に表示→あとで埋める）で体感速度UP
 // - Work：読後感投票の“報酬”を投票枠内に集約（みんなの読後感 / 同じ読後感の作品）
-// - Step A：トーストで即時フィードバック
-// - 「マスク解除」文言は撤廃
-// - 解除は最初の1回だけ扱い
-// - ✅ recMiniRow の書影を object-fit: contain に統一（CSS側で制御）
-// - ✅ 評価：平均を右カラム表示（n非表示 / 少数票は—）
-// - ✅ バグ修正：★押下で「読み込み中…」が残らない（avgStarsBox を即時再描画）
+// - Toastで即時フィードバック
+// - ✅ 評価：平均は右カラム表示（n非表示 / 少数票は—）
+// - ✅ バグ修正：★押下で「読み込み中…」が残らない
 
 /* =======================
  * Works loader (index/shard)
@@ -1407,7 +1378,7 @@ function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
 /* =======================
  * Vote cosine reco
  * ======================= */
-const VOTE_AGG_PATH = "./data/metrics/wae/vote_by_mood_series.json";
+const VOTE_AGG_PATH = BASE + "data/metrics/wae/vote_by_mood_series.json";
 const VOTE_MIN_TOTAL = 5;
 
 function buildVoteMatrix(voteRows) {
@@ -1495,7 +1466,7 @@ function recMiniRowHtml(items){
   return `
     <div class="mini-row">
       ${xs.map(x => `
-        <a class="mini-card" href="./work.html?key=${encodeURIComponent(x.seriesKey)}">
+        <a class="mini-card" href="${esc(workStaticUrl(x.seriesKey))}">
           <div class="mini-cover">
             ${
               x.img
@@ -1518,7 +1489,7 @@ function recGridHtml(title, items){
       <div class="rec-head"><div class="rec-title">${esc(title)}</div></div>
       <div class="rec-grid">
         ${xs.map(x => `
-          <a class="rec-item" href="./work.html?key=${encodeURIComponent(x.seriesKey)}" aria-label="${esc(x.title)}">
+          <a class="rec-item" href="${esc(workStaticUrl(x.seriesKey))}" aria-label="${esc(x.title)}">
             <div class="rec-cover">
               ${
                 x.img
@@ -1699,32 +1670,6 @@ function moodTopHtml({ seriesKey, voteMatrix, defs, max = 4, hideCounts = false 
 }
 
 /* =======================
- * Work：平均★（rate_by_series_key）
- * ======================= */
-function buildRateBySeriesKeyMap(json){
-  const rows = Array.isArray(json?.rows) ? json.rows
-    : Array.isArray(json?.data) ? json.data
-    : Array.isArray(json) ? json : [];
-
-  const map = new Map();
-  for (const r of rows) {
-    const sk = toText(r?.seriesKey);
-    const k = toText(r?.k);
-    const avg = Number(r?.avg ?? 0);
-    const n = Number(r?.n ?? 0);
-    if (!sk || !k) continue;
-    if (!map.has(sk)) map.set(sk, {});
-    map.get(sk)[k] = { avg, n };
-  }
-  return map;
-}
-function formatStarAvg(v){
-  const n = Number(v);
-  if (!Number.isFinite(n) || n <= 0) return "";
-  return (Math.round(n * 10) / 10).toFixed(1);
-}
-
-/* =======================
  * Work: avg html (compact)
  * ======================= */
 function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
@@ -1757,16 +1702,43 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
 }
 
 /* =======================
+ * Work key resolver
+ * - /work/<id>/ は query key を自動注入済み（build_work_pages がやる）
+ * - 念のため work.html?key=... 互換もここで確保
+ * ======================= */
+function resolveWorkKey() {
+  const p = qs();
+  let key = toText(p.get("key"));
+  if (key) return key;
+
+  // fallback: /work/<id>/ から decode して key にする
+  if (location.pathname.includes("/work/")) {
+    const parts = location.pathname.split("/").filter(Boolean);
+    const id = parts[parts.length - 1] || "";
+    if (id) {
+      try{
+        const b64 = id.replace(/-/g, "+").replace(/_/g, "/");
+        const pad = b64.length % 4 ? "=".repeat(4 - (b64.length % 4)) : "";
+        const bin = atob(b64 + pad);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        key = new TextDecoder("utf-8").decode(bytes);
+      }catch{ key = ""; }
+    }
+  }
+  return toText(key);
+}
+
+/* =======================
  * Work render (Phase1: 先に表示)
  * ======================= */
 async function renderWorkPhase1(worksState, quickDefs) {
   const detail = document.getElementById("detail");
   if (!detail) return null;
 
-  const key = qs().get("key");
+  const key = resolveWorkKey();
   if (!key) return null;
 
-  // 最小の骨組み（体感反応）
   detail.innerHTML = `
     <div class="d-title">読み込み中…</div>
     <div class="d-sub">作品情報を読み込んでいます</div>
@@ -1908,7 +1880,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
 
   initLazyImages(detail);
 
-  // work_view：同一セッション1回
   trackWorkViewOnce(seriesKey);
 
   function showVoteRewardIfNeeded({ newly }){
@@ -1920,7 +1891,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
     else showToast("投票ありがとう！");
   }
 
-  // vote handlers
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -1968,7 +1938,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
     };
   }
 
-  // ratings handlers（ここでは平均は“開くだけ”。中身は Phase2 で埋める／クリックでも埋める）
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
@@ -1997,10 +1966,10 @@ async function renderWorkPhase1(worksState, quickDefs) {
       if (locked) locked.style.display = "none";
       if (unlockedEl) unlockedEl.style.display = "";
 
-      // ✅ バグ修正：平均枠を“その場で”埋める（読み込み中のまま残らない）
+      // ✅ その場で平均枠を埋める（"読み込み中…"固定化を防ぐ）
       try {
         const avgBox = document.getElementById("avgStarsBox");
-        if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, window.__rateSeriesMap || rateSeriesMap || new Map());
+        if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, window.__rateSeriesMap || new Map());
       } catch {}
 
       const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
@@ -2055,7 +2024,7 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSe
     }
   } catch {}
 
-  // avg stars：avgStarsBox があれば必ず埋める（“読み込み中…”で固まるのを防ぐ）
+  // avg stars：必ず埋める（"読み込み中…"固定化を防ぐ）
   try{
     const avgBox = document.getElementById("avgStarsBox");
     if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
@@ -2104,8 +2073,8 @@ async function run() {
     const quick = await loadJson(quickUrl, { bust });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // Workページ判定：#detail があって key がある
-    const isWorkPage = !!document.getElementById("detail") && !!qs().get("key");
+    // Workページ判定：#detail があれば work とみなす（work.html / work/<id>/ 両対応）
+    const isWorkPage = !!document.getElementById("detail");
 
     // ✅ Workは先に描画（Phase1）
     let workCtx = null;
@@ -2116,9 +2085,7 @@ async function run() {
     // metrics を並列取得
     const pViews = (async () => {
       try {
-        const viewUrl = v
-          ? `./data/metrics/wae/work_view_by_series.json?v=${encodeURIComponent(v)}`
-          : "./data/metrics/wae/work_view_by_series.json";
+        const viewUrl = withV(BASE + "data/metrics/wae/work_view_by_series.json");
         const viewJson = await loadJson(viewUrl, { bust });
         const rows = Array.isArray(viewJson?.rows) ? viewJson.rows
           : Array.isArray(viewJson?.data) ? viewJson.data
@@ -2129,7 +2096,7 @@ async function run() {
 
     const pVote = (async () => {
       try {
-        const voteUrl = v ? `${VOTE_AGG_PATH}?v=${encodeURIComponent(v)}` : VOTE_AGG_PATH;
+        const voteUrl = withV(VOTE_AGG_PATH);
         const voteJson = await loadJson(voteUrl, { bust });
         return buildVoteMatrix(voteJson);
       } catch { return null; }
@@ -2147,7 +2114,7 @@ async function run() {
       const [voteMatrix, rateSeriesMap] = await Promise.all([pVote, pRateSeries]);
       const viewsMap = await pViews;
 
-      // ★クリック時にも使えるように保存（renderWorkPhase1 内の保険）
+      // ★クリック時にも使えるように保存
       try { window.__rateSeriesMap = rateSeriesMap; } catch {}
 
       hydrateWorkExtras({
@@ -2168,12 +2135,11 @@ async function run() {
       return;
     }
 
-    // ---- ここから従来フロー（Home/List/Stats） ----
+    // ---- ここから Home/List/Stats ----
     const viewsMap = await pViews;
     const voteMatrix = await pVote;
     const rateSeriesMap = await pRateSeries;
 
-    // rate aggregates（Home用）
     let rateRecTop = [];
     let rateArtTop = [];
     try {
@@ -2196,10 +2162,10 @@ async function run() {
       renderHomePopular({ items: worksState.listItems, viewsMap, limit: 6 });
     }
     if (document.getElementById("homeRateRec")) {
-      renderHomeRateTop({ rootId: "homeRateRec", titleLabel: "おすすめ度", rows: rateRecTop, itemsByKey, limit: 6 });
+      renderHomeRateTop({ rootId: "homeRateRec", rows: rateRecTop, itemsByKey, limit: 6 });
     }
     if (document.getElementById("homeRateArt")) {
-      renderHomeRateTop({ rootId: "homeRateArt", titleLabel: "作画クオリティ", rows: rateArtTop, itemsByKey, limit: 6 });
+      renderHomeRateTop({ rootId: "homeRateArt", rows: rateArtTop, itemsByKey, limit: 6 });
     }
     if (document.getElementById("genreTabs") && document.getElementById("genreRow")) {
       const st = getHomeState();
