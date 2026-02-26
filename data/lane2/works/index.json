@@ -1,9 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-23T12:00:40.784Z",
-  "total": 226,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-02-26T12:03:32.766Z",
+  "total": 239,
+  "droppedTotal": 6,
+  "droppedSeriesKeys": [
+    "PSYЯEN -サイレン-",
+    "ありふれた職業で世界最強",
+    "ノ・ゾ・キ・ア・ナ",
+    "パラダイス・キス",
+    "君の膵臓をたべたい",
+    "未来日記"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -12,7 +19,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 26
+      "count": 39
     }
   ],
   "lookup": {
@@ -22,17 +29,20 @@
     "21世紀少年": 0,
     "3月のライオン": 0,
     "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-": 0,
+    "BTOOOM!-ブトゥーム": 0,
     "NARUTO -ナルト-": 0,
     "orange [オレンジ]": 0,
     "Re:ゼロから始める異世界生活": 0,
     "ReLIFE": 0,
     "アイアムアヒーロー": 0,
+    "アイシールド21": 0,
     "アオアシ": 0,
     "アオのハコ": 0,
     "アオハライド": 0,
     "あかね噺": 0,
     "アカメが斬る！": 0,
     "アクタージュ act-age": 0,
+    "アクメツ": 0,
     "あしたのジョー": 0,
     "あせとせっけん": 0,
     "アヤシモン": 0,
@@ -41,6 +51,7 @@
     "いぬやしき": 0,
     "イノサン": 0,
     "ヴァニタスの手記": 0,
+    "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-": 0,
     "ヴィンランド・サガ": 0,
     "うずまき": 0,
     "おもいでエマノン": 0,
@@ -49,6 +60,7 @@
     "カグラバチ": 0,
     "ガチアクタ": 0,
     "カッコウの許嫁": 0,
+    "カノジョも彼女": 0,
     "からかい上手の高木さん": 0,
     "ギヴン": 0,
     "ギョ": 0,
@@ -66,6 +78,7 @@
     "サンケンロック": 0,
     "しまなみ誰そ彼": 0,
     "ジャガーン": 0,
+    "シャドーハウス": 0,
     "ジョジョの奇妙な冒険 The JOJOLands": 0,
     "ジョジョの奇妙な冒険 ジョジョリオン": 0,
     "ジョジョの奇妙な冒険 スティール・ボール・ラン": 0,
@@ -86,6 +99,7 @@
     "ダンジョン飯": 0,
     "ダンダダン": 0,
     "チェンソーマン": 0,
+    "ちはやふる": 0,
     "ディー・グレイマン": 0,
     "デッドデッドデーモンズデデデデデストラクション": 0,
     "デッドマン・ワンダーランド": 0,
@@ -142,10 +156,12 @@
     "リアル": 0,
     "ルリドラゴン": 0,
     "るろうに剣心 -明治剣客浪漫譚-": 0,
+    "ロザリオとバンパイア": 0,
     "ワンパンマン": 0,
     "ヲタクに恋は難しい": 0,
     "七つの大罪": 0,
     "不滅のあなたへ": 0,
+    "乙女ゲー世界はモブに厳しい世界です": 0,
     "乙嫁語り": 0,
     "五等分の花嫁": 0,
     "亜人": 0,
@@ -156,6 +172,7 @@
     "僕の心のヤバイやつ": 0,
     "光が死んだ夏": 0,
     "十字架のろくにん": 0,
+    "双星の陰陽師": 0,
     "古見さんは、コミュ症です。": 0,
     "可愛いだけじゃない式守さん": 0,
     "君に届け": 0,
@@ -163,6 +180,7 @@
     "君は放課後インソムニア": 0,
     "呪術廻戦": 0,
     "嘘喰い": 0,
+    "四月は君の嘘": 0,
     "地獄楽": 0,
     "地縛少年 花子くん": 0,
     "夜桜さんちの大作戦": 0,
@@ -190,6 +208,7 @@
     "彼女、お借りします": 0,
     "怪獣８号": 0,
     "惡の華": 0,
+    "憂国のモリアーティ": 0,
     "政宗くんのリベンジ": 0,
     "文豪ストレイドッグス": 0,
     "新世紀エヴァンゲリオン": 0,
@@ -199,23 +218,24 @@
     "東京卍リベンジャーズ": 0,
     "東京喰種 トーキョーグール": 0,
     "東京喰種-トーキョーグール-:re": 0,
+    "桃源暗鬼": 0,
     "桜蘭高校ホスト部": 0,
     "極主夫道": 0,
     "極楽街": 0,
     "気になってる人が男じゃなかった": 0,
-    "炎炎ノ消防隊": 0,
-    "無職転生 ～異世界行ったら本気だす～": 0,
-    "無限の住人": 0,
-    "疑似ハーレム": 0,
-    "監獄学園": 0,
-    "盾の勇者の成り上がり": 0,
-    "神のみぞ知るセカイ": 0,
-    "神様はじめました": 0,
-    "私たちの幸せな時間": 0,
-    "約束のネバーランド": 0,
-    "終わりのセラフ": 0,
-    "終末のワルキューレ": 0,
-    "聲の形": 0,
+    "炎炎ノ消防隊": 1,
+    "無職転生 ～異世界行ったら本気だす～": 1,
+    "無限の住人": 1,
+    "疑似ハーレム": 1,
+    "監獄学園": 1,
+    "盾の勇者の成り上がり": 1,
+    "神のみぞ知るセカイ": 1,
+    "神様はじめました": 1,
+    "私たちの幸せな時間": 1,
+    "約束のネバーランド": 1,
+    "終わりのセラフ": 1,
+    "終末のワルキューレ": 1,
+    "聲の形": 1,
     "葬送のフリーレン": 1,
     "薫る花は凛と咲く": 1,
     "薬屋のひとりごと": 1,
@@ -492,6 +512,44 @@
       "releaseDate": "2016-08-04T00:00:01Z"
     },
     {
+      "seriesKey": "BTOOOM!-ブトゥーム",
+      "title": "ＢＴＯＯＯＭ！　　１ (BUNCH COMICS)",
+      "image": "https://m.media-amazon.com/images/I/51T7G197mhL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4107715167?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4107715167",
+      "magazine": "週刊コミックバンチ / （2009年6月 - 2010年8月） / 月刊コミック@バンチ / （2011年1月 - 2018年3月）",
+      "magazines": [
+        "週刊コミックバンチ",
+        "(2009年6月 - 2010年8月)",
+        "月刊コミック@バンチ",
+        "(2011年1月 - 2018年3月)"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Drama",
+        "Ecchi",
+        "Psychological",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "バトルロイヤル",
+        "サバイバル",
+        "ゲーム",
+        "青年向け",
+        "陰謀",
+        "デスゲーム",
+        "ひきこもり",
+        "奴隷",
+        "ロボット"
+      ],
+      "publisher": "新潮社",
+      "releaseDate": "2009-10-09T00:00:01Z"
+    },
+    {
       "seriesKey": "NARUTO -ナルト-",
       "title": "NARUTO -ナルト- 1",
       "image": "https://m.media-amazon.com/images/I/51gQV80M8qL._SL500_.jpg",
@@ -693,6 +751,30 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2009-08-28T00:00:01Z"
+    },
+    {
+      "seriesKey": "アイシールド21",
+      "title": "アイシールド21 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/61YhqjsAslL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088733703?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088733703",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Sports"
+      ],
+      "tags": [
+        "少年向け",
+        "部活"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2002-12-20T00:00:01Z"
     },
     {
       "seriesKey": "アオアシ",
@@ -901,6 +983,40 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2018-05-02T00:00:01Z"
+    },
+    {
+      "seriesKey": "アクメツ",
+      "title": "アクメツ 1 (少年チャンピオン・コミックス)",
+      "image": "https://m.media-amazon.com/images/I/51MdmiiVZjL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253204309?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253204309",
+      "magazine": "週刊少年チャンピオン",
+      "magazines": [
+        "週刊少年チャンピオン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Drama",
+        "Psychological",
+        "Thriller"
+      ],
+      "tags": [
+        "犯罪",
+        "政治",
+        "アンチヒーロー",
+        "経済",
+        "警察",
+        "軍事",
+        "少年向け",
+        "学園",
+        "車",
+        "クローン"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2003-02-06T00:00:01Z"
     },
     {
       "seriesKey": "あしたのジョー",
@@ -1204,6 +1320,41 @@
       ],
       "publisher": "スクウェア・エニックス",
       "releaseDate": "2016-04-22T00:00:01Z"
+    },
+    {
+      "seriesKey": "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-",
+      "title": "ヴィジランテ 1 ―僕のヒーローアカデミアILLEGALS― (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51OchDJi0tL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088810937?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088810937",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "スーパーヒーロー",
+        "超能力",
+        "犯罪",
+        "少年向け",
+        "アンチヒーロー",
+        "逃亡者",
+        "武術",
+        "特撮",
+        "警察",
+        "現代ファンタジー",
+        "都会"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2017-04-04T00:00:01Z"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
@@ -1520,6 +1671,34 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2020-05-15T00:00:01Z"
+    },
+    {
+      "seriesKey": "カノジョも彼女",
+      "title": "カノジョも彼女(1) (講談社コミックス)",
+      "image": "https://m.media-amazon.com/images/I/51HTYZfZkUL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065197430?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065197430",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "メイド",
+        "少年向け",
+        "チアリーディング"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2020-06-17T00:00:01Z"
     },
     {
       "seriesKey": "からかい上手の高木さん",
@@ -2158,6 +2337,49 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2017-05-30T00:00:01Z"
+    },
+    {
+      "seriesKey": "シャドーハウス",
+      "title": "シャドーハウス 1 (ヤングジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51l08WL4v0L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088911849?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088911849",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Fantasy",
+        "Horror",
+        "Mystery",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "陰謀",
+        "記憶操作",
+        "フルカラー",
+        "記憶喪失",
+        "コズミックホラー",
+        "仕事",
+        "疑似家族",
+        "子どもが中心",
+        "海外",
+        "メイド",
+        "青年向け",
+        "歴史",
+        "政治",
+        "魔法",
+        "変身能力",
+        "双子",
+        "サーカス",
+        "童話"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2019-01-18T00:00:01Z"
     },
     {
       "seriesKey": "ジョジョの奇妙な冒険 The JOJOLands",
@@ -2944,6 +3166,42 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2019-03-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "ちはやふる",
+      "title": "ちはやふる (1) (Be・Loveコミックス)",
+      "image": "https://m.media-amazon.com/images/I/518A-KzlK7L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063192393?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063192393",
+      "magazine": "BE・LOVE",
+      "magazines": [
+        "BE",
+        "LOVE"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sports"
+      ],
+      "tags": [
+        "女性向け",
+        "成長譚",
+        "部活",
+        "片思い",
+        "カードバトル",
+        "三角関係",
+        "視点描写（POV）",
+        "教育",
+        "学園",
+        "ボーイッシュ",
+        "いじめ",
+        "ドタバタ"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2008-05-13T00:00:01Z"
     },
     {
       "seriesKey": "ディー・グレイマン",
@@ -5104,6 +5362,56 @@
       "releaseDate": "1994-09-02T00:00:01Z"
     },
     {
+      "seriesKey": "ロザリオとバンパイア",
+      "title": "ロザリオとバンパイア 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/514dF5u8tXL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088736656?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088736656",
+      "magazine": "月刊少年ジャンプ（MJ） / 週刊少年ジャンプ（WJ）：番外編",
+      "magazines": [
+        "月刊少年ジャンプ(MJ)",
+        "週刊少年ジャンプ(WJ):番外編"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "吸血鬼",
+        "モンスター娘",
+        "魔法",
+        "逆ハーレム",
+        "少年向け",
+        "魔女",
+        "妖怪",
+        "全寮制",
+        "記憶操作",
+        "片思い",
+        "神話",
+        "部活",
+        "悪魔",
+        "学園",
+        "現代ファンタジー",
+        "サキュバス",
+        "多重人格",
+        "モンスター男子",
+        "三角関係",
+        "人魚",
+        "不良",
+        "猫耳",
+        "獣耳",
+        "キメラ"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2004-10-04T00:00:01Z"
+    },
+    {
       "seriesKey": "ワンパンマン",
       "title": "ワンパンマン 1",
       "image": "https://m.media-amazon.com/images/I/51n9Du3F1FL._SL500_.jpg",
@@ -5248,6 +5556,46 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2017-01-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "乙女ゲー世界はモブに厳しい世界です",
+      "title": "乙女ゲー世界はモブに厳しい世界です 01 (ドラゴンコミックスエイジ)",
+      "image": "https://m.media-amazon.com/images/I/51yIYqxGlKL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040732049?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040732049",
+      "magazine": "月刊ドラゴンエイジ",
+      "magazines": [
+        "月刊ドラゴンエイジ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy",
+        "Mecha",
+        "Romance"
+      ],
+      "tags": [
+        "異世界",
+        "アンチヒーロー",
+        "逆ハーレム",
+        "女系社会",
+        "男性ハーレム",
+        "人工知能",
+        "学園",
+        "少年向け",
+        "ゲーム",
+        "全寮制",
+        "悪役令嬢",
+        "三角関係",
+        "お嬢様"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2019-06-08T00:00:01Z"
     },
     {
       "seriesKey": "乙嫁語り",
@@ -5660,6 +6008,46 @@
       "releaseDate": "2020-08-07T00:00:01Z"
     },
     {
+      "seriesKey": "双星の陰陽師",
+      "title": "双星の陰陽師 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/516MQaHz0HL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/408880015X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/408880015X",
+      "magazine": "ジャンプスクエア",
+      "magazines": [
+        "ジャンプスクエア"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Fantasy",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "祓い・除霊",
+        "少年向け",
+        "悪魔",
+        "戦争",
+        "記憶操作",
+        "現代ファンタジー",
+        "復讐",
+        "日焼け肌",
+        "魔法",
+        "双子",
+        "逆ハーレム",
+        "呪い",
+        "クローン",
+        "記憶喪失"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2014-02-04T00:00:01Z"
+    },
+    {
       "seriesKey": "古見さんは、コミュ症です。",
       "title": "古見さんは、コミュ症です。 (1) (少年サンデーコミックス)",
       "image": "https://m.media-amazon.com/images/I/516Q6gPNlRL._SL500_.jpg",
@@ -5930,6 +6318,36 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2006-09-19T00:00:01Z"
+    },
+    {
+      "seriesKey": "四月は君の嘘",
+      "title": "四月は君の嘘(1) (月刊マガジンコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51oOU+dcvpL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063713016?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063713016",
+      "magazine": "月刊少年マガジン",
+      "magazines": [
+        "月刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Music",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "学園",
+        "成長譚",
+        "更生",
+        "三角関係",
+        "クラシック音楽",
+        "少年向け"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2011-09-16T00:00:01Z"
     },
     {
       "seriesKey": "地獄楽",
@@ -6951,6 +7369,48 @@
       "releaseDate": "2010-03-17T00:00:01Z"
     },
     {
+      "seriesKey": "憂国のモリアーティ",
+      "title": "憂国のモリアーティ 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51CEVGgqSKL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088808576?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088808576",
+      "magazine": "ジャンプスクエア",
+      "magazines": [
+        "ジャンプスクエア"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Mystery",
+        "Psychological",
+        "Thriller"
+      ],
+      "tags": [
+        "歴史",
+        "アンチヒーロー",
+        "犯罪",
+        "海外",
+        "陰謀",
+        "探偵",
+        "古典文学",
+        "政治",
+        "孤児",
+        "階級闘争",
+        "性転換",
+        "LGBTQテーマ",
+        "疑似家族",
+        "少年向け",
+        "トランスジェンダー",
+        "バイセクシュアル",
+        "女装・男装",
+        "ボーイズラブ",
+        "都会"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2016-11-04T00:00:01Z"
+    },
+    {
       "seriesKey": "政宗くんのリベンジ",
       "title": "政宗くんのリベンジ (1) (IDコミックス REXコミックス)",
       "image": "https://m.media-amazon.com/images/I/61OGbCAw-RL._SL500_.jpg",
@@ -7336,6 +7796,22 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2014-12-19T00:00:01Z"
+    },
+    {
+      "seriesKey": "桃源暗鬼",
+      "title": "桃源暗鬼 1 (少年チャンピオン・コミックス)",
+      "image": "https://m.media-amazon.com/images/I/512-QN+-t1L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253280013?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253280013",
+      "magazine": "週刊少年チャンピオン",
+      "magazines": [
+        "週刊少年チャンピオン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2020-10-08T00:00:01Z"
     },
     {
       "seriesKey": "桜蘭高校ホスト部",
