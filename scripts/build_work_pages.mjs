@@ -30,7 +30,7 @@ function normSpace(s) {
 function clip(s, n) {
   const t = normSpace(s);
   if (!t) return "";
-  return t.length > n ? (t.slice(0, n) + "…") : t;
+  return t.length > n ? t.slice(0, n) + "…" : t;
 }
 
 function pad3(n) {
@@ -79,27 +79,25 @@ function findFullWorkBySeriesKey(seriesKey) {
 
   const shard = loadShard(shardNo);
   const arr = Array.isArray(shard?.items) ? shard.items : [];
-  return arr.find(x => String(x?.seriesKey || "").trim() === seriesKey) || null;
+  return arr.find((x) => String(x?.seriesKey || "").trim() === seriesKey) || null;
 }
 
-// 既存を一旦クリアして作り直す（壊れない。work.htmlは別）
+// 既存を一旦クリアして作り直す（work.htmlは別）
 fs.rmSync(WORK_DIR, { recursive: true, force: true });
 fs.mkdirSync(WORK_DIR, { recursive: true });
 
 function makeDescription({ seriesKey, title, synopsis }) {
-  // synopsis があればそれを最優先（120字程度）
   const s = clip(synopsis, 120);
   if (s) return s;
 
-  // 無ければ薄い説明（短く）
   const t = String(title || seriesKey || "").trim();
   if (t) return `${t} の作品情報（タグ・投票・お気に入り）を確認できます。`;
   return "作品情報（タグ・投票・お気に入り）を確認できます。";
 }
 
 // 生成テンプレ
-function pageHtml({ seriesKey, title, description }) {
-  const pageTitle = `${title || seriesKey}｜BOOKスカウト`;
+function pageHtml({ title, description }) {
+  const pageTitle = `${title}｜BOOKスカウト`;
   const desc = description ? String(description) : "";
 
   return `<!doctype html>
@@ -148,26 +146,15 @@ function pageHtml({ seriesKey, title, description }) {
 
   <script>
     (function () {
-      // /work/<id>/ の <id> を取る
-      const parts = location.pathname.split("/").filter(Boolean);
-      const id = parts[parts.length - 1] || "";
-
-      // base64url -> utf8
-      function b64urlToUtf8(b64url) {
-        const b64 = b64url.replace(/-/g, "+").replace(/_/g, "/");
-        const pad = b64.length % 4 ? "=".repeat(4 - (b64.length % 4)) : "";
-        const bin = atob(b64 + pad);
-        const bytes = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-        return new TextDecoder("utf-8").decode(bytes);
-      }
-
-      let key = "";
-      try { key = b64urlToUtf8(id); } catch { key = ""; }
-
-      const p = new URLSearchParams(location.search);
-      if (key && !p.get("key")) p.set("key", key);
-      history.replaceState(null, "", location.pathname + "?" + p.toString() + location.hash);
+      // ✅ SEO: ?key=... が付いてきたら消す（/work/<id>/ を正にする）
+      try {
+        var p = new URLSearchParams(location.search);
+        if (p.has("key")) {
+          p.delete("key");
+          var q = p.toString();
+          history.replaceState(null, "", location.pathname + (q ? "?" + q : "") + location.hash);
+        }
+      } catch {}
     })();
   </script>
 
@@ -196,16 +183,21 @@ for (const it of items) {
 
   const title = String(it?.title || seriesKey).trim() || seriesKey;
 
-  // synopsis は shard 側（フル）を優先
+  // synopsis は shard 側（フル）優先
   const full = findFullWorkBySeriesKey(seriesKey);
-  const synopsis =
-    String(full?.synopsis || full?.vol1?.synopsis || it?.synopsis || it?.vol1?.synopsis || "").trim();
+  const synopsis = String(
+    full?.synopsis ??
+    full?.vol1?.synopsis ??
+    it?.synopsis ??
+    it?.vol1?.synopsis ??
+    ""
+  ).trim();
 
   const description = makeDescription({ seriesKey, title, synopsis });
 
   fs.writeFileSync(
     path.join(dir, "index.html"),
-    pageHtml({ seriesKey, title, description }),
+    pageHtml({ title, description }),
     "utf8"
   );
 
