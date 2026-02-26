@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T03:09:21.424Z",
+  "updatedAt": "2026-02-26T05:00:59.418Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -174,7 +174,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "ReLIFE",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -204,7 +204,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -360,12 +360,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "からかい上手の高木さん",
       "k": "rec",
       "avg": 4,
@@ -385,6 +379,12 @@
     },
     {
       "seriesKey": "タコピーの原罪",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -414,13 +414,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "マギ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
