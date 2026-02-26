@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T13:43:21.001Z",
+  "updatedAt": "2026-02-26T15:04:36.170Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -81,8 +81,8 @@
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "avg": 3.3333333333333335,
-      "n": "3"
+      "avg": 3.25,
+      "n": "4"
     },
     {
       "seriesKey": "3月のライオン",
@@ -95,32 +95,22 @@
       "n": "2"
     },
     {
-      "seriesKey": "その着せ替え人形は恋をする",
-      "avg": 3,
-      "n": "2"
-    },
-    {
       "seriesKey": "ガチアクタ",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "その着せ替え人形は恋をする",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "20世紀少年",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "宝石の国",
+      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
@@ -140,7 +130,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ゴールデンカムイ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "20世紀少年",
       "avg": 3,
       "n": "1"
     },
@@ -150,7 +150,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "カッコウの許嫁",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "七つの大罪",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ReLIFE",
       "avg": 3,
       "n": "1"
     },
@@ -160,7 +170,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "たいようのいえ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "1"
     },
@@ -190,12 +205,17 @@
       "n": "1"
     },
     {
+      "seriesKey": "魔入りました！入間くん",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "銀魂",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "黒執事",
       "avg": 3,
       "n": "1"
     },
@@ -210,6 +230,11 @@
       "n": "2"
     },
     {
+      "seriesKey": "幽☆遊☆白書",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "ドロヘドロ",
       "avg": 2,
       "n": "1"
@@ -220,18 +245,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
-      "avg": 2,
-      "n": "1"
-    },
-    {
       "seriesKey": "おやすみプンプン",
       "avg": 1,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 42,
-    "rows_before_limit_at_least": 42
+    "rows": 46,
+    "rows_before_limit_at_least": 46
   }
 }

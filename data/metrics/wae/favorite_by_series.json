@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T13:43:21.001Z",
+  "updatedAt": "2026-02-26T15:04:36.170Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -21,7 +21,7 @@
     },
     {
       "seriesKey": "3月のライオン",
-      "n": "6"
+      "n": "7"
     },
     {
       "seriesKey": "アイアムアヒーロー",
@@ -32,11 +32,15 @@
       "n": "4"
     },
     {
+      "seriesKey": "キングダム",
+      "n": "3"
+    },
+    {
       "seriesKey": "ReLIFE",
       "n": "3"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "2"
     },
     {
@@ -53,6 +57,10 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -84,7 +92,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -100,7 +108,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -108,11 +116,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
       "seriesKey": "葬送のフリーレン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "たいようのいえ",
       "n": "1"
     },
     {
@@ -132,7 +144,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -141,6 +153,10 @@
     },
     {
       "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
@@ -164,7 +180,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -201,7 +217,7 @@
     }
   ],
   "raw": {
-    "rows": 46,
-    "rows_before_limit_at_least": 73
+    "rows": 50,
+    "rows_before_limit_at_least": 80
   }
 }
