@@ -1,4 +1,7 @@
-// scripts/build_work_pages.mjs
+// scripts/build_work_pages.mjs（FULL REPLACE）
+// - public/work/<id>/index.html を全作品分生成
+// - 静的ページURLを汚さない（?key= を付けない）
+//   ※ key は public/app.js 側の resolveWorkKey() が pathname から復元する前提
 import fs from "node:fs";
 import path from "node:path";
 
@@ -20,7 +23,7 @@ function escHtml(s) {
     .replaceAll("'", "&#39;");
 }
 
-// index.json から listItems を取る（あなたの今の構造に合わせる）
+// index.json から listItems を取る（現構造に合わせる）
 const idx = JSON.parse(fs.readFileSync("data/lane2/works/index.json", "utf8"));
 const items = Array.isArray(idx?.listItems) ? idx.listItems : [];
 if (!items.length) {
@@ -28,14 +31,14 @@ if (!items.length) {
   process.exit(1);
 }
 
-// 既存を一旦クリアして作り直す（壊れない。work.htmlは別）
+// 既存を一旦クリアして作り直す（work.html は別）
 fs.rmSync(WORK_DIR, { recursive: true, force: true });
 fs.mkdirSync(WORK_DIR, { recursive: true });
 
 // 生成テンプレ
 function pageHtml({ seriesKey, title }) {
   const pageTitle = `${title || seriesKey}｜BOOKスカウト`;
-  // b64url decode をページ側でやる（map不要）
+
   return `<!doctype html>
 <html lang="ja">
 <head>
@@ -60,9 +63,11 @@ function pageHtml({ seriesKey, title }) {
 
   <main class="wrap">
     <div id="status" class="status"></div>
+
     <section class="section" style="margin-top:6px;">
       <a class="section-link" href="../../list.html">← リストへ戻る</a>
     </section>
+
     <section class="grid" style="margin-top:12px;">
       <aside id="detail" class="detail">
         <div class="d-title">読み込み中…</div>
@@ -81,26 +86,9 @@ function pageHtml({ seriesKey, title }) {
 
   <script>
     (function () {
-      // /work/<id>/ の <id> を取る
-      const parts = location.pathname.split("/").filter(Boolean);
-      const id = parts[parts.length - 1] || "";
-
-      // base64url -> utf8
-      function b64urlToUtf8(b64url) {
-        const b64 = b64url.replace(/-/g, "+").replace(/_/g, "/");
-        const pad = b64.length % 4 ? "=".repeat(4 - (b64.length % 4)) : "";
-        const bin = atob(b64 + pad);
-        const bytes = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-        return new TextDecoder("utf-8").decode(bytes);
-      }
-
-      let key = "";
-      try { key = b64urlToUtf8(id); } catch { key = ""; }
-
-      const p = new URLSearchParams(location.search);
-      if (key && !p.get("key")) p.set("key", key);
-      history.replaceState(null, "", location.pathname + "?" + p.toString() + location.hash);
+      // work/<id>/ は public/app.js が pathname から key を復元できるため、
+      // URL に ?key= を付けたり書き換えたりしない（静的URLを保つ）。
+      // ※ ここは意図的に空（将来の保険のため IIFE だけ残す）
     })();
   </script>
 
