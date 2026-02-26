@@ -17,7 +17,8 @@
 function qs() { return new URLSearchParams(location.search); }
 
 // ✅ base path: /work/<id>/ 配下でも壊れないようにする
-const BASE = location.pathname.includes("/work/") ? "../../" : "./";
+const IS_STATIC_WORK = /\/work\/[^/]+\/?$/.test(location.pathname);
+const BASE = IS_STATIC_WORK ? "../../" : "./";
 
 /* =======================
  * perf: tiny placeholder
@@ -713,7 +714,8 @@ function setGenreAllLink(activeTab) {
   const a = document.getElementById("genreAllLink");
   if (!a) return;
   const q = encodeURIComponent(activeTab.match.join(","));
-  a.href = `${BASE}list.html?genre=${q}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
+  const v = qs().get("v");
+  a.href = `${BASE}list.html?genre=${q}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 }
 
 /* --- Home ジャンル：日替わり18件 --- */
@@ -742,7 +744,8 @@ function renderGenreTabsRow({ items, activeId }) {
   const pickedAll = all.filter(it => hasAnyGenre(it, active.match));
   const picked = shuffleWithSeed(pickedAll, `genre:${active.id}:${daySeedStr()}`);
 
-  const moreHref = `${BASE}list.html?genre=${encodeURIComponent(active.match.join(","))}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
+  const v = qs().get("v");
+  const moreHref = `${BASE}list.html?genre=${encodeURIComponent(active.match.join(","))}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   setGenreAllLink(active);
@@ -785,7 +788,8 @@ function categoryCountMap(allItems) {
 function setAudienceAllLink(activeAudValue) {
   const a = document.getElementById("audienceAllLink");
   if (!a) return;
-  a.href = `${BASE}list.html?aud=${encodeURIComponent(activeAudValue)}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
+  const v = qs().get("v");
+  a.href = `${BASE}list.html?aud=${encodeURIComponent(activeAudValue)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 }
 
 /* --- Home カテゴリー：日替わり18件 --- */
@@ -815,7 +819,8 @@ function renderAudienceTabsRow({ items, activeAudId }) {
   const pickedAll = all.filter(it => getFirstAudienceLabel(it) === audValue);
   const picked = shuffleWithSeed(pickedAll, `aud:${active.id}:${daySeedStr()}`);
 
-  const moreHref = `${BASE}list.html?aud=${encodeURIComponent(audValue)}` + (qs().get("v") ? `&v=${encodeURIComponent(qs().get("v"))}` : "");
+  const v = qs().get("v");
+  const moreHref = `${BASE}list.html?aud=${encodeURIComponent(audValue)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   setAudienceAllLink(audValue);
@@ -1205,6 +1210,7 @@ function renderList(items, quickDefs) {
 // public/app.js（2/2）FULL REPLACE
 // - ✅ /work/<id>/ 静的URL導線に統一（reco含む）
 // - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
+// - ✅ 任意提案：work.html?key=... で開かれたら静的URLへ 301相当リダイレクト（history.replace）
 // - Work：2段階描画（先に表示→あとで埋める）で体感速度UP
 // - Work：読後感投票の“報酬”を投票枠内に集約（みんなの読後感 / 同じ読後感の作品）
 // - Toastで即時フィードバック
@@ -1703,15 +1709,14 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
 
 /* =======================
  * Work key resolver
- * - /work/<id>/ は query key を自動注入済み（build_work_pages がやる）
- * - 念のため work.html?key=... 互換もここで確保
+ * - /work/<id>/ は build_work_pages が query key を注入（念のためここも対応）
+ * - work.html?key=... 互換も保持
  * ======================= */
 function resolveWorkKey() {
   const p = qs();
   let key = toText(p.get("key"));
   if (key) return key;
 
-  // fallback: /work/<id>/ から decode して key にする
   if (location.pathname.includes("/work/")) {
     const parts = location.pathname.split("/").filter(Boolean);
     const id = parts[parts.length - 1] || "";
@@ -1727,6 +1732,32 @@ function resolveWorkKey() {
     }
   }
   return toText(key);
+}
+
+/* =======================
+ * 任意提案：work.html?key=... を静的URLへ寄せる
+ * - Google対策：同一内容の URL を減らす
+ * - 完全301はできないので history.replaceState でURLだけ置換（画面遷移なし）
+ * - /work/<id>/ で開かれた時は何もしない
+ * ======================= */
+function canonicalizeWorkToStatic() {
+  try{
+    if (IS_STATIC_WORK) return;
+    const hasDetail = !!document.getElementById("detail");
+    if (!hasDetail) return;
+
+    const key = toText(qs().get("key"));
+    if (!key) return;
+
+    // work.html 以外で key を使ってる可能性に備え、ファイル名チェックは緩め
+    const target = workStaticUrl(key);
+
+    // すでに静的URLなら無視
+    if (location.pathname.includes("/work/")) return;
+
+    // URLだけ寄せる（戻るが自然になるよう replace）
+    history.replaceState(null, "", target);
+  }catch{}
 }
 
 /* =======================
@@ -2066,6 +2097,9 @@ async function run() {
     const v = qs().get("v");
     const bust = !!v;
 
+    // ✅ 任意提案：work.html?key=... を静的URLへ寄せる（URLだけ置換）
+    canonicalizeWorkToStatic();
+
     const worksState = await loadWorksIndex({ bust });
 
     // quick filters（vote UIに必須）
@@ -2137,7 +2171,6 @@ async function run() {
 
     // ---- ここから Home/List/Stats ----
     const viewsMap = await pViews;
-    const voteMatrix = await pVote;
     const rateSeriesMap = await pRateSeries;
 
     let rateRecTop = [];
