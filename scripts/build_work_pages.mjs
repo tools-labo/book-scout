@@ -5,6 +5,10 @@ import path from "node:path";
 const ROOT_PUBLIC = "public";
 const WORK_DIR = path.join(ROOT_PUBLIC, "work");
 
+// ✅ canonical の基準URL（GitHub Pagesの公開先に合わせる）
+const SITE_ORIGIN = "https://tools-labo.github.io";
+const SITE_BASE_PATH = "/book-scout"; // 先頭に / が必要
+
 // base64url (no /, +, =)
 function b64urlFromUtf8(s) {
   const b64 = Buffer.from(String(s), "utf8").toString("base64");
@@ -95,10 +99,16 @@ function makeDescription({ seriesKey, title, synopsis }) {
   return "作品情報（タグ・投票・お気に入り）を確認できます。";
 }
 
+function canonicalUrlFromId(id) {
+  // 例: https://tools-labo.github.io/book-scout/work/<id>/
+  return `${SITE_ORIGIN}${SITE_BASE_PATH}/work/${id}/`;
+}
+
 // 生成テンプレ
-function pageHtml({ title, description }) {
+function pageHtml({ title, description, canonicalUrl }) {
   const pageTitle = `${title}｜BOOKスカウト`;
   const desc = description ? String(description) : "";
+  const canon = String(canonicalUrl || "").trim();
 
   return `<!doctype html>
 <html lang="ja">
@@ -107,6 +117,7 @@ function pageHtml({ title, description }) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escHtml(pageTitle)}</title>
   ${desc ? `<meta name="description" content="${escHtml(desc)}" />` : ""}
+  ${canon ? `<link rel="canonical" href="${escHtml(canon)}" />` : ""}
   <link rel="stylesheet" href="../../style.css" />
 </head>
 <body class="has-gheader">
@@ -187,17 +198,18 @@ for (const it of items) {
   const full = findFullWorkBySeriesKey(seriesKey);
   const synopsis = String(
     full?.synopsis ??
-    full?.vol1?.synopsis ??
-    it?.synopsis ??
-    it?.vol1?.synopsis ??
-    ""
+      full?.vol1?.synopsis ??
+      it?.synopsis ??
+      it?.vol1?.synopsis ??
+      ""
   ).trim();
 
   const description = makeDescription({ seriesKey, title, synopsis });
+  const canonicalUrl = canonicalUrlFromId(id);
 
   fs.writeFileSync(
     path.join(dir, "index.html"),
-    pageHtml({ title, description }),
+    pageHtml({ title, description, canonicalUrl }),
     "utf8"
   );
 
@@ -205,4 +217,6 @@ for (const it of items) {
   n++;
 }
 
-console.log(`[build_work_pages] generated: ${n} pages -> ${WORK_DIR} (synopsis missing: ${miss})`);
+console.log(
+  `[build_work_pages] generated: ${n} pages -> ${WORK_DIR} (synopsis missing: ${miss})`
+);
