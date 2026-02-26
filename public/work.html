@@ -1,88 +1,41 @@
+<!-- public/work.html (FULL REPLACE) -->
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜作品</title>
+  <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body class="has-gheader">
-  <header class="gheader" id="gheader">
-    <div class="gheader-inner">
-      <div class="gbrand">
-        <a class="gbrand-title" href="./index.html">BOOKスカウト</a>
-      </div>
-
-      <nav class="gnav" aria-label="グローバルナビ">
-        <a href="./index.html">ホーム</a>
-        <a href="./list.html">リスト</a>
-        <a href="./stats.html">ランキング</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="wrap">
-    <div id="status" class="status"></div>
-
-    <section class="section" style="margin-top:6px;">
-      <a class="section-link" href="./list.html">← リストへ戻る</a>
-    </section>
-
-    <section class="grid" style="margin-top:12px;">
-      <aside id="detail" class="detail">
-        <div class="d-title">読み込み中…</div>
-      </aside>
-    </section>
-
-    <footer class="gfooter" aria-label="サイトフッター">
-      <div class="gfooter-inner">
-        <span>© Tools-LABO</span>
-        <a href="./privacy/">プライバシーポリシー</a>
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSfF73yZ69HH-FASKEYSkp98zM92o4dtQLtiQs7BzLRuwsobfA/viewform?pli=1"
-          target="_blank"
-          rel="noopener noreferrer"
-        >お問い合わせ</a>
-      </div>
-    </footer>
+    <div class="status" style="margin-top:24px;">作品ページへ移動しています…</div>
+    <div class="status" style="opacity:.7;">自動で移動しない場合は、URLの key を確認してください。</div>
   </main>
 
   <script>
     (function () {
-      const header = document.getElementById("gheader");
-      if (!header) return;
+      const p = new URLSearchParams(location.search);
+      const key = (p.get("key") || "").trim();
+      const v = (p.get("v") || "").trim();
 
-      let lastY = window.scrollY || 0;
-      let ticking = false;
-
-      const SHOW_THRESHOLD = 2;
-      const HIDE_THRESHOLD = 8;
-      const TOP_KEEP = 12;
-
-      function onScroll() {
-        const y = window.scrollY || 0;
-        const dy = y - lastY;
-
-        if (y <= TOP_KEEP) { header.classList.remove("is-hidden"); lastY = y; return; }
-        if (dy > HIDE_THRESHOLD) { header.classList.add("is-hidden"); lastY = y; return; }
-        if (dy < -SHOW_THRESHOLD) { header.classList.remove("is-hidden"); lastY = y; return; }
+      function b64urlFromUtf8(s) {
+        const bytes = new TextEncoder().encode(String(s ?? ""));
+        let bin = "";
+        for (const b of bytes) bin += String.fromCharCode(b);
+        const b64 = btoa(bin);
+        return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
       }
 
-      window.addEventListener("scroll", () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => { ticking = false; onScroll(); });
-      }, { passive: true });
-    })();
-  </script>
+      if (!key) return;
 
-  <script>
-    (function () {
-      const v = new URLSearchParams(location.search).get("v");
-      const s = document.createElement("script");
-      s.src = "./app.js" + (v ? ("?v=" + encodeURIComponent(v)) : "");
-      document.body.appendChild(s);
+      const id = b64urlFromUtf8(key);
+      const qs = v ? ("?v=" + encodeURIComponent(v)) : "";
+      const to = "./work/" + id + "/" + qs;
+
+      // 履歴を汚さない
+      location.replace(to);
     })();
   </script>
 </body>
