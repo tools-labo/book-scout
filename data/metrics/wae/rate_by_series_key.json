@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T20:54:38.400Z",
+  "updatedAt": "2026-02-26T21:46:26.892Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -66,6 +66,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "ありふれた職業で世界最強",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "東京喰種-トーキョーグール-:re",
       "k": "art",
       "avg": 4,
@@ -79,12 +85,6 @@
     },
     {
       "seriesKey": "ディー・グレイマン",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ありふれた職業で世界最強",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -132,31 +132,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "七つの大罪",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヲタクに恋は難しい",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "血の轍",
+      "seriesKey": "約束のネバーランド",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -168,25 +144,25 @@
       "n": "1"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -198,7 +174,31 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "ゴールデンカムイ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "七つの大罪",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "不滅のあなたへ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -222,19 +222,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "黒執事",
+      "seriesKey": "魔入りました！入間くん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -246,7 +234,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "黒執事",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ReLIFE",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -258,13 +258,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "ソウルイーター",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -324,13 +324,13 @@
       "n": "4"
     },
     {
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "アイシールド21",
       "k": "rec",
       "avg": 5,
       "n": "1"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "葬送のフリーレン",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -396,25 +396,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "蜘蛛ですが、なにか？",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "バガボンド",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -432,6 +414,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "バガボンド",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 4,
@@ -439,6 +427,12 @@
     },
     {
       "seriesKey": "からかい上手の高木さん",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -468,6 +462,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "血の轍",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3.5,
@@ -486,7 +486,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "たいようのいえ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -498,19 +498,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "マギ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "政宗くんのリベンジ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔入りました！入間くん",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -534,25 +534,31 @@
       "n": "1"
     },
     {
+      "seriesKey": "ReLIFE",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "約束のネバーランド",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "トモちゃんは女の子!",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "20世紀少年",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -571,12 +577,6 @@
     },
     {
       "seriesKey": "宝石の国",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔入りました！入間くん",
       "k": "rec",
       "avg": 3,
       "n": "1"
