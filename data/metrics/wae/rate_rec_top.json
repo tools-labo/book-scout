@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T15:04:36.170Z",
+  "updatedAt": "2026-02-26T16:06:07.539Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -50,22 +50,22 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
-      "avg": 4.25,
-      "n": "4"
-    },
-    {
       "seriesKey": "3月のライオン",
       "avg": 4.25,
       "n": "4"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "ヴィンランド・サガ",
+      "avg": 4.25,
+      "n": "4"
+    },
+    {
+      "seriesKey": "【推しの子】",
       "avg": 4,
       "n": "3"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "監獄学園",
       "avg": 4,
       "n": "3"
     },
@@ -80,12 +80,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "バガボンド",
+      "seriesKey": "ゴールデンカムイ",
       "avg": 4,
       "n": "1"
     },
@@ -100,7 +95,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "avg": 4,
       "n": "1"
     },
@@ -115,12 +110,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "銀魂",
+      "seriesKey": "バガボンド",
       "avg": 4,
       "n": "1"
     },
@@ -130,12 +120,27 @@
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "七つの大罪",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "タコピーの原罪",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "はじめの一歩",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "avg": 4,
       "n": "1"
     },
@@ -220,6 +225,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "ありふれた職業で世界最強",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ReLIFE",
       "avg": 3,
       "n": "1"
@@ -246,7 +256,7 @@
     }
   ],
   "raw": {
-    "rows": 45,
-    "rows_before_limit_at_least": 45
+    "rows": 47,
+    "rows_before_limit_at_least": 47
   }
 }

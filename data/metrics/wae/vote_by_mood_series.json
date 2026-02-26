@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T15:04:36.170Z",
+  "updatedAt": "2026-02-26T16:06:07.539Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -62,6 +62,11 @@
     {
       "mood": "funny",
       "seriesKey": "監獄学園",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -161,12 +166,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "なまいきざかり。",
+      "seriesKey": "やがて君になる",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "やがて君になる",
+      "seriesKey": "なまいきざかり。",
       "n": "1"
     },
     {
@@ -211,11 +216,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
@@ -232,6 +232,16 @@
     {
       "mood": "hot",
       "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "はじめの一歩",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -276,7 +286,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "よつばと！",
+      "seriesKey": "葬送のフリーレン",
       "n": "1"
     },
     {
@@ -286,37 +296,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "葬送のフリーレン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "アイシールド21",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "乙嫁語り",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "キングダム",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ちはやふる",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "フルーツバスケット",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
@@ -330,13 +315,33 @@
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "【推しの子】",
-      "n": "2"
+      "mood": "moving",
+      "seriesKey": "よつばと！",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ちはやふる",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "乙嫁語り",
+      "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
     {
@@ -346,12 +351,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "【推しの子】",
+      "n": "2"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
     {
@@ -366,22 +381,17 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "不滅のあなたへ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "魔入りました！入間くん",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -396,17 +406,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -416,17 +416,32 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "キングダム",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
     {
       "mood": "satisfying",
       "seriesKey": "七つの大罪",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "終末のワルキューレ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ありふれた職業で世界最強",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     },
     {
@@ -436,13 +451,18 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "タコピーの原罪",
+      "n": "2"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "ReLIFE",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
-      "n": "2"
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
     },
     {
       "mood": "tearjerker",
@@ -456,17 +476,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 89,
-    "rows_before_limit_at_least": 125
+    "rows": 92,
+    "rows_before_limit_at_least": 128
   }
 }

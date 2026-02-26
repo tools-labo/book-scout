@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T15:04:36.170Z",
+  "updatedAt": "2026-02-26T16:06:07.539Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -42,6 +42,11 @@
     {
       "seriesKey": "アイシールド21",
       "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
+      "avg": 4,
       "n": "1"
     },
     {
@@ -105,12 +110,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "タコピーの原罪",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
+      "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "1"
     },
@@ -125,7 +125,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "ReLIFE",
       "avg": 3,
       "n": "1"
     },
@@ -135,12 +135,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "タコピーの原罪",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "血の轍",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
       "avg": 3,
       "n": "1"
     },
@@ -155,17 +160,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "20世紀少年",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "七つの大罪",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソウルイーター",
       "avg": 3,
       "n": "1"
     },
@@ -175,7 +175,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "ソウルイーター",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
       "avg": 3,
       "n": "1"
     },
@@ -215,7 +220,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
@@ -245,13 +250,18 @@
       "n": "1"
     },
     {
+      "seriesKey": "はじめの一歩",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "おやすみプンプン",
       "avg": 1,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 46,
-    "rows_before_limit_at_least": 46
+    "rows": 48,
+    "rows_before_limit_at_least": 48
   }
 }

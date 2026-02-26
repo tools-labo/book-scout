@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T15:04:36.170Z",
+  "updatedAt": "2026-02-26T16:06:07.539Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -60,7 +60,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "アオのハコ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -92,11 +96,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -108,7 +112,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "はじめの一歩",
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -116,7 +124,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -144,7 +152,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "バガボンド",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -156,11 +164,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
@@ -180,7 +188,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -212,12 +220,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "ありふれた職業で世界最強",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 50,
-    "rows_before_limit_at_least": 80
+    "rows": 53,
+    "rows_before_limit_at_least": 83
   }
 }
