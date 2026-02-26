@@ -1,7 +1,4 @@
-// scripts/build_work_pages.mjs（FULL REPLACE）
-// - public/work/<id>/index.html を全作品分生成
-// - 静的ページURLを汚さない（?key= を付けない）
-//   ※ key は public/app.js 側の resolveWorkKey() が pathname から復元する前提
+// scripts/build_work_pages.mjs (FULL REPLACE)
 import fs from "node:fs";
 import path from "node:path";
 
@@ -23,21 +20,87 @@ function escHtml(s) {
     .replaceAll("'", "&#39;");
 }
 
-// index.json から listItems を取る（現構造に合わせる）
-const idx = JSON.parse(fs.readFileSync("data/lane2/works/index.json", "utf8"));
+function normSpace(s) {
+  return String(s ?? "")
+    .replace(/\r?\n/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function clip(s, n) {
+  const t = normSpace(s);
+  if (!t) return "";
+  return t.length > n ? (t.slice(0, n) + "…") : t;
+}
+
+function pad3(n) {
+  return String(n).padStart(3, "0");
+}
+
+function safeReadJson(p) {
+  try {
+    return JSON.parse(fs.readFileSync(p, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+// ---- load works index ----
+const idxPath = "data/lane2/works/index.json";
+const idx = safeReadJson(idxPath);
 const items = Array.isArray(idx?.listItems) ? idx.listItems : [];
+const lookup = idx?.lookup && typeof idx.lookup === "object" ? idx.lookup : null;
+
 if (!items.length) {
   console.error("index.json に listItems がありません");
   process.exit(1);
 }
+if (!lookup) {
+  console.error("index.json に lookup がありません（split構成を想定しています）");
+  process.exit(1);
+}
 
-// 既存を一旦クリアして作り直す（work.html は別）
+// shard cache
+const shardCache = new Map(); // shardNo -> shardJson
+
+function loadShard(shardNo) {
+  const key = String(shardNo);
+  if (shardCache.has(key)) return shardCache.get(key);
+
+  const file = `data/lane2/works/works_${pad3(Number(shardNo))}.json`;
+  const j = safeReadJson(file);
+  shardCache.set(key, j);
+  return j;
+}
+
+function findFullWorkBySeriesKey(seriesKey) {
+  const shardNo = lookup?.[seriesKey];
+  if (shardNo == null) return null;
+
+  const shard = loadShard(shardNo);
+  const arr = Array.isArray(shard?.items) ? shard.items : [];
+  return arr.find(x => String(x?.seriesKey || "").trim() === seriesKey) || null;
+}
+
+// 既存を一旦クリアして作り直す（壊れない。work.htmlは別）
 fs.rmSync(WORK_DIR, { recursive: true, force: true });
 fs.mkdirSync(WORK_DIR, { recursive: true });
 
+function makeDescription({ seriesKey, title, synopsis }) {
+  // synopsis があればそれを最優先（120字程度）
+  const s = clip(synopsis, 120);
+  if (s) return s;
+
+  // 無ければ薄い説明（短く）
+  const t = String(title || seriesKey || "").trim();
+  if (t) return `${t} の作品情報（タグ・投票・お気に入り）を確認できます。`;
+  return "作品情報（タグ・投票・お気に入り）を確認できます。";
+}
+
 // 生成テンプレ
-function pageHtml({ seriesKey, title }) {
+function pageHtml({ seriesKey, title, description }) {
   const pageTitle = `${title || seriesKey}｜BOOKスカウト`;
+  const desc = description ? String(description) : "";
 
   return `<!doctype html>
 <html lang="ja">
@@ -45,6 +108,7 @@ function pageHtml({ seriesKey, title }) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escHtml(pageTitle)}</title>
+  ${desc ? `<meta name="description" content="${escHtml(desc)}" />` : ""}
   <link rel="stylesheet" href="../../style.css" />
 </head>
 <body class="has-gheader">
@@ -63,11 +127,9 @@ function pageHtml({ seriesKey, title }) {
 
   <main class="wrap">
     <div id="status" class="status"></div>
-
     <section class="section" style="margin-top:6px;">
       <a class="section-link" href="../../list.html">← リストへ戻る</a>
     </section>
-
     <section class="grid" style="margin-top:12px;">
       <aside id="detail" class="detail">
         <div class="d-title">読み込み中…</div>
@@ -86,9 +148,26 @@ function pageHtml({ seriesKey, title }) {
 
   <script>
     (function () {
-      // work/<id>/ は public/app.js が pathname から key を復元できるため、
-      // URL に ?key= を付けたり書き換えたりしない（静的URLを保つ）。
-      // ※ ここは意図的に空（将来の保険のため IIFE だけ残す）
+      // /work/<id>/ の <id> を取る
+      const parts = location.pathname.split("/").filter(Boolean);
+      const id = parts[parts.length - 1] || "";
+
+      // base64url -> utf8
+      function b64urlToUtf8(b64url) {
+        const b64 = b64url.replace(/-/g, "+").replace(/_/g, "/");
+        const pad = b64.length % 4 ? "=".repeat(4 - (b64.length % 4)) : "";
+        const bin = atob(b64 + pad);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder("utf-8").decode(bytes);
+      }
+
+      let key = "";
+      try { key = b64urlToUtf8(id); } catch { key = ""; }
+
+      const p = new URLSearchParams(location.search);
+      if (key && !p.get("key")) p.set("key", key);
+      history.replaceState(null, "", location.pathname + "?" + p.toString() + location.hash);
     })();
   </script>
 
@@ -105,6 +184,8 @@ function pageHtml({ seriesKey, title }) {
 }
 
 let n = 0;
+let miss = 0;
+
 for (const it of items) {
   const seriesKey = String(it?.seriesKey || "").trim();
   if (!seriesKey) continue;
@@ -113,9 +194,23 @@ for (const it of items) {
   const dir = path.join(WORK_DIR, id);
   fs.mkdirSync(dir, { recursive: true });
 
-  const title = String(it?.title || seriesKey);
-  fs.writeFileSync(path.join(dir, "index.html"), pageHtml({ seriesKey, title }), "utf8");
+  const title = String(it?.title || seriesKey).trim() || seriesKey;
+
+  // synopsis は shard 側（フル）を優先
+  const full = findFullWorkBySeriesKey(seriesKey);
+  const synopsis =
+    String(full?.synopsis || full?.vol1?.synopsis || it?.synopsis || it?.vol1?.synopsis || "").trim();
+
+  const description = makeDescription({ seriesKey, title, synopsis });
+
+  fs.writeFileSync(
+    path.join(dir, "index.html"),
+    pageHtml({ seriesKey, title, description }),
+    "utf8"
+  );
+
+  if (!synopsis) miss++;
   n++;
 }
 
-console.log(`[build_work_pages] generated: ${n} pages -> ${WORK_DIR}`);
+console.log(`[build_work_pages] generated: ${n} pages -> ${WORK_DIR} (synopsis missing: ${miss})`);
