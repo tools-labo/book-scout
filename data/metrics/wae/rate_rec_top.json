@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T12:15:19.750Z",
+  "updatedAt": "2026-02-26T13:43:21.001Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -30,12 +30,22 @@
       "n": "4"
     },
     {
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "ちはやふる",
       "avg": 5,
       "n": "1"
     },
     {
       "seriesKey": "幽☆遊☆白書",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アイシールド21",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
       "avg": 5,
       "n": "1"
     },
@@ -50,19 +60,14 @@
       "n": "4"
     },
     {
-      "seriesKey": "監獄学園",
-      "avg": 4,
-      "n": "3"
-    },
-    {
       "seriesKey": "【推しの子】",
       "avg": 4,
       "n": "3"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "監獄学園",
       "avg": 4,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "キングダム",
@@ -70,22 +75,12 @@
       "n": "2"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ベルセルク",
       "avg": 4,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "銀魂",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "からかい上手の高木さん",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "バガボンド",
+      "seriesKey": "ディー・グレイマン",
       "avg": 4,
       "n": "1"
     },
@@ -100,7 +95,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "avg": 4,
       "n": "1"
     },
@@ -110,7 +105,17 @@
       "n": "1"
     },
     {
+      "seriesKey": "バガボンド",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "チェンソーマン",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
       "avg": 4,
       "n": "1"
     },
@@ -121,6 +126,11 @@
     },
     {
       "seriesKey": "タコピーの原罪",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "avg": 4,
       "n": "1"
     },
@@ -216,7 +226,7 @@
     }
   ],
   "raw": {
-    "rows": 39,
-    "rows_before_limit_at_least": 39
+    "rows": 41,
+    "rows_before_limit_at_least": 41
   }
 }

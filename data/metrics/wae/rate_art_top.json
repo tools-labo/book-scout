@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T12:15:19.750Z",
+  "updatedAt": "2026-02-26T13:43:21.001Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -40,12 +40,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "アイシールド21",
+      "avg": 5,
+      "n": "1"
+    },
+    {
       "seriesKey": "ディー・グレイマン",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "葬送のフリーレン",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ちはやふる",
       "avg": 4,
       "n": "1"
     },
@@ -95,7 +105,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ゴールデンカムイ",
       "avg": 3,
       "n": "1"
     },
@@ -125,12 +135,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "血の轍",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "タコピーの原罪",
       "avg": 3,
       "n": "1"
     },
@@ -221,7 +231,7 @@
     }
   ],
   "raw": {
-    "rows": 40,
-    "rows_before_limit_at_least": 40
+    "rows": 42,
+    "rows_before_limit_at_least": 42
   }
 }
