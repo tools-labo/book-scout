@@ -17,6 +17,10 @@ const QUICK_FILTERS_PATH = "data/lane2/quick_filters.json";
  *  blob6: genre
  *  blob7: aud
  *  blob8: mag
+ *  blob9: country
+ *  blob10: user-agent
+ *  blob11: method
+ *  blob12: path
  *
  * NOTE:
  * - vote: blob5 = moodId
@@ -37,6 +41,11 @@ const COL = {
 const DOUBLE = {
   rating: "double1",
 };
+
+// ✅ 急上昇（ノイズの無い期間だけ）
+// ユーザー指定：UTC 2026-02-27 00:00:00 以降
+// Cloudflare AE(SQL) は DateTime と String をそのまま比較できないので DateTime にキャストする
+const RISING_SINCE_UTC = "toDateTime('2026-02-27 00:00:00', 'UTC')";
 
 function norm(s) {
   return String(s ?? "").trim();
@@ -133,19 +142,13 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
 GROUP BY ${COL.type}
 ORDER BY n DESC
 `;
 }
 
-/**
- * recent_200（※ID/ファイル名は維持）
- * - limit は増やしてOK（例: 5000）
- * - ✅ v2 のみ
- * - ✅ days 範囲内に限定（ノイズ混入防止）
- */
-function qRecent(dataset, days = 30, limit = 200) {
+// ✅ 互換維持のため id は "recent_200" のまま、件数だけ 5000 に増やす
+function qRecent(dataset, limit = 5000) {
   return `
 SELECT
   timestamp,
@@ -159,8 +162,6 @@ SELECT
   ${COL.mag} AS mag,
   ${DOUBLE.rating} AS rating
 FROM ${dataset}
-WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
 ORDER BY timestamp DESC
 LIMIT ${Number(limit)}
 `;
@@ -173,7 +174,6 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
   AND ${COL.type} = 'work_view'
   AND ${COL.seriesKey} != ''
 GROUP BY ${COL.seriesKey}
@@ -188,7 +188,6 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
   AND ${COL.type} = 'vote'
   AND ${COL.seriesKey} != ''
   AND ${COL.mood} != ''
@@ -205,7 +204,6 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
   AND ${COL.type} = 'vote'
   AND ${COL.mood} != ''
   AND ${whereMoodIn(allowedMoodIds)}
@@ -223,7 +221,6 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
   AND ${COL.type} = 'vote'
   AND ${COL.mood} != ''
   AND ${COL.seriesKey} != ''
@@ -241,7 +238,6 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
   AND ${COL.type} = 'favorite'
   AND ${COL.seriesKey} != ''
 GROUP BY ${COL.seriesKey}
@@ -259,7 +255,6 @@ SELECT
   ${sumCountExpr()}
 FROM ${dataset}
 WHERE ${whereRecent(days)}
-  AND ${COL.schema} = 'v2'
   AND ${COL.type} = 'list_filter'
 GROUP BY ${COL.genre}, ${COL.aud}, ${COL.mag}, ${COL.mood}
 ORDER BY n DESC
@@ -274,8 +269,7 @@ ORDER BY n DESC
  * ======================= */
 function whereRateCommon() {
   return `
-  ${COL.schema} = 'v2'
-  AND ${COL.type} = 'rate'
+  ${COL.type} = 'rate'
   AND ${COL.seriesKey} != ''
   AND ${COL.mood} != ''
   AND ${DOUBLE.rating} >= 1
@@ -316,7 +310,7 @@ ORDER BY avg DESC, n DESC
 
 // k=rec のランキング（平均★、同率は件数）
 function qRateRecTop(dataset, days = 30, limit = 200) {
-  const minN = 1;
+  const minN = 1; // 後で上げてもOK
   return `
 SELECT
   ${COL.seriesKey} AS seriesKey,
@@ -353,11 +347,11 @@ LIMIT ${Number(limit)}
 }
 
 /* =======================
- * Rising (急上昇) - UTC fixed since
+ * Rising (急上昇) - ノイズ除外
+ * - schema=v2 のみ
+ * - timestamp >= 2026-02-27 00:00:00 UTC
  * ======================= */
-const RISING_SINCE_UTC = "2026-02-27 00:00:00"; // ←あなた指定（UTC）
-
-function qRisingWorkViewSince(dataset, limit = 5000) {
+function qRisingWorkViewsSince(dataset, limit = 5000) {
   return `
 SELECT
   ${COL.seriesKey} AS seriesKey,
@@ -367,7 +361,7 @@ WHERE
   ${COL.schema} = 'v2'
   AND ${COL.type} = 'work_view'
   AND ${COL.seriesKey} != ''
-  AND timestamp >= '${RISING_SINCE_UTC}'
+  AND timestamp >= ${RISING_SINCE_UTC}
 GROUP BY ${COL.seriesKey}
 ORDER BY n DESC
 LIMIT ${Number(limit)}
@@ -383,13 +377,6 @@ async function main() {
   if (!token) throw new Error("Missing env: CLOUDFLARE_AE_READ_TOKEN (or CLOUDFLARE_API_TOKEN)");
 
   const days = Number(process.env.CLOUDFLARE_AE_DAYS || 30);
-
-  // ✅ recent の出力件数（IDは recent_200 のまま）
-  const recentLimit = Number(process.env.CLOUDFLARE_AE_RECENT_LIMIT || 5000);
-
-  // ✅ rising の件数上限（十分大きく）
-  const risingLimit = Number(process.env.CLOUDFLARE_AE_RISING_LIMIT || 5000);
-
   const allowedMoodIds = await loadAllowedMoodIds();
 
   const now = new Date().toISOString();
@@ -398,8 +385,8 @@ async function main() {
   const queries = [
     { id: "type_counts", sql: qTypeCounts(dataset, days) },
 
-    // ★IDは維持（壊さない）
-    { id: "recent_200", sql: qRecent(dataset, days, recentLimit) },
+    // ✅ idは維持（他の場所に波及させない）
+    { id: "recent_200", sql: qRecent(dataset, 5000) },
 
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
 
@@ -410,13 +397,14 @@ async function main() {
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
 
+    // rate
     { id: "rate_by_series_key", sql: qRateBySeriesKey(dataset, days) },
     { id: "rate_by_key", sql: qRateByKey(dataset, days) },
     { id: "rate_rec_top", sql: qRateRecTop(dataset, days, 200) },
     { id: "rate_art_top", sql: qRateArtTop(dataset, days, 200) },
 
-    // ✅追加：急上昇（UTC固定の “きれいな期間” だけ）
-    { id: "rising_work_view_since_20260227", sql: qRisingWorkViewSince(dataset, risingLimit) },
+    // ✅ 急上昇（新しい正しいデータだけ）
+    { id: "rising_work_view_since_20260227", sql: qRisingWorkViewsSince(dataset, 5000) },
   ];
 
   const out = {};
