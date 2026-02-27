@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T07:55:47.513Z",
+  "updatedAt": "2026-02-27T08:59:04.827Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -54,19 +54,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ヴァニタスの手記",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "ちはやふる",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -85,6 +79,12 @@
     },
     {
       "seriesKey": "ディー・グレイマン",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -132,13 +132,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "七つの大罪",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "たいようのいえ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -162,13 +162,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -180,7 +180,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -192,13 +192,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "宝石の国",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "ソウルイーター",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -210,7 +210,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "カッコウの許嫁",
+      "seriesKey": "からかい上手の高木さん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -222,13 +222,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "カッコウの許嫁",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "ReLIFE",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -240,7 +240,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "政宗くんのリベンジ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -258,13 +258,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "魔入りました！入間くん",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "約束のネバーランド",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -288,6 +288,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドロヘドロ",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
@@ -295,12 +301,6 @@
     },
     {
       "seriesKey": "はじめの一歩",
-      "k": "art",
-      "avg": 2,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
       "k": "art",
       "avg": 2,
       "n": "1"
@@ -324,25 +324,25 @@
       "n": "4"
     },
     {
-      "seriesKey": "アイシールド21",
-      "k": "rec",
-      "avg": 5,
-      "n": "1"
-    },
-    {
-      "seriesKey": "幽☆遊☆白書",
-      "k": "rec",
-      "avg": 5,
-      "n": "1"
-    },
-    {
       "seriesKey": "葬送のフリーレン",
       "k": "rec",
       "avg": 5,
       "n": "1"
     },
     {
+      "seriesKey": "アイシールド21",
+      "k": "rec",
+      "avg": 5,
+      "n": "1"
+    },
+    {
       "seriesKey": "ちはやふる",
+      "k": "rec",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -384,6 +384,12 @@
       "n": "2"
     },
     {
+      "seriesKey": "チェンソーマン",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "七つの大罪",
       "k": "rec",
       "avg": 4,
@@ -396,13 +402,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -414,7 +414,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ディー・グレイマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -426,7 +426,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -439,12 +445,6 @@
     },
     {
       "seriesKey": "はじめの一歩",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "チェンソーマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -474,19 +474,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
-      "k": "rec",
-      "avg": 3,
-      "n": "2"
-    },
-    {
       "seriesKey": "ガチアクタ",
       "k": "rec",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "東京喰種 トーキョーグール",
+      "seriesKey": "アイアムアヒーロー",
+      "k": "rec",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "約束のネバーランド",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -510,7 +510,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -534,31 +534,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "不滅のあなたへ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "宝石の国",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "トモちゃんは女の子!",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "政宗くんのリベンジ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ReLIFE",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -576,7 +564,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "不滅のあなたへ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
       "k": "rec",
       "avg": 3,
       "n": "1"
