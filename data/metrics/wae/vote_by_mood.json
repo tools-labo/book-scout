@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T13:31:36.310Z",
+  "updatedAt": "2026-02-27T14:57:21.798Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood",
@@ -17,7 +17,7 @@
   "rows": [
     {
       "mood": "hot",
-      "n": "27"
+      "n": "19"
     },
     {
       "mood": "funny",
@@ -54,6 +54,6 @@
   ],
   "raw": {
     "rows": 9,
-    "rows_before_limit_at_least": 127
+    "rows_before_limit_at_least": 128
   }
 }
