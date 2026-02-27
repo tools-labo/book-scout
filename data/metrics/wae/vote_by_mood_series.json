@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T23:44:15.856Z",
+  "updatedAt": "2026-02-27T02:51:39.782Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -216,6 +216,11 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
@@ -237,11 +242,6 @@
     {
       "mood": "hot",
       "seriesKey": "はじめの一歩",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -366,12 +366,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
