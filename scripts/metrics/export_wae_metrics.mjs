@@ -356,7 +356,9 @@ async function main() {
 
   const queries = [
     { id: "type_counts", sql: qTypeCounts(dataset, days) },
-    { id: "recent_200", sql: qRecent(dataset, 200) },
+
+    // ✅ recent を 5000 件に増量（急上昇などの素材として使う）
+    { id: "recent_200", sql: qRecent(dataset, 5000) },
 
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
 
