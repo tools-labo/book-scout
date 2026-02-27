@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T09:58:35.812Z",
+  "updatedAt": "2026-02-27T10:58:25.443Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -36,12 +36,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -186,11 +186,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "バガボンド",
-      "n": "10"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "NARUTO -ナルト-",
       "n": "4"
     },
@@ -206,17 +201,22 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "キングダム",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "バガボンド",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
       "mood": "hot",
       "seriesKey": "東京卍リベンジャーズ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -366,12 +366,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -406,11 +406,6 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
@@ -442,6 +437,11 @@
     {
       "mood": "satisfying",
       "seriesKey": "七つの大罪",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
     {
@@ -482,6 +482,6 @@
   ],
   "raw": {
     "rows": 92,
-    "rows_before_limit_at_least": 127
+    "rows_before_limit_at_least": 128
   }
 }
