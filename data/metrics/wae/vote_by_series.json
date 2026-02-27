@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T19:46:47.541Z",
+  "updatedAt": "2026-02-27T20:44:29.319Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -24,10 +24,6 @@
       "n": "11"
     },
     {
-      "seriesKey": "バガボンド",
-      "n": "10"
-    },
-    {
       "seriesKey": "NARUTO -ナルト-",
       "n": "8"
     },
@@ -44,6 +40,10 @@
       "n": "4"
     },
     {
+      "seriesKey": "キングダム",
+      "n": "4"
+    },
+    {
       "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "3"
     },
@@ -53,10 +53,6 @@
     },
     {
       "seriesKey": "ベルセルク",
-      "n": "3"
-    },
-    {
-      "seriesKey": "キングダム",
       "n": "3"
     },
     {
@@ -96,6 +92,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "乙嫁語り",
+      "n": "2"
+    },
+    {
       "seriesKey": "よつばと！",
       "n": "2"
     },
@@ -108,15 +108,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "2"
     },
     {
       "seriesKey": "アイシールド21",
-      "n": "2"
-    },
-    {
-      "seriesKey": "桜蘭高校ホスト部",
       "n": "2"
     },
     {
@@ -132,7 +128,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "薫る花は凛と咲く",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
@@ -140,11 +136,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
       "seriesKey": "はじめの一歩",
       "n": "1"
     },
     {
-      "seriesKey": "ザ・ファブル",
+      "seriesKey": "おやすみプンプン",
       "n": "1"
     },
     {
@@ -156,7 +156,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "おやすみプンプン",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -248,12 +248,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "薫る花は凛と咲く",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 59,
-    "rows_before_limit_at_least": 127
+    "rows_before_limit_at_least": 128
   }
 }
