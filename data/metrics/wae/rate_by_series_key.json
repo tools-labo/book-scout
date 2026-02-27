@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T08:59:04.827Z",
+  "updatedAt": "2026-02-27T09:58:35.812Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -54,13 +54,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "ちはやふる",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "ヴァニタスの手記",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -138,7 +138,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
+      "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -150,7 +150,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -162,7 +162,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "たいようのいえ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -198,7 +198,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "銀魂",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -210,7 +210,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "カッコウの許嫁",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -222,7 +222,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "カッコウの許嫁",
+      "seriesKey": "からかい上手の高木さん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -246,7 +246,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "ソウルイーター",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -288,12 +288,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
-      "k": "art",
-      "avg": 2,
-      "n": "1"
-    },
-    {
       "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
@@ -301,6 +295,12 @@
     },
     {
       "seriesKey": "はじめの一歩",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
       "k": "art",
       "avg": 2,
       "n": "1"
@@ -336,13 +336,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "幽☆遊☆白書",
       "k": "rec",
       "avg": 5,
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "ちはやふる",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -408,18 +408,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ディー・グレイマン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "バガボンド",
       "k": "rec",
       "avg": 4,
@@ -427,6 +415,18 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ディー・グレイマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -516,13 +516,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "東京喰種 トーキョーグール",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -546,13 +546,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "20世紀少年",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "ReLIFE",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -576,7 +576,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種 トーキョーグール",
+      "seriesKey": "魔入りました！入間くん",
       "k": "rec",
       "avg": 3,
       "n": "1"
