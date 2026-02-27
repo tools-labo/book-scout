@@ -2419,9 +2419,9 @@
         "コミック百合姫"
       ],
       "audiences": [
-        "その他"
+        "女性"
       ],
-      "magazineSource": "wikipedia",
+      "magazineSource": "manual_override",
       "genres": [
         "Drama",
         "Music",
@@ -2439,8 +2439,7 @@
       ],
       "meta": {
         "anilistId": 107987,
-        "wikiTitle": "ささやくように恋を唄う",
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
     {

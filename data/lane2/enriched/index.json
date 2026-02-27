@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-26T16:20:21.080Z",
+  "updatedAt": "2026-02-27T13:17:07.422Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -264,17 +264,21 @@
     "total": 245,
     "ok": 245,
     "ng": 0,
-    "skippedPerfect": 245,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
+    "skippedPerfect": 244,
+    "skippedAniList": 1,
+    "skippedWiki": 1,
+    "skippedAmazon": 1,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 0,
+      "prevNotPerfect": 1,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "ささやくように恋を唄う :: audiences[]"
+      ]
+    },
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],

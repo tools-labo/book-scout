@@ -3552,9 +3552,11 @@
         "magazines": [
           "コミック百合姫"
         ],
-        "audiences": [],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ささやくように恋を唄う",
+        "audiences": [
+          "女性"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 107987,
         "genres": [
           "Drama",
@@ -3586,7 +3588,7 @@
           "バイセクシュアル"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
