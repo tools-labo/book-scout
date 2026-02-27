@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T11:46:24.831Z",
+  "updatedAt": "2026-02-27T13:31:36.310Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -76,11 +76,11 @@
       "n": "3"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "監獄学園",
       "n": "3"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "乙嫁語り",
       "n": "3"
     },
     {
@@ -184,6 +184,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "ファイアパンチ",
+      "n": "1"
+    },
+    {
       "seriesKey": "おもいでエマノン",
       "n": "1"
     },
@@ -204,15 +208,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "なまいきざかり。",
-      "n": "1"
-    },
-    {
       "seriesKey": "アカメが斬る！",
       "n": "1"
     },
     {
       "seriesKey": "ブルーピリオド",
+      "n": "1"
+    },
+    {
+      "seriesKey": "サンケンロック",
       "n": "1"
     },
     {
@@ -256,15 +260,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "葬送のフリーレン",
-      "n": "1"
-    },
-    {
       "seriesKey": "とつくにの少女",
       "n": "1"
     },
     {
       "seriesKey": "やがて君になる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
       "n": "1"
     },
     {
@@ -312,6 +316,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "マイ・ブロークン・マリコ",
+      "n": "1"
+    },
+    {
       "seriesKey": "暁のヨナ",
       "n": "1"
     },
@@ -336,7 +344,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
@@ -368,7 +376,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -416,12 +424,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ファイアパンチ",
+      "seriesKey": "なまいきざかり。",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 101,
-    "rows_before_limit_at_least": 234
+    "rows": 103,
+    "rows_before_limit_at_least": 236
   }
 }

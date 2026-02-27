@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T11:46:24.831Z",
+  "updatedAt": "2026-02-27T13:31:36.310Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "type_counts",
@@ -17,23 +17,23 @@
   "rows": [
     {
       "type": "work_view",
-      "n": "234"
+      "n": "236"
     },
     {
       "type": "list_filter",
       "n": "200"
     },
     {
+      "type": "vote",
+      "n": "174"
+    },
+    {
       "type": "rate",
       "n": "173"
     },
     {
-      "type": "vote",
-      "n": "166"
-    },
-    {
       "type": "favorite",
-      "n": "83"
+      "n": "92"
     },
     {
       "type": "__verify",
@@ -50,6 +50,6 @@
   ],
   "raw": {
     "rows": 8,
-    "rows_before_limit_at_least": 862
+    "rows_before_limit_at_least": 863
   }
 }

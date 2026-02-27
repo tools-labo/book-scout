@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T11:46:24.831Z",
+  "updatedAt": "2026-02-27T13:31:36.310Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -47,6 +47,18 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-27 13:30:12",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "マイ・ブロークン・マリコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
     {
       "timestamp": "2026-02-26 16:21:33",
       "type": "work_view",
@@ -510,18 +522,6 @@
       "page": "work",
       "seriesKey": "3月のライオン",
       "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 1
-    },
-    {
-      "timestamp": "2026-02-26 14:54:17",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "キングダム",
-      "mood": "hot",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2237,7 +2237,7 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "3月のライオン",
-      "mood": "tearjerker",
+      "mood": "moving",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2249,7 +2249,7 @@
       "schema": "v2",
       "page": "work",
       "seriesKey": "3月のライオン",
-      "mood": "moving",
+      "mood": "tearjerker",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -2450,6 +2450,6 @@
   ],
   "raw": {
     "rows": 200,
-    "rows_before_limit_at_least": 862
+    "rows_before_limit_at_least": 863
   }
 }

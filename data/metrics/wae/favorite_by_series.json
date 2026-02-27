@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T11:46:24.831Z",
+  "updatedAt": "2026-02-27T13:31:36.310Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -16,6 +16,10 @@
   ],
   "rows": [
     {
+      "seriesKey": "キングダム",
+      "n": "12"
+    },
+    {
       "seriesKey": "ドラゴンボール",
       "n": "12"
     },
@@ -30,10 +34,6 @@
     {
       "seriesKey": "NARUTO -ナルト-",
       "n": "4"
-    },
-    {
-      "seriesKey": "キングダム",
-      "n": "3"
     },
     {
       "seriesKey": "ReLIFE",
