@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-27T15:24:40.772Z",
+  "dataset": "book_scout_events",
+  "days": 30,
+  "id": "rising_work_view_since_20260227",
+  "columns": [
+    {
+      "name": "seriesKey",
+      "type": "String"
+    },
+    {
+      "name": "n",
+      "type": "UInt64"
+    }
+  ],
+  "rows": [
+    {
+      "seriesKey": "マイ・ブロークン・マリコ",
+      "n": "1"
+    }
+  ],
+  "raw": {
+    "rows": 1,
+    "rows_before_limit_at_least": 1
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T15:03:51.829Z",
+  "updatedAt": "2026-02-27T15:24:40.772Z",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -63,6 +63,11 @@
       "id": "rate_art_top",
       "file": "rate_art_top.json",
       "rows": 48
+    },
+    {
+      "id": "rising_work_view_since_20260227",
+      "file": "rising_work_view_since_20260227.json",
+      "rows": 1
     }
   ]
 }
