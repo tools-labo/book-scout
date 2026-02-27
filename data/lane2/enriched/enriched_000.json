@@ -5543,6 +5543,7 @@
           "LOVE"
         ],
         "audiences": [
+          "その他"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
@@ -8573,6 +8574,7 @@
           "COMIC BRIDGE"
         ],
         "audiences": [
+          "女性"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
@@ -8608,7 +8610,7 @@
           "哲学"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },

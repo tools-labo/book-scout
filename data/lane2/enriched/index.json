@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T13:17:07.422Z",
+  "updatedAt": "2026-02-27T13:28:37.710Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -264,19 +264,20 @@
     "total": 245,
     "ok": 245,
     "ng": 0,
-    "skippedPerfect": 244,
-    "skippedAniList": 1,
-    "skippedWiki": 1,
-    "skippedAmazon": 1,
+    "skippedPerfect": 243,
+    "skippedAniList": 2,
+    "skippedWiki": 2,
+    "skippedAmazon": 2,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "magAudienceTodoAdded": 2,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 1,
+      "prevNotPerfect": 2,
       "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "ささやくように恋を唄う :: audiences[]"
+        "ちはやふる :: audiences[]",
+        "マイ・ブロークン・マリコ :: audiences[]"
       ]
     },
     "notPerfectSummary": {

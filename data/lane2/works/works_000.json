@@ -5790,7 +5790,7 @@
         "COMIC BRIDGE"
       ],
       "audiences": [
-        "その他"
+        "女性"
       ],
       "magazineSource": "manual_override",
       "genres": [
@@ -5809,7 +5809,7 @@
       ],
       "meta": {
         "anilistId": 112579,
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
