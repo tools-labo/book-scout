@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T20:44:29.319Z",
+  "updatedAt": "2026-02-27T21:42:58.191Z",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -216,6 +216,11 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
@@ -237,11 +242,6 @@
     {
       "mood": "hot",
       "seriesKey": "はじめの一歩",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -346,12 +346,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "進撃の巨人",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
