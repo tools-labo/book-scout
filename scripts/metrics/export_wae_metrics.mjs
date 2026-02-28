@@ -33,7 +33,6 @@ const COL = {
   mag: "blob8",
 };
 
-// doubles
 const DOUBLE = {
   rating: "double1",
 };
@@ -42,8 +41,8 @@ const DOUBLE = {
 // ユーザー指定：UTC 2026-02-27 00:00:00 以降
 const RISING_SINCE_UTC = "toDateTime('2026-02-27 00:00:00', 'UTC')";
 
-// ✅ 表示用：JST（Asia/Tokyo）
-const JST_TZ = "Asia/Tokyo";
+// ✅ JST は SQL 側で「UTC + 9時間」で表現（toTimeZone が使えないため）
+const JST_OFFSET_HOURS = 9;
 
 function norm(s) {
   return String(s ?? "").trim();
@@ -53,11 +52,11 @@ function nowUtcIso() {
   return new Date().toISOString();
 }
 
-// "YYYY-MM-DD HH:mm:ss"（JST）
+// "YYYY-MM-DD HH:mm:ss"（JST）※メタ用
 function nowJstYmdHms() {
   try {
     const fmt = new Intl.DateTimeFormat("sv-SE", {
-      timeZone: JST_TZ,
+      timeZone: "Asia/Tokyo",
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
@@ -68,7 +67,6 @@ function nowJstYmdHms() {
     });
     return fmt.format(new Date());
   } catch {
-    // Intl が万一コケても落とさない
     return "";
   }
 }
@@ -122,7 +120,6 @@ async function cfSql({ accountId, token, sql }) {
 function sumCountExpr() {
   return "SUM(_sample_interval) AS n";
 }
-// HAVING など alias を書けない場所用
 function sumCountRawExpr() {
   return "SUM(_sample_interval)";
 }
@@ -169,13 +166,13 @@ ORDER BY n DESC
 `;
 }
 
-// ✅ 互換維持のため id は "recent_200" のまま、件数だけ 5000 に増やす
-// ✅ timestamp は残しつつ、表示用に timestampJst を追加（全JSONをJST表記に寄せる）
+// ✅ id は "recent_200" のまま、limit=5000
+// ✅ JST表示用に timestampJst を追加（UTC+9h）
 function qRecent(dataset, limit = 5000) {
   return `
 SELECT
   timestamp,
-  formatDateTime(toTimeZone(timestamp, '${JST_TZ}'), '%Y-%m-%d %H:%M:%S') AS timestampJst,
+  formatDateTime(timestamp + INTERVAL '${Number(JST_OFFSET_HOURS)}' HOUR, '%Y-%m-%d %H:%M:%S') AS timestampJst,
   ${COL.type} AS type,
   ${COL.schema} AS schema,
   ${COL.page} AS page,
@@ -236,7 +233,6 @@ ORDER BY n DESC
 `;
 }
 
-// mood別 × 作品別（トップ3表示用）
 function qVotesByMoodSeries(dataset, days = 30, allowedMoodIds = []) {
   return `
 SELECT
@@ -254,7 +250,6 @@ ORDER BY mood ASC, n DESC
 `;
 }
 
-// お気に入り（シリーズ別）
 function qFavoritesBySeries(dataset, days = 30) {
   return `
 SELECT
@@ -413,13 +408,11 @@ async function main() {
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
 
-    // rate
     { id: "rate_by_series_key", sql: qRateBySeriesKey(dataset, days) },
     { id: "rate_by_key", sql: qRateByKey(dataset, days) },
     { id: "rate_rec_top", sql: qRateRecTop(dataset, days, 200) },
     { id: "rate_art_top", sql: qRateArtTop(dataset, days, 200) },
 
-    // ✅ 急上昇（新しい正しいデータだけ）
     { id: "rising_work_view_since_20260227", sql: qRisingWorkViewsSince(dataset, 5000) },
   ];
 
