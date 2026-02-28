@@ -831,13 +831,27 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
     </div>
   `;
 
-  // hint
+    // hint（ユーザー向け表記）
   if (hint) {
     const parts = [];
-    if (genreIds.length) parts.push(`genre=${genreIds.map(id => HOME_GENRE_TABS.find(t => t.id === id)?.label || id).join(",")}`);
-    if (audSelected) parts.push(`aud=${audLabelMap.get(audSelected) || audSelected}`);
-    if (magSelected) parts.push(`mag=${magSelected}`);
-    hint.textContent = parts.length ? `現在: ${parts.join(" / ")}` : "";
+
+    if (genreIds.length) {
+      const labels = genreIds
+        .map(id => HOME_GENRE_TABS.find(t => t.id === id)?.label || id)
+        .filter(Boolean);
+      if (labels.length) parts.push(`ジャンル：${labels.join(" / ")}`);
+    }
+
+    if (audSelected) {
+      const lb = audLabelMap.get(audSelected) || audSelected;
+      parts.push(`カテゴリー：${lb}`);
+    }
+
+    if (magSelected) {
+      parts.push(`連載誌：${magSelected}`);
+    }
+
+    hint.textContent = parts.length ? `絞り込み中：${parts.join(" / ")}` : "";
   }
 
   const clear = document.getElementById("facetClearLink");
