@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜リスト</title>
   <link rel="stylesheet" href="./style.css" />
+
   <!-- PWA / Home screen icons -->
-<link rel="manifest" href="manifest.webmanifest" />
-<meta name="theme-color" content="#0b0f14" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b0f14" />
 
-<!-- iOS home screen -->
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- iOS home screen -->
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<!-- Favicons -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
 </head>
 
 <body class="has-gheader">
@@ -37,14 +38,31 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <!-- ✅ 追加：ジャンル/カテゴリー/連載誌 -->
+    <!-- ✅ 追加：ジャンル/カテゴリー/連載誌 + 並び替え -->
     <section class="section" style="margin-top:10px;">
-      <div class="section-head">
+      <div class="section-head" style="gap:10px; align-items:center;">
         <h2 class="section-title">絞り込み</h2>
-        <a id="facetClearLink" class="section-link" href="./list.html">解除</a>
+
+        <div style="display:flex; gap:10px; align-items:center; margin-left:auto;">
+          <!-- 仮配置：レイアウトは後で -->
+          <label style="display:flex; gap:6px; align-items:center; font-size:12px; opacity:.9;">
+            <span>並び替え</span>
+            <select id="sortSelect" style="padding:8px 10px; border:1px solid rgba(0,0,0,.12); border-radius:10px; background:#fff;">
+              <option value="pop">人気</option>
+              <option value="new">発売日（新しい順）</option>
+              <option value="rise">急上昇（30日）</option>
+            </select>
+          </label>
+
+          <a id="facetClearLink" class="section-link" href="./list.html">解除</a>
+        </div>
       </div>
+
       <div id="facetFilters" class="status" style="margin-top:8px;"></div>
       <div id="facetHint" class="status" style="margin-top:8px;"></div>
+
+      <!-- 件数表示（A案：表示中のみ） -->
+      <div id="listCount" class="status" style="margin-top:8px;"></div>
     </section>
 
     <section class="section" style="margin-top:10px;">
@@ -58,6 +76,16 @@
     </section>
 
     <section id="list" class="grid" style="margin-top:12px;"></section>
+
+    <!-- もっと見る（+50） -->
+    <div id="listMoreWrap" style="margin:12px 0 0; display:none;">
+      <button
+        id="listMoreBtn"
+        type="button"
+        class="btn"
+        style="width:100%; padding:12px 14px;"
+      >もっと見る（+50）</button>
+    </div>
 
     <footer class="gfooter" aria-label="サイトフッター">
       <div class="gfooter-inner">
