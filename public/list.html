@@ -175,19 +175,59 @@
     })();
   </script>
 
-  <!-- ✅ Sheet open/close（app.jsに触らない） -->
+  <!-- ✅ Sheet open/close（app.jsに触らない） + シート内件数表示 -->
   <script>
     (function () {
       const sheet = document.getElementById("filterSheet");
       const openBtn = document.getElementById("openFilterSheetBtn");
       const fab = document.getElementById("filterFab");
+      const mainCount = document.getElementById("listCount");
       if (!sheet) return;
 
+      // ✅ シート内にも「リスト件数」を表示（app.jsは触らない）
+      function ensureSheetCount() {
+        if (!mainCount) return;
+        if (document.getElementById("sheetListCount")) return;
+
+        const head = sheet.querySelector(".sheet-head");
+        if (!head) return;
+
+        const el = document.createElement("div");
+        el.id = "sheetListCount";
+        el.className = "list-topbar-count"; // 既存CSSを流用
+        el.style.marginLeft = "8px";
+        el.style.whiteSpace = "nowrap";
+        el.style.fontVariantNumeric = "tabular-nums";
+        el.textContent = mainCount.textContent || "";
+
+        const title = head.querySelector(".sheet-title");
+        if (title) title.insertAdjacentElement("afterend", el);
+        else head.appendChild(el);
+
+        const sync = () => { el.textContent = mainCount.textContent || ""; };
+
+        try {
+          const mo = new MutationObserver(sync);
+          mo.observe(mainCount, { childList: true, characterData: true, subtree: true });
+        } catch {}
+
+        sync();
+      }
+
+      function syncSheetCountNow() {
+        const el = document.getElementById("sheetListCount");
+        if (!el || !mainCount) return;
+        el.textContent = mainCount.textContent || "";
+      }
+
       function openSheet() {
+        ensureSheetCount();
+        syncSheetCountNow();
+
         document.body.classList.add("sheet-open");
         sheet.classList.add("is-open");
         sheet.setAttribute("aria-hidden", "false");
-        // フォーカスを閉じるボタンに寄せる（軽く）
+
         const closeBtn = sheet.querySelector("[data-sheet-close='1']");
         try { closeBtn && closeBtn.focus(); } catch {}
       }
@@ -218,7 +258,6 @@
       // iOS: シート開いてる間の背景スクロール抑止（CSSで足りない端末向け）
       document.addEventListener("touchmove", (e) => {
         if (!sheet.classList.contains("is-open")) return;
-        // シート内スクロールは許可
         const inPanel = e.target && e.target.closest && e.target.closest(".sheet-panel");
         if (!inPanel) e.preventDefault();
       }, { passive: false });
