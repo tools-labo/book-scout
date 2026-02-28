@@ -947,18 +947,22 @@ button{ font-family:inherit; }
   }
 }
 
-
 /* =======================
  * List B案：ボトムシート + 共存FAB
  * ======================= */
 .list-topbar{
   position: sticky;
-  top: 52px; /* gheaderの高さ分（崩れても致命傷にならない安全値） */
+  top: 52px; /* デフォルト：gheaderの高さ目安 */
   z-index: 900;
   padding: 10px 0 8px;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(17,24,39,.06);
+}
+
+/* ✅ ヘッダーが隠れたら余白を消す（iOS Safari対応の範囲で） */
+.has-gheader:has(#gheader.is-hidden) .list-topbar{
+  top: 0;
 }
 
 .list-topbar-row{
@@ -1000,7 +1004,7 @@ button{ font-family:inherit; }
   border: 1px solid rgba(0,0,0,.15);
   background: rgba(255,255,255,.92);
   box-shadow: 0 10px 24px rgba(0,0,0,.18);
-  z-index: 9998; /* backToTop(9999)の下でもOK。上にしたいなら9999に */
+  z-index: 9998; /* backToTop(9999)と共存 */
   display: inline-flex;
   align-items:center;
   justify-content:center;
@@ -1032,10 +1036,16 @@ button{ font-family:inherit; }
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
   box-shadow: 0 -20px 50px rgba(0,0,0,.22);
-  max-height: min(78vh, 720px);
+
+  /* ✅ iOSでの高さ計算安定（vhよりdvh優先） */
+  max-height: min(calc(100dvh - 12px), 720px);
+
   display:flex;
   flex-direction: column;
   overflow: hidden;
+
+  /* ✅ 下のセーフエリアを確保（閉じるが隠れにくい） */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .sheet-head{
@@ -1044,6 +1054,9 @@ button{ font-family:inherit; }
   display:flex;
   align-items:center;
   gap: 10px;
+
+  /* ✅ ヘッダーは常に見える */
+  flex: 0 0 auto;
 }
 
 .sheet-title{
@@ -1059,14 +1072,17 @@ button{ font-family:inherit; }
   gap: 8px;
 }
 
+/* ✅ ここが“確実にスクロール領域” */
 .sheet-body{
-  padding: 8px 12px 14px;
-  overflow: auto;
+  padding: 8px 12px calc(14px + env(safe-area-inset-bottom));
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  flex: 1 1 auto;
 }
 
-/* Sheet open時：背景スクロール抑止 */
+/* Sheet open時：背景スクロール抑止
+   ✅ touch-action:none は iOSでシート内スクロールまで殺すことがあるので使わない */
 body.sheet-open{
   overflow: hidden;
-  touch-action: none;
 }
