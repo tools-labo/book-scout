@@ -4,6 +4,7 @@
 // - ✅ List: 連載誌は magazine_normalize.json から「主要 + もっと見る」をプルダウン（optgroup）/ 作品数表示
 // - ✅ Web/アプリ連載誌は Web/アプリカテゴリ（aud=その他）にだけ表示（「全部」には混ぜない）
 // - ✅ genre/mag URL互換（旧クエリ）を拾う
+// - ✅ NEW: sort(pop/new/rise) + 50件+もっと見る(+50) + 件数表示(A案) + list_filter拡張
 //
 // 【分割ルール】
 // - 1/2 はこの END マーカーで必ず終わる
@@ -349,6 +350,16 @@ function formatYmd(s) {
   if (t.length >= 10 && /^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
   return t;
 }
+function toTimeMsFromYmd(s) {
+  const t = formatYmd(s);
+  if (!t) return 0;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(t);
+  if (!m) return 0;
+  const y = Number(m[1]), mo = Number(m[2]), d = Number(m[3]);
+  const dt = new Date(Date.UTC(y, mo - 1, d, 0, 0, 0));
+  const ms = dt.getTime();
+  return Number.isFinite(ms) ? ms : 0;
+}
 
 /* =======================
  * Amazon（表示側でアフィ付与）
@@ -426,6 +437,10 @@ const METRIC_RATE_REC_TOP_PATH = BASE + "data/metrics/wae/rate_rec_top.json";
 const METRIC_RATE_ART_TOP_PATH = BASE + "data/metrics/wae/rate_art_top.json";
 const METRIC_RATE_BY_SERIES_KEY_PATH = BASE + "data/metrics/wae/rate_by_series_key.json";
 
+/* ✅ NEW: List sort metrics */
+const METRIC_WORK_VIEW_BY_SERIES_PATH = BASE + "data/metrics/wae/work_view_by_series.json";
+const METRIC_RISING_WORK_VIEW_PATH = BASE + "data/metrics/wae/rising_work_view_since_20260227.json";
+
 /* =======================
  * List: magazine normalize JSON
  * ======================= */
@@ -449,8 +464,6 @@ const HOME_GENRE_TABS = [
 
 /* =======================
  * Home/List：カテゴリー棚（固定順）
- * - 値(value)は作品データの audiences(先頭) の値に合わせる（Web/アプリは value="その他" のまま）
- * - 表示ラベルは magazine_normalize.json の audiences[その他].label で上書き（=Web/アプリ）
  * ======================= */
 const HOME_CATEGORY_TABS = [
   { id: "shonen", value: "少年", label: "少年" },
@@ -481,7 +494,7 @@ function hasAnyGenreByTabIds(it, tabIds) {
 }
 
 /* =======================
- * List：URL絞り込み（genre/aud/mag）
+ * List：URL（genre/aud/mag/mood/sort）
  * ======================= */
 
 // ✅ genre は id で保持する。互換として旧URL(genre=Fantasy 等)も拾う
@@ -546,6 +559,21 @@ function setMagQuery(mag) {
   const v = toText(mag);
   if (v) p.set("mag", v);
   else p.delete("mag");
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
+}
+
+/* ✅ NEW: sort */
+const SORT_KEYS = ["pop","new","rise"];
+function parseSortQuery() {
+  const raw = toText(qs().get("sort")).trim();
+  return SORT_KEYS.includes(raw) ? raw : "pop";
+}
+function setSortQuery(sortKey) {
+  const p = qs();
+  const v = toText(sortKey);
+  if (v && SORT_KEYS.includes(v)) p.set("sort", v);
+  else p.delete("sort");
   const url = `${location.pathname}?${p.toString()}`;
   history.replaceState(null, "", url);
 }
@@ -687,8 +715,7 @@ function quickCountsDynamic(baseItems, defs, selectedIds) {
 }
 
 /* =======================
- * List：Facet UI（ジャンル/カテゴリー/連載誌）
- * - list.html 側に #facetFilters #facetHint #facetClearLink がある前提
+ * List: Facet UI（ジャンル/カテゴリー/連載誌）
  * ======================= */
 
 function renderFacetFilters({ allItems, magNormJson, onChange }) {
@@ -831,7 +858,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
     </div>
   `;
 
-    // hint（ユーザー向け表記）
+  // hint（ユーザー向け表記）
   if (hint) {
     const parts = [];
 
@@ -861,7 +888,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
       setGenreQueryIds([]);
       setAudQuery("");
       setMagQuery("");
-      onChange?.();
+      onChange?.({ reason: "facet_clear" });
     };
   }
 
@@ -878,7 +905,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
       setGenreQueryIds(Array.from(cur));
       // genre変更時は mag を解除（別ジャンルのmagが残ると0件になりやすい）
       setMagQuery("");
-      onChange?.();
+      onChange?.({ reason: "genre" });
     };
   }
 
@@ -893,7 +920,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
       setAudQuery(next);
       // aud切替時は mag も解除
       setMagQuery("");
-      onChange?.();
+      onChange?.({ reason: "aud" });
     };
   }
 
@@ -901,16 +928,80 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
   if (magSel) {
     magSel.onchange = () => {
       setMagQuery(magSel.value || "");
-      onChange?.();
+      onChange?.({ reason: "mag" });
     };
   }
+}
+
+/* =======================
+ * List: list_filter event helper
+ * ======================= */
+function trackListFilterState({ genreIds, aud, mag, moodIds, sortKey }) {
+  const g = (genreIds || []).map(toText).filter(Boolean).join(",");
+  const a = toText(aud);
+  const m = toText(mag);
+  const mood = (moodIds || []).map(toText).filter(Boolean).join(",");
+  const s = toText(sortKey);
+
+  const moodVal = mood ? `mood=${mood}` : "";
+  const sortVal = s ? `sort=${s}` : "";
+  const stateKey = `list_filter:${g}|${a}|${m}|${moodVal}|${sortVal}`;
+  if (!canSendOnce(stateKey, 5000)) return false;
+
+  trackEvent({
+    type: "list_filter",
+    page: "list",
+    seriesKey: "",
+    mood: moodVal,
+    genre: g ? `genre=${g}` : "",
+    aud: a ? `aud=${a}` : "",
+    mag: m ? `mag=${m}` : "",
+    k: "sort",
+    v: s,
+  });
+  return true;
+}
+
+/* =======================
+ * List: pagination state (50 + more)
+ * ======================= */
+const LIST_PAGE_SIZE = 50;
+let __listVisibleLimit = LIST_PAGE_SIZE;
+function resetListVisibleLimit() { __listVisibleLimit = LIST_PAGE_SIZE; }
+function addListVisibleLimit() { __listVisibleLimit += LIST_PAGE_SIZE; }
+
+/* =======================
+ * List sort helpers
+ * ======================= */
+function buildCountMapFromMetricJson(json) {
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+
+  const map = new Map(); // sk -> n
+  for (const r of rows) {
+    const sk = toText(r?.seriesKey);
+    const n = Number(r?.n || 0);
+    if (!sk) continue;
+    map.set(sk, Number.isFinite(n) ? n : 0);
+  }
+  return map;
+}
+function byTitleAsc(a, b) {
+  const ta = toText(pick(a, ["seriesKey", "title", "vol1.title"]));
+  const tb = toText(pick(b, ["seriesKey", "title", "vol1.title"]));
+  return ta.localeCompare(tb, "ja");
+}
+function getReleaseMs(it) {
+  const s = pick(it, ["releaseDate", "vol1.releaseDate"]);
+  return toTimeMsFromYmd(s);
 }
 
 /* =======================
  * List render（author/synopsis は出さない）
  * - perf: 段階描画
  * ======================= */
-function renderList(items, quickDefs, magNormJson) {
+function renderList(items, quickDefs, magNormJson, opt = {}) {
   const root = document.getElementById("list");
   if (!root) return;
 
@@ -918,15 +1009,56 @@ function renderList(items, quickDefs, magNormJson) {
   const norm = magNormJson || {};
   const normalizeMag = buildMagNormalizer(norm);
 
+  const viewsMap = opt?.viewsMap instanceof Map ? opt.viewsMap : new Map();
+  const risingMap = opt?.risingMap instanceof Map ? opt.risingMap : new Map();
+
   // ✅ Facet UI
   renderFacetFilters({
     allItems: all,
     magNormJson: norm,
-    onChange: () => {
-      renderList(all, quickDefs, norm);
+    onChange: ({ reason } = {}) => {
+      resetListVisibleLimit();
+      // facet change -> list_filter (moodは現状維持で送る)
+      trackListFilterState({
+        genreIds: parseGenreQueryIds(),
+        aud: parseAudQuery(),
+        mag: parseMagQuery(),
+        moodIds: parseMoodQuery(),
+        sortKey: parseSortQuery(),
+      });
+      renderList(all, quickDefs, norm, opt);
       refreshFavButtons(document);
     },
   });
+
+  // ✅ Sort UI
+  const sortSel = document.getElementById("sortSelect");
+  const sortKey = parseSortQuery();
+
+  // 急上昇が無いなら選べない（UI側：disable）
+  if (sortSel) {
+    try {
+      sortSel.value = sortKey;
+      const riseOpt = sortSel.querySelector?.("option[value='rise']");
+      if (riseOpt) riseOpt.disabled = !(risingMap && risingMap.size);
+      sortSel.onchange = () => {
+        const next = toText(sortSel.value);
+        resetListVisibleLimit();
+        setSortQuery(SORT_KEYS.includes(next) ? next : "pop");
+
+        trackListFilterState({
+          genreIds: parseGenreQueryIds(),
+          aud: parseAudQuery(),
+          mag: parseMagQuery(),
+          moodIds: parseMoodQuery(),
+          sortKey: parseSortQuery(),
+        });
+
+        renderList(all, quickDefs, norm, opt);
+        refreshFavButtons(document);
+      };
+    } catch {}
+  }
 
   const genreIds = parseGenreQueryIds();
   const audienceWanted = parseAudQuery();     // ""=全部
@@ -941,28 +1073,7 @@ function renderList(items, quickDefs, magNormJson) {
     .filter(it => (audienceWanted ? (getFirstAudienceLabel(it) === audienceWanted) : true))
     .filter(it => hasMagazineNormalized(it, magazineWanted, normalizeMag));
 
-  function trackListFilterState(nextMoodIds) {
-    const g = (genreIds || []).map(toText).filter(Boolean).join(",");
-    const a = toText(audienceWanted);
-    const m = toText(magazineWanted);
-    const mood = (nextMoodIds || []).map(toText).filter(Boolean).join(",");
-
-    const moodVal = mood ? `mood=${mood}` : "";
-    const stateKey = `list_filter:${g}|${a}|${m}|${moodVal}`;
-    if (!canSendOnce(stateKey, 5000)) return false;
-
-    trackEvent({
-      type: "list_filter",
-      page: "list",
-      seriesKey: "",
-      mood: moodVal,
-      genre: g ? `genre=${g}` : "",
-      aud: a ? `aud=${a}` : "",
-      mag: m ? `mag=${m}` : "",
-    });
-    return true;
-  }
-
+  // --- mood filter (絞り込み)
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -970,23 +1081,50 @@ function renderList(items, quickDefs, magNormJson) {
       if (!r.ok) continue;
       scored.push({ it, score: r.score });
     }
-    scored.sort((a, b) => (b.score - a.score));
   } else {
     for (const it of base) scored.push({ it, score: 0 });
   }
-  const outItems = scored.map(x => x.it);
 
+  // --- sort (並び替え)
+  // 仕様：気分フィルター中でも sort=pop のときだけスコア順を初期挙動として維持。
+  //       sortがpop以外に変わったらソート優先（気分は絞り込み条件のみ）。
+  if (moodActiveDefs.length && sortKey === "pop") {
+    scored.sort((a, b) => (b.score - a.score) || byTitleAsc(a.it, b.it));
+  } else {
+    if (sortKey === "new") {
+      scored.sort((a, b) => (getReleaseMs(b.it) - getReleaseMs(a.it)) || byTitleAsc(a.it, b.it));
+    } else if (sortKey === "rise") {
+      scored.sort((a, b) => ((risingMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) - (risingMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)) || byTitleAsc(a.it, b.it));
+    } else {
+      // pop
+      scored.sort((a, b) => ((viewsMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) - (viewsMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)) || byTitleAsc(a.it, b.it));
+    }
+  }
+
+  const outItemsAll = scored.map(x => x.it);
+
+  // ✅ mood clear
   const clear = document.getElementById("moodClearLink");
   if (clear) {
     clear.onclick = (ev) => {
       ev.preventDefault();
-      trackListFilterState([]);
+      resetListVisibleLimit();
       setMoodQuery([]);
-      renderList(all, quickDefs, norm);
+
+      trackListFilterState({
+        genreIds,
+        aud: audienceWanted,
+        mag: magazineWanted,
+        moodIds: [],
+        sortKey: parseSortQuery(),
+      });
+
+      renderList(all, quickDefs, norm, opt);
       refreshFavButtons(document);
     };
   }
 
+  // ✅ quick filters UI
   const qRoot = document.getElementById("quickFiltersList");
   if (qRoot) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
@@ -1021,6 +1159,8 @@ function renderList(items, quickDefs, magNormJson) {
       const id = btn.getAttribute("data-mood") || "";
       if (!id) return;
 
+      resetListVisibleLimit();
+
       const cur = parseMoodQuery();
       const set = new Set(cur);
       if (set.has(id)) set.delete(id);
@@ -1028,12 +1168,18 @@ function renderList(items, quickDefs, magNormJson) {
         if (set.size >= QUICK_MAX) return;
         set.add(id);
       }
-
       const next = Array.from(set);
-      trackListFilterState(next);
+
+      trackListFilterState({
+        genreIds,
+        aud: audienceWanted,
+        mag: magazineWanted,
+        moodIds: next,
+        sortKey: parseSortQuery(),
+      });
 
       setMoodQuery(next);
-      renderList(all, quickDefs, norm);
+      renderList(all, quickDefs, norm, opt);
       refreshFavButtons(document);
     };
 
@@ -1044,11 +1190,34 @@ function renderList(items, quickDefs, magNormJson) {
     }
   }
 
-  if (!outItems.length) {
+  // ---- empty ----
+  if (!outItemsAll.length) {
     root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
+    const countEl = document.getElementById("listCount");
+    if (countEl) countEl.textContent = "0件";
+    const moreWrap = document.getElementById("listMoreWrap");
+    if (moreWrap) moreWrap.style.display = "none";
     return;
   }
 
+  // ---- pagination (50 + more) ----
+  const visible = outItemsAll.slice(0, Math.max(0, __listVisibleLimit));
+  const countEl = document.getElementById("listCount");
+  if (countEl) countEl.textContent = `${visible.length}件`; // A案：表示中のみ
+
+  const moreWrap = document.getElementById("listMoreWrap");
+  const moreBtn = document.getElementById("listMoreBtn");
+  const canMore = outItemsAll.length > visible.length;
+  if (moreWrap) moreWrap.style.display = canMore ? "" : "none";
+  if (moreBtn) {
+    moreBtn.onclick = () => {
+      addListVisibleLimit();
+      renderList(all, quickDefs, norm, opt);
+      refreshFavButtons(document);
+    };
+  }
+
+  // ---- render ----
   root.innerHTML = "";
   const BATCH = 36;
   let i = 0;
@@ -1098,15 +1267,15 @@ function renderList(items, quickDefs, magNormJson) {
   }
 
   function pump() {
-    const end = Math.min(outItems.length, i + BATCH);
+    const end = Math.min(visible.length, i + BATCH);
     let html = "";
-    for (; i < end; i++) html += itemHtml(outItems[i]);
+    for (; i < end; i++) html += itemHtml(visible[i]);
     root.insertAdjacentHTML("beforeend", html);
 
     initLazyImages(root);
     refreshFavButtons(document);
 
-    if (i < outItems.length) requestAnimationFrame(pump);
+    if (i < visible.length) requestAnimationFrame(pump);
   }
 
   requestAnimationFrame(pump);
@@ -1121,6 +1290,7 @@ function renderList(items, quickDefs, magNormJson) {
 // - ✅ metrics を読み込み、Work/ Home へ反映
 // - ✅ List は (1/2) の renderList をそのまま利用（ここでは壊さない）
 // - ✅ works split(index/shard) 対応維持
+// - ✅ NEW: List sort metrics（人気/急上昇）を読み込み、renderList に渡す
 // 注意：
 // - (1/2) に存在する const/関数名は再宣言しない（const衝突回避）
 // - ここは「足りない関数の補完 + run() + Work機能」を提供
@@ -2360,6 +2530,12 @@ function withV(url){
   const v = qs().get("v");
   return v ? `${url}?v=${encodeURIComponent(v)}` : url;
 }
+function normalizeMetricRows(json){
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+  return rows;
+}
 
 /* =======================
  * run（Workフル復元）
@@ -2395,12 +2571,20 @@ async function run() {
     // metrics 並列
     const pViews = (async () => {
       try {
-        const viewUrl = withV(BASE + "data/metrics/wae/work_view_by_series.json");
+        const viewUrl = withV(METRIC_WORK_VIEW_BY_SERIES_PATH);
         const viewJson = await loadJson(viewUrl, { bust });
-        const rows = Array.isArray(viewJson?.rows) ? viewJson.rows
-          : Array.isArray(viewJson?.data) ? viewJson.data
-          : Array.isArray(viewJson) ? viewJson : [];
+        const rows = normalizeMetricRows(viewJson);
         return buildViewsMap(rows);
+      } catch { return new Map(); }
+    })();
+
+    const pRising = (async () => {
+      try {
+        const riseUrl = withV(METRIC_RISING_WORK_VIEW_PATH);
+        const riseJson = await tryLoadJson(riseUrl, { bust });
+        if (!riseJson) return new Map();
+        // 1/2 側 helper を使って Map 化
+        return buildCountMapFromMetricJson(riseJson);
       } catch { return new Map(); }
     })();
 
@@ -2445,7 +2629,7 @@ async function run() {
     }
 
     // ---- Home / List ----
-    const viewsMap = await pViews;
+    const [viewsMap, risingMap] = await Promise.all([pViews, pRising]);
 
     // rate top
     let rateRecTop = [];
@@ -2490,14 +2674,12 @@ async function run() {
           if (quickEval(it, d).ok) counts.set(d.id, (counts.get(d.id) || 0) + 1);
         }
       }
-      // renderQuickHome は (2/2) では定義してない（あなたの既存CSS/HTMLに合わせて別ファイルだった場合があるため）
-      // ただし存在していれば呼ぶ
       try { if (typeof renderQuickHome === "function") renderQuickHome({ defs: quickDefs, counts }); } catch {}
     }
 
     // List（(1/2)）
     if (document.getElementById("list")) {
-      renderList(worksState.listItems, quickDefs, magNormJson);
+      renderList(worksState.listItems, quickDefs, magNormJson, { viewsMap, risingMap });
     }
 
     patchAmazonAnchors(document);
