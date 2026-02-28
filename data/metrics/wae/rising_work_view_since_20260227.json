@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T08:44:16.561Z",
-  "updatedAtJst": "2026-02-28 17:44:16",
+  "updatedAt": "2026-02-28T10:39:08.390Z",
+  "updatedAtJst": "2026-02-28 19:39:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -17,16 +17,28 @@
   ],
   "rows": [
     {
+      "seriesKey": "チェンソーマン",
+      "n": "2"
+    },
+    {
       "seriesKey": "マイ・ブロークン・マリコ",
       "n": "1"
     },
     {
       "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
       "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 2,
-    "rows_before_limit_at_least": 2
+    "rows": 5,
+    "rows_before_limit_at_least": 5
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T08:44:16.561Z",
-  "updatedAtJst": "2026-02-28 17:44:16",
+  "updatedAt": "2026-02-28T10:39:08.390Z",
+  "updatedAtJst": "2026-02-28 19:39:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -38,14 +38,18 @@
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "n": "7"
-    },
-    {
-      "seriesKey": "20世紀少年",
-      "n": "4"
+      "n": "8"
     },
     {
       "seriesKey": "ありふれた職業で世界最強",
+      "n": "5"
+    },
+    {
+      "seriesKey": "チェンソーマン",
+      "n": "5"
+    },
+    {
+      "seriesKey": "20世紀少年",
       "n": "4"
     },
     {
@@ -81,19 +85,15 @@
       "n": "3"
     },
     {
-      "seriesKey": "監獄学園",
-      "n": "3"
-    },
-    {
       "seriesKey": "乙嫁語り",
       "n": "3"
     },
     {
-      "seriesKey": "その着せ替え人形は恋をする",
+      "seriesKey": "監獄学園",
       "n": "3"
     },
     {
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "その着せ替え人形は恋をする",
       "n": "3"
     },
     {
@@ -277,11 +277,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "たいようのいえ",
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
+      "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
@@ -427,6 +427,6 @@
   ],
   "raw": {
     "rows": 102,
-    "rows_before_limit_at_least": 236
+    "rows_before_limit_at_least": 240
   }
 }

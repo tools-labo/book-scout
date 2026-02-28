@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T08:44:16.561Z",
-  "updatedAtJst": "2026-02-28 17:44:16",
+  "updatedAt": "2026-02-28T10:39:08.390Z",
+  "updatedAtJst": "2026-02-28 19:39:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -33,7 +33,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "93"
+      "n": "95"
     },
     {
       "genre": "",
@@ -54,14 +54,14 @@
       "aud": "",
       "mag": "",
       "mood": "mood=page_turner",
-      "n": "8"
+      "n": "10"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=funny",
-      "n": "7"
+      "n": "8"
     },
     {
       "genre": "",
@@ -123,6 +123,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=page_turner,funny",
+      "n": "3"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "aud=少年",
       "n": "3"
     },
@@ -145,13 +152,6 @@
       "aud": "",
       "mag": "",
       "mood": "mood=heart_throb,satisfying",
-      "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=page_turner,funny",
       "n": "2"
     },
     {
@@ -353,6 +353,6 @@
   ],
   "raw": {
     "rows": 46,
-    "rows_before_limit_at_least": 200
+    "rows_before_limit_at_least": 206
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T08:44:16.561Z",
-  "updatedAtJst": "2026-02-28 17:44:16",
+  "updatedAt": "2026-02-28T10:39:08.390Z",
+  "updatedAtJst": "2026-02-28 19:39:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -277,16 +277,16 @@
       "n": "2"
     },
     {
+      "seriesKey": "チェンソーマン",
+      "k": "art",
+      "avg": 2.5,
+      "n": "2"
+    },
+    {
       "seriesKey": "キングダム",
       "k": "art",
       "avg": 2,
       "n": "2"
-    },
-    {
-      "seriesKey": "チェンソーマン",
-      "k": "art",
-      "avg": 2,
-      "n": "1"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -385,6 +385,12 @@
       "n": "2"
     },
     {
+      "seriesKey": "チェンソーマン",
+      "k": "rec",
+      "avg": 4,
+      "n": "2"
+    },
+    {
       "seriesKey": "七つの大罪",
       "k": "rec",
       "avg": 4,
@@ -421,13 +427,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "バガボンド",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "バガボンド",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -440,12 +446,6 @@
     },
     {
       "seriesKey": "はじめの一歩",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "チェンソーマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -597,6 +597,6 @@
   ],
   "raw": {
     "rows": 95,
-    "rows_before_limit_at_least": 156
+    "rows_before_limit_at_least": 158
   }
 }
