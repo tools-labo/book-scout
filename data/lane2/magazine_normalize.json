@@ -5,7 +5,7 @@
     "notes": [
       "目的: 作品データ側の magazine/magazines 表記ゆれを canonical に正規化し、連載誌フィルター表示と一致判定を安定させる。",
       "UI想定: Listページは audience タブでカテゴリ分け。選択中 audience の magazines だけフィルターに出す。",
-      "Web/アプリ媒体は audience を跨いで共通表示（webGroup）し、print側は audienceごとに primary / more を分ける。",
+      "Web/アプリ媒体は audience=その他 のみ表示（他カテゴリには出さない）。",
       "alias は入力揺れ（略称/旧名/表記違い/注記付き）を吸収するためのもの。"
     ]
   },
@@ -20,7 +20,6 @@
       "少年ジャンプ+",
       "となりのヤングジャンプ",
       "ヤンジャン!",
-      "ヤンジャン！",
       "裏サンデー",
       "マンガワン",
       "comic POOL",
@@ -40,7 +39,8 @@
       "モバMAN",
       "銀魂公式アプリ(完結編)",
       "作者Twitter",
-      "竹コミ!"
+      "竹コミ!",
+      "コミックガルド"
     ]
   },
 
@@ -74,7 +74,7 @@
         "最強ジャンプ",
         "週刊少年サンデーS"
       ],
-      "includeWebGroup": true
+      "includeWebGroup": false
     },
 
     "青年": {
@@ -84,7 +84,7 @@
         "モーニング",
         "週刊ヤングジャンプ",
         "ビッグコミックスピリッツ",
-        "ヤングマガジン",
+        "週刊ヤングマガジン",
         "月刊アフタヌーン",
         "good!アフタヌーン",
         "ヤングガンガン",
@@ -123,7 +123,7 @@
         "くらげバンチ",
         "月刊アクション"
       ],
-      "includeWebGroup": true
+      "includeWebGroup": false
     },
 
     "少女": {
@@ -135,31 +135,26 @@
         "デザート"
       ],
       "more": [],
-      "includeWebGroup": true
+      "includeWebGroup": false
     },
 
     "女性": {
       "label": "女性",
       "primary": [
         "BE・LOVE",
+        "COMIC BRIDGE",
         "コミック百合姫"
       ],
       "more": [
-        "COMIC BRIDGE",
-        "LOVE",
         "シェリプラス"
       ],
-      "includeWebGroup": true
+      "includeWebGroup": false
     },
 
     "その他": {
       "label": "その他",
-      "primary": [
-        "コミックガルド"
-      ],
-      "more": [
-        "Zipper"
-      ],
+      "primary": [],
+      "more": [],
       "includeWebGroup": true
     }
   },
