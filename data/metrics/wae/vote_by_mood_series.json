@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T21:33:16.417Z",
-  "updatedAtJst": "2026-03-01 06:33:16",
+  "updatedAt": "2026-02-28T22:37:07.823Z",
+  "updatedAtJst": "2026-03-01 07:37:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -47,12 +47,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -222,6 +222,11 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "バガボンド",
+      "n": "10"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "NARUTO -ナルト-",
       "n": "4"
     },
@@ -229,11 +234,6 @@
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
       "n": "3"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "キングダム",
-      "n": "2"
     },
     {
       "mood": "hot",
@@ -257,7 +257,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "バガボンド",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
@@ -267,7 +267,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -402,12 +402,17 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -426,11 +431,6 @@
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
-      "n": "1"
-    },
-    {
       "mood": "satisfying",
       "seriesKey": "ドラゴンボール",
       "n": "5"
@@ -444,6 +444,11 @@
       "mood": "satisfying",
       "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "終末のワルキューレ",
+      "n": "1"
     },
     {
       "mood": "satisfying",
@@ -476,11 +481,6 @@
       "n": "1"
     },
     {
-      "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
-      "n": "1"
-    },
-    {
       "mood": "tearjerker",
       "seriesKey": "3月のライオン",
       "n": "5"
@@ -507,17 +507,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 99,
-    "rows_before_limit_at_least": 144
+    "rows_before_limit_at_least": 143
   }
 }
