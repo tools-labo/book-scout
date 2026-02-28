@@ -17,10 +17,6 @@ const QUICK_FILTERS_PATH = "data/lane2/quick_filters.json";
  *  blob6: genre
  *  blob7: aud
  *  blob8: mag
- *  blob9: country
- *  blob10: user-agent
- *  blob11: method
- *  blob12: path
  *
  * NOTE:
  * - vote: blob5 = moodId
@@ -44,11 +40,37 @@ const DOUBLE = {
 
 // ✅ 急上昇（ノイズの無い期間だけ）
 // ユーザー指定：UTC 2026-02-27 00:00:00 以降
-// Cloudflare AE(SQL) は DateTime と String をそのまま比較できないので DateTime にキャストする
 const RISING_SINCE_UTC = "toDateTime('2026-02-27 00:00:00', 'UTC')";
+
+// ✅ 表示用：JST（Asia/Tokyo）
+const JST_TZ = "Asia/Tokyo";
 
 function norm(s) {
   return String(s ?? "").trim();
+}
+
+function nowUtcIso() {
+  return new Date().toISOString();
+}
+
+// "YYYY-MM-DD HH:mm:ss"（JST）
+function nowJstYmdHms() {
+  try {
+    const fmt = new Intl.DateTimeFormat("sv-SE", {
+      timeZone: JST_TZ,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+    return fmt.format(new Date());
+  } catch {
+    // Intl が万一コケても落とさない
+    return "";
+  }
 }
 
 async function saveJson(p, obj) {
@@ -148,10 +170,12 @@ ORDER BY n DESC
 }
 
 // ✅ 互換維持のため id は "recent_200" のまま、件数だけ 5000 に増やす
+// ✅ timestamp は残しつつ、表示用に timestampJst を追加（全JSONをJST表記に寄せる）
 function qRecent(dataset, limit = 5000) {
   return `
 SELECT
   timestamp,
+  formatDateTime(toTimeZone(timestamp, '${JST_TZ}'), '%Y-%m-%d %H:%M:%S') AS timestampJst,
   ${COL.type} AS type,
   ${COL.schema} AS schema,
   ${COL.page} AS page,
@@ -262,10 +286,7 @@ ORDER BY n DESC
 }
 
 /* =======================
- * Rate queries (おすすめ度/作画クオリティ)
- * - type='rate'
- * - blob5(mood) = k ('rec' | 'art')
- * - double1 = rating (1..5)
+ * Rate queries
  * ======================= */
 function whereRateCommon() {
   return `
@@ -277,7 +298,6 @@ function whereRateCommon() {
 `;
 }
 
-// series × k で平均★と件数
 function qRateBySeriesKey(dataset, days = 30) {
   return `
 SELECT
@@ -293,7 +313,6 @@ ORDER BY k ASC, avg DESC, n DESC
 `;
 }
 
-// k ごとの平均★（全体）
 function qRateByKey(dataset, days = 30) {
   return `
 SELECT
@@ -308,9 +327,8 @@ ORDER BY avg DESC, n DESC
 `;
 }
 
-// k=rec のランキング（平均★、同率は件数）
 function qRateRecTop(dataset, days = 30, limit = 200) {
-  const minN = 1; // 後で上げてもOK
+  const minN = 1;
   return `
 SELECT
   ${COL.seriesKey} AS seriesKey,
@@ -327,7 +345,6 @@ LIMIT ${Number(limit)}
 `;
 }
 
-// k=art のランキング（平均★、同率は件数）
 function qRateArtTop(dataset, days = 30, limit = 200) {
   const minN = 1;
   return `
@@ -348,8 +365,6 @@ LIMIT ${Number(limit)}
 
 /* =======================
  * Rising (急上昇) - ノイズ除外
- * - schema=v2 のみ
- * - timestamp >= 2026-02-27 00:00:00 UTC
  * ======================= */
 function qRisingWorkViewsSince(dataset, limit = 5000) {
   return `
@@ -379,8 +394,9 @@ async function main() {
   const days = Number(process.env.CLOUDFLARE_AE_DAYS || 30);
   const allowedMoodIds = await loadAllowedMoodIds();
 
-  const now = new Date().toISOString();
-  const meta = { version: 1, updatedAt: now, dataset, days };
+  const nowUtc = nowUtcIso();
+  const nowJst = nowJstYmdHms();
+  const meta = { version: 1, updatedAt: nowUtc, updatedAtJst: nowJst, dataset, days };
 
   const queries = [
     { id: "type_counts", sql: qTypeCounts(dataset, days) },
