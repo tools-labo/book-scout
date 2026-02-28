@@ -807,7 +807,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
   root.innerHTML = `
     <div style="display:grid; gap:10px;">
       <div>
-        <div class="status" style="margin:0 0 6px 0;">ジャンル（複数OK）</div>
+        <div class="status" style="margin:0 0 6px 0;">ジャンル</div>
         <div class="pills" id="facetGenres">${genreButtons}</div>
       </div>
 
