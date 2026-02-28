@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T14:37:19.115Z",
-  "updatedAtJst": "2026-02-28 23:37:19",
+  "updatedAt": "2026-02-28T15:34:38.272Z",
+  "updatedAtJst": "2026-03-01 00:34:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -51,10 +51,14 @@
     {
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 9,
-    "rows_before_limit_at_least": 9
+    "rows": 10,
+    "rows_before_limit_at_least": 10
   }
 }
