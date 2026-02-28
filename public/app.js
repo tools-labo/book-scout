@@ -1,4 +1,4 @@
-// public/app.js（1/2）FULL REPLACE
+// public/app.js（FULL REPLACE）
 // - ✅ /work/<id>/ 静的URL導線に統一（home/list/reco）
 // - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
 // - works: split JSON（works/index.json + works/works_*.json）対応
@@ -8,10 +8,9 @@
 // - Home：★おすすめ度/★作画クオリティのランキング棚（要素がある時だけ表示）
 // - Work：平均★（集計JSONがある時だけ表示）
 // - perf: 画像遅延(Observer) / List段階描画 / 重い計算キャッシュ
+// - ✅ List: magazine filter は B（magazines / vol1.magazines）を正とする（完全一致）
+// - ✅ List: mag query は互換（mag / magazine / m）で拾う
 //
-// 【分割ルール】
-// - 1/2 はこの END マーカーで必ず終わる
-// - 2/2 は START マーカーから必ず始める
 // token: A1B2
 
 function qs() { return new URLSearchParams(location.search); }
@@ -452,6 +451,17 @@ function parseOneQueryParam(name) {
   const raw = toText(qs().get(name));
   return raw ? raw.trim() : "";
 }
+
+// ✅ mag query: 互換対応（mag / magazine / m）
+function parseMagQuery() {
+  const p = qs();
+  const raw =
+    toText(p.get("mag")) ||
+    toText(p.get("magazine")) ||
+    toText(p.get("m"));
+  return raw ? raw.trim() : "";
+}
+
 function getFirstAudienceLabel(it) {
   const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
   return arr[0] || "その他";
@@ -460,12 +470,18 @@ function hasAudience(it, audLabel) {
   if (!audLabel) return true;
   return getFirstAudienceLabel(it) === audLabel;
 }
+
+// ✅ B（magazines / vol1.magazines）を正とする（完全一致）
 function hasMagazine(it, mag) {
-  if (!mag) return true;
+  const wanted = toText(mag);
+  if (!wanted) return true;
+
   const ms = pickArr(it, ["magazines", "vol1.magazines"]).map(toText).filter(Boolean);
+  if (ms.length) return ms.includes(wanted);
+
   const m1 = toText(pick(it, ["magazine", "vol1.magazine"]));
-  if (ms.length) return ms.includes(mag);
-  return m1.includes(mag);
+  if (!m1) return false;
+  return m1 === wanted;
 }
 
 /* =======================
@@ -1024,7 +1040,7 @@ function renderList(items, quickDefs) {
 
   const genreWanted = parseGenreQuery();
   const audienceWanted = parseOneQueryParam("aud");
-  const magazineWanted = parseOneQueryParam("mag");
+  const magazineWanted = parseMagQuery(); // ✅ 差し替え（互換 + 正規化）
 
   const moodSelected = parseMoodQuery();
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
@@ -1202,20 +1218,6 @@ function renderList(items, quickDefs) {
 
   requestAnimationFrame(pump);
 }
-
-/* END PART 1 - token: A1B2 */
-
-/* START PART 2 - token: A1B2 */
-
-// public/app.js（2/2）FULL REPLACE
-// - ✅ /work/<id>/ 静的URL導線に統一（reco含む）
-// - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
-// - ✅ 任意提案：work.html?key=... で開かれたら静的URLへ 301相当リダイレクト（history.replace）
-// - Work：2段階描画（先に表示→あとで埋める）で体感速度UP
-// - Work：読後感投票の“報酬”を投票枠内に集約（みんなの読後感 / 同じ読後感の作品）
-// - Toastで即時フィードバック
-// - ✅ 評価：平均は右カラム表示（n非表示 / 少数票は—）
-// - ✅ バグ修正：★押下で「読み込み中…」が残らない
 
 /* =======================
  * Works loader (index/shard)
@@ -1736,9 +1738,6 @@ function resolveWorkKey() {
 
 /* =======================
  * 任意提案：work.html?key=... を静的URLへ寄せる
- * - Google対策：同一内容の URL を減らす
- * - 完全301はできないので history.replaceState でURLだけ置換（画面遷移なし）
- * - /work/<id>/ で開かれた時は何もしない
  * ======================= */
 function canonicalizeWorkToStatic() {
   try{
@@ -1749,13 +1748,10 @@ function canonicalizeWorkToStatic() {
     const key = toText(qs().get("key"));
     if (!key) return;
 
-    // work.html 以外で key を使ってる可能性に備え、ファイル名チェックは緩め
     const target = workStaticUrl(key);
 
-    // すでに静的URLなら無視
     if (location.pathname.includes("/work/")) return;
 
-    // URLだけ寄せる（戻るが自然になるよう replace）
     history.replaceState(null, "", target);
   }catch{}
 }
@@ -2237,5 +2233,3 @@ if (document.readyState === "loading") {
 } else {
   run();
 }
-
-/* END PART 2 - token: A1B2 */
