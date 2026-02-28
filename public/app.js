@@ -1248,7 +1248,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     const mag = mags[0] || "";
 
     return `
-      <article class="card">
+      <article class="card" data-sk="${esc(seriesKey)}">
         <div class="card-row">
           <div class="thumb">
             ${
