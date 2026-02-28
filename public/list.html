@@ -38,41 +38,25 @@
   <main class="wrap">
     <div id="status" class="status"></div>
 
-    <!-- ✅ 追加：ジャンル/カテゴリー/連載誌 + 並び替え -->
-    <section class="section" style="margin-top:10px;">
-      <div class="section-head" style="gap:10px; align-items:center;">
-        <h2 class="section-title">絞り込み</h2>
+    <!-- ✅ 最小の上部バー（場所を取らない） -->
+    <section class="list-topbar" aria-label="リスト上部バー">
+      <div class="list-topbar-row">
+        <div class="list-topbar-left">
+          <div class="list-topbar-title">リスト</div>
+          <div id="listCount" class="list-topbar-count"></div>
+        </div>
 
-        <div style="display:flex; gap:10px; align-items:center; margin-left:auto;">
-          <!-- 仮配置：レイアウトは後で -->
-          <label style="display:flex; gap:6px; align-items:center; font-size:12px; opacity:.9;">
-            <span>並び替え</span>
-            <select id="sortSelect" style="padding:8px 10px; border:1px solid rgba(0,0,0,.12); border-radius:10px; background:#fff;">
-              <option value="pop">人気</option>
-              <option value="new">発売日（新しい順）</option>
-              <option value="rise">急上昇（30日）</option>
-            </select>
-          </label>
-
-          <a id="facetClearLink" class="section-link" href="./list.html">解除</a>
+        <div class="list-topbar-right">
+          <!-- 解除は “IDは持たない” (app.jsはfacetClearLinkを使うので) -->
+          <a class="section-link" href="./list.html">解除</a>
+          <button id="openFilterSheetBtn" type="button" class="btn-ghost" aria-haspopup="dialog" aria-controls="filterSheet">
+            絞り込み
+          </button>
         </div>
       </div>
 
-      <div id="facetFilters" class="status" style="margin-top:8px;"></div>
-      <div id="facetHint" class="status" style="margin-top:8px;"></div>
-
-      <!-- 件数表示（A案：表示中のみ） -->
-      <div id="listCount" class="status" style="margin-top:8px;"></div>
-    </section>
-
-    <section class="section" style="margin-top:10px;">
-      <div class="section-head">
-        <h2 class="section-title">気分で絞り込み</h2>
-        <a id="moodClearLink" class="section-link" href="./list.html">解除</a>
-      </div>
-      <p class="section-sub">最大2つまで選べます（AND）。</p>
-      <div id="quickFiltersList"></div>
-      <div id="quickFiltersHint" class="status" style="margin-top:8px;"></div>
+      <!-- app.js が書き込む “絞り込み中” は外に残す（常時見える） -->
+      <div id="facetHint" class="status" style="margin:8px 0 0;"></div>
     </section>
 
     <section id="list" class="grid" style="margin-top:12px;"></section>
@@ -100,6 +84,68 @@
     </footer>
   </main>
 
+  <!-- ✅ 右下：フィルターFAB（#backToTopと縦に共存するため上側に置く） -->
+  <button
+    id="filterFab"
+    type="button"
+    class="filter-fab"
+    aria-label="絞り込みを開く"
+    aria-haspopup="dialog"
+    aria-controls="filterSheet"
+  >≡</button>
+
+  <!-- ✅ B案：ボトムシート（中に “既存ID” を全部入れる） -->
+  <div id="filterSheet" class="sheet" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet-backdrop" data-sheet-close="1"></div>
+
+    <div class="sheet-panel" role="document">
+      <div class="sheet-head">
+        <div class="sheet-title">絞り込み</div>
+        <div class="sheet-actions">
+          <!-- app.js は facetClearLink を見るので “本物” をここに置く -->
+          <a id="facetClearLink" class="section-link" href="./list.html">解除</a>
+          <button type="button" class="btn-ghost" data-sheet-close="1">閉じる</button>
+        </div>
+      </div>
+
+      <div class="sheet-body">
+        <!-- ✅ 既存：ジャンル/カテゴリー/連載誌 + 並び替え -->
+        <section class="section" style="margin-top:0;">
+          <div class="section-head" style="gap:10px; align-items:center; margin: 6px 0 6px;">
+            <h2 class="section-title" style="font-size:16px;">条件</h2>
+
+            <div style="display:flex; gap:10px; align-items:center; margin-left:auto;">
+              <label style="display:flex; gap:6px; align-items:center; font-size:12px; opacity:.9;">
+                <span>並び替え</span>
+                <select id="sortSelect" style="padding:8px 10px; border:1px solid rgba(0,0,0,.12); border-radius:10px; background:#fff;">
+                  <option value="pop">人気</option>
+                  <option value="new">発売日（新しい順）</option>
+                  <option value="rise">急上昇（30日）</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <!-- app.js がここにUIを描画 -->
+          <div id="facetFilters" class="status" style="margin-top:8px;"></div>
+        </section>
+
+        <!-- ✅ 既存：気分で絞り込み -->
+        <section class="section" style="margin-top:10px;">
+          <div class="section-head" style="margin: 10px 0 6px;">
+            <h2 class="section-title" style="font-size:16px;">気分で絞り込み</h2>
+            <!-- app.js は moodClearLink を見る -->
+            <a id="moodClearLink" class="section-link" href="./list.html">解除</a>
+          </div>
+          <p class="section-sub">最大2つまで選べます（AND）。</p>
+          <div id="quickFiltersList"></div>
+          <div id="quickFiltersHint" class="status" style="margin-top:8px;"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- gheader hide/show -->
   <script>
     (function () {
       const header = document.getElementById("gheader");
@@ -129,6 +175,57 @@
     })();
   </script>
 
+  <!-- ✅ Sheet open/close（app.jsに触らない） -->
+  <script>
+    (function () {
+      const sheet = document.getElementById("filterSheet");
+      const openBtn = document.getElementById("openFilterSheetBtn");
+      const fab = document.getElementById("filterFab");
+      if (!sheet) return;
+
+      function openSheet() {
+        document.body.classList.add("sheet-open");
+        sheet.classList.add("is-open");
+        sheet.setAttribute("aria-hidden", "false");
+        // フォーカスを閉じるボタンに寄せる（軽く）
+        const closeBtn = sheet.querySelector("[data-sheet-close='1']");
+        try { closeBtn && closeBtn.focus(); } catch {}
+      }
+
+      function closeSheet() {
+        sheet.classList.remove("is-open");
+        sheet.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("sheet-open");
+        try { openBtn && openBtn.focus(); } catch {}
+      }
+
+      function onKeyDown(e){
+        if (e.key === "Escape") closeSheet();
+      }
+
+      if (openBtn) openBtn.addEventListener("click", openSheet, { passive: true });
+      if (fab) fab.addEventListener("click", openSheet, { passive: true });
+
+      sheet.addEventListener("click", (e) => {
+        const t = e.target;
+        if (!t) return;
+        const close = t.closest && t.closest("[data-sheet-close='1']");
+        if (close) closeSheet();
+      });
+
+      window.addEventListener("keydown", onKeyDown);
+
+      // iOS: シート開いてる間の背景スクロール抑止（CSSで足りない端末向け）
+      document.addEventListener("touchmove", (e) => {
+        if (!sheet.classList.contains("is-open")) return;
+        // シート内スクロールは許可
+        const inPanel = e.target && e.target.closest && e.target.closest(".sheet-panel");
+        if (!inPanel) e.preventDefault();
+      }, { passive: false });
+    })();
+  </script>
+
+  <!-- app.js loader -->
   <script>
     (function () {
       const v = new URLSearchParams(location.search).get("v");
