@@ -2745,11 +2745,13 @@ async function run() {
   }
 }
 
-ensureBackToTopButton();
-
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", run, { once: true });
+  document.addEventListener("DOMContentLoaded", () => {
+    ensureBackToTopButton();
+    run();
+  }, { once: true });
 } else {
+  ensureBackToTopButton();
   run();
 }
 
