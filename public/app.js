@@ -1718,6 +1718,41 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
 }
 
 /* =======================
+ * ✅ Home：読後感で探す（renderQuickHome を追加）
+ * ======================= */
+function renderQuickHome({ defs, counts }) {
+  const root = document.getElementById("quickFiltersHome");
+  if (!root) return;
+
+  const ds = Array.isArray(defs) ? defs : [];
+  if (!ds.length) {
+    root.innerHTML = `<div class="status">データがまだありません</div>`;
+    return;
+  }
+
+  const v = qs().get("v");
+  const countMap = (counts instanceof Map) ? counts : new Map();
+
+  // 仕様：Homeは「1つ選んでリストへ」なのでリンクでOK（List側のAND最大2は維持）
+  root.innerHTML = `
+    <div class="pills">
+      ${ds.map(d => {
+        const id = toText(d?.id);
+        const label = toText(d?.label) || id;
+        const n = Number(countMap.get(id) || 0);
+        const href = `${BASE}list.html?mood=${encodeURIComponent(id)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
+        return `
+          <a class="pill" href="${esc(href)}" aria-label="${esc(label)}">
+            ${esc(label)}
+            <span style="opacity:.7;">（${Number.isFinite(n) ? n : 0}）</span>
+          </a>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+/* =======================
  * Home：★ランキング（おすすめ度 / 作画）
  * ======================= */
 function normalizeRateTopRows(json){
