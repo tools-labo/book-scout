@@ -1203,7 +1203,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
   // ---- pagination (50 + more) ----
   const visible = outItemsAll.slice(0, Math.max(0, __listVisibleLimit));
   const countEl = document.getElementById("listCount");
-  if (countEl) countEl.textContent = `${visible.length}件`; // A案：表示中のみ
+  if (countEl) countEl.textContent = `${outItemsAll.length}件`; // ✅ 全ヒット数
 
   const moreWrap = document.getElementById("listMoreWrap");
   const moreBtn = document.getElementById("listMoreBtn");
