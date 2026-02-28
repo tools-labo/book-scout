@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T15:34:38.272Z",
-  "updatedAtJst": "2026-03-01 00:34:38",
+  "updatedAt": "2026-02-28T16:41:10.268Z",
+  "updatedAtJst": "2026-03-01 01:41:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -61,12 +61,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "ちはやふる",
       "avg": 4,
       "n": "1"
     },
@@ -86,14 +86,19 @@
       "n": "3"
     },
     {
+      "seriesKey": "3月のライオン",
+      "avg": 3.25,
+      "n": "4"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "avg": 3.25,
       "n": "4"
     },
     {
-      "seriesKey": "3月のライオン",
-      "avg": 3.25,
-      "n": "4"
+      "seriesKey": "アイアムアヒーロー",
+      "avg": 3,
+      "n": "2"
     },
     {
       "seriesKey": "その着せ替え人形は恋をする",
@@ -106,29 +111,14 @@
       "n": "2"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "カッコウの許嫁",
       "avg": 3,
       "n": "2"
     },
     {
       "seriesKey": "からかい上手の高木さん",
       "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "宝石の国",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヲタクに恋は難しい",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "avg": 3,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "ゴールデンカムイ",
@@ -136,12 +126,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "血の轍",
+      "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "1"
     },
@@ -151,22 +136,42 @@
       "n": "1"
     },
     {
+      "seriesKey": "血の轍",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぼくたちは勉強ができない",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "不滅のあなたへ",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "カッコウの許嫁",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "ニセコイ",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "七つの大罪",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヲタクに恋は難しい",
       "avg": 3,
       "n": "1"
     },
@@ -181,7 +186,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "五等分の花嫁",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "20世紀少年",
       "avg": 3,
       "n": "1"
     },
@@ -201,7 +211,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
+      "seriesKey": "宝石の国",
       "avg": 3,
       "n": "1"
     },
@@ -221,7 +231,17 @@
       "n": "1"
     },
     {
+      "seriesKey": "彼女、お借りします",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "マギ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "avg": 3,
       "n": "1"
     },
@@ -262,7 +282,7 @@
     }
   ],
   "raw": {
-    "rows": 48,
-    "rows_before_limit_at_least": 48
+    "rows": 52,
+    "rows_before_limit_at_least": 52
   }
 }

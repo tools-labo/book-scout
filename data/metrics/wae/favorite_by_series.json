@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T15:34:38.272Z",
-  "updatedAtJst": "2026-03-01 00:34:38",
+  "updatedAt": "2026-02-28T16:41:10.268Z",
+  "updatedAtJst": "2026-03-01 01:41:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -33,15 +33,23 @@
       "n": "4"
     },
     {
-      "seriesKey": "キングダム",
-      "n": "3"
-    },
-    {
       "seriesKey": "ReLIFE",
       "n": "3"
     },
     {
+      "seriesKey": "キングダム",
+      "n": "3"
+    },
+    {
       "seriesKey": "ありふれた職業で世界最強",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ぼくたちは勉強ができない",
+      "n": "2"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
       "n": "2"
     },
     {
@@ -50,6 +58,10 @@
     },
     {
       "seriesKey": "蜘蛛ですが、なにか？",
+      "n": "2"
+    },
+    {
+      "seriesKey": "五等分の花嫁",
       "n": "2"
     },
     {
@@ -66,14 +78,6 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "1"
-    },
-    {
-      "seriesKey": "21世紀少年",
-      "n": "1"
-    },
-    {
-      "seriesKey": "アオアシ",
       "n": "1"
     },
     {
@@ -97,11 +101,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "21世紀少年",
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -121,7 +125,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "アオのハコ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "カッコウの許嫁",
       "n": "1"
     },
     {
@@ -129,11 +137,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -145,7 +153,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "五等分の花嫁",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
@@ -157,7 +165,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "バガボンド",
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -197,7 +205,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "彼女、お借りします",
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -205,11 +217,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -233,12 +245,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "アオアシ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 55,
-    "rows_before_limit_at_least": 87
+    "rows": 58,
+    "rows_before_limit_at_least": 93
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T15:34:38.272Z",
-  "updatedAtJst": "2026-03-01 00:34:38",
+  "updatedAt": "2026-02-28T16:41:10.268Z",
+  "updatedAtJst": "2026-03-01 01:41:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -25,6 +25,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "ニセコイ",
+      "n": "1"
+    },
+    {
       "seriesKey": "ドラゴンボール",
       "n": "1"
     },
@@ -33,7 +37,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "カッコウの許嫁",
+      "n": "1"
+    },
+    {
       "seriesKey": "葬送のフリーレン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "五等分の花嫁",
       "n": "1"
     },
     {
@@ -49,7 +61,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "彼女、お借りします",
+      "n": "1"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぼくたちは勉強ができない",
       "n": "1"
     },
     {
@@ -58,7 +82,7 @@
     }
   ],
   "raw": {
-    "rows": 10,
-    "rows_before_limit_at_least": 10
+    "rows": 16,
+    "rows_before_limit_at_least": 16
   }
 }
