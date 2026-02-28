@@ -1210,12 +1210,21 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
   const canMore = outItemsAll.length > visible.length;
   if (moreWrap) moreWrap.style.display = canMore ? "" : "none";
   if (moreBtn) {
-    moreBtn.onclick = () => {
-      addListVisibleLimit();
-      renderList(all, quickDefs, norm, opt);
-      refreshFavButtons(document);
-    };
-  }
+  moreBtn.onclick = (ev) => {
+    try { ev?.preventDefault?.(); } catch {}
+    const y = window.scrollY || 0;
+
+    addListVisibleLimit();
+    renderList(all, quickDefs, norm, opt);
+    refreshFavButtons(document);
+
+    // ✅ 再描画で位置がズレるのを抑止（iOS対策）
+    requestAnimationFrame(() => {
+      window.scrollTo(0, y);
+      try { moreBtn.blur?.(); } catch {}
+    });
+  };
+}
 
   // ---- render ----
   root.innerHTML = "";
