@@ -1200,7 +1200,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     return;
   }
 
-    // ---- pagination (50 + more) ----
+  // ---- pagination (50 + more) ----
   const visible = outItemsAll.slice(0, Math.max(0, __listVisibleLimit));
   const countEl = document.getElementById("listCount");
   if (countEl) countEl.textContent = `${outItemsAll.length}件`; // ✅ 全ヒット数
@@ -1211,64 +1211,29 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 
   if (moreWrap) moreWrap.style.display = canMore ? "" : "none";
 
+  // ✅ もっと見る：リストDOMを作り直さず append（スクロール位置固定）
   if (moreBtn) {
     moreBtn.onclick = (ev) => {
       try { ev?.preventDefault?.(); } catch {}
+      try { moreBtn.blur?.(); } catch {}
 
-      // 1) アンカー（画面内で最上段に見えてるcard）を探す
-      let anchorSk = "";
-      let anchorTop = 0;
+      const prevVisibleLen = visible.length;
 
-      try {
-        const cards = Array.from(document.querySelectorAll("#list article.card[data-sk]"));
-        let best = null;
-        let bestTop = Infinity;
-
-        for (const el of cards) {
-          const r = el.getBoundingClientRect();
-          const vis = (r.bottom > 0) && (r.top < window.innerHeight);
-          if (!vis) continue;
-
-          const t = Math.abs(r.top);
-          if (t < bestTop) { bestTop = t; best = el; }
-        }
-
-        if (best) {
-          anchorSk = best.getAttribute("data-sk") || "";
-          anchorTop = best.getBoundingClientRect().top;
-        }
-      } catch {}
-
-      // 2) 件数を増やして再描画
       addListVisibleLimit();
-      renderList(all, quickDefs, norm, opt);
+      renderList(all, quickDefs, norm, { ...opt, appendFrom: prevVisibleLen });
       refreshFavButtons(document);
-
-      // 3) 同じアンカーを探して、差分だけ戻す
-      requestAnimationFrame(() => {
-        try {
-          if (anchorSk) {
-            const esc = (window.CSS && typeof CSS.escape === "function")
-              ? CSS.escape(anchorSk)
-              : anchorSk.replace(/["\\]/g, "\\$&");
-
-            const el = document.querySelector(`#list article.card[data-sk="${esc}"]`);
-            if (el) {
-              const newTop = el.getBoundingClientRect().top;
-              const dy = newTop - anchorTop;
-              if (Math.abs(dy) > 0.5) window.scrollBy(0, dy);
-            }
-          }
-          try { moreBtn.blur?.(); } catch {}
-        } catch {}
-      });
     };
   }
 
   // ---- render ----
-  root.innerHTML = "";
+  const appendFrom = Number(opt?.appendFrom || 0);
+
+  if (!appendFrom) {
+    root.innerHTML = "";
+  }
+
   const BATCH = 36;
-  let i = 0;
+  let i = appendFrom;
 
   function itemHtml(it) {
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
@@ -1318,7 +1283,8 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     const end = Math.min(visible.length, i + BATCH);
     let html = "";
     for (; i < end; i++) html += itemHtml(visible[i]);
-    root.insertAdjacentHTML("beforeend", html);
+
+    if (html) root.insertAdjacentHTML("beforeend", html);
 
     initLazyImages(root);
     refreshFavButtons(document);
