@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T19:30:55.666Z",
-  "updatedAtJst": "2026-03-01 04:30:55",
+  "updatedAt": "2026-02-28T20:38:02.219Z",
+  "updatedAtJst": "2026-03-01 05:38:02",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -176,15 +176,15 @@
       "n": "2"
     },
     {
-      "genre": "genre=mystery",
-      "aud": "",
+      "genre": "",
+      "aud": "aud=青年",
       "mag": "",
       "mood": "",
       "n": "2"
     },
     {
-      "genre": "",
-      "aud": "aud=青年",
+      "genre": "genre=mystery",
+      "aud": "",
       "mag": "",
       "mood": "",
       "n": "2"
@@ -296,9 +296,9 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -317,9 +317,9 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
+      "aud": "aud=少年",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
@@ -351,17 +351,17 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "aud=少年",
-      "mag": "",
-      "mood": "mood=heart_throb,satisfying",
-      "n": "1"
-    },
-    {
       "genre": "genre=drama,sports,mystery,slice,action",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "mood=heart_throb,satisfying",
       "n": "1"
     },
     {
@@ -487,14 +487,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=hot,heart_throb",
+      "mood": "genre=Fantasy",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Fantasy",
+      "mood": "mood=hot,heart_throb",
       "n": "1"
     },
     {
@@ -575,20 +575,6 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,sports,comedy,slice,horror,action",
-      "aud": "aud=少年",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=moving,hot",
-      "n": "1"
-    },
-    {
       "genre": "genre=romance,sf,fantasy,mystery,action,drama",
       "aud": "aud=その他",
       "mag": "",
@@ -600,6 +586,20 @@
       "aud": "aud=女性",
       "mag": "",
       "mood": "mood=funny",
+      "n": "1"
+    },
+    {
+      "genre": "genre=fantasy,sf,sports,comedy,slice,horror,action",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=moving,hot",
       "n": "1"
     },
     {
@@ -673,15 +673,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice",
-      "aud": "aud=少年",
+      "genre": "genre=drama,sports,mystery,slice",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
