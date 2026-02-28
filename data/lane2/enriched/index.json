@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-27T13:39:55.591Z",
+  "updatedAt": "2026-02-28T01:23:26.377Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -264,21 +264,17 @@
     "total": 245,
     "ok": 245,
     "ng": 0,
-    "skippedPerfect": 244,
-    "skippedAniList": 1,
-    "skippedWiki": 1,
-    "skippedAmazon": 1,
+    "skippedPerfect": 245,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 1,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 1,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "ちはやふる :: audiences[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
