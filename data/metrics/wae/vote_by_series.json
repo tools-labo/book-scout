@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T10:39:08.390Z",
-  "updatedAtJst": "2026-02-28 19:39:08",
+  "updatedAt": "2026-02-28T11:30:34.175Z",
+  "updatedAtJst": "2026-02-28 20:30:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -22,7 +22,7 @@
     },
     {
       "seriesKey": "ドラゴンボール",
-      "n": "11"
+      "n": "12"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -85,15 +85,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "乙嫁語り",
+      "n": "2"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "n": "2"
     },
     {
       "seriesKey": "フルーツバスケット",
-      "n": "2"
-    },
-    {
-      "seriesKey": "乙嫁語り",
       "n": "2"
     },
     {
@@ -221,7 +221,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
@@ -233,7 +233,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -259,6 +259,6 @@
   ],
   "raw": {
     "rows": 60,
-    "rows_before_limit_at_least": 131
+    "rows_before_limit_at_least": 132
   }
 }
