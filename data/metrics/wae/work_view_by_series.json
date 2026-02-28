@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T00:58:45.270Z",
-  "updatedAtJst": "2026-02-28 09:58:45",
+  "updatedAt": "2026-02-28T02:39:03.726Z",
+  "updatedAtJst": "2026-02-28 11:39:03",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -57,6 +57,10 @@
       "n": "4"
     },
     {
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "n": "4"
+    },
+    {
       "seriesKey": "キングダム",
       "n": "4"
     },
@@ -77,11 +81,11 @@
       "n": "3"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "監獄学園",
       "n": "3"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "乙嫁語り",
       "n": "3"
     },
     {
@@ -98,10 +102,6 @@
     },
     {
       "seriesKey": "食戟のソーマ",
-      "n": "3"
-    },
-    {
-      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
       "n": "3"
     },
     {
@@ -427,6 +427,6 @@
   ],
   "raw": {
     "rows": 102,
-    "rows_before_limit_at_least": 235
+    "rows_before_limit_at_least": 236
   }
 }

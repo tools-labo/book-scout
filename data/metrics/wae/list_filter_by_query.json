@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T00:58:45.270Z",
-  "updatedAtJst": "2026-02-28 09:58:45",
+  "updatedAt": "2026-02-28T02:39:03.726Z",
+  "updatedAtJst": "2026-02-28 11:39:03",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -33,7 +33,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "91"
+      "n": "92"
     },
     {
       "genre": "",
@@ -74,6 +74,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=healing",
+      "n": "5"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "mood=moving",
       "n": "5"
     },
@@ -95,8 +102,8 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=healing",
-      "n": "5"
+      "mood": "aud=少女",
+      "n": "4"
     },
     {
       "genre": "",
@@ -116,15 +123,15 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "aud=少女",
-      "n": "4"
+      "mood": "aud=少年",
+      "n": "3"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "aud=少年",
-      "n": "3"
+      "mood": "mood=heart_throb,satisfying",
+      "n": "2"
     },
     {
       "genre": "",
@@ -144,7 +151,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,satisfying",
+      "mood": "mood=tearjerker,moving",
       "n": "2"
     },
     {
@@ -156,10 +163,17 @@
     },
     {
       "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "mood=heart_throb,satisfying",
+      "n": "1"
+    },
+    {
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=tearjerker,moving",
-      "n": "2"
+      "mood": "mood=messy,satisfying",
+      "n": "1"
     },
     {
       "genre": "",
@@ -172,14 +186,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "aud=少女&mood=satisfying,funny",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=hot,messy",
+      "mood": "aud=青年",
       "n": "1"
     },
     {
@@ -193,7 +200,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Action&mood=moving",
+      "mood": "JP",
       "n": "1"
     },
     {
@@ -227,6 +234,13 @@
     {
       "genre": "",
       "aud": "",
+      "mag": "mag=BE",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
       "mag": "",
       "mood": "genre=Fantasy",
       "n": "1"
@@ -249,7 +263,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "aud=青年",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
@@ -263,14 +277,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "JP",
+      "mood": "aud=その他",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "aud=その他",
+      "mood": "mood=hot,messy",
       "n": "1"
     },
     {
@@ -289,6 +303,13 @@
     },
     {
       "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=healing,satisfying",
@@ -303,6 +324,13 @@
     },
     {
       "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "mood=heart_throb",
+      "n": "1"
+    },
+    {
+      "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=funny,moving",
@@ -312,12 +340,12 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=messy,satisfying",
+      "mood": "aud=少女&mood=satisfying,funny",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 41,
-    "rows_before_limit_at_least": 193
+    "rows": 45,
+    "rows_before_limit_at_least": 198
   }
 }

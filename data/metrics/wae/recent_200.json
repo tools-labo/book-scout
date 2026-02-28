@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T00:58:45.270Z",
-  "updatedAtJst": "2026-02-28 09:58:45",
+  "updatedAt": "2026-02-28T02:39:03.726Z",
+  "updatedAtJst": "2026-02-28 11:39:03",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,84 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-02-28 01:40:05",
+      "timestampJst": "2026-02-28 10:40:05",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=BE",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-28 01:24:29",
+      "timestampJst": "2026-02-28 10:24:29",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=heart_throb,satisfying",
+      "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-28 01:24:27",
+      "timestampJst": "2026-02-28 10:24:27",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "mood=heart_throb",
+      "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-28 01:24:25",
+      "timestampJst": "2026-02-28 10:24:25",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-28 01:22:46",
+      "timestampJst": "2026-02-28 10:22:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-02-28 01:20:51",
+      "timestampJst": "2026-02-28 10:20:51",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
     {
       "timestamp": "2026-02-27 13:30:12",
       "timestampJst": "2026-02-27 22:30:12",
@@ -11273,7 +11351,7 @@
     }
   ],
   "raw": {
-    "rows": 863,
-    "rows_before_limit_at_least": 863
+    "rows": 869,
+    "rows_before_limit_at_least": 869
   }
 }
