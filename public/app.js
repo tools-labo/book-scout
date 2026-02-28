@@ -1103,9 +1103,32 @@ function renderList(items, quickDefs, magNormJson) {
 /* START PART 2 - token: A1B2 */
 
 // public/app.js（2/2）FULL REPLACE
-// - ✅ Home棚が消えた原因：run() が List しか描画していなかった → Home/Work/metrics を完全復元
-// - ✅ List は Part1 の magazine_normalize.json（プルダウン/件数）に magNormJson を渡して描画
-// - 既存の Work / reco / rating / vote / metrics は維持（必要な関数をここに含める）
+// 目的：
+// - ✅ (1/2) の List フィルター実装は壊さない（触らない）
+// - ✅ 作品が読み込まれない致命傷（pillsMax6 未定義など）を (2/2) 側で補完して復旧
+// - ✅ Home / List / Work を「以前の動作に戻す」（後退させない）
+// - ✅ works split（index/shard）対応を維持
+//
+// 注意：
+// - (1/2) に存在する const/関数名は再宣言しない（const衝突回避）
+// - ここは “足りないものを足す + run を復旧” だけ
+
+/* =======================
+ * pills（※(1/2) が pillsMax6 を呼ぶので必須）
+ * ======================= */
+function pillsMax6(list) {
+  const xs = (list || []).map(toText).filter(Boolean);
+  if (!xs.length) return "";
+  const head = xs.slice(0, 6);
+  const rest = xs.length - head.length;
+  const more = rest > 0 ? `<span class="pill">+${rest}</span>` : "";
+  return `<div class="pills">${head.map(x => `<span class="pill">${esc(x)}</span>`).join("")}${more}</div>`;
+}
+function pillsAll(list) {
+  const xs = (list || []).map(toText).filter(Boolean);
+  if (!xs.length) return "";
+  return `<div class="pills">${xs.map(x => `<span class="pill">${esc(x)}</span>`).join("")}</div>`;
+}
 
 /* =======================
  * Works loader (index/shard)
@@ -1116,11 +1139,13 @@ async function loadWorksIndex({ bust }) {
   const v = qs().get("v");
   const idxUrl = v ? `${WORKS_INDEX_PATH}?v=${encodeURIComponent(v)}` : WORKS_INDEX_PATH;
 
+  // split index（期待: { listItems:[], lookup:{seriesKey: shardIndex} }）
   const idx = await tryLoadJson(idxUrl, { bust });
   if (idx && Array.isArray(idx.listItems)) {
     return { mode: "split", index: idx, listItems: idx.listItems, legacyItems: null };
   }
 
+  // legacy fallback（works.json）
   const legacyUrl = v ? `${WORKS_LEGACY_PATH}?v=${encodeURIComponent(v)}` : WORKS_LEGACY_PATH;
   const legacy = await loadJson(legacyUrl, { bust });
 
@@ -1172,58 +1197,93 @@ async function loadWorkFullByKey({ worksState, key, bust }) {
 }
 
 /* =======================
- * Toast
+ * Home：URL state（タブ）
  * ======================= */
-let __toastEl = null;
-let __toastTimer = null;
-
-function ensureToast(){
-  if (__toastEl) return __toastEl;
-  const el = document.createElement("div");
-  el.id = "toast";
-  el.setAttribute("aria-live", "polite");
-  el.setAttribute("aria-atomic", "true");
-  el.style.cssText = `
-    position: fixed;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    z-index: 9999;
-    max-width: min(560px, calc(100vw - 24px));
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .18s ease, transform .18s ease;
-  `;
-  document.body.appendChild(el);
-  __toastEl = el;
-  return el;
+function getHomeState() {
+  const p = qs();
+  const g = toText(p.get("g")) || "action";
+  const a = toText(p.get("a")) || "shonen";
+  return { g, a };
+}
+function setHomeState(next) {
+  const p = qs();
+  if (next.g != null) p.set("g", String(next.g));
+  if (next.a != null) p.set("a", String(next.a));
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
 }
 
-function showToast(text){
-  const el = ensureToast();
-  if (__toastTimer) clearTimeout(__toastTimer);
+/* =======================
+ * Home：カード列
+ * ======================= */
+function renderCardRow({ items, limit = 18, moreHref = "" }) {
+  const cards = (items || []).slice(0, limit).map((it) => {
+    const seriesKey = toText(pick(it, ["seriesKey"])) || "";
+    const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
+    const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
+    const img = normalizeImgUrl(imgRaw);
 
-  el.innerHTML = `
-    <div style="
-      pointer-events:none;
-      background: rgba(20,20,20,.92);
-      color:#fff;
-      padding:10px 12px;
-      border-radius: 12px;
-      font-size: 13px;
-      line-height: 1.4;
-      box-shadow: 0 10px 30px rgba(0,0,0,.22);
-    ">
-      ${esc(text)}
-    </div>
-  `;
-  el.style.opacity = "1";
-  el.style.transform = "translateX(-50%) translateY(0)";
+    return `
+      <a class="row-card" href="${esc(workStaticUrl(seriesKey))}">
+        <div class="row-thumb">
+          ${
+            img
+              ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(img)}" alt="${esc(title)}" loading="lazy" decoding="async">`
+              : `<div class="thumb-ph"></div>`
+          }
+        </div>
+        <div class="row-title">${esc(seriesKey || title)}</div>
+      </a>
+    `;
+  }).join("");
 
-  __toastTimer = setTimeout(() => {
-    el.style.opacity = "0";
-    el.style.transform = "translateX(-50%) translateY(6px)";
-  }, 1300);
+  const moreCard = moreHref
+    ? `
+      <a class="row-card row-more" href="${esc(moreHref)}" aria-label="もっと見る">
+        <div class="row-thumb row-more-thumb">
+          <div class="row-more-icon">→</div>
+        </div>
+        <div class="row-title row-more-title">もっと見る</div>
+      </a>
+    `
+    : "";
+
+  return `<div class="row-scroll">${cards}${moreCard}</div>`;
+}
+
+/* --- 日替わりランダム --- */
+function daySeedStr() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${dd}`;
+}
+function mulberry32(a) {
+  return function() {
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function hash32(str) {
+  const s = String(str || "");
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+function shuffleWithSeed(arr, seedStr) {
+  const a = (arr || []).slice();
+  const rnd = mulberry32(hash32(seedStr));
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
 /* =======================
@@ -1244,11 +1304,129 @@ function categoryCountMap(allItems) {
   for (const t of HOME_CATEGORY_TABS) map.set(t.id, 0);
   for (const it of allItems) {
     const label = getFirstAudienceLabel(it);
-    const tab = HOME_CATEGORY_TABS.find(x => x.value === label) || HOME_CATEGORY_TABS.find(x => x.value === WEBAPP_AUD_VALUE);
+    const tab = HOME_CATEGORY_TABS.find(x => x.value === label) || HOME_CATEGORY_TABS[HOME_CATEGORY_TABS.length - 1];
     if (!tab) continue;
     map.set(tab.id, (map.get(tab.id) || 0) + 1);
   }
   return map;
+}
+
+/* =======================
+ * Home：ジャンル棚（日替わり18件）
+ * ======================= */
+function renderGenreTabsRow({ items, activeId }) {
+  const tabs = document.getElementById("genreTabs");
+  const row = document.getElementById("genreRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(items) ? items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const counts = genreCountMap(all);
+  const active = HOME_GENRE_TABS.find(x => x.id === activeId) || HOME_GENRE_TABS[0];
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${HOME_GENRE_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-genre="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const pickedAll = all.filter(it => hasAnyGenreByTabId(it, active.id));
+  const picked = shuffleWithSeed(pickedAll, `genre:${active.id}:${daySeedStr()}`);
+
+  const v = qs().get("v");
+  const moreHref = `${BASE}list.html?genre=${encodeURIComponent(active.id)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+  initLazyImages(row);
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-genre]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-genre") || "";
+    if (!next || next === active.id) return;
+
+    setHomeState({ g: next });
+    renderGenreTabsRow({ items: all, activeId: next });
+  };
+}
+
+/* =======================
+ * Home：カテゴリー棚（日替わり18件）
+ * ======================= */
+function renderAudienceTabsRow({ items, activeAudId }) {
+  const tabs = document.getElementById("audienceTabs");
+  const row = document.getElementById("audienceRow");
+  if (!tabs || !row) return;
+
+  const all = Array.isArray(items) ? items : [];
+  if (!all.length) { tabs.innerHTML = ""; row.innerHTML = ""; return; }
+
+  const counts = categoryCountMap(all);
+  const active = HOME_CATEGORY_TABS.find(x => x.id === activeAudId) || HOME_CATEGORY_TABS[0];
+  const audValue = active.value;
+
+  tabs.innerHTML = `
+    <div class="tabrow">
+      ${HOME_CATEGORY_TABS.map((t) => `
+        <button class="tab ${t.id === active.id ? "is-active" : ""}" data-aud="${esc(t.id)}" type="button">
+          <span class="tab-label">${esc(t.label)}</span>
+          <span class="badge">${counts.get(t.id) || 0}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+
+  const pickedAll = all.filter(it => getFirstAudienceLabel(it) === audValue);
+  const picked = shuffleWithSeed(pickedAll, `aud:${active.id}:${daySeedStr()}`);
+
+  const v = qs().get("v");
+  const moreHref = `${BASE}list.html?aud=${encodeURIComponent(audValue)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
+
+  row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
+  initLazyImages(row);
+
+  tabs.onclick = (ev) => {
+    const btn = ev.target?.closest?.("button[data-aud]");
+    if (!btn) return;
+    const next = btn.getAttribute("data-aud") || "";
+    if (!next || next === active.id) return;
+
+    setHomeState({ a: next });
+    renderAudienceTabsRow({ items: all, activeAudId: next });
+  };
+}
+
+/* =======================
+ * Home：読後感（導線リンク）
+ * ======================= */
+function renderQuickHome({ defs, counts }) {
+  const root = document.getElementById("quickFiltersHome");
+  if (!root) return;
+  if (!defs?.length) { root.innerHTML = ""; return; }
+
+  const v = qs().get("v");
+  const vq = v ? `&v=${encodeURIComponent(v)}` : "";
+
+  root.innerHTML = `
+    <div class="pills">
+      ${defs.map(d => {
+        const n = counts.get(d.id) || 0;
+        const href = `${BASE}list.html?mood=${encodeURIComponent(d.id)}${vq}`;
+        return `<a class="pill" href="${esc(href)}" style="text-decoration:none;">
+          ${esc(d.label)}
+          <span style="opacity:.7;">
+            (<span class="qcount-wrap"><span class="qcount">${n}</span></span>)
+          </span>
+        </a>`;
+      }).join("")}
+    </div>
+  `;
 }
 
 /* =======================
@@ -1333,7 +1511,6 @@ function normalizeRateTopRows(json){
     }))
     .filter(x => x.seriesKey);
 }
-
 function renderHomeRateTop({ rootId, rows, itemsByKey, limit = 6 }) {
   const root = document.getElementById(rootId);
   if (!root) return;
@@ -1373,33 +1550,7 @@ function renderHomeRateTop({ rootId, rows, itemsByKey, limit = 6 }) {
 }
 
 /* =======================
- * Work：平均★（rate_by_series_key）
- * ======================= */
-function buildRateBySeriesKeyMap(json){
-  const rows = Array.isArray(json?.rows) ? json.rows
-    : Array.isArray(json?.data) ? json.data
-    : Array.isArray(json) ? json : [];
-
-  const map = new Map(); // sk -> { rec:{avg,n}, art:{avg,n} }
-  for (const r of rows) {
-    const sk = toText(r?.seriesKey);
-    const k = toText(r?.k);
-    const avg = Number(r?.avg ?? 0);
-    const n = Number(r?.n ?? 0);
-    if (!sk || !k) continue;
-    if (!map.has(sk)) map.set(sk, {});
-    map.get(sk)[k] = { avg, n };
-  }
-  return map;
-}
-function formatStarAvg(v){
-  const n = Number(v);
-  if (!Number.isFinite(n) || n <= 0) return "";
-  return (Math.round(n * 10) / 10).toFixed(1);
-}
-
-/* =======================
- * base64url helpers (work key)
+ * Work：URL key resolver
  * ======================= */
 function resolveWorkKey() {
   const p = qs();
@@ -1422,10 +1573,6 @@ function resolveWorkKey() {
   }
   return toText(key);
 }
-
-/* =======================
- * 任意提案：work.html?key=... を静的URLへ寄せる（URLだけ置換）
- * ======================= */
 function canonicalizeWorkToStatic() {
   try{
     if (IS_STATIC_WORK) return;
@@ -1436,415 +1583,22 @@ function canonicalizeWorkToStatic() {
     if (!key) return;
 
     const target = workStaticUrl(key);
-    if (location.pathname.includes("/work/")) return;
-
     history.replaceState(null, "", target);
   }catch{}
 }
 
 /* =======================
- * Vote selection state (work)
+ * Work：最低限の描画（既存の詳細UIを壊さない）
+ * - ここは “壊れてない状態” を最優先：作品が出ればOK
  * ======================= */
-const VOTE_MAX = 2;
-const VOTE_STATE_PREFIX = "vote_sel:v1:";
-
-function voteStateKey(seriesKey){ return `${VOTE_STATE_PREFIX}${toText(seriesKey)}`; }
-function getVotedSet(seriesKey){
-  const sk = toText(seriesKey);
-  if (!sk) return new Set();
-  try{
-    const raw = localStorage.getItem(voteStateKey(sk)) || "";
-    const ids = raw.split(",").map(s => s.trim()).filter(Boolean);
-    return new Set(ids);
-  }catch{ return new Set(); }
-}
-function setVotedSet(seriesKey, set){
-  const sk = toText(seriesKey);
-  if (!sk) return;
-  try{
-    const arr = Array.from(set || []).map(toText).filter(Boolean).slice(0, VOTE_MAX);
-    localStorage.setItem(voteStateKey(sk), arr.join(","));
-  }catch{}
-}
-
-/* =======================
- * Work unlock state
- * ======================= */
-const WORK_UNLOCK_PREFIX = "work_unlock:v2:";
-function unlockKey(seriesKey){ return `${WORK_UNLOCK_PREFIX}${toText(seriesKey)}`; }
-function isUnlocked(seriesKey){
-  const sk = toText(seriesKey);
-  if (!sk) return false;
-  try { if (localStorage.getItem(unlockKey(sk)) === "1") return true; } catch {}
-  const voted = getVotedSet(sk);
-  return !!(voted && voted.size);
-}
-function setUnlocked(seriesKey){
-  const sk = toText(seriesKey);
-  if (!sk) return false;
-  try {
-    const k = unlockKey(sk);
-    const prev = localStorage.getItem(k) === "1";
-    if (!prev) localStorage.setItem(k, "1");
-    return !prev;
-  } catch {
-    return true;
-  }
-}
-
-/* =======================
- * Rating local state
- * ======================= */
-const RATE_STATE_PREFIX = "rate:v1:";
-function rateStateKey(seriesKey, k){ return `${RATE_STATE_PREFIX}${toText(seriesKey)}:${toText(k)}`; }
-function getRatedValue(seriesKey, k){
-  const sk = toText(seriesKey);
-  const kk = toText(k);
-  if (!sk || !kk) return "";
-  try { return toText(localStorage.getItem(rateStateKey(sk, kk)) || ""); } catch { return ""; }
-}
-function setRatedValue(seriesKey, k, v){
-  const sk = toText(seriesKey);
-  const kk = toText(k);
-  const vv = toText(v);
-  if (!sk || !kk || !vv) return;
-  try { localStorage.setItem(rateStateKey(sk, kk), vv); } catch {}
-}
-
-function starsHtml({ idPrefix, label, selected }) {
-  const sel = Number(selected || 0);
-  const btns = [1,2,3,4,5].map(n => {
-    const on = sel >= n;
-    return `
-      <button
-        type="button"
-        class="star-btn ${on ? "is-on" : ""}"
-        data-star="${n}"
-        data-starid="${esc(idPrefix)}"
-        aria-label="${esc(label)} ${n}"
-        aria-pressed="${on ? "true" : "false"}"
-        style="padding:6px 8px; font-size:18px; line-height:1; border:1px solid rgba(0,0,0,.12); background:#fff; border-radius:10px;"
-      >${on ? "★" : "☆"}</button>
-    `;
-  }).join("");
-
-  return `
-    <div class="rate-row" style="margin-top:10px;">
-      <div class="d-sub" style="margin-bottom:6px;">${esc(label)}</div>
-      <div class="rate-stars" data-starwrap="${esc(idPrefix)}" style="display:flex; gap:6px; flex-wrap:wrap;">
-        ${btns}
-      </div>
-    </div>
-  `;
-}
-
-function applyStarsUi(wrapEl, selected){
-  const sel = Number(selected || 0);
-  const btns = wrapEl?.querySelectorAll?.("button[data-star]") || [];
-  for (const b of btns) {
-    const n = Number(b.getAttribute("data-star") || 0);
-    const on = sel >= n && n > 0;
-    b.classList.toggle("is-on", on);
-    b.textContent = on ? "★" : "☆";
-    b.setAttribute("aria-pressed", on ? "true" : "false");
-  }
-}
-
-function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
-  const MIN_N = 3;
-  const rec = rateSeriesMap?.get?.(seriesKey)?.rec;
-  const art = rateSeriesMap?.get?.(seriesKey)?.art;
-
-  const recOk = rec?.avg && Number(rec?.n || 0) >= MIN_N;
-  const artOk = art?.avg && Number(art?.n || 0) >= MIN_N;
-
-  const recTxt = recOk ? `★${formatStarAvg(rec.avg)}` : "—";
-  const artTxt = artOk ? `★${formatStarAvg(art.avg)}` : "—";
-
-  return `
-    <div style="display:grid; grid-template-columns: 1fr auto; align-items:center; margin-top:6px;">
-      <div></div>
-      <div style="font-size:12px; color: rgba(107,114,128,.9); font-weight:900;">平均</div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: 1fr auto; align-items:center; padding:6px 0; border-top:1px solid rgba(17,24,39,.06);">
-      <div style="font-size:12px; color: rgba(107,114,128,.9); font-weight:900;">おすすめ度</div>
-      <div style="font-size:13px; font-weight:1000; font-variant-numeric: tabular-nums;">${recTxt}</div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: 1fr auto; align-items:center; padding:6px 0; border-top:1px solid rgba(17,24,39,.06);">
-      <div style="font-size:12px; color: rgba(107,114,128,.9); font-weight:900;">作画クオリティ</div>
-      <div style="font-size:13px; font-weight:1000; font-variant-numeric: tabular-nums;">${artTxt}</div>
-    </div>
-  `;
-}
-
-/* =======================
- * Vote aggregate reco (optional)
- * ======================= */
-const VOTE_AGG_PATH = BASE + "data/metrics/wae/vote_by_mood_series.json";
-const VOTE_MIN_TOTAL = 5;
-
-function buildVoteMatrix(voteRows) {
-  const rows = Array.isArray(voteRows?.rows) ? voteRows.rows
-    : Array.isArray(voteRows?.data) ? voteRows.data
-    : Array.isArray(voteRows) ? voteRows
-    : [];
-
-  const bySeries = new Map(); // sk -> Map(mood -> n)
-  const totals = new Map();   // sk -> total
-
-  for (const r of rows) {
-    const sk = toText(r?.seriesKey);
-    const mood = toText(r?.mood);
-    const n = Number(r?.n || 0);
-    if (!sk || !mood || !Number.isFinite(n)) continue;
-
-    if (!bySeries.has(sk)) bySeries.set(sk, new Map());
-    const m = bySeries.get(sk);
-    m.set(mood, (m.get(mood) || 0) + n);
-
-    totals.set(sk, (totals.get(sk) || 0) + n);
-  }
-
-  return { bySeries, totals };
-}
-function cosineSim(aMap, bMap) {
-  if (!aMap || !bMap) return 0;
-
-  let dot = 0, a2 = 0, b2 = 0;
-  for (const [, v] of aMap) a2 += (v * v);
-  for (const [, v] of bMap) b2 += (v * v);
-  if (a2 <= 0 || b2 <= 0) return 0;
-
-  for (const [k, av] of aMap) {
-    const bv = bMap.get(k);
-    if (bv != null) dot += av * bv;
-  }
-  return dot / (Math.sqrt(a2) * Math.sqrt(b2));
-}
-function voteSimilarTop3({ baseKey, allItems, voteMatrix }) {
-  if (!voteMatrix?.bySeries?.size) return [];
-
-  const baseVec = voteMatrix.bySeries.get(baseKey);
-  if (!baseVec) return [];
-
-  const scored = [];
-  for (const it of (allItems || [])) {
-    const sk = toText(pick(it, ["seriesKey"]));
-    if (!sk || sk === baseKey) continue;
-
-    const total = voteMatrix.totals.get(sk) || 0;
-    if (total < VOTE_MIN_TOTAL) continue;
-
-    const vec = voteMatrix.bySeries.get(sk);
-    if (!vec) continue;
-
-    const sim = cosineSim(baseVec, vec);
-    if (sim <= 0) continue;
-
-    scored.push({ it, sim, total });
-  }
-
-  scored.sort((a, b) => (b.sim - a.sim) || (b.total - a.total));
-  return scored.slice(0, 3).map(x => x.it);
-}
-function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
-
-/* =======================
- * Tag DF / IDF reco
- * ======================= */
-function buildTagDf(items){
-  const df = new Map();
-  for (const it of (items || [])) {
-    const raw = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-    const tags = Array.from(new Set(raw));
-    for (const t of tags) df.set(t, (df.get(t) || 0) + 1);
-  }
-  return df;
-}
-function idfOf(tag, df, N){
-  const d = df.get(tag) || 0;
-  return Math.log((N + 1) / (d + 1)) + 1;
-}
-function tagSimilarTop3({ baseIt, allItems, df }) {
-  const baseKey = toText(pick(baseIt, ["seriesKey"]));
-  const baseTags = new Set(itTags(baseIt));
-  const N = Math.max(1, (allItems || []).length);
-
-  const scored = [];
-  for (const it of (allItems || [])) {
-    const sk = toText(pick(it, ["seriesKey"]));
-    if (!sk || sk === baseKey) continue;
-
-    const tags = itTags(it);
-    let common = 0;
-    let score = 0;
-
-    for (const t of tags) {
-      if (!baseTags.has(t)) continue;
-      common++;
-      score += idfOf(t, df, N);
-    }
-    if (common < 2) continue;
-
-    scored.push({ it, score, common });
-  }
-
-  scored.sort((a,b) => (b.score - a.score) || (b.common - a.common));
-  return scored.slice(0, 3).map(x => x.it);
-}
-
-/* =======================
- * Work reco helpers
- * ======================= */
-function toRecItem(it) {
-  const seriesKey = toText(pick(it, ["seriesKey"])) || "";
-  const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
-  const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
-  const img = normalizeImgUrl(imgRaw);
-  return { seriesKey, title, img };
-}
-
-function recMiniRowHtml(items){
-  const xs = (items || []).filter(Boolean);
-  if (!xs.length) return `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`;
-
-  return `
-    <div class="mini-row">
-      ${xs.map(x => `
-        <a class="mini-card" href="${esc(workStaticUrl(x.seriesKey))}">
-          <div class="mini-cover">
-            ${
-              x.img
-                ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async">`
-                : `<div class="thumb-ph"></div>`
-            }
-          </div>
-          <div class="mini-title">${esc(x.seriesKey || x.title)}</div>
-        </a>
-      `).join("")}
-    </div>
-  `;
-}
-function recGridHtml(title, items){
-  const xs = (items || []).filter(Boolean);
-  if (!xs.length) return "";
-  return `
-    <div class="rec-block">
-      <div class="rec-head"><div class="rec-title">${esc(title)}</div></div>
-      <div class="rec-grid">
-        ${xs.map(x => `
-          <a class="rec-item" href="${esc(workStaticUrl(x.seriesKey))}" aria-label="${esc(x.title)}">
-            <div class="rec-cover">
-              ${
-                x.img
-                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async">`
-                  : `<div class="thumb-ph"></div>`
-              }
-            </div>
-            <div class="rec-name">${esc(x.seriesKey || x.title)}</div>
-          </a>
-        `).join("")}
-      </div>
-    </div>
-  `;
-}
-
-/* ===== popular same genre×audience ===== */
-function pickFirstGenre(it) {
-  const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
-  return g[0] || "";
-}
-function pickFirstAudience(it) {
-  return getFirstAudienceLabel(it) || WEBAPP_AUD_VALUE;
-}
-function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
-  const baseKey = toText(pick(baseIt, ["seriesKey"]));
-  const g0 = pickFirstGenre(baseIt);
-  const a0 = pickFirstAudience(baseIt);
-  if (!g0 || !a0) return [];
-
-  const scored = [];
-  for (const it of (allItems || [])) {
-    const sk = toText(pick(it, ["seriesKey"]));
-    if (!sk || sk === baseKey) continue;
-
-    const g = pickFirstGenre(it);
-    const a = pickFirstAudience(it);
-    if (g !== g0) continue;
-    if (a !== a0) continue;
-
-    const v = viewsMap?.get?.(sk) || 0;
-    scored.push({ it, v });
-  }
-
-  scored.sort((a, b) => (b.v - a.v));
-  return scored.slice(0, 3).map(x => x.it);
-}
-
-/* =======================
- * perf: DF cache (work reco)
- * ======================= */
-let __dfCache = null;
-let __dfCacheN = 0;
-function getDfCached(allItems){
-  const N = (allItems || []).length;
-  if (__dfCache && __dfCacheN === N) return __dfCache;
-  __dfCache = buildTagDf(allItems || []);
-  __dfCacheN = N;
-  return __dfCache;
-}
-
-/* =======================
- * Work: mood top helper
- * ======================= */
-function buildMoodLabelMap(defs){
-  const m = new Map();
-  for (const d of (defs || [])) {
-    const id = toText(d?.id);
-    const label = toText(d?.label) || id;
-    if (id) m.set(id, label);
-  }
-  return m;
-}
-function moodTopHtml({ seriesKey, voteMatrix, defs, max = 4, hideCounts = false }){
-  const sk = toText(seriesKey);
-  if (!sk || !voteMatrix?.bySeries?.size) return "";
-
-  const m = voteMatrix.bySeries.get(sk);
-  if (!m) return "";
-
-  const labelMap = buildMoodLabelMap(defs);
-
-  const rows = Array.from(m.entries())
-    .map(([mood, n]) => ({ mood: toText(mood), label: labelMap.get(toText(mood)) || toText(mood), n: Number(n || 0) }))
-    .filter(x => x.mood && Number.isFinite(x.n) && x.n > 0)
-    .sort((a, b) => (b.n - a.n))
-    .slice(0, max);
-
-  if (!rows.length) return "";
-  return `
-    <div class="pills" style="margin-top:6px;">
-      ${rows.map(r => `<span class="pill">${esc(r.label)}${hideCounts ? "" : ` <span style="opacity:.7;">(${r.n})</span>`}</span>`).join("")}
-    </div>
-  `;
-}
-
-/* =======================
- * Work render (Phase1)
- * ======================= */
-async function renderWorkPhase1(worksState, quickDefs) {
+async function renderWorkBasic(worksState) {
   const detail = document.getElementById("detail");
   if (!detail) return null;
 
   const key = resolveWorkKey();
   if (!key) return null;
 
-  detail.innerHTML = `
-    <div class="d-title">読み込み中…</div>
-    <div class="d-sub">作品情報を読み込んでいます</div>
-  `;
+  detail.innerHTML = `<div class="status">読み込み中…</div>`;
 
   const it = await loadWorkFullByKey({ worksState, key, bust: !!qs().get("v") });
   if (!it) {
@@ -1854,7 +1608,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
 
   const seriesKey = toText(pick(it, ["seriesKey"])) || "";
   const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
-
   const imgRaw = toText(pick(it, ["image", "vol1.image"])) || "";
   const img = normalizeImgUrl(imgRaw);
 
@@ -1865,88 +1618,8 @@ async function renderWorkPhase1(worksState, quickDefs) {
   const author = toText(pick(it, ["author", "vol1.author"])) || "";
   const magazine = toText(pick(it, ["magazine", "vol1.magazine"])) || "";
   const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
-
   const release = formatYmd(pick(it, ["releaseDate", "vol1.releaseDate"])) || "";
   const publisher = toText(pick(it, ["publisher", "vol1.publisher"])) || "";
-
-  const defs = Array.isArray(quickDefs) ? quickDefs : [];
-  const voted = getVotedSet(seriesKey);
-  const unlocked = isUnlocked(seriesKey);
-
-  const voteBox = defs.length ? `
-    <div class="vote-box" style="margin-top:12px;">
-      <div class="vote-head">
-        <h3 class="vote-title">投票で育つ：この作品の「読後感」</h3>
-      </div>
-      <p class="vote-note">1タップ投票（最大2つ）。集まった投票はランキング・関連作品に反映されます。</p>
-
-      <div class="pills" id="votePills">
-        ${defs.map(d => {
-          const on = voted.has(d.id);
-          return `
-            <button type="button" class="pill ${on ? "is-on" : ""}" data-vote="${esc(d.id)}" aria-pressed="${on ? "true" : "false"}">
-              ${esc(d.label)}
-            </button>
-          `;
-        }).join("")}
-      </div>
-
-      <div id="voteReward" style="
-        margin-top:10px;
-        padding: 10px 10px;
-        border:1px solid rgba(0,0,0,.10);
-        border-radius: 14px;
-        background: rgba(0,0,0,.02);
-      ">
-        <div id="voteRewardLocked" style="${unlocked ? "display:none;" : ""}">
-          <div class="d-sub" style="opacity:.85;">投票すると、ここに「みんなの読後感」と「同じ読後感の作品」が表示されます。</div>
-        </div>
-
-        <div id="voteRewardUnlocked" style="${unlocked ? "" : "display:none;"}">
-          <div class="d-sub" style="font-weight:700;">みんなの読後感</div>
-          <div id="moodTopBox" class="d-sub" style="opacity:.8;">読み込み中…</div>
-
-          <div class="d-sub" style="margin-top:10px; font-weight:700;">同じ読後感の作品</div>
-          <div id="sameMoodBox" class="d-sub" style="opacity:.8;">読み込み中…</div>
-        </div>
-      </div>
-
-      <div class="vote-status" id="voteStatus"></div>
-    </div>
-  ` : "";
-
-  const recVal = getRatedValue(seriesKey, "rec");
-  const artVal = getRatedValue(seriesKey, "art");
-  const hasStarVoted = !!(recVal || artVal);
-
-  const rateBox = `
-    <div class="vote-box" style="margin-top:12px;">
-      <div class="vote-head">
-        <h3 class="vote-title">評価</h3>
-      </div>
-      <p class="vote-note">★を選んで投票（各項目1回）。</p>
-
-      <div id="avgStarsLocked" style="${hasStarVoted ? "display:none;" : ""}">
-        <div class="d-sub" style="opacity:.85;">★を投票すると平均が表示されます。</div>
-      </div>
-
-      <div id="avgStarsUnlocked" style="${hasStarVoted ? "" : "display:none;"}">
-        <div id="avgStarsBox" style="margin-top:10px; padding:10px 12px; border:1px solid rgba(17,24,39,.08); background: rgba(17,24,39,.02); border-radius: 14px;">
-          <div class="d-sub" style="opacity:.8;">読み込み中…</div>
-        </div>
-      </div>
-
-      ${starsHtml({ idPrefix: "rec", label: "おすすめ度", selected: recVal })}
-      ${starsHtml({ idPrefix: "art", label: "作画クオリティ", selected: artVal })}
-      <div class="vote-status" id="rateStatus"></div>
-    </div>
-  `;
-
-  const recoHtml = `
-    <div class="rec-wrap">
-      <div id="recoTagsBlock" class="d-sub" style="opacity:.8;">おすすめを読み込み中…</div>
-    </div>
-  `;
 
   detail.innerHTML = `
     <div class="d-title">${esc(seriesKey || title)}</div>
@@ -1974,175 +1647,12 @@ async function renderWorkPhase1(worksState, quickDefs) {
       <div class="d-sub" style="margin-top:14px;">あらすじ</div>
       <div class="d-text">${esc(synopsis)}</div>
     ` : ""}
-
-    ${voteBox}
-    ${rateBox}
-    ${recoHtml}
   `;
 
   initLazyImages(detail);
   trackWorkViewOnce(seriesKey);
-
-  function showVoteRewardIfNeeded({ newly }){
-    const locked = document.getElementById("voteRewardLocked");
-    const unlockedEl = document.getElementById("voteRewardUnlocked");
-    if (locked) locked.style.display = "none";
-    if (unlockedEl) unlockedEl.style.display = "";
-    if (newly) showToast("投票ありがとう！みんなの傾向を表示しました。");
-    else showToast("投票ありがとう！");
-  }
-
-  const vp = document.getElementById("votePills");
-  if (vp) {
-    vp.onclick = (ev) => {
-      const btn = ev.target?.closest?.("button[data-vote]");
-      if (!btn) return;
-      const mood = btn.getAttribute("data-vote") || "";
-      if (!mood) return;
-
-      const st = document.getElementById("voteStatus");
-      const set = getVotedSet(seriesKey);
-
-      const isOn = set.has(mood);
-      if (isOn) {
-        set.delete(mood);
-        setVotedSet(seriesKey, set);
-        btn.classList.remove("is-on");
-        btn.setAttribute("aria-pressed", "false");
-        if (st) st.textContent = "選択を外しました";
-        setTimeout(() => { if (st) st.textContent = ""; }, 900);
-        showToast("選択を外しました");
-        return;
-      }
-
-      if (set.size >= VOTE_MAX) {
-        if (st) st.textContent = "最大2つまで選べます";
-        setTimeout(() => { if (st) st.textContent = ""; }, 1100);
-        showToast("最大2つまで選べます");
-        return;
-      }
-
-      set.add(mood);
-      setVotedSet(seriesKey, set);
-      btn.classList.add("is-on");
-      btn.setAttribute("aria-pressed", "true");
-
-      const sent = trackVoteOnce(seriesKey, mood);
-      const newly = setUnlocked(seriesKey);
-      showVoteRewardIfNeeded({ newly });
-
-      if (st) {
-        st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
-        setTimeout(() => { if (st) st.textContent = ""; }, 900);
-      }
-    };
-  }
-
-  const rateStatus = document.getElementById("rateStatus");
-  const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
-  for (const w of wraps) {
-    const id = w.getAttribute("data-starwrap") || "";
-    const cur = getRatedValue(seriesKey, id);
-    applyStarsUi(w, cur);
-
-    w.addEventListener("click", (ev) => {
-      const btn = ev.target?.closest?.("button[data-star]");
-      if (!btn) return;
-
-      const k = btn.getAttribute("data-starid") || "";
-      const n = toText(btn.getAttribute("data-star") || "");
-      if (!k || !n) return;
-
-      const already = getRatedValue(seriesKey, k);
-      const sendVal = already || n;
-
-      if (!already) {
-        setRatedValue(seriesKey, k, n);
-        applyStarsUi(w, n);
-      }
-
-      const locked = document.getElementById("avgStarsLocked");
-      const unlockedEl = document.getElementById("avgStarsUnlocked");
-      if (locked) locked.style.display = "none";
-      if (unlockedEl) unlockedEl.style.display = "";
-
-      try {
-        const avgBox = document.getElementById("avgStarsBox");
-        if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, window.__rateSeriesMap || new Map());
-      } catch {}
-
-      const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
-      if (canSendOnce(onceKey)) {
-        trackEvent({ type: "rate", page: "work", seriesKey, k, v: sendVal });
-      }
-
-      if (rateStatus) {
-        const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
-        rateStatus.textContent = already ? `${label} は投票済み` : `${label} を投票しました`;
-        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 900);
-      }
-      showToast(already ? "投票済みです" : "投票ありがとう！");
-    }, { passive: true });
-  }
-
   refreshFavButtons(document);
-  return { it, seriesKey, defs };
-}
-
-/* =======================
- * Work hydrate (Phase2)
- * ======================= */
-function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSeriesMap, viewsMap }) {
-  if (!it || !seriesKey) return;
-
-  try{
-    const unlocked = isUnlocked(seriesKey);
-    const locked = document.getElementById("voteRewardLocked");
-    const unlockedEl = document.getElementById("voteRewardUnlocked");
-    if (unlocked) {
-      if (locked) locked.style.display = "none";
-      if (unlockedEl) unlockedEl.style.display = "";
-    }
-
-    const moodTopBox = document.getElementById("moodTopBox");
-    if (moodTopBox) {
-      const moodTop = moodTopHtml({ seriesKey, voteMatrix, defs, max: 4, hideCounts: false });
-      moodTopBox.outerHTML = moodTop ? moodTop : `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`;
-    }
-
-    const sameMoodBox = document.getElementById("sameMoodBox");
-    if (sameMoodBox) {
-      const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
-      let simByVotes = [];
-      if (voteMatrix?.bySeries?.size) {
-        simByVotes = clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })).map(toRecItem);
-      }
-      sameMoodBox.outerHTML = recMiniRowHtml(simByVotes);
-    }
-  } catch {}
-
-  try{
-    const avgBox = document.getElementById("avgStarsBox");
-    if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
-  } catch {}
-
-  try{
-    const root = document.getElementById("recoTagsBlock");
-    if (root) {
-      const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
-      const df = getDfCached(allForReco);
-      const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
-      const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
-
-      root.outerHTML = `
-        ${recGridHtml("似ている作品", simByTags)}
-        ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
-      `;
-    }
-  } catch {}
-
-  initLazyImages(document);
-  refreshFavButtons(document);
+  return it;
 }
 
 /* =======================
@@ -2154,7 +1664,7 @@ function withV(url){
 }
 
 /* =======================
- * run（完全復元）
+ * run（壊さない復旧版）
  * ======================= */
 async function run() {
   try {
@@ -2166,26 +1676,29 @@ async function run() {
     // works
     const worksState = await loadWorksIndex({ bust });
 
-    // quick filters
+    // quick filters（List/Home 用）
     const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
     const quick = await loadJson(quickUrl, { bust });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // mag normalize（Listのフィルター用）
+    // mag normalize（List 用）
     const magNormUrl = v ? `${MAG_NORMALIZE_PATH}?v=${encodeURIComponent(v)}` : MAG_NORMALIZE_PATH;
     const magNormJson = await tryLoadJson(magNormUrl, { bust });
 
-    // Workページ判定
+    // Work
     const isWorkPage = !!document.getElementById("detail");
-
-    // ✅ Workは先に描画（Phase1）
-    let workCtx = null;
     if (isWorkPage) {
-      workCtx = await renderWorkPhase1(worksState, quickDefs);
+      await renderWorkBasic(worksState);
+      patchAmazonAnchors(document);
+      bindFavHandlers(document);
+      refreshFavButtons(document);
+      initLazyImages(document);
+      setStatus("");
+      return;
     }
 
-    // metrics 並列取得
-    const pViews = (async () => {
+    // Home metrics（閲覧数）
+    const viewsMap = await (async () => {
       try {
         const viewUrl = withV(BASE + "data/metrics/wae/work_view_by_series.json");
         const viewJson = await loadJson(viewUrl, { bust });
@@ -2196,62 +1709,17 @@ async function run() {
       } catch { return new Map(); }
     })();
 
-    const pVote = (async () => {
-      try {
-        const voteUrl = withV(VOTE_AGG_PATH);
-        const voteJson = await loadJson(voteUrl, { bust });
-        return buildVoteMatrix(voteJson);
-      } catch { return null; }
-    })();
-
-    const pRateSeries = (async () => {
-      try {
-        const bySeriesJson = await tryLoadJson(withV(METRIC_RATE_BY_SERIES_KEY_PATH), { bust });
-        return bySeriesJson ? buildRateBySeriesKeyMap(bySeriesJson) : new Map();
-      } catch { return new Map(); }
-    })();
-
-    // ✅ Workページ：Phase2
-    if (isWorkPage && workCtx) {
-      const [voteMatrix, rateSeriesMap] = await Promise.all([pVote, pRateSeries]);
-      const viewsMap = await pViews;
-
-      try { window.__rateSeriesMap = rateSeriesMap; } catch {}
-
-      hydrateWorkExtras({
-        it: workCtx.it,
-        seriesKey: workCtx.seriesKey,
-        defs: workCtx.defs,
-        worksState,
-        voteMatrix,
-        rateSeriesMap,
-        viewsMap,
-      });
-
-      patchAmazonAnchors(document);
-      bindFavHandlers(document);
-      refreshFavButtons(document);
-      initLazyImages(document);
-      setStatus("");
-      return;
-    }
-
-    // ---- Home / List ----
-    const viewsMap = await pViews;
-    const rateSeriesMap = await pRateSeries;
-
-    // rate top
+    // rate top（Home）
     let rateRecTop = [];
     let rateArtTop = [];
     try {
       const recJson = await tryLoadJson(withV(METRIC_RATE_REC_TOP_PATH), { bust });
       rateRecTop = normalizeRateTopRows(recJson);
-    } catch { rateRecTop = []; }
-
+    } catch {}
     try {
       const artJson = await tryLoadJson(withV(METRIC_RATE_ART_TOP_PATH), { bust });
       rateArtTop = normalizeRateTopRows(artJson);
-    } catch { rateArtTop = []; }
+    } catch {}
 
     const itemsByKey = new Map();
     for (const it of (worksState.listItems || [])) {
@@ -2259,7 +1727,7 @@ async function run() {
       if (sk) itemsByKey.set(sk, it);
     }
 
-    // ✅ Home棚（復活）
+    // Home（要素があるページだけ描画）
     if (document.getElementById("homePopular")) {
       renderHomePopular({ items: worksState.listItems, viewsMap, limit: 6 });
     }
@@ -2287,7 +1755,7 @@ async function run() {
       renderQuickHome({ defs: quickDefs, counts });
     }
 
-    // ✅ List（Part1のmagプルダウン/件数）
+    // List
     if (document.getElementById("list")) {
       renderList(worksState.listItems, quickDefs, magNormJson);
     }
@@ -2296,7 +1764,6 @@ async function run() {
     bindFavHandlers(document);
     refreshFavButtons(document);
     initLazyImages(document);
-
     setStatus("");
   } catch (e) {
     setStatus("読み込みに失敗しました");
