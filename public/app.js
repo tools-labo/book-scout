@@ -2547,6 +2547,49 @@ function normalizeMetricRows(json){
 }
 
 /* =======================
+ * 先頭に戻るボタン
+ * ======================= */
+function ensureBackToTopButton() {
+  if (document.getElementById("backToTop")) return;
+
+  const btn = document.createElement("button");
+  btn.id = "backToTop";
+  btn.type = "button";
+  btn.textContent = "↑";
+  btn.setAttribute("aria-label", "ページの先頭に戻る");
+  btn.style.cssText = `
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.15);
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    z-index: 9999;
+    display: none;
+    font-size: 20px;
+    line-height: 1;
+  `;
+
+  btn.onclick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  document.body.appendChild(btn);
+
+  const SHOW_Y = 700;
+  const onScroll = () => {
+    const y = window.scrollY || 0;
+    btn.style.display = (y >= SHOW_Y) ? "" : "none";
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+/* =======================
  * run（Workフル復元）
  * ======================= */
 async function run() {
@@ -2701,6 +2744,8 @@ async function run() {
     console.error(e);
   }
 }
+
+ensureBackToTopButton();
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", run, { once: true });
