@@ -1,4 +1,4 @@
-// public/app.js（FULL REPLACE）
+// public/app.js（1/2）FULL REPLACE
 // - ✅ /work/<id>/ 静的URL導線に統一（home/list/reco）
 // - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
 // - works: split JSON（works/index.json + works/works_*.json）対応
@@ -10,7 +10,11 @@
 // - perf: 画像遅延(Observer) / List段階描画 / 重い計算キャッシュ
 // - ✅ List: magazine filter は B（magazines / vol1.magazines）を正とする（完全一致）
 // - ✅ List: mag query は互換（mag / magazine / m）で拾う
+// - ✅ List: ジャンル/カテゴリー/連載誌 のフィルターUIを追加（URL同期）
 //
+// 【分割ルール】
+// - 1/2 はこの END マーカーで必ず終わる
+// - 2/2 は START マーカーから必ず始める
 // token: A1B2
 
 function qs() { return new URLSearchParams(location.search); }
@@ -462,6 +466,37 @@ function parseMagQuery() {
   return raw ? raw.trim() : "";
 }
 
+// ✅ URL更新（genre/aud/mag をフロントUIから変更）
+function setQueryParam(name, value) {
+  const p = qs();
+  if (value == null || String(value).trim() === "") p.delete(name);
+  else p.set(name, String(value).trim());
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
+}
+function setGenreQuery(genres) {
+  const p = qs();
+  const xs = (genres || []).map(toText).filter(Boolean);
+  if (xs.length) p.set("genre", xs.join(","));
+  else p.delete("genre");
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
+}
+function setAudQuery(aud) {
+  setQueryParam("aud", aud);
+}
+// ✅ mag は互換で読むが、書くのは mag に統一（magazine/m は消す）
+function setMagQuery(mag) {
+  const p = qs();
+  p.delete("magazine");
+  p.delete("m");
+  const v = toText(mag);
+  if (v) p.set("mag", v);
+  else p.delete("mag");
+  const url = `${location.pathname}?${p.toString()}`;
+  history.replaceState(null, "", url);
+}
+
 function getFirstAudienceLabel(it) {
   const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
   return arr[0] || "その他";
@@ -482,6 +517,130 @@ function hasMagazine(it, mag) {
   const m1 = toText(pick(it, ["magazine", "vol1.magazine"]));
   if (!m1) return false;
   return m1 === wanted;
+}
+
+/* =======================
+ * List：Facet UI（ジャンル/カテゴリー/連載誌）
+ * ======================= */
+function uniqSorted(arr) {
+  const xs = (arr || []).map(toText).filter(Boolean);
+  return Array.from(new Set(xs)).sort((a, b) => a.localeCompare(b, "ja"));
+}
+
+function buildFacetOptions(allItems) {
+  const genres = uniqSorted(allItems.flatMap(it => pickArr(it, ["genres", "vol1.genres"])));
+  const audiences = uniqSorted(allItems.map(getFirstAudienceLabel));
+
+  const mags = [];
+  for (const it of allItems) {
+    const ms = pickArr(it, ["magazines", "vol1.magazines"]).map(toText).filter(Boolean);
+    if (ms.length) mags.push(...ms);
+    else {
+      const m1 = toText(pick(it, ["magazine", "vol1.magazine"]));
+      if (m1) mags.push(m1);
+    }
+  }
+  const magazines = uniqSorted(mags);
+  return { genres, audiences, magazines };
+}
+
+function renderFacetFilters({ allItems, onChange }) {
+  const root = document.getElementById("facetFilters");
+  const hint = document.getElementById("facetHint");
+  if (!root) return;
+
+  const genreSelected = parseGenreQuery();
+  const audSelected = parseOneQueryParam("aud");
+  const magSelected = parseMagQuery();
+
+  const { genres, audiences, magazines } = buildFacetOptions(Array.isArray(allItems) ? allItems : []);
+
+  root.innerHTML = `
+    <div style="display:grid; gap:10px;">
+      <div>
+        <div class="status" style="margin:0 0 6px 0;">ジャンル（複数OK）</div>
+        <div class="pills" id="facetGenres">
+          ${genres.map(g => {
+            const on = genreSelected.includes(g);
+            return `<button type="button" class="pill ${on ? "is-on" : ""}" data-genre="${esc(g)}" aria-pressed="${on ? "true" : "false"}">${esc(g)}</button>`;
+          }).join("")}
+        </div>
+      </div>
+
+      <div>
+        <div class="status" style="margin:0 0 6px 0;">カテゴリー</div>
+        <div class="pills" id="facetAud">
+          ${audiences.map(a => {
+            const on = audSelected === a;
+            return `<button type="button" class="pill ${on ? "is-on" : ""}" data-aud="${esc(a)}" aria-pressed="${on ? "true" : "false"}">${esc(a)}</button>`;
+          }).join("")}
+          <button type="button" class="pill ${audSelected ? "" : "is-on"}" data-aud="" aria-pressed="${audSelected ? "false" : "true"}">全部</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="status" style="margin:0 0 6px 0;">連載誌</div>
+        <select id="facetMag" style="width:100%; padding:10px 12px; border:1px solid rgba(0,0,0,.12); border-radius:12px; background:#fff;">
+          <option value="">全部</option>
+          ${magazines.map(m => `<option value="${esc(m)}" ${m === magSelected ? "selected" : ""}>${esc(m)}</option>`).join("")}
+        </select>
+      </div>
+    </div>
+  `;
+
+  if (hint) {
+    const parts = [];
+    if (genreSelected.length) parts.push(`genre=${genreSelected.join(",")}`);
+    if (audSelected) parts.push(`aud=${audSelected}`);
+    if (magSelected) parts.push(`mag=${magSelected}`);
+    hint.textContent = parts.length ? `現在: ${parts.join(" / ")}` : "";
+  }
+
+  const clear = document.getElementById("facetClearLink");
+  if (clear) {
+    clear.onclick = (ev) => {
+      ev.preventDefault();
+      setGenreQuery([]);
+      setAudQuery("");
+      setMagQuery("");
+      onChange?.();
+    };
+  }
+
+  const gWrap = document.getElementById("facetGenres");
+  if (gWrap) {
+    gWrap.onclick = (ev) => {
+      const btn = ev.target?.closest?.("button[data-genre]");
+      if (!btn) return;
+      const g = btn.getAttribute("data-genre") || "";
+      const cur = new Set(parseGenreQuery());
+      if (cur.has(g)) cur.delete(g);
+      else cur.add(g);
+      setGenreQuery(Array.from(cur));
+      onChange?.();
+    };
+  }
+
+  const aWrap = document.getElementById("facetAud");
+  if (aWrap) {
+    aWrap.onclick = (ev) => {
+      const btn = ev.target?.closest?.("button[data-aud]");
+      if (!btn) return;
+      const a = btn.getAttribute("data-aud") || "";
+      const now = parseOneQueryParam("aud");
+      const next = (now === a) ? "" : a; // 同じのを押したら解除
+      setAudQuery(next);
+      onChange?.();
+    };
+  }
+
+  const magSel = document.getElementById("facetMag");
+  if (magSel) {
+    magSel.onchange = () => {
+      setMagQuery(magSel.value || "");
+      onChange?.();
+    };
+  }
 }
 
 /* =======================
@@ -1038,9 +1197,18 @@ function renderList(items, quickDefs) {
 
   const all = Array.isArray(items) ? items : [];
 
+  // ✅ 追加：ジャンル/カテゴリー/連載誌 フィルターUI
+  renderFacetFilters({
+    allItems: all,
+    onChange: () => {
+      renderList(all, quickDefs);
+      refreshFavButtons(document);
+    },
+  });
+
   const genreWanted = parseGenreQuery();
   const audienceWanted = parseOneQueryParam("aud");
-  const magazineWanted = parseMagQuery(); // ✅ 差し替え（互換 + 正規化）
+  const magazineWanted = parseMagQuery();
 
   const moodSelected = parseMoodQuery();
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
@@ -1218,6 +1386,24 @@ function renderList(items, quickDefs) {
 
   requestAnimationFrame(pump);
 }
+
+/* END PART 1 - token: A1B2 */
+
+/* START PART 2 - token: A1B2 */
+
+// public/app.js（2/2）FULL REPLACE
+// - ✅ /work/<id>/ 静的URL導線に統一（home/list/reco）
+// - ✅ /work/<id>/ 配下でも壊れない BASE パス対応（data/metrics）
+// - works: split JSON（works/index.json + works/works_*.json）対応
+// - Home：人気ランキング（閲覧数 上位6）
+// - Home：ジャンル/カテゴリー棚は「日替わりランダム18件」
+// - List：author/synopsis を完全に非表示（work詳細は表示）
+// - Home：★おすすめ度/★作画クオリティのランキング棚（要素がある時だけ表示）
+// - Work：平均★（集計JSONがある時だけ表示）
+// - perf: 画像遅延(Observer) / List段階描画 / 重い計算キャッシュ
+// - ✅ List: magazine filter は B（magazines / vol1.magazines）を正とする（完全一致）
+// - ✅ List: mag query は互換（mag / magazine / m）で拾う
+// - ✅ List: ジャンル/カテゴリー/連載誌 のフィルターUIを追加（URL同期）
 
 /* =======================
  * Works loader (index/shard)
@@ -1711,8 +1897,6 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
 
 /* =======================
  * Work key resolver
- * - /work/<id>/ は build_work_pages が query key を注入（念のためここも対応）
- * - work.html?key=... 互換も保持
  * ======================= */
 function resolveWorkKey() {
   const p = qs();
@@ -1757,7 +1941,7 @@ function canonicalizeWorkToStatic() {
 }
 
 /* =======================
- * Work render (Phase1: 先に表示)
+ * Work render (Phase1)
  * ======================= */
 async function renderWorkPhase1(worksState, quickDefs) {
   const detail = document.getElementById("detail");
@@ -1906,7 +2090,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
   `;
 
   initLazyImages(detail);
-
   trackWorkViewOnce(seriesKey);
 
   function showVoteRewardIfNeeded({ newly }){
@@ -1954,7 +2137,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
       btn.setAttribute("aria-pressed", "true");
 
       const sent = trackVoteOnce(seriesKey, mood);
-
       const newly = setUnlocked(seriesKey);
       showVoteRewardIfNeeded({ newly });
 
@@ -2014,12 +2196,11 @@ async function renderWorkPhase1(worksState, quickDefs) {
   }
 
   refreshFavButtons(document);
-
   return { it, seriesKey, defs };
 }
 
 /* =======================
- * Work hydrate (Phase2: あとで埋める)
+ * Work hydrate (Phase2)
  * ======================= */
 function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSeriesMap, viewsMap }) {
   if (!it || !seriesKey) return;
@@ -2051,13 +2232,13 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, rateSe
     }
   } catch {}
 
-  // avg stars：必ず埋める（"読み込み中…"固定化を防ぐ）
+  // avg stars：必ず埋める
   try{
     const avgBox = document.getElementById("avgStarsBox");
     if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
   } catch {}
 
-  // reco blocks (tags / popular)
+  // reco blocks
   try{
     const root = document.getElementById("recoTagsBlock");
     if (root) {
@@ -2093,26 +2274,21 @@ async function run() {
     const v = qs().get("v");
     const bust = !!v;
 
-    // ✅ 任意提案：work.html?key=... を静的URLへ寄せる（URLだけ置換）
     canonicalizeWorkToStatic();
 
     const worksState = await loadWorksIndex({ bust });
 
-    // quick filters（vote UIに必須）
     const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
     const quick = await loadJson(quickUrl, { bust });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // Workページ判定：#detail があれば work とみなす（work.html / work/<id>/ 両対応）
     const isWorkPage = !!document.getElementById("detail");
 
-    // ✅ Workは先に描画（Phase1）
     let workCtx = null;
     if (isWorkPage) {
       workCtx = await renderWorkPhase1(worksState, quickDefs);
     }
 
-    // metrics を並列取得
     const pViews = (async () => {
       try {
         const viewUrl = withV(BASE + "data/metrics/wae/work_view_by_series.json");
@@ -2139,12 +2315,10 @@ async function run() {
       } catch { return new Map(); }
     })();
 
-    // Workページ：Phase2
     if (isWorkPage && workCtx) {
       const [voteMatrix, rateSeriesMap] = await Promise.all([pVote, pRateSeries]);
       const viewsMap = await pViews;
 
-      // ★クリック時にも使えるように保存
       try { window.__rateSeriesMap = rateSeriesMap; } catch {}
 
       hydrateWorkExtras({
@@ -2165,7 +2339,6 @@ async function run() {
       return;
     }
 
-    // ---- ここから Home/List/Stats ----
     const viewsMap = await pViews;
     const rateSeriesMap = await pRateSeries;
 
@@ -2233,3 +2406,5 @@ if (document.readyState === "loading") {
 } else {
   run();
 }
+
+/* END PART 2 - token: A1B2 */
