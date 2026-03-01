@@ -1907,8 +1907,8 @@ function canonicalizeWorkToStatic() {
     const key = toText(qs().get("key"));
     if (!key) return;
 
-    const target = workStaticUrl(key);
-    history.replaceState(null, "", target);
+    // ✅ リロードして BASE を正しく再計算させる
+    location.replace(workStaticUrl(key));
   }catch{}
 }
 
