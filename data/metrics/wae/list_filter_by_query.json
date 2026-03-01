@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T11:32:32.662Z",
-  "updatedAtJst": "2026-03-01 20:32:32",
+  "updatedAt": "2026-03-01T13:09:25.515Z",
+  "updatedAtJst": "2026-03-01 22:09:25",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -33,7 +33,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "107"
+      "n": "109"
     },
     {
       "genre": "",
@@ -72,6 +72,13 @@
     },
     {
       "genre": "",
+      "aud": "aud=その他",
+      "mag": "",
+      "mood": "",
+      "n": "8"
+    },
+    {
+      "genre": "",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
@@ -82,13 +89,6 @@
       "aud": "",
       "mag": "",
       "mood": "mood=moving",
-      "n": "6"
-    },
-    {
-      "genre": "",
-      "aud": "aud=その他",
-      "mag": "",
-      "mood": "",
       "n": "6"
     },
     {
@@ -344,6 +344,13 @@
       "n": "1"
     },
     {
+      "genre": "genre=fantasy",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
       "genre": "genre=fantasy,sf,romance,drama,sports",
       "aud": "aud=少年",
       "mag": "",
@@ -505,17 +512,17 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=moving,healing",
-      "n": "1"
-    },
-    {
       "genre": "genre=romance",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=moving,healing",
       "n": "1"
     },
     {
@@ -645,17 +652,17 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=page_turner,hot",
+      "n": "1"
+    },
+    {
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "",
       "n": "1"
     },
     {
@@ -744,7 +751,7 @@
     }
   ],
   "raw": {
-    "rows": 102,
-    "rows_before_limit_at_least": 305
+    "rows": 103,
+    "rows_before_limit_at_least": 310
   }
 }

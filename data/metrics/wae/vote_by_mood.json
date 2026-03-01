@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T11:32:32.662Z",
-  "updatedAtJst": "2026-03-01 20:32:32",
+  "updatedAt": "2026-03-01T13:09:25.515Z",
+  "updatedAtJst": "2026-03-01 22:09:25",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood",
@@ -18,19 +18,19 @@
   "rows": [
     {
       "mood": "funny",
-      "n": "24"
+      "n": "26"
     },
     {
       "mood": "hot",
-      "n": "23"
+      "n": "24"
     },
     {
       "mood": "heart_throb",
-      "n": "22"
+      "n": "23"
     },
     {
       "mood": "moving",
-      "n": "18"
+      "n": "19"
     },
     {
       "mood": "satisfying",
@@ -38,14 +38,14 @@
     },
     {
       "mood": "page_turner",
-      "n": "17"
-    },
-    {
-      "mood": "messy",
-      "n": "15"
+      "n": "18"
     },
     {
       "mood": "tearjerker",
+      "n": "16"
+    },
+    {
+      "mood": "messy",
       "n": "15"
     },
     {
@@ -55,6 +55,6 @@
   ],
   "raw": {
     "rows": 9,
-    "rows_before_limit_at_least": 162
+    "rows_before_limit_at_least": 169
   }
 }
