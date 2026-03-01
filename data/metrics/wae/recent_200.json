@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T13:09:25.515Z",
-  "updatedAtJst": "2026-03-01 22:09:25",
+  "updatedAt": "2026-03-01T13:48:15.922Z",
+  "updatedAtJst": "2026-03-01 22:48:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-01 13:41:41",
+      "timestampJst": "2026-03-01 22:41:41",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
     {
       "timestamp": "2026-03-01 13:01:11",
       "timestampJst": "2026-03-01 22:01:11",
@@ -18592,7 +18605,7 @@
     }
   ],
   "raw": {
-    "rows": 1426,
-    "rows_before_limit_at_least": 1426
+    "rows": 1427,
+    "rows_before_limit_at_least": 1427
   }
 }
