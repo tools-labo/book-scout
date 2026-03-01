@@ -28,7 +28,6 @@
     <div class="gheader-inner">
       <div class="gbrand">
         <a class="gbrand-title" href="./index.html">BOOKスカウト</a>
-        <!-- サブ文言は消す -->
       </div>
 
       <nav class="gnav" aria-label="グローバルナビ">
@@ -69,8 +68,8 @@
       </div>
     </section>
 
-    <!-- このサイトの使い方（Hero直下） -->
-    <section class="howto-wrap" aria-label="BOOKスカウトの使い方" style="margin-top:14px;">
+    <!-- ✅ このサイトの使い方（HOWTO） -->
+    <section class="howto-wrap" aria-label="このサイトの使い方">
       <div class="howto-card">
         <div class="howto-head">
           <div class="howto-eyebrow">このサイトの使い方</div>
@@ -81,10 +80,11 @@
         <ol class="howto-steps">
           <li class="howto-step">
             <div class="howto-icon" aria-hidden="true">
-              <!-- search -->
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <!-- 検索 -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M20 20l-3.5-3.5"></path>
               </svg>
             </div>
             <div class="howto-body">
@@ -95,12 +95,12 @@
 
           <li class="howto-step">
             <div class="howto-icon" aria-hidden="true">
-              <!-- book -->
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 4.5h9.5A3.5 3.5 0 0 1 18 8v12.5H8.5A3.5 3.5 0 0 0 5 24V4.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M18 20.5H8.5A3.5 3.5 0 0 0 5 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M9 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <!-- 本 -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="">
+                <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"></path>
+                <path d="M20 2H6.5A2.5 2.5 0 0 0 4 4.5v15"></path>
+                <path d="M8 2v20"></path>
               </svg>
             </div>
             <div class="howto-body">
@@ -111,9 +111,10 @@
 
           <li class="howto-step">
             <div class="howto-icon" aria-hidden="true">
-              <!-- heart -->
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 21s-7-4.6-9.5-9.1C.7 8.5 2.6 5.5 6 5.2c1.6-.1 3 .6 4 1.8 1-1.2 2.4-1.9 4-1.8 3.4.3 5.3 3.3 3.5 6.7C19 16.4 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <!-- ハート -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="">
+                <path d="M20.8 4.6c-1.5-1.7-4.1-1.9-5.8-.4L12 6.9 9 4.2c-1.7-1.5-4.3-1.3-5.8.4-1.5 1.7-1.3 4.3.4 5.8L12 21l8.4-10.6c1.7-1.5 1.9-4.1.4-5.8z"></path>
               </svg>
             </div>
             <div class="howto-body">
@@ -149,7 +150,6 @@
         <h2 class="section-title">ジャンル</h2>
         <a id="genreAllLink" class="section-link" href="./list.html">一覧を見る</a>
       </div>
-
       <div id="genreTabs"></div>
       <div id="genreRow"></div>
     </section>
@@ -160,7 +160,6 @@
         <h2 class="section-title">カテゴリー</h2>
         <a id="audienceAllLink" class="section-link" href="./list.html">一覧を見る</a>
       </div>
-
       <div id="audienceTabs"></div>
       <div id="audienceRow"></div>
     </section>
