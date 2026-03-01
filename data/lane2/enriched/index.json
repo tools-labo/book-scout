@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T13:22:03.469Z",
+  "updatedAt": "2026-03-01T13:27:30.497Z",
   "total": 263,
   "shardSize": 200,
   "shards": [
@@ -284,13 +284,13 @@
     "ng": 0,
     "skippedPerfect": 258,
     "skippedAniList": 5,
-    "skippedWiki": 0,
+    "skippedWiki": 5,
     "skippedAmazon": 5,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
       "prevNotPerfect": 5,
-      "outNotPerfect": 5
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
@@ -299,48 +299,12 @@
         "回復術士のやり直し :: magazine,magazines[]",
         "日々蝶々 :: magazine,magazines[]",
         "月が導く異世界道中 :: magazine,magazines[]"
-      ],
-      "outNotPerfect": [
-        "グレイプニル :: magazine,magazines[]",
-        "ボーイミーツマリア :: magazine,magazines[]",
-        "回復術士のやり直し :: magazine,magazines[]",
-        "日々蝶々 :: magazine,magazines[]",
-        "月が導く異世界道中 :: magazine,magazines[]"
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 5,
-      "seriesKeys": [
-        "グレイプニル",
-        "ボーイミーツマリア",
-        "回復術士のやり直し",
-        "日々蝶々",
-        "月が導く異世界道中"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 5,
-          "samples": [
-            "グレイプニル",
-            "ボーイミーツマリア",
-            "回復術士のやり直し",
-            "日々蝶々",
-            "月が導く異世界道中"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 5,
-          "samples": [
-            "グレイプニル",
-            "ボーイミーツマリア",
-            "回復術士のやり直し",
-            "日々蝶々",
-            "月が導く異世界道中"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {

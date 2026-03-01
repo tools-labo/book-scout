@@ -1,15 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T13:22:03.469Z",
-  "total": 258,
-  "droppedTotal": 5,
-  "droppedSeriesKeys": [
-    "グレイプニル",
-    "ボーイミーツマリア",
-    "回復術士のやり直し",
-    "日々蝶々",
-    "月が導く異世界道中"
-  ],
+  "updatedAt": "2026-03-01T13:27:30.497Z",
+  "total": 263,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -18,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 58
+      "count": 63
     }
   ],
   "lookup": {
@@ -71,6 +65,7 @@
     "キングダム": 0,
     "クズの本懐": 0,
     "ぐらんぶる": 0,
+    "グレイプニル": 0,
     "ケンガンアシュラ": 0,
     "ゴールデンカムイ": 0,
     "この音とまれ！": 0,
@@ -142,6 +137,7 @@
     "ブルーロック": 0,
     "べるぜバブ": 0,
     "ベルセルク": 0,
+    "ボーイミーツマリア": 0,
     "ホーリーランド": 0,
     "ぼくたちは勉強ができない": 0,
     "ぼくは麻理のなか": 0,
@@ -195,6 +191,7 @@
     "呪術廻戦": 0,
     "嘘喰い": 0,
     "四月は君の嘘": 0,
+    "回復術士のやり直し": 0,
     "地獄楽": 0,
     "地縛少年 花子くん": 0,
     "夜桜さんちの大作戦": 0,
@@ -219,17 +216,19 @@
     "帰ってください! 阿久津さん": 0,
     "幸色のワンルーム": 0,
     "幽☆遊☆白書": 0,
-    "彼女、お借りします": 0,
-    "徒然チルドレン": 0,
-    "怪獣８号": 0,
+    "彼女、お借りします": 1,
+    "徒然チルドレン": 1,
+    "怪獣８号": 1,
     "惑星のさみだれ": 1,
     "惡の華": 1,
     "憂国のモリアーティ": 1,
     "政宗くんのリベンジ": 1,
     "文豪ストレイドッグス": 1,
     "新世紀エヴァンゲリオン": 1,
+    "日々蝶々": 1,
     "暁のヨナ": 1,
     "暗殺教室": 1,
+    "月が導く異世界道中": 1,
     "月刊少女野崎くん": 1,
     "未来日記": 1,
     "東京卍リベンジャーズ": 1,
@@ -2078,6 +2077,45 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2014-11-07T00:00:01Z"
+    },
+    {
+      "seriesKey": "グレイプニル",
+      "title": "グレイプニル(1) (ヤングマガジンコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51rtaFjk+3L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063827526?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063827526",
+      "magazine": "ヤングマガジン サード",
+      "magazines": [
+        "ヤングマガジン サード"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Ecchi",
+        "Mystery",
+        "Supernatural"
+      ],
+      "tags": [
+        "超能力",
+        "変身能力",
+        "モンスター男子",
+        "青年向け",
+        "田舎",
+        "アンチヒーロー",
+        "バトルロイヤル",
+        "宇宙人",
+        "記憶操作",
+        "モンスター娘",
+        "銃",
+        "ヤンデレ",
+        "三角関係",
+        "クローン",
+        "LGBTQテーマ"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2016-03-18T00:00:01Z"
     },
     {
       "seriesKey": "ケンガンアシュラ",
@@ -4804,6 +4842,40 @@
       "releaseDate": "1990-11-26T00:00:01Z"
     },
     {
+      "seriesKey": "ボーイミーツマリア",
+      "title": "ボーイミーツマリア (Canna Comics)",
+      "image": "https://m.media-amazon.com/images/I/51o5GmkegQL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4829686138?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4829686138",
+      "magazine": "Canna",
+      "magazines": [
+        "Canna"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "LGBTQテーマ",
+        "学園",
+        "女装・男装",
+        "演技",
+        "部活",
+        "ボーイズラブ",
+        "無性別",
+        "哲学",
+        "バイセクシュアル",
+        "成長譚",
+        "ダンス"
+      ],
+      "publisher": "プランタン出版",
+      "releaseDate": "2018-11-28T00:00:01Z"
+    },
+    {
       "seriesKey": "ホーリーランド",
       "title": "ホーリーランド 1 (ジェッツコミックス)",
       "image": "https://m.media-amazon.com/images/I/51BEB70NGYL._SL500_.jpg",
@@ -6777,6 +6849,44 @@
       "releaseDate": "2011-09-16T00:00:01Z"
     },
     {
+      "seriesKey": "回復術士のやり直し",
+      "title": "回復術士のやり直し (1) (角川コミックス・エース)",
+      "image": "https://m.media-amazon.com/images/I/51NhgJvdmxL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/404106838X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/404106838X",
+      "magazine": "ヤングエースUP",
+      "magazines": [
+        "ヤングエースUP"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Ecchi",
+        "Fantasy"
+      ],
+      "tags": [
+        "復讐",
+        "いじめ",
+        "青年向け",
+        "魔法",
+        "奴隷",
+        "逆ハーレム",
+        "アンチヒーロー",
+        "剣術",
+        "記憶操作",
+        "悪魔",
+        "複数恋愛",
+        "アヘ顔",
+        "性転換",
+        "獣耳",
+        "女性優位",
+        "女装・男装"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2018-03-31T00:00:01Z"
+    },
+    {
       "seriesKey": "地獄楽",
       "title": "地獄楽 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51kMbXXx8mL._SL500_.jpg",
@@ -8015,6 +8125,34 @@
       "releaseDate": "1995-08-29T00:00:01Z"
     },
     {
+      "seriesKey": "日々蝶々",
+      "title": "日々蝶々 1 (マーガレットコミックス)",
+      "image": "https://m.media-amazon.com/images/I/41xzQBCH+oL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088468023?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088468023",
+      "magazine": "マーガレット",
+      "magazines": [
+        "マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "学園",
+        "成長譚",
+        "片思い",
+        "三角関係",
+        "武術"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2012-07-25T00:00:01Z"
+    },
+    {
       "seriesKey": "暁のヨナ",
       "title": "暁のヨナ 1 (花とゆめCOMICS)",
       "image": "https://m.media-amazon.com/images/I/512WA6M60NL._SL500_.jpg",
@@ -8094,6 +8232,41 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2012-11-02T00:00:01Z"
+    },
+    {
+      "seriesKey": "月が導く異世界道中",
+      "title": "月が導く異世界道中 1 (アルファポリスCOMICS)",
+      "image": "https://m.media-amazon.com/images/I/61C5ZM7Fx7L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/443421604X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/443421604X",
+      "magazine": "アルファポリス",
+      "magazines": [
+        "アルファポリス"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Supernatural"
+      ],
+      "tags": [
+        "異世界",
+        "少年向け",
+        "魔法",
+        "国づくり",
+        "逆ハーレム",
+        "ドラゴン",
+        "経済",
+        "ヤンデレ",
+        "神々",
+        "中世"
+      ],
+      "publisher": "アルファポリス",
+      "releaseDate": "2016-02-29T00:00:01Z"
     },
     {
       "seriesKey": "月刊少女野崎くん",
