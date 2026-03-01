@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T03:23:04.743Z",
-  "updatedAtJst": "2026-03-01 12:23:04",
+  "updatedAt": "2026-03-01T05:31:01.577Z",
+  "updatedAtJst": "2026-03-01 14:31:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -18,6 +18,10 @@
   "rows": [
     {
       "seriesKey": "チェンソーマン",
+      "n": "3"
+    },
+    {
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
       "n": "2"
     },
     {
@@ -25,7 +29,27 @@
       "n": "2"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "カッコウの許嫁",
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "seriesKey": "十字架のろくにん",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ルリドラゴン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -33,11 +57,23 @@
       "n": "1"
     },
     {
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
       "seriesKey": "ダンジョン飯",
       "n": "1"
     },
     {
-      "seriesKey": "カッコウの許嫁",
+      "seriesKey": "ぼくは麻理のなか",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひるなかの流星",
+      "n": "1"
+    },
+    {
+      "seriesKey": "極主夫道",
       "n": "1"
     },
     {
@@ -45,7 +81,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "魔法使いの嫁",
+      "n": "1"
+    },
+    {
       "seriesKey": "五等分の花嫁",
+      "n": "1"
+    },
+    {
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -57,7 +101,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "seriesKey": "銃夢",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "n": "1"
     },
     {
@@ -79,10 +127,14 @@
     {
       "seriesKey": "その着せ替え人形は恋をする",
       "n": "1"
+    },
+    {
+      "seriesKey": "ニセコイ",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 16,
-    "rows_before_limit_at_least": 16
+    "rows": 29,
+    "rows_before_limit_at_least": 29
   }
 }
