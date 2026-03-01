@@ -93,12 +93,15 @@
 
       <li class="howto-step">
         <div class="howto-icon" aria-hidden="true">
-          <!-- 本（左の欠け対策：viewBoxに左余白を追加） -->
-<svg viewBox="-2 0 28 24" fill="none" stroke="currentColor" stroke-width="2"
-     stroke-linecap="round" stroke-linejoin="round">
-  <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"></path>
-  <path d="M20 2H6.5A2.5 2.5 0 0 0 4 4.5v15"></path>
-  <path d="M8 2v20"></path>
+          <!-- 開いた本 -->
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- 左ページ -->
+  <path d="M3 5.5C3 4.12 4.12 3 5.5 3H11v17H5.5C4.12 20 3 18.88 3 17.5V5.5z"></path>
+  <!-- 右ページ -->
+  <path d="M21 5.5C21 4.12 19.88 3 18.5 3H13v17h5.5c1.38 0 2.5-1.12 2.5-2.5V5.5z"></path>
+  <!-- ページ中央の折り目 -->
+  <path d="M12 4v16"></path>
 </svg>
         </div>
         <div class="howto-body">
