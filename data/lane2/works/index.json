@@ -1,10 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T11:21:52.071Z",
-  "total": 251,
-  "droppedTotal": 3,
+  "updatedAt": "2026-03-01T11:47:40.370Z",
+  "total": 258,
+  "droppedTotal": 5,
   "droppedSeriesKeys": [
     "グレイプニル",
+    "ボーイミーツマリア",
+    "回復術士のやり直し",
     "日々蝶々",
     "月が導く異世界道中"
   ],
@@ -16,7 +18,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 51
+      "count": 58
     }
   ],
   "lookup": {
@@ -54,11 +56,13 @@
     "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-": 0,
     "ヴィンランド・サガ": 0,
     "うずまき": 0,
+    "うるわしの宵の月": 0,
     "おもいでエマノン": 0,
     "おやすみプンプン": 0,
     "かぐや様は告らせたい～天才たちの恋愛頭脳戦～": 0,
     "カグラバチ": 0,
     "ガチアクタ": 0,
+    "がっこうぐらし!": 0,
     "カッコウの許嫁": 0,
     "カノジョも彼女": 0,
     "からかい上手の高木さん": 0,
@@ -94,6 +98,7 @@
     "ソウルイーター": 0,
     "その着せ替え人形は恋をする": 0,
     "ソラニン": 0,
+    "それでも歩は寄せてくる": 0,
     "ゾン100 ～ゾンビになるまでにしたい100のこと～": 0,
     "たいようのいえ": 0,
     "タコピーの原罪": 0,
@@ -148,6 +153,7 @@
     "メイドインアビス": 0,
     "めだかボックス": 0,
     "モブサイコ100": 0,
+    "モンスター娘のいる日常": 0,
     "やがて君になる": 0,
     "やんちゃギャルの安城さん": 0,
     "ゆびさきと恋々": 0,
@@ -185,6 +191,7 @@
     "君のことが大大大大大好きな100人の彼女": 0,
     "君の膵臓をたべたい": 0,
     "君は放課後インソムニア": 0,
+    "君は淫らな僕の女王": 0,
     "呪術廻戦": 0,
     "嘘喰い": 0,
     "四月は君の嘘": 0,
@@ -213,13 +220,15 @@
     "幸色のワンルーム": 0,
     "幽☆遊☆白書": 0,
     "彼女、お借りします": 0,
+    "徒然チルドレン": 0,
     "怪獣８号": 0,
-    "惡の華": 0,
-    "憂国のモリアーティ": 0,
-    "政宗くんのリベンジ": 0,
-    "文豪ストレイドッグス": 0,
-    "新世紀エヴァンゲリオン": 0,
-    "暁のヨナ": 0,
+    "惑星のさみだれ": 1,
+    "惡の華": 1,
+    "憂国のモリアーティ": 1,
+    "政宗くんのリベンジ": 1,
+    "文豪ストレイドッグス": 1,
+    "新世紀エヴァンゲリオン": 1,
+    "暁のヨナ": 1,
     "暗殺教室": 1,
     "月刊少女野崎くん": 1,
     "未来日記": 1,
@@ -1544,6 +1553,34 @@
       "releaseDate": "2010-08-30T00:00:01Z"
     },
     {
+      "seriesKey": "うるわしの宵の月",
+      "title": "うるわしの宵の月(1) (デザートコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51Rops-fy4L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065217776?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065217776",
+      "magazine": "デザート",
+      "magazines": [
+        "デザート"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "ボーイッシュ",
+        "学園",
+        "癒し系",
+        "LGBTQテーマ",
+        "三角関係"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2020-12-11T00:00:01Z"
+    },
+    {
       "seriesKey": "おもいでエマノン",
       "title": "おもいでエマノン (リュウコミックススペシャル)",
       "image": "https://m.media-amazon.com/images/I/517ldEoxkJL._SL500_.jpg",
@@ -1732,6 +1769,44 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2022-05-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "がっこうぐらし!",
+      "title": "がっこうぐらし! (1) (まんがタイムKRコミックス フォワードシリーズ)",
+      "image": "https://m.media-amazon.com/images/I/51NpNBtsVnL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4832242369?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4832242369",
+      "magazine": "まんがタイムきららフォワード",
+      "magazines": [
+        "まんがタイムきららフォワード"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Horror",
+        "Mystery",
+        "Psychological",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "終末後",
+        "成長譚",
+        "ゾンビ",
+        "サバイバル",
+        "部活",
+        "学園",
+        "記憶操作",
+        "青年向け",
+        "銃",
+        "かわいい女の子の日常",
+        "疑似家族",
+        "ボーイッシュ",
+        "大学"
+      ],
+      "publisher": "芳文社",
+      "releaseDate": "2012-12-12T00:00:01Z"
     },
     {
       "seriesKey": "カッコウの許嫁",
@@ -3025,6 +3100,38 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2005-12-05T00:00:01Z"
+    },
+    {
+      "seriesKey": "それでも歩は寄せてくる",
+      "title": "それでも歩は寄せてくる(1) (KCデラックス)",
+      "image": "https://m.media-amazon.com/images/I/5100QoqQaqL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065161053?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065161053",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "部活",
+        "少年向け",
+        "将棋",
+        "ドタバタ",
+        "かわいい女の子の日常",
+        "学園",
+        "ツンデレ",
+        "三角関係",
+        "ボードゲーム"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2019-07-04T00:00:01Z"
     },
     {
       "seriesKey": "ゾン100 ～ゾンビになるまでにしたい100のこと～",
@@ -5119,6 +5226,45 @@
       "releaseDate": "2012-11-16T00:00:01Z"
     },
     {
+      "seriesKey": "モンスター娘のいる日常",
+      "title": "モンスター娘のいる日常（１） (リュウコミックス)",
+      "image": "https://m.media-amazon.com/images/I/61WJbEU+SPL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4199503064?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4199503064",
+      "magazine": "月刊COMICリュウ",
+      "magazines": [
+        "月刊COMICリュウ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Fantasy",
+        "Romance"
+      ],
+      "tags": [
+        "モンスター娘",
+        "逆ハーレム",
+        "青年向け",
+        "ドタバタ",
+        "現代ファンタジー",
+        "ケンタウロス",
+        "人魚",
+        "ゾンビ",
+        "怪獣",
+        "悪魔",
+        "ボーイッシュ",
+        "吸血鬼",
+        "VTuber",
+        "LGBTQテーマ",
+        "学園"
+      ],
+      "publisher": "徳間書店",
+      "releaseDate": "2012-09-13T00:00:01Z"
+    },
+    {
       "seriesKey": "やがて君になる",
       "title": "やがて君になる(1) (電撃コミックスNEXT)",
       "image": "https://m.media-amazon.com/images/I/51I6JfffgxL._SL500_.jpg",
@@ -6468,6 +6614,37 @@
       "releaseDate": "2019-09-12T00:00:01Z"
     },
     {
+      "seriesKey": "君は淫らな僕の女王",
+      "title": "君は淫らな僕の女王 (ヤングジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/41bHcBWwTEL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088795253?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088795253",
+      "magazine": "週刊ヤングジャンプ / ミラクルジャンプ / ヤングジャンプGOLD",
+      "magazines": [
+        "週刊ヤングジャンプ",
+        "ミラクルジャンプ",
+        "ヤングジャンプGOLD"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "青年向け",
+        "学園",
+        "ツンデレ",
+        "神々",
+        "寝取られ（NTR）"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2013-02-19T00:00:01Z"
+    },
+    {
       "seriesKey": "呪術廻戦",
       "title": "呪術廻戦 1",
       "image": "https://m.media-amazon.com/images/I/51ZxU6FYLuL._SL500_.jpg",
@@ -7500,6 +7677,37 @@
       "releaseDate": "2017-10-17T00:00:01Z"
     },
     {
+      "seriesKey": "徒然チルドレン",
+      "title": "徒然チルドレン(1) (少年マガジンコミックス)",
+      "image": "https://m.media-amazon.com/images/I/411IhHq+2HL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063951685?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063951685",
+      "magazine": "別冊少年マガジン / 週刊少年マガジン",
+      "magazines": [
+        "別冊少年マガジン",
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "4コマ",
+        "学園",
+        "少年向け",
+        "ツンデレ",
+        "クーデレ",
+        "ヤンデレ",
+        "三角関係"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2014-08-16T00:00:01Z"
+    },
+    {
       "seriesKey": "怪獣８号",
       "title": "怪獣8号 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51tDykdtFlL._SL500_.jpg",
@@ -7537,6 +7745,41 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2020-12-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "惑星のさみだれ",
+      "title": "惑星のさみだれ (1) (ヤングキングコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51HNSF2NCFL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4785926058?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4785926058",
+      "magazine": "ヤングキングアワーズ",
+      "magazines": [
+        "ヤングキングアワーズ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Psychological",
+        "Supernatural"
+      ],
+      "tags": [
+        "成長譚",
+        "魔法",
+        "超能力",
+        "修行",
+        "現代ファンタジー",
+        "アンチヒーロー",
+        "武術",
+        "青年向け",
+        "哲学",
+        "大学"
+      ],
+      "publisher": "少年画報社",
+      "releaseDate": "2006-01-27T00:00:01Z"
     },
     {
       "seriesKey": "惡の華",
