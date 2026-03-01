@@ -1088,7 +1088,8 @@ body.sheet-open{
 }
 
 /* ================
- * HOWTO block
+ * HOWTO block（FULL REPLACE: howto only）
+ * 目的：アイコン（特に「気になる作品を開く」）の見切れ防止
  * ================ */
 .howto-wrap{
   margin: 14px 0 18px 0;
@@ -1146,6 +1147,7 @@ body.sheet-open{
   border: 1px solid rgba(0,0,0,.08);
 }
 
+/* ✅ 見切れ対策：親が切らない */
 .howto-icon{
   width: 44px;
   height: 44px;
@@ -1155,11 +1157,17 @@ body.sheet-open{
   display: grid;
   place-items: center;
   color: rgba(17,24,39,.85);
+  overflow: visible; /* ←追加 */
 }
 
+/* ✅ 見切れ対策：SVG自身も切らない + strokeの角が欠けない */
 .howto-icon svg{
   width: 22px;
   height: 22px;
+  overflow: visible; /* ←追加 */
+  display: block;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .howto-body{
