@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T15:52:48.805Z",
-  "updatedAtJst": "2026-03-02 00:52:48",
+  "updatedAt": "2026-03-01T16:44:05.286Z",
+  "updatedAtJst": "2026-03-02 01:44:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -67,7 +67,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -147,12 +147,12 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "ヨコハマ買い出し紀行",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
       "mood": "healing",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
@@ -212,17 +212,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "君のことが大大大大大好きな100人の彼女",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "チェンソーマン",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
       "n": "1"
     },
     {
@@ -252,17 +252,17 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "あせとせっけん",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "ホリミヤ",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "ぼくたちは勉強ができない",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "あせとせっけん",
       "n": "1"
     },
     {
@@ -332,12 +332,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "バガボンド",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -382,12 +382,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
@@ -417,12 +417,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
       "mood": "moving",
       "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "葬送のフリーレン",
       "n": "1"
     },
     {
@@ -437,17 +442,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
       "mood": "moving",
       "seriesKey": "ReLIFE",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
@@ -482,12 +482,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "進撃の巨人",
       "n": "2"
     },
     {
@@ -498,6 +498,11 @@
     {
       "mood": "page_turner",
       "seriesKey": "君は淫らな僕の女王",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
@@ -528,11 +533,6 @@
     {
       "mood": "page_turner",
       "seriesKey": "アイアムアヒーロー",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
