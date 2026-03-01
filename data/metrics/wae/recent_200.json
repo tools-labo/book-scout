@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T13:48:15.922Z",
-  "updatedAtJst": "2026-03-01 22:48:15",
+  "updatedAt": "2026-03-01T14:25:48.548Z",
+  "updatedAtJst": "2026-03-01 23:25:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-01 14:14:19",
+      "timestampJst": "2026-03-01 23:14:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君は淫らな僕の女王",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 14:09:57",
+      "timestampJst": "2026-03-01 23:09:57",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君は淫らな僕の女王",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
     {
       "timestamp": "2026-03-01 13:41:41",
       "timestampJst": "2026-03-01 22:41:41",
@@ -18605,7 +18631,7 @@
     }
   ],
   "raw": {
-    "rows": 1427,
-    "rows_before_limit_at_least": 1427
+    "rows": 1429,
+    "rows_before_limit_at_least": 1429
   }
 }
