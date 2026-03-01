@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T05:31:01.577Z",
-  "updatedAtJst": "2026-03-01 14:31:01",
+  "updatedAt": "2026-03-01T07:03:45.041Z",
+  "updatedAtJst": "2026-03-01 16:03:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -139,19 +139,19 @@
       "n": "2"
     },
     {
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "k": "art",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -163,7 +163,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
+      "seriesKey": "たいようのいえ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -205,7 +205,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -229,7 +229,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -289,7 +289,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ReLIFE",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -421,12 +421,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "血の轍",
       "k": "rec",
       "avg": 4,
@@ -446,6 +440,12 @@
     },
     {
       "seriesKey": "バガボンド",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -475,16 +475,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "はじめの一歩",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "はじめの一歩",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "k": "rec",
-      "avg": 4,
-      "n": "1"
+      "avg": 3.5,
+      "n": "2"
     },
     {
       "seriesKey": "乙嫁語り",
@@ -505,13 +505,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "カッコウの許嫁",
+      "seriesKey": "アイアムアヒーロー",
       "k": "rec",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "カッコウの許嫁",
       "k": "rec",
       "avg": 3,
       "n": "2"
@@ -553,12 +553,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ニセコイ",
       "k": "rec",
       "avg": 3,
@@ -566,6 +560,12 @@
     },
     {
       "seriesKey": "魔入りました！入間くん",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -645,6 +645,6 @@
   ],
   "raw": {
     "rows": 103,
-    "rows_before_limit_at_least": 172
+    "rows_before_limit_at_least": 174
   }
 }

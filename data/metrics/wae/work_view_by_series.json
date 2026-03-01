@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T05:31:01.577Z",
-  "updatedAtJst": "2026-03-01 14:31:01",
+  "updatedAt": "2026-03-01T07:03:45.041Z",
+  "updatedAtJst": "2026-03-01 16:03:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -42,7 +42,7 @@
     },
     {
       "seriesKey": "ありふれた職業で世界最強",
-      "n": "6"
+      "n": "7"
     },
     {
       "seriesKey": "チェンソーマン",
@@ -70,6 +70,10 @@
     },
     {
       "seriesKey": "五等分の花嫁",
+      "n": "4"
+    },
+    {
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "4"
     },
     {
@@ -110,10 +114,6 @@
     },
     {
       "seriesKey": "食戟のソーマ",
-      "n": "3"
-    },
-    {
-      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "3"
     },
     {
@@ -337,6 +337,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "履いてください、鷹峰さん",
+      "n": "1"
+    },
+    {
       "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     },
@@ -349,11 +353,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
-      "seriesKey": "よつばと！",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
@@ -433,11 +437,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
       "n": "1"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -462,7 +466,7 @@
     }
   ],
   "raw": {
-    "rows": 111,
-    "rows_before_limit_at_least": 267
+    "rows": 112,
+    "rows_before_limit_at_least": 270
   }
 }

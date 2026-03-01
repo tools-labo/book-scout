@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T05:31:01.577Z",
-  "updatedAtJst": "2026-03-01 14:31:01",
+  "updatedAt": "2026-03-01T07:03:45.041Z",
+  "updatedAtJst": "2026-03-01 16:03:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -53,6 +53,136 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-03-01 06:38:14",
+      "timestampJst": "2026-03-01 15:38:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ありふれた職業で世界最強",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 06:14:57",
+      "timestampJst": "2026-03-01 15:14:57",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "履いてください、鷹峰さん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 06:04:20",
+      "timestampJst": "2026-03-01 15:04:20",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 06:04:03",
+      "timestampJst": "2026-03-01 15:04:03",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 06:04:02",
+      "timestampJst": "2026-03-01 15:04:02",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 06:04:00",
+      "timestampJst": "2026-03-01 15:04:00",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 06:03:56",
+      "timestampJst": "2026-03-01 15:03:56",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 06:03:54",
+      "timestampJst": "2026-03-01 15:03:54",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 06:03:52",
+      "timestampJst": "2026-03-01 15:03:52",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 05:30:57",
+      "timestampJst": "2026-03-01 14:30:57",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=少年",
+      "mag": "",
+      "rating": 1
+    },
+    {
       "timestamp": "2026-03-01 05:30:08",
       "timestampJst": "2026-03-01 14:30:08",
       "type": "list_filter",
@@ -62,6 +192,32 @@
       "mood": "",
       "genre": "genre=action",
       "aud": "aud=少年",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 05:30:07",
+      "timestampJst": "2026-03-01 14:30:07",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=action",
+      "aud": "aud=女性",
+      "mag": "",
+      "rating": 1
+    },
+    {
+      "timestamp": "2026-03-01 05:29:58",
+      "timestampJst": "2026-03-01 14:29:58",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=女性",
       "mag": "",
       "rating": 1
     },
@@ -13639,7 +13795,7 @@
     }
   ],
   "raw": {
-    "rows": 1045,
-    "rows_before_limit_at_least": 1045
+    "rows": 1057,
+    "rows_before_limit_at_least": 1057
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T05:31:01.577Z",
-  "updatedAtJst": "2026-03-01 14:31:01",
+  "updatedAt": "2026-03-01T07:03:45.041Z",
+  "updatedAtJst": "2026-03-01 16:03:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -33,11 +33,11 @@
       "n": "7"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
-      "n": "4"
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "n": "6"
     },
     {
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "からかい上手の高木さん",
       "n": "4"
     },
     {
@@ -271,6 +271,6 @@
   ],
   "raw": {
     "rows": 63,
-    "rows_before_limit_at_least": 144
+    "rows_before_limit_at_least": 146
   }
 }
