@@ -173,6 +173,7 @@ ORDER BY n DESC
 
 // ✅ 互換維持のため id は "recent_200" のまま、件数だけ増やす
 // ✅ JSTは +9h して文字列化（分は %i）
+// ✅ FIX: rating は type='rate' の時だけ出す（それ以外は NULL）
 function qRecent(dataset, limit = 5000) {
   return `
 SELECT
@@ -186,7 +187,7 @@ SELECT
   ${COL.genre} AS genre,
   ${COL.aud} AS aud,
   ${COL.mag} AS mag,
-  ${DOUBLE.rating} AS rating
+  if(${COL.type} = 'rate', ${DOUBLE.rating}, NULL) AS rating
 FROM ${dataset}
 ORDER BY timestamp DESC
 LIMIT ${Number(limit)}
