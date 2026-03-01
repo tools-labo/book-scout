@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:25:48.548Z",
-  "updatedAtJst": "2026-03-01 23:25:48",
+  "updatedAt": "2026-03-01T14:29:56.290Z",
+  "updatedAtJst": "2026-03-01 23:29:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -81,12 +81,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "ちはやふる",
       "avg": 4,
       "n": "1"
     },
@@ -151,12 +151,12 @@
       "n": "2"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "ニセコイ",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "政宗くんのリベンジ",
       "avg": 3,
       "n": "2"
     },
@@ -176,12 +176,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "20世紀少年",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "月刊少女野崎くん",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "あせとせっけん",
       "avg": 3,
       "n": "1"
     },
@@ -206,17 +211,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "ラストゲーム",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "君に届け",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
       "avg": 3,
       "n": "1"
     },
@@ -231,22 +236,22 @@
       "n": "1"
     },
     {
-      "seriesKey": "ラストゲーム",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "ホリミヤ",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "寄生獣",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "とつくにの少女",
       "avg": 3,
       "n": "1"
     },
@@ -266,7 +271,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "ぼくたちは勉強ができない",
       "avg": 3,
       "n": "1"
     },
@@ -281,12 +286,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ヲタクに恋は難しい",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
+      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
@@ -311,7 +316,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "黒執事",
       "avg": 3,
       "n": "1"
     },
@@ -341,17 +346,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "あせとせっけん",
+      "seriesKey": "亜人",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "avg": 3,
       "n": "1"
     },
@@ -366,19 +371,14 @@
       "n": "2"
     },
     {
-      "seriesKey": "キングダム",
-      "avg": 2,
-      "n": "2"
-    },
-    {
       "seriesKey": "幽☆遊☆白書",
       "avg": 2,
       "n": "2"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "キングダム",
       "avg": 2,
-      "n": "1"
+      "n": "2"
     },
     {
       "seriesKey": "はじめの一歩",
@@ -396,18 +396,23 @@
       "n": "1"
     },
     {
-      "seriesKey": "おやすみプンプン",
-      "avg": 1,
+      "seriesKey": "ドロヘドロ",
+      "avg": 2,
       "n": "1"
     },
     {
       "seriesKey": "道産子ギャルはなまらめんこい",
       "avg": 1,
       "n": "1"
+    },
+    {
+      "seriesKey": "おやすみプンプン",
+      "avg": 1,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 77,
-    "rows_before_limit_at_least": 77
+    "rows": 78,
+    "rows_before_limit_at_least": 78
   }
 }

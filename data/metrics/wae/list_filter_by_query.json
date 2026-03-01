@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:25:48.548Z",
-  "updatedAtJst": "2026-03-01 23:25:48",
+  "updatedAt": "2026-03-01T14:29:56.290Z",
+  "updatedAtJst": "2026-03-01 23:29:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -33,13 +33,20 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "110"
+      "n": "112"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=heart_throb",
+      "n": "13"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=page_turner",
       "n": "11"
     },
     {
@@ -47,13 +54,6 @@
       "aud": "",
       "mag": "",
       "mood": "mood=tearjerker",
-      "n": "10"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=page_turner",
       "n": "10"
     },
     {
@@ -79,10 +79,10 @@
     },
     {
       "genre": "",
-      "aud": "aud=女性",
+      "aud": "",
       "mag": "",
-      "mood": "",
-      "n": "6"
+      "mood": "mood=messy",
+      "n": "7"
     },
     {
       "genre": "",
@@ -93,9 +93,9 @@
     },
     {
       "genre": "",
-      "aud": "",
+      "aud": "aud=女性",
       "mag": "",
-      "mood": "mood=messy",
+      "mood": "",
       "n": "6"
     },
     {
@@ -148,6 +148,13 @@
       "n": "4"
     },
     {
+      "genre": "genre=drama",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "3"
+    },
+    {
       "genre": "",
       "aud": "",
       "mag": "",
@@ -162,15 +169,29 @@
       "n": "3"
     },
     {
-      "genre": "genre=drama",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=funny,heart_throb",
+      "n": "2"
+    },
+    {
+      "genre": "genre=mystery",
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "3"
+      "n": "2"
     },
     {
       "genre": "genre=drama,sports",
       "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "2"
+    },
+    {
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror,action",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "2"
@@ -183,13 +204,6 @@
       "n": "2"
     },
     {
-      "genre": "genre=mystery",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
@@ -197,10 +211,10 @@
       "n": "2"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror,action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=tearjerker,moving",
       "n": "2"
     },
     {
@@ -218,24 +232,10 @@
       "n": "2"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=tearjerker,moving",
-      "n": "2"
-    },
-    {
       "genre": "genre=action",
       "aud": "aud=少年",
       "mag": "",
       "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=funny,heart_throb",
       "n": "2"
     },
     {
@@ -253,10 +253,24 @@
       "n": "1"
     },
     {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=messy,tearjerker",
+      "n": "1"
+    },
+    {
       "genre": "genre=fantasy,sf,comedy,horror,action",
       "aud": "aud=少年",
       "mag": "",
       "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=heart_throb,funny",
       "n": "1"
     },
     {
@@ -652,17 +666,17 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=page_turner,hot",
+      "n": "1"
+    },
+    {
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "",
       "n": "1"
     },
     {
@@ -725,6 +739,13 @@
       "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=page_turner,messy",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
       "mood": "mood=messy,satisfying",
       "n": "1"
     },
@@ -751,7 +772,7 @@
     }
   ],
   "raw": {
-    "rows": 103,
-    "rows_before_limit_at_least": 311
+    "rows": 106,
+    "rows_before_limit_at_least": 320
   }
 }
