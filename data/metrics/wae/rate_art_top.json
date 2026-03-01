@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:53:15.880Z",
-  "updatedAtJst": "2026-03-01 23:53:15",
+  "updatedAt": "2026-03-01T15:00:47.031Z",
+  "updatedAtJst": "2026-03-02 00:00:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -56,6 +56,11 @@
       "n": "2"
     },
     {
+      "seriesKey": "ちはやふる",
+      "avg": 4,
+      "n": "2"
+    },
+    {
       "seriesKey": "君は淫らな僕の女王",
       "avg": 4,
       "n": "1"
@@ -77,11 +82,6 @@
     },
     {
       "seriesKey": "東京喰種-トーキョーグール-:re",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ちはやふる",
       "avg": 4,
       "n": "1"
     },
@@ -176,12 +176,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "宝石の国",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "orange [オレンジ]",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
       "avg": 3,
       "n": "1"
     },
@@ -226,7 +231,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "銀魂",
       "avg": 3,
       "n": "1"
     },
@@ -241,7 +246,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "avg": 3,
       "n": "1"
     },
@@ -256,12 +261,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "神様はじめました",
+      "seriesKey": "とつくにの少女",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "神様はじめました",
       "avg": 3,
       "n": "1"
     },
@@ -276,12 +281,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "五等分の花嫁",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "五等分の花嫁",
+      "seriesKey": "ぼくたちは勉強ができない",
       "avg": 3,
       "n": "1"
     },
@@ -291,7 +296,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "アオのハコ",
       "avg": 3,
       "n": "1"
     },
@@ -301,7 +306,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "黒執事",
       "avg": 3,
       "n": "1"
     },
@@ -321,7 +326,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "黒執事",
+      "seriesKey": "20世紀少年",
       "avg": 3,
       "n": "1"
     },
@@ -417,7 +422,7 @@
     }
   ],
   "raw": {
-    "rows": 79,
-    "rows_before_limit_at_least": 79
+    "rows": 80,
+    "rows_before_limit_at_least": 80
   }
 }

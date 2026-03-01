@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:53:15.880Z",
-  "updatedAtJst": "2026-03-01 23:53:15",
+  "updatedAt": "2026-03-01T15:00:47.031Z",
+  "updatedAtJst": "2026-03-02 00:00:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -53,6 +53,97 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-03-01 14:52:49",
+      "timestampJst": "2026-03-01 23:52:49",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "orange [オレンジ]",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 14:52:48",
+      "timestampJst": "2026-03-01 23:52:48",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "orange [オレンジ]",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-01 14:52:47",
+      "timestampJst": "2026-03-01 23:52:47",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "orange [オレンジ]",
+      "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:46",
+      "timestampJst": "2026-03-01 23:52:46",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "orange [オレンジ]",
+      "mood": "tearjerker",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:40",
+      "timestampJst": "2026-03-01 23:52:40",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "orange [オレンジ]",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:32",
+      "timestampJst": "2026-03-01 23:52:32",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=romance,slice",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:30",
+      "timestampJst": "2026-03-01 23:52:30",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=romance",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
       "timestamp": "2026-03-01 14:52:23",
       "timestampJst": "2026-03-01 23:52:23",
       "type": "rate",
@@ -90,6 +181,58 @@
       "aud": "",
       "mag": "",
       "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:17",
+      "timestampJst": "2026-03-01 23:52:17",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アクタージュ act-age",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:16",
+      "timestampJst": "2026-03-01 23:52:16",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アクタージュ act-age",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:13",
+      "timestampJst": "2026-03-01 23:52:13",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アオのハコ",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 14:52:12",
+      "timestampJst": "2026-03-01 23:52:12",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アオのハコ",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
     },
     {
       "timestamp": "2026-03-01 14:52:10",
@@ -18943,7 +19086,7 @@
     }
   ],
   "raw": {
-    "rows": 1453,
-    "rows_before_limit_at_least": 1453
+    "rows": 1464,
+    "rows_before_limit_at_least": 1464
   }
 }
