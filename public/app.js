@@ -2828,6 +2828,17 @@ async function run() {
   }
 }
 
+/* =======================
+ * screenshot mode (?ss=1)
+ * ======================= */
+(function () {
+  try {
+    if (new URLSearchParams(location.search).get("ss") === "1") {
+      document.documentElement.setAttribute("data-ss", "1");
+    }
+  } catch {}
+})();
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     ensureBackToTopButton();
