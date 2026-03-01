@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:50:30.829Z",
-  "updatedAtJst": "2026-03-01 23:50:30",
+  "updatedAt": "2026-03-01T14:53:15.880Z",
+  "updatedAtJst": "2026-03-01 23:53:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -17,15 +17,15 @@
   ],
   "rows": [
     {
-      "seriesKey": "チェンソーマン",
-      "n": "4"
-    },
-    {
       "seriesKey": "君は淫らな僕の女王",
       "n": "4"
     },
     {
       "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
+      "n": "4"
+    },
+    {
+      "seriesKey": "チェンソーマン",
       "n": "4"
     },
     {
@@ -35,6 +35,10 @@
     {
       "seriesKey": "監獄学園",
       "n": "3"
+    },
+    {
+      "seriesKey": "ニセコイ",
+      "n": "2"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
@@ -69,15 +73,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "ニセコイ",
-      "n": "2"
-    },
-    {
       "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
       "seriesKey": "道産子ギャルはなまらめんこい",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ルリドラゴン",
       "n": "1"
     },
     {
@@ -89,11 +93,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "十字架のろくにん",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
       "seriesKey": "ドラゴンボール",
+      "n": "1"
+    },
+    {
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
@@ -117,15 +125,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "ダンジョン飯",
+      "n": "1"
+    },
+    {
       "seriesKey": "あせとせっけん",
       "n": "1"
     },
     {
       "seriesKey": "ぼくは麻理のなか",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ダンジョン飯",
       "n": "1"
     },
     {
@@ -281,12 +289,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ルリドラゴン",
+      "seriesKey": "十字架のろくにん",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 67,
-    "rows_before_limit_at_least": 67
+    "rows": 69,
+    "rows_before_limit_at_least": 69
   }
 }

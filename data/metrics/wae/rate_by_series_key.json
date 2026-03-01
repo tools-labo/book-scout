@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:50:30.829Z",
-  "updatedAtJst": "2026-03-01 23:50:30",
+  "updatedAt": "2026-03-01T14:53:15.880Z",
+  "updatedAtJst": "2026-03-01 23:53:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -97,12 +97,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "アオハライド",
       "k": "art",
       "avg": 4,
@@ -131,6 +125,12 @@
       "k": "art",
       "avg": 3.6666666666666665,
       "n": "3"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
+      "k": "art",
+      "avg": 3.5,
+      "n": "2"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
@@ -295,7 +295,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -313,7 +313,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "20世紀少年",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -733,6 +733,12 @@
       "n": "2"
     },
     {
+      "seriesKey": "アクタージュ act-age",
+      "k": "rec",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "k": "rec",
       "avg": 3,
@@ -763,19 +769,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "神様はじめました",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "月刊少女野崎くん",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ひるなかの流星",
+      "seriesKey": "神様はじめました",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -817,7 +817,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "ひるなかの流星",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -829,7 +829,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "seriesKey": "彼女、お借りします",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -847,7 +847,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -957,6 +957,6 @@
   ],
   "raw": {
     "rows": 155,
-    "rows_before_limit_at_least": 246
+    "rows_before_limit_at_least": 248
   }
 }

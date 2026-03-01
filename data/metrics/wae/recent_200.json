@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T14:50:30.829Z",
-  "updatedAtJst": "2026-03-01 23:50:30",
+  "updatedAt": "2026-03-01T14:53:15.880Z",
+  "updatedAtJst": "2026-03-01 23:53:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,71 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-01 14:52:23",
+      "timestampJst": "2026-03-01 23:52:23",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アクタージュ act-age",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 14:52:22",
+      "timestampJst": "2026-03-01 23:52:22",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アクタージュ act-age",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 14:52:20",
+      "timestampJst": "2026-03-01 23:52:20",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アクタージュ act-age",
+      "mood": "tearjerker",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:10",
+      "timestampJst": "2026-03-01 23:52:10",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アオのハコ",
+      "mood": "heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:52:07",
+      "timestampJst": "2026-03-01 23:52:07",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アオのハコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-01 14:29:22",
       "timestampJst": "2026-03-01 23:29:22",
@@ -18878,7 +18943,7 @@
     }
   ],
   "raw": {
-    "rows": 1448,
-    "rows_before_limit_at_least": 1448
+    "rows": 1453,
+    "rows_before_limit_at_least": 1453
   }
 }
