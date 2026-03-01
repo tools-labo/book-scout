@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T11:47:40.370Z",
+  "updatedAt": "2026-03-01T12:01:18.628Z",
   "total": 263,
   "shardSize": 200,
   "shards": [
@@ -282,49 +282,41 @@
     "total": 263,
     "ok": 263,
     "ng": 0,
-    "skippedPerfect": 249,
-    "skippedAniList": 5,
-    "skippedWiki": 2,
-    "skippedAmazon": 5,
-    "fetchedAmazonAsins": 9,
-    "magAudienceTodoAdded": 5,
+    "skippedPerfect": 255,
+    "skippedAniList": 8,
+    "skippedWiki": 3,
+    "skippedAmazon": 8,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 2,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 14,
-      "outNotPerfect": 8
+      "prevNotPerfect": 8,
+      "outNotPerfect": 6
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "DEAD Tube ～デッドチューブ～ :: tags_missing_en(remain=2)",
-        "うるわしの宵の月 :: noVol1",
-        "がっこうぐらし! :: noVol1",
-        "グレイプニル :: magazine,magazines[]",
-        "それでも歩は寄せてくる :: noVol1",
-        "ボーイミーツマリア :: noVol1",
-        "モンスター娘のいる日常 :: noVol1",
-        "今まで一度も女扱いされたことがない女騎士を女扱いする漫画 :: tagsJa[]",
-        "君は淫らな僕の女王 :: noVol1",
-        "回復術士のやり直し :: noVol1",
-        "徒然チルドレン :: noVol1",
-        "惑星のさみだれ :: noVol1"
-      ],
-      "outNotPerfect": [
         "DEAD Tube ～デッドチューブ～ :: tags_missing_en(remain=2)",
         "グレイプニル :: magazine,magazines[]",
         "ボーイミーツマリア :: magazine,magazines[],tags_missing_en(remain=1)",
         "モンスター娘のいる日常 :: tags_missing_en(remain=1)",
         "今まで一度も女扱いされたことがない女騎士を女扱いする漫画 :: tagsJa[]",
-        "回復術士のやり直し :: magazine,magazines[],tags_missing_en(remain=3)",
+        "回復術士のやり直し :: magazine,magazines[],tags_missing_en(remain=1)",
+        "日々蝶々 :: magazine,magazines[]",
+        "月が導く異世界道中 :: magazine,magazines[]"
+      ],
+      "outNotPerfect": [
+        "グレイプニル :: magazine,magazines[]",
+        "ボーイミーツマリア :: magazine,magazines[]",
+        "今まで一度も女扱いされたことがない女騎士を女扱いする漫画 :: tagsJa[]",
+        "回復術士のやり直し :: magazine,magazines[]",
         "日々蝶々 :: magazine,magazines[]",
         "月が導く異世界道中 :: magazine,magazines[]"
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 8,
+      "notPerfectTotal": 6,
       "seriesKeys": [
-        "DEAD Tube ～デッドチューブ～",
         "グレイプニル",
         "ボーイミーツマリア",
-        "モンスター娘のいる日常",
         "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
         "回復術士のやり直し",
         "日々蝶々",
@@ -354,32 +346,10 @@
           ]
         },
         {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 2,
-          "samples": [
-            "ボーイミーツマリア",
-            "モンスター娘のいる日常"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=2)",
-          "n": 1,
-          "samples": [
-            "DEAD Tube ～デッドチューブ～"
-          ]
-        },
-        {
           "reason": "tagsJa[]",
           "n": 1,
           "samples": [
             "今まで一度も女扱いされたことがない女騎士を女扱いする漫画"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=3)",
-          "n": 1,
-          "samples": [
-            "回復術士のやり直し"
           ]
         }
       ],
@@ -389,12 +359,12 @@
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 9
+      "successItems": 0
     }
   }
 }

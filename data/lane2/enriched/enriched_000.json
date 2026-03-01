@@ -561,19 +561,18 @@
         ],
         "tags": [
           "アンチヒーロー",
+          "エログロ",
           "デスゲーム",
           "サバイバル",
           "ヤンデレ",
           "寝取られ（NTR）",
           "特撮",
+          "切断",
           "少年向け",
           "学園",
           "車"
         ],
-        "tags_missing_en": [
-          "Ero Guro",
-          "Amputation"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -8553,11 +8552,10 @@
           "無性別",
           "哲学",
           "バイセクシュアル",
-          "成長譚"
+          "成長譚",
+          "ダンス"
         ],
-        "tags_missing_en": [
-          "Dancing"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -9418,6 +9416,7 @@
           "現代ファンタジー",
           "ケンタウロス",
           "人魚",
+          "デュラハン",
           "ゾンビ",
           "怪獣",
           "悪魔",
@@ -9427,9 +9426,7 @@
           "LGBTQテーマ",
           "学園"
         ],
-        "tags_missing_en": [
-          "Dullahan"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -12264,16 +12261,13 @@
           "記憶操作",
           "悪魔",
           "複数恋愛",
+          "アヘ顔",
           "性転換",
           "獣耳",
           "女性優位",
           "女装・男装"
         ],
-        "tags_missing_en": [
-          "Ahegao",
-          "Nakadashi",
-          "Cunnilingus"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
