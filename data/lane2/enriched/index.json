@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T12:01:18.628Z",
+  "updatedAt": "2026-03-01T12:04:50.864Z",
   "total": 263,
   "shardSize": 200,
   "shards": [
@@ -282,24 +282,22 @@
     "total": 263,
     "ok": 263,
     "ng": 0,
-    "skippedPerfect": 255,
-    "skippedAniList": 8,
-    "skippedWiki": 3,
-    "skippedAmazon": 8,
+    "skippedPerfect": 257,
+    "skippedAniList": 6,
+    "skippedWiki": 1,
+    "skippedAmazon": 6,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 2,
+    "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 8,
+      "prevNotPerfect": 6,
       "outNotPerfect": 6
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "DEAD Tube ～デッドチューブ～ :: tags_missing_en(remain=2)",
         "グレイプニル :: magazine,magazines[]",
-        "ボーイミーツマリア :: magazine,magazines[],tags_missing_en(remain=1)",
-        "モンスター娘のいる日常 :: tags_missing_en(remain=1)",
+        "ボーイミーツマリア :: magazine,magazines[]",
         "今まで一度も女扱いされたことがない女騎士を女扱いする漫画 :: tagsJa[]",
-        "回復術士のやり直し :: magazine,magazines[],tags_missing_en(remain=1)",
+        "回復術士のやり直し :: magazine,magazines[]",
         "日々蝶々 :: magazine,magazines[]",
         "月が導く異世界道中 :: magazine,magazines[]"
       ],
