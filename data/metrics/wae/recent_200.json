@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T22:40:26.969Z",
-  "updatedAtJst": "2026-03-02 07:40:26",
+  "updatedAt": "2026-03-01T23:36:05.906Z",
+  "updatedAtJst": "2026-03-02 08:36:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,71 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-01 23:10:19",
+      "timestampJst": "2026-03-02 08:10:19",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "東京卍リベンジャーズ",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 23:10:18",
+      "timestampJst": "2026-03-02 08:10:18",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "東京卍リベンジャーズ",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 23:10:14",
+      "timestampJst": "2026-03-02 08:10:14",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "東京卍リベンジャーズ",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 23:10:13",
+      "timestampJst": "2026-03-02 08:10:13",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "東京卍リベンジャーズ",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-01 23:10:10",
+      "timestampJst": "2026-03-02 08:10:10",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "東京卍リベンジャーズ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-01 16:16:06",
       "timestampJst": "2026-03-02 01:16:06",
@@ -19190,7 +19255,7 @@
     }
   ],
   "raw": {
-    "rows": 1472,
-    "rows_before_limit_at_least": 1472
+    "rows": 1477,
+    "rows_before_limit_at_least": 1477
   }
 }
