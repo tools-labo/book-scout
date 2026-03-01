@@ -1305,6 +1305,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 // - ✅ List は (1/2) の renderList をそのまま利用（ここでは壊さない）
 // - ✅ works split(index/shard) 対応維持
 // - ✅ NEW: List sort metrics（人気/急上昇）を読み込み、renderList に渡す
+// - ✅ NEW: Home「一覧を見る」リンクを、選択中タブに合わせて絞り込みリンクへ（既存機能は壊さない）
 // 注意：
 // - (1/2) に存在する const/関数名は再宣言しない（const衝突回避）
 // - ここは「足りない関数の補完 + run() + Work機能」を提供
@@ -1592,6 +1593,12 @@ function renderGenreTabsRow({ items, activeId }) {
   const v = qs().get("v");
   const moreHref = `${BASE}list.html?genre=${encodeURIComponent(active.id)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 
+  // ✅ NEW: 右上「一覧を見る」も選択中ジャンルで絞り込みリンクへ
+  try {
+    const allLink = document.getElementById("genreAllLink");
+    if (allLink) allLink.setAttribute("href", moreHref);
+  } catch {}
+
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   initLazyImages(row);
 
@@ -1635,6 +1642,12 @@ function renderAudienceTabsRow({ items, activeAudId }) {
 
   const v = qs().get("v");
   const moreHref = `${BASE}list.html?aud=${encodeURIComponent(audValue)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
+
+  // ✅ NEW: 右上「一覧を見る」も選択中カテゴリで絞り込みリンクへ
+  try {
+    const allLink = document.getElementById("audienceAllLink");
+    if (allLink) allLink.setAttribute("href", moreHref);
+  } catch {}
 
   row.innerHTML = renderCardRow({ items: picked, limit: 18, moreHref });
   initLazyImages(row);
@@ -1718,7 +1731,7 @@ function renderHomePopular({ items, viewsMap, limit = 6 }) {
 }
 
 /* =======================
- * ✅ Home：読後感で探す（renderQuickHome を追加）
+ * ✅ Home：読後感で探す（renderQuickHome）
  * ======================= */
 function renderQuickHome({ defs, counts }) {
   const root = document.getElementById("quickFiltersHome");
@@ -1733,7 +1746,6 @@ function renderQuickHome({ defs, counts }) {
   const v = qs().get("v");
   const countMap = (counts instanceof Map) ? counts : new Map();
 
-  // 仕様：Homeは「1つ選んでリストへ」なのでリンクでOK（List側のAND最大2は維持）
   root.innerHTML = `
     <div class="pills">
       ${ds.map(d => {
