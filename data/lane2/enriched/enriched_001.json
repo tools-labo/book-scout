@@ -1,8 +1,556 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 45,
+  "count": 54,
   "items": [
+    {
+      "seriesKey": "日々蝶々",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088468023",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088468023?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088468020",
+        "asin": "4088468023",
+        "title": "日々蝶々 1 (マーガレットコミックス)",
+        "synopsis": "容姿のせいで周囲が騒ぎ立ててしまう少女・すいれんは、感情を表に出すのが苦手。無口でまっすぐな同級生・川澄と出会い、言葉にならない気持ちが少しずつ恋へ形を変えていく。",
+        "image": "https://m.media-amazon.com/images/I/41xzQBCH+oL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "森下 suu",
+        "releaseDate": "2012-07-25T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "日々蝶々",
+        "anilistId": 65719,
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "School",
+          "Coming of Age",
+          "Heterosexual",
+          "Unrequited Love",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "Love Triangle",
+          "Martial Arts"
+        ],
+        "tags": [
+          "少女",
+          "学園",
+          "成長譚",
+          "片思い",
+          "三角関係",
+          "武術"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "暁のヨナ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4592190815",
+        "amazonDp": "https://www.amazon.co.jp/dp/4592190815?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784592190813",
+        "asin": "4592190815",
+        "title": "暁のヨナ 1 (花とゆめCOMICS)",
+        "synopsis": "高華国の王女ヨナは、優しい父王や幼なじみの護衛ハクに守られて育つ。16歳の誕生日に従兄スウォンが反逆を起こし、国を追われたヨナはハクと共に各地の四龍の戦士を探しながら成長していく。",
+        "image": "https://m.media-amazon.com/images/I/512WA6M60NL._SL500_.jpg",
+        "publisher": "白泉社",
+        "author": "草凪みずほ",
+        "releaseDate": "2010-01-19T00:00:01Z",
+        "magazine": "花とゆめ",
+        "magazines": [
+          "花とゆめ"
+        ],
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "暁のヨナ",
+        "anilistId": 51525,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Found Family",
+          "Female Protagonist",
+          "Travel",
+          "Historical",
+          "Shoujo",
+          "Dragons",
+          "Politics",
+          "Fugitive",
+          "Gods",
+          "Kingdom Management",
+          "Mythology",
+          "Royal Affairs",
+          "War",
+          "Heterosexual",
+          "Coming of Age",
+          "Foreign",
+          "Primarily Male Cast",
+          "Super Power",
+          "Archery",
+          "Survival",
+          "Male Harem",
+          "Medicine",
+          "Animals",
+          "Orphan",
+          "Pirates",
+          "Drugs",
+          "Kuudere"
+        ],
+        "tags": [
+          "疑似家族",
+          "旅",
+          "歴史",
+          "少女",
+          "ドラゴン",
+          "政治",
+          "逃亡者",
+          "神々",
+          "国づくり",
+          "神話",
+          "王侯貴族",
+          "戦争",
+          "成長譚",
+          "海外",
+          "超能力",
+          "弓術",
+          "サバイバル",
+          "男性ハーレム",
+          "医療",
+          "動物",
+          "孤児",
+          "海賊",
+          "クーデレ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "暗殺教室",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088705963",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088705963?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088705965",
+        "asin": "4088705963",
+        "title": "暗殺教室 1 (ジャンプコミックス)",
+        "synopsis": "月の7割を破壊した超生物が3年E組の担任“殺せんせー”となり、生徒に自分を暗殺させる契約を結ぶ。暗殺対象でありながらも教育熱心な教師と、生徒たちの成長と葛藤を描く異色の学園バトルコメディ。",
+        "image": "https://m.media-amazon.com/images/I/3133pCbjg7L._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "松井 優征",
+        "releaseDate": "2012-11-02T00:00:01Z",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "暗殺教室",
+        "anilistId": 69883,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Teacher",
+          "Assassins",
+          "School",
+          "Primarily Child Cast",
+          "Shounen",
+          "Ensemble Cast",
+          "Satire",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Philosophy",
+          "Otaku Culture",
+          "Aliens"
+        ],
+        "tags": [
+          "教師",
+          "暗殺者",
+          "学園",
+          "子どもが中心",
+          "少年向け",
+          "風刺",
+          "哲学",
+          "オタク文化",
+          "宇宙人"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "月が導く異世界道中",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/443421604X",
+        "amazonDp": "https://www.amazon.co.jp/dp/443421604X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784434216046",
+        "asin": "443421604X",
+        "title": "月が導く異世界道中 1 (アルファポリスCOMICS)",
+        "synopsis": "異世界に招かれた少年・真は、女神に見放され辺境へ放り出される。人外の仲間と出会いながら、自分の居場所を作るために力を磨き、理不尽な世界で独自の道を切り拓いていく。",
+        "image": "https://m.media-amazon.com/images/I/61C5ZM7Fx7L._SL500_.jpg",
+        "publisher": "アルファポリス",
+        "author": "あずみ 圭 / 木野 コトラ",
+        "releaseDate": "2016-02-29T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "月が導く異世界道中",
+        "anilistId": 87225,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Isekai",
+          "Shounen",
+          "Magic",
+          "Kingdom Management",
+          "Female Harem",
+          "Dragons",
+          "Economics",
+          "Yandere",
+          "Gods",
+          "Medieval",
+          "Male Protagonist"
+        ],
+        "tags": [
+          "異世界",
+          "少年向け",
+          "魔法",
+          "国づくり",
+          "逆ハーレム",
+          "ドラゴン",
+          "経済",
+          "ヤンデレ",
+          "神々",
+          "中世"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/475753566X",
+        "amazonDp": "https://www.amazon.co.jp/dp/475753566X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784757535664",
+        "asin": "475753566X",
+        "title": "月刊少女野崎くん(1) (ガンガンコミックスONLINE)",
+        "synopsis": "片思いの相手・野崎梅太郎に告白しようとした高校生の佐倉千代は、なぜか彼の漫画のアシスタントになってしまう。堅物な少女漫画家男子と天然系女子が織りなすハイテンションコメディ。",
+        "image": "https://m.media-amazon.com/images/I/51uP0o5v6FL._SL500_.jpg",
+        "publisher": "スクウェア・エニックス",
+        "author": "椿 いづみ",
+        "releaseDate": "2012-04-20T00:00:01Z",
+        "magazine": "ガンガンONLINE",
+        "magazines": [
+          "ガンガンONLINE"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 59211,
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Drawing",
+          "Parody",
+          "4-koma",
+          "Ensemble Cast",
+          "Work",
+          "School",
+          "Heterosexual",
+          "Otaku Culture",
+          "Unrequited Love",
+          "Tomboy",
+          "Tsundere",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "School Club",
+          "Shounen",
+          "Educational",
+          "Bisexual",
+          "College"
+        ],
+        "tags": [
+          "絵・作画",
+          "パロディ",
+          "4コマ",
+          "仕事",
+          "学園",
+          "オタク文化",
+          "片思い",
+          "ボーイッシュ",
+          "ツンデレ",
+          "部活",
+          "少年向け",
+          "教育",
+          "バイセクシュアル",
+          "大学"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "未来日記",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4047138398",
+        "amazonDp": "https://www.amazon.co.jp/dp/4047138398?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784047138391",
+        "asin": "4047138398",
+        "title": "未来日記 (1) (角川コミックス・エース 129-5)",
+        "synopsis": "孤独な中学生・天野雪輝の携帯日記が、未来の出来事を記す“未来日記”へ変わる。神の後継を決める生存ゲームに巻き込まれた彼は、同じ能力者たちとの駆け引きと殺意の中で生き残りを迫られる。",
+        "image": "https://m.media-amazon.com/images/I/51dPBHspDfL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "えすの サカエ",
+        "releaseDate": "2006-07-21T00:00:01Z",
+        "magazine": "月刊少年エース",
+        "magazines": [
+          "月刊少年エース"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 30584,
+        "genres": [
+          "Action",
+          "Mystery",
+          "Psychological",
+          "Supernatural",
+          "Thriller"
+        ],
+        "tags_en": [
+          "Battle Royale",
+          "Yandere",
+          "Shounen",
+          "Death Game",
+          "Female Protagonist",
+          "Survival",
+          "Male Protagonist",
+          "Gods",
+          "Skeleton",
+          "Terrorism",
+          "Detective",
+          "Orphan",
+          "Gore",
+          "Urban Fantasy",
+          "Heterosexual",
+          "Crime",
+          "Cult",
+          "Disability",
+          "Bisexual",
+          "Urban"
+        ],
+        "tags": [
+          "バトルロイヤル",
+          "ヤンデレ",
+          "少年向け",
+          "デスゲーム",
+          "サバイバル",
+          "神々",
+          "スケルトン",
+          "探偵",
+          "孤児",
+          "現代ファンタジー",
+          "犯罪",
+          "カルト",
+          "障害",
+          "バイセクシュアル",
+          "都会"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "東京卍リベンジャーズ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/東京卍リベンジャーズ-1-講談社コミックス-和久井-健/dp/4063959384/ref=monarch_sidesheet",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063959384?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063959383",
+        "asin": "4063959384",
+        "title": "東京卍リベンジャーズ(1) (少年マガジンコミックス)",
+        "synopsis": "冴えないフリーターの武道は、元恋人の死をきっかけに12年前へタイムリープする。彼女を救うため、逃げ続けた自分を変えるため、最凶集団“東京卍會”に挑む人生リベンジが始まる。",
+        "image": "https://m.media-amazon.com/images/I/51+e8gWs-3L._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "和久井 健",
+        "releaseDate": "2017-05-17T00:00:01Z",
+        "magazine": "週刊少年マガジン",
+        "magazines": [
+          "週刊少年マガジン"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "東京卍リベンジャーズ",
+        "anilistId": 102988,
+        "genres": [
+          "Action",
+          "Drama",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Delinquents",
+          "Gangs",
+          "Male Protagonist",
+          "Conspiracy",
+          "Revenge",
+          "Crime",
+          "Shounen",
+          "Age Regression",
+          "Urban",
+          "Ensemble Cast",
+          "Motorcycles",
+          "Heterosexual",
+          "Suicide",
+          "Gore",
+          "Love Triangle",
+          "Espionage",
+          "Mopeds",
+          "School",
+          "Adoption",
+          "Guns"
+        ],
+        "tags": [
+          "不良",
+          "ギャング",
+          "陰謀",
+          "復讐",
+          "犯罪",
+          "少年向け",
+          "年齢退行",
+          "都会",
+          "バイク",
+          "三角関係",
+          "スパイ",
+          "原付",
+          "学園",
+          "養子縁組",
+          "銃"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/東京喰種-トーキョーグール-ヤングジャンプコミックス-石田-スイ/dp/4088792726",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088792726?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088792729",
+        "asin": "4088792726",
+        "title": "東京喰種 トーキョーグール 1",
+        "synopsis": "人を喰らう存在“喰種”が潜む東京で、平凡な青年カネキは運命的な出会いを機に日常を失う。人と喰種の狭間で葛藤しながら、生き方を探していく。",
+        "image": "https://m.media-amazon.com/images/I/51U3pSE0+NL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "石田 スイ",
+        "releaseDate": "2012-02-17T00:00:01Z",
+        "magazine": "週刊ヤングジャンプ",
+        "magazines": [
+          "週刊ヤングジャンプ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "東京喰種トーキョーグール",
+        "anilistId": 63327,
+        "genres": [
+          "Action",
+          "Horror",
+          "Mystery",
+          "Psychological",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Cannibalism",
+          "Urban Fantasy",
+          "Male Protagonist",
+          "Gore",
+          "Seinen",
+          "Survival",
+          "Dystopian",
+          "Philosophy",
+          "Coming of Age",
+          "Shapeshifting",
+          "Body Horror",
+          "Torture",
+          "Police",
+          "Kuudere",
+          "Cosmic Horror",
+          "Primarily Adult Cast",
+          "Heterosexual",
+          "Chimera",
+          "Twins",
+          "Cute Boys Doing Cute Things",
+          "Mythology",
+          "Demons"
+        ],
+        "tags": [
+          "現代ファンタジー",
+          "青年向け",
+          "サバイバル",
+          "ディストピア",
+          "哲学",
+          "成長譚",
+          "変身能力",
+          "警察",
+          "クーデレ",
+          "コズミックホラー",
+          "キメラ",
+          "双子",
+          "神話",
+          "悪魔"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": {
+        "source": "manual_batch",
+        "addedAt": "2026-02-13"
+      }
+    },
     {
       "seriesKey": "東京喰種-トーキョーグール-:re",
       "vol1": {
@@ -3016,6 +3564,69 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "魔男のイチ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088844025",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088844025?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088844022",
+        "asin": "4088844025",
+        "title": "魔男のイチ 1 (ジャンプコミックス)",
+        "synopsis": "“魔男”が存在する世界で、少年イチはあるきっかけから魔法と関わり、否応なく争いと任務の渦へ踏み込んでいく。自分の力と立場が定まらないまま、それでも前に進もうとする異色の魔法バトル。",
+        "image": "https://m.media-amazon.com/images/I/51WD287PgpL._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "宇佐崎 しろ",
+        "releaseDate": "2025-01-04T00:00:01Z",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "魔男のイチ",
+        "anilistId": 180752,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Magic",
+          "Male Protagonist",
+          "Witch",
+          "Found Family",
+          "Shounen",
+          "Anachronism",
+          "Demons",
+          "Matriarchy",
+          "Primarily Female Cast",
+          "Anthropomorphism",
+          "Henshin",
+          "Tanned Skin",
+          "Cosmic Horror",
+          "Pregnancy"
+        ],
+        "tags": [
+          "魔法",
+          "魔女",
+          "疑似家族",
+          "少年向け",
+          "悪魔",
+          "女系社会",
+          "擬人化",
+          "変身",
+          "日焼け肌",
+          "コズミックホラー",
+          "妊娠"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },

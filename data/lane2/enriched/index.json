@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T05:27:58.874Z",
-  "total": 245,
+  "updatedAt": "2026-03-01T11:21:52.071Z",
+  "total": 254,
   "shardSize": 200,
   "shards": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "file": "enriched_001.json",
-      "count": 45
+      "count": 54
     }
   ],
   "lookup": {
@@ -21,6 +21,7 @@
     "3月のライオン": 0,
     "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-": 0,
     "BTOOOM!-ブトゥーム": 0,
+    "DEAD Tube ～デッドチューブ～": 0,
     "NARUTO -ナルト-": 0,
     "orange [オレンジ]": 0,
     "PSYЯEN -サイレン-": 0,
@@ -60,6 +61,7 @@
     "キングダム": 0,
     "クズの本懐": 0,
     "ぐらんぶる": 0,
+    "グレイプニル": 0,
     "ケンガンアシュラ": 0,
     "ゴールデンカムイ": 0,
     "この音とまれ！": 0,
@@ -68,6 +70,7 @@
     "ささやくように恋を唄う": 0,
     "さびしすぎてレズ風俗に行きましたレポ": 0,
     "サマータイムレンダ": 0,
+    "さんかれあ": 0,
     "サンケンロック": 0,
     "しまなみ誰そ彼": 0,
     "ジャガーン": 0,
@@ -160,16 +163,19 @@
     "乙嫁語り": 0,
     "五等分の花嫁": 0,
     "亜人": 0,
+    "今まで一度も女扱いされたことがない女騎士を女扱いする漫画": 0,
     "今際の国のアリス": 0,
     "会長はメイド様！": 0,
     "僕だけがいない街": 0,
     "僕のヒーローアカデミア": 0,
     "僕の心のヤバイやつ": 0,
     "光が死んだ夏": 0,
+    "化物語": 0,
     "十字架のろくにん": 0,
     "双星の陰陽師": 0,
     "古見さんは、コミュ症です。": 0,
     "可愛いだけじゃない式守さん": 0,
+    "君と綴るうたかた": 0,
     "君に届け": 0,
     "君のことが大大大大大好きな100人の彼女": 0,
     "君の膵臓をたべたい": 0,
@@ -208,12 +214,14 @@
     "政宗くんのリベンジ": 0,
     "文豪ストレイドッグス": 0,
     "新世紀エヴァンゲリオン": 0,
-    "暁のヨナ": 0,
-    "暗殺教室": 0,
-    "月刊少女野崎くん": 0,
-    "未来日記": 0,
-    "東京卍リベンジャーズ": 0,
-    "東京喰種 トーキョーグール": 0,
+    "日々蝶々": 1,
+    "暁のヨナ": 1,
+    "暗殺教室": 1,
+    "月が導く異世界道中": 1,
+    "月刊少女野崎くん": 1,
+    "未来日記": 1,
+    "東京卍リベンジャーズ": 1,
+    "東京喰種 トーキョーグール": 1,
     "東京喰種-トーキョーグール-:re": 1,
     "桃源暗鬼": 1,
     "桜蘭高校ホスト部": 1,
@@ -256,41 +264,100 @@
     "鬼滅の刃": 1,
     "魔入りました！入間くん": 1,
     "魔法使いの嫁": 1,
+    "魔男のイチ": 1,
     "魔都精兵のスレイブ": 1,
     "黒執事": 1,
     "黒岩メダカに私の可愛いが通じない": 1
   },
   "stats": {
-    "total": 245,
-    "ok": 245,
+    "total": 254,
+    "ok": 254,
     "ng": 0,
     "skippedPerfect": 245,
     "skippedAniList": 0,
     "skippedWiki": 0,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "fetchedAmazonAsins": 9,
+    "magAudienceTodoAdded": 3,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 0,
-      "outNotPerfect": 0
+      "prevNotPerfect": 9,
+      "outNotPerfect": 5
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "DEAD Tube ～デッドチューブ～ :: noVol1",
+        "グレイプニル :: noVol1",
+        "さんかれあ :: noVol1",
+        "今まで一度も女扱いされたことがない女騎士を女扱いする漫画 :: noVol1",
+        "化物語 :: noVol1",
+        "君と綴るうたかた :: noVol1",
+        "日々蝶々 :: noVol1",
+        "月が導く異世界道中 :: noVol1",
+        "魔男のイチ :: noVol1"
+      ],
+      "outNotPerfect": [
+        "DEAD Tube ～デッドチューブ～ :: tags_missing_en(remain=2)",
+        "グレイプニル :: magazine,magazines[]",
+        "今まで一度も女扱いされたことがない女騎士を女扱いする漫画 :: tagsJa[]",
+        "日々蝶々 :: magazine,magazines[]",
+        "月が導く異世界道中 :: magazine,magazines[]"
+      ]
+    },
     "notPerfectSummary": {
-      "notPerfectTotal": 0,
-      "seriesKeys": [],
-      "topReasons": [],
+      "notPerfectTotal": 5,
+      "seriesKeys": [
+        "DEAD Tube ～デッドチューブ～",
+        "グレイプニル",
+        "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
+        "日々蝶々",
+        "月が導く異世界道中"
+      ],
+      "topReasons": [
+        {
+          "reason": "magazine",
+          "n": 3,
+          "samples": [
+            "グレイプニル",
+            "日々蝶々",
+            "月が導く異世界道中"
+          ]
+        },
+        {
+          "reason": "magazines[]",
+          "n": 3,
+          "samples": [
+            "グレイプニル",
+            "日々蝶々",
+            "月が導く異世界道中"
+          ]
+        },
+        {
+          "reason": "tags_missing_en(remain=2)",
+          "n": 1,
+          "samples": [
+            "DEAD Tube ～デッドチューブ～"
+          ]
+        },
+        {
+          "reason": "tagsJa[]",
+          "n": 1,
+          "samples": [
+            "今まで一度も女扱いされたことがない女騎士を女扱いする漫画"
+          ]
+        }
+      ],
       "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 0,
+      "chunks": 1,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 9
     }
   }
 }

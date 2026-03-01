@@ -1,8 +1,243 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 45,
+  "count": 51,
   "items": [
+    {
+      "seriesKey": "暗殺教室",
+      "title": "暗殺教室 1 (ジャンプコミックス)",
+      "author": "松井 優征",
+      "publisher": "集英社",
+      "releaseDate": "2012-11-02T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/3133pCbjg7L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088705963",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088705963?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088705965",
+      "asin": "4088705963",
+      "synopsis": "月の7割を破壊した超生物が3年E組の担任“殺せんせー”となり、生徒に自分を暗殺させる契約を結ぶ。暗殺対象でありながらも教育熱心な教師と、生徒たちの成長と葛藤を描く異色の学園バトルコメディ。",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Sci-Fi",
+        "Supernatural"
+      ],
+      "tags": [
+        "教師",
+        "暗殺者",
+        "学園",
+        "子どもが中心",
+        "少年向け",
+        "風刺",
+        "哲学",
+        "オタク文化",
+        "宇宙人"
+      ],
+      "meta": {
+        "anilistId": 69883,
+        "wikiTitle": "暗殺教室",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
+      "title": "月刊少女野崎くん(1) (ガンガンコミックスONLINE)",
+      "author": "椿 いづみ",
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2012-04-20T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51uP0o5v6FL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/475753566X",
+      "amazonDp": "https://www.amazon.co.jp/dp/475753566X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784757535664",
+      "asin": "475753566X",
+      "synopsis": "片思いの相手・野崎梅太郎に告白しようとした高校生の佐倉千代は、なぜか彼の漫画のアシスタントになってしまう。堅物な少女漫画家男子と天然系女子が織りなすハイテンションコメディ。",
+      "magazine": "ガンガンONLINE",
+      "magazines": [
+        "ガンガンONLINE"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "絵・作画",
+        "パロディ",
+        "4コマ",
+        "仕事",
+        "学園",
+        "オタク文化",
+        "片思い",
+        "ボーイッシュ",
+        "ツンデレ",
+        "部活",
+        "少年向け",
+        "教育",
+        "バイセクシュアル",
+        "大学"
+      ],
+      "meta": {
+        "anilistId": 59211,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "未来日記",
+      "title": "未来日記 (1) (角川コミックス・エース 129-5)",
+      "author": "えすの サカエ",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2006-07-21T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51dPBHspDfL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047138398",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047138398?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784047138391",
+      "asin": "4047138398",
+      "synopsis": "孤独な中学生・天野雪輝の携帯日記が、未来の出来事を記す“未来日記”へ変わる。神の後継を決める生存ゲームに巻き込まれた彼は、同じ能力者たちとの駆け引きと殺意の中で生き残りを迫られる。",
+      "magazine": "月刊少年エース",
+      "magazines": [
+        "月刊少年エース"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Mystery",
+        "Psychological",
+        "Supernatural",
+        "Thriller"
+      ],
+      "tags": [
+        "バトルロイヤル",
+        "ヤンデレ",
+        "少年向け",
+        "デスゲーム",
+        "サバイバル",
+        "神々",
+        "スケルトン",
+        "探偵",
+        "孤児",
+        "現代ファンタジー",
+        "犯罪",
+        "カルト",
+        "障害",
+        "バイセクシュアル",
+        "都会"
+      ],
+      "meta": {
+        "anilistId": 30584,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "東京卍リベンジャーズ",
+      "title": "東京卍リベンジャーズ(1) (少年マガジンコミックス)",
+      "author": "和久井 健",
+      "publisher": "講談社",
+      "releaseDate": "2017-05-17T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51+e8gWs-3L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/東京卍リベンジャーズ-1-講談社コミックス-和久井-健/dp/4063959384/ref=monarch_sidesheet",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063959384?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063959383",
+      "asin": "4063959384",
+      "synopsis": "冴えないフリーターの武道は、元恋人の死をきっかけに12年前へタイムリープする。彼女を救うため、逃げ続けた自分を変えるため、最凶集団“東京卍會”に挑む人生リベンジが始まる。",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Drama",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "不良",
+        "ギャング",
+        "陰謀",
+        "復讐",
+        "犯罪",
+        "少年向け",
+        "年齢退行",
+        "都会",
+        "バイク",
+        "三角関係",
+        "スパイ",
+        "原付",
+        "学園",
+        "養子縁組",
+        "銃"
+      ],
+      "meta": {
+        "anilistId": 102988,
+        "wikiTitle": "東京卍リベンジャーズ",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "title": "東京喰種 トーキョーグール 1",
+      "author": "石田 スイ",
+      "publisher": "集英社",
+      "releaseDate": "2012-02-17T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51U3pSE0+NL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/東京喰種-トーキョーグール-ヤングジャンプコミックス-石田-スイ/dp/4088792726",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088792726?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088792729",
+      "asin": "4088792726",
+      "synopsis": "人を喰らう存在“喰種”が潜む東京で、平凡な青年カネキは運命的な出会いを機に日常を失う。人と喰種の狭間で葛藤しながら、生き方を探していく。",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Horror",
+        "Mystery",
+        "Psychological",
+        "Supernatural"
+      ],
+      "tags": [
+        "現代ファンタジー",
+        "青年向け",
+        "サバイバル",
+        "ディストピア",
+        "哲学",
+        "成長譚",
+        "変身能力",
+        "警察",
+        "クーデレ",
+        "コズミックホラー",
+        "キメラ",
+        "双子",
+        "神話",
+        "悪魔"
+      ],
+      "meta": {
+        "anilistId": 63327,
+        "wikiTitle": "東京喰種トーキョーグール",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
     {
       "seriesKey": "東京喰種-トーキョーグール-:re",
       "title": "東京喰種 トーキョーグール : re 1",
@@ -2046,6 +2281,51 @@
         "anilistId": 85435,
         "wikiTitle": "魔法使いの嫁",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "魔男のイチ",
+      "title": "魔男のイチ 1 (ジャンプコミックス)",
+      "author": "宇佐崎 しろ",
+      "publisher": "集英社",
+      "releaseDate": "2025-01-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51WD287PgpL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088844025",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088844025?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088844022",
+      "asin": "4088844025",
+      "synopsis": "“魔男”が存在する世界で、少年イチはあるきっかけから魔法と関わり、否応なく争いと任務の渦へ踏み込んでいく。自分の力と立場が定まらないまま、それでも前に進もうとする異色の魔法バトル。",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "魔法",
+        "魔女",
+        "疑似家族",
+        "少年向け",
+        "悪魔",
+        "女系社会",
+        "擬人化",
+        "変身",
+        "日焼け肌",
+        "コズミックホラー",
+        "妊娠"
+      ],
+      "meta": {
+        "anilistId": 180752,
+        "wikiTitle": "魔男のイチ",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
     {

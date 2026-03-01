@@ -1,9 +1,13 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T05:27:58.874Z",
-  "total": 245,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-03-01T11:21:52.071Z",
+  "total": 251,
+  "droppedTotal": 3,
+  "droppedSeriesKeys": [
+    "グレイプニル",
+    "日々蝶々",
+    "月が導く異世界道中"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -12,7 +16,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 45
+      "count": 51
     }
   ],
   "lookup": {
@@ -23,6 +27,7 @@
     "3月のライオン": 0,
     "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-": 0,
     "BTOOOM!-ブトゥーム": 0,
+    "DEAD Tube ～デッドチューブ～": 0,
     "NARUTO -ナルト-": 0,
     "orange [オレンジ]": 0,
     "PSYЯEN -サイレン-": 0,
@@ -70,6 +75,7 @@
     "ささやくように恋を唄う": 0,
     "さびしすぎてレズ風俗に行きましたレポ": 0,
     "サマータイムレンダ": 0,
+    "さんかれあ": 0,
     "サンケンロック": 0,
     "しまなみ誰そ彼": 0,
     "ジャガーン": 0,
@@ -162,16 +168,19 @@
     "乙嫁語り": 0,
     "五等分の花嫁": 0,
     "亜人": 0,
+    "今まで一度も女扱いされたことがない女騎士を女扱いする漫画": 0,
     "今際の国のアリス": 0,
     "会長はメイド様！": 0,
     "僕だけがいない街": 0,
     "僕のヒーローアカデミア": 0,
     "僕の心のヤバイやつ": 0,
     "光が死んだ夏": 0,
+    "化物語": 0,
     "十字架のろくにん": 0,
     "双星の陰陽師": 0,
     "古見さんは、コミュ症です。": 0,
     "可愛いだけじゃない式守さん": 0,
+    "君と綴るうたかた": 0,
     "君に届け": 0,
     "君のことが大大大大大好きな100人の彼女": 0,
     "君の膵臓をたべたい": 0,
@@ -211,11 +220,11 @@
     "文豪ストレイドッグス": 0,
     "新世紀エヴァンゲリオン": 0,
     "暁のヨナ": 0,
-    "暗殺教室": 0,
-    "月刊少女野崎くん": 0,
-    "未来日記": 0,
-    "東京卍リベンジャーズ": 0,
-    "東京喰種 トーキョーグール": 0,
+    "暗殺教室": 1,
+    "月刊少女野崎くん": 1,
+    "未来日記": 1,
+    "東京卍リベンジャーズ": 1,
+    "東京喰種 トーキョーグール": 1,
     "東京喰種-トーキョーグール-:re": 1,
     "桃源暗鬼": 1,
     "桜蘭高校ホスト部": 1,
@@ -258,6 +267,7 @@
     "鬼滅の刃": 1,
     "魔入りました！入間くん": 1,
     "魔法使いの嫁": 1,
+    "魔男のイチ": 1,
     "魔都精兵のスレイブ": 1,
     "黒執事": 1,
     "黒岩メダカに私の可愛いが通じない": 1
@@ -539,6 +549,39 @@
       ],
       "publisher": "新潮社",
       "releaseDate": "2009-10-09T00:00:01Z"
+    },
+    {
+      "seriesKey": "DEAD Tube ～デッドチューブ～",
+      "title": "DEAD Tube ‾デッドチューブ‾(1) (チャンピオンREDコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51d8+sh+hxL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253237118?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253237118",
+      "magazine": "チャンピオンRED",
+      "magazines": [
+        "チャンピオンRED"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Ecchi",
+        "Horror",
+        "Psychological",
+        "Thriller"
+      ],
+      "tags": [
+        "アンチヒーロー",
+        "デスゲーム",
+        "サバイバル",
+        "ヤンデレ",
+        "寝取られ（NTR）",
+        "特撮",
+        "少年向け",
+        "学園",
+        "車"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2015-01-20T00:00:01Z"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -2260,6 +2303,45 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2018-02-02T00:00:01Z"
+    },
+    {
+      "seriesKey": "さんかれあ",
+      "title": "さんかれあ 1 (少年マガジンコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51A4Ga6a42L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063843416?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063843416",
+      "magazine": "別冊少年マガジン",
+      "magazines": [
+        "別冊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Horror",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "ゾンビ",
+        "少年向け",
+        "医療",
+        "記憶喪失",
+        "田舎",
+        "三角関係",
+        "お嬢様",
+        "ボーイッシュ",
+        "動物",
+        "海外",
+        "ドタバタ",
+        "メイド",
+        "巫女",
+        "学園"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2010-07-16T00:00:01Z"
     },
     {
       "seriesKey": "サンケンロック",
@@ -5768,6 +5850,28 @@
       "releaseDate": "2013-03-07T00:00:01Z"
     },
     {
+      "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
+      "title": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画(1) (シリウスコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51vsP89kydL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065142288?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065142288",
+      "magazine": "水曜日のシリウス",
+      "magazines": [
+        "水曜日のシリウス"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Fantasy",
+        "Romance"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2019-01-09T00:00:01Z"
+    },
+    {
       "seriesKey": "今際の国のアリス",
       "title": "今際の国のアリス (1) (少年サンデーコミックス)",
       "image": "https://m.media-amazon.com/images/I/51FYDXonXwS._SL500_.jpg",
@@ -6010,6 +6114,48 @@
       "releaseDate": "2022-03-04T00:00:01Z"
     },
     {
+      "seriesKey": "化物語",
+      "title": "化物語(1) (KCデラックス)",
+      "image": "https://m.media-amazon.com/images/I/51lD7+wEzuL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065116171?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065116171",
+      "magazine": "メフィスト",
+      "magazines": [
+        "メフィスト"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Mystery",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "現代ファンタジー",
+        "妖怪",
+        "吸血鬼",
+        "哲学",
+        "神々",
+        "逆ハーレム",
+        "幽霊",
+        "不条理コメディ",
+        "猫耳",
+        "ボーイッシュ",
+        "三角関係",
+        "多重人格",
+        "少年向け",
+        "モンスター娘",
+        "学園",
+        "年齢退行"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2018-06-15T00:00:01Z"
+    },
+    {
       "seriesKey": "十字架のろくにん",
       "title": "十字架のろくにん(1) (KCデラックス)",
       "image": "https://m.media-amazon.com/images/I/51-x2xfKvkL._SL500_.jpg",
@@ -6146,6 +6292,38 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2019-06-07T00:00:01Z"
+    },
+    {
+      "seriesKey": "君と綴るうたかた",
+      "title": "君と綴るうたかた(1) (百合姫コミックス)",
+      "image": "https://m.media-amazon.com/images/I/51CVwUltFiL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/475802202X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/475802202X",
+      "magazine": "コミック百合姫",
+      "magazines": [
+        "コミック百合姫"
+      ],
+      "audiences": [
+        "女性"
+      ],
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "百合",
+        "執筆",
+        "更生",
+        "障害",
+        "いじめ",
+        "成長譚",
+        "LGBTQテーマ",
+        "偽装恋愛",
+        "学園"
+      ],
+      "publisher": "一迅社",
+      "releaseDate": "2021-01-18T00:00:01Z"
     },
     {
       "seriesKey": "君に届け",
@@ -9449,6 +9627,41 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2024-04-06T00:00:01Z"
+    },
+    {
+      "seriesKey": "魔男のイチ",
+      "title": "魔男のイチ 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51WD287PgpL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088844025?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088844025",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "魔法",
+        "魔女",
+        "疑似家族",
+        "少年向け",
+        "悪魔",
+        "女系社会",
+        "擬人化",
+        "変身",
+        "日焼け肌",
+        "コズミックホラー",
+        "妊娠"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2025-01-04T00:00:01Z"
     },
     {
       "seriesKey": "魔都精兵のスレイブ",
