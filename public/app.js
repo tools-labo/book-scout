@@ -475,8 +475,32 @@ const HOME_CATEGORY_TABS = [
 
 const WEBAPP_AUD_VALUE = "その他"; // 作品データ上の値は固定（表示名だけWeb/アプリにする）
 
+/* =======================
+ * ✅ Audience helpers（複数audiences対応）
+ * - 既存の getFirstAudienceLabel は温存（互換）
+ * ======================= */
+function getAudienceList(it) {
+  return pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
+}
+function hasAudience(it, aud) {
+  const a = toText(aud);
+  if (!a) return true; // ""=全部
+  const list = getAudienceList(it);
+  return list.includes(a);
+}
+// “代表audience” が必要な場面だけ使う（順序ブレ対策）
+const AUD_PRIORITY = ["少年", "青年", "少女", "女性", WEBAPP_AUD_VALUE];
+function pickMainAudience(it) {
+  const list = getAudienceList(it);
+  for (const a of AUD_PRIORITY) {
+    if (list.includes(a)) return a;
+  }
+  return list[0] || WEBAPP_AUD_VALUE;
+}
+
+// ✅ 互換：既存コードが「先頭」を期待している箇所があるので残す
 function getFirstAudienceLabel(it) {
-  const arr = pickArr(it, ["audiences", "vol1.audiences"]).map(toText).filter(Boolean);
+  const arr = getAudienceList(it);
   return arr[0] || WEBAPP_AUD_VALUE;
 }
 
@@ -784,7 +808,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
   // 母集団：allItems を (genreIds + audSelected) で絞ったもの（magは無視）
   const baseForMag = (allItems || [])
     .filter(it => hasAnyGenreByTabIds(it, genreIds))
-    .filter(it => (audSelected ? (getFirstAudienceLabel(it) === audSelected) : true));
+    .filter(it => (audSelected ? hasAudience(it, audSelected) : true));
 
   const magCounts = countByMag(baseForMag, normalizeMag);
   const mags = magsForAudience(audSelected);
@@ -1070,7 +1094,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 
   const base = all
     .filter(it => hasAnyGenreByTabIds(it, genreIds))
-    .filter(it => (audienceWanted ? (getFirstAudienceLabel(it) === audienceWanted) : true))
+    .filter(it => (audienceWanted ? hasAudience(it, audienceWanted) : true))
     .filter(it => hasMagazineNormalized(it, magazineWanted, normalizeMag));
 
   // --- mood filter (絞り込み)
@@ -1306,6 +1330,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 // - ✅ works split(index/shard) 対応維持
 // - ✅ NEW: List sort metrics（人気/急上昇）を読み込み、renderList に渡す
 // - ✅ NEW: Home「一覧を見る」リンクを、選択中タブに合わせて絞り込みリンクへ（既存機能は壊さない）
+// - ✅ FIX: audiences が複数ある作品は該当カテゴリすべてに表示（銀魂対策）
 // 注意：
 // - (1/2) に存在する const/関数名は再宣言しない（const衝突回避）
 // - ここは「足りない関数の補完 + run() + Work機能」を提供
@@ -1479,14 +1504,18 @@ function genreCountMap(allItems) {
   }
   return map;
 }
+
+/* ✅ FIX: 複数audiencesは該当カテゴリすべてにカウント */
 function categoryCountMap(allItems) {
   const map = new Map();
   for (const t of HOME_CATEGORY_TABS) map.set(t.id, 0);
-  for (const it of allItems) {
-    const label = getFirstAudienceLabel(it);
-    const tab = HOME_CATEGORY_TABS.find(x => x.value === label) || HOME_CATEGORY_TABS[HOME_CATEGORY_TABS.length - 1];
-    if (!tab) continue;
-    map.set(tab.id, (map.get(tab.id) || 0) + 1);
+
+  for (const it of (allItems || [])) {
+    for (const t of HOME_CATEGORY_TABS) {
+      if (hasAudience(it, t.value)) {
+        map.set(t.id, (map.get(t.id) || 0) + 1);
+      }
+    }
   }
   return map;
 }
@@ -1637,7 +1666,8 @@ function renderAudienceTabsRow({ items, activeAudId }) {
     </div>
   `;
 
-  const pickedAll = all.filter(it => getFirstAudienceLabel(it) === audValue);
+  /* ✅ FIX: audiences が複数ある作品も該当カテゴリに出す */
+  const pickedAll = all.filter(it => hasAudience(it, audValue));
   const picked = shuffleWithSeed(pickedAll, `aud:${active.id}:${daySeedStr()}`);
 
   const v = qs().get("v");
@@ -2195,8 +2225,9 @@ function pickFirstGenre(it) {
   const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
   return g[0] || "";
 }
+/* ✅ FIX: 順序ブレ対策で “代表audience” を使う */
 function pickFirstAudience(it) {
-  return getFirstAudienceLabel(it) || WEBAPP_AUD_VALUE;
+  return pickMainAudience(it) || WEBAPP_AUD_VALUE;
 }
 function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
   const baseKey = toText(pick(baseIt, ["seriesKey"]));
