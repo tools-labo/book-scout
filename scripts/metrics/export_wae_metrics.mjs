@@ -187,7 +187,11 @@ SELECT
   ${COL.genre} AS genre,
   ${COL.aud} AS aud,
   ${COL.mag} AS mag,
-  if(${COL.type} = 'rate', ${DOUBLE.rating}, NULL) AS rating
+    if(
+    ${COL.type} = 'rate',
+    toNullable(${DOUBLE.rating}),
+    CAST(NULL AS Nullable(Float64))
+  ) AS rating
 FROM ${dataset}
 ORDER BY timestamp DESC
 LIMIT ${Number(limit)}
