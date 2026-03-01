@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T15:00:47.031Z",
-  "updatedAtJst": "2026-03-02 00:00:47",
+  "updatedAt": "2026-03-01T15:35:58.084Z",
+  "updatedAtJst": "2026-03-02 00:35:58",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-01 15:17:23",
+      "timestampJst": "2026-03-02 00:17:23",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 15:00:24",
+      "timestampJst": "2026-03-02 00:00:24",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 15:00:18",
+      "timestampJst": "2026-03-02 00:00:18",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 15:00:14",
+      "timestampJst": "2026-03-02 00:00:14",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-01 15:00:12",
+      "timestampJst": "2026-03-02 00:00:12",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-01 15:00:10",
+      "timestampJst": "2026-03-02 00:00:10",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-01 14:59:56",
+      "timestampJst": "2026-03-01 23:59:56",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "カッコウの許嫁",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-01 14:52:49",
       "timestampJst": "2026-03-01 23:52:49",
@@ -19086,7 +19177,7 @@
     }
   ],
   "raw": {
-    "rows": 1464,
-    "rows_before_limit_at_least": 1464
+    "rows": 1471,
+    "rows_before_limit_at_least": 1471
   }
 }
