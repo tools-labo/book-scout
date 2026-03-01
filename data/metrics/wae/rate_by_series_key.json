@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T07:46:04.791Z",
-  "updatedAtJst": "2026-03-01 16:46:04",
+  "updatedAt": "2026-03-01T08:47:27.150Z",
+  "updatedAtJst": "2026-03-01 17:47:27",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -43,13 +43,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "バガボンド",
+      "seriesKey": "アイシールド21",
       "k": "art",
       "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "バガボンド",
       "k": "art",
       "avg": 5,
       "n": "1"
@@ -79,16 +79,34 @@
       "n": "1"
     },
     {
+      "seriesKey": "ディー・グレイマン",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオハライド",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "葬送のフリーレン",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "監獄学園",
       "k": "art",
-      "avg": 4,
-      "n": "1"
+      "avg": 3.75,
+      "n": "4"
     },
     {
       "seriesKey": "【推しの子】",
@@ -97,10 +115,10 @@
       "n": "3"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "ヴィンランド・サガ",
       "k": "art",
-      "avg": 3.6666666666666665,
-      "n": "3"
+      "avg": 3.25,
+      "n": "4"
     },
     {
       "seriesKey": "3月のライオン",
@@ -109,16 +127,10 @@
       "n": "4"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
-      "k": "art",
-      "avg": 3.25,
-      "n": "4"
-    },
-    {
-      "seriesKey": "その着せ替え人形は恋をする",
+      "seriesKey": "ベルセルク",
       "k": "art",
       "avg": 3,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "からかい上手の高木さん",
@@ -127,13 +139,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "カッコウの許嫁",
-      "k": "art",
-      "avg": 3,
-      "n": "2"
-    },
-    {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "2"
@@ -145,37 +151,43 @@
       "n": "2"
     },
     {
+      "seriesKey": "政宗くんのリベンジ",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ニセコイ",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "カッコウの許嫁",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "アイアムアヒーロー",
       "k": "art",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ガチアクタ",
       "k": "art",
       "avg": 3,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "宝石の国",
+      "seriesKey": "ソウルイーター",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -187,79 +199,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "少年のアビス",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "不滅のあなたへ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "たいようのいえ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ぼくたちは勉強ができない",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京喰種 トーキョーグール",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "タコピーの原罪",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "銀魂",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "20世紀少年",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ニセコイ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "黒執事",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔入りました！入間くん",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "五等分の花嫁",
+      "seriesKey": "君に届け",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -271,13 +217,121 @@
       "n": "1"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "神のみぞ知るセカイ",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "亜人",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぼくたちは勉強ができない",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "たいようのいえ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "フルーツバスケット",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "あせとせっけん",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "五等分の花嫁",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "とつくにの少女",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヲタクに恋は難しい",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドメスティックな彼女",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "この音とまれ！",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "不滅のあなたへ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひるなかの流星",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ラストゲーム",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -289,19 +343,67 @@
       "n": "1"
     },
     {
+      "seriesKey": "魔入りました！入間くん",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "七つの大罪",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "約束のネバーランド",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "20世紀少年",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "イジらないで、長瀞さん",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "神様はじめました",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "チェンソーマン",
       "k": "art",
       "avg": 2.5,
       "n": "2"
     },
     {
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ReLIFE",
       "k": "art",
       "avg": 2.5,
       "n": "2"
@@ -313,7 +415,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
       "k": "art",
       "avg": 2,
       "n": "1"
@@ -331,7 +433,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドロヘドロ",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
       "seriesKey": "おやすみプンプン",
+      "k": "art",
+      "avg": 1,
+      "n": "1"
+    },
+    {
+      "seriesKey": "道産子ギャルはなまらめんこい",
       "k": "art",
       "avg": 1,
       "n": "1"
@@ -349,13 +463,13 @@
       "n": "4"
     },
     {
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "アイシールド21",
       "k": "rec",
       "avg": 5,
-      "n": "1"
+      "n": "2"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "葬送のフリーレン",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -373,6 +487,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "ベルセルク",
+      "k": "rec",
+      "avg": 4.333333333333333,
+      "n": "3"
+    },
+    {
       "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
       "avg": 4.25,
@@ -385,13 +505,13 @@
       "n": "4"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "監獄学園",
       "k": "rec",
       "avg": 4,
-      "n": "3"
+      "n": "4"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
       "n": "3"
@@ -403,25 +523,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "ベルセルク",
-      "k": "rec",
-      "avg": 4,
-      "n": "2"
-    },
-    {
       "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "2"
     },
     {
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ディー・グレイマン",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "フルーツバスケット",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -433,25 +547,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "バガボンド",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソウルイーター",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "亜人",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -463,7 +559,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "血の轍",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "君に届け",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -475,7 +577,43 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドロヘドロ",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "バガボンド",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "七つの大罪",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -487,19 +625,43 @@
       "n": "2"
     },
     {
-      "seriesKey": "乙嫁語り",
-      "k": "rec",
-      "avg": 3.5,
-      "n": "2"
-    },
-    {
       "seriesKey": "からかい上手の高木さん",
       "k": "rec",
       "avg": 3.5,
       "n": "2"
     },
     {
+      "seriesKey": "乙嫁語り",
+      "k": "rec",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ReLIFE",
+      "k": "rec",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "トモちゃんは女の子!",
+      "k": "rec",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "ありふれた職業で世界最強",
+      "k": "rec",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "政宗くんのリベンジ",
+      "k": "rec",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ニセコイ",
       "k": "rec",
       "avg": 3,
       "n": "2"
@@ -523,79 +685,13 @@
       "n": "2"
     },
     {
-      "seriesKey": "約束のネバーランド",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "五等分の花嫁",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "政宗くんのリベンジ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京喰種 トーキョーグール",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヴァニタスの手記",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ニセコイ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔入りました！入間くん",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "彼女、お借りします",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヲタクに恋は難しい",
+      "seriesKey": "神様はじめました",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -607,13 +703,55 @@
       "n": "1"
     },
     {
+      "seriesKey": "この音とまれ！",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "不滅のあなたへ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "約束のネバーランド",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "イジらないで、長瀞さん",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "とつくにの少女",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオハライド",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -625,7 +763,91 @@
       "n": "1"
     },
     {
+      "seriesKey": "マギ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "たいようのいえ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ラストゲーム",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴァニタスの手記",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔入りました！入間くん",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドメスティックな彼女",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "少年のアビス",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヲタクに恋は難しい",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "神のみぞ知るセカイ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "五等分の花嫁",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぼくたちは勉強ができない",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "あせとせっけん",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひるなかの流星",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -641,10 +863,16 @@
       "k": "rec",
       "avg": 2,
       "n": "1"
+    },
+    {
+      "seriesKey": "道産子ギャルはなまらめんこい",
+      "k": "rec",
+      "avg": 2,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 103,
-    "rows_before_limit_at_least": 174
+    "rows": 141,
+    "rows_before_limit_at_least": 226
   }
 }
