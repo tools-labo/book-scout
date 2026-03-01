@@ -10811,7 +10811,17 @@
         "tags_en": [
           "Female Protagonist"
         ],
-        "tags": [],
+        "tags": [
+          "女性主人公",
+          "恋愛",
+          "コメディ",
+          "女騎士",
+          "騎士団",
+          "魔法使い",
+          "冒険",
+          "パーティ",
+          "告白"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
