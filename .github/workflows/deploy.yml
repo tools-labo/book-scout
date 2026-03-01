@@ -8,6 +8,8 @@ on:
       - "Lane2 - Confirm Vol1 (NDL + Amazon PA-API)"
     types:
       - completed
+  push:
+    branches: [main]
 
 permissions:
   contents: read
