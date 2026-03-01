@@ -1203,3 +1203,20 @@ body.sheet-open{
     align-items: start;
   }
 }
+/* =======================
+ * Screenshot / Print: force render
+ * ======================= */
+@media print {
+  .card, .rank-item, .detail {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+  }
+}
+
+/* 手動でURLに ?ss=1 を付けた時も強制描画（スクショ用） */
+html[data-ss="1"] .card,
+html[data-ss="1"] .rank-item,
+html[data-ss="1"] .detail{
+  content-visibility: visible !important;
+  contain-intrinsic-size: auto !important;
+}
