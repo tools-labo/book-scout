@@ -43,12 +43,9 @@ const DOUBLE = {
 };
 
 // ✅ 急上昇（ノイズの無い期間だけ）
-// ユーザー指定：UTC 2026-02-27 00:00:00 以降
-// Cloudflare AE(SQL) は DateTime と String をそのまま比較できないので DateTime にキャストする
 const RISING_SINCE_UTC = "toDateTime('2026-02-27 00:00:00', 'UTC')";
 
-// ✅ JST 表示：Cloudflare側で timezone 変換関数が使えない環境があるため、+9h で固定
-// 文字列化は formatDateTime を使う（%M=月名になり得るので「分」は %i を使う）
+// ✅ JST 表示：+9h 固定
 const JST_OFFSET_EXPR = "timestamp + INTERVAL '9' HOUR";
 const JST_FMT = "%Y-%m-%d %H:%i:%S";
 
@@ -61,10 +58,8 @@ function pad2(n) {
 }
 
 function toJstStringFromIso(iso) {
-  // iso は "2026-02-28T00:43:05.199Z" の想定
   const d = new Date(iso);
   if (!Number.isFinite(d.getTime())) return "";
-  // UTC基準で +9h
   const t = new Date(d.getTime() + 9 * 60 * 60 * 1000);
   const y = t.getUTCFullYear();
   const m = pad2(t.getUTCMonth() + 1);
@@ -104,7 +99,6 @@ async function cfSql({ accountId, token, sql }) {
     throw new Error(`Cloudflare API HTTP ${r.status}: ${text.slice(0, 800)}`);
   }
 
-  // A) wrapper あり
   if (typeof json?.success === "boolean") {
     if (!json.success) {
       throw new Error(`Cloudflare API success=false: ${text.slice(0, 800)}`);
@@ -112,7 +106,6 @@ async function cfSql({ accountId, token, sql }) {
     return json.result ?? {};
   }
 
-  // B) wrapper なし
   if (json && (Array.isArray(json.meta) || Array.isArray(json.data))) {
     return json;
   }
@@ -120,11 +113,9 @@ async function cfSql({ accountId, token, sql }) {
   throw new Error(`Cloudflare API unknown response: ${text.slice(0, 800)}`);
 }
 
-// sampling を考慮したカウント（SELECT用：alias付き）
 function sumCountExpr() {
   return "SUM(_sample_interval) AS n";
 }
-// HAVING など alias を書けない場所用
 function sumCountRawExpr() {
   return "SUM(_sample_interval)";
 }
@@ -171,9 +162,11 @@ ORDER BY n DESC
 `;
 }
 
-// ✅ 互換維持のため id は "recent_200" のまま、件数だけ増やす
-// ✅ JSTは +9h して文字列化（分は %i）
-// ✅ FIX: IF の型制約（2nd/3rd同型）を満たすため、else は toFloat64(0)
+// ✅ recent_200 の id 互換維持（件数だけ 5000）
+// ✅ JSTを別カラムで付与
+// ✅ rating は rate の時だけ double1 を出す（それ以外は NaN）
+//    - IF の型制約（2nd/3rd 同型）を満たす：Double / Double
+//    - NaN は JSON.stringify で null になるため、非 rate 行が 1 に見える問題を潰せる
 function qRecent(dataset, limit = 5000) {
   return `
 SELECT
@@ -187,7 +180,11 @@ SELECT
   ${COL.genre} AS genre,
   ${COL.aud} AS aud,
   ${COL.mag} AS mag,
-  if(${COL.type} = 'rate', ${DOUBLE.rating}, toFloat64(0)) AS rating
+  if(
+    ${COL.type} = 'rate',
+    ${DOUBLE.rating},
+    (0.0 / 0.0)
+  ) AS rating
 FROM ${dataset}
 ORDER BY timestamp DESC
 LIMIT ${Number(limit)}
@@ -239,7 +236,6 @@ ORDER BY n DESC
 `;
 }
 
-// mood別 × 作品別（トップ3表示用）
 function qVotesByMoodSeries(dataset, days = 30, allowedMoodIds = []) {
   return `
 SELECT
@@ -257,7 +253,6 @@ ORDER BY mood ASC, n DESC
 `;
 }
 
-// お気に入り（シリーズ別）
 function qFavoritesBySeries(dataset, days = 30) {
   return `
 SELECT
@@ -289,10 +284,7 @@ ORDER BY n DESC
 }
 
 /* =======================
- * Rate queries (おすすめ度/作画クオリティ)
- * - type='rate'
- * - blob5(mood) = k ('rec' | 'art')
- * - double1 = rating (1..5)
+ * Rate queries
  * ======================= */
 function whereRateCommon() {
   return `
@@ -304,7 +296,6 @@ function whereRateCommon() {
 `;
 }
 
-// series × k で平均★と件数
 function qRateBySeriesKey(dataset, days = 30) {
   return `
 SELECT
@@ -320,7 +311,6 @@ ORDER BY k ASC, avg DESC, n DESC
 `;
 }
 
-// k ごとの平均★（全体）
 function qRateByKey(dataset, days = 30) {
   return `
 SELECT
@@ -335,9 +325,8 @@ ORDER BY avg DESC, n DESC
 `;
 }
 
-// k=rec のランキング（平均★、同率は件数）
 function qRateRecTop(dataset, days = 30, limit = 200) {
-  const minN = 1; // 後で上げてもOK
+  const minN = 1;
   return `
 SELECT
   ${COL.seriesKey} AS seriesKey,
@@ -354,7 +343,6 @@ LIMIT ${Number(limit)}
 `;
 }
 
-// k=art のランキング（平均★、同率は件数）
 function qRateArtTop(dataset, days = 30, limit = 200) {
   const minN = 1;
   return `
@@ -374,9 +362,7 @@ LIMIT ${Number(limit)}
 }
 
 /* =======================
- * Rising (急上昇) - ノイズ除外
- * - schema=v2 のみ
- * - timestamp >= 2026-02-27 00:00:00 UTC
+ * Rising (急上昇)
  * ======================= */
 function qRisingWorkViewsSince(dataset, limit = 5000) {
   return `
@@ -410,31 +396,21 @@ async function main() {
   const nowIso = new Date().toISOString();
   const nowJst = toJstStringFromIso(nowIso);
 
-  // ✅ 全JSONに JSTメタを入れる（表示はフロント都合で変えられる）
   const meta = { version: 1, updatedAt: nowIso, updatedAtJst: nowJst, dataset, days };
 
   const queries = [
     { id: "type_counts", sql: qTypeCounts(dataset, days) },
-
-    // ✅ idは維持（他の場所に波及させない）
     { id: "recent_200", sql: qRecent(dataset, 5000) },
-
     { id: "work_view_by_series", sql: qWorkViewsBySeries(dataset, days) },
-
     { id: "vote_by_series", sql: qVotesBySeries(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood", sql: qVotesByMood(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood_series", sql: qVotesByMoodSeries(dataset, days, allowedMoodIds) },
-
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
-
-    // rate
     { id: "rate_by_series_key", sql: qRateBySeriesKey(dataset, days) },
     { id: "rate_by_key", sql: qRateByKey(dataset, days) },
     { id: "rate_rec_top", sql: qRateRecTop(dataset, days, 200) },
     { id: "rate_art_top", sql: qRateArtTop(dataset, days, 200) },
-
-    // ✅ 急上昇（新しい正しいデータだけ）
     { id: "rising_work_view_since_20260227", sql: qRisingWorkViewsSince(dataset, 5000) },
   ];
 
