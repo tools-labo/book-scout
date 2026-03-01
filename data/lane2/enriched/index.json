@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T03:31:30.747Z",
+  "updatedAt": "2026-03-01T05:07:36.269Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -264,17 +264,32 @@
     "total": 245,
     "ok": 245,
     "ng": 0,
-    "skippedPerfect": 245,
+    "skippedPerfect": 45,
     "skippedAniList": 0,
-    "skippedWiki": 0,
+    "skippedWiki": 74,
     "skippedAmazon": 0,
-    "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 0,
+    "fetchedAmazonAsins": 200,
+    "magAudienceTodoAdded": 7,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 0,
+      "prevNotPerfect": 200,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {},
+    "perfectNotMetSamples": {
+      "prevNotPerfect": [
+        "【推しの子】 :: noVol1",
+        "×××ホリック :: noVol1",
+        "20世紀少年 :: noVol1",
+        "21世紀少年 :: noVol1",
+        "3月のライオン :: noVol1",
+        "BORUTO-ボルト- -NARUTO NEXT GENERATIONS- :: noVol1",
+        "BTOOOM!-ブトゥーム :: noVol1",
+        "NARUTO -ナルト- :: noVol1",
+        "orange [オレンジ] :: noVol1",
+        "PSYЯEN -サイレン- :: noVol1",
+        "Re:ゼロから始める異世界生活 :: noVol1",
+        "ReLIFE :: noVol1"
+      ]
+    },
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],

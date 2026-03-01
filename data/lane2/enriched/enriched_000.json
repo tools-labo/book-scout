@@ -23,8 +23,8 @@
           "少年ジャンプ+"
         ],
         "audiences": [
-          "その他",
-          "青年"
+          "青年",
+          "その他"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "【推しの子】",
@@ -70,9 +70,7 @@
           "アイドル",
           "演技",
           "青年向け",
-          "男性主人公",
           "双子",
-          "女性主人公",
           "探偵",
           "仕事",
           "現代ファンタジー",
@@ -80,21 +78,17 @@
           "逆ハーレム",
           "三角関係",
           "アンチヒーロー",
-          "異性愛",
-          "ティーン中心",
           "いじめ",
-          "電波系",
           "都会",
           "教育",
           "ツンデレ",
-          "女性中心",
           "映画制作",
           "妊娠",
           "VTuber",
           "コスプレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -236,7 +230,6 @@
         ],
         "tags": [
           "成長譚",
-          "群像劇",
           "政治",
           "青年向け",
           "時系列シャッフル",
@@ -247,25 +240,22 @@
           "疑似家族",
           "パンデミック",
           "終末後",
-          "男性主人公",
           "探偵",
           "哲学",
           "コズミックホラー",
           "多重人格",
           "ミュージカル",
           "歴史",
-          "女性主人公",
           "拡張現実（AR）",
           "警察",
           "ロボット",
-          "かわいい男子の日常",
           "ロック",
           "トランスジェンダー",
           "海外",
           "ホームレス"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -321,7 +311,7 @@
           "拡張現実（AR）"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -387,7 +377,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -406,8 +396,7 @@
         "releaseDate": "2016-08-04T00:00:01Z",
         "magazine": "週刊少年ジャンプ Vジャンプ",
         "magazines": [
-          "週刊少年ジャンプ",
-          "Vジャンプ"
+          "週刊少年ジャンプ Vジャンプ"
         ],
         "audiences": [
           "少年"
@@ -442,7 +431,6 @@
           "忍者",
           "神々",
           "超能力",
-          "男性主人公",
           "宇宙人",
           "子どもが中心",
           "サイボーグ",
@@ -455,7 +443,7 @@
           "孤児"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -584,7 +572,6 @@
           "復讐",
           "疑似家族",
           "超能力",
-          "男性主人公",
           "武術",
           "戦争",
           "孤児",
@@ -594,9 +581,7 @@
           "哲学",
           "魔法",
           "変身",
-          "時代錯誤",
           "動物",
-          "異性愛",
           "旅",
           "三角関係",
           "悪魔",
@@ -604,7 +589,7 @@
           "宇宙人"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -660,7 +645,7 @@
           "演技"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -816,7 +801,7 @@
           "女装・男装"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -885,7 +870,7 @@
           "バレーボール"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -950,7 +935,7 @@
           "オタク文化"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1098,20 +1083,16 @@
         "tags": [
           "部活",
           "陸上競技",
-          "ティーン中心",
           "学園",
-          "異性愛",
           "成長譚",
-          "男性主人公",
           "バドミントン",
           "三角関係",
-          "女性主人公",
           "バスケットボール",
           "少年向け",
           "同棲"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1161,9 +1142,6 @@
           "少女",
           "学園",
           "三角関係",
-          "異性愛",
-          "女性主人公",
-          "ティーン中心",
           "片思い",
           "ボーイッシュ",
           "成長譚",
@@ -1171,7 +1149,7 @@
           "ツンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1315,7 +1293,7 @@
           "トランスジェンダー"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1370,7 +1348,7 @@
           "双子"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1497,7 +1475,7 @@
           "戦争"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1557,7 +1535,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1775,7 +1753,7 @@
           "ボクシング"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1847,7 +1825,7 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1911,7 +1889,7 @@
           "いじめ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -1985,7 +1963,7 @@
           "教育"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2053,12 +2031,10 @@
           "歴史",
           "スチームパンク",
           "医療",
-          "大人中心",
           "バイセクシュアル",
           "陰謀",
           "少年向け",
           "アンチヒーロー",
-          "男性主人公",
           "復讐",
           "宗教",
           "海外",
@@ -2067,9 +2043,7 @@
           "LGBTQテーマ",
           "哲学",
           "現代ファンタジー",
-          "群像劇",
           "記憶喪失",
-          "時代錯誤",
           "ボーイズラブ",
           "探偵",
           "暗殺者",
@@ -2077,7 +2051,7 @@
           "演技"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2213,14 +2187,11 @@
           "成長譚",
           "海外",
           "哲学",
-          "男性主人公",
           "青年向け",
           "戦争",
           "復讐",
           "旅",
           "疑似家族",
-          "男性中心",
-          "大人中心",
           "奴隷",
           "剣術",
           "政治",
@@ -2238,7 +2209,7 @@
           "時系列シャッフル"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2311,7 +2282,7 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2371,7 +2342,7 @@
           "自伝（作者体験）"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2444,7 +2415,7 @@
           "宗教"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -2527,7 +2498,7 @@
           "女装・男装"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2586,7 +2557,6 @@
           "現代ファンタジー",
           "少年向け",
           "復讐",
-          "男性主人公",
           "犯罪組織",
           "魔法",
           "陰謀",
@@ -2602,7 +2572,7 @@
           "花魁"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2656,9 +2626,7 @@
           "Guns"
         ],
         "tags": [
-          "群像劇",
           "少年向け",
-          "男性主人公",
           "終末後",
           "復讐",
           "超能力",
@@ -2669,14 +2637,13 @@
           "暗殺者",
           "都会",
           "神々",
-          "男性中心",
           "養子縁組",
           "三角関係",
           "コズミックホラー",
           "銃"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2828,7 +2795,7 @@
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -2894,7 +2861,7 @@
           "ツンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3034,7 +3001,7 @@
           "魔法"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3156,18 +3123,14 @@
         "tags": [
           "ドタバタ",
           "不条理コメディ",
-          "男性主人公",
           "大学",
           "青年向け",
-          "大人中心",
           "海辺",
           "バー",
           "スキューバダイビング",
           "三角関係",
-          "異性愛",
           "オタク文化",
           "クーデレ",
-          "メタ",
           "逆ハーレム",
           "ツンデレ",
           "バイセクシュアル",
@@ -3176,7 +3139,7 @@
           "LGBTQテーマ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3237,7 +3200,7 @@
           "歴史"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3310,17 +3273,13 @@
           "先住民文化",
           "青年向け",
           "政治",
-          "群像劇",
           "不条理コメディ",
           "教育",
           "旅",
           "グルメ",
           "疑似家族",
-          "男性中心",
-          "大人中心",
           "サバイバル",
           "銃",
-          "かわいい男子の日常",
           "男性ハーレム",
           "復讐",
           "言語の壁",
@@ -3334,7 +3293,7 @@
           "動物"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3466,7 +3425,7 @@
           "修道女"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3532,7 +3491,7 @@
           "バー"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3663,7 +3622,7 @@
           "フルカラー"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3814,7 +3773,7 @@
           "グルメ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3838,8 +3797,8 @@
           "マンガワン"
         ],
         "audiences": [
-          "その他",
-          "青年"
+          "青年",
+          "その他"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "しまなみ誰そ彼",
@@ -3874,9 +3833,7 @@
           "成長譚",
           "疑似家族",
           "青年向け",
-          "男性主人公",
           "いじめ",
-          "群像劇",
           "トランスジェンダー",
           "女装・男装",
           "無性別",
@@ -3885,11 +3842,10 @@
           "ボーイズラブ",
           "更生",
           "恋愛志向なし",
-          "ティーン中心",
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -3962,8 +3918,6 @@
           "アンチヒーロー",
           "モンスター男子",
           "哲学",
-          "大人中心",
-          "男性主人公",
           "復讐",
           "ディストピア",
           "終末後",
@@ -3973,7 +3927,6 @@
           "陰謀",
           "コズミックホラー",
           "多重人格",
-          "異性愛",
           "いじめ",
           "性転換",
           "神話",
@@ -3982,7 +3935,7 @@
           "デスゲーム"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4129,7 +4082,7 @@
           "アセクシュアル"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4191,7 +4144,6 @@
           "青年向け",
           "記憶喪失",
           "陰謀",
-          "男性主人公",
           "現代ファンタジー",
           "家族もの",
           "農業",
@@ -4204,7 +4156,7 @@
           "呪い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4276,19 +4228,15 @@
           "旅",
           "カウボーイ",
           "超能力",
-          "男性主人公",
           "青年向け",
           "陰謀",
-          "大人中心",
           "障害",
           "海外",
           "環境問題",
           "哲学",
-          "群像劇",
           "歴史",
           "アウトドア",
           "女装・男装",
-          "男性中心",
           "銃",
           "砂漠",
           "成長譚",
@@ -4301,7 +4249,7 @@
           "ギャンブル"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4320,8 +4268,7 @@
         "releaseDate": "2000-05-01T00:00:01Z",
         "magazine": "週刊少年ジャンプ ウルトラジャンプ",
         "magazines": [
-          "週刊少年ジャンプ",
-          "ウルトラジャンプ"
+          "週刊少年ジャンプ ウルトラジャンプ"
         ],
         "audiences": [
           "少年",
@@ -4359,15 +4306,12 @@
         ],
         "tags": [
           "超能力",
-          "女性主人公",
           "監獄",
           "現代ファンタジー",
           "記憶操作",
           "海外",
           "犯罪",
-          "女性中心",
           "少年向け",
-          "群像劇",
           "哲学",
           "LGBTQテーマ",
           "宗教",
@@ -4377,7 +4321,7 @@
           "障害"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4427,15 +4371,12 @@
           "超能力",
           "現代ファンタジー",
           "少年向け",
-          "群像劇",
-          "男性中心",
-          "男性主人公",
           "不良",
           "学園",
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4495,7 +4436,7 @@
           "ラグビー"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4547,7 +4488,6 @@
         "tags": [
           "超能力",
           "少年向け",
-          "男性主人公",
           "海外",
           "修行",
           "吸血鬼",
@@ -4560,7 +4500,7 @@
           "サイボーグ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4619,9 +4559,7 @@
           "海外",
           "少年向け",
           "旅",
-          "群像劇",
           "銃",
-          "男性中心",
           "多重人格",
           "現代ファンタジー",
           "LGBTQテーマ",
@@ -4629,7 +4567,7 @@
           "カップリング"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4687,13 +4625,10 @@
         "tags": [
           "超能力",
           "少年向け",
-          "男性主人公",
           "海外",
-          "男性中心",
           "旅",
           "現代ファンタジー",
           "吸血鬼",
-          "群像劇",
           "不良",
           "砂漠",
           "復讐",
@@ -4706,7 +4641,7 @@
           "片思い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4761,7 +4696,7 @@
           "オフィス"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4822,7 +4757,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4889,15 +4824,12 @@
           "Space"
         ],
         "tags": [
-          "群像劇",
           "魔法",
           "変身",
           "少年向け",
           "超能力",
-          "女性主人公",
           "神々",
           "銃",
-          "男性主人公",
           "変身能力",
           "魔女",
           "学園",
@@ -4914,12 +4846,11 @@
           "ゾンビ",
           "狼男",
           "都会",
-          "異性愛",
           "武術",
           "宇宙"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -4976,23 +4907,18 @@
           "コスプレ",
           "オタク文化",
           "ファッション",
-          "女性主人公",
-          "男性主人公",
           "ギャル",
-          "ティーン中心",
           "メイク",
-          "異性愛",
           "青年向け",
           "写真",
           "教育",
           "女装・男装",
           "学園",
-          "女性中心",
           "絵・作画",
           "片思い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5051,7 +4977,7 @@
           "OL"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5117,7 +5043,7 @@
           "宇宙"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5239,7 +5165,7 @@
           "クローン"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5307,21 +5233,17 @@
           "グルメ",
           "環境問題",
           "魔法",
-          "群像劇",
           "中世",
-          "大人中心",
           "失われた文明",
           "青年向け",
           "アンチヒーロー",
           "哲学",
           "エルフ",
-          "男性主人公",
           "死霊術",
           "悪魔",
           "ドラゴン",
           "コズミックホラー",
           "獣耳",
-          "一話完結",
           "キメラ",
           "モンスター娘",
           "癒し系",
@@ -5332,7 +5254,7 @@
           "日焼け肌"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5423,7 +5345,7 @@
           "サーカス"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5442,12 +5364,12 @@
         "releaseDate": "2019-03-04T00:00:01Z",
         "magazine": "週刊少年ジャンプ（第1部） / 少年ジャンプ+（第2部）",
         "magazines": [
-          "週刊少年ジャンプ（第1部）",
-          "少年ジャンプ+（第2部）"
+          "週刊少年ジャンプ(第1部)",
+          "少年ジャンプ+(第2部)"
         ],
         "audiences": [
-          "その他",
-          "少年"
+          "少年",
+          "その他"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "チェンソーマン",
@@ -5495,21 +5417,16 @@
           "悪魔",
           "多重人格",
           "現代ファンタジー",
-          "男性主人公",
-          "性愛心理",
           "コズミックホラー",
           "成長譚",
           "変身",
-          "女性主人公",
           "モンスター男子",
           "都会",
           "疑似家族",
           "サバイバル",
           "仕事",
           "記憶操作",
-          "群像劇",
           "少年向け",
-          "異性愛",
           "政治",
           "カルト",
           "銃",
@@ -5521,7 +5438,7 @@
           "復讐"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -5543,10 +5460,11 @@
         "releaseDate": "2008-05-13T00:00:01Z",
         "magazine": "BE・LOVE",
         "magazines": [
-          "BE・LOVE"
+          "BE",
+          "LOVE"
         ],
         "audiences": [
-          "女性"
+          "その他"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
@@ -5663,7 +5581,7 @@
           "呪い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5725,13 +5643,10 @@
         "tags": [
           "青年向け",
           "宇宙人",
-          "女性主人公",
           "政治",
-          "女性中心",
           "軍事",
           "成長譚",
           "ディストピア",
-          "電波系",
           "哲学",
           "言語の壁",
           "学園",
@@ -5747,7 +5662,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5801,12 +5716,11 @@
           "超能力",
           "多重人格",
           "ディストピア",
-          "男性主人公",
           "少年向け",
           "哲学"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5898,7 +5812,7 @@
           "少年向け"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -5953,7 +5867,7 @@
           "野球"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6014,11 +5928,9 @@
           "三角関係",
           "成長譚",
           "同棲",
-          "男性主人公",
           "執筆",
           "家族もの",
           "教師",
-          "異性愛",
           "逆ハーレム",
           "部活",
           "学園",
@@ -6032,7 +5944,7 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6108,7 +6020,7 @@
           "監獄"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6169,7 +6081,7 @@
           "部活"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6232,27 +6144,24 @@
           "武術",
           "少年向け",
           "旅",
-          "男性主人公",
           "超能力",
           "修行",
           "宇宙人",
           "変身",
           "成長譚",
           "サイボーグ",
-          "時代錯誤",
           "魔法",
           "神々",
           "養子縁組",
           "軍事",
           "変身能力",
           "ロボット",
-          "メタ",
           "田舎",
           "ドラゴン",
           "多重人格"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6297,7 +6206,6 @@
         "tags": [
           "超能力",
           "武術",
-          "男性主人公",
           "変身",
           "少年向け",
           "神々",
@@ -6306,7 +6214,7 @@
           "ドラゴン"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6395,7 +6303,7 @@
           "性転換"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6464,14 +6372,11 @@
           "魔法",
           "疑似家族",
           "記憶操作",
-          "女性主人公",
           "絵・作画",
           "成長譚",
           "教師",
-          "群像劇",
           "学園",
           "復讐",
-          "女性中心",
           "中世",
           "陰謀",
           "子どもが中心",
@@ -6491,7 +6396,7 @@
           "双子"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6550,7 +6455,7 @@
           "女装・男装"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6612,11 +6517,7 @@
         "tags": [
           "三角関係",
           "逆ハーレム",
-          "女性中心",
           "偽装恋愛",
-          "異性愛",
-          "男性主人公",
-          "ティーン中心",
           "ドタバタ",
           "少年向け",
           "ツンデレ",
@@ -6636,7 +6537,7 @@
           "性転換"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6746,23 +6647,20 @@
         ],
         "tags": [
           "神々",
-          "男性主人公",
           "妖怪",
           "神話",
           "祓い・除霊",
-          "女性主人公",
           "現代ファンタジー",
           "少年向け",
           "幽霊",
           "剣術",
-          "異性愛",
           "宗教",
           "復讐",
           "疑似家族",
           "猫耳"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6817,7 +6715,7 @@
           "双子"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -6884,14 +6782,12 @@
           "哲学",
           "旅",
           "成長譚",
-          "男性主人公",
           "武術",
           "障害",
           "サバイバル",
           "修行",
           "伝記",
           "田舎",
-          "異性愛",
           "戦争",
           "農業",
           "幽霊",
@@ -6901,7 +6797,7 @@
           "言語の壁"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -6954,19 +6850,16 @@
         "tags": [
           "絵・作画",
           "仕事",
-          "メタ",
           "少年向け",
           "教育",
           "執筆",
           "成長譚",
-          "男性主人公",
-          "異性愛",
           "オタク文化",
           "ボーイッシュ",
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7019,7 +6912,7 @@
           "不良"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7160,7 +7053,7 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7437,7 +7330,7 @@
           "スパイ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7461,8 +7354,8 @@
         "audiences": [
           "少女"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ひるなかの流星",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 57231,
         "genres": [
           "Comedy",
@@ -7585,7 +7478,7 @@
           "記憶操作"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7738,12 +7631,10 @@
           "少年向け",
           "超能力",
           "悪魔",
-          "男性主人公",
           "多重人格",
           "失われた文明",
           "エルフ",
           "階級闘争",
-          "異性愛",
           "修行",
           "中世",
           "王侯貴族",
@@ -7754,7 +7645,7 @@
           "疑似家族"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7909,7 +7800,7 @@
           "癒し系"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -7966,22 +7857,19 @@
           "成長譚",
           "大学",
           "青年向け",
-          "男性主人公",
           "教育",
           "哲学",
-          "大人中心",
           "LGBTQテーマ",
           "学園",
           "部活",
           "トランスジェンダー",
           "バイセクシュアル",
-          "ティーン中心",
           "女装・男装",
           "性転換",
           "ボーイッシュ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8033,12 +7921,8 @@
         ],
         "tags": [
           "サッカー",
-          "男性主人公",
           "バトルロイヤル",
           "陸上競技",
-          "男性中心",
-          "ティーン中心",
-          "群像劇",
           "少年向け",
           "超能力",
           "アンチヒーロー",
@@ -8049,7 +7933,7 @@
           "復讐"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8216,7 +8100,7 @@
           "魔女"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -8278,7 +8162,7 @@
           "教育"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8336,14 +8220,10 @@
           "学園",
           "教師",
           "逆ハーレム",
-          "男性主人公",
           "ボーイッシュ",
-          "異性愛",
-          "女性中心",
           "成長譚",
           "少年向け",
           "かわいい女の子の日常",
-          "ティーン中心",
           "日焼け肌",
           "年上女性",
           "クーデレ",
@@ -8354,7 +8234,7 @@
           "仕事"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8376,10 +8256,10 @@
           "漫画アクション"
         ],
         "audiences": [
-          青年"
+          "青年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ぼくは麻理のなか",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 66267,
         "genres": [
           "Drama",
@@ -8423,7 +8303,7 @@
           "障害"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8494,7 +8374,7 @@
           "都会"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8555,7 +8435,7 @@
           "都会"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8701,7 +8581,7 @@
           "ドラゴン"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8759,12 +8639,9 @@
           "不条理コメディ",
           "少年向け",
           "パロディ",
-          "男性主人公",
-          "ティーン中心",
           "学園",
           "ドタバタ",
           "戦争",
-          "男性中心",
           "グルメ",
           "片思い",
           "LGBTQテーマ",
@@ -8774,7 +8651,7 @@
           "テニス"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -8851,7 +8728,7 @@
           "養子縁組"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9022,7 +8899,7 @@
           "呪い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9072,12 +8949,9 @@
         ],
         "tags": [
           "百合",
-          "女性主人公",
           "成長譚",
           "学園",
           "LGBTQテーマ",
-          "ティーン中心",
-          "女性中心",
           "片思い",
           "三角関係",
           "部活",
@@ -9087,7 +8961,7 @@
           "少年向け"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9144,7 +9018,7 @@
           "ツンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9203,7 +9077,7 @@
           "ツンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9250,7 +9124,7 @@
           "全寮制"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9323,7 +9197,7 @@
           "バイク"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9382,7 +9256,7 @@
           "釣り"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9448,12 +9322,8 @@
           "現代ファンタジー",
           "モンスター娘",
           "少年向け",
-          "男性主人公",
           "成長譚",
-          "ティーン中心",
           "不条理コメディ",
-          "異性愛",
-          "女性主人公",
           "ひきこもり",
           "モンスター男子",
           "都会",
@@ -9469,7 +9339,7 @@
           "女装男子"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9565,7 +9435,7 @@
           "ボーイズラブ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9589,8 +9459,8 @@
           "週刊少年ジャンプ(デジタル版限定連載)"
         ],
         "audiences": [
-          "その他",
-          "少年"
+          "少年",
+          "その他"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ルリドラゴン",
@@ -9630,7 +9500,7 @@
           "ドタバタ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9692,7 +9562,7 @@
           "修行"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9850,7 +9720,7 @@
           "サイボーグ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -9919,7 +9789,7 @@
           "ちびキャラ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -9964,7 +9834,7 @@
           "フィギュアスケート"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10034,13 +9904,11 @@
           "哲学",
           "成長譚",
           "アウトドア",
-          "群像劇",
           "多重人格",
           "サバイバル",
           "現代ファンタジー",
           "コズミックホラー",
           "幽霊",
-          "電波系",
           "少年向け",
           "無性別",
           "旅",
@@ -10049,16 +9917,14 @@
           "サイバーパンク",
           "都会",
           "年齢退行",
-          "男性主人公",
           "動物",
           "言語の壁",
           "ディストピア",
           "先住民文化",
-          "歴史",
-          "女性主人公"
+          "歴史"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10143,11 +10009,12 @@
         "publisher": "KADOKAWA",
         "author": "森 薫",
         "releaseDate": "2009-10-15T00:00:01Z",
-        "magazine": "Fellows! → ハルタ → 青騎士",
+        "magazine": "Fellows! → ハルタ → 青騎士 → 移籍先未発表",
         "magazines": [
           "Fellows!",
           "ハルタ",
-          "青騎士"
+          "青騎士",
+          "移籍先未発表"
         ],
         "audiences": [
           "青年"
@@ -10221,7 +10088,7 @@
           "動物"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10278,10 +10145,7 @@
           "双子",
           "逆ハーレム",
           "成長譚",
-          "女性中心",
           "三角関係",
-          "異性愛",
-          "男性主人公",
           "結婚",
           "学園",
           "ツンデレ",
@@ -10295,7 +10159,7 @@
           "日焼け肌"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10379,7 +10243,7 @@
           "風刺"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10400,7 +10264,7 @@
         "magazines": [
           "週刊少年サンデーS",
           "週刊少年サンデー",
-          "週刊少年サンデー（特別編）"
+          "週刊少年サンデー(特別編)"
         ],
         "audiences": [
           "少年"
@@ -10467,7 +10331,7 @@
           "麻雀"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10534,7 +10398,7 @@
           "コスプレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10602,7 +10466,7 @@
           "写真"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10674,9 +10538,6 @@
           "現代ファンタジー",
           "少年向け",
           "全寮制",
-          "男性主人公",
-          "ティーン中心",
-          "群像劇",
           "学園",
           "陰謀",
           "成長譚",
@@ -10686,18 +10547,16 @@
           "戦争",
           "復讐",
           "都会",
-          "男性中心",
           "救出",
           "政治",
           "動物",
-          "異性愛",
           "逃亡者",
           "銃",
           "ボーイッシュ",
           "年齢退行"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -10758,7 +10617,7 @@
           "モデル業"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10830,7 +10689,7 @@
           "登山"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -10853,8 +10712,8 @@
           "マガジンポケット"
         ],
         "audiences": [
-          "その他",
-          "少年"
+          "少年",
+          "その他"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "十字架のろくにん",
@@ -10883,13 +10742,12 @@
           "復讐",
           "犯罪",
           "いじめ",
-          "男性主人公",
           "記憶喪失",
           "警察",
           "女装・男装"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11020,16 +10878,10 @@
           "学園",
           "成長譚",
           "クーデレ",
-          "群像劇",
-          "一話完結",
-          "男性主人公",
-          "女性主人公",
           "三角関係",
           "ドタバタ",
           "障害",
-          "異性愛",
           "少年向け",
-          "メタ",
           "不条理コメディ",
           "ヤンデレ",
           "ギャル",
@@ -11039,7 +10891,7 @@
           "女装・男装"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11095,7 +10947,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11155,7 +11007,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11175,7 +11027,7 @@
         "magazine": "週刊ヤングジャンプ / ヤンジャン！",
         "magazines": [
           "週刊ヤングジャンプ",
-          "ヤンジャン！"
+          "ヤンジャン!"
         ],
         "audiences": [
           "青年",
@@ -11247,7 +11099,7 @@
           "幽霊"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11358,7 +11210,7 @@
           "ボーイッシュ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11430,16 +11282,13 @@
           "呪い",
           "モンスター男子",
           "妖怪",
-          "男性主人公",
           "魔法",
           "武術",
           "多重人格",
           "デスゲーム",
-          "ティーン中心",
           "バトルロイヤル",
           "都会",
           "祓い・除霊",
-          "群像劇",
           "コズミックホラー",
           "記憶喪失",
           "カルト",
@@ -11451,7 +11300,7 @@
           "ドタバタ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
@@ -11526,7 +11375,7 @@
           "宇宙人"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11648,12 +11497,9 @@
           "侍",
           "神話",
           "忍者",
-          "群像劇",
           "アンチヒーロー",
           "歴史",
           "神々",
-          "大人中心",
-          "男性主人公",
           "暗殺者",
           "環境ホラー",
           "剣術",
@@ -11661,7 +11507,6 @@
           "バトルロイヤル",
           "少年向け",
           "政略結婚",
-          "異性愛",
           "超能力",
           "旅",
           "LGBTQテーマ",
@@ -11670,7 +11515,7 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11739,10 +11584,7 @@
           "現代ファンタジー",
           "学園",
           "双子",
-          "女性主人公",
-          "異性愛",
           "少年向け",
-          "男性主人公",
           "復讐",
           "祓い・除霊",
           "LGBTQテーマ",
@@ -11757,7 +11599,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -11903,7 +11745,7 @@
           "年齢退行"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12111,7 +11953,7 @@
           "偽装恋愛"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12242,7 +12084,7 @@
           "妊娠"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12384,7 +12226,6 @@
           "無性別",
           "多重人格",
           "記憶操作",
-          "群像劇",
           "宇宙",
           "アセクシュアル",
           "宇宙人",
@@ -12399,7 +12240,7 @@
           "仕事"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12459,7 +12300,7 @@
           "神話"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12521,7 +12362,7 @@
           "LGBTQテーマ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12585,7 +12426,7 @@
           "三角関係"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12638,7 +12479,7 @@
           "いじめ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12694,7 +12535,7 @@
           "原付"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12767,7 +12608,7 @@
           "戦車"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12825,15 +12666,11 @@
         ],
         "tags": [
           "青年向け",
-          "性愛心理",
           "成長譚",
-          "男性主人公",
           "犯罪",
           "三角関係",
           "ヤンデレ",
           "教師",
-          "異性愛",
-          "群像劇",
           "アイドル",
           "田舎",
           "LGBTQテーマ",
@@ -12844,7 +12681,7 @@
           "自然災害"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12903,7 +12740,7 @@
           "バイセクシュアル"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -12958,7 +12795,6 @@
         "tags": [
           "部活",
           "学園",
-          "男性主人公",
           "魔女",
           "魔法",
           "超能力",
@@ -12967,7 +12803,6 @@
           "記憶喪失",
           "性転換",
           "不良",
-          "ティーン中心",
           "成長譚",
           "LGBTQテーマ",
           "バイセクシュアル",
@@ -12975,7 +12810,7 @@
           "バスケットボール"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13029,7 +12864,7 @@
           "eスポーツ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13088,7 +12923,7 @@
           "いじめ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13152,7 +12987,7 @@
           "不良"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13222,7 +13057,7 @@
           "陰謀"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13283,30 +13118,25 @@
         ],
         "tags": [
           "偽装恋愛",
-          "男性主人公",
           "三角関係",
           "少年向け",
-          "女性中心",
           "同棲",
           "片思い",
           "仕事",
-          "異性愛",
           "逆ハーレム",
           "ツンデレ",
           "ギャンブル",
           "演技",
-          "大人中心",
           "映画制作",
           "大学",
           "宇宙人",
           "成長譚",
-          "メタ",
           "ドタバタ",
           "農業",
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13369,24 +13199,20 @@
           "少年向け",
           "軍事",
           "変身",
-          "大人中心",
           "超能力",
           "都会",
-          "男性主人公",
           "モンスター男子",
           "特撮",
           "銃",
           "陰謀",
           "復讐",
           "戦争",
-          "異性愛",
           "サバイバル",
-          "男性中心",
           "ドタバタ",
           "クーデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13444,26 +13270,21 @@
         ],
         "tags": [
           "成長譚",
-          "性愛心理",
           "哲学",
-          "電波系",
           "三角関係",
           "更生",
           "学園",
           "古典文学",
-          "男性主人公",
           "いじめ",
-          "女性主人公",
           "田舎",
           "少年向け",
           "執筆",
-          "異性愛",
           "都会",
           "脅迫",
           "女装・男装"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13567,8 +13388,8 @@
         "audiences": [
           "少年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "政宗くんのリベンジ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 76716,
         "genres": [
           "Comedy",
@@ -13621,7 +13442,7 @@
           "銃"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13711,7 +13532,7 @@
           "警察"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13805,7 +13626,7 @@
           "特撮"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13870,7 +13691,6 @@
         ],
         "tags": [
           "疑似家族",
-          "女性主人公",
           "旅",
           "歴史",
           "少女",
@@ -13882,10 +13702,8 @@
           "神話",
           "王侯貴族",
           "戦争",
-          "異性愛",
           "成長譚",
           "海外",
-          "男性中心",
           "超能力",
           "弓術",
           "サバイバル",
@@ -13897,7 +13715,7 @@
           "クーデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -13950,16 +13768,13 @@
           "学園",
           "子どもが中心",
           "少年向け",
-          "群像劇",
           "風刺",
-          "ティーン中心",
-          "男性主人公",
           "哲学",
           "オタク文化",
           "宇宙人"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -14027,7 +13842,7 @@
           "大学"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -14159,16 +13974,13 @@
         "tags": [
           "不良",
           "ギャング",
-          "男性主人公",
           "陰謀",
           "復讐",
           "犯罪",
           "少年向け",
           "年齢退行",
           "都会",
-          "群像劇",
           "バイク",
-          "異性愛",
           "三角関係",
           "スパイ",
           "原付",
@@ -14177,7 +13989,7 @@
           "銃"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
@@ -14237,7 +14049,6 @@
         ],
         "tags": [
           "現代ファンタジー",
-          "男性主人公",
           "青年向け",
           "サバイバル",
           "ディストピア",
@@ -14247,16 +14058,13 @@
           "警察",
           "クーデレ",
           "コズミックホラー",
-          "大人中心",
-          "異性愛",
           "キメラ",
           "双子",
-          "かわいい男子の日常",
           "神話",
           "悪魔"
         ],
         "tags_missing_en": [],
-        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": {
         "source": "manual_batch",
