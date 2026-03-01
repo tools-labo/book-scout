@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T03:18:11.650Z",
+  "updatedAt": "2026-03-01T03:31:30.747Z",
   "total": 245,
   "shardSize": 200,
   "shards": [
@@ -291,13 +291,6 @@
       "http503": 0,
       "missingItems": 0,
       "successItems": 0
-    },
-    "magAudienceRecalc": {
-      "at": "2026-03-01T03:18:11.650Z",
-      "changedItems": 44,
-      "changedShards": 2,
-      "todoTotal": 20,
-      "note": "recalc_mag_audience.mjs により vol1.audiences を magazine_audience.json で再計算"
     }
   }
 }
