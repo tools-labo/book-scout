@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-01T13:27:30.497Z",
+  "updatedAt": "2026-03-01T13:28:51.794Z",
   "total": 263,
   "shardSize": 200,
   "shards": [
@@ -282,25 +282,17 @@
     "total": 263,
     "ok": 263,
     "ng": 0,
-    "skippedPerfect": 258,
-    "skippedAniList": 5,
-    "skippedWiki": 5,
-    "skippedAmazon": 5,
+    "skippedPerfect": 263,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 5,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "グレイプニル :: magazine,magazines[]",
-        "ボーイミーツマリア :: magazine,magazines[]",
-        "回復術士のやり直し :: magazine,magazines[]",
-        "日々蝶々 :: magazine,magazines[]",
-        "月が導く異世界道中 :: magazine,magazines[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
