@@ -164,7 +164,8 @@ ORDER BY n DESC
 
 // ✅ recent_200: id維持 + 件数だけ増やす
 // ✅ JST列追加
-// ✅ rating: CAST/Nullable/IF をやめて double1 をそのまま出す（type を見てフロント側で解釈）
+// ✅ FIX: rating は rate のときだけ、そうでないときは 0（番兵値）
+//         → NULL/Nullable/Cast を使わず AE(SQL) の型エラー回避
 function qRecent(dataset, limit = 5000) {
   return `
 SELECT
@@ -178,7 +179,7 @@ SELECT
   ${COL.genre} AS genre,
   ${COL.aud} AS aud,
   ${COL.mag} AS mag,
-  ${DOUBLE.rating} AS rating
+  if(${COL.type} = 'rate', ${DOUBLE.rating}, 0) AS rating
 FROM ${dataset}
 ORDER BY timestamp DESC
 LIMIT ${Number(limit)}
