@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-28T23:33:32.763Z",
-  "updatedAtJst": "2026-03-01 08:33:32",
+  "updatedAt": "2026-03-01T03:23:04.743Z",
+  "updatedAtJst": "2026-03-01 12:23:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -162,11 +162,6 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "彼女、お借りします",
-      "n": "2"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "ニセコイ",
       "n": "2"
     },
@@ -182,7 +177,17 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "彼女、お借りします",
+      "n": "2"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "ぼくたちは勉強ができない",
       "n": "1"
     },
     {
@@ -213,11 +218,6 @@
     {
       "mood": "heart_throb",
       "seriesKey": "君に届け",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "ぼくたちは勉強ができない",
       "n": "1"
     },
     {
@@ -352,12 +352,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ReLIFE",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
@@ -447,11 +447,6 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
@@ -481,6 +476,11 @@
       "n": "1"
     },
     {
+      "mood": "satisfying",
+      "seriesKey": "終末のワルキューレ",
+      "n": "1"
+    },
+    {
       "mood": "tearjerker",
       "seriesKey": "3月のライオン",
       "n": "5"
@@ -502,17 +502,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "進撃の巨人",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "しまなみ誰そ彼",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     }
   ],
