@@ -1,0 +1,52 @@
+name: lane2 - recalc magazine audience
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: lane2-recalc-mag-audience
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  recalc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Recalc mag audience (enriched)
+        run: node scripts/lane2/recalc_mag_audience.mjs
+
+      - name: Format works from enriched
+        run: node scripts/lane2/format_lane2.mjs
+
+      - name: Commit changes (if any)
+        run: |
+          set -euo pipefail
+          git status --porcelain
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/lane2/enriched data/lane2/works data/lane2/magazine_audience_todo.json
+          git commit -m "lane2: recalc magazine audience from enriched"
+          git push
