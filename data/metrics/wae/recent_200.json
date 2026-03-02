@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T10:32:45.598Z",
-  "updatedAtJst": "2026-03-02 19:32:45",
+  "updatedAt": "2026-03-02T10:54:59.756Z",
+  "updatedAtJst": "2026-03-02 19:54:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,175 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 10:34:34",
+      "timestampJst": "2026-03-02 19:34:34",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "宝石の国",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 10:34:33",
+      "timestampJst": "2026-03-02 19:34:33",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "宝石の国",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 10:34:30",
+      "timestampJst": "2026-03-02 19:34:30",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "宝石の国",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 10:33:34",
+      "timestampJst": "2026-03-02 19:33:34",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "少年のアビス",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 10:33:33",
+      "timestampJst": "2026-03-02 19:33:33",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "少年のアビス",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 10:33:27",
+      "timestampJst": "2026-03-02 19:33:27",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "少年のアビス",
+      "mood": "messy",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 10:33:23",
+      "timestampJst": "2026-03-02 19:33:23",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "少年のアビス",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 10:33:22",
+      "timestampJst": "2026-03-02 19:33:22",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "少年のアビス",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 10:32:23",
+      "timestampJst": "2026-03-02 19:32:23",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ソラニン",
+      "mood": "tearjerker",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 10:32:21",
+      "timestampJst": "2026-03-02 19:32:21",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ソラニン",
+      "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 10:32:17",
+      "timestampJst": "2026-03-02 19:32:17",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ソラニン",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 10:32:15",
+      "timestampJst": "2026-03-02 19:32:15",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ソラニン",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 10:32:13",
+      "timestampJst": "2026-03-02 19:32:13",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ソラニン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 07:08:50",
       "timestampJst": "2026-03-02 16:08:50",
@@ -19333,7 +19502,7 @@
     }
   ],
   "raw": {
-    "rows": 1483,
-    "rows_before_limit_at_least": 1483
+    "rows": 1496,
+    "rows_before_limit_at_least": 1496
   }
 }
