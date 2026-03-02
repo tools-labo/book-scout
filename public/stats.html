@@ -1,3 +1,4 @@
+<!-- public/stats.html（FULL REPLACE） -->
 <!doctype html>
 <html lang="ja">
 <head>
@@ -5,18 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BOOKスカウト｜ランキング</title>
   <link rel="stylesheet" href="./style.css" />
+
   <!-- PWA / Home screen icons -->
-<link rel="manifest" href="manifest.webmanifest" />
-<meta name="theme-color" content="#0b0f14" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b0f14" />
 
-<!-- iOS home screen -->
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- iOS home screen -->
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<!-- Favicons -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
 </head>
 
 <body>
@@ -200,6 +202,25 @@
       return x;
     }
 
+    /* =======================
+     * ✅ Work static URL（/work/<id>/）
+     * stats.html は app.js を読まないので、ここに最小実装を持つ
+     * ======================= */
+    function b64urlFromUtf8(s) {
+      const bytes = new TextEncoder().encode(String(s ?? ""));
+      let bin = "";
+      for (const b of bytes) bin += String.fromCharCode(b);
+      const b64 = btoa(bin);
+      return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+    }
+    function workStaticUrl(seriesKey) {
+      const sk = toText(seriesKey);
+      if (!sk) return "./list.html";
+      const id = b64urlFromUtf8(sk);
+      const v = (qs().get("v") || "").trim();
+      return `./work/${id}/` + (v ? `?v=${encodeURIComponent(v)}` : "");
+    }
+
     function setStatus(msg) {
       const s = document.getElementById("status");
       if (s) s.textContent = msg;
@@ -324,7 +345,7 @@
     }
 
     function rankItemHtml({ rank, seriesKey, unit, work, views, fav, supportPct, rateAvg, rateN }) {
-      const key = encodeURIComponent(seriesKey);
+      const href = workStaticUrl(seriesKey);
 
       const title = toText(pick(work, ["title", "vol1.title"])) || seriesKey || "(無題)";
       const author = toText(pick(work, ["author", "vol1.author"])) || "";
@@ -351,7 +372,7 @@
         <article class="rank-item">
           <div class="rank-row">
             <div>
-              <a href="./work.html?key=${key}" aria-label="${esc(title)}">
+              <a href="${esc(href)}" aria-label="${esc(title)}">
                 <div class="rank-cover">
                   ${
                     img
@@ -371,7 +392,7 @@
                 </span>
               </div>
 
-              <div class="title"><a href="./work.html?key=${key}">${esc(seriesKey || title)}</a></div>
+              <div class="title"><a href="${esc(href)}">${esc(seriesKey || title)}</a></div>
               ${author ? `<div class="sub">${esc(author)}</div>` : ""}
               ${magazine ? `<div class="sub">連載誌: ${esc(magazine)}</div>` : ""}
               ${aux ? `<div class="sub">${esc(aux)}</div>` : ""}
