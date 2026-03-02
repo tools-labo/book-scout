@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T11:45:33.375Z",
-  "updatedAtJst": "2026-03-02 20:45:33",
+  "updatedAt": "2026-03-02T13:34:23.863Z",
+  "updatedAtJst": "2026-03-02 22:34:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -69,7 +69,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "ニセコイ",
       "n": "3"
     },
     {
@@ -101,12 +101,16 @@
       "n": "3"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "フルーツバスケット",
       "n": "3"
     },
     {
       "seriesKey": "タコピーの原罪",
       "n": "3"
+    },
+    {
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "n": "2"
     },
     {
       "seriesKey": "よつばと！",
@@ -125,11 +129,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "リアル",
       "n": "2"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "監獄学園",
       "n": "2"
     },
     {
@@ -157,11 +161,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "約束のネバーランド",
       "n": "2"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "幽☆遊☆白書",
       "n": "2"
     },
     {
@@ -169,15 +173,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "乙嫁語り",
       "n": "2"
     },
     {
-      "seriesKey": "桜蘭高校ホスト部",
+      "seriesKey": "銀魂",
       "n": "2"
     },
     {
       "seriesKey": "ぼくたちは勉強ができない",
+      "n": "2"
+    },
+    {
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "2"
     },
     {
@@ -193,10 +201,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "アヤシモン",
-      "n": "1"
-    },
-    {
       "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
@@ -205,11 +209,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "はじめの一歩",
       "n": "1"
     },
     {
-      "seriesKey": "あせとせっけん",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -226,6 +230,10 @@
     },
     {
       "seriesKey": "ソウルイーター",
+      "n": "1"
+    },
+    {
+      "seriesKey": "あせとせっけん",
       "n": "1"
     },
     {
@@ -333,12 +341,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "はじめの一歩",
+      "seriesKey": "アヤシモン",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 80,
-    "rows_before_limit_at_least": 183
+    "rows": 82,
+    "rows_before_limit_at_least": 187
   }
 }

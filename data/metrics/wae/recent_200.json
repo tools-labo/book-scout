@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T11:45:33.375Z",
-  "updatedAtJst": "2026-03-02 20:45:33",
+  "updatedAt": "2026-03-02T13:34:23.863Z",
+  "updatedAtJst": "2026-03-02 22:34:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,188 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 12:42:19",
+      "timestampJst": "2026-03-02 21:42:19",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "リアル",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 12:42:18",
+      "timestampJst": "2026-03-02 21:42:18",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "リアル",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 12:42:16",
+      "timestampJst": "2026-03-02 21:42:16",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "リアル",
+      "mood": "tearjerker",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:42:15",
+      "timestampJst": "2026-03-02 21:42:15",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "リアル",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:42:12",
+      "timestampJst": "2026-03-02 21:42:12",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "リアル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:39:57",
+      "timestampJst": "2026-03-02 21:39:57",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "約束のネバーランド",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:39:52",
+      "timestampJst": "2026-03-02 21:39:52",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "約束のネバーランド",
+      "mood": "tearjerker",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:39:49",
+      "timestampJst": "2026-03-02 21:39:49",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "約束のネバーランド",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 12:39:49",
+      "timestampJst": "2026-03-02 21:39:49",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "約束のネバーランド",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 12:39:46",
+      "timestampJst": "2026-03-02 21:39:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "約束のネバーランド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:26:37",
+      "timestampJst": "2026-03-02 21:26:37",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=sf",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:26:37",
+      "timestampJst": "2026-03-02 21:26:37",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=sf,fantasy",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:26:33",
+      "timestampJst": "2026-03-02 21:26:33",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=fantasy",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 12:26:33",
+      "timestampJst": "2026-03-02 21:26:33",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 11:12:24",
       "timestampJst": "2026-03-02 20:12:24",
@@ -19606,7 +19788,7 @@
     }
   ],
   "raw": {
-    "rows": 1504,
-    "rows_before_limit_at_least": 1504
+    "rows": 1518,
+    "rows_before_limit_at_least": 1518
   }
 }
