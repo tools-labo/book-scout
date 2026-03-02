@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T13:34:23.863Z",
-  "updatedAtJst": "2026-03-02 22:34:23",
+  "updatedAt": "2026-03-02T14:59:04.441Z",
+  "updatedAtJst": "2026-03-02 23:59:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,123 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 14:33:53",
+      "timestampJst": "2026-03-02 23:33:53",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "20世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:33:44",
+      "timestampJst": "2026-03-02 23:33:44",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "血の轍",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:33:19",
+      "timestampJst": "2026-03-02 23:33:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "【推しの子】",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:30:23",
+      "timestampJst": "2026-03-02 23:30:23",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ひるなかの流星",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:29:46",
+      "timestampJst": "2026-03-02 23:29:46",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "山田くんと7人の魔女",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:29:45",
+      "timestampJst": "2026-03-02 23:29:45",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "ちはやふる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:29:44",
+      "timestampJst": "2026-03-02 23:29:44",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "20世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:29:43",
+      "timestampJst": "2026-03-02 23:29:43",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "アオのハコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 14:29:33",
+      "timestampJst": "2026-03-02 23:29:33",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "リアル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 12:42:19",
       "timestampJst": "2026-03-02 21:42:19",
@@ -19788,7 +19905,7 @@
     }
   ],
   "raw": {
-    "rows": 1518,
-    "rows_before_limit_at_least": 1518
+    "rows": 1527,
+    "rows_before_limit_at_least": 1527
   }
 }
