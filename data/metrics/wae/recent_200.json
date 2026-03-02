@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T06:06:11.762Z",
-  "updatedAtJst": "2026-03-02 15:06:11",
+  "updatedAt": "2026-03-02T07:15:28.965Z",
+  "updatedAtJst": "2026-03-02 16:15:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 07:08:50",
+      "timestampJst": "2026-03-02 16:08:50",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君は淫らな僕の女王",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 07:07:51",
+      "timestampJst": "2026-03-02 16:07:51",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "終わりのセラフ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 04:32:14",
       "timestampJst": "2026-03-02 13:32:14",
@@ -19307,7 +19333,7 @@
     }
   ],
   "raw": {
-    "rows": 1481,
-    "rows_before_limit_at_least": 1481
+    "rows": 1483,
+    "rows_before_limit_at_least": 1483
   }
 }
