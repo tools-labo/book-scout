@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T03:10:13.399Z",
-  "updatedAtJst": "2026-03-02 12:10:13",
+  "updatedAt": "2026-03-02T04:30:32.075Z",
+  "updatedAtJst": "2026-03-02 13:30:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 03:44:37",
+      "timestampJst": "2026-03-02 12:44:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "幸色のワンルーム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-01 23:10:19",
       "timestampJst": "2026-03-02 08:10:19",
@@ -19255,7 +19268,7 @@
     }
   ],
   "raw": {
-    "rows": 1477,
-    "rows_before_limit_at_least": 1477
+    "rows": 1478,
+    "rows_before_limit_at_least": 1478
   }
 }

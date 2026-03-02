@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T03:10:13.399Z",
-  "updatedAtJst": "2026-03-02 12:10:13",
+  "updatedAt": "2026-03-02T04:30:32.075Z",
+  "updatedAtJst": "2026-03-02 13:30:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -67,7 +67,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "七つの大罪",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -217,12 +217,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -252,17 +252,17 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "あせとせっけん",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "ホリミヤ",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "ぼくたちは勉強ができない",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "あせとせっけん",
       "n": "1"
     },
     {
@@ -297,12 +297,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "キングダム",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "2"
     },
     {
       "mood": "hot",
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "キングダム",
       "n": "2"
     },
     {
@@ -342,12 +342,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -377,7 +377,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
@@ -392,7 +392,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -412,7 +412,22 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "葬送のフリーレン",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ソウルイーター",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
@@ -422,12 +437,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -447,7 +462,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -456,29 +471,9 @@
       "n": "1"
     },
     {
-      "mood": "moving",
-      "seriesKey": "蟲師",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "葬送のフリーレン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "キングダム",
-      "n": "1"
-    },
-    {
       "mood": "page_turner",
       "seriesKey": "蜘蛛ですが、なにか？",
       "n": "3"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
-      "n": "2"
     },
     {
       "mood": "page_turner",
@@ -492,7 +487,17 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "亜人",
+      "seriesKey": "ドラゴンボール",
+      "n": "2"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "不滅のあなたへ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
@@ -517,12 +522,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
@@ -532,7 +532,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -549,6 +549,11 @@
       "mood": "satisfying",
       "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "n": "1"
     },
     {
       "mood": "satisfying",
@@ -582,11 +587,6 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     },
@@ -602,12 +602,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ReLIFE",
+      "seriesKey": "タコピーの原罪",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ReLIFE",
       "n": "2"
     },
     {
@@ -627,6 +627,11 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
@@ -637,22 +642,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "進撃の巨人",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     }
   ],
