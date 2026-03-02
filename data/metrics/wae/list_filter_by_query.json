@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T04:58:08.378Z",
-  "updatedAtJst": "2026-03-02 13:58:08",
+  "updatedAt": "2026-03-02T06:06:11.762Z",
+  "updatedAtJst": "2026-03-02 15:06:11",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -148,10 +148,10 @@
       "n": "4"
     },
     {
-      "genre": "genre=drama",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少年",
       "n": "3"
     },
     {
@@ -162,10 +162,10 @@
       "n": "3"
     },
     {
-      "genre": "",
+      "genre": "genre=drama",
       "aud": "",
       "mag": "",
-      "mood": "aud=少年",
+      "mood": "",
       "n": "3"
     },
     {
@@ -302,9 +302,9 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
+      "genre": "",
       "aud": "aud=少年",
-      "mag": "",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -316,9 +316,9 @@
       "n": "1"
     },
     {
-      "genre": "",
+      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
       "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -344,16 +344,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
-      "aud": "aud=少年",
-      "mag": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Cocohana",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -435,16 +435,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery,action",
-      "aud": "aud=青年",
-      "mag": "mag=週刊ヤングジャンプ",
+      "genre": "genre=fantasy,sf,romance,drama",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama",
-      "aud": "aud=少年",
-      "mag": "",
+      "genre": "genre=romance,sf,fantasy,mystery,action",
+      "aud": "aud=青年",
+      "mag": "mag=週刊ヤングジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -463,15 +463,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror",
-      "aud": "aud=少年",
+      "genre": "genre=mystery,slice,action,fantasy",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=mystery,slice,action,fantasy",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -540,17 +540,17 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=moving,healing",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "",
       "n": "1"
     },
     {
@@ -715,15 +715,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice",
-      "aud": "aud=少年",
+      "genre": "genre=drama,sports,mystery,slice",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
