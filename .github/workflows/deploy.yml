@@ -31,7 +31,16 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Prepare site root
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm install
+
+      # public/ を公開ルートにするため、data/ を public/data に同期
+      - name: Prepare site root (sync data -> public/data)
         run: |
           set -euo pipefail
           rm -rf public/data
@@ -40,18 +49,20 @@ jobs:
             cp -R data/* public/data/ || true
           fi
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install (for build script)
-        run: npm install
-
+      # ✅ /work/<id>/ を data から再生成して public/work に反映
       - name: Build work pages (static /work/<id>/)
         run: |
           set -euo pipefail
           node scripts/build_work_pages.mjs
+
+      # ✅ sitemap.xml を public/ 直下に生成
+      - name: Build sitemap.xml
+        env:
+          # push 以外のイベントでは空になり得るが、スクリプト側がフォールバックする想定
+          SITEMAP_LASTMOD_ISO: ${{ github.event.head_commit.timestamp }}
+        run: |
+          set -euo pipefail
+          node scripts/build_sitemap.mjs
 
       - uses: actions/configure-pages@v5
 
