@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T14:59:04.441Z",
-  "updatedAtJst": "2026-03-02 23:59:04",
+  "updatedAt": "2026-03-02T15:13:25.847Z",
+  "updatedAtJst": "2026-03-03 00:13:25",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -56,6 +56,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "フルーツバスケット",
+      "avg": 4.5,
+      "n": "2"
+    },
+    {
       "seriesKey": "ちはやふる",
       "avg": 4.5,
       "n": "2"
@@ -86,12 +91,22 @@
       "n": "3"
     },
     {
+      "seriesKey": "君に届け",
+      "avg": 4,
+      "n": "2"
+    },
+    {
       "seriesKey": "リアル",
       "avg": 4,
       "n": "2"
     },
     {
       "seriesKey": "キングダム",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "君は淫らな僕の女王",
       "avg": 4,
       "n": "2"
     },
@@ -116,11 +131,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ドロヘドロ",
       "avg": 4,
       "n": "1"
@@ -136,27 +146,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "バガボンド",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "銀魂",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "バガボンド",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "ディー・グレイマン",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "君は淫らな僕の女王",
       "avg": 4,
       "n": "1"
     },
@@ -271,6 +271,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "とつくにの少女",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "神様はじめました",
       "avg": 3,
       "n": "1"
@@ -281,17 +286,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ラストゲーム",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "たいようのいえ",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "ラストゲーム",
       "avg": 3,
       "n": "1"
     },
@@ -301,7 +301,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "ドラゴンボール超",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゆびさきと恋々",
       "avg": 3,
       "n": "1"
     },
@@ -326,12 +331,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "あせとせっけん",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "あせとせっけん",
+      "seriesKey": "魔入りました！入間くん",
       "avg": 3,
       "n": "1"
     },
@@ -416,7 +421,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "徒然チルドレン",
       "avg": 3,
       "n": "1"
     },
@@ -437,7 +442,7 @@
     }
   ],
   "raw": {
-    "rows": 83,
-    "rows_before_limit_at_least": 83
+    "rows": 84,
+    "rows_before_limit_at_least": 84
   }
 }
