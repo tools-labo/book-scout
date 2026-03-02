@@ -19,6 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
           persist-credentials: true
           token: ${{ github.token }}
@@ -37,9 +38,7 @@ jobs:
           CLOUDFLARE_AE_READ_TOKEN: ${{ secrets.CLOUDFLARE_AE_READ_TOKEN }}
         run: node scripts/metrics/export_wae_metrics.mjs
 
-      - name: Commit & push metrics
-        env:
-          GITHUB_REF_NAME: ${{ github.ref_name }}
+      - name: Commit & push metrics (main)
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -53,4 +52,4 @@ jobs:
           fi
 
           git commit -m "metrics: update wae exports"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:main"
