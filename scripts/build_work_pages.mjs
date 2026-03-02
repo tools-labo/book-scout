@@ -5,9 +5,9 @@ import path from "node:path";
 const ROOT_PUBLIC = "public";
 const WORK_DIR = path.join(ROOT_PUBLIC, "work");
 
-// ✅ canonical の基準URL（GitHub Pagesの公開先に合わせる）
-const SITE_ORIGIN = "https://tools-labo.github.io";
-const SITE_BASE_PATH = "/book-scout"; // 先頭に / が必要
+// ✅ canonical の基準URL（独自ドメイン運用に合わせる）
+const SITE_ORIGIN = "https://book-scout.tools-labo.com";
+const SITE_BASE_PATH = ""; // サブドメイン直下なので空（先頭に / は不要）
 
 // base64url (no /, +, =)
 function b64urlFromUtf8(s) {
@@ -100,7 +100,7 @@ function makeDescription({ seriesKey, title, synopsis }) {
 }
 
 function canonicalUrlFromId(id) {
-  // 例: https://tools-labo.github.io/book-scout/work/<id>/
+  // 例: https://book-scout.tools-labo.com/work/<id>/
   return `${SITE_ORIGIN}${SITE_BASE_PATH}/work/${id}/`;
 }
 
