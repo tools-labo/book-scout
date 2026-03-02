@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T10:54:59.756Z",
-  "updatedAtJst": "2026-03-02 19:54:59",
+  "updatedAt": "2026-03-02T11:01:21.440Z",
+  "updatedAtJst": "2026-03-02 20:01:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 10:57:49",
+      "timestampJst": "2026-03-02 19:57:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君は淫らな僕の女王",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 10:34:34",
       "timestampJst": "2026-03-02 19:34:34",
@@ -19502,7 +19515,7 @@
     }
   ],
   "raw": {
-    "rows": 1496,
-    "rows_before_limit_at_least": 1496
+    "rows": 1497,
+    "rows_before_limit_at_least": 1497
   }
 }
