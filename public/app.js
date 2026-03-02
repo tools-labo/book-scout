@@ -2034,7 +2034,7 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
   const art = rateSeriesMap?.get?.(seriesKey)?.art;
 
   const recOk = rec?.avg && Number(rec?.n || 0) >= MIN_N;
-  const artOk = art?.avg && Number(rec?.n || 0) >= MIN_N;
+  const artOk = art?.avg && Number(art?.n || 0) >= MIN_N;
 
   const recTxt = recOk ? `★${formatStarAvg(rec.avg)}` : "—";
   const artTxt = artOk ? `★${formatStarAvg(art.avg)}` : "—";
