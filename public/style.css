@@ -1149,16 +1149,12 @@ body.sheet-open{
 }
 
 .howto-icon svg{
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
+  overflow: visible;
   display: block;
-
-  /* ✅ strokeの角欠け防止（既に入れてるならOK） */
   stroke-linecap: round;
   stroke-linejoin: round;
-
-  /* ✅ これが本命：左ギリギリのSVGを1pxだけ右へ */
-  transform: translateX(1px);
 }
 
 .howto-body{
