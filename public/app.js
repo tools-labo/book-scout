@@ -2505,7 +2505,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
   initLazyImages(detail);
   trackWorkViewOnce(seriesKey);
 
-  const vp = document.getElementById("votePills");
+    const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
       const btn = ev.target?.closest?.("button[data-vote]");
@@ -2549,6 +2549,56 @@ async function renderWorkPhase1(worksState, quickDefs) {
       }
       showToast(sent ? "投票ありがとう！" : "投票済みです");
     };
+  }
+
+  // ✅ ★評価のクリック処理（これが抜けてた）
+  const rateStatus = document.getElementById("rateStatus");
+  const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
+  for (const w of wraps) {
+    const id = w.getAttribute("data-starwrap") || "";
+    const cur = getRatedValue(seriesKey, id);
+    applyStarsUi(w, cur);
+
+    w.addEventListener("click", (ev) => {
+      const btn = ev.target?.closest?.("button[data-star]");
+      if (!btn) return;
+
+      const k = btn.getAttribute("data-starid") || "";
+      const n = toText(btn.getAttribute("data-star") || "");
+      if (!k || !n) return;
+
+      const already = getRatedValue(seriesKey, k);
+      const sendVal = already || n;
+
+      if (!already) {
+        setRatedValue(seriesKey, k, n);
+        applyStarsUi(w, n);
+      }
+
+      // 平均表示を開放（投票後に表示）
+      const locked = document.getElementById("avgStarsLocked");
+      const unlockedEl = document.getElementById("avgStarsUnlocked");
+      if (locked) locked.style.display = "none";
+      if (unlockedEl) unlockedEl.style.display = "";
+
+      try {
+        const avgBox = document.getElementById("avgStarsBox");
+        if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, window.__rateSeriesMap || new Map());
+      } catch {}
+
+      // 送信（端末内の重複抑止）
+      const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
+      if (canSendOnce(onceKey)) {
+        trackEvent({ type: "rate", page: "work", seriesKey, k, v: sendVal });
+      }
+
+      if (rateStatus) {
+        const label = (k === "rec") ? "おすすめ度" : (k === "art") ? "作画クオリティ" : "評価";
+        rateStatus.textContent = already ? `${label} は投票済み` : `${label} を投票しました`;
+        setTimeout(() => { if (rateStatus) rateStatus.textContent = ""; }, 900);
+      }
+      showToast(already ? "投票済みです" : "投票ありがとう！");
+    }, { passive: true });
   }
 
   refreshFavButtons(document);
