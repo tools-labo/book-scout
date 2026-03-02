@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T15:13:25.847Z",
-  "updatedAtJst": "2026-03-03 00:13:25",
+  "updatedAt": "2026-03-02T15:55:41.899Z",
+  "updatedAtJst": "2026-03-03 00:55:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,149 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 15:24:34",
+      "timestampJst": "2026-03-03 00:24:34",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゴールデンカムイ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:15:39",
+      "timestampJst": "2026-03-03 00:15:39",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゴールデンカムイ",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:15:29",
+      "timestampJst": "2026-03-03 00:15:29",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゴールデンカムイ",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 2
+    },
+    {
+      "timestamp": "2026-03-02 15:15:28",
+      "timestampJst": "2026-03-03 00:15:28",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゴールデンカムイ",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 15:15:25",
+      "timestampJst": "2026-03-03 00:15:25",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゴールデンカムイ",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:15:20",
+      "timestampJst": "2026-03-03 00:15:20",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゴールデンカムイ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:12:53",
+      "timestampJst": "2026-03-03 00:12:53",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君に届け",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 15:12:51",
+      "timestampJst": "2026-03-03 00:12:51",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君に届け",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 15:12:48",
+      "timestampJst": "2026-03-03 00:12:48",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君に届け",
+      "mood": "heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:12:47",
+      "timestampJst": "2026-03-03 00:12:47",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君に届け",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:12:46",
+      "timestampJst": "2026-03-03 00:12:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君に届け",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 15:12:41",
       "timestampJst": "2026-03-03 00:12:41",
@@ -118,6 +261,32 @@
       "rating": null
     },
     {
+      "timestamp": "2026-03-02 15:12:27",
+      "timestampJst": "2026-03-03 00:12:27",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "日々蝶々",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 15:12:27",
+      "timestampJst": "2026-03-03 00:12:27",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "日々蝶々",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
       "timestamp": "2026-03-02 15:12:24",
       "timestampJst": "2026-03-03 00:12:24",
       "type": "vote",
@@ -125,6 +294,32 @@
       "page": "work",
       "seriesKey": "日々蝶々",
       "mood": "heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:12:21",
+      "timestampJst": "2026-03-03 00:12:21",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "日々蝶々",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:12:20",
+      "timestampJst": "2026-03-03 00:12:20",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "日々蝶々",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -144,6 +339,19 @@
       "rating": 3
     },
     {
+      "timestamp": "2026-03-02 15:12:15",
+      "timestampJst": "2026-03-03 00:12:15",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゆびさきと恋々",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
       "timestamp": "2026-03-02 15:12:13",
       "timestampJst": "2026-03-03 00:12:13",
       "type": "vote",
@@ -151,6 +359,19 @@
       "page": "work",
       "seriesKey": "ゆびさきと恋々",
       "mood": "heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 15:12:11",
+      "timestampJst": "2026-03-03 00:12:11",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゆびさきと恋々",
+      "mood": "",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -20191,7 +20412,7 @@
     }
   ],
   "raw": {
-    "rows": 1549,
-    "rows_before_limit_at_least": 1549
+    "rows": 1566,
+    "rows_before_limit_at_least": 1566
   }
 }

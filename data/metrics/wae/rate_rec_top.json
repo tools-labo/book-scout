@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T15:13:25.847Z",
-  "updatedAtJst": "2026-03-03 00:13:25",
+  "updatedAt": "2026-03-02T15:55:41.899Z",
+  "updatedAtJst": "2026-03-03 00:55:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -116,17 +116,22 @@
       "n": "2"
     },
     {
+      "seriesKey": "ゴールデンカムイ",
+      "avg": 4,
+      "n": "2"
+    },
+    {
       "seriesKey": "タコピーの原罪",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "orange [オレンジ]",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "はじめの一歩",
       "avg": 4,
       "n": "1"
     },
@@ -146,12 +151,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "バガボンド",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "バガボンド",
+      "seriesKey": "銀魂",
       "avg": 4,
       "n": "1"
     },
@@ -176,12 +181,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "orange [オレンジ]",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "はじめの一歩",
+      "seriesKey": "ソウルイーター",
       "avg": 4,
       "n": "1"
     },
@@ -271,7 +271,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "アオハライド",
       "avg": 3,
       "n": "1"
     },
@@ -281,12 +281,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオハライド",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "たいようのいえ",
+      "seriesKey": "とつくにの少女",
       "avg": 3,
       "n": "1"
     },
@@ -296,22 +291,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "五等分の花嫁",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ドラゴンボール超",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ゆびさきと恋々",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "月刊少女野崎くん",
+      "seriesKey": "たいようのいえ",
       "avg": 3,
       "n": "1"
     },
@@ -321,7 +306,27 @@
       "n": "1"
     },
     {
+      "seriesKey": "五等分の花嫁",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "徒然チルドレン",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "終わりのセラフ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
       "avg": 3,
       "n": "1"
     },
@@ -331,12 +336,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "あせとせっけん",
+      "seriesKey": "魔入りました！入間くん",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "不滅のあなたへ",
       "avg": 3,
       "n": "1"
     },
@@ -346,7 +351,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "20世紀少年",
       "avg": 3,
       "n": "1"
     },
@@ -361,7 +366,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "あせとせっけん",
       "avg": 3,
       "n": "1"
     },
@@ -376,12 +381,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "アオのハコ",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "日々蝶々",
       "avg": 3,
       "n": "1"
     },
@@ -401,7 +406,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "惑星のさみだれ",
+      "seriesKey": "ひるなかの流星",
       "avg": 3,
       "n": "1"
     },
@@ -416,12 +421,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ひるなかの流星",
+      "seriesKey": "惑星のさみだれ",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "ゆびさきと恋々",
       "avg": 3,
       "n": "1"
     },
@@ -442,7 +447,7 @@
     }
   ],
   "raw": {
-    "rows": 84,
-    "rows_before_limit_at_least": 84
+    "rows": 85,
+    "rows_before_limit_at_least": 85
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T15:13:25.847Z",
-  "updatedAtJst": "2026-03-03 00:13:25",
+  "updatedAt": "2026-03-02T15:55:41.899Z",
+  "updatedAtJst": "2026-03-03 00:55:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -207,6 +207,11 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "君に届け",
+      "n": "2"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "なまいきざかり。",
       "n": "1"
     },
@@ -252,11 +257,6 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "君に届け",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "チェンソーマン",
       "n": "1"
     },
@@ -297,12 +297,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "ちはやふる",
       "n": "2"
     },
     {
       "mood": "hot",
-      "seriesKey": "ちはやふる",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "2"
     },
     {
@@ -363,6 +363,11 @@
     {
       "mood": "hot",
       "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -467,7 +472,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -477,7 +482,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "葬送のフリーレン",
       "n": "1"
     },
     {
@@ -487,7 +492,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "キングダム",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -547,6 +552,11 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ゴールデンカムイ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "ドロヘドロ",
       "n": "1"
     },
@@ -597,7 +607,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
@@ -637,7 +647,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
@@ -667,17 +677,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "アクタージュ act-age",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "orange [オレンジ]",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
@@ -692,17 +702,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "神のみぞ知るセカイ",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -717,7 +727,7 @@
     }
   ],
   "raw": {
-    "rows": 139,
-    "rows_before_limit_at_least": 194
+    "rows": 141,
+    "rows_before_limit_at_least": 197
   }
 }
