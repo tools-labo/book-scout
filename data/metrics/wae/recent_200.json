@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T21:49:40.904Z",
-  "updatedAtJst": "2026-03-03 06:49:40",
+  "updatedAt": "2026-03-02T22:46:50.749Z",
+  "updatedAtJst": "2026-03-03 07:46:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,149 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 22:04:53",
+      "timestampJst": "2026-03-03 07:04:53",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 2
+    },
+    {
+      "timestamp": "2026-03-02 22:04:50",
+      "timestampJst": "2026-03-03 07:04:50",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-02 22:04:47",
+      "timestampJst": "2026-03-03 07:04:47",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 22:04:39",
+      "timestampJst": "2026-03-03 07:04:39",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 22:04:39",
+      "timestampJst": "2026-03-03 07:04:39",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 22:04:32",
+      "timestampJst": "2026-03-03 07:04:32",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 22:04:30",
+      "timestampJst": "2026-03-03 07:04:30",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 5
+    },
+    {
+      "timestamp": "2026-03-02 22:04:27",
+      "timestampJst": "2026-03-03 07:04:27",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 22:04:24",
+      "timestampJst": "2026-03-03 07:04:24",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 22:04:22",
+      "timestampJst": "2026-03-03 07:04:22",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 22:02:38",
+      "timestampJst": "2026-03-03 07:02:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 15:24:34",
       "timestampJst": "2026-03-03 00:24:34",
@@ -20412,7 +20555,7 @@
     }
   ],
   "raw": {
-    "rows": 1566,
-    "rows_before_limit_at_least": 1566
+    "rows": 1577,
+    "rows_before_limit_at_least": 1577
   }
 }
