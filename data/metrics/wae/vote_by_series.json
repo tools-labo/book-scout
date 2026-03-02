@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T11:01:21.440Z",
-  "updatedAtJst": "2026-03-02 20:01:21",
+  "updatedAt": "2026-03-02T11:45:33.375Z",
+  "updatedAtJst": "2026-03-02 20:45:33",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -149,15 +149,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "orange [オレンジ]",
-      "n": "2"
-    },
-    {
       "seriesKey": "蟲師",
       "n": "2"
     },
     {
+      "seriesKey": "orange [オレンジ]",
+      "n": "2"
+    },
+    {
       "seriesKey": "幽☆遊☆白書",
+      "n": "2"
+    },
+    {
+      "seriesKey": "銀魂",
       "n": "2"
     },
     {
@@ -169,15 +173,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "桜蘭高校ホスト部",
       "n": "2"
     },
     {
       "seriesKey": "ぼくたちは勉強ができない",
-      "n": "2"
-    },
-    {
-      "seriesKey": "桜蘭高校ホスト部",
       "n": "2"
     },
     {
@@ -193,6 +193,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "アヤシモン",
+      "n": "1"
+    },
+    {
       "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
@@ -201,11 +205,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "はじめの一歩",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "あせとせっけん",
       "n": "1"
     },
     {
@@ -213,7 +217,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "あせとせっけん",
+      "seriesKey": "ダンジョン飯",
       "n": "1"
     },
     {
@@ -225,11 +229,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ダンジョン飯",
+      "seriesKey": "薫る花は凛と咲く",
       "n": "1"
     },
     {
-      "seriesKey": "薫る花は凛と咲く",
+      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -237,7 +241,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "なまいきざかり。",
       "n": "1"
     },
     {
@@ -257,11 +261,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
-      "seriesKey": "なまいきざかり。",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
@@ -329,12 +333,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "アヤシモン",
+      "seriesKey": "はじめの一歩",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 79,
-    "rows_before_limit_at_least": 182
+    "rows": 80,
+    "rows_before_limit_at_least": 183
   }
 }

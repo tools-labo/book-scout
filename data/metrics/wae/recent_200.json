@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T11:01:21.440Z",
-  "updatedAtJst": "2026-03-02 20:01:21",
+  "updatedAt": "2026-03-02T11:45:33.375Z",
+  "updatedAtJst": "2026-03-02 20:45:33",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-02 11:12:24",
+      "timestampJst": "2026-03-02 20:12:24",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール超",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 11:12:22",
+      "timestampJst": "2026-03-02 20:12:22",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール超",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 11:12:21",
+      "timestampJst": "2026-03-02 20:12:21",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール超",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-02 11:12:18",
+      "timestampJst": "2026-03-02 20:12:18",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール超",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 11:12:17",
+      "timestampJst": "2026-03-02 20:12:17",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール超",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 11:12:15",
+      "timestampJst": "2026-03-02 20:12:15",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Vジャンプ",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-02 11:08:15",
+      "timestampJst": "2026-03-02 20:08:15",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君は淫らな僕の女王",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 10:57:49",
       "timestampJst": "2026-03-02 19:57:49",
@@ -19515,7 +19606,7 @@
     }
   ],
   "raw": {
-    "rows": 1497,
-    "rows_before_limit_at_least": 1497
+    "rows": 1504,
+    "rows_before_limit_at_least": 1504
   }
 }

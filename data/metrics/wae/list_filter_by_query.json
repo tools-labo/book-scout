@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T11:01:21.440Z",
-  "updatedAtJst": "2026-03-02 20:01:21",
+  "updatedAt": "2026-03-02T11:45:33.375Z",
+  "updatedAtJst": "2026-03-02 20:45:33",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -310,9 +310,9 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -338,15 +338,8 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
-      "n": "1"
-    },
-    {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
       "aud": "aud=少年",
-      "mag": "",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -354,6 +347,13 @@
       "genre": "",
       "aud": "",
       "mag": "mag=Cocohana",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -778,6 +778,13 @@
       "n": "1"
     },
     {
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Vジャンプ",
+      "mood": "",
+      "n": "1"
+    },
+    {
       "genre": "genre=drama,sports,mystery",
       "aud": "aud=女性",
       "mag": "",
@@ -786,7 +793,7 @@
     }
   ],
   "raw": {
-    "rows": 108,
-    "rows_before_limit_at_least": 322
+    "rows": 109,
+    "rows_before_limit_at_least": 323
   }
 }
