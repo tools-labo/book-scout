@@ -34,14 +34,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
           persist-credentials: true
           token: ${{ github.token }}
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # ★AniList/Wiki/Amazon のローカルキャッシュを Actions cache で永続化
       - name: Ensure lane2 cache dir
         run: |
           set -euo pipefail
@@ -91,9 +94,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # data/lane2 はコミットするが、cache は Actions cache に任せて repo には入れない
           git add data/lane2
           git reset -q data/lane2/cache || true
 
+          # 念のため（cache 以外が何も無ければコミットしない）
           if git diff --cached --quiet; then
             echo "Only cache changes (or nothing). Skip commit."
             exit 0
@@ -111,9 +116,11 @@ jobs:
       cancel-in-progress: true
 
     steps:
+      # ✅ ここが重要：必ず最新 main を取る（lane2ジョブがpushした直後のコミットを確実に拾う）
       - name: Checkout (latest main)
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
           persist-credentials: true
           token: ${{ github.token }}
@@ -136,7 +143,7 @@ jobs:
             cp -R data/* public/data/ || true
           fi
 
-      # ✅ ここが肝：/work/<id>/ を data から再生成して public/work に反映
+      # ✅ /work/<id>/ を data から再生成して public/work に反映
       - name: Build work pages (static /work/<id>/)
         run: |
           set -euo pipefail
