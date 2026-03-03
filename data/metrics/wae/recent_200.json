@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-03T06:03:34.271Z",
-  "updatedAtJst": "2026-03-03 15:03:34",
+  "updatedAt": "2026-03-03T07:09:52.929Z",
+  "updatedAtJst": "2026-03-03 16:09:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-03 06:33:38",
+      "timestampJst": "2026-03-03 15:33:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙女ゲー世界はモブに厳しい世界です",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-03 04:34:20",
       "timestampJst": "2026-03-03 13:34:20",
@@ -20659,7 +20672,7 @@
     }
   ],
   "raw": {
-    "rows": 1585,
-    "rows_before_limit_at_least": 1585
+    "rows": 1586,
+    "rows_before_limit_at_least": 1586
   }
 }
