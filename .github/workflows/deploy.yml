@@ -64,6 +64,130 @@ jobs:
           set -euo pipefail
           node scripts/build_sitemap.mjs
 
+      # ✅ Contract checks（ここで落ちればデプロイされない）
+      - name: Contract checks (frontend invariants)
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          import fs from "node:fs";
+          import path from "node:path";
+
+          const root = process.cwd();
+          const mustExist = (p) => {
+            const full = path.join(root, p);
+            if (!fs.existsSync(full)) throw new Error(`Missing: ${p}`);
+            return full;
+          };
+          const read = (p) => fs.readFileSync(mustExist(p), "utf8");
+
+          const assertIncludes = (label, text, needles) => {
+            const miss = needles.filter(n => !text.includes(n));
+            if (miss.length) {
+              throw new Error(`${label}: missing ${miss.map(x => JSON.stringify(x)).join(", ")}`);
+            }
+          };
+
+          // ---- 重要ファイルの存在 ----
+          mustExist("public/app.js");
+          mustExist("public/index.html");
+          mustExist("public/list.html");
+          mustExist("public/work.html");
+          mustExist("public/style.css");
+
+          // data が public 配下に来ている前提のチェック（最低限）
+          // works split を使うので index.json が無いと work/list が壊れる
+          mustExist("public/data/lane2/works/index.json");
+
+          // ---- app.js の「必須機能」契約（消えると事故るやつ）----
+          const app = read("public/app.js");
+
+          // 分割マーカー（うっかり削除の検知）
+          assertIncludes("app.js markers", app, [
+            "/* END PART 1/3 - token: C3D4 */",
+            "/* START PART 2/3 - token: C3D4 */",
+            "/* START PART 3/3 - token: C3D4 */",
+          ]);
+
+          // List の基盤
+          assertIncludes("app.js list", app, [
+            "function renderList(",
+            "function renderFacetFilters(",
+            "function parseMoodQuery(",
+            "const QUICK_MAX",
+          ]);
+
+          // Work の基盤（投票→同じ読後感再描画の導線含む）
+          assertIncludes("app.js work", app, [
+            "function renderWorkPhase1(",
+            "function hydrateWorkExtras(",
+            "function isUnlocked(",
+            "window.__refreshWorkAfterVote",
+          ]);
+
+          // Amazon アフィ付与（意図せず消えがち）
+          assertIncludes("app.js amazon", app, [
+            "const AMAZON_ASSOCIATE_TAG",
+            "function ensureAmazonAffiliate(",
+            "function patchAmazonAnchors(",
+          ]);
+
+          // ---- HTML 側の「必須DOM ID」契約 ----
+          const listHtml = read("public/list.html");
+          // list.html が参照するID群（消えると静かに壊れる）
+          assertIncludes("list.html ids", listHtml, [
+            'id="list"',
+            'id="quickFiltersList"',
+            'id="moodClearLink"',
+            'id="listMoreBtn"',
+            'id="listCount"',
+            'id="facetFilters"',
+            'id="facetHint"',
+          ]);
+
+          const indexHtml = read("public/index.html");
+          // home側の主要導線（無いと棚やランキングが沈黙する）
+          assertIncludes("index.html ids", indexHtml, [
+            'id="homePopular"',
+            'id="genreTabs"',
+            'id="genreRow"',
+            'id="audienceTabs"',
+            'id="audienceRow"',
+          ]);
+
+          const workHtml = read("public/work.html");
+          // /work.html はリダイレクトページ（key->/work/<id>/）
+          assertIncludes("work.html redirect", workHtml, [
+            "location.replace",
+            'p.get("key")',
+            "b64urlFromUtf8",
+            '"./work/"',
+          ]);
+
+          // ---- /work/<id>/ の静的ページが生成されているか ----
+          const workDir = path.join(root, "public/work");
+          if (!fs.existsSync(workDir)) throw new Error("Missing: public/work (static work pages not generated)");
+          const dirs = fs.readdirSync(workDir, { withFileTypes: true })
+            .filter(d => d.isDirectory())
+            .map(d => d.name)
+            .filter(name => name !== "." && name !== "..");
+
+          // 0件だと「詳細ページが全部死ぬ」ので落とす
+          if (dirs.length === 0) throw new Error("public/work has 0 directories (no static work pages)");
+
+          // 各ディレクトリの index.html は build_work_pages で作られる想定
+          // 全件は重いので先頭だけ軽く検査
+          const sample = dirs.slice(0, Math.min(5, dirs.length));
+          for (const d of sample) {
+            const p = `public/work/${d}/index.html`;
+            mustExist(p);
+            const html = read(p);
+            // 詳細ページは #detail を持つ想定（app.js が work判定に使う）
+            assertIncludes(`work page ${d}`, html, ['id="detail"']);
+          }
+
+          console.log("✅ Contract checks passed");
+          NODE
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
