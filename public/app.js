@@ -2590,6 +2590,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
 
       const sent = trackVoteOnce(seriesKey, mood);
       setUnlocked(seriesKey);
+      try { window.__refreshWorkAfterVote?.(); } catch {}
 
       if (st) {
         st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
