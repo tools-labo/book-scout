@@ -1292,7 +1292,12 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
   const BATCH = 36;
   let i = appendFrom;
 
-  function itemHtml(it) {
+    function itemHtml(row) {
+    // row = { it, score, reasons }
+    const it = row?.it || {};
+    const score = Number(row?.score || 0);
+    const reasons = Array.isArray(row?.reasons) ? row.reasons : [];
+
     const seriesKey = toText(pick(it, ["seriesKey"])) || "";
     const title = toText(pick(it, ["title", "vol1.title"])) || seriesKey || "(無題)";
 
@@ -1307,6 +1312,15 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     // 表示用の連載誌：正規化して first
     const mags = itMagazinesNormalized(it, normalizeMag);
     const mag = mags[0] || "";
+
+    // ✅ 気分フィルター中だけ「ヒット理由」を表示
+    const showReason = !!moodActiveDefs.length;
+    const reasonHtml = showReason
+      ? `
+        <div class="sub">ヒット理由${score ? `（一致 ${esc(score)}）` : ""}</div>
+        ${reasons.length ? pillsMax6(reasons) : `<div class="sub" style="opacity:.7;">（一致タグなし）</div>`}
+      `
+      : "";
 
     return `
       <article class="card" data-sk="${esc(seriesKey)}">
@@ -1323,6 +1337,8 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
             <div class="title"><a href="${esc(workStaticUrl(seriesKey))}">${esc(seriesKey || title)}</a></div>
 
             ${mag ? `<div class="sub">連載誌: ${esc(mag)}</div>` : ""}
+
+            ${reasonHtml}
 
             ${tagsJa.length ? `<div class="sub">タグ</div>${pillsMax6(tagsJa)}` : ""}
 
