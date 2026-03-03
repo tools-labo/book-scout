@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-03T09:59:56.633Z",
-  "updatedAtJst": "2026-03-03 18:59:56",
+  "updatedAt": "2026-03-03T10:59:08.904Z",
+  "updatedAtJst": "2026-03-03 19:59:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -22,12 +22,12 @@
   "rows": [
     {
       "mood": "funny",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ドラゴンボール",
       "n": "3"
     },
     {
       "mood": "funny",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "3"
     },
     {
@@ -37,17 +37,17 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ザ・ファブル",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "ニセコイ",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -62,6 +62,16 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "ニセコイ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "桜蘭高校ホスト部",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
@@ -72,17 +82,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "ぼくたちは勉強ができない",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "桜蘭高校ホスト部",
       "n": "1"
     },
     {
@@ -107,12 +112,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "銀魂",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "暗殺教室",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -127,18 +132,18 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ザ・ファブル",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "アヤシモン",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
       "n": "1"
     },
     {
       "mood": "healing",
       "seriesKey": "葬送のフリーレン",
       "n": "2"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "ダンジョン飯",
+      "n": "1"
     },
     {
       "mood": "healing",
@@ -152,12 +157,7 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "フルーツバスケット",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "ダンジョン飯",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -172,12 +172,12 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "からかい上手の高木さん",
       "n": "1"
     },
     {
       "mood": "healing",
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -192,17 +192,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ニセコイ",
-      "n": "2"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "カッコウの許嫁",
       "n": "2"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "彼女、お借りします",
+      "n": "2"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "ニセコイ",
       "n": "2"
     },
     {
@@ -237,6 +237,16 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "あせとせっけん",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "チェンソーマン",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "ホリミヤ",
       "n": "1"
     },
@@ -247,17 +257,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "あせとせっけん",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "桜蘭高校ホスト部",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -272,12 +272,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "日々蝶々",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "日々蝶々",
       "n": "1"
     },
     {
@@ -302,17 +302,17 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "東京卍リベンジャーズ",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ちはやふる",
       "n": "2"
     },
     {
       "mood": "hot",
       "seriesKey": "ベルセルク",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "2"
     },
     {
@@ -337,12 +337,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -387,7 +387,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "少年のアビス",
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -412,12 +417,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ノ・ゾ・キ・ア・ナ",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
@@ -447,11 +447,6 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "蟲師",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
@@ -462,12 +457,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "聲の形",
+      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ちはやふる",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -482,6 +477,11 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "ちはやふる",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ReLIFE",
       "n": "1"
     },
@@ -492,7 +492,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "よつばと！",
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
@@ -517,12 +517,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "進撃の巨人",
       "n": "2"
     },
     {
@@ -533,11 +533,6 @@
     {
       "mood": "page_turner",
       "seriesKey": "約束のネバーランド",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -586,6 +581,11 @@
       "n": "1"
     },
     {
+      "mood": "page_turner",
+      "seriesKey": "アイアムアヒーロー",
+      "n": "1"
+    },
+    {
       "mood": "satisfying",
       "seriesKey": "ドラゴンボール",
       "n": "5"
@@ -607,17 +607,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
       "mood": "satisfying",
       "seriesKey": "無職転生 ～異世界行ったら本気だす～",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -642,12 +637,17 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "ドラゴンボール超",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -677,7 +677,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -692,12 +692,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
+      "seriesKey": "ソラニン",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ソラニン",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -707,12 +707,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
