@@ -2372,6 +2372,44 @@ function recGridHtml(title, items){
   `;
 }
 
+// ✅ NEW: 空でも枠を出す（「同じ読後感」専用に使う）
+function recGridHtmlWithEmpty(title, items, emptyText){
+  const xs = (items || []).filter(Boolean);
+
+  // 空のときもブロック自体は出す
+  if (!xs.length) {
+    return `
+      <div class="rec-block">
+        <div class="rec-head"><div class="rec-title">${esc(title)}</div></div>
+        <div class="d-sub" style="opacity:.8; padding:8px 0;">
+          ${esc(emptyText || "データがまだありません")}
+        </div>
+      </div>
+    `;
+  }
+
+  // 通常（中身あり）
+  return `
+    <div class="rec-block">
+      <div class="rec-head"><div class="rec-title">${esc(title)}</div></div>
+      <div class="rec-grid">
+        ${xs.map(x => `
+          <a class="rec-item" href="${esc(workStaticUrl(x.seriesKey))}" aria-label="${esc(x.title)}">
+            <div class="rec-cover">
+              ${
+                x.img
+                  ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async">`
+                  : `<div class="thumb-ph"></div>`
+              }
+            </div>
+            <div class="rec-name">${esc(x.seriesKey || x.title)}</div>
+          </a>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
 /* ===== popular same genre×audience ===== */
 function pickFirstGenre(it) {
   const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
