@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-03T08:59:36.523Z",
-  "updatedAtJst": "2026-03-03 17:59:36",
+  "updatedAt": "2026-03-03T09:59:56.633Z",
+  "updatedAtJst": "2026-03-03 18:59:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-03 09:48:31",
+      "timestampJst": "2026-03-03 18:48:31",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "化物語",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-03 06:33:38",
       "timestampJst": "2026-03-03 15:33:38",
@@ -20672,7 +20685,7 @@
     }
   ],
   "raw": {
-    "rows": 1586,
-    "rows_before_limit_at_least": 1586
+    "rows": 1587,
+    "rows_before_limit_at_least": 1587
   }
 }
