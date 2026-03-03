@@ -2082,7 +2082,7 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
   const art = rateSeriesMap?.get?.(seriesKey)?.art;
 
   const recOk = rec?.avg && Number(rec?.n || 0) >= MIN_N;
-  const artOk = art?.avg && Number(rec?.n || 0) >= MIN_N;
+  const artOk = art?.avg && Number(art?.n || 0) >= MIN_N;
 
   const recTxt = recOk ? `★${formatStarAvg(rec.avg)}` : "—";
   const artTxt = artOk ? `★${formatStarAvg(art.avg)}` : "—";
@@ -2114,7 +2114,7 @@ const VOTE_TOTAL_BY_SERIES_PATH = BASE + "data/metrics/wae/vote_by_series.json";
 // ✅ “正解データ”に格上げする閾値
 const MOOD_VOTE_MIN = 3;
 
-// 既存：類似作品（投票ベクトル）用
+// 既存：類似作品（投票ベクトル）用（ここは「同じ読後感」には使わない）
 const VOTE_MIN_TOTAL = 5;
 
 function buildVoteMatrix(voteRows) {
@@ -2230,6 +2230,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) 
 
 /* =======================
  * Vote similar reco（既存）
+ * - これは「同じ読後感の作品」には使わない（誤爆の原因になる）
  * ======================= */
 function cosineSim(aMap, bMap) {
   if (!aMap || !bMap) return 0;
@@ -2272,6 +2273,48 @@ function voteSimilarTop3({ baseKey, allItems, voteMatrix }) {
   return scored.slice(0, 3).map(x => x.it);
 }
 function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
+
+/* =======================
+ * ✅ 同じ読後感（AND）Top3
+ * - 1個投票: そのmoodを含む作品
+ * - 2個投票: 2個とも含む作品（AND）
+ * - 並び: 選択moodの票数合計が多い順
+ * ======================= */
+function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTotal = 0 }) {
+  const base = toText(baseKey);
+  const moods = (selectedMoods || []).map(toText).filter(Boolean).slice(0, VOTE_MAX);
+  if (!base || !moods.length) return [];
+
+  if (!voteMatrix?.bySeries?.size) return [];
+
+  const scored = [];
+  for (const it of (allItems || [])) {
+    const sk = toText(pick(it, ["seriesKey"]));
+    if (!sk || sk === base) continue;
+
+    const vec = voteMatrix.bySeries.get(sk);
+    if (!vec) continue;
+
+    // AND 条件：選択moodが全部入ってる
+    let ok = true;
+    let sum = 0;
+    for (const m of moods) {
+      const n = Number(vec.get(m) || 0);
+      if (!Number.isFinite(n) || n <= 0) { ok = false; break; }
+      sum += n;
+    }
+    if (!ok) continue;
+
+    // 任意：総票が少なすぎる候補を落としたい場合（今は0=落とさない）
+    const total = Number(voteMatrix.totals?.get?.(sk) || 0);
+    if (minTotal > 0 && total < minTotal) continue;
+
+    scored.push({ it, sum, total });
+  }
+
+  scored.sort((a, b) => (b.sum - a.sum) || (b.total - a.total));
+  return scored.slice(0, 3).map(x => x.it);
+}
 
 /* =======================
  * Tag DF / IDF reco
@@ -2327,27 +2370,6 @@ function toRecItem(it) {
   const img = normalizeImgUrl(imgRaw);
   return { seriesKey, title, img };
 }
-function recMiniRowHtml(items){
-  const xs = (items || []).filter(Boolean);
-  if (!xs.length) return `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`;
-
-  return `
-    <div class="mini-row">
-      ${xs.map(x => `
-        <a class="mini-card" href="${esc(workStaticUrl(x.seriesKey))}">
-          <div class="mini-cover">
-            ${
-              x.img
-                ? `<img src="${IMG_PLACEHOLDER_SRC}" data-src="${esc(x.img)}" alt="${esc(x.title)}" loading="lazy" decoding="async">`
-                : `<div class="thumb-ph"></div>`
-            }
-          </div>
-          <div class="mini-title">${esc(x.seriesKey || x.title)}</div>
-        </a>
-      `).join("")}
-    </div>
-  `;
-}
 function recGridHtml(title, items){
   const xs = (items || []).filter(Boolean);
   if (!xs.length) return "";
@@ -2372,11 +2394,10 @@ function recGridHtml(title, items){
   `;
 }
 
-// ✅ NEW: 空でも枠を出す（「同じ読後感」専用に使う）
+// ✅ 空でも枠を出す（「同じ読後感」専用に使う）
 function recGridHtmlWithEmpty(title, items, emptyText){
   const xs = (items || []).filter(Boolean);
 
-  // 空のときもブロック自体は出す
   if (!xs.length) {
     return `
       <div class="rec-block">
@@ -2388,7 +2409,6 @@ function recGridHtmlWithEmpty(title, items, emptyText){
     `;
   }
 
-  // 通常（中身あり）
   return `
     <div class="rec-block">
       <div class="rec-head"><div class="rec-title">${esc(title)}</div></div>
@@ -2415,7 +2435,6 @@ function pickFirstGenre(it) {
   const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
   return g[0] || "";
 }
-/* ✅ FIX: 順序ブレ対策で “代表audience” を使う */
 function pickFirstAudience(it) {
   return pickMainAudience(it) || WEBAPP_AUD_VALUE;
 }
@@ -2522,6 +2541,9 @@ async function renderWorkPhase1(worksState, quickDefs) {
     </div>
   ` : "";
 
+  // ✅ ここに「同じ読後感」ブロックを差し込む（投票の直下）
+  const sameMoodRecoMount = `<div id="sameMoodRecoMount"></div>`;
+
   const recVal = getRatedValue(seriesKey, "rec");
   const artVal = getRatedValue(seriesKey, "art");
   const hasStarVoted = !!(recVal || artVal);
@@ -2584,7 +2606,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
 
     ${moodTruthPlaceholder}
     ${voteBox}
-    <div id="recoVotesMount"></div>
+    ${sameMoodRecoMount}
     ${rateBox}
     ${recoHtml}
   `;
@@ -2612,6 +2634,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
         if (st) st.textContent = "選択を外しました";
         setTimeout(() => { if (st) st.textContent = ""; }, 900);
         showToast("選択を外しました");
+        try { window.__refreshWorkAfterVote?.(); } catch {}
         return;
       }
 
@@ -2630,14 +2653,8 @@ async function renderWorkPhase1(worksState, quickDefs) {
       const sent = trackVoteOnce(seriesKey, mood);
       setUnlocked(seriesKey);
 
-      // ✅ 投票直後の再描画（Phase2がまだなら pending）
-      try {
-        if (typeof window.__refreshWorkAfterVote === "function") {
-          window.__refreshWorkAfterVote();
-        } else {
-          window.__pendingWorkVoteRefresh = true;
-        }
-      } catch {}
+      // ✅ 投票後に即「同じ読後感」を再描画（1個→2個(AND)でも必ず更新）
+      try { window.__refreshWorkAfterVote?.(); } catch {}
 
       if (st) {
         st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
@@ -2647,7 +2664,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
     };
   }
 
-  // ✅ ★評価のクリック処理（これが抜けてた）
+  // ★評価のクリック処理
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
@@ -2671,7 +2688,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
         applyStarsUi(w, n);
       }
 
-      // 平均表示を開放（投票後に表示）
+      // 平均表示を開放
       const locked = document.getElementById("avgStarsLocked");
       const unlockedEl = document.getElementById("avgStarsUnlocked");
       if (locked) locked.style.display = "none";
@@ -2707,7 +2724,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
 function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTotalBySeries, rateSeriesMap, viewsMap }) {
   if (!it || !seriesKey) return;
 
-  // ✅ “正解データ”の常時表示（閾値未満は断定しない）
+  // “正解データ”の常時表示（閾値未満は断定しない）
   try{
     const mount = document.getElementById("moodTruthBlock");
     if (mount) {
@@ -2726,39 +2743,49 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
     if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
   } catch {}
 
-  // 同じ読後感（投票ベクトル類似）→ 投票ボックス直下に表示
-  // 似ている / 人気 → そのまま出しっぱなし（recoTagsBlock）
-  try{
-    const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
-    const df = getDfCached(allForReco);
-    const unlocked = isUnlocked(seriesKey);
+  const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
 
-    // --- ① 投票報酬（画面内） ---
-    const voteMount = document.getElementById("recoVotesMount");
-    if (voteMount) {
-      let simByVotes = [];
-      let votesEmptyText = "投票が増えると、ここに似ている作品が表示されます。";
+  // ✅ 同じ読後感（投票直下の mount に描画）
+  try {
+    const mount = document.getElementById("sameMoodRecoMount");
+    if (mount) {
+      const unlocked = isUnlocked(seriesKey);
+      if (!unlocked) {
+        mount.innerHTML = "";
+      } else {
+        const selected = Array.from(getVotedSet(seriesKey)).map(toText).filter(Boolean).slice(0, VOTE_MAX);
 
-      if (!voteMatrix?.bySeries?.size) {
-        votesEmptyText = "読後感データを読み込み中…";
-      } else if (unlocked) {
-        simByVotes = clamp3(
-          voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })
-        ).map(toRecItem);
+        let items = [];
+        let emptyText = "投票が増えると、ここに作品が表示されます。";
 
-        if (!simByVotes.length) {
-          votesEmptyText = "まだ似ている作品が見つかりません（投票が増えると出ます）";
+        if (!voteMatrix?.bySeries?.size) {
+          emptyText = "読後感データを読み込み中…";
+        } else {
+          items = sameMoodAndTop3({
+            baseKey: seriesKey,
+            selectedMoods: selected,
+            allItems: allForReco,
+            voteMatrix,
+            minTotal: 0, // 今は落とさない（必要なら VOTE_MIN_TOTAL にしてもOK）
+          }).map(toRecItem);
+
+          // 2個ANDで0件のときもここ
+          if (!items.length) {
+            emptyText = "まだデータがありません";
+          }
         }
+
+        mount.innerHTML = recGridHtmlWithEmpty("同じ読後感の作品", items, emptyText);
       }
-
-      voteMount.innerHTML = unlocked
-        ? recGridHtmlWithEmpty("同じ読後感の作品", simByVotes, votesEmptyText)
-        : "";
     }
+  } catch {}
 
-    // --- ② 出しっぱなし（下の方） ---
+  // ✅ 似ている作品 / 人気（これは出しっぱなしでOK）
+  try{
     const root = document.getElementById("recoTagsBlock");
     if (root) {
+      const df = getDfCached(allForReco);
+
       const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
       const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
 
@@ -2855,7 +2882,7 @@ async function run() {
     // Work判定
     const isWorkPage = !!document.getElementById("detail");
 
-    // ✅ Work: Phase1 先描画
+    // Work: Phase1 先描画
     let workCtx = null;
     if (isWorkPage) {
       workCtx = await renderWorkPhase1(worksState, quickDefs);
@@ -2876,12 +2903,11 @@ async function run() {
         const riseUrl = withV(METRIC_RISING_WORK_VIEW_PATH);
         const riseJson = await tryLoadJson(riseUrl, { bust });
         if (!riseJson) return new Map();
-        // 1/3 側 helper を使って Map 化
         return buildCountMapFromMetricJson(riseJson);
       } catch { return new Map(); }
     })();
 
-    // ✅ vote matrix（内訳）+ total（総票）
+    // vote matrix（内訳）+ total（総票）
     const pVote = (async () => {
       try {
         const voteUrl = withV(VOTE_AGG_PATH);
@@ -2905,7 +2931,7 @@ async function run() {
       } catch { return new Map(); }
     })();
 
-    // ✅ Work: Phase2 hydrate
+    // Work: Phase2 hydrate
     if (isWorkPage && workCtx) {
       const [voteMatrix, voteTotalBySeries, rateSeriesMap] = await Promise.all([pVote, pVoteTotal, pRateSeries]);
       const viewsMap = await pViews;
@@ -2925,18 +2951,12 @@ async function run() {
 
       hydrateWorkExtras(args);
 
-      // ✅ 投票後に「同じ読後感の作品」を再描画するために、必要な材料を保持
+      // 投票後に再描画するため材料を保持
       try {
         window.__workHydrateArgs = args;
         window.__refreshWorkAfterVote = () => {
           try { hydrateWorkExtras(window.__workHydrateArgs); } catch {}
         };
-
-        // ✅ Phase2前に投票されていた場合は、ここで1回だけ反映
-        if (window.__pendingWorkVoteRefresh) {
-          window.__pendingWorkVoteRefresh = false;
-          try { window.__refreshWorkAfterVote(); } catch {}
-        }
       } catch {}
 
       patchAmazonAnchors(document);
@@ -2968,7 +2988,6 @@ async function run() {
       if (sk) itemsByKey.set(sk, it);
     }
 
-    // Home
     if (document.getElementById("homePopular")) {
       renderHomePopular({ items: worksState.listItems, viewsMap, limit: 6 });
     }
@@ -2996,7 +3015,6 @@ async function run() {
       try { if (typeof renderQuickHome === "function") renderQuickHome({ defs: quickDefs, counts }); } catch {}
     }
 
-    // List（(1/3)）
     if (document.getElementById("list")) {
       renderList(worksState.listItems, quickDefs, magNormJson, { viewsMap, risingMap });
     }
