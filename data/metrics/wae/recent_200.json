@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-03T03:13:47.831Z",
-  "updatedAtJst": "2026-03-03 12:13:47",
+  "updatedAt": "2026-03-03T04:57:00.278Z",
+  "updatedAtJst": "2026-03-03 13:57:00",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,110 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-03 04:34:20",
+      "timestampJst": "2026-03-03 13:34:20",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=fantasy",
+      "aud": "aud=少女",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-03 04:34:18",
+      "timestampJst": "2026-03-03 13:34:18",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "genre=fantasy",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-03 04:34:08",
+      "timestampJst": "2026-03-03 13:34:08",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-03 04:34:06",
+      "timestampJst": "2026-03-03 13:34:06",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-03 04:34:04",
+      "timestampJst": "2026-03-03 13:34:04",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-03 04:34:01",
+      "timestampJst": "2026-03-03 13:34:01",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-03 04:33:59",
+      "timestampJst": "2026-03-03 13:33:59",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-03 04:33:57",
+      "timestampJst": "2026-03-03 13:33:57",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-02 22:04:53",
       "timestampJst": "2026-03-03 07:04:53",
@@ -20555,7 +20659,7 @@
     }
   ],
   "raw": {
-    "rows": 1577,
-    "rows_before_limit_at_least": 1577
+    "rows": 1585,
+    "rows_before_limit_at_least": 1585
   }
 }

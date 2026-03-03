@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-03T03:13:47.831Z",
-  "updatedAtJst": "2026-03-03 12:13:47",
+  "updatedAt": "2026-03-03T04:57:00.278Z",
+  "updatedAtJst": "2026-03-03 13:57:00",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -37,6 +37,10 @@
       "n": "6"
     },
     {
+      "seriesKey": "アイシールド21",
+      "n": "6"
+    },
+    {
       "seriesKey": "キングダム",
       "n": "5"
     },
@@ -54,10 +58,6 @@
     },
     {
       "seriesKey": "チェンソーマン",
-      "n": "4"
-    },
-    {
-      "seriesKey": "アイシールド21",
       "n": "4"
     },
     {
@@ -359,6 +359,6 @@
   ],
   "raw": {
     "rows": 85,
-    "rows_before_limit_at_least": 199
+    "rows_before_limit_at_least": 201
   }
 }
