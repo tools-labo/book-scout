@@ -2171,21 +2171,25 @@ function buildMoodLabelMap(defs){
   return m;
 }
 
-function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCounts = false }){
+// ✅ NEW: 上位のmood一覧を返す（FBボタン用）
+function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max = 4 }){
   const sk = toText(seriesKey);
-  if (!sk || !voteMatrix?.bySeries?.size) return "";
+  if (!sk || !voteMatrix?.bySeries?.size) return [];
 
   const m = voteMatrix.bySeries.get(sk);
-  if (!m) return "";
+  if (!m) return [];
 
   const labelMap = buildMoodLabelMap(defs);
 
-  const rows = Array.from(m.entries())
+  return Array.from(m.entries())
     .map(([mood, n]) => ({ mood: toText(mood), label: labelMap.get(toText(mood)) || toText(mood), n: Number(n || 0) }))
     .filter(x => x.mood && Number.isFinite(x.n) && x.n > 0)
     .sort((a, b) => (b.n - a.n))
     .slice(0, max);
+}
 
+function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCounts = false }){
+  const rows = moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max });
   if (!rows.length) return "";
   return `
     <div class="pills" style="margin-top:6px;">
@@ -2195,6 +2199,7 @@ function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCount
 }
 
 // ✅ “正解データ”として常時表示するブロック（閾値未満は断定しない）
+// ✅ NEW: 合ってる？/違う？の超軽量フィードバック（閾値以上のときだけ表示）
 function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) {
   const sk = toText(seriesKey);
   if (!sk) return "";
@@ -2216,14 +2221,47 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) 
   }
 
   // 閾値以上：上位を表示
+  const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4 });
   const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4, hideCounts: false });
+
+  // ✅ FB対象mood（idのCSV）: 上位表示と同じもの
+  const moodsCsv = topRows.map(x => toText(x.mood)).filter(Boolean).join(",");
+
   return `
     <div class="vote-box" style="margin-top:12px;">
       <div class="vote-head">
         <h3 class="vote-title">みんなの読後感（投票）</h3>
       </div>
       <p class="vote-note">投票${total}票分の集計です。</p>
+
       ${pills || `<div class="d-sub" style="opacity:.85;">データがまだありません</div>`}
+
+      <div style="margin-top:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <div class="d-sub" style="margin:0; opacity:.9;">この表示、合ってる？</div>
+        <button type="button"
+          class="pill"
+          data-moodfb="1"
+          data-moodfb-k="yes"
+          data-moodfb-sk="${esc(sk)}"
+          data-moodfb-moods="${esc(moodsCsv)}"
+          data-moodfb-src="vote_truth"
+          aria-label="合ってる"
+        >👍 合ってる</button>
+
+        <button type="button"
+          class="pill"
+          data-moodfb="1"
+          data-moodfb-k="no"
+          data-moodfb-sk="${esc(sk)}"
+          data-moodfb-moods="${esc(moodsCsv)}"
+          data-moodfb-src="vote_truth"
+          aria-label="違う"
+        >👎 違う</button>
+
+        <span class="d-sub" style="margin:0; opacity:.75;">（1タップでOK）</span>
+      </div>
+
+      <div class="vote-status" id="moodFbStatus" style="margin-top:8px;"></div>
     </div>
   `;
 }
@@ -2276,9 +2314,6 @@ function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
 
 /* =======================
  * ✅ 同じ読後感（AND）Top3
- * - 1個投票: そのmoodを含む作品
- * - 2個投票: 2個とも含む作品（AND）
- * - 並び: 選択moodの票数合計が多い順
  * ======================= */
 function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTotal = 0 }) {
   const base = toText(baseKey);
@@ -2295,7 +2330,6 @@ function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTota
     const vec = voteMatrix.bySeries.get(sk);
     if (!vec) continue;
 
-    // AND 条件：選択moodが全部入ってる
     let ok = true;
     let sum = 0;
     for (const m of moods) {
@@ -2305,7 +2339,6 @@ function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTota
     }
     if (!ok) continue;
 
-    // 任意：総票が少なすぎる候補を落としたい場合（今は0=落とさない）
     const total = Number(voteMatrix.totals?.get?.(sk) || 0);
     if (minTotal > 0 && total < minTotal) continue;
 
@@ -2393,8 +2426,6 @@ function recGridHtml(title, items){
     </div>
   `;
 }
-
-// ✅ 空でも枠を出す（「同じ読後感」専用に使う）
 function recGridHtmlWithEmpty(title, items, emptyText){
   const xs = (items || []).filter(Boolean);
 
@@ -2516,7 +2547,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
   const defs = Array.isArray(quickDefs) ? quickDefs : [];
   const voted = getVotedSet(seriesKey);
 
-  // ✅ “正解データ（投票）”は Phase2 で必ず差し込む（ここはプレースホルダ）
   const moodTruthPlaceholder = `<div id="moodTruthBlock"></div>`;
 
   const voteBox = defs.length ? `
@@ -2541,7 +2571,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
     </div>
   ` : "";
 
-  // ✅ ここに「同じ読後感」ブロックを差し込む（投票の直下）
   const sameMoodRecoMount = `<div id="sameMoodRecoMount"></div>`;
 
   const recVal = getRatedValue(seriesKey, "rec");
@@ -2614,6 +2643,39 @@ async function renderWorkPhase1(worksState, quickDefs) {
   initLazyImages(detail);
   trackWorkViewOnce(seriesKey);
 
+  // ✅ mood FB（合ってる/違う）: delegated handler
+  if (!detail.__moodFbBound) {
+    detail.__moodFbBound = true;
+    detail.addEventListener("click", (ev) => {
+      const btn = ev.target?.closest?.("button[data-moodfb='1']");
+      if (!btn) return;
+
+      const sk = toText(btn.getAttribute("data-moodfb-sk") || "");
+      const moods = toText(btn.getAttribute("data-moodfb-moods") || "");
+      const k = toText(btn.getAttribute("data-moodfb-k") || "");
+      const src = toText(btn.getAttribute("data-moodfb-src") || "");
+
+      if (!sk || !k) return;
+
+      // 端末内多重送信抑止（24h）
+      const onceKey = `mood_fb:${sk}:${moods}:${k}:${src}`;
+      if (!canSendOnce(onceKey)) {
+        showToast("送信済みです");
+        return;
+      }
+
+      // type: mood_fb / k: yes|no / v: src / mood: moodsCSV
+      trackEvent({ type: "mood_fb", page: "work", seriesKey: sk, mood: moods, k, v: src });
+
+      const st = document.getElementById("moodFbStatus");
+      if (st) {
+        st.textContent = "ありがとう！反映に使います。";
+        setTimeout(() => { if (st) st.textContent = ""; }, 1100);
+      }
+      showToast("フィードバックありがとう！");
+    }, { passive: true });
+  }
+
   const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
@@ -2653,7 +2715,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
       const sent = trackVoteOnce(seriesKey, mood);
       setUnlocked(seriesKey);
 
-      // ✅ 投票後に即「同じ読後感」を再描画（1個→2個(AND)でも必ず更新）
       try { window.__refreshWorkAfterVote?.(); } catch {}
 
       if (st) {
@@ -2688,7 +2749,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
         applyStarsUi(w, n);
       }
 
-      // 平均表示を開放
       const locked = document.getElementById("avgStarsLocked");
       const unlockedEl = document.getElementById("avgStarsUnlocked");
       if (locked) locked.style.display = "none";
@@ -2699,7 +2759,6 @@ async function renderWorkPhase1(worksState, quickDefs) {
         if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, window.__rateSeriesMap || new Map());
       } catch {}
 
-      // 送信（端末内の重複抑止）
       const onceKey = `rate:${toText(seriesKey)}:${toText(k)}:${toText(sendVal)}`;
       if (canSendOnce(onceKey)) {
         trackEvent({ type: "rate", page: "work", seriesKey, k, v: sendVal });
@@ -2745,7 +2804,7 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
 
   const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
 
-  // ✅ 同じ読後感（投票直下の mount に描画）
+  // 同じ読後感（投票直下）
   try {
     const mount = document.getElementById("sameMoodRecoMount");
     if (mount) {
@@ -2766,10 +2825,9 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
             selectedMoods: selected,
             allItems: allForReco,
             voteMatrix,
-            minTotal: 0, // 今は落とさない（必要なら VOTE_MIN_TOTAL にしてもOK）
+            minTotal: 0,
           }).map(toRecItem);
 
-          // 2個ANDで0件のときもここ
           if (!items.length) {
             emptyText = "まだデータがありません";
           }
@@ -2780,7 +2838,7 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
     }
   } catch {}
 
-  // ✅ 似ている作品 / 人気（これは出しっぱなしでOK）
+  // 似ている作品 / 人気（出しっぱなしでOK）
   try{
     const root = document.getElementById("recoTagsBlock");
     if (root) {
@@ -2867,28 +2925,22 @@ async function run() {
 
     canonicalizeWorkToStatic();
 
-    // works
     const worksState = await loadWorksIndex({ bust });
 
-    // quick filters
     const quickUrl = v ? `${QUICK_FILTERS_PATH}?v=${encodeURIComponent(v)}` : QUICK_FILTERS_PATH;
     const quick = await loadJson(quickUrl, { bust });
     const quickDefs = Array.isArray(quick?.items) ? quick.items : [];
 
-    // mag normalize（List用）
     const magNormUrl = v ? `${MAG_NORMALIZE_PATH}?v=${encodeURIComponent(v)}` : MAG_NORMALIZE_PATH;
     const magNormJson = await tryLoadJson(magNormUrl, { bust });
 
-    // Work判定
     const isWorkPage = !!document.getElementById("detail");
 
-    // Work: Phase1 先描画
     let workCtx = null;
     if (isWorkPage) {
       workCtx = await renderWorkPhase1(worksState, quickDefs);
     }
 
-    // metrics 並列
     const pViews = (async () => {
       try {
         const viewUrl = withV(METRIC_WORK_VIEW_BY_SERIES_PATH);
@@ -2907,7 +2959,6 @@ async function run() {
       } catch { return new Map(); }
     })();
 
-    // vote matrix（内訳）+ total（総票）
     const pVote = (async () => {
       try {
         const voteUrl = withV(VOTE_AGG_PATH);
@@ -2931,7 +2982,6 @@ async function run() {
       } catch { return new Map(); }
     })();
 
-    // Work: Phase2 hydrate
     if (isWorkPage && workCtx) {
       const [voteMatrix, voteTotalBySeries, rateSeriesMap] = await Promise.all([pVote, pVoteTotal, pRateSeries]);
       const viewsMap = await pViews;
@@ -2951,7 +3001,6 @@ async function run() {
 
       hydrateWorkExtras(args);
 
-      // 投票後に再描画するため材料を保持
       try {
         window.__workHydrateArgs = args;
         window.__refreshWorkAfterVote = () => {
@@ -2967,10 +3016,8 @@ async function run() {
       return;
     }
 
-    // ---- Home / List ----
     const [viewsMap, risingMap] = await Promise.all([pViews, pRising]);
 
-    // rate top
     let rateRecTop = [];
     let rateArtTop = [];
     try {
