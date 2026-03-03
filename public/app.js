@@ -2685,12 +2685,17 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
       const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
       const df = getDfCached(allForReco);
 
-      const simByVotes = clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })).map(toRecItem);
+            const unlocked = isUnlocked(seriesKey);
+
+      const simByVotes = unlocked
+        ? clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })).map(toRecItem)
+        : [];
+
       const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
       const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
 
       root.outerHTML = `
-        ${recGridHtml("同じ読後感の作品", simByVotes)}
+        ${unlocked ? recGridHtml("同じ読後感の作品", simByVotes) : ""}
         ${recGridHtml("似ている作品", simByTags)}
         ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
       `;
