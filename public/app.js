@@ -2726,18 +2726,34 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
 
             const unlocked = isUnlocked(seriesKey);
 
-      const simByVotes = unlocked
-        ? clamp3(voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })).map(toRecItem)
-        : [];
+// voteMatrix が無い/未読込でも「枠」は出す
+let simByVotes = [];
+let votesEmptyText = "投票が増えると、ここに似ている作品が表示されます。";
 
-      const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
-      const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
+if (!voteMatrix?.bySeries?.size) {
+  votesEmptyText = "読後感データを読み込み中…";
+} else if (unlocked) {
+  simByVotes = clamp3(
+    voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })
+  ).map(toRecItem);
 
-      root.outerHTML = `
-        ${unlocked ? recGridHtml("同じ読後感の作品", simByVotes) : ""}
-        ${recGridHtml("似ている作品", simByTags)}
-        ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
-      `;
+  if (!simByVotes.length) {
+    votesEmptyText = "まだ似ている作品が見つかりません（投票が増えると出ます）";
+  }
+}
+
+const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
+const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
+
+root.outerHTML = `
+  ${
+    unlocked
+      ? recGridHtmlWithEmpty("同じ読後感の作品", simByVotes, votesEmptyText)
+      : ""
+  }
+  ${recGridHtml("似ている作品", simByTags)}
+  ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
+`;
     }
   } catch {}
 
