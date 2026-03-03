@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-03T13:22:10.539Z",
-  "updatedAtJst": "2026-03-03 22:22:10",
+  "updatedAt": "2026-03-03T15:04:08.646Z",
+  "updatedAtJst": "2026-03-04 00:04:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -33,7 +33,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "115"
+      "n": "116"
     },
     {
       "genre": "",
@@ -86,16 +86,16 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=moving",
-      "n": "6"
-    },
-    {
-      "genre": "",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
+      "n": "7"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=moving",
       "n": "6"
     },
     {
@@ -822,6 +822,6 @@
   ],
   "raw": {
     "rows": 113,
-    "rows_before_limit_at_least": 339
+    "rows_before_limit_at_least": 341
   }
 }
