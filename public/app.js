@@ -1098,16 +1098,41 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     .filter(it => (audienceWanted ? hasAudience(it, audienceWanted) : true))
     .filter(it => hasMagazineNormalized(it, magazineWanted, normalizeMag));
 
-  // --- mood filter (絞り込み)
+    // ✅ ヒット理由（一致タグ）を取る：優先順位は quick_filters.json の順
+  function pickReasonTags(it, defs, max = 3) {
+    const tagSet = new Set(itTags(it));
+    if (!defs?.length || !tagSet.size) return [];
+
+    const out = [];
+    const seen = new Set();
+
+    for (const def of defs) {
+      const anyTags = toTagList(def?.matchAny?.tags || []);
+      for (const t of anyTags) {
+        if (!tagSet.has(t)) continue;
+        if (seen.has(t)) continue;
+        seen.add(t);
+        out.push(t);
+        if (out.length >= max) return out;
+      }
+    }
+    return out;
+  }
+
+  // --- mood filter (絞り込み) + 理由タグ保持
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
       const r = quickEvalAll(it, moodActiveDefs);
       if (!r.ok) continue;
-      scored.push({ it, score: r.score });
+      scored.push({
+        it,
+        score: r.score,
+        reasons: pickReasonTags(it, moodActiveDefs, 3),
+      });
     }
   } else {
-    for (const it of base) scored.push({ it, score: 0 });
+    for (const it of base) scored.push({ it, score: 0, reasons: [] });
   }
 
   // --- sort (並び替え)
@@ -1119,14 +1144,21 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     if (sortKey === "new") {
       scored.sort((a, b) => (getReleaseMs(b.it) - getReleaseMs(a.it)) || byTitleAsc(a.it, b.it));
     } else if (sortKey === "rise") {
-      scored.sort((a, b) => ((risingMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) - (risingMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)) || byTitleAsc(a.it, b.it));
+      scored.sort((a, b) => (
+        (risingMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) -
+        (risingMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)
+      ) || byTitleAsc(a.it, b.it));
     } else {
       // pop
-      scored.sort((a, b) => ((viewsMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) - (viewsMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)) || byTitleAsc(a.it, b.it));
+      scored.sort((a, b) => (
+        (viewsMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) -
+        (viewsMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)
+      ) || byTitleAsc(a.it, b.it));
     }
   }
 
-  const outItemsAll = scored.map(x => x.it);
+  // ✅ 以降は「it配列」ではなく「{it, score, reasons}配列」を使う
+  const outItemsAll = scored;
 
   // ✅ mood clear
   const clear = document.getElementById("moodClearLink");
