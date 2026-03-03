@@ -2845,7 +2845,7 @@ async function run() {
 
       try { window.__rateSeriesMap = rateSeriesMap; } catch {}
 
-      hydrateWorkExtras({
+            const args = {
         it: workCtx.it,
         seriesKey: workCtx.seriesKey,
         defs: workCtx.defs,
@@ -2854,7 +2854,17 @@ async function run() {
         voteTotalBySeries,
         rateSeriesMap,
         viewsMap,
-      });
+      };
+
+      hydrateWorkExtras(args);
+
+      // ✅ 投票後に「同じ読後感の作品」を再描画するために、必要な材料を保持
+      try {
+        window.__workHydrateArgs = args;
+        window.__refreshWorkAfterVote = () => {
+          try { hydrateWorkExtras(window.__workHydrateArgs); } catch {}
+        };
+      } catch {}
 
       patchAmazonAnchors(document);
       bindFavHandlers(document);
