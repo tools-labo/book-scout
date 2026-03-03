@@ -2082,7 +2082,7 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
   const art = rateSeriesMap?.get?.(seriesKey)?.art;
 
   const recOk = rec?.avg && Number(rec?.n || 0) >= MIN_N;
-  const artOk = art?.avg && Number(art?.n || 0) >= MIN_N;
+  const artOk = art?.avg && Number(rec?.n || 0) >= MIN_N;
 
   const recTxt = recOk ? `★${formatStarAvg(rec.avg)}` : "—";
   const artTxt = artOk ? `★${formatStarAvg(art.avg)}` : "—";
@@ -2584,6 +2584,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
 
     ${moodTruthPlaceholder}
     ${voteBox}
+    <div id="recoVotesMount"></div>
     ${rateBox}
     ${recoHtml}
   `;
@@ -2591,7 +2592,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
   initLazyImages(detail);
   trackWorkViewOnce(seriesKey);
 
-    const vp = document.getElementById("votePills");
+  const vp = document.getElementById("votePills");
   if (vp) {
     vp.onclick = (ev) => {
       const btn = ev.target?.closest?.("button[data-vote]");
@@ -2628,7 +2629,15 @@ async function renderWorkPhase1(worksState, quickDefs) {
 
       const sent = trackVoteOnce(seriesKey, mood);
       setUnlocked(seriesKey);
-      try { window.__refreshWorkAfterVote?.(); } catch {}
+
+      // ✅ 投票直後の再描画（Phase2がまだなら pending）
+      try {
+        if (typeof window.__refreshWorkAfterVote === "function") {
+          window.__refreshWorkAfterVote();
+        } else {
+          window.__pendingWorkVoteRefresh = true;
+        }
+      } catch {}
 
       if (st) {
         st.textContent = sent ? "投票しました" : "投票済み（しばらくしてから）";
@@ -2717,43 +2726,46 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
     if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
   } catch {}
 
-  // 同じ読後感（投票ベクトル類似）＋タグ類似＋同ジャンル×カテゴリ人気
+  // 同じ読後感（投票ベクトル類似）→ 投票ボックス直下に表示
+  // 似ている / 人気 → そのまま出しっぱなし（recoTagsBlock）
   try{
+    const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
+    const df = getDfCached(allForReco);
+    const unlocked = isUnlocked(seriesKey);
+
+    // --- ① 投票報酬（画面内） ---
+    const voteMount = document.getElementById("recoVotesMount");
+    if (voteMount) {
+      let simByVotes = [];
+      let votesEmptyText = "投票が増えると、ここに似ている作品が表示されます。";
+
+      if (!voteMatrix?.bySeries?.size) {
+        votesEmptyText = "読後感データを読み込み中…";
+      } else if (unlocked) {
+        simByVotes = clamp3(
+          voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })
+        ).map(toRecItem);
+
+        if (!simByVotes.length) {
+          votesEmptyText = "まだ似ている作品が見つかりません（投票が増えると出ます）";
+        }
+      }
+
+      voteMount.innerHTML = unlocked
+        ? recGridHtmlWithEmpty("同じ読後感の作品", simByVotes, votesEmptyText)
+        : "";
+    }
+
+    // --- ② 出しっぱなし（下の方） ---
     const root = document.getElementById("recoTagsBlock");
     if (root) {
-      const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
-      const df = getDfCached(allForReco);
+      const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
+      const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
 
-            const unlocked = isUnlocked(seriesKey);
-
-// voteMatrix が無い/未読込でも「枠」は出す
-let simByVotes = [];
-let votesEmptyText = "投票が増えると、ここに似ている作品が表示されます。";
-
-if (!voteMatrix?.bySeries?.size) {
-  votesEmptyText = "読後感データを読み込み中…";
-} else if (unlocked) {
-  simByVotes = clamp3(
-    voteSimilarTop3({ baseKey: seriesKey, allItems: allForReco, voteMatrix })
-  ).map(toRecItem);
-
-  if (!simByVotes.length) {
-    votesEmptyText = "まだ似ている作品が見つかりません（投票が増えると出ます）";
-  }
-}
-
-const simByTags = clamp3(tagSimilarTop3({ baseIt: it, allItems: allForReco, df })).map(toRecItem);
-const popular = clamp3(popularSameGenreAudTop3({ baseIt: it, allItems: allForReco, viewsMap })).map(toRecItem);
-
-root.outerHTML = `
-  ${
-    unlocked
-      ? recGridHtmlWithEmpty("同じ読後感の作品", simByVotes, votesEmptyText)
-      : ""
-  }
-  ${recGridHtml("似ている作品", simByTags)}
-  ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
-`;
+      root.outerHTML = `
+        ${recGridHtml("似ている作品", simByTags)}
+        ${recGridHtml("このジャンル×カテゴリーで人気", popular)}
+      `;
     }
   } catch {}
 
@@ -2900,7 +2912,7 @@ async function run() {
 
       try { window.__rateSeriesMap = rateSeriesMap; } catch {}
 
-            const args = {
+      const args = {
         it: workCtx.it,
         seriesKey: workCtx.seriesKey,
         defs: workCtx.defs,
@@ -2919,6 +2931,12 @@ async function run() {
         window.__refreshWorkAfterVote = () => {
           try { hydrateWorkExtras(window.__workHydrateArgs); } catch {}
         };
+
+        // ✅ Phase2前に投票されていた場合は、ここで1回だけ反映
+        if (window.__pendingWorkVoteRefresh) {
+          window.__pendingWorkVoteRefresh = false;
+          try { window.__refreshWorkAfterVote(); } catch {}
+        }
       } catch {}
 
       patchAmazonAnchors(document);
