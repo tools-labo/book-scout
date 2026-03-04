@@ -1761,13 +1761,6 @@ function buildViewsMap(rows){
 
 /* START PART 3/3 - token: C3D4 */
 
-// public/app.js（3/3）FULL REPLACE
-// - ✅ Work: mood_fb（そう思う/違う）を「読後感1項目ごと」に送信
-// - ✅ mood_fb_by_mood_series.json を読み込み、信頼度（そう思う率）を表示
-// - ✅ export_wae_metrics.mjs 側の前提に合わせる：
-//    type='mood_fb' / blob5=moodId（payload.mood） / blob6=yes|no（payload.genre）
-// - ✅ 既存の他機能は壊さない（Home/List/Workの既存挙動維持）
-
 function renderHomePopular({ items, viewsMap, limit = 6 }) {
   const root = document.getElementById("homePopular");
   if (!root) return;
@@ -1970,7 +1963,6 @@ function canonicalizeWorkToStatic() {
     const key = toText(qs().get("key"));
     if (!key) return;
 
-    // ✅ リロードして BASE を正しく再計算させる
     location.replace(workStaticUrl(key));
   }catch{}
 }
@@ -2118,14 +2110,29 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
 const VOTE_AGG_PATH = BASE + "data/metrics/wae/vote_by_mood_series.json";
 const VOTE_TOTAL_BY_SERIES_PATH = BASE + "data/metrics/wae/vote_by_series.json";
 
-// ✅ mood_fb集計（作品×読後感）
-const MOOD_FB_PATH = BASE + "data/metrics/wae/mood_fb_by_mood_series.json";
-
-// ✅ “正解データ”に格上げする閾値
 const MOOD_VOTE_MIN = 3;
-
-// 既存：類似作品（投票ベクトル）用（ここは「同じ読後感」には使わない）
 const VOTE_MIN_TOTAL = 5;
+
+/* =======================
+ * ✅ Mood FB local state（1読後感= yes/no どちらか 1回）
+ * ======================= */
+const MOOD_FB_SEL_PREFIX = "moodfb_sel:v1:"; // moodfb_sel:v1:<seriesKey>:<moodId> => 'yes'|'no'
+function moodFbSelKey(seriesKey, moodId){
+  return `${MOOD_FB_SEL_PREFIX}${toText(seriesKey)}:${toText(moodId)}`;
+}
+function getMoodFbSel(seriesKey, moodId){
+  const sk = toText(seriesKey);
+  const md = toText(moodId);
+  if (!sk || !md) return "";
+  try { return toText(localStorage.getItem(moodFbSelKey(sk, md)) || ""); } catch { return ""; }
+}
+function setMoodFbSel(seriesKey, moodId, val){
+  const sk = toText(seriesKey);
+  const md = toText(moodId);
+  const v = toText(val);
+  if (!sk || !md || !v) return;
+  try { localStorage.setItem(moodFbSelKey(sk, md), v); } catch {}
+}
 
 function buildVoteMatrix(voteRows) {
   const rows = Array.isArray(voteRows?.rows) ? voteRows.rows
@@ -2152,7 +2159,6 @@ function buildVoteMatrix(voteRows) {
   return { bySeries, totals };
 }
 
-// ✅ vote_by_series.json を Map 化（総票の一次ソース）
 function buildVoteTotalBySeries(json){
   const rows = Array.isArray(json?.rows) ? json.rows
     : Array.isArray(json?.data) ? json.data
@@ -2168,35 +2174,6 @@ function buildVoteTotalBySeries(json){
   return map;
 }
 
-// ✅ mood_fb_by_mood_series.json を Map 化
-// sk -> Map(moodId -> {yes,no,n})
-function buildMoodFbMap(json){
-  const rows = Array.isArray(json?.rows) ? json.rows
-    : Array.isArray(json?.data) ? json.data
-    : Array.isArray(json) ? json : [];
-
-  const map = new Map();
-  for (const r of rows) {
-    const sk = toText(r?.seriesKey);
-    const mood = toText(r?.mood);
-    const yes = Number(r?.yes || 0);
-    const no  = Number(r?.no  || 0);
-    const n   = Number(r?.n   || 0);
-    if (!sk || !mood) continue;
-
-    if (!map.has(sk)) map.set(sk, new Map());
-    map.get(sk).set(mood, {
-      yes: Number.isFinite(yes) ? yes : 0,
-      no:  Number.isFinite(no)  ? no  : 0,
-      n:   Number.isFinite(n)   ? n   : 0,
-    });
-  }
-  return map;
-}
-
-/* =======================
- * Work: mood top helper（投票の表示）
- * ======================= */
 function buildMoodLabelMap(defs){
   const m = new Map();
   for (const d of (defs || [])) {
@@ -2207,7 +2184,6 @@ function buildMoodLabelMap(defs){
   return m;
 }
 
-// ✅ 上位のmood一覧を返す
 function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max = 4 }){
   const sk = toText(seriesKey);
   if (!sk || !voteMatrix?.bySeries?.size) return [];
@@ -2234,15 +2210,15 @@ function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCount
   `;
 }
 
-// ✅ “正解データ”として常時表示するブロック（閾値未満は断定しない）
-// ✅ FBは「読後感1項目ごと」に そう思う/違う
-function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, moodFbMap }) {
+/* =======================
+ * ✅ “正解データ”ブロック + 読後感ごとの「そう思う/違う」
+ * ======================= */
+function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) {
   const sk = toText(seriesKey);
   if (!sk) return "";
 
   const total = Number(voteTotalBySeries?.get?.(sk) || 0);
 
-  // 閾値未満：断定しない
   if (!Number.isFinite(total) || total < MOOD_VOTE_MIN) {
     const t = Number.isFinite(total) ? total : 0;
     return `
@@ -2257,53 +2233,48 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
   }
 
   const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4 });
-  const byMood = moodFbMap?.get?.(sk) || new Map();
+  const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4, hideCounts: false });
 
-  const rowsHtml = topRows.map(r => {
-    const moodId = toText(r.mood);
-    const label = toText(r.label) || moodId;
-    const n = Number(r.n || 0);
-
-    const fb = byMood.get(moodId) || null;
-    const yes = Number(fb?.yes || 0);
-    const no  = Number(fb?.no  || 0);
-    const fbN = yes + no;
-
-    const showTrust = fbN >= 3;
-    const trustPct = showTrust ? Math.round((yes / Math.max(1, fbN)) * 100) : 0;
-
-    const trustHtml = showTrust
-      ? `<span class="d-sub" style="margin:0; opacity:.75;">信頼度 ${trustPct}%（${fbN}）</span>`
-      : (fbN > 0 ? `<span class="d-sub" style="margin:0; opacity:.6;">（反応 ${fbN}）</span>` : "");
+  // ✅ 1読後感=2ボタン（そう思う/違う）で並べる
+  const fbRows = topRows.map(r => {
+    const md = toText(r.mood);
+    const sel = getMoodFbSel(sk, md); // yes/no/""
+    const yesOn = sel === "yes";
+    const noOn  = sel === "no";
 
     return `
-      <div style="display:flex; gap:8px; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
         <div style="min-width:0;">
-          <div style="font-weight:1000; font-size:13px; line-height:1.2;">
-            ${esc(label)} <span style="opacity:.7; font-weight:900;">(${Number.isFinite(n) ? n : 0})</span>
+          <div style="font-size:13px; font-weight:1000; line-height:1.25;">
+            ${esc(r.label)} <span style="opacity:.7; font-variant-numeric: tabular-nums;">(${Number(r.n || 0)})</span>
           </div>
-          ${trustHtml}
         </div>
 
-        <div style="display:flex; gap:6px; flex:0 0 auto;">
-          <button type="button"
-            class="pill"
+        <div style="display:flex; gap:8px; flex:0 0 auto;">
+          <button
+            type="button"
+            class="pill ${yesOn ? "is-on" : ""}"
             data-moodfb="1"
             data-moodfb-k="yes"
             data-moodfb-sk="${esc(sk)}"
-            data-moodfb-mood="${esc(moodId)}"
+            data-moodfb-mood="${esc(md)}"
+            data-moodfb-src="vote_truth"
+            ${noOn ? "disabled" : ""}
+            style="${noOn ? "opacity:.45;cursor:not-allowed" : ""}"
             aria-label="そう思う"
-            style="padding:6px 10px;"
           >そう思う</button>
 
-          <button type="button"
-            class="pill"
+          <button
+            type="button"
+            class="pill ${noOn ? "is-on" : ""}"
             data-moodfb="1"
             data-moodfb-k="no"
             data-moodfb-sk="${esc(sk)}"
-            data-moodfb-mood="${esc(moodId)}"
+            data-moodfb-mood="${esc(md)}"
+            data-moodfb-src="vote_truth"
+            ${yesOn ? "disabled" : ""}
+            style="${yesOn ? "opacity:.45;cursor:not-allowed" : ""}"
             aria-label="違う"
-            style="padding:6px 10px;"
           >違う</button>
         </div>
       </div>
@@ -2317,7 +2288,14 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
       </div>
       <p class="vote-note">投票${total}票分の集計です。</p>
 
-      ${topRows.length ? `<div>${rowsHtml}</div>` : `<div class="d-sub" style="opacity:.85;">データがまだありません</div>`}
+      ${pills || `<div class="d-sub" style="opacity:.85;">データがまだありません</div>`}
+
+      <div style="margin-top:10px;">
+        <div class="d-sub" style="margin:0; opacity:.9;">この作品の読後感、どう感じた？（各1回）</div>
+        <div style="margin-top:8px;">
+          ${fbRows || `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`}
+        </div>
+      </div>
 
       <div class="vote-status" id="moodFbStatus" style="margin-top:8px;"></div>
     </div>
@@ -2326,7 +2304,6 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
 
 /* =======================
  * Vote similar reco（既存）
- * - これは「同じ読後感の作品」には使わない（誤爆の原因になる）
  * ======================= */
 function cosineSim(aMap, bMap) {
   if (!aMap || !bMap) return 0;
@@ -2452,7 +2429,7 @@ function tagSimilarTop3({ baseIt, allItems, df }) {
 }
 
 /* =======================
- * Work reco helpers
+ * Work reco helpers（以降は既存のまま）
  * ======================= */
 function toRecItem(it) {
   const seriesKey = toText(pick(it, ["seriesKey"])) || "";
@@ -2519,7 +2496,6 @@ function recGridHtmlWithEmpty(title, items, emptyText){
   `;
 }
 
-/* ===== popular same genre×audience ===== */
 function pickFirstGenre(it) {
   const g = pickArr(it, ["genres", "vol1.genres"]).map(toText).filter(Boolean);
   return g[0] || "";
@@ -2551,9 +2527,6 @@ function popularSameGenreAudTop3({ baseIt, allItems, viewsMap }) {
   return scored.slice(0, 3).map(x => x.it);
 }
 
-/* =======================
- * perf: DF cache (work reco)
- * ======================= */
 let __dfCache = null;
 let __dfCacheN = 0;
 function getDfCached(allItems){
@@ -2701,39 +2674,49 @@ async function renderWorkPhase1(worksState, quickDefs) {
   initLazyImages(detail);
   trackWorkViewOnce(seriesKey);
 
-  // ✅ mood FB（そう思う/違う）: delegated handler（読後感1項目ごと）
+  // ✅ mood FB（そう思う/違う）: delegated handler（1読後感=1回）
   if (!detail.__moodFbBound) {
     detail.__moodFbBound = true;
-
     detail.addEventListener("click", (ev) => {
       const btn = ev.target?.closest?.("button[data-moodfb='1']");
       if (!btn) return;
 
       const sk = toText(btn.getAttribute("data-moodfb-sk") || "");
       const moodId = toText(btn.getAttribute("data-moodfb-mood") || "");
-      const fb = toText(btn.getAttribute("data-moodfb-k") || ""); // yes|no
+      const k = toText(btn.getAttribute("data-moodfb-k") || "");   // yes|no
+      const src = toText(btn.getAttribute("data-moodfb-src") || "");
 
-      if (!sk || !moodId) return;
-      if (fb !== "yes" && fb !== "no") return;
+      if (!sk || !moodId || !k) return;
 
-      const onceKey = `mood_fb:${sk}:${moodId}:${fb}`;
+      // 既に選択済みなら止める（両方押せない）
+      const already = getMoodFbSel(sk, moodId);
+      if (already) {
+        showToast("送信済みです");
+        return;
+      }
+
+      // ローカル確定 + UI反映（色変更 / 反対側を無効化）
+      setMoodFbSel(sk, moodId, k);
+      btn.classList.add("is-on");
+
+      const wrap = btn.parentElement;
+      const other = wrap?.querySelector?.(`button[data-moodfb='1'][data-moodfb-sk="${CSS.escape(sk)}"][data-moodfb-mood="${CSS.escape(moodId)}"]:not([data-moodfb-k="${CSS.escape(k)}"])`);
+      if (other) {
+        other.setAttribute("disabled", "disabled");
+        other.style.opacity = ".45";
+        other.style.cursor = "not-allowed";
+      }
+
+      // 端末内多重送信抑止（24h）
+      const onceKey = `mood_fb:${sk}:${moodId}:${k}:${src}`;
       if (!canSendOnce(onceKey)) {
         showToast("送信済みです");
         return;
       }
 
-      // ✅ export側の前提に合わせる：
-      // - mood(blob5) = moodId
-      // - genre(blob6) = yes|no
-      trackEvent({
-        type: "mood_fb",
-        page: "work",
-        seriesKey: sk,
-        mood: moodId,
-        genre: fb,
-        k: "",
-        v: "",
-      });
+      // ✅ worker側が blob6= yes/no を期待するので、k に yes/no を入れて送る
+      // ✅ mood は moodId を1個だけ送る（CSV廃止）
+      trackEvent({ type: "mood_fb", page: "work", seriesKey: sk, mood: moodId, k, v: src });
 
       const st = document.getElementById("moodFbStatus");
       if (st) {
@@ -2793,7 +2776,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
     };
   }
 
-  // ★評価のクリック処理
+  // ★評価のクリック処理（既存のまま）
   const rateStatus = document.getElementById("rateStatus");
   const wraps = detail.querySelectorAll?.("[data-starwrap]") || [];
   for (const w of wraps) {
