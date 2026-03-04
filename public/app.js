@@ -2468,11 +2468,10 @@ function clamp3(arr){ return (arr || []).filter(Boolean).slice(0, 3); }
 /* =======================
  * ✅ 同じ読後感（AND）Top3
  * ======================= */
-function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTotal = 0 }) {
+function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTotal = 0, moodFbMap }) {
   const base = toText(baseKey);
   const moods = (selectedMoods || []).map(toText).filter(Boolean).slice(0, VOTE_MAX);
   if (!base || !moods.length) return [];
-
   if (!voteMatrix?.bySeries?.size) return [];
 
   const scored = [];
@@ -2485,20 +2484,38 @@ function sameMoodAndTop3({ baseKey, selectedMoods, allItems, voteMatrix, minTota
 
     let ok = true;
     let sum = 0;
+    let sumW = 0;
+
     for (const m of moods) {
       const n = Number(vec.get(m) || 0);
       if (!Number.isFinite(n) || n <= 0) { ok = false; break; }
       sum += n;
+
+      // ✅ C: 信頼度で重み付け（分母が小さいうちは 1.0 で現状維持）
+      let w = 1;
+      const stat = getMoodFbStat(moodFbMap, sk, m);
+      const yes = Number(stat?.yes || 0);
+      const no  = Number(stat?.no  || 0);
+      const den = yes + no;
+
+      if (Number.isFinite(den) && den >= MOOD_FB_WEIGHT_MIN_DEN) {
+        const pct = den > 0 ? (yes / den) : 1;
+        w = Math.max(0.1, pct);
+      }
+
+      sumW += n * w;
     }
+
     if (!ok) continue;
 
     const total = Number(voteMatrix.totals?.get?.(sk) || 0);
     if (minTotal > 0 && total < minTotal) continue;
 
-    scored.push({ it, sum, total });
+    scored.push({ it, sum, sumW, total });
   }
 
-  scored.sort((a, b) => (b.sum - a.sum) || (b.total - a.total));
+  // ✅ C: sumW 優先で並び替え（同点なら従来通り sum→total）
+  scored.sort((a, b) => (b.sumW - a.sumW) || (b.sum - a.sum) || (b.total - a.total));
   return scored.slice(0, 3).map(x => x.it);
 }
 
