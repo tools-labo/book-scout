@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T07:05:16.421Z",
-  "updatedAtJst": "2026-03-04 16:05:16",
+  "updatedAt": "2026-03-04T07:12:07.821Z",
+  "updatedAtJst": "2026-03-04 16:12:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -295,15 +295,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance",
-      "aud": "",
+      "genre": "genre=drama,sports,mystery",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery",
-      "aud": "aud=女性",
+      "genre": "genre=romance",
+      "aud": "",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -324,9 +324,9 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -345,9 +345,9 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
+      "aud": "aud=少年",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
