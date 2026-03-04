@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T02:49:45.458Z",
-  "updatedAtJst": "2026-03-04 11:49:45",
+  "updatedAt": "2026-03-04T04:49:57.502Z",
+  "updatedAtJst": "2026-03-04 13:49:57",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,136 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 04:47:13",
+      "timestampJst": "2026-03-04 13:47:13",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:47:10",
+      "timestampJst": "2026-03-04 13:47:10",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:47:03",
+      "timestampJst": "2026-03-04 13:47:03",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:47:01",
+      "timestampJst": "2026-03-04 13:47:01",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:46:57",
+      "timestampJst": "2026-03-04 13:46:57",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:46:49",
+      "timestampJst": "2026-03-04 13:46:49",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:46:48",
+      "timestampJst": "2026-03-04 13:46:48",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:46:39",
+      "timestampJst": "2026-03-04 13:46:39",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "大ダーク",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:46:23",
+      "timestampJst": "2026-03-04 13:46:23",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "大ダーク",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 04:46:22",
+      "timestampJst": "2026-03-04 13:46:22",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "大ダーク",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-03 14:31:33",
       "timestampJst": "2026-03-03 23:31:33",
@@ -22713,7 +22843,7 @@
     }
   ],
   "raw": {
-    "rows": 1743,
-    "rows_before_limit_at_least": 1743
+    "rows": 1753,
+    "rows_before_limit_at_least": 1753
   }
 }
