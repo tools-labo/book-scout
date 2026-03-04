@@ -2306,8 +2306,8 @@ function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, moodFbMap, max = 4
     .map(({ _score, ...rest }) => rest); // 表示側に余計な値を返さない
 }
 
-function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCounts = false }){
-  const rows = moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max });
+function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, moodFbMap, max = 4, hideCounts = false }){
+  const rows = moodTopListFromMatrix({ seriesKey, voteMatrix, defs, moodFbMap, max });
   if (!rows.length) return "";
   return `
     <div class="pills" style="margin-top:6px;">
