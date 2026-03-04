@@ -2114,6 +2114,61 @@ const MOOD_VOTE_MIN = 3;
 const VOTE_MIN_TOTAL = 5;
 
 /* =======================
+ * ✅ Mood FB metrics（A: 信頼度表示）
+ * ======================= */
+const MOOD_FB_PATH = BASE + "data/metrics/wae/mood_fb_by_mood_series.json";
+
+// rows: [{ mood, seriesKey, yes, no, n }]
+function buildMoodFbMap(json){
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+
+  // key = `${seriesKey}\t${mood}` -> { yes:number, no:number, n:number }
+  const map = new Map();
+  for (const r of rows) {
+    const sk = toText(r?.seriesKey);
+    const mood = toText(r?.mood);
+    if (!sk || !mood) continue;
+
+    const yes = Number(r?.yes || 0);
+    const no  = Number(r?.no  || 0);
+    const n   = Number(r?.n   || 0);
+
+    map.set(`${sk}\t${mood}`, {
+      yes: Number.isFinite(yes) ? yes : 0,
+      no:  Number.isFinite(no)  ? no  : 0,
+      n:   Number.isFinite(n)   ? n   : 0,
+    });
+  }
+  return map;
+}
+
+function getMoodFbStat(moodFbMap, seriesKey, moodId){
+  if (!(moodFbMap instanceof Map)) return null;
+  const sk = toText(seriesKey);
+  const md = toText(moodId);
+  if (!sk || !md) return null;
+  return moodFbMap.get(`${sk}\t${md}`) || null;
+}
+
+function fmtPct(n){
+  const x = Number(n);
+  if (!Number.isFinite(x)) return "";
+  return `${Math.round(x)}%`;
+}
+
+// 仕様：そう思う率（yes / (yes+no)）
+function trustTextFromStat(stat){
+  const yes = Number(stat?.yes || 0);
+  const no  = Number(stat?.no  || 0);
+  const den = yes + no;
+  if (!Number.isFinite(den) || den <= 0) return "—";
+  const pct = (yes / den) * 100;
+  return `そう思う率 ${fmtPct(pct)}（${yes}/${den}）`;
+}
+
+/* =======================
  * ✅ Mood FB local state（1読後感= yes/no どちらか 1回）
  * ======================= */
 const MOOD_FB_SEL_PREFIX = "moodfb_sel:v1:"; // moodfb_sel:v1:<seriesKey>:<moodId> => 'yes'|'no'
@@ -2211,9 +2266,9 @@ function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCount
 }
 
 /* =======================
- * ✅ “正解データ”ブロック + 読後感ごとの「そう思う/違う」
+ * ✅ “正解データ”ブロック + 読後感ごとの「そう思う/違う」 + 信頼度表示(A)
  * ======================= */
-function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) {
+function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, moodFbMap }) {
   const sk = toText(seriesKey);
   if (!sk) return "";
 
@@ -2235,18 +2290,24 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) 
   const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4 });
   const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4, hideCounts: false });
 
-  // ✅ 1読後感=2ボタン（そう思う/違う）で並べる
+  // ✅ 1読後感=2ボタン（そう思う/違う）で並べる + 信頼度
   const fbRows = topRows.map(r => {
     const md = toText(r.mood);
     const sel = getMoodFbSel(sk, md); // yes/no/""
     const yesOn = sel === "yes";
     const noOn  = sel === "no";
 
+    const stat = getMoodFbStat(moodFbMap, sk, md);
+    const trust = stat ? trustTextFromStat(stat) : "—";
+
     return `
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
         <div style="min-width:0;">
           <div style="font-size:13px; font-weight:1000; line-height:1.25;">
             ${esc(r.label)} <span style="opacity:.7; font-variant-numeric: tabular-nums;">(${Number(r.n || 0)})</span>
+          </div>
+          <div class="d-sub" style="margin:4px 0 0 0; opacity:.75; font-variant-numeric: tabular-nums;">
+            信頼度: ${esc(trust)}
           </div>
         </div>
 
