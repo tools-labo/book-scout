@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T06:46:08.139Z",
-  "updatedAtJst": "2026-03-04 15:46:08",
+  "updatedAt": "2026-03-04T07:05:16.421Z",
+  "updatedAtJst": "2026-03-04 16:05:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -53,6 +53,110 @@
   ],
   "rows": [
     {
+      "timestamp": "2026-03-04 06:52:16",
+      "timestampJst": "2026-03-04 15:52:16",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ロザリオとバンパイア",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:48:08",
+      "timestampJst": "2026-03-04 15:48:08",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "healing",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:48:03",
+      "timestampJst": "2026-03-04 15:48:03",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:48:00",
+      "timestampJst": "2026-03-04 15:48:00",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:48:00",
+      "timestampJst": "2026-03-04 15:48:00",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:47:56",
+      "timestampJst": "2026-03-04 15:47:56",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "healing",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:47:54",
+      "timestampJst": "2026-03-04 15:47:54",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "heart_throb",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:47:45",
+      "timestampJst": "2026-03-04 15:47:45",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
       "timestamp": "2026-03-04 06:44:54",
       "timestampJst": "2026-03-04 15:44:54",
       "type": "mood_fb",
@@ -60,6 +164,19 @@
       "page": "work",
       "seriesKey": "NARUTO -ナルト-",
       "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:53",
+      "timestampJst": "2026-03-04 15:44:53",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "satisfying",
       "genre": "",
       "aud": "",
       "mag": "",
@@ -23025,7 +23142,7 @@
     }
   ],
   "raw": {
-    "rows": 1767,
-    "rows_before_limit_at_least": 1767
+    "rows": 1776,
+    "rows_before_limit_at_least": 1776
   }
 }
