@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T10:56:13.681Z",
-  "updatedAtJst": "2026-03-04 19:56:13",
+  "updatedAt": "2026-03-04T11:44:48.974Z",
+  "updatedAtJst": "2026-03-04 20:44:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -57,8 +57,8 @@
     {
       "seriesKey": "NARUTO -ナルト-",
       "k": "art",
-      "avg": 4.2,
-      "n": "5"
+      "avg": 4.166666666666667,
+      "n": "6"
     },
     {
       "seriesKey": "ちはやふる",
@@ -583,12 +583,6 @@
       "n": "14"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
-      "k": "rec",
-      "avg": 4.5,
-      "n": "6"
-    },
-    {
       "seriesKey": "ちはやふる",
       "k": "rec",
       "avg": 4.5,
@@ -611,6 +605,12 @@
       "k": "rec",
       "avg": 4.333333333333333,
       "n": "3"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "k": "rec",
+      "avg": 4.285714285714286,
+      "n": "7"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
@@ -1003,13 +1003,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヨコハマ買い出し紀行",
+      "seriesKey": "イジらないで、長瀞さん",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "イジらないで、長瀞さん",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -1077,6 +1077,6 @@
   ],
   "raw": {
     "rows": 175,
-    "rows_before_limit_at_least": 320
+    "rows_before_limit_at_least": 322
   }
 }

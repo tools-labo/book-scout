@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T10:56:13.681Z",
-  "updatedAtJst": "2026-03-04 19:56:13",
+  "updatedAt": "2026-03-04T11:44:48.974Z",
+  "updatedAtJst": "2026-03-04 20:44:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -23,12 +23,12 @@
     {
       "mood": "funny",
       "seriesKey": "NARUTO -ナルト-",
-      "n": "4"
+      "n": "5"
     },
     {
       "mood": "funny",
       "seriesKey": "ドラゴンボール",
-      "n": "4"
+      "n": "5"
     },
     {
       "mood": "funny",
@@ -72,7 +72,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -127,7 +127,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "暗殺教室",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -353,7 +353,7 @@
     {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
-      "n": "5"
+      "n": "6"
     },
     {
       "mood": "hot",
@@ -497,12 +497,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "少年のアビス",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
@@ -732,11 +732,6 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
@@ -747,17 +742,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
@@ -767,7 +757,17 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "ドラゴンボール超",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -827,7 +827,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -837,7 +837,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -862,7 +862,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -872,12 +872,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 171,
-    "rows_before_limit_at_least": 272
+    "rows_before_limit_at_least": 275
   }
 }

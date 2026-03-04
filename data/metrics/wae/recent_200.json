@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T10:56:13.681Z",
-  "updatedAtJst": "2026-03-04 19:56:13",
+  "updatedAt": "2026-03-04T11:44:48.974Z",
+  "updatedAtJst": "2026-03-04 20:44:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,162 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 11:41:09",
+      "timestampJst": "2026-03-04 20:41:09",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "moving",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:59",
+      "timestampJst": "2026-03-04 20:40:59",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:55",
+      "timestampJst": "2026-03-04 20:40:55",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-04 11:40:53",
+      "timestampJst": "2026-03-04 20:40:53",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-04 11:40:50",
+      "timestampJst": "2026-03-04 20:40:50",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:40",
+      "timestampJst": "2026-03-04 20:40:40",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "satisfying",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:39",
+      "timestampJst": "2026-03-04 20:40:39",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "page_turner",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:37",
+      "timestampJst": "2026-03-04 20:40:37",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "funny",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:32",
+      "timestampJst": "2026-03-04 20:40:32",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:29",
+      "timestampJst": "2026-03-04 20:40:29",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "hot",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:21",
+      "timestampJst": "2026-03-04 20:40:21",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 11:40:15",
+      "timestampJst": "2026-03-04 20:40:15",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-04 10:01:43",
       "timestampJst": "2026-03-04 19:01:43",
@@ -23506,7 +23662,7 @@
     }
   ],
   "raw": {
-    "rows": 1804,
-    "rows_before_limit_at_least": 1804
+    "rows": 1816,
+    "rows_before_limit_at_least": 1816
   }
 }

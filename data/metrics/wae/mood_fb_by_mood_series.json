@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T10:56:13.681Z",
-  "updatedAtJst": "2026-03-04 19:56:13",
+  "updatedAt": "2026-03-04T11:44:48.974Z",
+  "updatedAtJst": "2026-03-04 20:44:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -31,19 +31,33 @@
     {
       "mood": "funny",
       "seriesKey": "ドラゴンボール",
-      "yes": "1",
+      "yes": "2",
       "no": "1",
-      "n": "2"
+      "n": "3"
     },
     {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
-      "yes": "1",
+      "yes": "2",
       "no": "1",
-      "n": "2"
+      "n": "3"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "NARUTO -ナルト-",
+      "yes": "0",
+      "no": "1",
+      "n": "1"
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ドラゴンボール",
+      "yes": "2",
+      "no": "1",
+      "n": "3"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "ドラゴンボール",
       "yes": "1",
       "no": "1",
@@ -55,17 +69,10 @@
       "yes": "1",
       "no": "0",
       "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 5,
-    "rows_before_limit_at_least": 8
+    "rows": 6,
+    "rows_before_limit_at_least": 13
   }
 }
