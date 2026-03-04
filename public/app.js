@@ -2117,24 +2117,13 @@ const VOTE_MIN_TOTAL = 5;
  * ✅ Mood FB metrics（A: 信頼度表示）
  * ======================= */
 const MOOD_FB_PATH = BASE + "data/metrics/wae/mood_fb_by_mood_series.json";
-const MOOD_FB_WEIGHT_MIN_DEN = 3; // yes+no がこれ未満なら重み付けしない（並び順を変えない）
 
-// ✅ B: “信頼OK/保留” の判定（現状の薄さに合わせた暫定）
-const MOOD_FB_MIN_DEN = 3;    // 分母（yes+no）最低
-const MOOD_FB_OK_PCT = 67;    // そう思う率% しきい値（2/3をOKにしたい）
+// C用（重み付け）: yes+no がこれ未満なら重み付けしない（並び順を変えない）
+const MOOD_FB_WEIGHT_MIN_DEN = 3;
 
-// ✅ B: 投票優先の切替に「信頼度/分母」を組み込む
+// B用（投票優先の切替）: 分母 & そう思う率のしきい値
 const MOOD_FB_MIN_DEN = 3;   // yes+no の最低分母
-const MOOD_FB_OK_PCT  = 67;  // そう思う率% のしきい値（2/3をOKにしたい）
-
-function trustOkFromStat(stat){
-  const yes = Number(stat?.yes || 0);
-  const no  = Number(stat?.no  || 0);
-  const den = yes + no;
-  if (!Number.isFinite(den) || den < MOOD_FB_MIN_DEN) return false;
-  const pct = (yes / den) * 100;
-  return Number.isFinite(pct) && pct >= MOOD_FB_OK_PCT;
-}
+const MOOD_FB_OK_PCT  = 67;  // そう思う率%（2/3をOKにしたい）
 
 // rows: [{ mood, seriesKey, yes, no, n }]
 function buildMoodFbMap(json){
@@ -2184,6 +2173,7 @@ function trustPctFromStat(stat){
   if (!Number.isFinite(den) || den <= 0) return null;
   return (yes / den) * 100;
 }
+
 function trustTextFromStat(stat){
   const yes = Number(stat?.yes || 0);
   const no  = Number(stat?.no  || 0);
@@ -2192,6 +2182,8 @@ function trustTextFromStat(stat){
   const pct = (yes / den) * 100;
   return `そう思う率 ${fmtPct(pct)}（${yes}/${den}）`;
 }
+
+// Bで使う：分母が溜まってるなら「そう思う率」でOK判定
 function trustOkFromStat(stat){
   const yes = Number(stat?.yes || 0);
   const no  = Number(stat?.no  || 0);
@@ -2200,6 +2192,8 @@ function trustOkFromStat(stat){
   const pct = (yes / den) * 100;
   return Number.isFinite(pct) && pct >= MOOD_FB_OK_PCT;
 }
+
+// （表示にはもう使ってないけど残してOK）
 function trustBadgeFromStat(stat){
   const yes = Number(stat?.yes || 0);
   const no  = Number(stat?.no  || 0);
