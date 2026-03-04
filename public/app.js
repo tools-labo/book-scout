@@ -2338,8 +2338,8 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
     `;
   }
 
-  const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4 });
-  const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4, hideCounts: false });
+  const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, moodFbMap, max: 4 });
+  const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, moodFbMap, max: 4, hideCounts: false });
 
   const fbRows = topRows.map(r => {
     const md = toText(r.mood);
