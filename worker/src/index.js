@@ -31,10 +31,20 @@ function toBlobs(e, req) {
   const path = url.pathname || "";
   const ref = req.headers.get("referer") || "";
 
-  // ✅ export_wae_metrics.mjs の仕様に合わせる
-  // - vote: blob5 = moodId
-  // - rate: blob5 = k ('rec' | 'art')
+    // ✅ export_wae_metrics.mjs の仕様に合わせる
+  // - vote:    blob5 = moodId
+  // - rate:    blob5 = k ('rec' | 'art')
+  // - mood_fb: blob5 = moodId, blob6 = fb ('yes' | 'no')
   const blob5 = (type === "rate") ? k : mood;
+
+  // ✅ mood_fb の fb 値は v 優先（無ければ k）。日本語も許容して正規化。
+  const fbRaw = String((v || k || "")).trim().toLowerCase();
+  const fbNorm =
+    (fbRaw === "yes" || fbRaw === "y" || fbRaw === "1" || fbRaw === "true" || fbRaw === "そう思う") ? "yes"
+    : (fbRaw === "no"  || fbRaw === "n" || fbRaw === "0" || fbRaw === "false" || fbRaw === "違う")     ? "no"
+    : fbRaw; // 想定外はそのまま（後でexport側で除外/監視できる）
+
+  const blob6 = (type === "mood_fb") ? fbNorm : genre;
 
   // blob1..blob15 を固定
   return [
@@ -42,8 +52,8 @@ function toBlobs(e, req) {
     SCHEMA,     // blob2
     page,       // blob3
     seriesKey,  // blob4
-    blob5,      // blob5  (vote=moodId / rate=k)
-    genre,      // blob6
+    blob5,      // blob5  (vote=moodId / rate=k / mood_fb=moodId)
+    blob6,      // blob6  (genre / mood_fb=fb yes|no)
     aud,        // blob7
     mag,        // blob8
     country,    // blob9
