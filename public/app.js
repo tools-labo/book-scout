@@ -2998,7 +2998,16 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
       if (!unlocked) {
         mount.innerHTML = "";
       } else {
-        const selected = Array.from(getVotedSet(seriesKey)).map(toText).filter(Boolean).slice(0, VOTE_MAX);
+        const selectedRaw = Array.from(getVotedSet(seriesKey)).map(toText).filter(Boolean).slice(0, VOTE_MAX);
+
+// ✅ B: 分母が溜まっている読後感は「そう思う率」が低いものをAND条件から外す
+const selected = selectedRaw.filter((m) => {
+  const stat = getMoodFbStat(moodFbMap, seriesKey, m);
+  if (!stat) return true; // まだFBが無いなら従来どおり通す（データ不足で詰まない）
+  const den = Number(stat?.yes || 0) + Number(stat?.no || 0);
+  if (!Number.isFinite(den) || den < MOOD_FB_MIN_DEN) return true; // 分母不足なら従来どおり
+  return trustOkFromStat(stat); // 分母があるなら「信頼OK」のみ採用
+});
 
         let items = [];
         let emptyText = "投票が増えると、ここに作品が表示されます。";
