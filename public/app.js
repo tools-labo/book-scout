@@ -2266,7 +2266,7 @@ function buildMoodLabelMap(defs){
   return m;
 }
 
-function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max = 4 }){
+function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, moodFbMap, max = 4 }){
   const sk = toText(seriesKey);
   if (!sk || !voteMatrix?.bySeries?.size) return [];
 
@@ -2276,10 +2276,34 @@ function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max = 4 }){
   const labelMap = buildMoodLabelMap(defs);
 
   return Array.from(m.entries())
-    .map(([mood, n]) => ({ mood: toText(mood), label: labelMap.get(toText(mood)) || toText(mood), n: Number(n || 0) }))
+    .map(([mood, n]) => {
+      const moodId = toText(mood);
+      const votes = Number(n || 0);
+
+      // ✅ 信頼度（そう思う率）で重み付け：分母が小さいうちは並び順を変えない
+      let w = 1;
+      const stat = getMoodFbStat(moodFbMap, sk, moodId);
+      const yes = Number(stat?.yes || 0);
+      const no  = Number(stat?.no  || 0);
+      const den = yes + no;
+
+      if (Number.isFinite(den) && den >= MOOD_FB_WEIGHT_MIN_DEN) {
+        const pct = den > 0 ? (yes / den) : 1;
+        // 0 になりすぎると埋もれるので下限だけ軽く持つ（任意。不要なら消してOK）
+        w = Math.max(0.1, pct);
+      }
+
+      return {
+        mood: moodId,
+        label: labelMap.get(moodId) || moodId,
+        n: Number.isFinite(votes) ? votes : 0,
+        _score: (Number.isFinite(votes) ? votes : 0) * w, // 並び替え用
+      };
+    })
     .filter(x => x.mood && Number.isFinite(x.n) && x.n > 0)
-    .sort((a, b) => (b.n - a.n))
-    .slice(0, max);
+    .sort((a, b) => (b._score - a._score) || (b.n - a.n))
+    .slice(0, max)
+    .map(({ _score, ...rest }) => rest); // 表示側に余計な値を返さない
 }
 
 function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCounts = false }){
