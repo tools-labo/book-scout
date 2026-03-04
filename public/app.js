@@ -3032,6 +3032,7 @@ const selected = selectedRaw.filter((m) => {
             allItems: allForReco,
             voteMatrix,
             minTotal: 0,
+            moodFbMap,
           }).map(toRecItem);
 
           if (!items.length) {
