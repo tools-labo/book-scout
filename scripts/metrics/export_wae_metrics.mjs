@@ -405,6 +405,7 @@ async function main() {
     { id: "vote_by_series", sql: qVotesBySeries(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood", sql: qVotesByMood(dataset, days, allowedMoodIds) },
     { id: "vote_by_mood_series", sql: qVotesByMoodSeries(dataset, days, allowedMoodIds) },
+    { id: "mood_fb_by_mood_series", sql: qMoodFbByMoodSeries(dataset, days, allowedMoodIds) },
     { id: "favorite_by_series", sql: qFavoritesBySeries(dataset, days) },
     { id: "list_filter_by_query", sql: qListFilterByQueryKey(dataset, days) },
     { id: "rate_by_series_key", sql: qRateBySeriesKey(dataset, days) },
