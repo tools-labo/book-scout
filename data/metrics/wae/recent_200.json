@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T07:12:07.821Z",
-  "updatedAtJst": "2026-03-04 16:12:07",
+  "updatedAt": "2026-03-04T07:15:18.280Z",
+  "updatedAtJst": "2026-03-04 16:15:18",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 07:11:20",
+      "timestampJst": "2026-03-04 16:11:20",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "hot",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 07:11:19",
+      "timestampJst": "2026-03-04 16:11:19",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "funny",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 07:11:17",
+      "timestampJst": "2026-03-04 16:11:17",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "page_turner",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 07:11:11",
+      "timestampJst": "2026-03-04 16:11:11",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 07:11:08",
+      "timestampJst": "2026-03-04 16:11:08",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ありふれた職業で世界最強",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 07:11:04",
+      "timestampJst": "2026-03-04 16:11:04",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ありふれた職業で世界最強",
+      "mood": "satisfying",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 07:10:53",
+      "timestampJst": "2026-03-04 16:10:53",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ありふれた職業で世界最強",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-04 07:10:51",
       "timestampJst": "2026-03-04 16:10:51",
@@ -23155,7 +23246,7 @@
     }
   ],
   "raw": {
-    "rows": 1777,
-    "rows_before_limit_at_least": 1777
+    "rows": 1784,
+    "rows_before_limit_at_least": 1784
   }
 }
