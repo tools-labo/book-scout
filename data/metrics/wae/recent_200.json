@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T05:58:35.837Z",
-  "updatedAtJst": "2026-03-04 14:58:35",
+  "updatedAt": "2026-03-04T06:46:08.139Z",
+  "updatedAtJst": "2026-03-04 15:46:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,175 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 06:44:54",
+      "timestampJst": "2026-03-04 15:44:54",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:51",
+      "timestampJst": "2026-03-04 15:44:51",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:49",
+      "timestampJst": "2026-03-04 15:44:49",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:34",
+      "timestampJst": "2026-03-04 15:44:34",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:33",
+      "timestampJst": "2026-03-04 15:44:33",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:29",
+      "timestampJst": "2026-03-04 15:44:29",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:26",
+      "timestampJst": "2026-03-04 15:44:26",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:23",
+      "timestampJst": "2026-03-04 15:44:23",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:23",
+      "timestampJst": "2026-03-04 15:44:23",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:19",
+      "timestampJst": "2026-03-04 15:44:19",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "バガボンド",
+      "mood": "satisfying",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:17",
+      "timestampJst": "2026-03-04 15:44:17",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "バガボンド",
+      "mood": "moving",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:10",
+      "timestampJst": "2026-03-04 15:44:10",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "バガボンド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 06:44:09",
+      "timestampJst": "2026-03-04 15:44:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "バガボンド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-04 05:46:31",
       "timestampJst": "2026-03-04 14:46:31",
@@ -22856,7 +23025,7 @@
     }
   ],
   "raw": {
-    "rows": 1754,
-    "rows_before_limit_at_least": 1754
+    "rows": 1767,
+    "rows_before_limit_at_least": 1767
   }
 }

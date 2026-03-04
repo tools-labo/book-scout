@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "updatedAt": "2026-03-04T06:46:08.139Z",
+  "updatedAtJst": "2026-03-04 15:46:08",
+  "dataset": "book_scout_events",
+  "days": 30,
+  "id": "mood_fb_by_mood_series",
+  "columns": [
+    {
+      "name": "mood",
+      "type": "String"
+    },
+    {
+      "name": "seriesKey",
+      "type": "String"
+    },
+    {
+      "name": "yes",
+      "type": "UInt64"
+    },
+    {
+      "name": "no",
+      "type": "UInt64"
+    },
+    {
+      "name": "n",
+      "type": "UInt64"
+    }
+  ],
+  "rows": [],
+  "raw": {
+    "rows": 0,
+    "rows_before_limit_at_least": 0
+  }
+}
