@@ -2123,6 +2123,19 @@ const MOOD_FB_WEIGHT_MIN_DEN = 3; // yes+no がこれ未満なら重み付けし
 const MOOD_FB_MIN_DEN = 3;    // 分母（yes+no）最低
 const MOOD_FB_OK_PCT = 67;    // そう思う率% しきい値（2/3をOKにしたい）
 
+// ✅ B: 投票優先の切替に「信頼度/分母」を組み込む
+const MOOD_FB_MIN_DEN = 3;   // yes+no の最低分母
+const MOOD_FB_OK_PCT  = 67;  // そう思う率% のしきい値（2/3をOKにしたい）
+
+function trustOkFromStat(stat){
+  const yes = Number(stat?.yes || 0);
+  const no  = Number(stat?.no  || 0);
+  const den = yes + no;
+  if (!Number.isFinite(den) || den < MOOD_FB_MIN_DEN) return false;
+  const pct = (yes / den) * 100;
+  return Number.isFinite(pct) && pct >= MOOD_FB_OK_PCT;
+}
+
 // rows: [{ mood, seriesKey, yes, no, n }]
 function buildMoodFbMap(json){
   const rows = Array.isArray(json?.rows) ? json.rows
