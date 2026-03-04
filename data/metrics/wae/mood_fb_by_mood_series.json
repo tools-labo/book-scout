@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T12:07:05.077Z",
-  "updatedAtJst": "2026-03-04 21:07:05",
+  "updatedAt": "2026-03-04T13:21:20.112Z",
+  "updatedAtJst": "2026-03-04 22:21:20",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -31,9 +31,9 @@
     {
       "mood": "funny",
       "seriesKey": "ドラゴンボール",
-      "yes": "2",
+      "yes": "3",
       "no": "1",
-      "n": "3"
+      "n": "4"
     },
     {
       "mood": "funny",
@@ -59,9 +59,16 @@
     {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
-      "yes": "2",
+      "yes": "3",
       "no": "1",
-      "n": "3"
+      "n": "4"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ヴィンランド・サガ",
+      "yes": "2",
+      "no": "0",
+      "n": "2"
     },
     {
       "mood": "hot",
@@ -80,16 +87,16 @@
     {
       "mood": "page_turner",
       "seriesKey": "ドラゴンボール",
-      "yes": "2",
+      "yes": "3",
       "no": "1",
-      "n": "3"
+      "n": "4"
     },
     {
       "mood": "satisfying",
       "seriesKey": "ドラゴンボール",
-      "yes": "1",
+      "yes": "2",
       "no": "1",
-      "n": "2"
+      "n": "3"
     },
     {
       "mood": "satisfying",
@@ -97,10 +104,24 @@
       "yes": "1",
       "no": "0",
       "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "NARUTO -ナルト-",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ヴィンランド・サガ",
+      "yes": "2",
+      "no": "0",
+      "n": "2"
     }
   ],
   "raw": {
-    "rows": 10,
-    "rows_before_limit_at_least": 17
+    "rows": 13,
+    "rows_before_limit_at_least": 26
   }
 }
