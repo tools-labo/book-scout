@@ -95,11 +95,12 @@ async function readBody(req) {
 
 function pickRatingDoubles(body) {
   const type = String(body?.type ?? "");
-  if (type !== "rate") return [1];
+  if (type !== "rate") return []; // ✅ 非rateはdoubles無し（ノイズ削減）
 
   const n = Number(body?.v ?? 0);
   if (Number.isFinite(n) && n >= 1 && n <= 5) return [n];
-  return [1];
+
+  return []; // ✅ 変な値なら書かない
 }
 
 export default {
