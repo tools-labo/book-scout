@@ -2323,8 +2323,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
     const noOn  = sel === "no";
 
     const stat = getMoodFbStat(moodFbMap, sk, md);
-    const trust = stat ? trustTextFromStat(stat) : "—";
-    const badge = stat ? trustBadgeFromStat(stat) : "保留";
+const trust = stat ? trustTextFromStat(stat) : "集計中";
 
     return `
       <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
@@ -2333,8 +2332,8 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
             ${esc(r.label)} <span style="opacity:.7; font-variant-numeric: tabular-nums;">(${Number(r.n || 0)})</span>
           </div>
           <div class="d-sub" style="margin:4px 0 0 0; opacity:.75; font-variant-numeric: tabular-nums;">
-            信頼度: ${esc(trust)} ／ 判定: <b>${esc(badge)}</b>
-          </div>
+  信頼度: ${esc(trust)}
+  </div>
         </div>
 
         <div style="display:flex; gap:8px; flex:0 0 auto;">
