@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T12:04:10.190Z",
-  "updatedAtJst": "2026-03-04 21:04:10",
+  "updatedAt": "2026-03-04T12:07:05.077Z",
+  "updatedAtJst": "2026-03-04 21:07:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,84 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 12:03:18",
+      "timestampJst": "2026-03-04 21:03:18",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "hot",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 12:03:17",
+      "timestampJst": "2026-03-04 21:03:17",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "heart_throb",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 12:03:15",
+      "timestampJst": "2026-03-04 21:03:15",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "healing",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 12:03:14",
+      "timestampJst": "2026-03-04 21:03:14",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "funny",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 12:03:11",
+      "timestampJst": "2026-03-04 21:03:11",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "funny",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 12:03:03",
+      "timestampJst": "2026-03-04 21:03:03",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "チェンソーマン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-04 11:41:09",
       "timestampJst": "2026-03-04 20:41:09",
@@ -23662,7 +23740,7 @@
     }
   ],
   "raw": {
-    "rows": 1816,
-    "rows_before_limit_at_least": 1816
+    "rows": 1822,
+    "rows_before_limit_at_least": 1822
   }
 }

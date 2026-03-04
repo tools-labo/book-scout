@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T12:04:10.190Z",
-  "updatedAtJst": "2026-03-04 21:04:10",
+  "updatedAt": "2026-03-04T12:07:05.077Z",
+  "updatedAtJst": "2026-03-04 21:07:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -36,11 +36,39 @@
       "n": "3"
     },
     {
+      "mood": "funny",
+      "seriesKey": "チェンソーマン",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "チェンソーマン",
+      "yes": "0",
+      "no": "1",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "チェンソーマン",
+      "yes": "0",
+      "no": "1",
+      "n": "1"
+    },
+    {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
       "yes": "2",
       "no": "1",
       "n": "3"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "チェンソーマン",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
     },
     {
       "mood": "moving",
@@ -72,7 +100,7 @@
     }
   ],
   "raw": {
-    "rows": 6,
-    "rows_before_limit_at_least": 13
+    "rows": 10,
+    "rows_before_limit_at_least": 17
   }
 }
