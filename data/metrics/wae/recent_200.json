@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T21:48:38.767Z",
-  "updatedAtJst": "2026-03-05 06:48:38",
+  "updatedAt": "2026-03-04T23:43:45.499Z",
+  "updatedAtJst": "2026-03-05 08:43:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,110 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 22:24:34",
+      "timestampJst": "2026-03-05 07:24:34",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 22:24:33",
+      "timestampJst": "2026-03-05 07:24:33",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 22:24:06",
+      "timestampJst": "2026-03-05 07:24:06",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-04 22:24:04",
+      "timestampJst": "2026-03-05 07:24:04",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "healing",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 22:24:03",
+      "timestampJst": "2026-03-05 07:24:03",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "satisfying",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 22:24:03",
+      "timestampJst": "2026-03-05 07:24:03",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "hot",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 22:23:48",
+      "timestampJst": "2026-03-05 07:23:48",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "funny",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 22:23:44",
+      "timestampJst": "2026-03-05 07:23:44",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-04 14:31:48",
       "timestampJst": "2026-03-04 23:31:48",
@@ -24585,7 +24689,7 @@
     }
   ],
   "raw": {
-    "rows": 1887,
-    "rows_before_limit_at_least": 1887
+    "rows": 1895,
+    "rows_before_limit_at_least": 1895
   }
 }

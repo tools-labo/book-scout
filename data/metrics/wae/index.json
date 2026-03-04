@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T21:48:38.767Z",
-  "updatedAtJst": "2026-03-05 06:48:38",
+  "updatedAt": "2026-03-04T23:43:45.499Z",
+  "updatedAtJst": "2026-03-05 08:43:45",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -13,7 +13,7 @@
     {
       "id": "recent_200",
       "file": "recent_200.json",
-      "rows": 1887
+      "rows": 1895
     },
     {
       "id": "work_view_by_series",
@@ -38,7 +38,7 @@
     {
       "id": "mood_fb_by_mood_series",
       "file": "mood_fb_by_mood_series.json",
-      "rows": 16
+      "rows": 20
     },
     {
       "id": "favorite_by_series",
