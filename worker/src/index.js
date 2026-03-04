@@ -34,17 +34,23 @@ function toBlobs(e, req) {
     // ✅ export_wae_metrics.mjs の仕様に合わせる
   // - vote:    blob5 = moodId
   // - rate:    blob5 = k ('rec' | 'art')
-  // - mood_fb: blob5 = moodId, blob6 = fb ('yes' | 'no')
-  const blob5 = (type === "rate") ? k : mood;
+  // ✅ mood_fb は mood が CSV でも先頭だけ採用（暫定救済）
+const moodOne =
+  (type === "mood_fb")
+    ? String(mood || "").split(",")[0].trim()
+    : mood;
 
-  // ✅ mood_fb の fb 値は v 優先（無ければ k）。日本語も許容して正規化。
-  const fbRaw = String((v || k || "")).trim().toLowerCase();
-  const fbNorm =
-    (fbRaw === "yes" || fbRaw === "y" || fbRaw === "1" || fbRaw === "true" || fbRaw === "そう思う") ? "yes"
-    : (fbRaw === "no"  || fbRaw === "n" || fbRaw === "0" || fbRaw === "false" || fbRaw === "違う")     ? "no"
-    : fbRaw; // 想定外はそのまま（後でexport側で除外/監視できる）
+// - mood_fb: blob5 = moodId(※CSVなら先頭), blob6 = fb ('yes' | 'no')
+const blob5 = (type === "rate") ? k : moodOne;
 
-  const blob6 = (type === "mood_fb") ? fbNorm : genre;
+// ✅ mood_fb の fb 値は k を最優先（v は src 用なので優先しない）
+const fbRaw = String(((type === "mood_fb") ? k : (v || k)) || "").trim().toLowerCase();
+const fbNorm =
+  (fbRaw === "yes" || fbRaw === "y" || fbRaw === "1" || fbRaw === "true" || fbRaw === "そう思う") ? "yes"
+  : (fbRaw === "no"  || fbRaw === "n" || fbRaw === "0" || fbRaw === "false" || fbRaw === "違う")     ? "no"
+  : fbRaw;
+
+const blob6 = (type === "mood_fb") ? fbNorm : genre;
 
   // blob1..blob15 を固定
   return [
