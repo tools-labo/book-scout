@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T13:21:20.112Z",
-  "updatedAtJst": "2026-03-04 22:21:20",
+  "updatedAt": "2026-03-04T14:56:40.312Z",
+  "updatedAtJst": "2026-03-04 23:56:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -57,8 +57,8 @@
     {
       "seriesKey": "NARUTO -ナルト-",
       "k": "art",
-      "avg": 4.166666666666667,
-      "n": "6"
+      "avg": 4.142857142857143,
+      "n": "7"
     },
     {
       "seriesKey": "ちはやふる",
@@ -514,7 +514,7 @@
       "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
-      "n": "2"
+      "n": "3"
     },
     {
       "seriesKey": "君のことが大大大大大好きな100人の彼女",
@@ -559,12 +559,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
-      "k": "rec",
-      "avg": 5,
-      "n": "2"
-    },
-    {
       "seriesKey": "寄生獣",
       "k": "rec",
       "avg": 5,
@@ -581,6 +575,12 @@
       "k": "rec",
       "avg": 4.928571428571429,
       "n": "14"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
+      "k": "rec",
+      "avg": 4.666666666666667,
+      "n": "3"
     },
     {
       "seriesKey": "ちはやふる",
@@ -609,8 +609,8 @@
     {
       "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
-      "avg": 4.285714285714286,
-      "n": "7"
+      "avg": 4.25,
+      "n": "8"
     },
     {
       "seriesKey": "3月のライオン",
@@ -1077,6 +1077,6 @@
   ],
   "raw": {
     "rows": 175,
-    "rows_before_limit_at_least": 325
+    "rows_before_limit_at_least": 329
   }
 }

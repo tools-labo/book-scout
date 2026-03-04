@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T13:21:20.112Z",
-  "updatedAtJst": "2026-03-04 22:21:20",
+  "updatedAt": "2026-03-04T14:56:40.312Z",
+  "updatedAtJst": "2026-03-04 23:56:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -37,6 +37,13 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "ソウルイーター",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
@@ -59,9 +66,9 @@
     {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
-      "yes": "3",
+      "yes": "4",
       "no": "1",
-      "n": "4"
+      "n": "5"
     },
     {
       "mood": "hot",
@@ -75,6 +82,20 @@
       "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ソウルイーター",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ソウルイーター",
+      "yes": "0",
+      "no": "1",
       "n": "1"
     },
     {
@@ -121,7 +142,7 @@
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 26
+    "rows": 16,
+    "rows_before_limit_at_least": 30
   }
 }
