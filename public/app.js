@@ -2118,6 +2118,10 @@ const VOTE_MIN_TOTAL = 5;
  * ======================= */
 const MOOD_FB_PATH = BASE + "data/metrics/wae/mood_fb_by_mood_series.json";
 
+// ✅ B: “信頼OK/保留” の判定（現状の薄さに合わせた暫定）
+const MOOD_FB_MIN_DEN = 3;    // 分母（yes+no）最低
+const MOOD_FB_OK_PCT = 67;    // そう思う率% しきい値（2/3をOKにしたい）
+
 // rows: [{ mood, seriesKey, yes, no, n }]
 function buildMoodFbMap(json){
   const rows = Array.isArray(json?.rows) ? json.rows
@@ -2159,6 +2163,13 @@ function fmtPct(n){
 }
 
 // 仕様：そう思う率（yes / (yes+no)）
+function trustPctFromStat(stat){
+  const yes = Number(stat?.yes || 0);
+  const no  = Number(stat?.no  || 0);
+  const den = yes + no;
+  if (!Number.isFinite(den) || den <= 0) return null;
+  return (yes / den) * 100;
+}
 function trustTextFromStat(stat){
   const yes = Number(stat?.yes || 0);
   const no  = Number(stat?.no  || 0);
@@ -2166,6 +2177,21 @@ function trustTextFromStat(stat){
   if (!Number.isFinite(den) || den <= 0) return "—";
   const pct = (yes / den) * 100;
   return `そう思う率 ${fmtPct(pct)}（${yes}/${den}）`;
+}
+function trustOkFromStat(stat){
+  const yes = Number(stat?.yes || 0);
+  const no  = Number(stat?.no  || 0);
+  const den = yes + no;
+  if (!Number.isFinite(den) || den < MOOD_FB_MIN_DEN) return false;
+  const pct = (yes / den) * 100;
+  return Number.isFinite(pct) && pct >= MOOD_FB_OK_PCT;
+}
+function trustBadgeFromStat(stat){
+  const yes = Number(stat?.yes || 0);
+  const no  = Number(stat?.no  || 0);
+  const den = yes + no;
+  if (!Number.isFinite(den) || den < MOOD_FB_MIN_DEN) return "保留";
+  return trustOkFromStat(stat) ? "信頼OK" : "保留";
 }
 
 /* =======================
@@ -2266,7 +2292,7 @@ function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCount
 }
 
 /* =======================
- * ✅ “正解データ”ブロック + 読後感ごとの「そう思う/違う」 + 信頼度表示(A)
+ * ✅ “正解データ”ブロック + 読後感ごとの「そう思う/違う」 + 信頼度表示(A+B)
  * ======================= */
 function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, moodFbMap }) {
   const sk = toText(seriesKey);
@@ -2290,7 +2316,6 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
   const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4 });
   const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4, hideCounts: false });
 
-  // ✅ 1読後感=2ボタン（そう思う/違う）で並べる + 信頼度
   const fbRows = topRows.map(r => {
     const md = toText(r.mood);
     const sel = getMoodFbSel(sk, md); // yes/no/""
@@ -2299,6 +2324,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
 
     const stat = getMoodFbStat(moodFbMap, sk, md);
     const trust = stat ? trustTextFromStat(stat) : "—";
+    const badge = stat ? trustBadgeFromStat(stat) : "保留";
 
     return `
       <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
@@ -2307,7 +2333,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
             ${esc(r.label)} <span style="opacity:.7; font-variant-numeric: tabular-nums;">(${Number(r.n || 0)})</span>
           </div>
           <div class="d-sub" style="margin:4px 0 0 0; opacity:.75; font-variant-numeric: tabular-nums;">
-            信頼度: ${esc(trust)}
+            信頼度: ${esc(trust)} ／ 判定: <b>${esc(badge)}</b>
           </div>
         </div>
 
@@ -2358,7 +2384,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
         </div>
       </div>
 
-      <div class="vote-status" id="moodFbStatus" style="margin-top:8px;"></div>
+      <div class="vote-status" data-moodfb-status="1" style="margin-top:8px;"></div>
     </div>
   `;
 }
@@ -2780,11 +2806,16 @@ async function renderWorkPhase1(worksState, quickDefs) {
       // ✅ mood は moodId を1個だけ送る（CSV廃止）
       trackEvent({ type: "mood_fb", page: "work", seriesKey: sk, mood: moodId, k, v: src });
 
-      const st = document.getElementById("moodFbStatus");
-      if (st) {
-        st.textContent = "ありがとう！反映に使います。";
-        setTimeout(() => { if (st) st.textContent = ""; }, 1100);
-      }
+      // ✅ id固定を避け、近いブロック内から探す
+      try {
+        const box = btn.closest?.(".vote-box");
+        const st = box?.querySelector?.("[data-moodfb-status='1']");
+        if (st) {
+          st.textContent = "ありがとう！反映に使います。";
+          setTimeout(() => { if (st) st.textContent = ""; }, 1100);
+        }
+      } catch {}
+
       showToast("フィードバックありがとう！");
     }, { passive: true });
   }
@@ -2900,7 +2931,6 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
   const unlocked = isUnlocked(seriesKey);
 
   // ✅ “正解データ”は投票後だけ表示（先入観防止）
-  // ✅ FIX: outerHTML を使わない（マウント要素が消えて再描画不能になるため）
   try{
     const mount = document.getElementById("moodTruthBlock");
     if (mount) {
