@@ -1761,6 +1761,13 @@ function buildViewsMap(rows){
 
 /* START PART 3/3 - token: C3D4 */
 
+// public/app.js（3/3）FULL REPLACE
+// - ✅ Work: mood_fb（そう思う/違う）を「読後感1項目ごと」に送信
+// - ✅ mood_fb_by_mood_series.json を読み込み、信頼度（そう思う率）を表示
+// - ✅ export_wae_metrics.mjs 側の前提に合わせる：
+//    type='mood_fb' / blob5=moodId（payload.mood） / blob6=yes|no（payload.genre）
+// - ✅ 既存の他機能は壊さない（Home/List/Workの既存挙動維持）
+
 function renderHomePopular({ items, viewsMap, limit = 6 }) {
   const root = document.getElementById("homePopular");
   if (!root) return;
@@ -2111,6 +2118,9 @@ function avgStarsHtmlCompact(seriesKey, rateSeriesMap){
 const VOTE_AGG_PATH = BASE + "data/metrics/wae/vote_by_mood_series.json";
 const VOTE_TOTAL_BY_SERIES_PATH = BASE + "data/metrics/wae/vote_by_series.json";
 
+// ✅ mood_fb集計（作品×読後感）
+const MOOD_FB_PATH = BASE + "data/metrics/wae/mood_fb_by_mood_series.json";
+
 // ✅ “正解データ”に格上げする閾値
 const MOOD_VOTE_MIN = 3;
 
@@ -2158,6 +2168,32 @@ function buildVoteTotalBySeries(json){
   return map;
 }
 
+// ✅ mood_fb_by_mood_series.json を Map 化
+// sk -> Map(moodId -> {yes,no,n})
+function buildMoodFbMap(json){
+  const rows = Array.isArray(json?.rows) ? json.rows
+    : Array.isArray(json?.data) ? json.data
+    : Array.isArray(json) ? json : [];
+
+  const map = new Map();
+  for (const r of rows) {
+    const sk = toText(r?.seriesKey);
+    const mood = toText(r?.mood);
+    const yes = Number(r?.yes || 0);
+    const no  = Number(r?.no  || 0);
+    const n   = Number(r?.n   || 0);
+    if (!sk || !mood) continue;
+
+    if (!map.has(sk)) map.set(sk, new Map());
+    map.get(sk).set(mood, {
+      yes: Number.isFinite(yes) ? yes : 0,
+      no:  Number.isFinite(no)  ? no  : 0,
+      n:   Number.isFinite(n)   ? n   : 0,
+    });
+  }
+  return map;
+}
+
 /* =======================
  * Work: mood top helper（投票の表示）
  * ======================= */
@@ -2171,7 +2207,7 @@ function buildMoodLabelMap(defs){
   return m;
 }
 
-// ✅ NEW: 上位のmood一覧を返す（FBボタン用）
+// ✅ 上位のmood一覧を返す
 function moodTopListFromMatrix({ seriesKey, voteMatrix, defs, max = 4 }){
   const sk = toText(seriesKey);
   if (!sk || !voteMatrix?.bySeries?.size) return [];
@@ -2199,8 +2235,8 @@ function moodTopHtmlFromMatrix({ seriesKey, voteMatrix, defs, max = 4, hideCount
 }
 
 // ✅ “正解データ”として常時表示するブロック（閾値未満は断定しない）
-// ✅ NEW: 合ってる？/違う？の超軽量フィードバック（閾値以上のときだけ表示）
-function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) {
+// ✅ FBは「読後感1項目ごと」に そう思う/違う
+function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, moodFbMap }) {
   const sk = toText(seriesKey);
   if (!sk) return "";
 
@@ -2220,12 +2256,59 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) 
     `;
   }
 
-  // 閾値以上：上位を表示
   const topRows = moodTopListFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4 });
-  const pills = moodTopHtmlFromMatrix({ seriesKey: sk, voteMatrix, defs, max: 4, hideCounts: false });
+  const byMood = moodFbMap?.get?.(sk) || new Map();
 
-  // ✅ FB対象mood（idのCSV）: 上位表示と同じもの
-  const moodsCsv = topRows.map(x => toText(x.mood)).filter(Boolean).join(",");
+  const rowsHtml = topRows.map(r => {
+    const moodId = toText(r.mood);
+    const label = toText(r.label) || moodId;
+    const n = Number(r.n || 0);
+
+    const fb = byMood.get(moodId) || null;
+    const yes = Number(fb?.yes || 0);
+    const no  = Number(fb?.no  || 0);
+    const fbN = yes + no;
+
+    const showTrust = fbN >= 3;
+    const trustPct = showTrust ? Math.round((yes / Math.max(1, fbN)) * 100) : 0;
+
+    const trustHtml = showTrust
+      ? `<span class="d-sub" style="margin:0; opacity:.75;">信頼度 ${trustPct}%（${fbN}）</span>`
+      : (fbN > 0 ? `<span class="d-sub" style="margin:0; opacity:.6;">（反応 ${fbN}）</span>` : "");
+
+    return `
+      <div style="display:flex; gap:8px; align-items:center; justify-content:space-between; padding:8px 0; border-top:1px solid rgba(17,24,39,.06);">
+        <div style="min-width:0;">
+          <div style="font-weight:1000; font-size:13px; line-height:1.2;">
+            ${esc(label)} <span style="opacity:.7; font-weight:900;">(${Number.isFinite(n) ? n : 0})</span>
+          </div>
+          ${trustHtml}
+        </div>
+
+        <div style="display:flex; gap:6px; flex:0 0 auto;">
+          <button type="button"
+            class="pill"
+            data-moodfb="1"
+            data-moodfb-k="yes"
+            data-moodfb-sk="${esc(sk)}"
+            data-moodfb-mood="${esc(moodId)}"
+            aria-label="そう思う"
+            style="padding:6px 10px;"
+          >そう思う</button>
+
+          <button type="button"
+            class="pill"
+            data-moodfb="1"
+            data-moodfb-k="no"
+            data-moodfb-sk="${esc(sk)}"
+            data-moodfb-mood="${esc(moodId)}"
+            aria-label="違う"
+            style="padding:6px 10px;"
+          >違う</button>
+        </div>
+      </div>
+    `;
+  }).join("");
 
   return `
     <div class="vote-box" style="margin-top:12px;">
@@ -2234,32 +2317,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries }) 
       </div>
       <p class="vote-note">投票${total}票分の集計です。</p>
 
-      ${pills || `<div class="d-sub" style="opacity:.85;">データがまだありません</div>`}
-
-      <div style="margin-top:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-        <div class="d-sub" style="margin:0; opacity:.9;">この表示、合ってる？</div>
-        <button type="button"
-          class="pill"
-          data-moodfb="1"
-          data-moodfb-k="yes"
-          data-moodfb-sk="${esc(sk)}"
-          data-moodfb-moods="${esc(moodsCsv)}"
-          data-moodfb-src="vote_truth"
-          aria-label="合ってる"
-        >👍 合ってる</button>
-
-        <button type="button"
-          class="pill"
-          data-moodfb="1"
-          data-moodfb-k="no"
-          data-moodfb-sk="${esc(sk)}"
-          data-moodfb-moods="${esc(moodsCsv)}"
-          data-moodfb-src="vote_truth"
-          aria-label="違う"
-        >👎 違う</button>
-
-        <span class="d-sub" style="margin:0; opacity:.75;">（1タップでOK）</span>
-      </div>
+      ${topRows.length ? `<div>${rowsHtml}</div>` : `<div class="d-sub" style="opacity:.85;">データがまだありません</div>`}
 
       <div class="vote-status" id="moodFbStatus" style="margin-top:8px;"></div>
     </div>
@@ -2643,29 +2701,39 @@ async function renderWorkPhase1(worksState, quickDefs) {
   initLazyImages(detail);
   trackWorkViewOnce(seriesKey);
 
-  // ✅ mood FB（合ってる/違う）: delegated handler
+  // ✅ mood FB（そう思う/違う）: delegated handler（読後感1項目ごと）
   if (!detail.__moodFbBound) {
     detail.__moodFbBound = true;
+
     detail.addEventListener("click", (ev) => {
       const btn = ev.target?.closest?.("button[data-moodfb='1']");
       if (!btn) return;
 
       const sk = toText(btn.getAttribute("data-moodfb-sk") || "");
-      const moods = toText(btn.getAttribute("data-moodfb-moods") || "");
-      const k = toText(btn.getAttribute("data-moodfb-k") || "");
-      const src = toText(btn.getAttribute("data-moodfb-src") || "");
+      const moodId = toText(btn.getAttribute("data-moodfb-mood") || "");
+      const fb = toText(btn.getAttribute("data-moodfb-k") || ""); // yes|no
 
-      if (!sk || !k) return;
+      if (!sk || !moodId) return;
+      if (fb !== "yes" && fb !== "no") return;
 
-      // 端末内多重送信抑止（24h）
-      const onceKey = `mood_fb:${sk}:${moods}:${k}:${src}`;
+      const onceKey = `mood_fb:${sk}:${moodId}:${fb}`;
       if (!canSendOnce(onceKey)) {
         showToast("送信済みです");
         return;
       }
 
-      // type: mood_fb / k: yes|no / v: src / mood: moodsCSV
-      trackEvent({ type: "mood_fb", page: "work", seriesKey: sk, mood: moods, k, v: src });
+      // ✅ export側の前提に合わせる：
+      // - mood(blob5) = moodId
+      // - genre(blob6) = yes|no
+      trackEvent({
+        type: "mood_fb",
+        page: "work",
+        seriesKey: sk,
+        mood: moodId,
+        genre: fb,
+        k: "",
+        v: "",
+      });
 
       const st = document.getElementById("moodFbStatus");
       if (st) {
@@ -2780,7 +2848,7 @@ async function renderWorkPhase1(worksState, quickDefs) {
 /* =======================
  * Work hydrate (Phase2)
  * ======================= */
-function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTotalBySeries, rateSeriesMap, viewsMap }) {
+function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTotalBySeries, rateSeriesMap, viewsMap, moodFbMap }) {
   if (!it || !seriesKey) return;
 
   // “正解データ”の常時表示（閾値未満は断定しない）
@@ -2792,6 +2860,7 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
         defs,
         voteMatrix,
         voteTotalBySeries,
+        moodFbMap,
       });
     }
   } catch {}
@@ -2975,6 +3044,13 @@ async function run() {
       } catch { return new Map(); }
     })();
 
+    const pMoodFb = (async () => {
+      try {
+        const json = await tryLoadJson(withV(MOOD_FB_PATH), { bust });
+        return json ? buildMoodFbMap(json) : new Map();
+      } catch { return new Map(); }
+    })();
+
     const pRateSeries = (async () => {
       try {
         const bySeriesJson = await tryLoadJson(withV(METRIC_RATE_BY_SERIES_KEY_PATH), { bust });
@@ -2983,7 +3059,9 @@ async function run() {
     })();
 
     if (isWorkPage && workCtx) {
-      const [voteMatrix, voteTotalBySeries, rateSeriesMap] = await Promise.all([pVote, pVoteTotal, pRateSeries]);
+      const [voteMatrix, voteTotalBySeries, rateSeriesMap, moodFbMap] =
+        await Promise.all([pVote, pVoteTotal, pRateSeries, pMoodFb]);
+
       const viewsMap = await pViews;
 
       try { window.__rateSeriesMap = rateSeriesMap; } catch {}
@@ -2997,6 +3075,7 @@ async function run() {
         voteTotalBySeries,
         rateSeriesMap,
         viewsMap,
+        moodFbMap,
       };
 
       hydrateWorkExtras(args);
