@@ -2117,6 +2117,7 @@ const VOTE_MIN_TOTAL = 5;
  * ✅ Mood FB metrics（A: 信頼度表示）
  * ======================= */
 const MOOD_FB_PATH = BASE + "data/metrics/wae/mood_fb_by_mood_series.json";
+const MOOD_FB_WEIGHT_MIN_DEN = 3; // yes+no がこれ未満なら重み付けしない（並び順を変えない）
 
 // ✅ B: “信頼OK/保留” の判定（現状の薄さに合わせた暫定）
 const MOOD_FB_MIN_DEN = 3;    // 分母（yes+no）最低
