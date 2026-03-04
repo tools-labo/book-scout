@@ -253,6 +253,30 @@ ORDER BY mood ASC, n DESC
 `;
 }
 
+function qMoodFbByMoodSeries(dataset, days = 30, allowedMoodIds = []) {
+  // 前提（worker側）:
+  // - type = 'mood_fb'
+  // - blob5(COL.mood) = moodId
+  // - blob6(COL.genre) = fb ('yes' | 'no')  ※ genre を流用
+  return `
+SELECT
+  ${COL.mood} AS mood,
+  ${COL.seriesKey} AS seriesKey,
+  SUMIf(_sample_interval, ${COL.genre} = 'yes') AS yes,
+  SUMIf(_sample_interval, ${COL.genre} = 'no')  AS no,
+  ${sumCountExpr()}
+FROM ${dataset}
+WHERE ${whereRecent(days)}
+  AND ${COL.type} = 'mood_fb'
+  AND ${COL.seriesKey} != ''
+  AND ${COL.mood} != ''
+  AND ${COL.genre} IN ('yes','no')
+  AND ${whereMoodIn(allowedMoodIds)}
+GROUP BY ${COL.mood}, ${COL.seriesKey}
+ORDER BY mood ASC, n DESC
+`;
+}
+
 function qFavoritesBySeries(dataset, days = 30) {
   return `
 SELECT
