@@ -2352,7 +2352,7 @@ function moodTruthBlockHtml({ seriesKey, defs, voteMatrix, voteTotalBySeries, mo
       ${pills || `<div class="d-sub" style="opacity:.85;">データがまだありません</div>`}
 
       <div style="margin-top:10px;">
-        <div class="d-sub" style="margin:0; opacity:.9;">この作品の読後感、どう感じた？（各1回）</div>
+        <div class="d-sub" style="margin:0; opacity:.9;">自分の感覚と近い？（各1回）</div>
         <div style="margin-top:8px;">
           ${fbRows || `<div class="d-sub" style="opacity:.8;">データがまだありません</div>`}
         </div>
@@ -2725,9 +2725,10 @@ async function renderWorkPhase1(worksState, quickDefs) {
       <div class="d-text">${esc(synopsis)}</div>
     ` : ""}
 
-    ${moodTruthPlaceholder}
     ${voteBox}
     ${sameMoodRecoMount}
+    ${moodTruthPlaceholder}
+
     ${rateBox}
     ${recoHtml}
   `;
@@ -2895,17 +2896,25 @@ async function renderWorkPhase1(worksState, quickDefs) {
 function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTotalBySeries, rateSeriesMap, viewsMap, moodFbMap }) {
   if (!it || !seriesKey) return;
 
-  // “正解データ”の常時表示（閾値未満は断定しない）
+  const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
+  const unlocked = isUnlocked(seriesKey);
+
+  // ✅ “正解データ”は投票後だけ表示（先入観防止）
+  // ✅ FIX: outerHTML を使わない（マウント要素が消えて再描画不能になるため）
   try{
     const mount = document.getElementById("moodTruthBlock");
     if (mount) {
-      mount.outerHTML = moodTruthBlockHtml({
-        seriesKey,
-        defs,
-        voteMatrix,
-        voteTotalBySeries,
-        moodFbMap,
-      });
+      if (!unlocked) {
+        mount.innerHTML = "";
+      } else {
+        mount.innerHTML = moodTruthBlockHtml({
+          seriesKey,
+          defs,
+          voteMatrix,
+          voteTotalBySeries,
+          moodFbMap,
+        });
+      }
     }
   } catch {}
 
@@ -2915,13 +2924,10 @@ function hydrateWorkExtras({ it, seriesKey, defs, worksState, voteMatrix, voteTo
     if (avgBox) avgBox.innerHTML = avgStarsHtmlCompact(seriesKey, rateSeriesMap);
   } catch {}
 
-  const allForReco = Array.isArray(worksState?.listItems) ? worksState.listItems : [];
-
   // 同じ読後感（投票直下）
   try {
     const mount = document.getElementById("sameMoodRecoMount");
     if (mount) {
-      const unlocked = isUnlocked(seriesKey);
       if (!unlocked) {
         mount.innerHTML = "";
       } else {
