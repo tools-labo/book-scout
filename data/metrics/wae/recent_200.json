@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T09:57:38.464Z",
-  "updatedAtJst": "2026-03-04 18:57:38",
+  "updatedAt": "2026-03-04T10:03:28.339Z",
+  "updatedAtJst": "2026-03-04 19:03:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,136 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-04 10:01:43",
+      "timestampJst": "2026-03-04 19:01:43",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:40",
+      "timestampJst": "2026-03-04 19:01:40",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-04 10:01:39",
+      "timestampJst": "2026-03-04 19:01:39",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 4
+    },
+    {
+      "timestamp": "2026-03-04 10:01:36",
+      "timestampJst": "2026-03-04 19:01:36",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "page_turner",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:35",
+      "timestampJst": "2026-03-04 19:01:35",
+      "type": "vote",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "hot",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:28",
+      "timestampJst": "2026-03-04 19:01:28",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "page_turner",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:26",
+      "timestampJst": "2026-03-04 19:01:26",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "satisfying",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:25",
+      "timestampJst": "2026-03-04 19:01:25",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "funny",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:21",
+      "timestampJst": "2026-03-04 19:01:21",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "hot",
+      "genre": "no",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-04 10:01:03",
+      "timestampJst": "2026-03-04 19:01:03",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-04 07:59:34",
       "timestampJst": "2026-03-04 16:59:34",
@@ -23376,7 +23506,7 @@
     }
   ],
   "raw": {
-    "rows": 1794,
-    "rows_before_limit_at_least": 1794
+    "rows": 1804,
+    "rows_before_limit_at_least": 1804
   }
 }

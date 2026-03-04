@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T09:57:38.464Z",
-  "updatedAtJst": "2026-03-04 18:57:38",
+  "updatedAt": "2026-03-04T10:03:28.339Z",
+  "updatedAtJst": "2026-03-04 19:03:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -25,12 +25,6 @@
   ],
   "rows": [
     {
-      "seriesKey": "ドラゴンボール",
-      "k": "art",
-      "avg": 5,
-      "n": "13"
-    },
-    {
       "seriesKey": "乙嫁語り",
       "k": "art",
       "avg": 5,
@@ -41,6 +35,12 @@
       "k": "art",
       "avg": 5,
       "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "k": "art",
+      "avg": 4.928571428571429,
+      "n": "14"
     },
     {
       "seriesKey": "アイシールド21",
@@ -343,7 +343,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "惑星のさみだれ",
+      "seriesKey": "orange [オレンジ]",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -355,7 +355,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "惑星のさみだれ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -553,12 +553,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール",
-      "k": "rec",
-      "avg": 5,
-      "n": "13"
-    },
-    {
       "seriesKey": "蟲師",
       "k": "rec",
       "avg": 5,
@@ -581,6 +575,12 @@
       "k": "rec",
       "avg": 5,
       "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "k": "rec",
+      "avg": 4.928571428571429,
+      "n": "14"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -1009,13 +1009,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "この音とまれ！",
+      "seriesKey": "イジらないで、長瀞さん",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "イジらないで、長瀞さん",
+      "seriesKey": "この音とまれ！",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -1077,6 +1077,6 @@
   ],
   "raw": {
     "rows": 175,
-    "rows_before_limit_at_least": 318
+    "rows_before_limit_at_least": 320
   }
 }

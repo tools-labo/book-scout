@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-04T09:57:38.464Z",
-  "updatedAtJst": "2026-03-04 18:57:38",
+  "updatedAt": "2026-03-04T10:03:28.339Z",
+  "updatedAtJst": "2026-03-04 19:03:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -120,17 +120,17 @@
       "n": "5"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=hot",
-      "n": "5"
-    },
-    {
       "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "aud": "",
       "mag": "",
       "mood": "JP",
+      "n": "5"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=hot",
       "n": "5"
     },
     {
@@ -324,9 +324,9 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -345,15 +345,8 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
-      "n": "1"
-    },
-    {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
       "aud": "aud=少年",
-      "mag": "",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -361,6 +354,13 @@
       "genre": "",
       "aud": "",
       "mag": "mag=Cocohana",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -414,17 +414,17 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice,action",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "aud=少年",
       "mag": "",
       "mood": "mood=heart_throb,satisfying",
+      "n": "1"
+    },
+    {
+      "genre": "genre=drama,sports,mystery,slice,action",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "",
       "n": "1"
     },
     {
@@ -452,7 +452,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,page_turner",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
@@ -473,7 +473,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Action&mood=moving",
+      "mood": "mood=heart_throb,healing",
       "n": "1"
     },
     {
@@ -487,7 +487,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,healing",
+      "mood": "mood=heart_throb,page_turner",
       "n": "1"
     },
     {
@@ -568,17 +568,17 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=moving,healing",
-      "n": "1"
-    },
-    {
       "genre": "genre=romance",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=moving,healing",
       "n": "1"
     },
     {
@@ -743,15 +743,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
+      "genre": "genre=drama,sports,mystery,slice",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -799,16 +799,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=action",
-      "aud": "aud=女性",
-      "mag": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Vジャンプ",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Vジャンプ",
+      "genre": "genre=action",
+      "aud": "aud=女性",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
