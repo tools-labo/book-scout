@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T10:00:44.321Z",
-  "updatedAtJst": "2026-03-05 19:00:44",
+  "updatedAt": "2026-03-05T10:59:44.400Z",
+  "updatedAtJst": "2026-03-05 19:59:44",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -295,15 +295,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,sports,comedy,slice,mystery,horror,action",
-      "aud": "aud=少年",
+      "genre": "genre=drama,sports,mystery",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,romance,sports,comedy,slice,mystery,horror,action",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -564,14 +564,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=hot,heart_throb",
+      "mood": "genre=Fantasy",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Fantasy",
+      "mood": "mood=hot,heart_throb",
       "n": "1"
     },
     {
@@ -813,16 +813,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=action",
-      "aud": "aud=女性",
-      "mag": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Vジャンプ",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Vジャンプ",
+      "genre": "genre=action",
+      "aud": "aud=女性",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
