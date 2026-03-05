@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T14:15:23.472Z",
+  "updatedAt": "2026-03-05T14:20:45.300Z",
   "total": 292,
   "shardSize": 200,
   "shards": [
@@ -311,25 +311,17 @@
     "total": 292,
     "ok": 292,
     "ng": 0,
-    "skippedPerfect": 286,
-    "skippedAniList": 6,
-    "skippedWiki": 6,
-    "skippedAmazon": 6,
+    "skippedPerfect": 292,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 5,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "お兄ちゃんはおしまい！ :: magazine,magazines[]",
-        "トリコ :: magazine,magazines[]",
-        "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん :: magazine,magazines[]",
-        "図書館の大魔術師 :: magazine,magazines[]",
-        "杖と剣のウィストリア :: magazine,magazines[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
