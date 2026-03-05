@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T13:49:42.256Z",
+  "updatedAt": "2026-03-05T14:15:23.472Z",
   "total": 292,
   "shardSize": 200,
   "shards": [
@@ -311,31 +311,18 @@
     "total": 292,
     "ok": 292,
     "ng": 0,
-    "skippedPerfect": 282,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 10,
-    "magAudienceTodoAdded": 2,
+    "skippedPerfect": 286,
+    "skippedAniList": 6,
+    "skippedWiki": 6,
+    "skippedAmazon": 6,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 10,
-      "outNotPerfect": 6
+      "prevNotPerfect": 5,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "To LOVEる -とらぶる- ダークネス :: noVol1",
-        "お兄ちゃんはおしまい！ :: noVol1",
-        "トリコ :: noVol1",
-        "トリニティセブン 7人の魔書使い :: noVol1",
-        "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん :: noVol1",
-        "僕らはみんな河合荘 :: noVol1",
-        "図書館の大魔術師 :: noVol1",
-        "幼女戦記 :: noVol1",
-        "杖と剣のウィストリア :: noVol1",
-        "骸骨騎士様、只今異世界へお出掛け中 :: noVol1"
-      ],
-      "outNotPerfect": [
-        "To LOVEる -とらぶる- ダークネス :: tags_missing_en(remain=1)",
         "お兄ちゃんはおしまい！ :: magazine,magazines[]",
         "トリコ :: magazine,magazines[]",
         "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん :: magazine,magazines[]",
@@ -344,58 +331,21 @@
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 6,
-      "seriesKeys": [
-        "To LOVEる -とらぶる- ダークネス",
-        "お兄ちゃんはおしまい！",
-        "トリコ",
-        "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-        "図書館の大魔術師",
-        "杖と剣のウィストリア"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 5,
-          "samples": [
-            "お兄ちゃんはおしまい！",
-            "トリコ",
-            "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-            "図書館の大魔術師",
-            "杖と剣のウィストリア"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 5,
-          "samples": [
-            "お兄ちゃんはおしまい！",
-            "トリコ",
-            "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-            "図書館の大魔術師",
-            "杖と剣のウィストリア"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 1,
-          "samples": [
-            "To LOVEる -とらぶる- ダークネス"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 10
+      "successItems": 0
     }
   }
 }

@@ -1,8 +1,197 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 87,
+  "count": 92,
   "items": [
+    {
+      "seriesKey": "大ダーク",
+      "title": "大ダーク (1) (ゲッサン少年サンデーコミックス)",
+      "author": "林田 球",
+      "publisher": "小学館",
+      "releaseDate": "2019-11-12T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51-Hi9mYmJL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091294863",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091294863?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784091294869",
+      "asin": "4091294863",
+      "synopsis": "宇宙の闇を漂う少年ザハ＝サンコは、骨に願いを叶える力があると噂され命を狙われている。宇宙船襲撃や陰謀に巻き込まれる中、骨を求める者たちの正体を探りつつ仲間と生き延びるSFダークファンタジー。",
+      "magazine": "月刊少年サンデー",
+      "magazines": [
+        "月刊少年サンデー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Comedy",
+        "Horror",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "宇宙",
+        "不条理コメディ",
+        "宇宙人",
+        "ディストピア",
+        "アンチヒーロー",
+        "少年向け",
+        "変身",
+        "スケルトン",
+        "カルト",
+        "無性別",
+        "悪魔",
+        "コズミックホラー",
+        "グルメ",
+        "スペースオペラ",
+        "奴隷",
+        "年齢退行"
+      ],
+      "meta": {
+        "anilistId": 105263,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "天国大魔境",
+      "title": "天国大魔境(1) (アフタヌーンKC)",
+      "author": "石黒 正数",
+      "publisher": "講談社",
+      "releaseDate": "2018-07-23T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51hb85ETQeL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065119766",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065119766?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784065119761",
+      "asin": "4065119766",
+      "synopsis": "壁に守られた施設で暮らす子どもたちと、怪物が跋扈する荒廃した外の世界。外界の少年少女・マルとキルコは“天国”を求めて旅に出る。二つの世界が交差する黙示録的冒険譚。",
+      "magazine": "月刊アフタヌーン",
+      "magazines": [
+        "月刊アフタヌーン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Mystery"
+      ],
+      "tags": [
+        "終末後",
+        "青年向け",
+        "サバイバル",
+        "ディストピア",
+        "時系列シャッフル",
+        "旅",
+        "性転換",
+        "陰謀",
+        "超能力",
+        "人工知能",
+        "バイセクシュアル",
+        "記憶喪失",
+        "トランスジェンダー",
+        "孤児",
+        "百合",
+        "銃",
+        "悪魔"
+      ],
+      "meta": {
+        "anilistId": 101942,
+        "wikiTitle": "天国大魔境",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "天空侵犯",
+      "title": "天空侵犯(1) (KCデラックス)",
+      "author": "大羽 隆廣",
+      "publisher": "講談社",
+      "releaseDate": "2014-05-09T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/61CI9ossT8L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063769798",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063769798?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063769791",
+      "asin": "4063769798",
+      "synopsis": "気づけば高層ビルの屋上にいた女子高生・ゆり。仮面の殺人者が徘徊する異様な世界で、生き残るための戦いを強いられる。離ればなれになった兄を探し、屋上の迷宮を進む。",
+      "magazine": "マンガボックス",
+      "magazines": [
+        "マンガボックス"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Horror",
+        "Mystery"
+      ],
+      "tags": [
+        "デスゲーム",
+        "サバイバル",
+        "記憶喪失",
+        "バトルロイヤル",
+        "都会",
+        "異世界",
+        "神々",
+        "コズミックホラー",
+        "超能力",
+        "記憶操作",
+        "少年向け",
+        "銃",
+        "多重人格",
+        "LGBTQテーマ",
+        "百合",
+        "剣術",
+        "ディストピア"
+      ],
+      "meta": {
+        "anilistId": 85388,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "夫婦以上、恋人未満。",
+      "title": "夫婦以上、恋人未満。 (1) (角川コミックス・エース)",
+      "author": "金丸 祐基",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2018-10-26T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/511wHjXwq2L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041074843",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041074843?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784041074848",
+      "asin": "4041074843",
+      "synopsis": "消極的な高校生・八ッ瀬大和は、学校のカリキュラム“夫婦実習”でギャルの渡辺明里と仮想夫婦として同居することに。お互いのパートナー交換を目指して始まった共同生活で、次第に素直になれない恋心が芽生えていく。",
+      "magazine": "ヤングエース",
+      "magazines": [
+        "ヤングエース"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "三角関係",
+        "ギャル",
+        "学園",
+        "家族もの",
+        "少年向け",
+        "同棲",
+        "偽装恋愛"
+      ],
+      "meta": {
+        "anilistId": 105011,
+        "wikiTitle": "夫婦以上、恋人未満。",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
     {
       "seriesKey": "好きな子がめがねを忘れた",
       "title": "好きな子がめがねを忘れた(1) (ガンガンコミックスJOKER)",
@@ -1531,6 +1720,49 @@
       ],
       "meta": {
         "anilistId": 30584,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "杖と剣のウィストリア",
+      "title": "杖と剣のウィストリア(1) (講談社コミックス)",
+      "author": "青井 聖",
+      "publisher": "講談社",
+      "releaseDate": "2021-04-09T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51AVvV2wJqL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065225191",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065225191?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784065225196",
+      "asin": "4065225191",
+      "synopsis": "魔法至上の世界で、魔法が使えない少年ウィルは「塔の頂で約束を果たす」ため剣一本で道を切り開こうとする。落ちこぼれ扱いの現実に抗い、学園で仲間や強敵と出会いながら、自分の武器で上を目指していく。",
+      "magazine": "別冊少年マガジン",
+      "magazines": [
+        "別冊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "剣術",
+        "魔法",
+        "ダンジョン",
+        "学園",
+        "少年向け",
+        "男女混合ハーレム",
+        "逆ハーレム",
+        "教師",
+        "ボーイズラブ"
+      ],
+      "meta": {
+        "anilistId": 125116,
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3754,14 +3986,14 @@
       "isbn13": "9784865542523",
       "asin": "4865542523",
       "synopsis": "目覚めると異世界、しかも自分は最強装備の“骸骨騎士”の姿だった。正体がバレれば即アウトな見た目を隠しつつ、困っている人を放っておけない性分で事件に首を突っ込む。善行と勘違いが連鎖する異世界冒険譚。",
-      "magazine": "小説家になろう",
+      "magazine": "コミックガルド",
       "magazines": [
-        "小説家になろう"
+        "コミックガルド"
       ],
       "audiences": [
         "その他"
       ],
-      "magazineSource": "wikipedia",
+      "magazineSource": "manual_override",
       "genres": [
         "Action",
         "Adventure",
@@ -3779,7 +4011,6 @@
       ],
       "meta": {
         "anilistId": 98900,
-        "wikiTitle": "骸骨騎士様、只今異世界へお出掛け中",
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },

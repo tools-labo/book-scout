@@ -2553,12 +2553,14 @@
         "publisher": "講談社",
         "author": "青井 聖",
         "releaseDate": "2021-04-09T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "別冊少年マガジン",
+        "magazines": [
+          "別冊少年マガジン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 125116,
         "genres": [
@@ -5868,15 +5870,15 @@
         "publisher": "オーバーラップ",
         "author": "サワノアキラ",
         "releaseDate": "2017-08-25T00:00:01Z",
-        "magazine": "小説家になろう",
+        "magazine": "コミックガルド",
         "magazines": [
-          "小説家になろう"
+          "コミックガルド"
         ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "骸骨騎士様、只今異世界へお出掛け中",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 98900,
         "genres": [
           "Action",

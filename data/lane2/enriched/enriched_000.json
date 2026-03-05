@@ -1117,9 +1117,7 @@
           "バイセクシュアル",
           "LGBTQテーマ"
         ],
-        "tags_missing_en": [
-          "Group Sex"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -2808,12 +2806,14 @@
         "publisher": "一迅社",
         "author": "ねことうふ",
         "releaseDate": "2018-06-27T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊ComicREX",
+        "magazines": [
+          "月刊ComicREX"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 100080,
         "genres": [
@@ -7200,13 +7200,15 @@
         "publisher": "集英社",
         "author": "島袋 光年",
         "releaseDate": "2008-11-04T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "劇場版 トリコ 美食神の超食宝",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 37887,
         "genres": [
           "Action",
@@ -11254,12 +11256,14 @@
         "publisher": "一迅社",
         "author": "八木戸 マト",
         "releaseDate": "2024-07-19T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "comic POOL",
+        "magazines": [
+          "comic POOL"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 152855,
         "genres": [
@@ -13571,12 +13575,14 @@
         "publisher": "講談社",
         "author": "泉 光",
         "releaseDate": "2018-04-06T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "good!アフタヌーン",
+        "magazines": [
+          "good!アフタヌーン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 101131,
         "genres": [

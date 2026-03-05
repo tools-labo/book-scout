@@ -1,15 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T13:49:42.256Z",
-  "total": 287,
-  "droppedTotal": 5,
-  "droppedSeriesKeys": [
-    "お兄ちゃんはおしまい！",
-    "トリコ",
-    "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-    "図書館の大魔術師",
-    "杖と剣のウィストリア"
-  ],
+  "updatedAt": "2026-03-05T14:15:23.472Z",
+  "total": 292,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -18,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 87
+      "count": 92
     }
   ],
   "lookup": {
@@ -63,6 +57,7 @@
     "エルフェンリート": 0,
     "おもいでエマノン": 0,
     "おやすみプンプン": 0,
+    "お兄ちゃんはおしまい！": 0,
     "かぐや様は告らせたい～天才たちの恋愛頭脳戦～": 0,
     "カグラバチ": 0,
     "ガチアクタ": 0,
@@ -125,6 +120,7 @@
     "トモちゃんは女の子!": 0,
     "ドラゴンボール": 0,
     "ドラゴンボール超": 0,
+    "トリコ": 0,
     "トリニティセブン 7人の魔書使い": 0,
     "ドロヘドロ": 0,
     "とんがり帽子のアトリエ": 0,
@@ -182,6 +178,7 @@
     "ワールドトリガー": 0,
     "ワンパンマン": 0,
     "ヲタクに恋は難しい": 0,
+    "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん": 0,
     "七つの大罪": 0,
     "不滅のあなたへ": 0,
     "乙女ゲー世界はモブに厳しい世界です": 0,
@@ -215,13 +212,14 @@
     "嘘喰い": 0,
     "四月は君の嘘": 0,
     "回復術士のやり直し": 0,
+    "図書館の大魔術師": 0,
     "地獄楽": 0,
     "地縛少年 花子くん": 0,
     "夜桜さんちの大作戦": 0,
-    "大ダーク": 0,
-    "天国大魔境": 0,
-    "天空侵犯": 0,
-    "夫婦以上、恋人未満。": 0,
+    "大ダーク": 1,
+    "天国大魔境": 1,
+    "天空侵犯": 1,
+    "夫婦以上、恋人未満。": 1,
     "好きな子がめがねを忘れた": 1,
     "孤高の人": 1,
     "宇崎ちゃんは遊びたい！": 1,
@@ -255,6 +253,7 @@
     "月が導く異世界道中": 1,
     "月刊少女野崎くん": 1,
     "未来日記": 1,
+    "杖と剣のウィストリア": 1,
     "来世は他人がいい": 1,
     "東京卍リベンジャーズ": 1,
     "東京喰種 トーキョーグール": 1,
@@ -1819,6 +1818,40 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2007-08-03T00:00:01Z"
+    },
+    {
+      "seriesKey": "お兄ちゃんはおしまい！",
+      "title": "お兄ちゃんはおしまい！ (IDコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51f6Nl4w79L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4758067503?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4758067503",
+      "magazine": "月刊ComicREX",
+      "magazines": [
+        "月刊ComicREX"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Slice of Life"
+      ],
+      "tags": [
+        "性転換",
+        "かわいい女の子の日常",
+        "癒し系",
+        "LGBTQテーマ",
+        "トランスジェンダー",
+        "学園",
+        "更生",
+        "ひきこもり",
+        "年齢退行",
+        "百合",
+        "女装・男装",
+        "バイセクシュアル"
+      ],
+      "publisher": "一迅社",
+      "releaseDate": "2018-06-27T00:00:01Z"
     },
     {
       "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
@@ -4152,6 +4185,54 @@
       "releaseDate": "2016-04-04T00:00:01Z"
     },
     {
+      "seriesKey": "トリコ",
+      "title": "トリコ 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51CGJ0URCzL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088746082?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088746082",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "グルメ",
+        "超能力",
+        "動物",
+        "少年向け",
+        "恐竜",
+        "旅",
+        "サバイバル",
+        "怪獣",
+        "環境問題",
+        "コズミックホラー",
+        "悪魔",
+        "修行",
+        "武術",
+        "ドラゴン",
+        "妖怪",
+        "宇宙人",
+        "幽霊",
+        "大自然",
+        "変身",
+        "ロボット",
+        "ヤクザ",
+        "性転換",
+        "経済",
+        "侍"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2008-11-04T00:00:01Z"
+    },
+    {
       "seriesKey": "トリニティセブン 7人の魔書使い",
       "title": "トリニティセブン 7人の魔書使い 1 (ドラゴンコミックスエイジ な 3-1-1)",
       "image": "https://m.media-amazon.com/images/I/41-yn5YwMlL._SL500_.jpg",
@@ -6277,6 +6358,34 @@
       "releaseDate": "2015-04-30T00:00:01Z"
     },
     {
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+      "title": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん(上) (comic POOL)",
+      "image": "https://m.media-amazon.com/images/I/513R9i6S-QL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4758025347?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4758025347",
+      "magazine": "comic POOL",
+      "magazines": [
+        "comic POOL"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ツンデレ",
+        "視点描写（POV）",
+        "学園",
+        "いじめ"
+      ],
+      "publisher": "一迅社",
+      "releaseDate": "2024-07-19T00:00:01Z"
+    },
+    {
       "seriesKey": "七つの大罪",
       "title": "七つの大罪(1) (少年マガジンコミックス)",
       "image": "https://m.media-amazon.com/images/I/61EoriFSI0L._SL500_.jpg",
@@ -7500,6 +7609,52 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2018-03-31T00:00:01Z"
+    },
+    {
+      "seriesKey": "図書館の大魔術師",
+      "title": "図書館の大魔術師(1) (アフタヌーンKC)",
+      "image": "https://m.media-amazon.com/images/I/51lQShNUL2L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065112435?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065112435",
+      "magazine": "good!アフタヌーン",
+      "magazines": [
+        "good!アフタヌーン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Adventure",
+        "Fantasy"
+      ],
+      "tags": [
+        "政治",
+        "青年向け",
+        "執筆",
+        "成長譚",
+        "哲学",
+        "エルフ",
+        "魔法",
+        "旅",
+        "宗教",
+        "動物",
+        "言語の壁",
+        "養子縁組",
+        "砂漠",
+        "妖精",
+        "陰謀",
+        "いじめ",
+        "獣耳",
+        "ドラゴン",
+        "日焼け肌",
+        "環境問題",
+        "海賊",
+        "猫耳",
+        "恐竜",
+        "犯罪組織"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2018-04-06T00:00:01Z"
     },
     {
       "seriesKey": "地獄楽",
@@ -8994,6 +9149,40 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2006-07-21T00:00:01Z"
+    },
+    {
+      "seriesKey": "杖と剣のウィストリア",
+      "title": "杖と剣のウィストリア(1) (講談社コミックス)",
+      "image": "https://m.media-amazon.com/images/I/51AVvV2wJqL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065225191?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065225191",
+      "magazine": "別冊少年マガジン",
+      "magazines": [
+        "別冊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "剣術",
+        "魔法",
+        "ダンジョン",
+        "学園",
+        "少年向け",
+        "男女混合ハーレム",
+        "逆ハーレム",
+        "教師",
+        "ボーイズラブ"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2021-04-09T00:00:01Z"
     },
     {
       "seriesKey": "来世は他人がいい",
@@ -10766,9 +10955,9 @@
       "image": "https://m.media-amazon.com/images/I/61yDwK6C4hL._SL500_.jpg",
       "amazonDp": "https://www.amazon.co.jp/dp/4865542523?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
       "amazonUrl": "https://www.amazon.co.jp/dp/4865542523",
-      "magazine": "小説家になろう",
+      "magazine": "コミックガルド",
       "magazines": [
-        "小説家になろう"
+        "コミックガルド"
       ],
       "audiences": [
         "その他"
