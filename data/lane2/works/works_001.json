@@ -1,8 +1,87 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 72,
+  "count": 76,
   "items": [
+    {
+      "seriesKey": "富江",
+      "title": "伊藤潤二傑作集 1 富江 上 (ASAHI COMICS)",
+      "author": "伊藤潤二",
+      "publisher": "朝日新聞出版",
+      "releaseDate": "2011-01-20T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51mfWfYlCXL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4022140569",
+      "amazonDp": "https://www.amazon.co.jp/dp/4022140569?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784022140562",
+      "asin": "4022140569",
+      "synopsis": "“富江”という名の美しい少女に関わった者は心を乱され、破滅へ引きずり込まれる。殺されても終わらず、恐怖は形を変えて繰り返される――美と狂気が増殖するホラーの代表作。",
+      "magazine": "月刊ハロウィン",
+      "magazines": [
+        "月刊ハロウィン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Psychological",
+        "Supernatural"
+      ],
+      "tags": [
+        "アンソロジー",
+        "女性向け",
+        "妖怪",
+        "学園",
+        "古典文学",
+        "いじめ"
+      ],
+      "meta": {
+        "anilistId": 145235,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "寿命を買い取ってもらった。一年につき、一万円で。",
+      "title": "寿命を買い取ってもらった。一年につき、一万円で。 1 (ジャンプコミックス)",
+      "author": "田口 囁一",
+      "publisher": "集英社",
+      "releaseDate": "2017-07-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51dIoHt2ZmL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/寿命を買い取ってもらった%E3%80%82一年につき、一万円で%E3%80%82-1-ジャンプコミックス-田口-囁一/dp/4088811216",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088811216?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088811215",
+      "asin": "4088811216",
+      "synopsis": "無気力に生きていた青年クスノキは、寿命を買い取る店に辿り着き、大半の寿命を売って余命3か月となる。残りの時間を監視員ミヤギと共に過ごしながら、人生の意味と向き合っていく。",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "成長譚",
+        "哲学",
+        "現代ファンタジー",
+        "少年向け",
+        "絵・作画",
+        "写真",
+        "原付"
+      ],
+      "meta": {
+        "anilistId": 97553,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
     {
       "seriesKey": "少女終末旅行",
       "title": "少女終末旅行 1 (BUNCH COMICS)",
@@ -2570,6 +2649,55 @@
       }
     },
     {
+      "seriesKey": "赤髪の白雪姫",
+      "title": "赤髪の白雪姫1 (花とゆめCOMICS)",
+      "author": "あきづき空太",
+      "publisher": "白泉社",
+      "releaseDate": "2007-12-05T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51okzYj1YUL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592183738",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592183738?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784592183730",
+      "asin": "4592183738",
+      "synopsis": "珍しい赤髪を狙われた少女・白雪は国を飛び出し、隣国の森で王子・ゼンと出会う。自分の力で生きることを選んだ白雪は、薬剤師としての道を進みながら、ゼンや仲間たちと信頼を育んでいく王宮ロマンス。",
+      "magazine": "LaLa DX、LaLa",
+      "magazines": [
+        "LaLa DX",
+        "LaLa"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "医療",
+        "政治",
+        "王侯貴族",
+        "歴史",
+        "剣術",
+        "三角関係",
+        "片思い",
+        "暗殺者",
+        "バイセクシュアル",
+        "LGBTQテーマ",
+        "疑似家族",
+        "女系社会",
+        "双子",
+        "童話"
+      ],
+      "meta": {
+        "anilistId": 34571,
+        "wikiTitle": "赤髪の白雪姫",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "超人X",
       "title": "超人X 1 (ヤングジャンプコミックス)",
       "author": "石田 スイ",
@@ -3070,6 +3198,59 @@
         "anilistId": 43492,
         "wikiTitle": "青の祓魔師",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "風の谷のナウシカ",
+      "title": "風の谷のナウシカ 1 (アニメージュコミックスワイド判)",
+      "author": "宮崎 駿",
+      "publisher": "徳間書店",
+      "releaseDate": "1983-07-20T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/518-EgZXL+L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4197735812",
+      "amazonDp": "https://www.amazon.co.jp/dp/4197735812?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784197735815",
+      "asin": "4197735812",
+      "synopsis": "腐海に覆われた世界で、風使いの少女ナウシカは、人と自然が共存できる道を探していた。争いが激化するなか、巨神兵や蟲の脅威が迫り、彼女は破滅の連鎖を止めるために動き出す。",
+      "magazine": "アニメージュ",
+      "magazines": [
+        "アニメージュ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "環境問題",
+        "終末後",
+        "失われた文明",
+        "戦争",
+        "哲学",
+        "サバイバル",
+        "軍事",
+        "カルト",
+        "ディストピア",
+        "環境ホラー",
+        "政治",
+        "宗教",
+        "怪獣",
+        "幽霊",
+        "魔法",
+        "奴隷",
+        "戦車",
+        "旅"
+      ],
+      "meta": {
+        "anilistId": 30651,
+        "wikiTitle": "風の谷のナウシカ",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
     {
