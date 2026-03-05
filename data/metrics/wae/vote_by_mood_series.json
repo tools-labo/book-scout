@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T15:04:03.311Z",
-  "updatedAtJst": "2026-03-06 00:04:03",
+  "updatedAt": "2026-03-05T16:02:03.865Z",
+  "updatedAtJst": "2026-03-06 01:02:03",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -42,7 +42,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "監獄学園",
+      "seriesKey": "チェンソーマン",
       "n": "2"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "監獄学園",
       "n": "2"
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ぼくたちは勉強ができない",
       "n": "2"
     },
     {
@@ -77,17 +77,17 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "ニセコイ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "ぐらんぶる",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -107,7 +107,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ニセコイ",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -252,17 +252,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "会長はメイド様！",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "桜蘭高校ホスト部",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
@@ -282,12 +282,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "会長はメイド様！",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
@@ -347,7 +347,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -357,7 +357,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "銀魂",
+      "seriesKey": "ぼくたちは勉強ができない",
       "n": "1"
     },
     {
@@ -427,6 +427,11 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "ゴールデンカムイ",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "チェンソーマン",
       "n": "1"
     },
@@ -466,11 +471,6 @@
       "n": "1"
     },
     {
-      "mood": "hot",
-      "seriesKey": "ゴールデンカムイ",
-      "n": "1"
-    },
-    {
       "mood": "messy",
       "seriesKey": "血の轍",
       "n": "8"
@@ -492,6 +492,11 @@
     },
     {
       "mood": "messy",
+      "seriesKey": "少年のアビス",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
       "seriesKey": "おやすみプンプン",
       "n": "1"
     },
@@ -503,11 +508,6 @@
     {
       "mood": "messy",
       "seriesKey": "君は淫らな僕の女王",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
@@ -567,22 +567,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
       "mood": "moving",
       "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
@@ -593,6 +583,16 @@
     {
       "mood": "moving",
       "seriesKey": "ちはやふる",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -632,7 +632,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ReLIFE",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -677,12 +677,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "君は淫らな僕の女王",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
@@ -727,12 +727,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
