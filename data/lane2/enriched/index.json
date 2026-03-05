@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T08:10:42.882Z",
+  "updatedAt": "2026-03-05T11:30:37.603Z",
   "total": 272,
   "shardSize": 200,
   "shards": [
@@ -291,29 +291,18 @@
     "total": 272,
     "ok": 272,
     "ng": 0,
-    "skippedPerfect": 263,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 9,
-    "magAudienceTodoAdded": 4,
+    "skippedPerfect": 267,
+    "skippedAniList": 5,
+    "skippedWiki": 5,
+    "skippedAmazon": 5,
+    "fetchedAmazonAsins": 0,
+    "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 9,
-      "outNotPerfect": 4
+      "prevNotPerfect": 4,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "シャーマンキング :: noVol1",
-        "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜 :: noVol1",
-        "スピリットサークル :: noVol1",
-        "ブラック・ラグーン :: noVol1",
-        "ワールドトリガー :: noVol1",
-        "九龍ジェネリックロマンス :: noVol1",
-        "佐々木と宮野 :: noVol1",
-        "君の名は。 :: noVol1",
-        "来世は他人がいい :: noVol1"
-      ],
-      "outNotPerfect": [
         "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜 :: magazine,magazines[]",
         "ブラック・ラグーン :: magazine,magazines[]",
         "ワールドトリガー :: tags_missing_en(remain=1)",
@@ -321,51 +310,21 @@
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 4,
-      "seriesKeys": [
-        "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜",
-        "ブラック・ラグーン",
-        "ワールドトリガー",
-        "来世は他人がいい"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 2,
-          "samples": [
-            "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜",
-            "ブラック・ラグーン"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 2,
-          "samples": [
-            "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜",
-            "ブラック・ラグーン"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 2,
-          "samples": [
-            "ワールドトリガー",
-            "来世は他人がいい"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
     },
     "paapi": {
       "host": "webservices.amazon.co.jp",
       "region": "us-west-2",
       "enabled": true,
-      "chunks": 1,
+      "chunks": 0,
       "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,
-      "successItems": 9
+      "successItems": 0
     }
   }
 }

@@ -1668,12 +1668,11 @@
           "政略結婚",
           "ヤンデレ",
           "お嬢様",
+          "足フェチ",
           "学園",
           "バイセクシュアル"
         ],
-        "tags_missing_en": [
-          "Feet"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null

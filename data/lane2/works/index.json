@@ -1,12 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T08:10:42.882Z",
-  "total": 270,
-  "droppedTotal": 2,
-  "droppedSeriesKeys": [
-    "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜",
-    "ブラック・ラグーン"
-  ],
+  "updatedAt": "2026-03-05T11:30:37.603Z",
+  "total": 272,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -15,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 70
+      "count": 72
     }
   ],
   "lookup": {
@@ -83,6 +80,7 @@
     "シャーマンキング": 0,
     "ジャガーン": 0,
     "シャドーハウス": 0,
+    "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜": 0,
     "ジョジョの奇妙な冒険 The JOJOLands": 0,
     "ジョジョの奇妙な冒険 ジョジョリオン": 0,
     "ジョジョの奇妙な冒険 スティール・ボール・ラン": 0,
@@ -135,6 +133,7 @@
     "ひるなかの流星": 0,
     "ファイアパンチ": 0,
     "プラチナエンド": 0,
+    "ブラック・ラグーン": 0,
     "ブラッククローバー": 0,
     "プラネテス": 0,
     "フルーツバスケット": 0,
@@ -217,8 +216,8 @@
     "寄生獣": 0,
     "富江": 0,
     "寿命を買い取ってもらった。一年につき、一万円で。": 0,
-    "少女終末旅行": 0,
-    "少年のアビス": 0,
+    "少女終末旅行": 1,
+    "少年のアビス": 1,
     "履いてください、鷹峰さん": 1,
     "山田くんと7人の魔女": 1,
     "山田くんとLv999の恋をする": 1,
@@ -2665,6 +2664,45 @@
       "releaseDate": "2019-01-18T00:00:01Z"
     },
     {
+      "seriesKey": "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜",
+      "title": "シャングリラ・フロンティア(1) ~クソゲーハンター、神ゲーに挑まんとす~ (KCデラックス)",
+      "image": "https://m.media-amazon.com/images/I/51NyUb1SLBL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065212324?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065212324",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "ゲーム",
+        "仮想世界",
+        "少年向け",
+        "獣耳",
+        "擬人化",
+        "呪い",
+        "旅",
+        "人工知能",
+        "魔法",
+        "剣術",
+        "片思い",
+        "性転換",
+        "海賊",
+        "サバイバル"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2020-10-16T00:00:01Z"
+    },
+    {
       "seriesKey": "ジョジョの奇妙な冒険 The JOJOLands",
       "title": "The JOJOLands 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51vxEFmB3fL._SL500_.jpg",
@@ -4643,6 +4681,42 @@
       "releaseDate": "2016-02-04T00:00:01Z"
     },
     {
+      "seriesKey": "ブラック・ラグーン",
+      "title": "ブラック・ラグーン (1) (サンデーGXコミックス)",
+      "image": "https://m.media-amazon.com/images/I/5132Rte7u8L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091572014?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091572014",
+      "magazine": "月刊サンデーGX",
+      "magazines": [
+        "月刊サンデーGX"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama"
+      ],
+      "tags": [
+        "銃",
+        "青年向け",
+        "ギャング",
+        "軍事",
+        "犯罪",
+        "カップリング",
+        "マフィア",
+        "暗殺者",
+        "海外",
+        "ヤクザ",
+        "海賊",
+        "修道女"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2002-12-12T00:00:01Z"
+    },
+    {
       "seriesKey": "ブラッククローバー",
       "title": "ブラッククローバー 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51h5XWkJp4L._SL500_.jpg",
@@ -5847,13 +5921,12 @@
       "image": "https://m.media-amazon.com/images/I/51wIXxQBNaL._SL500_.jpg",
       "amazonDp": "https://www.amazon.co.jp/dp/4088708091?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
       "amazonUrl": "https://www.amazon.co.jp/dp/4088708091",
-      "magazine": "週刊少年ジャンプ（WJ） / ジャンプスクエア（SQ）",
+      "magazine": "ジャンプSQ.",
       "magazines": [
-        "週刊少年ジャンプ(WJ)",
-        "ジャンプスクエア(SQ)"
+        "ジャンプSQ."
       ],
       "audiences": [
-        "その他"
+        "少年"
       ],
       "genres": [
         "Action",
@@ -5872,6 +5945,7 @@
         "銃",
         "剣術",
         "ゲーム",
+        "逆異世界転移",
         "異世界"
       ],
       "publisher": "集英社",
@@ -6352,9 +6426,9 @@
       "image": "https://m.media-amazon.com/images/I/41rAUVC6Z6L._SL500_.jpg",
       "amazonDp": "https://www.amazon.co.jp/dp/4040684710?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
       "amazonUrl": "https://www.amazon.co.jp/dp/4040684710",
-      "magazine": "月刊コミックジーン",
+      "magazine": "ジーンピクシブ",
       "magazines": [
-        "月刊コミックジーン"
+        "ジーンピクシブ"
       ],
       "audiences": [
         "その他"
@@ -8593,6 +8667,7 @@
         "政略結婚",
         "ヤンデレ",
         "お嬢様",
+        "足フェチ",
         "学園",
         "バイセクシュアル"
       ],

@@ -1,8 +1,103 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 70,
+  "count": 72,
   "items": [
+    {
+      "seriesKey": "少女終末旅行",
+      "title": "少女終末旅行 1 (BUNCH COMICS)",
+      "author": "つくみず",
+      "publisher": "新潮社",
+      "releaseDate": "2014-11-08T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/61JTGNQNMJL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/410771781X",
+      "amazonDp": "https://www.amazon.co.jp/dp/410771781X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784107717818",
+      "asin": "410771781X",
+      "synopsis": "文明が滅びた世界で、少女チトとユーリはケッテンクラートに乗り廃墟をさまよう。食糧や燃料を求める旅の中で、小さな喜びや温かさを見つけながら生き続ける。",
+      "magazine": "くらげバンチ",
+      "magazines": [
+        "くらげバンチ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Adventure",
+        "Sci-Fi",
+        "Slice of Life"
+      ],
+      "tags": [
+        "終末後",
+        "哲学",
+        "失われた文明",
+        "サバイバル",
+        "癒し系",
+        "かわいい女の子の日常",
+        "旅",
+        "雪景色",
+        "青年向け",
+        "戦争",
+        "都会",
+        "人工知能",
+        "ちびキャラ",
+        "コズミックホラー",
+        "軍事",
+        "戦車"
+      ],
+      "meta": {
+        "anilistId": 85412,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "少年のアビス",
+      "title": "少年のアビス 1 (ヤングジャンプコミックス)",
+      "author": "峰浪 りょう",
+      "publisher": "集英社",
+      "releaseDate": "2020-07-17T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/41Dau5S1BVL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088916018",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088916018?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088916019",
+      "asin": "4088916018",
+      "synopsis": "家族と将来のために諦めの毎日を送る高校生・黒瀬令児は、閉塞した田舎町で絶望していた。そんな彼の前に憧れのアイドル似の女性が現れ、世界の終わりのようなボーイミーツガールが動き出す。",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "青年向け",
+        "成長譚",
+        "犯罪",
+        "三角関係",
+        "ヤンデレ",
+        "教師",
+        "アイドル",
+        "田舎",
+        "LGBTQテーマ",
+        "逆ハーレム",
+        "いじめ",
+        "結婚",
+        "ひきこもり",
+        "自然災害"
+      ],
+      "meta": {
+        "anilistId": 116186,
+        "wikiTitle": "少年のアビス",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
     {
       "seriesKey": "履いてください、鷹峰さん",
       "title": "履いてください、鷹峰さん (1) (ガンガンコミックスJOKER)",
@@ -1026,6 +1121,7 @@
         "政略結婚",
         "ヤンデレ",
         "お嬢様",
+        "足フェチ",
         "学園",
         "バイセクシュアル"
       ],

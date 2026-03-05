@@ -4427,12 +4427,14 @@
         "publisher": "講談社",
         "author": "不二 涼介",
         "releaseDate": "2020-10-16T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年マガジン",
+        "magazines": [
+          "週刊少年マガジン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 122063,
         "genres": [
@@ -8180,12 +8182,14 @@
         "publisher": "小学館",
         "author": "広江 礼威",
         "releaseDate": "2002-12-12T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊サンデーGX",
+        "magazines": [
+          "月刊サンデーGX"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30735,
         "genres": [
@@ -10473,16 +10477,15 @@
         "publisher": "集英社",
         "author": "葦原 大介",
         "releaseDate": "2013-07-04T00:00:01Z",
-        "magazine": "週刊少年ジャンプ（WJ） / ジャンプスクエア（SQ）",
+        "magazine": "ジャンプSQ.",
         "magazines": [
-          "週刊少年ジャンプ(WJ)",
-          "ジャンプスクエア(SQ)"
+          "ジャンプSQ."
         ],
         "audiences": [
-          "その他"
+          "少年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ワールドトリガー",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 78151,
         "genres": [
           "Action",
@@ -10521,11 +10524,10 @@
           "銃",
           "剣術",
           "ゲーム",
+          "逆異世界転移",
           "異世界"
         ],
-        "tags_missing_en": [
-          "Reverse Isekai"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
@@ -11400,15 +11402,15 @@
         "publisher": "KADOKAWA",
         "author": "春園ショウ",
         "releaseDate": "2016-09-26T00:00:01Z",
-        "magazine": "月刊コミックジーン",
+        "magazine": "ジーンピクシブ",
         "magazines": [
-          "月刊コミックジーン"
+          "ジーンピクシブ"
         ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "佐々木と宮野",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 98370,
         "genres": [
           "Comedy",
