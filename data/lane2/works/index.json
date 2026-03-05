@@ -1,9 +1,15 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T12:37:06.293Z",
-  "total": 282,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-03-05T13:49:42.256Z",
+  "total": 287,
+  "droppedTotal": 5,
+  "droppedSeriesKeys": [
+    "お兄ちゃんはおしまい！",
+    "トリコ",
+    "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+    "図書館の大魔術師",
+    "杖と剣のウィストリア"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -12,7 +18,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 82
+      "count": 87
     }
   ],
   "lookup": {
@@ -31,6 +37,7 @@
     "Re:Monster -リ・モンスター": 0,
     "Re:ゼロから始める異世界生活": 0,
     "ReLIFE": 0,
+    "To LOVEる -とらぶる- ダークネス": 0,
     "アイアムアヒーロー": 0,
     "アイシールド21": 0,
     "アオアシ": 0,
@@ -118,6 +125,7 @@
     "トモちゃんは女の子!": 0,
     "ドラゴンボール": 0,
     "ドラゴンボール超": 0,
+    "トリニティセブン 7人の魔書使い": 0,
     "ドロヘドロ": 0,
     "とんがり帽子のアトリエ": 0,
     "なまいきざかり。": 0,
@@ -188,6 +196,7 @@
     "僕だけがいない街": 0,
     "僕のヒーローアカデミア": 0,
     "僕の心のヤバイやつ": 0,
+    "僕らはみんな河合荘": 0,
     "先輩がうざい後輩の話": 0,
     "光が死んだ夏": 0,
     "化物語": 0,
@@ -213,9 +222,9 @@
     "天国大魔境": 0,
     "天空侵犯": 0,
     "夫婦以上、恋人未満。": 0,
-    "好きな子がめがねを忘れた": 0,
-    "孤高の人": 0,
-    "宇崎ちゃんは遊びたい！": 0,
+    "好きな子がめがねを忘れた": 1,
+    "孤高の人": 1,
+    "宇崎ちゃんは遊びたい！": 1,
     "宝石の国": 1,
     "家庭教師ヒットマンREBORN!": 1,
     "寄宿学校のジュリエット": 1,
@@ -229,6 +238,7 @@
     "山田くんとLv999の恋をする": 1,
     "帰ってください! 阿久津さん": 1,
     "幸色のワンルーム": 1,
+    "幼女戦記": 1,
     "幽☆遊☆白書": 1,
     "彼女、お借りします": 1,
     "徒然チルドレン": 1,
@@ -291,6 +301,7 @@
     "青の祓魔師": 1,
     "風の谷のナウシカ": 1,
     "食戟のソーマ": 1,
+    "骸骨騎士様、只今異世界へお出掛け中": 1,
     "鬼滅の刃": 1,
     "魔入りました！入間くん": 1,
     "魔法使いの嫁": 1,
@@ -878,6 +889,40 @@
       ],
       "publisher": "泰文堂",
       "releaseDate": "2014-08-12T00:00:01Z"
+    },
+    {
+      "seriesKey": "To LOVEる -とらぶる- ダークネス",
+      "title": "To LOVEる -とらぶる- ダークネス (1)",
+      "image": "https://m.media-amazon.com/images/I/51fwXqaYp-L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088702050?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088702050",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "少年向け",
+        "逆ハーレム",
+        "宇宙人",
+        "学園",
+        "女装男子",
+        "足フェチ",
+        "性転換",
+        "クーデレ",
+        "バイセクシュアル",
+        "LGBTQテーマ"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2011-03-04T00:00:01Z"
     },
     {
       "seriesKey": "アイアムアヒーロー",
@@ -4107,6 +4152,36 @@
       "releaseDate": "2016-04-04T00:00:01Z"
     },
     {
+      "seriesKey": "トリニティセブン 7人の魔書使い",
+      "title": "トリニティセブン 7人の魔書使い 1 (ドラゴンコミックスエイジ な 3-1-1)",
+      "image": "https://m.media-amazon.com/images/I/41-yn5YwMlL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/404712737X?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/404712737X",
+      "magazine": "月刊ドラゴンエイジ",
+      "magazines": [
+        "月刊ドラゴンエイジ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Ecchi",
+        "Fantasy",
+        "Romance"
+      ],
+      "tags": [
+        "魔法",
+        "逆ハーレム",
+        "複数恋愛",
+        "学園",
+        "少年向け"
+      ],
+      "publisher": "富士見書房",
+      "releaseDate": "2011-07-08T00:00:01Z"
+    },
+    {
       "seriesKey": "ドロヘドロ",
       "title": "ドロヘドロ 1 BIC COMICS IKKI",
       "image": "https://m.media-amazon.com/images/I/51CJFSSAM3L._SL500_.jpg",
@@ -6751,6 +6826,34 @@
       "releaseDate": "2018-12-07T00:00:01Z"
     },
     {
+      "seriesKey": "僕らはみんな河合荘",
+      "title": "僕らはみんな河合荘 (1) (ヤングキングコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51Y01MK2Z8L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4785936312?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4785936312",
+      "magazine": "ヤングキングアワーズ",
+      "magazines": [
+        "ヤングキングアワーズ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "青年向け",
+        "学園",
+        "ボーイッシュ",
+        "クーデレ",
+        "三角関係"
+      ],
+      "publisher": "少年画報社",
+      "releaseDate": "2011-05-30T00:00:01Z"
+    },
+    {
       "seriesKey": "先輩がうざい後輩の話",
       "title": "先輩がうざい後輩の話 (1) (comic POOL)",
       "image": "https://m.media-amazon.com/images/I/51g0wfNb7rL._SL500_.jpg",
@@ -8235,6 +8338,42 @@
       ],
       "publisher": "スクウェア・エニックス",
       "releaseDate": "2017-02-22T00:00:01Z"
+    },
+    {
+      "seriesKey": "幼女戦記",
+      "title": "幼女戦記 (1) (角川コミックス・エース)",
+      "image": "https://m.media-amazon.com/images/I/51NKRVVDWBL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041051258?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041051258",
+      "magazine": "月刊コンプエース",
+      "magazines": [
+        "月刊コンプエース"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Fantasy"
+      ],
+      "tags": [
+        "戦争",
+        "軍事",
+        "魔法",
+        "青年向け",
+        "アンチヒーロー",
+        "歴史",
+        "政治",
+        "宗教",
+        "異世界",
+        "神々",
+        "海外",
+        "銃",
+        "性転換",
+        "風刺"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016-12-10T00:00:01Z"
     },
     {
       "seriesKey": "幽☆遊☆白書",
@@ -10620,6 +10759,37 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2013-04-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "骸骨騎士様、只今異世界へお出掛け中",
+      "title": "骸骨騎士様、只今異世界へお出掛け中I (ガルドコミックス)",
+      "image": "https://m.media-amazon.com/images/I/61yDwK6C4hL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865542523?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865542523",
+      "magazine": "小説家になろう",
+      "magazines": [
+        "小説家になろう"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Supernatural"
+      ],
+      "tags": [
+        "エルフ",
+        "異世界",
+        "スケルトン",
+        "獣耳",
+        "奴隷",
+        "魔法",
+        "中世"
+      ],
+      "publisher": "オーバーラップ",
+      "releaseDate": "2017-08-25T00:00:01Z"
     },
     {
       "seriesKey": "鬼滅の刃",

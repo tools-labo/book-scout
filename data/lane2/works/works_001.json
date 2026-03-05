@@ -1,8 +1,138 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 82,
+  "count": 87,
   "items": [
+    {
+      "seriesKey": "好きな子がめがねを忘れた",
+      "title": "好きな子がめがねを忘れた(1) (ガンガンコミックスJOKER)",
+      "author": "藤近 小梅",
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2019-02-22T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51zciQ+2l0L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757560265",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757560265?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784757560260",
+      "asin": "4757560265",
+      "synopsis": "隣の席の三重さんは、しょっちゅうめがねを忘れる。彼女が気になる小村くんは、距離が近すぎる“見ようとする”仕草に振り回されながらも、つい手助けしてしまう。",
+      "magazine": "月刊ガンガンJOKER",
+      "magazines": [
+        "月刊ガンガンJOKER"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "癒し系",
+        "学園",
+        "障害",
+        "少年向け",
+        "クーデレ",
+        "成長譚",
+        "子どもが中心"
+      ],
+      "meta": {
+        "anilistId": 105641,
+        "wikiTitle": "好きな子がめがねを忘れた",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "孤高の人",
+      "title": "孤高の人 1 (ヤングジャンプコミックス)",
+      "author": "坂本 眞一",
+      "publisher": "集英社",
+      "releaseDate": "2008-04-18T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/515FVppJ-9L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088774264",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088774264?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088774268",
+      "asin": "4088774264",
+      "synopsis": "孤独な高校生・森文太郎は転校初日、同級生の宮本にそそのかされ校舎をよじ登る。命がけの挑戦で感じた高揚感からクライミングに目覚め、やがて険しい山々へ挑んでいく姿を描く。",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Psychological",
+        "Sports"
+      ],
+      "tags": [
+        "登山",
+        "成長譚",
+        "青年向け",
+        "旅",
+        "アウトドア",
+        "サバイバル",
+        "ひきこもり",
+        "哲学",
+        "古典文学",
+        "大自然",
+        "フィットネス",
+        "多重人格",
+        "アンチヒーロー",
+        "海外",
+        "不良",
+        "学園",
+        "部活",
+        "妊娠"
+      ],
+      "meta": {
+        "anilistId": 37375,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "宇崎ちゃんは遊びたい！",
+      "title": "宇崎ちゃんは遊びたい! 1 (ドラゴンコミックスエイジ)",
+      "author": "丈",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2018-07-09T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51ypMiJ3hHL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040727797",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040727797?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784040727790",
+      "asin": "4040727797",
+      "synopsis": "静かに大学生活を送りたい先輩・桜井の前に、元気すぎる後輩・宇崎花が出現。放っておけない距離感で絡んでくる宇崎に振り回されながら、二人の関係が少しずつ変わっていく賑やかラブコメ。",
+      "magazine": "ドラドラしゃーぷ#",
+      "magazines": [
+        "ドラドラしゃーぷ#"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ツンデレ",
+        "大学",
+        "ボーイッシュ",
+        "青年向け",
+        "ドタバタ",
+        "癒し系",
+        "いじめ"
+      ],
+      "meta": {
+        "anilistId": 101724,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
     {
       "seriesKey": "宝石の国",
       "title": "宝石の国(1) (アフタヌーンKC)",
@@ -581,6 +711,52 @@
       ],
       "meta": {
         "anilistId": 100557,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "幼女戦記",
+      "title": "幼女戦記 (1) (角川コミックス・エース)",
+      "author": "東條 チカ",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016-12-10T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51NKRVVDWBL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041051258",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041051258?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784041051252",
+      "asin": "4041051258",
+      "synopsis": "合理主義の男が転生した先は、魔導と戦争が支配する世界。幼い少女ターニャとして軍に身を置き、冷徹な判断と規格外の才能で戦場を駆け抜ける。生き延びたいだけなのに、運命と信仰に絡め取られていく戦記譚。",
+      "magazine": "月刊コンプエース",
+      "magazines": [
+        "月刊コンプエース"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Fantasy"
+      ],
+      "tags": [
+        "戦争",
+        "軍事",
+        "魔法",
+        "青年向け",
+        "アンチヒーロー",
+        "歴史",
+        "政治",
+        "宗教",
+        "異世界",
+        "神々",
+        "海外",
+        "銃",
+        "性転換",
+        "風刺"
+      ],
+      "meta": {
+        "anilistId": 97216,
+        "wikiTitle": "幼女戦記",
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
@@ -3564,6 +3740,47 @@
         "anilistId": 75757,
         "wikiTitle": "食戟のソーマ",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "骸骨騎士様、只今異世界へお出掛け中",
+      "title": "骸骨騎士様、只今異世界へお出掛け中I (ガルドコミックス)",
+      "author": "サワノアキラ",
+      "publisher": "オーバーラップ",
+      "releaseDate": "2017-08-25T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/61yDwK6C4hL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865542523",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865542523?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784865542523",
+      "asin": "4865542523",
+      "synopsis": "目覚めると異世界、しかも自分は最強装備の“骸骨騎士”の姿だった。正体がバレれば即アウトな見た目を隠しつつ、困っている人を放っておけない性分で事件に首を突っ込む。善行と勘違いが連鎖する異世界冒険譚。",
+      "magazine": "小説家になろう",
+      "magazines": [
+        "小説家になろう"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Supernatural"
+      ],
+      "tags": [
+        "エルフ",
+        "異世界",
+        "スケルトン",
+        "獣耳",
+        "奴隷",
+        "魔法",
+        "中世"
+      ],
+      "meta": {
+        "anilistId": 98900,
+        "wikiTitle": "骸骨騎士様、只今異世界へお出掛け中",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       }
     },
     {

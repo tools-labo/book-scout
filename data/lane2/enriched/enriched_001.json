@@ -1,8 +1,480 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 82,
+  "count": 92,
   "items": [
+    {
+      "seriesKey": "大ダーク",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091294863",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091294863?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091294869",
+        "asin": "4091294863",
+        "title": "大ダーク (1) (ゲッサン少年サンデーコミックス)",
+        "synopsis": "宇宙の闇を漂う少年ザハ＝サンコは、骨に願いを叶える力があると噂され命を狙われている。宇宙船襲撃や陰謀に巻き込まれる中、骨を求める者たちの正体を探りつつ仲間と生き延びるSFダークファンタジー。",
+        "image": "https://m.media-amazon.com/images/I/51-Hi9mYmJL._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "林田 球",
+        "releaseDate": "2019-11-12T00:00:01Z",
+        "magazine": "月刊少年サンデー",
+        "magazines": [
+          "月刊少年サンデー"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 105263,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Horror",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Space",
+          "Gore",
+          "Surreal Comedy",
+          "Body Horror",
+          "Aliens",
+          "Dystopian",
+          "Anti-Hero",
+          "Shounen",
+          "Henshin",
+          "Skeleton",
+          "Cult",
+          "Agender",
+          "Demons",
+          "Cosmic Horror",
+          "Food",
+          "Space Opera",
+          "Slavery",
+          "Nudity",
+          "Age Regression"
+        ],
+        "tags": [
+          "宇宙",
+          "不条理コメディ",
+          "宇宙人",
+          "ディストピア",
+          "アンチヒーロー",
+          "少年向け",
+          "変身",
+          "スケルトン",
+          "カルト",
+          "無性別",
+          "悪魔",
+          "コズミックホラー",
+          "グルメ",
+          "スペースオペラ",
+          "奴隷",
+          "年齢退行"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "天国大魔境",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4065119766",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065119766?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065119761",
+        "asin": "4065119766",
+        "title": "天国大魔境(1) (アフタヌーンKC)",
+        "synopsis": "壁に守られた施設で暮らす子どもたちと、怪物が跋扈する荒廃した外の世界。外界の少年少女・マルとキルコは“天国”を求めて旅に出る。二つの世界が交差する黙示録的冒険譚。",
+        "image": "https://m.media-amazon.com/images/I/51hb85ETQeL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "石黒 正数",
+        "releaseDate": "2018-07-23T00:00:01Z",
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "天国大魔境",
+        "anilistId": 101942,
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Mystery"
+        ],
+        "tags_en": [
+          "Post-Apocalyptic",
+          "Seinen",
+          "Male Protagonist",
+          "Survival",
+          "Dystopian",
+          "Achronological Order",
+          "Female Protagonist",
+          "Travel",
+          "Gender Bending",
+          "Conspiracy",
+          "Super Power",
+          "Heterosexual",
+          "Artificial Intelligence",
+          "Bisexual",
+          "Amnesia",
+          "Nudity",
+          "Transgender",
+          "Rape",
+          "Orphan",
+          "Yuri",
+          "Guns",
+          "Demons",
+          "Gore"
+        ],
+        "tags": [
+          "終末後",
+          "青年向け",
+          "サバイバル",
+          "ディストピア",
+          "時系列シャッフル",
+          "旅",
+          "性転換",
+          "陰謀",
+          "超能力",
+          "人工知能",
+          "バイセクシュアル",
+          "記憶喪失",
+          "トランスジェンダー",
+          "孤児",
+          "百合",
+          "銃",
+          "悪魔"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "天空侵犯",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063769798",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063769798?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063769791",
+        "asin": "4063769798",
+        "title": "天空侵犯(1) (KCデラックス)",
+        "synopsis": "気づけば高層ビルの屋上にいた女子高生・ゆり。仮面の殺人者が徘徊する異様な世界で、生き残るための戦いを強いられる。離ればなれになった兄を探し、屋上の迷宮を進む。",
+        "image": "https://m.media-amazon.com/images/I/61CI9ossT8L._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "大羽 隆廣",
+        "releaseDate": "2014-05-09T00:00:01Z",
+        "magazine": "マンガボックス",
+        "magazines": [
+          "マンガボックス"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 85388,
+        "genres": [
+          "Action",
+          "Horror",
+          "Mystery"
+        ],
+        "tags_en": [
+          "Death Game",
+          "Survival",
+          "Suicide",
+          "Amnesia",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "Battle Royale",
+          "Urban",
+          "Isekai",
+          "Gods",
+          "Cosmic Horror",
+          "Super Power",
+          "Gore",
+          "Memory Manipulation",
+          "Shounen",
+          "Guns",
+          "Dissociative Identities",
+          "LGBTQ+ Themes",
+          "Yuri",
+          "Swordplay",
+          "Dystopian"
+        ],
+        "tags": [
+          "デスゲーム",
+          "サバイバル",
+          "記憶喪失",
+          "バトルロイヤル",
+          "都会",
+          "異世界",
+          "神々",
+          "コズミックホラー",
+          "超能力",
+          "記憶操作",
+          "少年向け",
+          "銃",
+          "多重人格",
+          "LGBTQテーマ",
+          "百合",
+          "剣術",
+          "ディストピア"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "夫婦以上、恋人未満。",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4041074843",
+        "amazonDp": "https://www.amazon.co.jp/dp/4041074843?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784041074848",
+        "asin": "4041074843",
+        "title": "夫婦以上、恋人未満。 (1) (角川コミックス・エース)",
+        "synopsis": "消極的な高校生・八ッ瀬大和は、学校のカリキュラム“夫婦実習”でギャルの渡辺明里と仮想夫婦として同居することに。お互いのパートナー交換を目指して始まった共同生活で、次第に素直になれない恋心が芽生えていく。",
+        "image": "https://m.media-amazon.com/images/I/511wHjXwq2L._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "金丸 祐基",
+        "releaseDate": "2018-10-26T00:00:01Z",
+        "magazine": "ヤングエース",
+        "magazines": [
+          "ヤングエース"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "夫婦以上、恋人未満。",
+        "anilistId": 105011,
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Ecchi",
+          "Romance"
+        ],
+        "tags_en": [
+          "Heterosexual",
+          "Love Triangle",
+          "Gyaru",
+          "Male Protagonist",
+          "School",
+          "Family Life",
+          "Shounen",
+          "Meta",
+          "Cohabitation",
+          "Nudity",
+          "Fake Relationship"
+        ],
+        "tags": [
+          "三角関係",
+          "ギャル",
+          "学園",
+          "家族もの",
+          "少年向け",
+          "同棲",
+          "偽装恋愛"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "好きな子がめがねを忘れた",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4757560265",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757560265?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784757560260",
+        "asin": "4757560265",
+        "title": "好きな子がめがねを忘れた(1) (ガンガンコミックスJOKER)",
+        "synopsis": "隣の席の三重さんは、しょっちゅうめがねを忘れる。彼女が気になる小村くんは、距離が近すぎる“見ようとする”仕草に振り回されながらも、つい手助けしてしまう。",
+        "image": "https://m.media-amazon.com/images/I/51zciQ+2l0L._SL500_.jpg",
+        "publisher": "スクウェア・エニックス",
+        "author": "藤近 小梅",
+        "releaseDate": "2019-02-22T00:00:01Z",
+        "magazine": "月刊ガンガンJOKER",
+        "magazines": [
+          "月刊ガンガンJOKER"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "好きな子がめがねを忘れた",
+        "anilistId": 105641,
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags_en": [
+          "Heterosexual",
+          "Iyashikei",
+          "School",
+          "Disability",
+          "Shounen",
+          "Male Protagonist",
+          "Kuudere",
+          "Coming of Age",
+          "Primarily Child Cast"
+        ],
+        "tags": [
+          "癒し系",
+          "学園",
+          "障害",
+          "少年向け",
+          "クーデレ",
+          "成長譚",
+          "子どもが中心"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "孤高の人",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088774264",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088774264?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784088774268",
+        "asin": "4088774264",
+        "title": "孤高の人 1 (ヤングジャンプコミックス)",
+        "synopsis": "孤独な高校生・森文太郎は転校初日、同級生の宮本にそそのかされ校舎をよじ登る。命がけの挑戦で感じた高揚感からクライミングに目覚め、やがて険しい山々へ挑んでいく姿を描く。",
+        "image": "https://m.media-amazon.com/images/I/515FVppJ-9L._SL500_.jpg",
+        "publisher": "集英社",
+        "author": "坂本 眞一",
+        "releaseDate": "2008-04-18T00:00:01Z",
+        "magazine": "週刊ヤングジャンプ",
+        "magazines": [
+          "週刊ヤングジャンプ"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 37375,
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Psychological",
+          "Sports"
+        ],
+        "tags_en": [
+          "Mountaineering",
+          "Coming of Age",
+          "Seinen",
+          "Travel",
+          "Outdoor Activities",
+          "Male Protagonist",
+          "Primarily Male Cast",
+          "Primarily Adult Cast",
+          "Survival",
+          "Hikikomori",
+          "Philosophy",
+          "Classic Literature",
+          "Wilderness",
+          "Fitness",
+          "Suicide",
+          "Dissociative Identities",
+          "Anti-Hero",
+          "Foreign",
+          "Delinquents",
+          "School",
+          "Nudity",
+          "School Club",
+          "Pregnancy"
+        ],
+        "tags": [
+          "登山",
+          "成長譚",
+          "青年向け",
+          "旅",
+          "アウトドア",
+          "サバイバル",
+          "ひきこもり",
+          "哲学",
+          "古典文学",
+          "大自然",
+          "フィットネス",
+          "多重人格",
+          "アンチヒーロー",
+          "海外",
+          "不良",
+          "学園",
+          "部活",
+          "妊娠"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "宇崎ちゃんは遊びたい！",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4040727797",
+        "amazonDp": "https://www.amazon.co.jp/dp/4040727797?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784040727790",
+        "asin": "4040727797",
+        "title": "宇崎ちゃんは遊びたい! 1 (ドラゴンコミックスエイジ)",
+        "synopsis": "静かに大学生活を送りたい先輩・桜井の前に、元気すぎる後輩・宇崎花が出現。放っておけない距離感で絡んでくる宇崎に振り回されながら、二人の関係が少しずつ変わっていく賑やかラブコメ。",
+        "image": "https://m.media-amazon.com/images/I/51ypMiJ3hHL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "丈",
+        "releaseDate": "2018-07-09T00:00:01Z",
+        "magazine": "ドラドラしゃーぷ#",
+        "magazines": [
+          "ドラドラしゃーぷ#"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 101724,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Large Breasts",
+          "Tsundere",
+          "College",
+          "Heterosexual",
+          "Tomboy",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Slapstick",
+          "Meta",
+          "Episodic",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Iyashikei",
+          "Nudity",
+          "Bullying"
+        ],
+        "tags": [
+          "ツンデレ",
+          "大学",
+          "ボーイッシュ",
+          "青年向け",
+          "ドタバタ",
+          "癒し系",
+          "いじめ"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
     {
       "seriesKey": "宝石の国",
       "vol1": {
@@ -840,6 +1312,71 @@
           "ホームレス",
           "海辺",
           "不良"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "幼女戦記",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4041051258",
+        "amazonDp": "https://www.amazon.co.jp/dp/4041051258?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784041051252",
+        "asin": "4041051258",
+        "title": "幼女戦記 (1) (角川コミックス・エース)",
+        "synopsis": "合理主義の男が転生した先は、魔導と戦争が支配する世界。幼い少女ターニャとして軍に身を置き、冷徹な判断と規格外の才能で戦場を駆け抜ける。生き延びたいだけなのに、運命と信仰に絡め取られていく戦記譚。",
+        "image": "https://m.media-amazon.com/images/I/51NKRVVDWBL._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "東條 チカ",
+        "releaseDate": "2016-12-10T00:00:01Z",
+        "magazine": "月刊コンプエース",
+        "magazines": [
+          "月刊コンプエース"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "幼女戦記",
+        "anilistId": 97216,
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "War",
+          "Military",
+          "Magic",
+          "Seinen",
+          "Anti-Hero",
+          "Historical",
+          "Politics",
+          "Religion",
+          "Isekai",
+          "Gods",
+          "Foreign",
+          "Guns",
+          "Primarily Adult Cast",
+          "Gender Bending",
+          "Satire"
+        ],
+        "tags": [
+          "戦争",
+          "軍事",
+          "魔法",
+          "青年向け",
+          "アンチヒーロー",
+          "歴史",
+          "政治",
+          "宗教",
+          "異世界",
+          "神々",
+          "海外",
+          "銃",
+          "性転換",
+          "風刺"
         ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -1997,6 +2534,66 @@
           "障害",
           "バイセクシュアル",
           "都会"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "杖と剣のウィストリア",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4065225191",
+        "amazonDp": "https://www.amazon.co.jp/dp/4065225191?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784065225196",
+        "asin": "4065225191",
+        "title": "杖と剣のウィストリア(1) (講談社コミックス)",
+        "synopsis": "魔法至上の世界で、魔法が使えない少年ウィルは「塔の頂で約束を果たす」ため剣一本で道を切り開こうとする。落ちこぼれ扱いの現実に抗い、学園で仲間や強敵と出会いながら、自分の武器で上を目指していく。",
+        "image": "https://m.media-amazon.com/images/I/51AVvV2wJqL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "青井 聖",
+        "releaseDate": "2021-04-09T00:00:01Z",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": null,
+        "anilistId": 125116,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Male Protagonist",
+          "Swordplay",
+          "Magic",
+          "Dungeon",
+          "School",
+          "Shounen",
+          "Heterosexual",
+          "Mixed Gender Harem",
+          "Primarily Male Cast",
+          "Primarily Teen Cast",
+          "Gore",
+          "Female Harem",
+          "Teacher",
+          "Boys' Love"
+        ],
+        "tags": [
+          "剣術",
+          "魔法",
+          "ダンジョン",
+          "学園",
+          "少年向け",
+          "男女混合ハーレム",
+          "逆ハーレム",
+          "教師",
+          "ボーイズラブ"
         ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
@@ -5255,6 +5852,59 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "骸骨騎士様、只今異世界へお出掛け中",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4865542523",
+        "amazonDp": "https://www.amazon.co.jp/dp/4865542523?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784865542523",
+        "asin": "4865542523",
+        "title": "骸骨騎士様、只今異世界へお出掛け中I (ガルドコミックス)",
+        "synopsis": "目覚めると異世界、しかも自分は最強装備の“骸骨騎士”の姿だった。正体がバレれば即アウトな見た目を隠しつつ、困っている人を放っておけない性分で事件に首を突っ込む。善行と勘違いが連鎖する異世界冒険譚。",
+        "image": "https://m.media-amazon.com/images/I/61yDwK6C4hL._SL500_.jpg",
+        "publisher": "オーバーラップ",
+        "author": "サワノアキラ",
+        "releaseDate": "2017-08-25T00:00:01Z",
+        "magazine": "小説家になろう",
+        "magazines": [
+          "小説家になろう"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "骸骨騎士様、只今異世界へお出掛け中",
+        "anilistId": 98900,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Male Protagonist",
+          "Elf",
+          "Isekai",
+          "Skeleton",
+          "Kemonomimi",
+          "Slavery",
+          "Magic",
+          "Medieval"
+        ],
+        "tags": [
+          "エルフ",
+          "異世界",
+          "スケルトン",
+          "獣耳",
+          "奴隷",
+          "魔法",
+          "中世"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     },
