@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T12:21:58.508Z",
+  "updatedAt": "2026-03-05T12:37:06.293Z",
   "total": 282,
   "shardSize": 200,
   "shards": [
@@ -301,27 +301,17 @@
     "total": 282,
     "ok": 282,
     "ng": 0,
-    "skippedPerfect": 275,
-    "skippedAniList": 7,
-    "skippedWiki": 7,
-    "skippedAmazon": 7,
+    "skippedPerfect": 282,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 3,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 7,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "Lv2からチートだった元勇者候補のまったり異世界ライフ :: magazine,magazines[]",
-        "Re:Monster -リ・モンスター :: magazine,magazines[]",
-        "ギャルごはん :: magazine,magazines[]",
-        "先輩がうざい後輩の話 :: magazine,magazines[]",
-        "海辺のエトランゼ :: magazine,magazines[]",
-        "現実もたまには嘘をつく :: magazine,magazines[]",
-        "風の谷のナウシカ :: tags_missing_en(remain=2)"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
