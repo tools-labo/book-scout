@@ -1,9 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-02T10:31:11.681Z",
-  "total": 263,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-03-05T08:10:42.882Z",
+  "total": 270,
+  "droppedTotal": 2,
+  "droppedSeriesKeys": [
+    "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜",
+    "ブラック・ラグーン"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -12,7 +15,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 63
+      "count": 70
     }
   ],
   "lookup": {
@@ -77,6 +80,7 @@
     "さんかれあ": 0,
     "サンケンロック": 0,
     "しまなみ誰そ彼": 0,
+    "シャーマンキング": 0,
     "ジャガーン": 0,
     "シャドーハウス": 0,
     "ジョジョの奇妙な冒険 The JOJOLands": 0,
@@ -90,6 +94,7 @@
     "ジョジョの奇妙な冒険スターダストクルセイダース": 0,
     "スーパーの裏でヤニ吸うふたり": 0,
     "スキップとローファー": 0,
+    "スピリットサークル": 0,
     "ソウルイーター": 0,
     "その着せ替え人形は恋をする": 0,
     "ソラニン": 0,
@@ -162,17 +167,20 @@
     "ルリドラゴン": 0,
     "るろうに剣心 -明治剣客浪漫譚-": 0,
     "ロザリオとバンパイア": 0,
+    "ワールドトリガー": 0,
     "ワンパンマン": 0,
     "ヲタクに恋は難しい": 0,
     "七つの大罪": 0,
     "不滅のあなたへ": 0,
     "乙女ゲー世界はモブに厳しい世界です": 0,
     "乙嫁語り": 0,
+    "九龍ジェネリックロマンス": 0,
     "五等分の花嫁": 0,
     "亜人": 0,
     "今まで一度も女扱いされたことがない女騎士を女扱いする漫画": 0,
     "今際の国のアリス": 0,
     "会長はメイド様！": 0,
+    "佐々木と宮野": 0,
     "僕だけがいない街": 0,
     "僕のヒーローアカデミア": 0,
     "僕の心のヤバイやつ": 0,
@@ -185,6 +193,7 @@
     "君と綴るうたかた": 0,
     "君に届け": 0,
     "君のことが大大大大大好きな100人の彼女": 0,
+    "君の名は。": 0,
     "君の膵臓をたべたい": 0,
     "君は放課後インソムニア": 0,
     "君は淫らな僕の女王": 0,
@@ -210,12 +219,12 @@
     "寿命を買い取ってもらった。一年につき、一万円で。": 0,
     "少女終末旅行": 0,
     "少年のアビス": 0,
-    "履いてください、鷹峰さん": 0,
-    "山田くんと7人の魔女": 0,
-    "山田くんとLv999の恋をする": 0,
-    "帰ってください! 阿久津さん": 0,
-    "幸色のワンルーム": 0,
-    "幽☆遊☆白書": 0,
+    "履いてください、鷹峰さん": 1,
+    "山田くんと7人の魔女": 1,
+    "山田くんとLv999の恋をする": 1,
+    "帰ってください! 阿久津さん": 1,
+    "幸色のワンルーム": 1,
+    "幽☆遊☆白書": 1,
     "彼女、お借りします": 1,
     "徒然チルドレン": 1,
     "怪獣８号": 1,
@@ -231,6 +240,7 @@
     "月が導く異世界道中": 1,
     "月刊少女野崎くん": 1,
     "未来日記": 1,
+    "来世は他人がいい": 1,
     "東京卍リベンジャーズ": 1,
     "東京喰種 トーキョーグール": 1,
     "東京喰種-トーキョーグール-:re": 1,
@@ -2533,6 +2543,39 @@
       "releaseDate": "2015-12-11T00:00:01Z"
     },
     {
+      "seriesKey": "シャーマンキング",
+      "title": "シャーマンキング 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51lJgr0pA5L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088726448?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088726448",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Supernatural"
+      ],
+      "tags": [
+        "神話",
+        "超能力",
+        "少年向け",
+        "双子",
+        "幽霊",
+        "死霊術",
+        "剣術",
+        "哲学",
+        "吸血鬼"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "1998-12-03T00:00:01Z"
+    },
+    {
       "seriesKey": "ジャガーン",
       "title": "ジャガーン (1) (ビッグコミックス)",
       "image": "https://m.media-amazon.com/images/I/61DP1FPqkHL._SL500_.jpg",
@@ -3023,6 +3066,46 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2019-01-23T00:00:01Z"
+    },
+    {
+      "seriesKey": "スピリットサークル",
+      "title": "スピリットサ-クル: 魂環 (01) (ヤングキングコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51Bk-Bv5t-L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4785939834?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4785939834",
+      "magazine": "ヤングキングアワーズ",
+      "magazines": [
+        "ヤングキングアワーズ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Romance",
+        "Sci-Fi",
+        "Supernatural"
+      ],
+      "tags": [
+        "哲学",
+        "復讐",
+        "青年向け",
+        "子どもが中心",
+        "現代ファンタジー",
+        "神々",
+        "ツンデレ",
+        "政治",
+        "人工知能",
+        "学園",
+        "歴史",
+        "侍",
+        "陰謀",
+        "性転換",
+        "弓術"
+      ],
+      "publisher": "少年画報社",
+      "releaseDate": "2012-12-10T00:00:01Z"
     },
     {
       "seriesKey": "ソウルイーター",
@@ -5759,6 +5842,42 @@
       "releaseDate": "2004-10-04T00:00:01Z"
     },
     {
+      "seriesKey": "ワールドトリガー",
+      "title": "ワールドトリガー 1 (ジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51wIXxQBNaL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088708091?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088708091",
+      "magazine": "週刊少年ジャンプ（WJ） / ジャンプスクエア（SQ）",
+      "magazines": [
+        "週刊少年ジャンプ(WJ)",
+        "ジャンプスクエア(SQ)"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "宇宙人",
+        "少年向け",
+        "超能力",
+        "戦争",
+        "拡張現実（AR）",
+        "軍事",
+        "バトルロイヤル",
+        "政治",
+        "宇宙",
+        "銃",
+        "剣術",
+        "ゲーム",
+        "異世界"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2013-07-04T00:00:01Z"
+    },
+    {
       "seriesKey": "ワンパンマン",
       "title": "ワンパンマン 1",
       "image": "https://m.media-amazon.com/images/I/51n9Du3F1FL._SL500_.jpg",
@@ -5993,6 +6112,42 @@
       "releaseDate": "2009-10-15T00:00:01Z"
     },
     {
+      "seriesKey": "九龍ジェネリックロマンス",
+      "title": "九龍ジェネリックロマンス 1 (ヤングジャンプコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51Xflfn9XwL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088914880?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088914880",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Romance",
+        "Sci-Fi",
+        "Slice of Life"
+      ],
+      "tags": [
+        "クローン",
+        "記憶喪失",
+        "青年向け",
+        "記憶操作",
+        "ディストピア",
+        "OL",
+        "都会",
+        "仕事",
+        "LGBTQテーマ",
+        "海外",
+        "性転換"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2020-02-19T00:00:01Z"
+    },
+    {
       "seriesKey": "五等分の花嫁",
       "title": "五等分の花嫁(1) (少年マガジンコミックス)",
       "image": "https://m.media-amazon.com/images/I/51yK-tvJxbL._SL500_.jpg",
@@ -6190,6 +6345,37 @@
       ],
       "publisher": "白泉社",
       "releaseDate": "2006-09-05T00:00:01Z"
+    },
+    {
+      "seriesKey": "佐々木と宮野",
+      "title": "佐々木と宮野 1 (ジーンピクシブシリーズ)",
+      "image": "https://m.media-amazon.com/images/I/41rAUVC6Z6L._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040684710?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040684710",
+      "magazine": "月刊コミックジーン",
+      "magazines": [
+        "月刊コミックジーン"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ボーイズラブ",
+        "LGBTQテーマ",
+        "学園",
+        "オタク文化",
+        "少女",
+        "バイセクシュアル",
+        "4コマ",
+        "女装・男装"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016-09-26T00:00:01Z"
     },
     {
       "seriesKey": "僕だけがいない街",
@@ -6641,6 +6827,41 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2020-04-17T00:00:01Z"
+    },
+    {
+      "seriesKey": "君の名は。",
+      "title": "君の名は。 (1) (MFコミックス アライブシリーズ)",
+      "image": "https://m.media-amazon.com/images/I/51A4EiGdmJL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040685091?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040685091",
+      "magazine": "月刊コミックアライブ",
+      "magazines": [
+        "月刊コミックアライブ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "現代ファンタジー",
+        "記憶操作",
+        "都会",
+        "田舎",
+        "神話",
+        "成長譚",
+        "学園",
+        "性転換",
+        "鉄道",
+        "宗教",
+        "巫女",
+        "青年向け"
+      ],
+      "publisher": "KADOKAWA/メディアファクトリー",
+      "releaseDate": "2016-08-23T00:00:01Z"
     },
     {
       "seriesKey": "君の膵臓をたべたい",
@@ -8343,6 +8564,40 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2006-07-21T00:00:01Z"
+    },
+    {
+      "seriesKey": "来世は他人がいい",
+      "title": "来世は他人がいい(1) (アフタヌーンKC)",
+      "image": "https://m.media-amazon.com/images/I/51a+GiMjqgL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065103762?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065103762",
+      "magazine": "月刊アフタヌーン",
+      "magazines": [
+        "月刊アフタヌーン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "ヤクザ",
+        "犯罪",
+        "都会",
+        "マフィア",
+        "青年向け",
+        "犯罪組織",
+        "政略結婚",
+        "ヤンデレ",
+        "お嬢様",
+        "学園",
+        "バイセクシュアル"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2017-11-22T00:00:01Z"
     },
     {
       "seriesKey": "東京卍リベンジャーズ",
