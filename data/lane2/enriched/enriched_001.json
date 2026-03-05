@@ -2623,12 +2623,14 @@
         "publisher": "祥伝社",
         "author": "紀伊カンナ",
         "releaseDate": "2014-07-25T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "on BLUE",
+        "magazines": [
+          "on BLUE"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 85616,
         "genres": [
@@ -2891,13 +2893,15 @@
         "publisher": "KADOKAWA",
         "author": "にいち",
         "releaseDate": "2020-07-31T00:00:01Z",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "Twitter",
+        "magazines": [
+          "Twitter"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "現実もたまには嘘をつく",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 113076,
         "genres": [
           "Comedy",
@@ -5138,10 +5142,10 @@
           "アニメージュ"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "風の谷のナウシカ",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30651,
         "genres": [
           "Action",
@@ -5181,6 +5185,7 @@
           "戦争",
           "哲学",
           "サバイバル",
+          "航空",
           "軍事",
           "カルト",
           "ディストピア",
@@ -5192,12 +5197,10 @@
           "魔法",
           "奴隷",
           "戦車",
-          "旅"
+          "旅",
+          "書道"
         ],
-        "tags_missing_en": [
-          "Aviation",
-          "Calligraphy"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null

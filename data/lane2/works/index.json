@@ -1,16 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T12:05:31.881Z",
-  "total": 276,
-  "droppedTotal": 6,
-  "droppedSeriesKeys": [
-    "Lv2からチートだった元勇者候補のまったり異世界ライフ",
-    "Re:Monster -リ・モンスター",
-    "ギャルごはん",
-    "先輩がうざい後輩の話",
-    "海辺のエトランゼ",
-    "現実もたまには嘘をつく"
-  ],
+  "updatedAt": "2026-03-05T12:21:58.508Z",
+  "total": 282,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -19,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 76
+      "count": 82
     }
   ],
   "lookup": {
@@ -31,9 +24,11 @@
     "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-": 0,
     "BTOOOM!-ブトゥーム": 0,
     "DEAD Tube ～デッドチューブ～": 0,
+    "Lv2からチートだった元勇者候補のまったり異世界ライフ": 0,
     "NARUTO -ナルト-": 0,
     "orange [オレンジ]": 0,
     "PSYЯEN -サイレン-": 0,
+    "Re:Monster -リ・モンスター": 0,
     "Re:ゼロから始める異世界生活": 0,
     "ReLIFE": 0,
     "アイアムアヒーロー": 0,
@@ -69,6 +64,7 @@
     "カノジョも彼女": 0,
     "からかい上手の高木さん": 0,
     "ギヴン": 0,
+    "ギャルごはん": 0,
     "ギョ": 0,
     "キングダム": 0,
     "クズの本懐": 0,
@@ -192,6 +188,7 @@
     "僕だけがいない街": 0,
     "僕のヒーローアカデミア": 0,
     "僕の心のヤバイやつ": 0,
+    "先輩がうざい後輩の話": 0,
     "光が死んだ夏": 0,
     "化物語": 0,
     "十字架のろくにん": 0,
@@ -219,10 +216,10 @@
     "好きな子がめがねを忘れた": 0,
     "孤高の人": 0,
     "宇崎ちゃんは遊びたい！": 0,
-    "宝石の国": 0,
-    "家庭教師ヒットマンREBORN!": 0,
-    "寄宿学校のジュリエット": 0,
-    "寄生獣": 0,
+    "宝石の国": 1,
+    "家庭教師ヒットマンREBORN!": 1,
+    "寄宿学校のジュリエット": 1,
+    "寄生獣": 1,
     "富江": 1,
     "寿命を買い取ってもらった。一年につき、一万円で。": 1,
     "少女終末旅行": 1,
@@ -257,9 +254,11 @@
     "極主夫道": 1,
     "極楽街": 1,
     "気になってる人が男じゃなかった": 1,
+    "海辺のエトランゼ": 1,
     "炎炎ノ消防隊": 1,
     "無職転生 ～異世界行ったら本気だす～": 1,
     "無限の住人": 1,
+    "現実もたまには嘘をつく": 1,
     "疑似ハーレム": 1,
     "監獄学園": 1,
     "盾の勇者の成り上がり": 1,
@@ -614,6 +613,38 @@
       "releaseDate": "2015-01-20T00:00:01Z"
     },
     {
+      "seriesKey": "Lv2からチートだった元勇者候補のまったり異世界ライフ",
+      "title": "Lv2からチートだった元勇者候補のまったり異世界ライフ 1 (ガルドコミックス)",
+      "image": "https://m.media-amazon.com/images/I/51weZoxUOgL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865545271?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865545271",
+      "magazine": "コミックガルド＋",
+      "magazines": [
+        "コミックガルド+"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "悪魔",
+        "魔法",
+        "戦争",
+        "異世界",
+        "超能力",
+        "猫耳"
+      ],
+      "publisher": "オーバーラップ",
+      "releaseDate": "2019-07-25T00:00:01Z"
+    },
+    {
       "seriesKey": "NARUTO -ナルト-",
       "title": "NARUTO -ナルト- 1",
       "image": "https://m.media-amazon.com/images/I/51gQV80M8qL._SL500_.jpg",
@@ -723,6 +754,41 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2008-05-02T00:00:01Z"
+    },
+    {
+      "seriesKey": "Re:Monster -リ・モンスター",
+      "title": "Re:Monster (1) (アルファポリスCOMICS)",
+      "image": "https://m.media-amazon.com/images/I/61286nbiAXL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4434201883?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4434201883",
+      "magazine": "アルファポリス",
+      "magazines": [
+        "アルファポリス"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "tags": [
+        "ゴブリン",
+        "魔法",
+        "悪魔",
+        "異世界",
+        "青年向け",
+        "モンスター娘",
+        "神々",
+        "逆ハーレム",
+        "エルフ",
+        "経済",
+        "複数恋愛",
+        "国づくり"
+      ],
+      "publisher": "アルファポリス",
+      "releaseDate": "2015-02-24T00:00:01Z"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
@@ -1988,6 +2054,39 @@
       ],
       "publisher": "新書館",
       "releaseDate": "2014-11-29T00:00:01Z"
+    },
+    {
+      "seriesKey": "ギャルごはん",
+      "title": "ギャルごはん 1 (ヤングアニマルコミックス)",
+      "image": "https://m.media-amazon.com/images/I/618N0KOKRnL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592161815?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592161815",
+      "magazine": "ヤングアニマル",
+      "magazines": [
+        "ヤングアニマル"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "ギャル",
+        "グルメ",
+        "部活",
+        "教師",
+        "青年向け",
+        "学園",
+        "三角関係",
+        "日焼け肌",
+        "逆ハーレム",
+        "教育"
+      ],
+      "publisher": "白泉社",
+      "releaseDate": "2017-06-29T00:00:01Z"
     },
     {
       "seriesKey": "ギョ",
@@ -6652,6 +6751,42 @@
       "releaseDate": "2018-12-07T00:00:01Z"
     },
     {
+      "seriesKey": "先輩がうざい後輩の話",
+      "title": "先輩がうざい後輩の話 (1) (comic POOL)",
+      "image": "https://m.media-amazon.com/images/I/51g0wfNb7rL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4758009813?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4758009813",
+      "magazine": "comic POOL",
+      "magazines": [
+        "comic POOL"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "OL",
+        "フルカラー",
+        "ツンデレ",
+        "女性向け",
+        "仕事",
+        "オフィス",
+        "ドタバタ",
+        "都会",
+        "日焼け肌",
+        "ボーイッシュ",
+        "百合",
+        "LGBTQテーマ",
+        "女装・男装"
+      ],
+      "publisher": "一迅社",
+      "releaseDate": "2018-03-28T00:00:01Z"
+    },
+    {
       "seriesKey": "光が死んだ夏",
       "title": "光が死んだ夏 1 (角川コミックス・エース)",
       "image": "https://m.media-amazon.com/images/I/41tpyN3pjLL._SL500_.jpg",
@@ -9048,6 +9183,36 @@
       "releaseDate": "2023-04-19T00:00:01Z"
     },
     {
+      "seriesKey": "海辺のエトランゼ",
+      "title": "海辺のエトランゼ (Feelコミックス オンブルー)",
+      "image": "https://m.media-amazon.com/images/I/51y0n4BEGbL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4396783485?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4396783485",
+      "magazine": "on BLUE",
+      "magazines": [
+        "on BLUE"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ボーイズラブ",
+        "LGBTQテーマ",
+        "海辺",
+        "執筆",
+        "三角関係",
+        "同棲",
+        "百合"
+      ],
+      "publisher": "祥伝社",
+      "releaseDate": "2014-07-25T00:00:01Z"
+    },
+    {
       "seriesKey": "炎炎ノ消防隊",
       "title": "炎炎ノ消防隊(1) (少年マガジンコミックス)",
       "image": "https://m.media-amazon.com/images/I/51I9FkXRGAL._SL500_.jpg",
@@ -9166,6 +9331,37 @@
       ],
       "publisher": "講談社",
       "releaseDate": "1994-09-01T00:00:01Z"
+    },
+    {
+      "seriesKey": "現実もたまには嘘をつく",
+      "title": "現実もたまには嘘をつく (KITORA)",
+      "image": "https://m.media-amazon.com/images/I/51n-ALgRWaL._SL500_.jpg",
+      "amazonDp": "https://www.amazon.co.jp/dp/4046048123?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4046048123",
+      "magazine": "Twitter",
+      "magazines": [
+        "Twitter"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "女装・男装",
+        "フルカラー",
+        "ひきこもり",
+        "ゲーム",
+        "オタク文化",
+        "コスプレ",
+        "かわいい女の子の日常",
+        "学園"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2020-07-31T00:00:01Z"
     },
     {
       "seriesKey": "疑似ハーレム",
@@ -10361,7 +10557,7 @@
         "アニメージュ"
       ],
       "audiences": [
-        "その他"
+        "青年"
       ],
       "genres": [
         "Action",
@@ -10377,6 +10573,7 @@
         "戦争",
         "哲学",
         "サバイバル",
+        "航空",
         "軍事",
         "カルト",
         "ディストピア",
@@ -10388,7 +10585,8 @@
         "魔法",
         "奴隷",
         "戦車",
-        "旅"
+        "旅",
+        "書道"
       ],
       "publisher": "徳間書店",
       "releaseDate": "1983-07-20T00:00:01Z"
