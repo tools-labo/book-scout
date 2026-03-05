@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-05T11:30:37.603Z",
+  "updatedAt": "2026-03-05T11:34:45.098Z",
   "total": 272,
   "shardSize": 200,
   "shards": [
@@ -291,24 +291,17 @@
     "total": 272,
     "ok": 272,
     "ng": 0,
-    "skippedPerfect": 267,
-    "skippedAniList": 5,
-    "skippedWiki": 5,
-    "skippedAmazon": 5,
+    "skippedPerfect": 272,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedAmazon": 0,
     "fetchedAmazonAsins": 0,
-    "magAudienceTodoAdded": 1,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 4,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "シャングリラ・フロンティア〜クソゲーハンター, 神ゲーに挑まんとす〜 :: magazine,magazines[]",
-        "ブラック・ラグーン :: magazine,magazines[]",
-        "ワールドトリガー :: tags_missing_en(remain=1)",
-        "来世は他人がいい :: tags_missing_en(remain=1)"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
