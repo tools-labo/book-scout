@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T13:38:19.075Z",
+  "updatedAt": "2026-03-06T14:56:47.838Z",
   "total": 378,
   "shardSize": 200,
   "shards": [
@@ -400,8 +400,8 @@
     "skippedPerfect": 292,
     "skippedAniList": 86,
     "skippedWiki": 47,
-    "skippedAmazon": 0,
-    "fetchedAmazonAsins": 86,
+    "skippedBookMeta": 0,
+    "fetchedBookMetaIsbn13s": 86,
     "magAudienceTodoAdded": 19,
     "perfectNotMetReasons": {
       "prevNotPerfect": 86,
@@ -409,36 +409,36 @@
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "2.5次元の誘惑 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
-        "GREEN BLOOD-グリーン・ブラッド :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
-        "NHKにようこそ! :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "NO.6 [ナンバーシックス] :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "RAINBOW 二舎六房の七人 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
-        "To LOVEる -とらぶる- :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "Übel Blatt ～ユーベルブラット～ :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "あずまんが大王 :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "ヴォイニッチホテル :: amazon(amazonDp|image|publisher|author|releaseDate|title),tags_missing_en(remain=1)",
-        "うみねこのなく頃に - Episode 1: Legend of the Golden Witch :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "エンジェル伝説 :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "オーバーロード :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]"
+        "2.5次元の誘惑 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "GREEN BLOOD-グリーン・ブラッド :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "NHKにようこそ! :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "NO.6 [ナンバーシックス] :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "RAINBOW 二舎六房の七人 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "To LOVEる -とらぶる- :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "Übel Blatt ～ユーベルブラット～ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "あずまんが大王 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "ヴォイニッチホテル :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),tags_missing_en(remain=1)",
+        "うみねこのなく頃に - Episode 1: Legend of the Golden Witch :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "エンジェル伝説 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "オーバーロード :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]"
       ],
       "outNotPerfect": [
-        "2.5次元の誘惑 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
-        "GREEN BLOOD-グリーン・ブラッド :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
-        "NHKにようこそ! :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "NO.6 [ナンバーシックス] :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "RAINBOW 二舎六房の七人 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
-        "To LOVEる -とらぶる- :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "Übel Blatt ～ユーベルブラット～ :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "あずまんが大王 :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "ヴォイニッチホテル :: amazon(amazonDp|image|publisher|author|releaseDate|title),tags_missing_en(remain=1)",
-        "うみねこのなく頃に - Episode 1: Legend of the Golden Witch :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "エンジェル伝説 :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
-        "オーバーロード :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]"
+        "2.5次元の誘惑 :: bookMeta(image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "GREEN BLOOD-グリーン・ブラッド :: bookMeta(image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "NHKにようこそ! :: bookMeta(image|publisher|author|releaseDate|title)",
+        "NO.6 [ナンバーシックス] :: bookMeta(image|publisher|author|releaseDate|title)",
+        "RAINBOW 二舎六房の七人 :: bookMeta(image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "To LOVEる -とらぶる- :: bookMeta(image|publisher|author|releaseDate|title)",
+        "Übel Blatt ～ユーベルブラット～ :: bookMeta(image|publisher|author|releaseDate|title)",
+        "あずまんが大王 :: bookMeta(image|publisher|author|releaseDate|title)",
+        "ヴォイニッチホテル :: bookMeta(image|publisher|author|releaseDate|title),tags_missing_en(remain=1)",
+        "うみねこのなく頃に - Episode 1: Legend of the Golden Witch :: bookMeta(image|publisher|author|releaseDate|title)",
+        "エンジェル伝説 :: bookMeta(image|publisher|author|releaseDate|title)",
+        "オーバーロード :: bookMeta(image|publisher|author|releaseDate|title),magazine,magazines[]"
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 12,
+      "notPerfectTotal": 86,
       "seriesKeys": [
         "2.5次元の誘惑",
         "GREEN BLOOD-グリーン・ブラッド",
@@ -451,12 +451,80 @@
         "ヴォイニッチホテル",
         "うみねこのなく頃に - Episode 1: Legend of the Golden Witch",
         "エンジェル伝説",
-        "オーバーロード"
+        "オーバーロード",
+        "おかえりアリス",
+        "おはよう、いばら姫",
+        "オリジン",
+        "カードキャプターさくら",
+        "からかい上手の（元）高木さん",
+        "ガンバレ！中村くん！！",
+        "ケントゥリア",
+        "この素晴らしい世界に祝福を!",
+        "シメジ シミュレーション",
+        "スキップ・ビート！",
+        "ソードアート・オンライン アインクラッド",
+        "ちょびっツ",
+        "ツバサ -RESERVoir CHRoNiCLE-",
+        "トライガン",
+        "はじめてのギャル",
+        "ばらかもん",
+        "パラレルパラダイス",
+        "ひだまりが聴こえる",
+        "ひとりぼっちの異世界攻略",
+        "ふたり明日もそれなりに",
+        "ブラッドラッド",
+        "フリージア",
+        "ブルータル 殺人警察官の告白",
+        "ヘルク",
+        "ベルベット・キス",
+        "ボールルームへようこそ",
+        "ボクガール",
+        "ポケットモンスターSPECIAL",
+        "ホタルの嫁入り",
+        "マイホームヒーロー",
+        "また、同じ夢を見ていた",
+        "マリッジトキシン",
+        "ゆらぎ荘の幽奈さん",
+        "ようこそ実力至上主義の教室へ　２年生編",
+        "ラブ★コン",
+        "人間失格",
+        "付き合ってあげてもいいかな",
+        "僕たちがやりました",
+        "先生は恋を教えられない",
+        "最果てのパラディン",
+        "北斗の拳",
+        "同級生",
+        "名探偵コナン",
+        "地獄星レミナ",
+        "好きっていいなよ。",
+        "姉なるもの",
+        "実は私は",
+        "恋と嘘",
+        "恋は雨上がりのように",
+        "戦隊大失格",
+        "斉木楠雄のΨ難",
+        "暗殺者である俺のステータスが勇者よりも明らかに強いのだが",
+        "未熟なふたりでございますが",
+        "椿町ロンリープラネット",
+        "正反対な君と僕",
+        "死神坊ちゃんと黒メイド",
+        "海月姫",
+        "源君物語",
+        "無能なナナ",
+        "犬夜叉",
+        "狼少年は今日も嘘を重ねる",
+        "町田くんの世界",
+        "異世界のんびり農家",
+        "瞳ちゃんは人見知り",
+        "紙袋くんは恋してる",
+        "累－かさね－",
+        "結婚指輪物語",
+        "美少女戦士セーラームーン"
       ],
       "topReasons": [
         {
-          "reason": "amazon(amazonDp|image|publisher|author|releaseDate|title)",
-          "n": 12,
+          "reason": "bookMeta(image|publisher|author|releaseDate|title)",
+          "n": 86,
           "samples": [
             "2.5次元の誘惑",
             "GREEN BLOOD-グリーン・ブラッド",
@@ -470,42 +538,70 @@
         },
         {
           "reason": "magazine",
-          "n": 4,
+          "n": 39,
           "samples": [
             "2.5次元の誘惑",
             "GREEN BLOOD-グリーン・ブラッド",
             "RAINBOW 二舎六房の七人",
-            "オーバーロード"
+            "オーバーロード",
+            "オリジン",
+            "からかい上手の（元）高木さん",
+            "ガンバレ！中村くん！！",
+            "ケントゥリア"
           ]
         },
         {
           "reason": "magazines[]",
-          "n": 4,
+          "n": 39,
           "samples": [
             "2.5次元の誘惑",
             "GREEN BLOOD-グリーン・ブラッド",
             "RAINBOW 二舎六房の七人",
-            "オーバーロード"
+            "オーバーロード",
+            "オリジン",
+            "からかい上手の（元）高木さん",
+            "ガンバレ！中村くん！！",
+            "ケントゥリア"
           ]
         },
         {
           "reason": "tags_missing_en(remain=1)",
+          "n": 5,
+          "samples": [
+            "ヴォイニッチホテル",
+            "おかえりアリス",
+            "ばらかもん",
+            "ゆらぎ荘の幽奈さん",
+            "戦隊大失格"
+          ]
+        },
+        {
+          "reason": "tags_missing_en(remain=2)",
+          "n": 4,
+          "samples": [
+            "ポケットモンスターSPECIAL",
+            "源君物語",
+            "電撃デイジー",
+            "魔法少女にあこがれて"
+          ]
+        },
+        {
+          "reason": "tags_missing_en(remain=7)",
           "n": 1,
           "samples": [
-            "ヴォイニッチホテル"
+            "パラレルパラダイス"
           ]
         }
       ],
-      "note": "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。"
+      "note": "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。"
     },
-    "paapi": {
-      "host": "webservices.amazon.co.jp",
-      "region": "us-west-2",
-      "enabled": true,
-      "chunks": 0,
+    "bookMeta": {
+      "provider": "rakuten",
+      "enabled": false,
+      "requests": 0,
       "failures": 0,
+      "http403": 0,
       "http429": 0,
-      "http503": 0,
       "missingItems": 0,
       "successItems": 0
     }

@@ -65,7 +65,7 @@
       "seriesKey": "ラブ★コン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088474872",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088474872",
         "isbn13": "9784088474878",
         "asin": "4088474872",
         "title": null,
@@ -74,6 +74,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "別冊マーガレット",
         "magazines": [
           "別冊マーガレット"
@@ -119,7 +122,7 @@
           "ちびキャラ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -1161,7 +1164,7 @@
       "seriesKey": "人間失格",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091897185",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091897185",
         "isbn13": "9784091897183",
         "asin": "4091897185",
         "title": null,
@@ -1170,6 +1173,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -1189,7 +1195,7 @@
           "アンソロジー"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -1333,7 +1339,7 @@
       "seriesKey": "付き合ってあげてもいいかな",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091287557",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091287557",
         "isbn13": "9784091287557",
         "asin": "4091287557",
         "title": null,
@@ -1342,6 +1348,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -1368,7 +1377,7 @@
           "百合"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -1569,7 +1578,7 @@
       "seriesKey": "僕たちがやりました",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063826635",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4063826635",
         "isbn13": "9784063826630",
         "asin": "4063826635",
         "title": null,
@@ -1578,6 +1587,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊ヤングマガジン",
         "magazines": [
           "週刊ヤングマガジン"
@@ -1627,7 +1639,7 @@
           "犯罪"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -1836,7 +1848,7 @@
       "seriesKey": "先生は恋を教えられない",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091292704",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091292704",
         "isbn13": "9784091292704",
         "asin": "4091292704",
         "title": null,
@@ -1845,6 +1857,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -1878,7 +1893,7 @@
           "ちびキャラ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -2025,7 +2040,7 @@
       "seriesKey": "最果てのパラディン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4865543341",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4865543341",
         "isbn13": "9784865543346",
         "asin": "4865543341",
         "title": null,
@@ -2034,6 +2049,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -2077,7 +2095,7 @@
           "中世"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -2166,7 +2184,7 @@
       "seriesKey": "北斗の拳",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4086172836",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4086172836",
         "isbn13": "9784086172837",
         "asin": "4086172836",
         "title": null,
@@ -2175,6 +2193,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年ジャンプ",
         "magazines": [
           "週刊少年ジャンプ"
@@ -2215,7 +2236,7 @@
           "砂漠"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -2481,7 +2502,7 @@
       "seriesKey": "同級生",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4871829685",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4871829685",
         "isbn13": "9784871829687",
         "asin": "4871829685",
         "title": null,
@@ -2490,6 +2511,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -2522,7 +2546,7 @@
           "バンド"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -2530,7 +2554,7 @@
       "seriesKey": "名探偵コナン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091233716",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091233716",
         "isbn13": "9784091233714",
         "asin": "4091233716",
         "title": null,
@@ -2539,6 +2563,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年サンデー",
         "magazines": [
           "週刊少年サンデー"
@@ -2588,7 +2615,7 @@
           "麻雀"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -3428,7 +3455,7 @@
       "seriesKey": "地獄星レミナ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091860834",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091860834",
         "isbn13": "9784091860835",
         "asin": "4091860834",
         "title": null,
@@ -3437,6 +3464,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊ビッグコミックスピリッツ増刊 Casual",
         "magazines": [
           "週刊ビッグコミックスピリッツ増刊 Casual"
@@ -3480,7 +3510,7 @@
           "ひきこもり"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -4013,7 +4043,7 @@
       "seriesKey": "好きっていいなよ。",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063655172",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4063655172",
         "isbn13": "9784063655179",
         "asin": "4063655172",
         "title": null,
@@ -4022,6 +4052,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "デザート",
         "magazines": [
           "デザート"
@@ -4057,7 +4090,7 @@
           "写真"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -4117,7 +4150,7 @@
       "seriesKey": "姉なるもの",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/404892477X",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/404892477X",
         "isbn13": "9784048924771",
         "asin": "404892477X",
         "title": null,
@@ -4126,6 +4159,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -4169,7 +4205,7 @@
           "ヤンデレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -4412,7 +4448,7 @@
       "seriesKey": "実は私は",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4253221688",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4253221688",
         "isbn13": "9784253221689",
         "asin": "4253221688",
         "title": null,
@@ -4421,6 +4457,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年チャンピオン",
         "magazines": [
           "週刊少年チャンピオン"
@@ -4473,7 +4512,7 @@
           "幽霊"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -5572,7 +5611,7 @@
       "seriesKey": "恋と嘘",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063952843",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4063952843",
         "isbn13": "9784063952841",
         "asin": "4063952843",
         "title": null,
@@ -5581,6 +5620,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -5618,7 +5660,7 @@
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -5626,7 +5668,7 @@
       "seriesKey": "恋は雨上がりのように",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091867286",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091867286",
         "isbn13": "9784091867285",
         "asin": "4091867286",
         "title": null,
@@ -5635,6 +5677,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "月刊!スピリッツ / ビッグコミックスピリッツ",
         "magazines": [
           "月刊!スピリッツ",
@@ -5678,7 +5723,7 @@
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -5901,7 +5946,7 @@
       "seriesKey": "戦隊大失格",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4065229847",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4065229847",
         "isbn13": "9784065229842",
         "asin": "4065229847",
         "title": null,
@@ -5910,6 +5955,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年マガジン",
         "magazines": [
           "週刊少年マガジン"
@@ -5984,7 +6032,7 @@
         "tags_missing_en": [
           "Acrobatics"
         ],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -6160,7 +6208,7 @@
       "seriesKey": "斉木楠雄のΨ難",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088705041",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088705041",
         "isbn13": "9784088705040",
         "asin": "4088705041",
         "title": null,
@@ -6169,6 +6217,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "少年ジャンプNEXT! / 週刊少年ジャンプ",
         "magazines": [
           "少年ジャンプNEXT!",
@@ -6221,7 +6272,7 @@
           "変身能力"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -6522,7 +6573,7 @@
       "seriesKey": "暗殺者である俺のステータスが勇者よりも明らかに強いのだが",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4865544437",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4865544437",
         "isbn13": "9784865544435",
         "asin": "4865544437",
         "title": null,
@@ -6531,6 +6582,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -6566,7 +6620,7 @@
           "復讐"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -6776,7 +6830,7 @@
       "seriesKey": "未熟なふたりでございますが",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4065122740",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4065122740",
         "isbn13": "9784065122747",
         "asin": "4065122740",
         "title": null,
@@ -6785,6 +6839,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -6820,7 +6877,7 @@
           "親子（子育て）"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -7308,7 +7365,7 @@
       "seriesKey": "椿町ロンリープラネット",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088454294",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088454294",
         "isbn13": "9784088454290",
         "asin": "4088454294",
         "title": null,
@@ -7317,6 +7374,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -7356,7 +7416,7 @@
           "同棲"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -7491,7 +7551,7 @@
       "seriesKey": "正反対な君と僕",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/408883125X",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/408883125X",
         "isbn13": "9784088831251",
         "asin": "408883125X",
         "title": null,
@@ -7500,6 +7560,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -7539,7 +7602,7 @@
           "少年向け"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -7547,7 +7610,7 @@
       "seriesKey": "死神坊ちゃんと黒メイド",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4091280994",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4091280994",
         "isbn13": "9784091280992",
         "asin": "4091280994",
         "title": null,
@@ -7556,6 +7619,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -7590,7 +7656,7 @@
           "呪い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -7660,7 +7726,7 @@
       "seriesKey": "海月姫",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063407446",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4063407446",
         "isbn13": "9784063407440",
         "asin": "4063407446",
         "title": null,
@@ -7669,6 +7735,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "Kiss",
         "magazines": [
           "Kiss"
@@ -7725,7 +7794,7 @@
           "成長譚"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -7786,7 +7855,7 @@
       "seriesKey": "源君物語",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088793188",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088793188",
         "isbn13": "9784088793184",
         "asin": "4088793188",
         "title": null,
@@ -7795,6 +7864,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊ヤングジャンプ",
         "magazines": [
           "週刊ヤングジャンプ"
@@ -7848,7 +7920,7 @@
           "Boobjob",
           "Airsoft"
         ],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -8008,7 +8080,7 @@
       "seriesKey": "無能なナナ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4757551533",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4757551533",
         "isbn13": "9784757551534",
         "asin": "4757551533",
         "title": null,
@@ -8017,6 +8089,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "月刊少年ガンガン",
         "magazines": [
           "月刊少年ガンガン"
@@ -8095,7 +8170,7 @@
           "ゾンビ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -8168,7 +8243,7 @@
       "seriesKey": "犬夜叉",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/409125201X",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/409125201X",
         "isbn13": "9784091252012",
         "asin": "409125201X",
         "title": null,
@@ -8177,6 +8252,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年サンデー",
         "magazines": [
           "週刊少年サンデー"
@@ -8225,7 +8303,7 @@
           "呪い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -8233,7 +8311,7 @@
       "seriesKey": "狼少年は今日も嘘を重ねる",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4047301434",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4047301434",
         "isbn13": "9784047301436",
         "asin": "4047301434",
         "title": null,
@@ -8242,6 +8320,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -8275,7 +8356,7 @@
           "トランスジェンダー"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -8339,7 +8420,7 @@
       "seriesKey": "町田くんの世界",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088454219",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088454219",
         "isbn13": "9784088454214",
         "asin": "4088454219",
         "title": null,
@@ -8348,6 +8429,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "別冊マーガレット",
         "magazines": [
           "別冊マーガレット"
@@ -8387,7 +8471,7 @@
           "演技"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -8395,7 +8479,7 @@
       "seriesKey": "異世界のんびり農家",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4040726049",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4040726049",
         "isbn13": "9784040726045",
         "asin": "4040726049",
         "title": null,
@@ -8404,6 +8488,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "月刊ドラゴンエイジ",
         "magazines": [
           "月刊ドラゴンエイジ"
@@ -8464,7 +8551,7 @@
           "サバイバル"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -8653,7 +8740,7 @@
       "seriesKey": "瞳ちゃんは人見知り",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/425323951X",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/425323951X",
         "isbn13": "9784253239516",
         "asin": "425323951X",
         "title": null,
@@ -8662,6 +8749,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -8693,7 +8783,7 @@
           "コスプレ"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -9019,7 +9109,7 @@
       "seriesKey": "紙袋くんは恋してる",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4799748998",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4799748998",
         "isbn13": "9784799748992",
         "asin": "4799748998",
         "title": null,
@@ -9028,6 +9118,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -9057,7 +9150,7 @@
           "都会"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -9065,7 +9158,7 @@
       "seriesKey": "累－かさね－",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/406352485X",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/406352485X",
         "isbn13": "9784063524857",
         "asin": "406352485X",
         "title": null,
@@ -9074,6 +9167,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "イブニング",
         "magazines": [
           "イブニング"
@@ -9144,7 +9240,7 @@
           "学園"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -9292,7 +9388,7 @@
       "seriesKey": "結婚指輪物語",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4757544308",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4757544308",
         "isbn13": "9784757544307",
         "asin": "4757544308",
         "title": null,
@@ -9301,6 +9397,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "月刊ビッグガンガン",
         "magazines": [
           "月刊ビッグガンガン"
@@ -9363,7 +9462,7 @@
           "王侯貴族"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -9371,7 +9470,7 @@
       "seriesKey": "美少女戦士セーラームーン",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063649334",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4063649334",
         "isbn13": "9784063649338",
         "asin": "4063649334",
         "title": null,
@@ -9380,6 +9479,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "なかよし",
         "magazines": [
           "なかよし"
@@ -9457,7 +9559,7 @@
           "疑似家族"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -10792,7 +10894,7 @@
       "seriesKey": "阿波連さんははかれない",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088810902",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088810902",
         "isbn13": "9784088810904",
         "asin": "4088810902",
         "title": null,
@@ -10801,6 +10903,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -10848,7 +10953,7 @@
           "百合"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -10926,7 +11031,7 @@
       "seriesKey": "電撃デイジー",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/409131306X",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/409131306X",
         "isbn13": "9784091313065",
         "asin": "409131306X",
         "title": null,
@@ -10935,6 +11040,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "ベツコミ",
         "magazines": [
           "ベツコミ"
@@ -10980,7 +11088,7 @@
           "Software Development",
           "Horticulture"
         ],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -11560,7 +11668,7 @@
       "seriesKey": "魔法先生ネギま!",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4063632687",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4063632687",
         "isbn13": "9784063632682",
         "asin": "4063632687",
         "title": null,
@@ -11569,6 +11677,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年マガジン",
         "magazines": [
           "週刊少年マガジン"
@@ -11648,7 +11759,7 @@
           "獣耳"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -11656,7 +11767,7 @@
       "seriesKey": "魔法少女サイト",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4253224016",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4253224016",
         "isbn13": "9784253224017",
         "asin": "4253224016",
         "title": null,
@@ -11665,6 +11776,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -11711,7 +11825,7 @@
           "双子"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -11719,7 +11833,7 @@
       "seriesKey": "魔法少女にあこがれて",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4801968090",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4801968090",
         "isbn13": "9784801968097",
         "asin": "4801968090",
         "title": null,
@@ -11728,6 +11842,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": null,
         "magazines": [],
         "audiences": [
@@ -11778,7 +11895,7 @@
           "Masochism",
           "Bondage"
         ],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -12029,7 +12146,7 @@
       "seriesKey": "黒子のバスケ",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088746945",
-        "amazonDp": null,
+        "amazonDp": "https://www.amazon.co.jp/dp/4088746945",
         "isbn13": "9784088746944",
         "asin": "4088746945",
         "title": null,
@@ -12038,6 +12155,9 @@
         "publisher": null,
         "author": null,
         "releaseDate": null,
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "manual",
         "magazine": "週刊少年ジャンプ",
         "magazines": [
           "週刊少年ジャンプ"
@@ -12074,7 +12194,7 @@
           "疑似家族"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
