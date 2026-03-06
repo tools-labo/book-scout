@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T15:52:49.009Z",
-  "updatedAtJst": "2026-03-07 00:52:49",
+  "updatedAt": "2026-03-06T16:59:16.087Z",
+  "updatedAtJst": "2026-03-07 01:59:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-06 16:47:14",
+      "timestampJst": "2026-03-07 01:47:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "【推しの子】",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 16:47:08",
+      "timestampJst": "2026-03-07 01:47:08",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=その他",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 16:46:44",
+      "timestampJst": "2026-03-07 01:46:44",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "からかい上手の（元）高木さん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 16:46:34",
+      "timestampJst": "2026-03-07 01:46:34",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "2.5次元の誘惑",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 16:46:25",
+      "timestampJst": "2026-03-07 01:46:25",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=Web/アプリ",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 16:34:48",
+      "timestampJst": "2026-03-07 01:34:48",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 15:58:31",
+      "timestampJst": "2026-03-07 00:58:31",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-06 14:00:04",
       "timestampJst": "2026-03-06 23:00:04",
@@ -25170,7 +25261,7 @@
     }
   ],
   "raw": {
-    "rows": 1932,
-    "rows_before_limit_at_least": 1932
+    "rows": 1939,
+    "rows_before_limit_at_least": 1939
   }
 }

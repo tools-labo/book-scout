@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T15:52:49.009Z",
-  "updatedAtJst": "2026-03-07 00:52:49",
+  "updatedAt": "2026-03-06T16:59:16.087Z",
+  "updatedAtJst": "2026-03-07 01:59:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -1045,12 +1045,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "惑星のさみだれ",
       "k": "rec",
       "avg": 3,
@@ -1058,6 +1052,12 @@
     },
     {
       "seriesKey": "終わりのセラフ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヨコハマ買い出し紀行",
       "k": "rec",
       "avg": 3,
       "n": "1"
