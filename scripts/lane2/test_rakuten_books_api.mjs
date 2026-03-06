@@ -1,16 +1,6 @@
 // scripts/lane2/test_rakuten_books_api.mjs
 // FULL REPLACE
 // 楽天 Books Total Search API 独立テスト
-//
-// 必須 env:
-// RAKUTEN_APP_ID
-// RAKUTEN_ACCESS_KEY
-//
-// 任意 env:
-// RAKUTEN_AFFILIATE_ID
-// RAKUTEN_TEST_ISBN
-// RAKUTEN_TEST_REFERER
-// RAKUTEN_TEST_ORIGIN
 
 function norm(v) {
   return String(v ?? "").trim();
@@ -58,6 +48,7 @@ async function main() {
 
   const url = new URL("https://openapi.rakuten.co.jp/services/api/BooksTotal/Search/20170404");
   url.searchParams.set("applicationId", appId);
+  url.searchParams.set("accessKey", accessKey);
   url.searchParams.set("format", "json");
   url.searchParams.set("formatVersion", "2");
   url.searchParams.set("isbnjan", isbnjan);
@@ -71,7 +62,6 @@ async function main() {
 
   const headers = {
     "User-Agent": "tools-labo/book-scout lane2 rakuten-test",
-    "Authorization": `Bearer ${accessKey}`,
     "Referer": referer,
     "Origin": origin,
   };
