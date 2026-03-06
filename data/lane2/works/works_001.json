@@ -1,8 +1,92 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 158,
+  "count": 178,
   "items": [
+    {
+      "seriesKey": "ラストゲーム",
+      "title": "ラストゲーム 1 (花とゆめCOMICS)",
+      "author": "天乃 忍",
+      "publisher": "白泉社",
+      "releaseDate": "2012-01-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/510zUVaYOxL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592193431",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592193431?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784592193432",
+      "asin": "4592193431",
+      "synopsis": "財閥の御曹司・柳は、転校生の久遠に学力でも運動でも初めて負けたことが悔しく、彼女に勝つためだけに付き合おうと画策。しかし長年のライバル関係は、次第に本物の恋心へと変わっていく。",
+      "magazine": "LaLa",
+      "magazines": [
+        "LaLa"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "ツンデレ",
+        "クーデレ",
+        "大学",
+        "三角関係",
+        "部活",
+        "成長譚",
+        "学園",
+        "復讐"
+      ],
+      "meta": {
+        "anilistId": 60315,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "ラブ★コン",
+      "title": "ラブ・コン（1）",
+      "author": "中原アヤ",
+      "publisher": "集英社",
+      "releaseDate": "2002年03月",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0884/08847487.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088474872",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088474872",
+      "isbn13": "9784088474878",
+      "asin": "4088474872",
+      "synopsis": "背が高い女子・小泉リサと、背が低い男子・大谷敦士は、周囲から漫才コンビ扱いされる凸凹コンビ。恋に悩むリサの日常の中で、二人の関係が少しずつ変わっていく。",
+      "magazine": "別冊マーガレット",
+      "magazines": [
+        "別冊マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "学園",
+        "少女",
+        "ドタバタ",
+        "成長譚",
+        "片思い",
+        "ツンデレ",
+        "三角関係",
+        "トランスジェンダー",
+        "LGBTQテーマ",
+        "バスケットボール",
+        "ちびキャラ"
+      ],
+      "meta": {
+        "anilistId": 30031,
+        "wikiTitle": "ラブ★コン",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
     {
       "seriesKey": "リアル",
       "title": "リアル 1 (Young jump comics)",
@@ -708,6 +792,39 @@
       }
     },
     {
+      "seriesKey": "人間失格",
+      "title": "人間失格 1",
+      "author": "伊藤 潤二/太宰 治",
+      "publisher": "小学館",
+      "releaseDate": "2017年10月30日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7183/9784091897183_1_20.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091897185",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091897185",
+      "isbn13": "9784091897183",
+      "asin": "4091897185",
+      "synopsis": "名作『人間失格』を伊藤潤二が漫画化。人の目を恐れ、笑顔で取り繕う青年が、酒や女に溺れながら少しずつ崩れていく。破滅へ向かう心の闇を、濃密な恐怖表現で描く。",
+      "magazine": "週刊コミックバンチ / 月刊コミック@バンチ",
+      "magazines": [
+        "週刊コミックバンチ",
+        "月刊コミック@バンチ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "アンソロジー"
+      ],
+      "meta": {
+        "anilistId": 173007,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
       "title": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画(1) (シリウスコミックス)",
       "author": "マツモト ケンゴ",
@@ -806,6 +923,41 @@
         "anilistId": 63031,
         "wikiTitle": "今際の国のアリス",
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "付き合ってあげてもいいかな",
+      "title": "付き合ってあげてもいいかな（1）",
+      "author": "たみふる",
+      "publisher": "小学館",
+      "releaseDate": "2019年01月11日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7557/9784091287557_1_9.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091287557",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091287557",
+      "isbn13": "9784091287557",
+      "asin": "4091287557",
+      "synopsis": "大学入学を機に軽音サークルへ入った“パッと見いい女”のみわが、冴子と急接近し、勢いで「付き合ってみない？」と提案される。軽音仲間たちの中で、付き合ってから始まる恋愛の本音や揺れを描くガールズラブ。",
+      "magazine": "裏サンデー / マンガワン",
+      "magazines": [
+        "裏サンデー",
+        "マンガワン"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "大学",
+        "LGBTQテーマ",
+        "百合"
+      ],
+      "meta": {
+        "anilistId": 111916,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
@@ -1125,6 +1277,44 @@
       }
     },
     {
+      "seriesKey": "先生は恋を教えられない",
+      "title": "先生は恋を教えられない（1）",
+      "author": "源 素水",
+      "publisher": "小学館",
+      "releaseDate": "2019年06月12日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2704/9784091292704_1_9.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091292704",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091292704",
+      "isbn13": "9784091292704",
+      "asin": "4091292704",
+      "synopsis": "高校教師・吉高凛子と、無気力に見える問題児の荒瀬くんの距離が近づいていく、歳の差ピュアラブコメ。呼び出しや指導をきっかけに、先生と生徒の関係が少しずつ“特別”になっていく。",
+      "magazine": "ゲッサン",
+      "magazines": [
+        "ゲッサン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "教師",
+        "学園",
+        "少年向け",
+        "家族もの",
+        "三角関係",
+        "ちびキャラ"
+      ],
+      "meta": {
+        "anilistId": 106454,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "先輩がうざい後輩の話",
       "title": "先輩がうざい後輩の話 (1) (comic POOL)",
       "author": "しろまんた",
@@ -1216,6 +1406,50 @@
       "meta": {
         "anilistId": 138603,
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "最果てのパラディン",
+      "title": "最果てのパラディン1",
+      "author": "奥橋睦/柳野かなた/輪くすさが",
+      "publisher": "オーバーラップ",
+      "releaseDate": "2018年03月25日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3346/9784865543346.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865543341",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865543341",
+      "isbn13": "9784865543346",
+      "asin": "4865543341",
+      "synopsis": "滅んだ都で育てられた少年ウィルは、不死者の“家族”から愛と教えを受け成長する。やがて外の世界へ踏み出す決意を固め、神と誓いを胸に旅立つ。王道ファンタジーの始まり。",
+      "magazine": "コミックガルド",
+      "magazines": [
+        "コミックガルド"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "tags": [
+        "魔法",
+        "哲学",
+        "成長譚",
+        "神々",
+        "神話",
+        "スケルトン",
+        "異世界",
+        "幽霊",
+        "悪魔",
+        "エルフ",
+        "修道女",
+        "中世"
+      ],
+      "meta": {
+        "anilistId": 101521,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
@@ -1486,6 +1720,43 @@
       "meta": {
         "anilistId": 107282,
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "同級生",
+      "title": "同級生",
+      "author": "中村明日美子",
+      "publisher": "茜新社",
+      "releaseDate": "2008年02月13日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8718/87182968.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4871829685",
+      "amazonDp": "https://www.amazon.co.jp/dp/4871829685",
+      "isbn13": "9784871829687",
+      "asin": "4871829685",
+      "synopsis": "クラスメイトの二人が、ふとしたきっかけで放課後の時間を共有するようになる。勉強や会話を重ねるうちに、相手の意外な一面に触れ、距離が近づいていく。同級生としての日常が、特別な感情へ静かに傾いていく物語。",
+      "magazine": "OPERA",
+      "magazines": [
+        "OPERA"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "学園",
+        "ボーイズラブ",
+        "LGBTQテーマ",
+        "バンド"
+      ],
+      "meta": {
+        "anilistId": 39699,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
@@ -2559,6 +2830,51 @@
       }
     },
     {
+      "seriesKey": "姉なるもの",
+      "title": "姉なるもの1",
+      "author": "飯田　ぽち。",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016年12月17日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4771/9784048924771.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/404892477X",
+      "amazonDp": "https://www.amazon.co.jp/dp/404892477X",
+      "isbn13": "9784048924771",
+      "asin": "404892477X",
+      "synopsis": "天涯孤独の少年・夕が出会ったのは、美しくも冒涜的な存在。『千の仔孕む森の黒山羊』と呼ばれる“それ”に姉になってほしいと願い、彼の前に「千夜」として現れる。クトゥルフ神話を背景に、姉弟の奇妙で切ない愛を描く。",
+      "magazine": "電撃G'sコミック / カドコミ（コミックウォーカー） / ニコニコ静画",
+      "magazines": [
+        "電撃G'sコミック",
+        "カドコミ(コミックウォーカー)",
+        "ニコニコ静画"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Ecchi",
+        "Horror",
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "悪魔",
+        "青年向け",
+        "コズミックホラー",
+        "家族もの",
+        "モンスター娘",
+        "田舎",
+        "現代ファンタジー",
+        "かわいい女の子の日常",
+        "ヤンデレ"
+      ],
+      "meta": {
+        "anilistId": 87234,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "孤高の人",
       "title": "孤高の人 1 (ヤングジャンプコミックス)",
       "author": "坂本 眞一",
@@ -3515,6 +3831,45 @@
       }
     },
     {
+      "seriesKey": "恋と嘘",
+      "title": "恋と嘘（1）",
+      "author": "ムサヲ",
+      "publisher": "講談社",
+      "releaseDate": "2015年01月09日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2841/9784063952841.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063952843",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063952843",
+      "isbn13": "9784063952841",
+      "asin": "4063952843",
+      "synopsis": "少し未来の日本では、16歳で政府から結婚相手が通知される。想い人を抱えた少年・根島由佳吏のもとにも通知が届き、恋と制度の間で揺れる選択が始まる。",
+      "magazine": "マンガボックス",
+      "magazines": [
+        "マンガボックス"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "三角関係",
+        "ディストピア",
+        "逆ハーレム",
+        "LGBTQテーマ",
+        "男女混合ハーレム",
+        "政略結婚",
+        "少年向け",
+        "学園"
+      ],
+      "meta": {
+        "anilistId": 85566,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "恋は雨上がりのように",
       "title": "恋は雨上がりのように（1）",
       "author": "眉月 じゅん",
@@ -4111,6 +4466,46 @@
       }
     },
     {
+      "seriesKey": "暗殺者である俺のステータスが勇者よりも明らかに強いのだが",
+      "title": "暗殺者である俺のステータスが勇者よりも明らかに強いのだが 1",
+      "author": "合鴨ひろゆき/赤井まつり/東西",
+      "publisher": "オーバーラップ",
+      "releaseDate": "2019年01月25日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4435/9784865544435_1_6.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865544437",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865544437",
+      "isbn13": "9784865544435",
+      "asin": "4865544437",
+      "synopsis": "クラスごと異世界へ召喚された晶は、地味な“暗殺者”の能力を得たはずだった。だが与えられたステータスは常識外れ。勇者の影で真相を探りつつ、暗躍の力で戦いに踏み込む。",
+      "magazine": "コミックガルド",
+      "magazines": [
+        "コミックガルド"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "tags": [
+        "異世界",
+        "アンチヒーロー",
+        "魔法",
+        "剣術",
+        "悪魔",
+        "陰謀",
+        "エルフ",
+        "復讐"
+      ],
+      "meta": {
+        "anilistId": 103655,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "月が導く異世界道中",
       "title": "月が導く異世界道中 1 (アルファポリスCOMICS)",
       "author": "あずみ 圭 / 木野 コトラ",
@@ -4246,6 +4641,44 @@
       "meta": {
         "anilistId": 30584,
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "未熟なふたりでございますが",
+      "title": "未熟なふたりでございますが（1）",
+      "author": "カワハラ 恋",
+      "publisher": "講談社",
+      "releaseDate": "2018年08月08日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2747/9784065122747_1_4.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065122740",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065122740",
+      "isbn13": "9784065122747",
+      "asin": "4065122740",
+      "synopsis": "新婚の夫婦は、好き同士のはずなのに距離の取り方が下手でぎこちない。手をつなぐだけでも大騒ぎ、でも少しずつ歩み寄っていく。初々しさ全開の“未熟な”新婚ラブコメ。",
+      "magazine": "コミックDAYS",
+      "magazines": [
+        "コミックDAYS"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "青年向け",
+        "家族もの",
+        "結婚",
+        "クーデレ",
+        "親子（子育て）"
+      ],
+      "meta": {
+        "anilistId": 104864,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
@@ -4574,6 +5007,48 @@
       }
     },
     {
+      "seriesKey": "椿町ロンリープラネット",
+      "title": "椿町ロンリープラネット（1）",
+      "author": "やまもり三香",
+      "publisher": "集英社",
+      "releaseDate": "2015年08月25日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4290/9784088454290.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088454294",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088454294",
+      "isbn13": "9784088454290",
+      "asin": "4088454294",
+      "synopsis": "父の借金のため、高2のふみは住み込み家政婦として働くことに。雇い主は無愛想で近寄りがたい小説家・暁。新しい町と共同生活の中で、ふみの毎日と気持ちは少しずつ変わっていく。",
+      "magazine": "マーガレット",
+      "magazines": [
+        "マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "成長譚",
+        "養子縁組",
+        "執筆",
+        "学園",
+        "三角関係",
+        "ツンデレ",
+        "仕事",
+        "同棲"
+      ],
+      "meta": {
+        "anilistId": 86243,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "極主夫道",
       "title": "極主夫道 1 (BUNCH COMICS)",
       "author": "おおのこうすけ",
@@ -4659,6 +5134,84 @@
         "anilistId": 150378,
         "wikiTitle": "極楽街",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "正反対な君と僕",
+      "title": "正反対な君と僕 1",
+      "author": "阿賀沢 紅茶",
+      "publisher": "集英社",
+      "releaseDate": "2022年07月04日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1251/9784088831251_1_3.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/408883125X",
+      "amazonDp": "https://www.amazon.co.jp/dp/408883125X",
+      "isbn13": "9784088831251",
+      "asin": "408883125X",
+      "synopsis": "周りの目を気にしてしまう鈴木は、自分の意見を言える物静かな谷くんに片思い中。素直に接せず“ダル絡み”ばかりしてしまうが、勇気を出して一緒に帰ろうと誘ったことで関係が動き出す。等身大の恋と成長を描くラブコメ。",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "癒し系",
+        "ギャル",
+        "学園",
+        "都会",
+        "ちびキャラ",
+        "少年向け"
+      ],
+      "meta": {
+        "anilistId": 147997,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "死神坊ちゃんと黒メイド",
+      "title": "死神坊ちゃんと黒メイド 1",
+      "author": "イノウエ",
+      "publisher": "小学館",
+      "releaseDate": "2018年01月12日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0992/9784091280992_1_3.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091280994",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091280994",
+      "isbn13": "9784091280992",
+      "asin": "4091280994",
+      "synopsis": "触れたものを死なせてしまう呪いをかけられた貴族の少年“坊ちゃん”は、森奥の屋敷で孤独に暮らしている。だがメイドのアリスは呪いを恐れず、からかいながらも彼を支え続ける。触れられない距離の中で、二人の関係は少しずつ形を変えていく。",
+      "magazine": "サンデーうぇぶり",
+      "magazines": [
+        "サンデーうぇぶり"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "メイド",
+        "魔女",
+        "執事",
+        "魔法",
+        "少年向け",
+        "呪い"
+      ],
+      "meta": {
+        "anilistId": 100293,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
@@ -5093,6 +5646,44 @@
       }
     },
     {
+      "seriesKey": "狼少年は今日も嘘を重ねる",
+      "title": "狼少年は今日も嘘を重ねる（1）",
+      "author": "namo",
+      "publisher": "KADOKAWA",
+      "releaseDate": "2015年01月15日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1436/9784047301436.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047301434",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047301434",
+      "isbn13": "9784047301436",
+      "asin": "4047301434",
+      "synopsis": "目つきの悪さにコンプレックスを持つ男子高校生が、恋に不器用なまま想いを伝えて失敗する。そこから“再アプローチ”へ踏み出すが、状況は予想外の方向へ転がっていく。",
+      "magazine": "カドコミ（コミックウォーカー）",
+      "magazines": [
+        "カドコミ(コミックウォーカー)"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "女装・男装",
+        "三角関係",
+        "青年向け",
+        "性転換",
+        "学園",
+        "LGBTQテーマ",
+        "トランスジェンダー"
+      ],
+      "meta": {
+        "anilistId": 85887,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "現実もたまには嘘をつく",
       "title": "現実もたまには嘘をつく (KITORA)",
       "author": "にいち",
@@ -5356,6 +5947,43 @@
       }
     },
     {
+      "seriesKey": "瞳ちゃんは人見知り",
+      "title": "瞳ちゃんは人見知り（1）",
+      "author": "夏海ちょりすけ",
+      "publisher": "秋田書店",
+      "releaseDate": "2019年05月20日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9516/9784253239516.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/425323951X",
+      "amazonDp": "https://www.amazon.co.jp/dp/425323951X",
+      "isbn13": "9784253239516",
+      "asin": "425323951X",
+      "synopsis": "高校生の宇佐見が出会ったのは、迫力ある見た目なのに照れ屋で人見知りな後輩・瞳。見た目と中身のギャップに戸惑いながら、少しずつ距離が縮まっていく学園ラブコメ。",
+      "magazine": "チャンピオンクロス",
+      "magazines": [
+        "チャンピオンクロス"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ボーイッシュ",
+        "学園",
+        "陸上競技",
+        "少年向け",
+        "コスプレ"
+      ],
+      "meta": {
+        "anilistId": 106434,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "神のみぞ知るセカイ",
       "title": "神のみぞ知るセカイ (1) (少年サンデーコミックス)",
       "author": "若木 民喜",
@@ -5563,6 +6191,42 @@
         "anilistId": 87423,
         "wikiTitle": "約束のネバーランド",
         "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "紙袋くんは恋してる",
+      "title": "紙袋くんは恋してる（1）",
+      "author": "甘海老りこ",
+      "publisher": "リブレ",
+      "releaseDate": "2020年08月20日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8992/9784799748992.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4799748998",
+      "amazonDp": "https://www.amazon.co.jp/dp/4799748998",
+      "isbn13": "9784799748992",
+      "asin": "4799748998",
+      "synopsis": "紙袋をかぶって生活する、一途な男子大学生の恋が描かれる。周囲から奇異の目を向けられながらも、想いを抱えたまま不器用に日常を送っていく。",
+      "magazine": "LINEマンガ",
+      "magazines": [
+        "LINEマンガ"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "大学",
+        "ドタバタ",
+        "都会"
+      ],
+      "meta": {
+        "anilistId": 123625,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
@@ -6720,6 +7384,49 @@
       }
     },
     {
+      "seriesKey": "阿波連さんははかれない",
+      "title": "阿波連さんははかれない 1",
+      "author": "水 あさと",
+      "publisher": "集英社",
+      "releaseDate": "2017年08月04日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0904/9784088810904.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088810902",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088810902",
+      "isbn13": "9784088810904",
+      "asin": "4088810902",
+      "synopsis": "小さくて物静かな阿波連れいなさんは、距離感が独特で“はかれない”。隣の席のライドウくんは戸惑いながらも関わっていき、遠すぎたり近すぎたりの予測不能な青春コメディが始まる。",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "学園",
+        "癒し系",
+        "パロディ",
+        "クーデレ",
+        "少年向け",
+        "ギャル",
+        "教師",
+        "武術",
+        "絵・作画",
+        "女装・男装",
+        "百合"
+      ],
+      "meta": {
+        "anilistId": 98686,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
       "seriesKey": "陰の実力者になりたくて！",
       "title": "陰の実力者になりたくて! (1) (角川コミックス・エース)",
       "author": "坂野 杏梨",
@@ -7254,6 +7961,95 @@
       "meta": {
         "anilistId": 30015,
         "wikiTitle": "魔法先生ネギま!",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "魔法少女サイト",
+      "title": "魔法少女サイト（1）",
+      "author": "佐藤健太郎（漫画家）",
+      "publisher": "秋田書店",
+      "releaseDate": "2014年03月07日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4017/9784253224017.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253224016",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253224016",
+      "isbn13": "9784253224017",
+      "asin": "4253224016",
+      "synopsis": "いじめと家庭の地獄に苦しむ少女が、謎の「魔法少女サイト」に選ばれる。与えられた“杖”は救いか、さらなる呪いか。魔法少女同士の争いと陰謀が、容赦なく日常を侵食する。",
+      "magazine": "Champion タップ! / 週刊少年チャンピオン",
+      "magazines": [
+        "Champion タップ!",
+        "週刊少年チャンピオン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mahou Shoujo",
+        "Psychological",
+        "Supernatural"
+      ],
+      "tags": [
+        "魔法",
+        "いじめ",
+        "サバイバル",
+        "百合",
+        "学園",
+        "宇宙人",
+        "LGBTQテーマ",
+        "少年向け",
+        "アイドル",
+        "双子"
+      ],
+      "meta": {
+        "anilistId": 85666,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "魔法少女にあこがれて",
+      "title": "魔法少女にあこがれて　1",
+      "author": "小野中彰大",
+      "publisher": "竹書房",
+      "releaseDate": "2019年11月30日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8097/9784801968097.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4801968090",
+      "amazonDp": "https://www.amazon.co.jp/dp/4801968090",
+      "isbn13": "9784801968097",
+      "asin": "4801968090",
+      "synopsis": "魔法少女に憧れる少女・柊うてなは、力を授けてくれそうな存在と出会い変身の機会を得る。だが変身したのは魔法少女ではなく、悪の組織の女幹部だった。憧れの魔法少女たちと対峙する中で、彼女の“嗜好”と立場が思わぬ方向へ転がっていく。",
+      "magazine": "まんがライフSTORIA / ストーリアダッシュ / 竹コミ!",
+      "magazines": [
+        "まんがライフSTORIA",
+        "ストーリアダッシュ",
+        "竹コミ!"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Mahou Shoujo",
+        "Slice of Life"
+      ],
+      "tags": [
+        "魔法",
+        "パロディ",
+        "百合",
+        "アンチヒーロー",
+        "変身",
+        "現代ファンタジー",
+        "LGBTQテーマ",
+        "青年向け",
+        "ヤンデレ"
+      ],
+      "meta": {
+        "anilistId": 109017,
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },

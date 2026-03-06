@@ -1,30 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T16:36:45.410Z",
-  "total": 358,
-  "droppedTotal": 20,
-  "droppedSeriesKeys": [
-    "ケントゥリア",
-    "マリッジトキシン",
-    "人間失格",
-    "付き合ってあげてもいいかな",
-    "先生は恋を教えられない",
-    "最果てのパラディン",
-    "同級生",
-    "姉なるもの",
-    "恋と嘘",
-    "暗殺者である俺のステータスが勇者よりも明らかに強いのだが",
-    "未熟なふたりでございますが",
-    "椿町ロンリープラネット",
-    "正反対な君と僕",
-    "死神坊ちゃんと黒メイド",
-    "狼少年は今日も嘘を重ねる",
-    "瞳ちゃんは人見知り",
-    "紙袋くんは恋してる",
-    "阿波連さんははかれない",
-    "魔法少女サイト",
-    "魔法少女にあこがれて"
-  ],
+  "updatedAt": "2026-03-06T16:46:26.656Z",
+  "total": 378,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -33,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 158
+      "count": 178
     }
   ],
   "lookup": {
@@ -112,6 +91,7 @@
     "ぐらんぶる": 0,
     "グレイプニル": 0,
     "ケンガンアシュラ": 0,
+    "ケントゥリア": 0,
     "ゴールデンカムイ": 0,
     "この素晴らしい世界に祝福を!": 0,
     "この音とまれ！": 0,
@@ -221,6 +201,7 @@
     "マギ": 0,
     "また、同じ夢を見ていた": 0,
     "マッシュル-MASHLE-": 0,
+    "マリッジトキシン": 0,
     "メイドインアビス": 0,
     "めだかボックス": 0,
     "モブサイコ100": 0,
@@ -235,8 +216,8 @@
     "ヨコハマ買い出し紀行": 0,
     "よつばと！": 0,
     "よふかしのうた": 0,
-    "ラストゲーム": 0,
-    "ラブ★コン": 0,
+    "ラストゲーム": 1,
+    "ラブ★コン": 1,
     "リアル": 1,
     "ルリドラゴン": 1,
     "るろうに剣心 -明治剣客浪漫譚-": 1,
@@ -252,8 +233,10 @@
     "九龍ジェネリックロマンス": 1,
     "五等分の花嫁": 1,
     "亜人": 1,
+    "人間失格": 1,
     "今まで一度も女扱いされたことがない女騎士を女扱いする漫画": 1,
     "今際の国のアリス": 1,
+    "付き合ってあげてもいいかな": 1,
     "会長はメイド様！": 1,
     "佐々木と宮野": 1,
     "僕だけがいない街": 1,
@@ -261,14 +244,17 @@
     "僕のヒーローアカデミア": 1,
     "僕の心のヤバイやつ": 1,
     "僕らはみんな河合荘": 1,
+    "先生は恋を教えられない": 1,
     "先輩がうざい後輩の話": 1,
     "光が死んだ夏": 1,
+    "最果てのパラディン": 1,
     "化物語": 1,
     "北斗の拳": 1,
     "十字架のろくにん": 1,
     "双星の陰陽師": 1,
     "古見さんは、コミュ症です。": 1,
     "可愛いだけじゃない式守さん": 1,
+    "同級生": 1,
     "名探偵コナン": 1,
     "君と綴るうたかた": 1,
     "君に届け": 1,
@@ -292,6 +278,7 @@
     "夫婦以上、恋人未満。": 1,
     "好きっていいなよ。": 1,
     "好きな子がめがねを忘れた": 1,
+    "姉なるもの": 1,
     "孤高の人": 1,
     "宇崎ちゃんは遊びたい！": 1,
     "宝石の国": 1,
@@ -313,6 +300,7 @@
     "彼女、お借りします": 1,
     "徒然チルドレン": 1,
     "怪獣８号": 1,
+    "恋と嘘": 1,
     "恋は雨上がりのように": 1,
     "惑星のさみだれ": 1,
     "惡の華": 1,
@@ -325,9 +313,11 @@
     "日々蝶々": 1,
     "暁のヨナ": 1,
     "暗殺教室": 1,
+    "暗殺者である俺のステータスが勇者よりも明らかに強いのだが": 1,
     "月が導く異世界道中": 1,
     "月刊少女野崎くん": 1,
     "未来日記": 1,
+    "未熟なふたりでございますが": 1,
     "杖と剣のウィストリア": 1,
     "来世は他人がいい": 1,
     "東京卍リベンジャーズ": 1,
@@ -335,8 +325,11 @@
     "東京喰種-トーキョーグール-:re": 1,
     "桃源暗鬼": 1,
     "桜蘭高校ホスト部": 1,
+    "椿町ロンリープラネット": 1,
     "極主夫道": 1,
     "極楽街": 1,
+    "正反対な君と僕": 1,
+    "死神坊ちゃんと黒メイド": 1,
     "気になってる人が男じゃなかった": 1,
     "海月姫": 1,
     "海辺のエトランゼ": 1,
@@ -346,16 +339,19 @@
     "無能なナナ": 1,
     "無限の住人": 1,
     "犬夜叉": 1,
+    "狼少年は今日も嘘を重ねる": 1,
     "現実もたまには嘘をつく": 1,
     "町田くんの世界": 1,
     "異世界のんびり農家": 1,
     "疑似ハーレム": 1,
     "監獄学園": 1,
     "盾の勇者の成り上がり": 1,
+    "瞳ちゃんは人見知り": 1,
     "神のみぞ知るセカイ": 1,
     "神様はじめました": 1,
     "私たちの幸せな時間": 1,
     "約束のネバーランド": 1,
+    "紙袋くんは恋してる": 1,
     "累－かさね－": 1,
     "終わりのセラフ": 1,
     "終末のワルキューレ": 1,
@@ -379,6 +375,7 @@
     "銀魂": 1,
     "銃夢": 1,
     "鋼の錬金術師": 1,
+    "阿波連さんははかれない": 1,
     "陰の実力者になりたくて！": 1,
     "電撃デイジー": 1,
     "青のフラッグ": 1,
@@ -390,6 +387,8 @@
     "魔入りました！入間くん": 1,
     "魔法使いの嫁": 1,
     "魔法先生ネギま!": 1,
+    "魔法少女サイト": 1,
+    "魔法少女にあこがれて": 1,
     "魔男のイチ": 1,
     "魔都精兵のスレイブ": 1,
     "黒執事": 1,
@@ -3115,6 +3114,42 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2012-12-18T00:00:01Z"
+    },
+    {
+      "seriesKey": "ケントゥリア",
+      "title": "ケントゥリア 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1021/9784088841021_1_3.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088841026",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088841026",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "疑似家族",
+        "逃亡者",
+        "超能力",
+        "養子縁組",
+        "王侯貴族",
+        "中世",
+        "神々",
+        "少年向け",
+        "奴隷",
+        "死霊術",
+        "擬人化",
+        "百合"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2024年07月04日"
     },
     {
       "seriesKey": "ゴールデンカムイ",
@@ -7215,6 +7250,47 @@
       "releaseDate": "2020-06-04T00:00:01Z"
     },
     {
+      "seriesKey": "マリッジトキシン",
+      "title": "マリッジトキシン 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2135/9784088832135_1_3.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088832132",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088832132",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "暗殺者",
+        "結婚",
+        "犯罪",
+        "都会",
+        "女装・男装",
+        "不条理コメディ",
+        "超能力",
+        "少年向け",
+        "バイセクシュアル",
+        "逆ハーレム",
+        "女装男子",
+        "LGBTQテーマ",
+        "アンチヒーロー",
+        "百合",
+        "男女混合ハーレム",
+        "性転換",
+        "現代ファンタジー"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2022年08月04日"
+    },
+    {
       "seriesKey": "メイドインアビス",
       "title": "メイドインアビス 1 (バンブーコミックス)",
       "image": "https://m.media-amazon.com/images/I/61P-+kvs7IL._SL500_.jpg",
@@ -8364,6 +8440,30 @@
       "releaseDate": "2013-03-07T00:00:01Z"
     },
     {
+      "seriesKey": "人間失格",
+      "title": "人間失格 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7183/9784091897183_1_20.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091897185",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091897185",
+      "magazine": "週刊コミックバンチ / 月刊コミック@バンチ",
+      "magazines": [
+        "週刊コミックバンチ",
+        "月刊コミック@バンチ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "アンソロジー"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2017年10月30日頃"
+    },
+    {
       "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
       "title": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画(1) (シリウスコミックス)",
       "image": "https://m.media-amazon.com/images/I/51vsP89kydL._SL500_.jpg",
@@ -8443,6 +8543,32 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2011-04-18T00:00:01Z"
+    },
+    {
+      "seriesKey": "付き合ってあげてもいいかな",
+      "title": "付き合ってあげてもいいかな（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7557/9784091287557_1_9.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091287557",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091287557",
+      "magazine": "裏サンデー / マンガワン",
+      "magazines": [
+        "裏サンデー",
+        "マンガワン"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "大学",
+        "LGBTQテーマ",
+        "百合"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2019年01月11日頃"
     },
     {
       "seriesKey": "会長はメイド様！",
@@ -8693,6 +8819,35 @@
       "releaseDate": "2011-05-30T00:00:01Z"
     },
     {
+      "seriesKey": "先生は恋を教えられない",
+      "title": "先生は恋を教えられない（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2704/9784091292704_1_9.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091292704",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091292704",
+      "magazine": "ゲッサン",
+      "magazines": [
+        "ゲッサン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "教師",
+        "学園",
+        "少年向け",
+        "家族もの",
+        "三角関係",
+        "ちびキャラ"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2019年06月12日"
+    },
+    {
       "seriesKey": "先輩がうざい後輩の話",
       "title": "先輩がうざい後輩の話 (1) (comic POOL)",
       "image": "https://m.media-amazon.com/images/I/51g0wfNb7rL._SL500_.jpg",
@@ -8767,6 +8922,41 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2022-03-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "最果てのパラディン",
+      "title": "最果てのパラディン1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3346/9784865543346.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865543341",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865543341",
+      "magazine": "コミックガルド",
+      "magazines": [
+        "コミックガルド"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "tags": [
+        "魔法",
+        "哲学",
+        "成長譚",
+        "神々",
+        "神話",
+        "スケルトン",
+        "異世界",
+        "幽霊",
+        "悪魔",
+        "エルフ",
+        "修道女",
+        "中世"
+      ],
+      "publisher": "オーバーラップ",
+      "releaseDate": "2018年03月25日頃"
     },
     {
       "seriesKey": "化物語",
@@ -8978,6 +9168,34 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2019-06-07T00:00:01Z"
+    },
+    {
+      "seriesKey": "同級生",
+      "title": "同級生",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8718/87182968.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4871829685",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4871829685",
+      "magazine": "OPERA",
+      "magazines": [
+        "OPERA"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "学園",
+        "ボーイズラブ",
+        "LGBTQテーマ",
+        "バンド"
+      ],
+      "publisher": "茜新社",
+      "releaseDate": "2008年02月13日頃"
     },
     {
       "seriesKey": "名探偵コナン",
@@ -9825,6 +10043,42 @@
       "releaseDate": "2019-02-22T00:00:01Z"
     },
     {
+      "seriesKey": "姉なるもの",
+      "title": "姉なるもの1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4771/9784048924771.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/404892477X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/404892477X",
+      "magazine": "電撃G'sコミック / カドコミ（コミックウォーカー） / ニコニコ静画",
+      "magazines": [
+        "電撃G'sコミック",
+        "カドコミ(コミックウォーカー)",
+        "ニコニコ静画"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Ecchi",
+        "Horror",
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "悪魔",
+        "青年向け",
+        "コズミックホラー",
+        "家族もの",
+        "モンスター娘",
+        "田舎",
+        "現代ファンタジー",
+        "かわいい女の子の日常",
+        "ヤンデレ"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016年12月17日"
+    },
+    {
       "seriesKey": "孤高の人",
       "title": "孤高の人 1 (ヤングジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/515FVppJ-9L._SL500_.jpg",
@@ -10578,6 +10832,36 @@
       "releaseDate": "2020-12-04T00:00:01Z"
     },
     {
+      "seriesKey": "恋と嘘",
+      "title": "恋と嘘（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2841/9784063952841.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063952843",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063952843",
+      "magazine": "マンガボックス",
+      "magazines": [
+        "マンガボックス"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "三角関係",
+        "ディストピア",
+        "逆ハーレム",
+        "LGBTQテーマ",
+        "男女混合ハーレム",
+        "政略結婚",
+        "少年向け",
+        "学園"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2015年01月09日頃"
+    },
+    {
       "seriesKey": "恋は雨上がりのように",
       "title": "恋は雨上がりのように（1）",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7285/9784091867285.jpg?_ex=200x200",
@@ -11057,6 +11341,37 @@
       "releaseDate": "2012-11-02T00:00:01Z"
     },
     {
+      "seriesKey": "暗殺者である俺のステータスが勇者よりも明らかに強いのだが",
+      "title": "暗殺者である俺のステータスが勇者よりも明らかに強いのだが 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4435/9784865544435_1_6.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4865544437",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4865544437",
+      "magazine": "コミックガルド",
+      "magazines": [
+        "コミックガルド"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "tags": [
+        "異世界",
+        "アンチヒーロー",
+        "魔法",
+        "剣術",
+        "悪魔",
+        "陰謀",
+        "エルフ",
+        "復讐"
+      ],
+      "publisher": "オーバーラップ",
+      "releaseDate": "2019年01月25日頃"
+    },
+    {
       "seriesKey": "月が導く異世界道中",
       "title": "月が導く異世界道中 1 (アルファポリスCOMICS)",
       "image": "https://m.media-amazon.com/images/I/61C5ZM7Fx7L._SL500_.jpg",
@@ -11166,6 +11481,35 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2006-07-21T00:00:01Z"
+    },
+    {
+      "seriesKey": "未熟なふたりでございますが",
+      "title": "未熟なふたりでございますが（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2747/9784065122747_1_4.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065122740",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065122740",
+      "magazine": "コミックDAYS",
+      "magazines": [
+        "コミックDAYS"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "青年向け",
+        "家族もの",
+        "結婚",
+        "クーデレ",
+        "親子（子育て）"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2018年08月08日"
     },
     {
       "seriesKey": "杖と剣のウィストリア",
@@ -11425,6 +11769,39 @@
       "releaseDate": "2003-08-05T00:00:01Z"
     },
     {
+      "seriesKey": "椿町ロンリープラネット",
+      "title": "椿町ロンリープラネット（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4290/9784088454290.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088454294",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088454294",
+      "magazine": "マーガレット",
+      "magazines": [
+        "マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "成長譚",
+        "養子縁組",
+        "執筆",
+        "学園",
+        "三角関係",
+        "ツンデレ",
+        "仕事",
+        "同棲"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2015年08月25日頃"
+    },
+    {
       "seriesKey": "極主夫道",
       "title": "極主夫道 1 (BUNCH COMICS)",
       "image": "https://m.media-amazon.com/images/I/51QeYJeYAUL._SL500_.jpg",
@@ -11492,6 +11869,66 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2022-11-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "正反対な君と僕",
+      "title": "正反対な君と僕 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1251/9784088831251_1_3.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/408883125X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/408883125X",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "成長譚",
+        "癒し系",
+        "ギャル",
+        "学園",
+        "都会",
+        "ちびキャラ",
+        "少年向け"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2022年07月04日"
+    },
+    {
+      "seriesKey": "死神坊ちゃんと黒メイド",
+      "title": "死神坊ちゃんと黒メイド 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0992/9784091280992_1_3.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091280994",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091280994",
+      "magazine": "サンデーうぇぶり",
+      "magazines": [
+        "サンデーうぇぶり"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "メイド",
+        "魔女",
+        "執事",
+        "魔法",
+        "少年向け",
+        "呪い"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2018年01月12日頃"
     },
     {
       "seriesKey": "気になってる人が男じゃなかった",
@@ -11838,6 +12275,35 @@
       "releaseDate": "1997年04月18日"
     },
     {
+      "seriesKey": "狼少年は今日も嘘を重ねる",
+      "title": "狼少年は今日も嘘を重ねる（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1436/9784047301436.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047301434",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047301434",
+      "magazine": "カドコミ（コミックウォーカー）",
+      "magazines": [
+        "カドコミ(コミックウォーカー)"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "女装・男装",
+        "三角関係",
+        "青年向け",
+        "性転換",
+        "学園",
+        "LGBTQテーマ",
+        "トランスジェンダー"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2015年01月15日頃"
+    },
+    {
       "seriesKey": "現実もたまには嘘をつく",
       "title": "現実もたまには嘘をつく (KITORA)",
       "image": "https://m.media-amazon.com/images/I/51n-ALgRWaL._SL500_.jpg",
@@ -12042,6 +12508,34 @@
       "releaseDate": "2014-06-23T00:00:01Z"
     },
     {
+      "seriesKey": "瞳ちゃんは人見知り",
+      "title": "瞳ちゃんは人見知り（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9516/9784253239516.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/425323951X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/425323951X",
+      "magazine": "チャンピオンクロス",
+      "magazines": [
+        "チャンピオンクロス"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ボーイッシュ",
+        "学園",
+        "陸上競技",
+        "少年向け",
+        "コスプレ"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2019年05月20日頃"
+    },
+    {
       "seriesKey": "神のみぞ知るセカイ",
       "title": "神のみぞ知るセカイ (1) (少年サンデーコミックス)",
       "image": "https://m.media-amazon.com/images/I/51bKF6VzD5L._SL500_.jpg",
@@ -12211,6 +12705,33 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2016-12-02T00:00:01Z"
+    },
+    {
+      "seriesKey": "紙袋くんは恋してる",
+      "title": "紙袋くんは恋してる（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8992/9784799748992.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4799748998",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4799748998",
+      "magazine": "LINEマンガ",
+      "magazines": [
+        "LINEマンガ"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "大学",
+        "ドタバタ",
+        "都会"
+      ],
+      "publisher": "リブレ",
+      "releaseDate": "2020年08月20日頃"
     },
     {
       "seriesKey": "累－かさね－",
@@ -13144,6 +13665,40 @@
       "releaseDate": "2002-01-22T00:00:01Z"
     },
     {
+      "seriesKey": "阿波連さんははかれない",
+      "title": "阿波連さんははかれない 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0904/9784088810904.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088810902",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088810902",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "学園",
+        "癒し系",
+        "パロディ",
+        "クーデレ",
+        "少年向け",
+        "ギャル",
+        "教師",
+        "武術",
+        "絵・作画",
+        "女装・男装",
+        "百合"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2017年08月04日"
+    },
+    {
       "seriesKey": "陰の実力者になりたくて！",
       "title": "陰の実力者になりたくて! (1) (角川コミックス・エース)",
       "image": "https://m.media-amazon.com/images/I/51ylib9aUiL._SL500_.jpg",
@@ -13575,6 +14130,77 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2003年07月17日頃"
+    },
+    {
+      "seriesKey": "魔法少女サイト",
+      "title": "魔法少女サイト（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4017/9784253224017.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253224016",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253224016",
+      "magazine": "Champion タップ! / 週刊少年チャンピオン",
+      "magazines": [
+        "Champion タップ!",
+        "週刊少年チャンピオン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mahou Shoujo",
+        "Psychological",
+        "Supernatural"
+      ],
+      "tags": [
+        "魔法",
+        "いじめ",
+        "サバイバル",
+        "百合",
+        "学園",
+        "宇宙人",
+        "LGBTQテーマ",
+        "少年向け",
+        "アイドル",
+        "双子"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2014年03月07日頃"
+    },
+    {
+      "seriesKey": "魔法少女にあこがれて",
+      "title": "魔法少女にあこがれて　1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8097/9784801968097.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4801968090",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4801968090",
+      "magazine": "まんがライフSTORIA / ストーリアダッシュ / 竹コミ!",
+      "magazines": [
+        "まんがライフSTORIA",
+        "ストーリアダッシュ",
+        "竹コミ!"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Mahou Shoujo",
+        "Slice of Life"
+      ],
+      "tags": [
+        "魔法",
+        "パロディ",
+        "百合",
+        "アンチヒーロー",
+        "変身",
+        "現代ファンタジー",
+        "LGBTQテーマ",
+        "青年向け",
+        "ヤンデレ"
+      ],
+      "publisher": "竹書房",
+      "releaseDate": "2019年11月30日"
     },
     {
       "seriesKey": "魔男のイチ",
