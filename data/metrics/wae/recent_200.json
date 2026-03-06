@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T11:43:41.102Z",
-  "updatedAtJst": "2026-03-06 20:43:41",
+  "updatedAt": "2026-03-06T13:20:19.221Z",
+  "updatedAtJst": "2026-03-06 22:20:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-06 13:09:51",
+      "timestampJst": "2026-03-06 22:09:51",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-06 12:52:46",
+      "timestampJst": "2026-03-06 21:52:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-06 10:14:29",
       "timestampJst": "2026-03-06 19:14:29",
@@ -25092,7 +25118,7 @@
     }
   ],
   "raw": {
-    "rows": 1926,
-    "rows_before_limit_at_least": 1926
+    "rows": 1928,
+    "rows_before_limit_at_least": 1928
   }
 }
