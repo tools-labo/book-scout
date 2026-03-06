@@ -1,95 +1,48 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T14:56:47.838Z",
-  "total": 292,
-  "droppedTotal": 86,
+  "updatedAt": "2026-03-06T15:08:58.428Z",
+  "total": 339,
+  "droppedTotal": 39,
   "droppedSeriesKeys": [
     "2.5次元の誘惑",
     "GREEN BLOOD-グリーン・ブラッド",
-    "NHKにようこそ!",
-    "NO.6 [ナンバーシックス]",
     "RAINBOW 二舎六房の七人",
-    "To LOVEる -とらぶる-",
-    "Übel Blatt ～ユーベルブラット～",
-    "あずまんが大王",
-    "ヴォイニッチホテル",
-    "うみねこのなく頃に - Episode 1: Legend of the Golden Witch",
-    "エンジェル伝説",
     "オーバーロード",
-    "おかえりアリス",
-    "おはよう、いばら姫",
     "オリジン",
-    "カードキャプターさくら",
     "からかい上手の（元）高木さん",
     "ガンバレ！中村くん！！",
     "ケントゥリア",
-    "この素晴らしい世界に祝福を!",
-    "シメジ シミュレーション",
     "スキップ・ビート！",
     "ソードアート・オンライン アインクラッド",
-    "ちょびっツ",
     "ツバサ -RESERVoir CHRoNiCLE-",
-    "トライガン",
-    "はじめてのギャル",
-    "ばらかもん",
-    "パラレルパラダイス",
     "ひだまりが聴こえる",
     "ひとりぼっちの異世界攻略",
     "ふたり明日もそれなりに",
-    "ブラッドラッド",
     "フリージア",
     "ブルータル 殺人警察官の告白",
     "ヘルク",
     "ベルベット・キス",
-    "ボールルームへようこそ",
-    "ボクガール",
-    "ポケットモンスターSPECIAL",
     "ホタルの嫁入り",
-    "マイホームヒーロー",
     "また、同じ夢を見ていた",
     "マリッジトキシン",
-    "ゆらぎ荘の幽奈さん",
-    "ようこそ実力至上主義の教室へ　２年生編",
-    "ラブ★コン",
     "人間失格",
     "付き合ってあげてもいいかな",
-    "僕たちがやりました",
     "先生は恋を教えられない",
     "最果てのパラディン",
-    "北斗の拳",
     "同級生",
-    "名探偵コナン",
-    "地獄星レミナ",
-    "好きっていいなよ。",
     "姉なるもの",
-    "実は私は",
     "恋と嘘",
-    "恋は雨上がりのように",
-    "戦隊大失格",
-    "斉木楠雄のΨ難",
     "暗殺者である俺のステータスが勇者よりも明らかに強いのだが",
     "未熟なふたりでございますが",
     "椿町ロンリープラネット",
     "正反対な君と僕",
     "死神坊ちゃんと黒メイド",
-    "海月姫",
-    "源君物語",
-    "無能なナナ",
-    "犬夜叉",
     "狼少年は今日も嘘を重ねる",
-    "町田くんの世界",
-    "異世界のんびり農家",
     "瞳ちゃんは人見知り",
     "紙袋くんは恋してる",
-    "累－かさね－",
-    "結婚指輪物語",
-    "美少女戦士セーラームーン",
     "阿波連さんははかれない",
-    "電撃デイジー",
-    "魔法先生ネギま!",
     "魔法少女サイト",
-    "魔法少女にあこがれて",
-    "黒子のバスケ"
+    "魔法少女にあこがれて"
   ],
   "shardSize": 200,
   "shards": [
@@ -99,7 +52,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 92
+      "count": 139
     }
   ],
   "lookup": {
@@ -113,12 +66,16 @@
     "DEAD Tube ～デッドチューブ～": 0,
     "Lv2からチートだった元勇者候補のまったり異世界ライフ": 0,
     "NARUTO -ナルト-": 0,
+    "NHKにようこそ!": 0,
+    "NO.6 [ナンバーシックス]": 0,
     "orange [オレンジ]": 0,
     "PSYЯEN -サイレン-": 0,
     "Re:Monster -リ・モンスター": 0,
     "Re:ゼロから始める異世界生活": 0,
     "ReLIFE": 0,
+    "To LOVEる -とらぶる-": 0,
     "To LOVEる -とらぶる- ダークネス": 0,
+    "Übel Blatt ～ユーベルブラット～": 0,
     "アイアムアヒーロー": 0,
     "アイシールド21": 0,
     "アオアシ": 0,
@@ -129,6 +86,7 @@
     "アクタージュ act-age": 0,
     "アクメツ": 0,
     "あしたのジョー": 0,
+    "あずまんが大王": 0,
     "あせとせっけん": 0,
     "アヤシモン": 0,
     "ありふれた職業で世界最強": 0,
@@ -139,12 +97,18 @@
     "ヴァニタスの手記": 0,
     "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-": 0,
     "ヴィンランド・サガ": 0,
+    "ヴォイニッチホテル": 0,
     "うずまき": 0,
+    "うみねこのなく頃に - Episode 1: Legend of the Golden Witch": 0,
     "うるわしの宵の月": 0,
     "エルフェンリート": 0,
+    "エンジェル伝説": 0,
+    "おかえりアリス": 0,
+    "おはよう、いばら姫": 0,
     "おもいでエマノン": 0,
     "おやすみプンプン": 0,
     "お兄ちゃんはおしまい！": 0,
+    "カードキャプターさくら": 0,
     "かぐや様は告らせたい～天才たちの恋愛頭脳戦～": 0,
     "カグラバチ": 0,
     "ガチアクタ": 0,
@@ -161,6 +125,7 @@
     "グレイプニル": 0,
     "ケンガンアシュラ": 0,
     "ゴールデンカムイ": 0,
+    "この素晴らしい世界に祝福を!": 0,
     "この音とまれ！": 0,
     "ゴブリンスレイヤー": 0,
     "ザ・ファブル": 0,
@@ -170,6 +135,7 @@
     "さんかれあ": 0,
     "サンケンロック": 0,
     "しまなみ誰そ彼": 0,
+    "シメジ シミュレーション": 0,
     "シャーマンキング": 0,
     "ジャガーン": 0,
     "シャドーハウス": 0,
@@ -197,6 +163,7 @@
     "ダンダダン": 0,
     "チェンソーマン": 0,
     "ちはやふる": 0,
+    "ちょびっツ": 0,
     "ディー・グレイマン": 0,
     "デッドデッドデーモンズデデデデデストラクション": 0,
     "デッドマン・ワンダーランド": 0,
@@ -205,6 +172,7 @@
     "ドメスティックな彼女": 0,
     "トモダチゲーム": 0,
     "トモちゃんは女の子!": 0,
+    "トライガン": 0,
     "ドラゴンボール": 0,
     "ドラゴンボール超": 0,
     "トリコ": 0,
@@ -218,8 +186,11 @@
     "ハイキュー！！": 0,
     "バガボンド": 0,
     "バクマン。": 0,
+    "はじめてのギャル": 0,
     "はじめの一歩": 0,
+    "ばらかもん": 0,
     "パラダイス・キス": 0,
+    "パラレルパラダイス": 0,
     "パンドラハーツ": 0,
     "パンプキンナイト": 0,
     "ひげを剃る。そして女子高生を拾う。": 0,
@@ -230,6 +201,7 @@
     "プラチナエンド": 0,
     "ブラック・ラグーン": 0,
     "ブラッククローバー": 0,
+    "ブラッドラッド": 0,
     "プラネテス": 0,
     "フルーツバスケット": 0,
     "ブルーピリオド": 0,
@@ -238,11 +210,15 @@
     "ベルセルク": 0,
     "ボーイミーツマリア": 0,
     "ホーリーランド": 0,
+    "ボールルームへようこそ": 0,
+    "ボクガール": 0,
     "ぼくたちは勉強ができない": 0,
     "ぼくは麻理のなか": 0,
+    "ポケットモンスターSPECIAL": 0,
     "ホムンクルス": 0,
     "ホリミヤ": 0,
     "マイ・ブロークン・マリコ": 0,
+    "マイホームヒーロー": 0,
     "マギ": 0,
     "マッシュル-MASHLE-": 0,
     "メイドインアビス": 0,
@@ -253,11 +229,14 @@
     "やはり俺の青春ラブコメはまちがっている。": 0,
     "やんちゃギャルの安城さん": 0,
     "ゆびさきと恋々": 0,
+    "ゆらぎ荘の幽奈さん": 0,
     "ようこそ実力至上主義の教室へ": 0,
+    "ようこそ実力至上主義の教室へ　２年生編": 0,
     "ヨコハマ買い出し紀行": 0,
     "よつばと！": 0,
     "よふかしのうた": 0,
     "ラストゲーム": 0,
+    "ラブ★コン": 0,
     "リアル": 0,
     "ルリドラゴン": 0,
     "るろうに剣心 -明治剣客浪漫譚-": 0,
@@ -277,40 +256,46 @@
     "今際の国のアリス": 0,
     "会長はメイド様！": 0,
     "佐々木と宮野": 0,
-    "僕だけがいない街": 0,
-    "僕のヒーローアカデミア": 0,
-    "僕の心のヤバイやつ": 0,
-    "僕らはみんな河合荘": 0,
-    "先輩がうざい後輩の話": 0,
-    "光が死んだ夏": 0,
-    "化物語": 0,
-    "十字架のろくにん": 0,
-    "双星の陰陽師": 0,
-    "古見さんは、コミュ症です。": 0,
-    "可愛いだけじゃない式守さん": 0,
-    "君と綴るうたかた": 0,
-    "君に届け": 0,
-    "君のことが大大大大大好きな100人の彼女": 0,
-    "君の名は。": 0,
-    "君の膵臓をたべたい": 0,
-    "君は放課後インソムニア": 0,
-    "君は淫らな僕の女王": 0,
-    "呪術廻戦": 0,
-    "嘘喰い": 0,
-    "四月は君の嘘": 0,
-    "回復術士のやり直し": 0,
-    "図書館の大魔術師": 0,
-    "地獄楽": 0,
-    "地縛少年 花子くん": 0,
-    "夜桜さんちの大作戦": 0,
+    "僕だけがいない街": 1,
+    "僕たちがやりました": 1,
+    "僕のヒーローアカデミア": 1,
+    "僕の心のヤバイやつ": 1,
+    "僕らはみんな河合荘": 1,
+    "先輩がうざい後輩の話": 1,
+    "光が死んだ夏": 1,
+    "化物語": 1,
+    "北斗の拳": 1,
+    "十字架のろくにん": 1,
+    "双星の陰陽師": 1,
+    "古見さんは、コミュ症です。": 1,
+    "可愛いだけじゃない式守さん": 1,
+    "名探偵コナン": 1,
+    "君と綴るうたかた": 1,
+    "君に届け": 1,
+    "君のことが大大大大大好きな100人の彼女": 1,
+    "君の名は。": 1,
+    "君の膵臓をたべたい": 1,
+    "君は放課後インソムニア": 1,
+    "君は淫らな僕の女王": 1,
+    "呪術廻戦": 1,
+    "嘘喰い": 1,
+    "四月は君の嘘": 1,
+    "回復術士のやり直し": 1,
+    "図書館の大魔術師": 1,
+    "地獄星レミナ": 1,
+    "地獄楽": 1,
+    "地縛少年 花子くん": 1,
+    "夜桜さんちの大作戦": 1,
     "大ダーク": 1,
     "天国大魔境": 1,
     "天空侵犯": 1,
     "夫婦以上、恋人未満。": 1,
+    "好きっていいなよ。": 1,
     "好きな子がめがねを忘れた": 1,
     "孤高の人": 1,
     "宇崎ちゃんは遊びたい！": 1,
     "宝石の国": 1,
+    "実は私は": 1,
     "家庭教師ヒットマンREBORN!": 1,
     "寄宿学校のジュリエット": 1,
     "寄生獣": 1,
@@ -328,11 +313,14 @@
     "彼女、お借りします": 1,
     "徒然チルドレン": 1,
     "怪獣８号": 1,
+    "恋は雨上がりのように": 1,
     "惑星のさみだれ": 1,
     "惡の華": 1,
     "憂国のモリアーティ": 1,
+    "戦隊大失格": 1,
     "政宗くんのリベンジ": 1,
     "文豪ストレイドッグス": 1,
+    "斉木楠雄のΨ難": 1,
     "新世紀エヴァンゲリオン": 1,
     "日々蝶々": 1,
     "暁のヨナ": 1,
@@ -350,11 +338,17 @@
     "極主夫道": 1,
     "極楽街": 1,
     "気になってる人が男じゃなかった": 1,
+    "海月姫": 1,
     "海辺のエトランゼ": 1,
+    "源君物語": 1,
     "炎炎ノ消防隊": 1,
     "無職転生 ～異世界行ったら本気だす～": 1,
+    "無能なナナ": 1,
     "無限の住人": 1,
+    "犬夜叉": 1,
     "現実もたまには嘘をつく": 1,
+    "町田くんの世界": 1,
+    "異世界のんびり農家": 1,
     "疑似ハーレム": 1,
     "監獄学園": 1,
     "盾の勇者の成り上がり": 1,
@@ -362,8 +356,11 @@
     "神様はじめました": 1,
     "私たちの幸せな時間": 1,
     "約束のネバーランド": 1,
+    "累－かさね－": 1,
     "終わりのセラフ": 1,
     "終末のワルキューレ": 1,
+    "結婚指輪物語": 1,
+    "美少女戦士セーラームーン": 1,
     "聲の形": 1,
     "葬送のフリーレン": 1,
     "薫る花は凛と咲く": 1,
@@ -383,6 +380,7 @@
     "銃夢": 1,
     "鋼の錬金術師": 1,
     "陰の実力者になりたくて！": 1,
+    "電撃デイジー": 1,
     "青のフラッグ": 1,
     "青の祓魔師": 1,
     "風の谷のナウシカ": 1,
@@ -391,9 +389,11 @@
     "鬼滅の刃": 1,
     "魔入りました！入間くん": 1,
     "魔法使いの嫁": 1,
+    "魔法先生ネギま!": 1,
     "魔男のイチ": 1,
     "魔都精兵のスレイブ": 1,
     "黒執事": 1,
+    "黒子のバスケ": 1,
     "黒岩メダカに私の可愛いが通じない": 1
   },
   "listItems": [
@@ -786,6 +786,77 @@
       "releaseDate": "2000-03-03T00:00:01Z"
     },
     {
+      "seriesKey": "NHKにようこそ!",
+      "title": "NHKにようこそ！（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0471/04713636.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047136360",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047136360",
+      "magazine": "月刊少年エース",
+      "magazines": [
+        "月刊少年エース"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "ひきこもり",
+        "オタク文化",
+        "更生",
+        "哲学",
+        "いじめ",
+        "少年向け",
+        "障害"
+      ],
+      "publisher": "角川書店",
+      "releaseDate": "2004年06月"
+    },
+    {
+      "seriesKey": "NO.6 [ナンバーシックス]",
+      "title": "NO.6 ＃1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5185/9784063805185_1_16.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063805182",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063805182",
+      "magazine": "ARIA",
+      "magazines": [
+        "ARIA"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "アンチヒーロー",
+        "ディストピア",
+        "都会",
+        "少女",
+        "陰謀",
+        "犯罪",
+        "記憶操作",
+        "LGBTQテーマ",
+        "失われた文明",
+        "サイバーパンク",
+        "ボーイズラブ",
+        "演技",
+        "神々",
+        "ヤンデレ",
+        "階級闘争",
+        "女装・男装"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2011年06月07日"
+    },
+    {
       "seriesKey": "orange [オレンジ]",
       "title": "orange(1) (アクションコミックス)",
       "image": "https://m.media-amazon.com/images/I/51kZQlvfsdL._SL500_.jpg",
@@ -977,6 +1048,40 @@
       "releaseDate": "2014-08-12T00:00:01Z"
     },
     {
+      "seriesKey": "To LOVEる -とらぶる-",
+      "title": "To LOVEる（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0887/08874278.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088742788",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088742788",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "宇宙人",
+        "少年向け",
+        "学園",
+        "ドタバタ",
+        "多重人格",
+        "暗殺者",
+        "クーデレ",
+        "性転換",
+        "異世界"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2006年11月02日"
+    },
+    {
       "seriesKey": "To LOVEる -とらぶる- ダークネス",
       "title": "To LOVEる -とらぶる- ダークネス (1)",
       "image": "https://m.media-amazon.com/images/I/51fwXqaYp-L._SL500_.jpg",
@@ -1009,6 +1114,47 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2011-03-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "Übel Blatt ～ユーベルブラット～",
+      "title": "Ubel Blatt〜ユーベルブラット〜（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4805/9784757514805.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757514808",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757514808",
+      "magazine": "ガンガンYG→ヤングガンガン / →増刊ヤングガンガンビッグ / →月刊ビッグガンガン",
+      "magazines": [
+        "ガンガンYG",
+        "ヤングガンガン",
+        "増刊ヤングガンガンビッグ",
+        "月刊ビッグガンガン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Drama",
+        "Ecchi",
+        "Fantasy"
+      ],
+      "tags": [
+        "復讐",
+        "青年向け",
+        "エルフ",
+        "軍事",
+        "ボーイッシュ",
+        "アンチヒーロー",
+        "剣術",
+        "妖精",
+        "記憶喪失",
+        "魔法",
+        "女装・男装",
+        "中世",
+        "記憶操作"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2005年07月25日"
     },
     {
       "seriesKey": "アイアムアヒーロー",
@@ -1341,6 +1487,40 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2000-06-01T00:00:01Z"
+    },
+    {
+      "seriesKey": "あずまんが大王",
+      "title": "あずまんが大王（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8402/84021467.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4840214670",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4840214670",
+      "magazine": "月刊コミック電撃大王",
+      "magazines": [
+        "月刊コミック電撃大王"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Slice of Life"
+      ],
+      "tags": [
+        "学園",
+        "4コマ",
+        "かわいい女の子の日常",
+        "不条理コメディ",
+        "ドタバタ",
+        "教師",
+        "少年向け",
+        "成長譚",
+        "百合",
+        "LGBTQテーマ",
+        "ボーイッシュ",
+        "お嬢様"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2000年02月10日頃"
     },
     {
       "seriesKey": "あせとせっけん",
@@ -1732,6 +1912,50 @@
       "releaseDate": "2006-08-23T00:00:01Z"
     },
     {
+      "seriesKey": "ヴォイニッチホテル",
+      "title": "ヴォイニッチホテル（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5714/9784253255714.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/425325571X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/425325571X",
+      "magazine": "月刊ヤングチャンピオン烈",
+      "magazines": [
+        "月刊ヤングチャンピオン烈"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Horror",
+        "Mystery",
+        "Romance",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "不条理コメディ",
+        "青年向け",
+        "魔女",
+        "メイド",
+        "暗殺者",
+        "海外",
+        "麻雀",
+        "ヤクザ",
+        "幽霊",
+        "障害",
+        "悪魔",
+        "スケルトン",
+        "LGBTQテーマ",
+        "現代ファンタジー",
+        "養子縁組",
+        "ゾンビ",
+        "記憶喪失",
+        "バイセクシュアル"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2010年11月17日頃"
+    },
+    {
       "seriesKey": "うずまき",
       "title": "うずまき (ビッグコミックススペシャル)",
       "image": "https://m.media-amazon.com/images/I/51D6LDk3sfL._SL500_.jpg",
@@ -1769,6 +1993,42 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2010-08-30T00:00:01Z"
+    },
+    {
+      "seriesKey": "うみねこのなく頃に - Episode 1: Legend of the Golden Witch",
+      "title": "うみねこのなく頃にEpisode1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7575/75752309.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757523092",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757523092",
+      "magazine": "月刊コンプエース",
+      "magazines": [
+        "月刊コンプエース"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Horror",
+        "Mystery",
+        "Psychological",
+        "Supernatural"
+      ],
+      "tags": [
+        "探偵",
+        "タイムループ",
+        "海辺",
+        "少年向け",
+        "メイド",
+        "魔女",
+        "魔法",
+        "お嬢様",
+        "海外",
+        "執事"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2008年06月"
     },
     {
       "seriesKey": "うるわしの宵の月",
@@ -1835,6 +2095,101 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2002-10-18T00:00:01Z"
+    },
+    {
+      "seriesKey": "エンジェル伝説",
+      "title": "エンジェル伝説（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1058/9784088711058.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/408871105X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/408871105X",
+      "magazine": "月刊少年ジャンプ",
+      "magazines": [
+        "月刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Romance"
+      ],
+      "tags": [
+        "不条理コメディ",
+        "不良",
+        "少年向け",
+        "学園",
+        "パロディ",
+        "ボーイッシュ",
+        "天使"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "1993年08月04日頃"
+    },
+    {
+      "seriesKey": "おかえりアリス",
+      "title": "おかえりアリス（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5938/9784065205938.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/406520593X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/406520593X",
+      "magazine": "別冊少年マガジン",
+      "magazines": [
+        "別冊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "無性別",
+        "LGBTQテーマ",
+        "三角関係",
+        "トランスジェンダー",
+        "哲学",
+        "女装・男装",
+        "バイセクシュアル",
+        "学園",
+        "成長譚",
+        "絵・作画",
+        "切断"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2020年10月09日"
+    },
+    {
+      "seriesKey": "おはよう、いばら姫",
+      "title": "おはよう、いばら姫（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8132/9784063658132.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063658139",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063658139",
+      "magazine": "デザート",
+      "magazines": [
+        "デザート"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "更生",
+        "多重人格",
+        "幽霊",
+        "家族もの",
+        "疑似家族",
+        "少女",
+        "現代ファンタジー",
+        "サッカー"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2015年04月13日頃"
     },
     {
       "seriesKey": "おもいでエマノン",
@@ -1939,6 +2294,49 @@
       ],
       "publisher": "一迅社",
       "releaseDate": "2018-06-27T00:00:01Z"
+    },
+    {
+      "seriesKey": "カードキャプターさくら",
+      "title": "カードキャプターさくら（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7433/9784063197433_1_5.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063197433",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063197433",
+      "magazine": "なかよし",
+      "magazines": [
+        "なかよし"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Mahou Shoujo",
+        "Romance"
+      ],
+      "tags": [
+        "魔法",
+        "現代ファンタジー",
+        "家族もの",
+        "少女",
+        "三角関係",
+        "学園",
+        "子どもが中心",
+        "LGBTQテーマ",
+        "かわいい女の子の日常",
+        "バイセクシュアル",
+        "多重人格",
+        "ボーイッシュ",
+        "片思い",
+        "妖精",
+        "ボーイズラブ",
+        "武術",
+        "無性別",
+        "トランスジェンダー"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "1996年11月20日"
     },
     {
       "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
@@ -2520,6 +2918,42 @@
       "releaseDate": "2015-01-19T00:00:01Z"
     },
     {
+      "seriesKey": "この素晴らしい世界に祝福を!",
+      "title": "この素晴らしい世界に祝福を！　1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5392/9784040705392.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040705394",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040705394",
+      "magazine": "月刊ドラゴンエイジ",
+      "magazines": [
+        "月刊ドラゴンエイジ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Romance"
+      ],
+      "tags": [
+        "魔法",
+        "異世界",
+        "パロディ",
+        "中世",
+        "ドタバタ",
+        "ダンジョン",
+        "中二病",
+        "逆ハーレム",
+        "神々",
+        "風刺",
+        "少年向け",
+        "日焼け肌"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2015年04月09日頃"
+    },
+    {
       "seriesKey": "この音とまれ！",
       "title": "この音とまれ! 1",
       "image": "https://m.media-amazon.com/images/I/51gGCZfyUkL._SL500_.jpg",
@@ -2853,6 +3287,45 @@
       ],
       "publisher": "小学館",
       "releaseDate": "2015-12-11T00:00:01Z"
+    },
+    {
+      "seriesKey": "シメジ シミュレーション",
+      "title": "シメジ シミュレーション 01（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2918/9784040642918.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040642910",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040642910",
+      "magazine": "コミックキューン",
+      "magazines": [
+        "コミックキューン"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Psychological",
+        "Slice of Life"
+      ],
+      "tags": [
+        "不条理コメディ",
+        "哲学",
+        "拡張現実（AR）",
+        "ひきこもり",
+        "4コマ",
+        "LGBTQテーマ",
+        "百合",
+        "かわいい女の子の日常",
+        "神々",
+        "終末後",
+        "学園",
+        "部活",
+        "青年向け",
+        "宗教",
+        "同棲",
+        "鉄道"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2020年02月28日"
     },
     {
       "seriesKey": "シャーマンキング",
@@ -3888,6 +4361,44 @@
       "releaseDate": "2008-05-13T00:00:01Z"
     },
     {
+      "seriesKey": "ちょびっツ",
+      "title": "ちょびっツ（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0633/06334383.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063343839",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063343839",
+      "magazine": "週刊ヤングマガジン",
+      "magazines": [
+        "週刊ヤングマガジン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Psychological",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "ロボット",
+        "人工知能",
+        "青年向け",
+        "片思い",
+        "都会",
+        "多重人格",
+        "記憶喪失",
+        "哲学",
+        "ちびキャラ",
+        "仕事",
+        "アセクシュアル",
+        "記憶操作",
+        "クロスオーバー"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2001年02月16日頃"
+    },
+    {
       "seriesKey": "ディー・グレイマン",
       "title": "D.Gray-man (1) ジャンプコミックス",
       "image": "https://m.media-amazon.com/images/I/51wK4+TrvxL._SL500_.jpg",
@@ -4196,6 +4707,42 @@
       ],
       "publisher": "星海社",
       "releaseDate": "2015-10-08T00:00:01Z"
+    },
+    {
+      "seriesKey": "トライガン",
+      "title": "トライガン#　1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0050/9784785920050.gif?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/478592005X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/478592005X",
+      "magazine": "月刊少年キャプテン",
+      "magazines": [
+        "月刊少年キャプテン"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "逃亡者",
+        "ディストピア",
+        "スチームパンク",
+        "銃",
+        "宗教",
+        "砂漠",
+        "少年向け",
+        "終末後",
+        "犯罪",
+        "超能力",
+        "宇宙"
+      ],
+      "publisher": "少年画報社",
+      "releaseDate": "2000年08月01日"
     },
     {
       "seriesKey": "ドラゴンボール",
@@ -4693,6 +5240,43 @@
       "releaseDate": "2009-01-05T00:00:01Z"
     },
     {
+      "seriesKey": "はじめてのギャル",
+      "title": "はじめてのギャル　（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2656/9784041042656.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4041042658",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4041042658",
+      "magazine": "月刊少年エース",
+      "magazines": [
+        "月刊少年エース"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "ギャル",
+        "少年向け",
+        "学園",
+        "成長譚",
+        "都会",
+        "逆ハーレム",
+        "三角関係",
+        "人間ペット",
+        "ボーイッシュ",
+        "日焼け肌",
+        "女装男子",
+        "大学",
+        "オタク文化",
+        "女装・男装"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2016年05月24日頃"
+    },
+    {
       "seriesKey": "はじめの一歩",
       "title": "はじめの一歩(1) (少年マガジンコミックス)",
       "image": "https://m.media-amazon.com/images/I/51Q9JaWlEEL._SL500_.jpg",
@@ -4720,6 +5304,47 @@
       ],
       "publisher": "講談社",
       "releaseDate": "1990-02-09T00:00:01Z"
+    },
+    {
+      "seriesKey": "ばらかもん",
+      "title": "ばらかもん（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7575/75752616.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757526164",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757526164",
+      "magazine": "ガンガンパワード / ガンガンONLINE / 月刊少年ガンガン",
+      "magazines": [
+        "ガンガンパワード",
+        "ガンガンONLINE",
+        "月刊少年ガンガン"
+      ],
+      "audiences": [
+        "その他",
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Slice of Life"
+      ],
+      "tags": [
+        "癒し系",
+        "書道",
+        "疑似家族",
+        "田舎",
+        "家族もの",
+        "海辺",
+        "更生",
+        "仕事",
+        "グルメ",
+        "教師",
+        "釣り",
+        "ボーイッシュ",
+        "車",
+        "少年向け",
+        "農業",
+        "女装・男装"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2009年07月22日"
     },
     {
       "seriesKey": "パラダイス・キス",
@@ -4754,6 +5379,45 @@
       ],
       "publisher": "祥伝社",
       "releaseDate": "2000-04-07T00:00:01Z"
+    },
+    {
+      "seriesKey": "パラレルパラダイス",
+      "title": "パラレルパラダイス（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0950/9784065100950_1_2.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/406510095X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/406510095X",
+      "magazine": "週刊ヤングマガジン",
+      "magazines": [
+        "週刊ヤングマガジン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Ecchi",
+        "Fantasy"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "アヘ顔",
+        "異世界",
+        "青年向け",
+        "ディストピア",
+        "失われた文明",
+        "記憶操作",
+        "記憶喪失",
+        "魔女",
+        "サキュバス",
+        "ボーイッシュ",
+        "女装・男装",
+        "クーデレ",
+        "神々",
+        "剣術"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2017年08月04日"
     },
     {
       "seriesKey": "パンドラハーツ",
@@ -5149,6 +5813,44 @@
       "releaseDate": "2015-06-04T00:00:01Z"
     },
     {
+      "seriesKey": "ブラッドラッド",
+      "title": "ブラッドラッド　（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4339/9784047154339.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4047154334",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4047154334",
+      "magazine": "ヤングエース",
+      "magazines": [
+        "ヤングエース"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Supernatural"
+      ],
+      "tags": [
+        "青年向け",
+        "悪魔",
+        "異世界",
+        "狼男",
+        "幽霊",
+        "吸血鬼",
+        "オタク文化",
+        "不良",
+        "魔法",
+        "パロディ",
+        "ゾンビ",
+        "スケルトン",
+        "銃",
+        "都会",
+        "三角関係"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2010年04月"
+    },
+    {
       "seriesKey": "プラネテス",
       "title": "プラネテス(1) (モーニングKC)",
       "image": "https://m.media-amazon.com/images/I/514biCzI3NL._SL500_.jpg",
@@ -5455,6 +6157,70 @@
       "releaseDate": "2001-06-01T00:00:01Z"
     },
     {
+      "seriesKey": "ボールルームへようこそ",
+      "title": "ボールルームへようこそ（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3299/9784063713299_1_5.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063713296",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063713296",
+      "magazine": "月刊少年マガジン",
+      "magazines": [
+        "月刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sports"
+      ],
+      "tags": [
+        "ダンス",
+        "成長譚",
+        "少年向け",
+        "学園"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2012年05月17日"
+    },
+    {
+      "seriesKey": "ボクガール",
+      "title": "ボクガール（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8400/9784088798400.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088798406",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088798406",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "性転換",
+        "学園",
+        "三角関係",
+        "女装・男装",
+        "現代ファンタジー",
+        "女装男子",
+        "バイセクシュアル",
+        "成長譚",
+        "神々",
+        "青年向け",
+        "LGBTQテーマ",
+        "トランスジェンダー",
+        "逆ハーレム"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2014年05月19日頃"
+    },
+    {
       "seriesKey": "ぼくたちは勉強ができない",
       "title": "ぼくたちは勉強ができない 1",
       "image": "https://m.media-amazon.com/images/I/51y1bqMLcFL._SL500_.jpg",
@@ -5528,6 +6294,62 @@
       ],
       "publisher": "双葉社",
       "releaseDate": "2012-12-07T00:00:01Z"
+    },
+    {
+      "seriesKey": "ポケットモンスターSPECIAL",
+      "title": "ポケットモンスターSPECIAL（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3316/9784091493316_1_22.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091493319",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091493319",
+      "magazine": "小学三年生 / 小学四年生 / 小学五年生 / 小学六年生 / ポケモンワンダーランド / ポケモンファン / コロコロイチバン! / クラブサンデー / サンデーうぇぶり / 週刊コロコロコミック",
+      "magazines": [
+        "小学三年生",
+        "小学四年生",
+        "小学五年生",
+        "小学六年生",
+        "ポケモンワンダーランド",
+        "ポケモンファン",
+        "コロコロイチバン!",
+        "クラブサンデー",
+        "サンデーうぇぶり",
+        "週刊コロコロコミック"
+      ],
+      "audiences": [
+        "その他",
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "旅",
+        "動物",
+        "子どもが中心",
+        "成長譚",
+        "ボーイッシュ",
+        "犯罪組織",
+        "現代ファンタジー",
+        "魔物使い",
+        "ゲーム",
+        "ギャング",
+        "海辺",
+        "お嬢様",
+        "カルト",
+        "探偵",
+        "ドタバタ",
+        "超能力",
+        "疎遠な家族",
+        "変身能力",
+        "演技",
+        "学園",
+        "環境問題"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "1997年08月08日"
     },
     {
       "seriesKey": "ホムンクルス",
@@ -5626,6 +6448,40 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2020-01-08T00:00:01Z"
+    },
+    {
+      "seriesKey": "マイホームヒーロー",
+      "title": "マイホームヒーロー（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1391/9784065101391_1_4.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065101395",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065101395",
+      "magazine": "週刊ヤングマガジン",
+      "magazines": [
+        "週刊ヤングマガジン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Drama",
+        "Thriller"
+      ],
+      "tags": [
+        "犯罪",
+        "青年向け",
+        "ヤクザ",
+        "マフィア",
+        "銃",
+        "家族もの",
+        "カルト",
+        "探偵",
+        "警察",
+        "不良",
+        "復讐"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2017年09月06日"
     },
     {
       "seriesKey": "マギ",
@@ -6019,6 +6875,47 @@
       "releaseDate": "2019-12-13T00:00:01Z"
     },
     {
+      "seriesKey": "ゆらぎ荘の幽奈さん",
+      "title": "ゆらぎ荘の幽奈さん 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7157/9784088807157.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088807154",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088807154",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Ecchi",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "幽霊",
+        "逆ハーレム",
+        "少年向け",
+        "妖怪",
+        "超能力",
+        "忍者",
+        "猫耳",
+        "獣耳",
+        "記憶喪失",
+        "年齢退行",
+        "学園",
+        "性転換",
+        "武術",
+        "絵・作画",
+        "三角関係",
+        "サキュバス",
+        "教師",
+        "経済"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2016年06月03日頃"
+    },
+    {
       "seriesKey": "ようこそ実力至上主義の教室へ",
       "title": "ようこそ実力至上主義の教室へ 1 (MFコミックス アライブシリーズ)",
       "image": "https://m.media-amazon.com/images/I/51lHpA+UfnL._SL500_.jpg",
@@ -6045,6 +6942,37 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2016-09-23T00:00:01Z"
+    },
+    {
+      "seriesKey": "ようこそ実力至上主義の教室へ　２年生編",
+      "title": "ようこそ実力至上主義の教室へ　2年生編　1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4388/9784046814388_1_20.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4046814381",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4046814381",
+      "magazine": "月刊コミックアライブ",
+      "magazines": [
+        "月刊コミックアライブ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Psychological"
+      ],
+      "tags": [
+        "学園",
+        "バトルロイヤル",
+        "成長譚",
+        "アンチヒーロー",
+        "哲学",
+        "青年向け",
+        "逆ハーレム",
+        "三角関係"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2022年06月22日"
     },
     {
       "seriesKey": "ヨコハマ買い出し紀行",
@@ -6191,6 +7119,40 @@
       ],
       "publisher": "白泉社",
       "releaseDate": "2012-01-04T00:00:01Z"
+    },
+    {
+      "seriesKey": "ラブ★コン",
+      "title": "ラブ・コン（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0884/08847487.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088474872",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088474872",
+      "magazine": "別冊マーガレット",
+      "magazines": [
+        "別冊マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "学園",
+        "少女",
+        "ドタバタ",
+        "成長譚",
+        "片思い",
+        "ツンデレ",
+        "三角関係",
+        "トランスジェンダー",
+        "LGBTQテーマ",
+        "バスケットボール",
+        "ちびキャラ"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2002年03月"
     },
     {
       "seriesKey": "リアル",
@@ -6943,6 +7905,41 @@
       "releaseDate": "2013-01-25T00:00:01Z"
     },
     {
+      "seriesKey": "僕たちがやりました",
+      "title": "僕たちがやりました（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6630/9784063826630.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063826635",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063826635",
+      "magazine": "週刊ヤングマガジン",
+      "magazines": [
+        "週刊ヤングマガジン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Psychological",
+        "Romance",
+        "Slice of Life",
+        "Thriller"
+      ],
+      "tags": [
+        "青年向け",
+        "成長譚",
+        "哲学",
+        "風刺",
+        "復讐",
+        "学園",
+        "不良",
+        "犯罪"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2015年09月04日頃"
+    },
+    {
       "seriesKey": "僕のヒーローアカデミア",
       "title": "僕のヒーローアカデミア 1",
       "image": "https://m.media-amazon.com/images/I/51oTz8l2TKL._SL500_.jpg",
@@ -7168,6 +8165,37 @@
       "releaseDate": "2018-06-15T00:00:01Z"
     },
     {
+      "seriesKey": "北斗の拳",
+      "title": "北斗の拳 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2837/9784086172837_1_2.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4086172836",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4086172836",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "武術",
+        "終末後",
+        "少年向け",
+        "ギャング",
+        "魔法",
+        "哲学",
+        "障害",
+        "砂漠"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "1997年05月16日頃"
+    },
+    {
       "seriesKey": "十字架のろくにん",
       "title": "十字架のろくにん(1) (KCデラックス)",
       "image": "https://m.media-amazon.com/images/I/51-x2xfKvkL._SL500_.jpg",
@@ -7304,6 +8332,42 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2019-06-07T00:00:01Z"
+    },
+    {
+      "seriesKey": "名探偵コナン",
+      "title": "名探偵コナン 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3714/9784091233714.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091233716",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091233716",
+      "magazine": "週刊少年サンデー",
+      "magazines": [
+        "週刊少年サンデー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Mystery",
+        "Romance"
+      ],
+      "tags": [
+        "探偵",
+        "犯罪",
+        "年齢退行",
+        "警察",
+        "陰謀",
+        "少年向け",
+        "教育",
+        "学園",
+        "銃",
+        "部活",
+        "魔法",
+        "麻雀"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "1994年06月18日"
     },
     {
       "seriesKey": "君と綴るうたかた",
@@ -7744,6 +8808,39 @@
       "releaseDate": "2018-04-06T00:00:01Z"
     },
     {
+      "seriesKey": "地獄星レミナ",
+      "title": "地獄星レミナ",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0835/9784091860835_1_4.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091860834",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091860834",
+      "magazine": "週刊ビッグコミックスピリッツ増刊 Casual",
+      "magazines": [
+        "週刊ビッグコミックスピリッツ増刊 Casual"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Horror",
+        "Psychological",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "コズミックホラー",
+        "宇宙",
+        "カルト",
+        "青年向け",
+        "宇宙人",
+        "環境ホラー",
+        "終末後",
+        "ヤンデレ",
+        "男性ハーレム",
+        "ひきこもり"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2005年08月30日"
+    },
+    {
       "seriesKey": "地獄楽",
       "title": "地獄楽 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51kMbXXx8mL._SL500_.jpg",
@@ -8024,6 +9121,35 @@
       "releaseDate": "2018-10-26T00:00:01Z"
     },
     {
+      "seriesKey": "好きっていいなよ。",
+      "title": "好きっていいなよ。（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5179/9784063655179.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063655172",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063655172",
+      "magazine": "デザート",
+      "magazines": [
+        "デザート"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "成長譚",
+        "学園",
+        "いじめ",
+        "三角関係",
+        "大学",
+        "写真"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2008年08月11日"
+    },
+    {
       "seriesKey": "好きな子がめがねを忘れた",
       "title": "好きな子がめがねを忘れた(1) (ガンガンコミックスJOKER)",
       "image": "https://m.media-amazon.com/images/I/51zciQ+2l0L._SL500_.jpg",
@@ -8174,6 +9300,44 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2013-07-23T00:00:01Z"
+    },
+    {
+      "seriesKey": "実は私は",
+      "title": "実は私は（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1689/9784253221689.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253221688",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253221688",
+      "magazine": "週刊少年チャンピオン",
+      "magazines": [
+        "週刊少年チャンピオン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Fantasy",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "学園",
+        "吸血鬼",
+        "モンスター娘",
+        "悪魔",
+        "三角関係",
+        "逆ハーレム",
+        "現代ファンタジー",
+        "宇宙人",
+        "少年向け",
+        "神々",
+        "天使",
+        "忍者",
+        "狼男",
+        "幽霊"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2013年06月07日頃"
     },
     {
       "seriesKey": "家庭教師ヒットマンREBORN!",
@@ -8768,6 +9932,40 @@
       "releaseDate": "2020-12-04T00:00:01Z"
     },
     {
+      "seriesKey": "恋は雨上がりのように",
+      "title": "恋は雨上がりのように（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7285/9784091867285.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091867286",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091867286",
+      "magazine": "月刊!スピリッツ / ビッグコミックスピリッツ",
+      "magazines": [
+        "月刊!スピリッツ",
+        "ビッグコミックスピリッツ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "仕事",
+        "陸上競技",
+        "更生",
+        "成長譚",
+        "執筆",
+        "青年向け",
+        "片思い",
+        "部活",
+        "飲食店",
+        "学園"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2015年01月09日頃"
+    },
+    {
       "seriesKey": "惑星のさみだれ",
       "title": "惑星のさみだれ (1) (ヤングキングコミックス)",
       "image": "https://m.media-amazon.com/images/I/51HNSF2NCFL._SL500_.jpg",
@@ -8881,6 +10079,53 @@
       "releaseDate": "2016-11-04T00:00:01Z"
     },
     {
+      "seriesKey": "戦隊大失格",
+      "title": "戦隊大失格（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9842/9784065229842.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065229847",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065229847",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "復讐",
+        "特撮",
+        "アンチヒーロー",
+        "変身",
+        "現代ファンタジー",
+        "陰謀",
+        "変身能力",
+        "演技",
+        "モンスター男子",
+        "逃亡者",
+        "スパイ",
+        "超能力",
+        "ディストピア",
+        "少年向け",
+        "無性別",
+        "仕事",
+        "サバイバル",
+        "宇宙人",
+        "都会",
+        "タイムループ",
+        "天使",
+        "学園",
+        "バトルロイヤル"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2021年04月16日"
+    },
+    {
       "seriesKey": "政宗くんのリベンジ",
       "title": "政宗くんのリベンジ (1) (IDコミックス REXコミックス)",
       "image": "https://m.media-amazon.com/images/I/61OGbCAw-RL._SL500_.jpg",
@@ -8966,6 +10211,44 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2013-04-03T00:00:01Z"
+    },
+    {
+      "seriesKey": "斉木楠雄のΨ難",
+      "title": "斉木楠雄のΨ難 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5040/9784088705040.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088705041",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088705041",
+      "magazine": "少年ジャンプNEXT! / 週刊少年ジャンプ",
+      "magazines": [
+        "少年ジャンプNEXT!",
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Slice of Life",
+        "Supernatural"
+      ],
+      "tags": [
+        "超能力",
+        "学園",
+        "少年向け",
+        "恋愛志向なし",
+        "不条理コメディ",
+        "幽霊",
+        "アセクシュアル",
+        "パロディ",
+        "中二病",
+        "終末後",
+        "トランスジェンダー",
+        "LGBTQテーマ",
+        "動物",
+        "変身能力"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2012年09月04日"
     },
     {
       "seriesKey": "新世紀エヴァンゲリオン",
@@ -9598,6 +10881,46 @@
       "releaseDate": "2023-04-19T00:00:01Z"
     },
     {
+      "seriesKey": "海月姫",
+      "title": "海月姫（01）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7440/9784063407440.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063407446",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063407446",
+      "magazine": "Kiss",
+      "magazines": [
+        "Kiss"
+      ],
+      "audiences": [
+        "女性"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "女性向け",
+        "ファッション",
+        "女装・男装",
+        "海外",
+        "三角関係",
+        "オタク文化",
+        "言語の壁",
+        "LGBTQテーマ",
+        "疑似家族",
+        "都会",
+        "メイク",
+        "絵・作画",
+        "男性ハーレム",
+        "性転換",
+        "動物",
+        "成長譚"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2009年03月13日"
+    },
+    {
       "seriesKey": "海辺のエトランゼ",
       "title": "海辺のエトランゼ (Feelコミックス オンブルー)",
       "image": "https://m.media-amazon.com/images/I/51y0n4BEGbL._SL500_.jpg",
@@ -9626,6 +10949,40 @@
       ],
       "publisher": "祥伝社",
       "releaseDate": "2014-07-25T00:00:01Z"
+    },
+    {
+      "seriesKey": "源君物語",
+      "title": "源君物語（一）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3184/9784088793184.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088793188",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088793188",
+      "magazine": "週刊ヤングジャンプ",
+      "magazines": [
+        "週刊ヤングジャンプ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "青年向け",
+        "成長譚",
+        "女装男子",
+        "大学",
+        "女装・男装",
+        "年上女性",
+        "教師",
+        "いじめ",
+        "ヤンデレ"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2012年04月"
     },
     {
       "seriesKey": "炎炎ノ消防隊",
@@ -9713,6 +11070,56 @@
       "releaseDate": "2014-10-23T00:00:01Z"
     },
     {
+      "seriesKey": "無能なナナ",
+      "title": "無能なナナ（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1534/9784757551534.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757551533",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757551533",
+      "magazine": "月刊少年ガンガン",
+      "magazines": [
+        "月刊少年ガンガン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mystery",
+        "Psychological",
+        "Supernatural",
+        "Thriller"
+      ],
+      "tags": [
+        "陰謀",
+        "ディストピア",
+        "暗殺者",
+        "超能力",
+        "アンチヒーロー",
+        "探偵",
+        "スパイ",
+        "疑似家族",
+        "犯罪",
+        "学園",
+        "監獄",
+        "軍事",
+        "政治",
+        "記憶喪失",
+        "クーデレ",
+        "都会",
+        "田舎",
+        "少年向け",
+        "変身能力",
+        "養子縁組",
+        "LGBTQテーマ",
+        "百合",
+        "いじめ",
+        "双子"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2017年02月22日頃"
+    },
+    {
       "seriesKey": "無限の住人",
       "title": "無限の住人 1 (アフタヌーンKC)",
       "image": "https://m.media-amazon.com/images/I/311pYM+b5wL._SL500_.jpg",
@@ -9748,6 +11155,41 @@
       "releaseDate": "1994-09-01T00:00:01Z"
     },
     {
+      "seriesKey": "犬夜叉",
+      "title": "犬夜叉（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2012/9784091252012.gif?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/409125201X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/409125201X",
+      "magazine": "週刊少年サンデー",
+      "magazines": [
+        "週刊少年サンデー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "tags": [
+        "悪魔",
+        "妖怪",
+        "少年向け",
+        "歴史",
+        "疑似家族",
+        "獣耳",
+        "異世界",
+        "復讐",
+        "三角関係",
+        "巫女",
+        "呪い"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "1997年04月18日"
+    },
+    {
       "seriesKey": "現実もたまには嘘をつく",
       "title": "現実もたまには嘘をつく (KITORA)",
       "image": "https://m.media-amazon.com/images/I/51n-ALgRWaL._SL500_.jpg",
@@ -9777,6 +11219,79 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2020-07-31T00:00:01Z"
+    },
+    {
+      "seriesKey": "町田くんの世界",
+      "title": "町田くんの世界（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4214/9784088454214.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088454219",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088454219",
+      "magazine": "別冊マーガレット",
+      "magazines": [
+        "別冊マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "癒し系",
+        "少女",
+        "家族もの",
+        "哲学",
+        "学園",
+        "いじめ",
+        "演技"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2015年07月24日頃"
+    },
+    {
+      "seriesKey": "異世界のんびり農家",
+      "title": "異世界のんびり農家　1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6045/9784040726045_1_3.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4040726049",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4040726049",
+      "magazine": "月刊ドラゴンエイジ",
+      "magazines": [
+        "月刊ドラゴンエイジ"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Fantasy",
+        "Slice of Life"
+      ],
+      "tags": [
+        "異世界",
+        "農業",
+        "逆ハーレム",
+        "青年向け",
+        "田舎",
+        "魔法",
+        "複数恋愛",
+        "癒し系",
+        "天使",
+        "エルフ",
+        "モンスター娘",
+        "吸血鬼",
+        "ドラゴン",
+        "メイド",
+        "国づくり",
+        "獣耳",
+        "悪魔",
+        "サバイバル"
+      ],
+      "publisher": "KADOKAWA",
+      "releaseDate": "2018年03月05日"
     },
     {
       "seriesKey": "疑似ハーレム",
@@ -10050,6 +11565,50 @@
       "releaseDate": "2016-12-02T00:00:01Z"
     },
     {
+      "seriesKey": "累－かさね－",
+      "title": "累（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4857/9784063524857.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/406352485X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/406352485X",
+      "magazine": "イブニング",
+      "magazines": [
+        "イブニング"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Horror",
+        "Psychological",
+        "Supernatural",
+        "Thriller"
+      ],
+      "tags": [
+        "変身能力",
+        "演技",
+        "復讐",
+        "アンチヒーロー",
+        "いじめ",
+        "犯罪",
+        "現代ファンタジー",
+        "更生",
+        "障害",
+        "サバイバル",
+        "成長譚",
+        "魔法",
+        "青年向け",
+        "哲学",
+        "三角関係",
+        "ヤンデレ",
+        "神話",
+        "部活",
+        "学園"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2013年10月23日頃"
+    },
+    {
       "seriesKey": "終わりのセラフ",
       "title": "終わりのセラフ 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51A24a-0UTL._SL500_.jpg",
@@ -10126,6 +11685,98 @@
       ],
       "publisher": "コアミックス",
       "releaseDate": "2020-04-01T00:00:01Z"
+    },
+    {
+      "seriesKey": "結婚指輪物語",
+      "title": "結婚指輪物語（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4307/9784757544307_1_2.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757544308",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757544308",
+      "magazine": "月刊ビッグガンガン",
+      "magazines": [
+        "月刊ビッグガンガン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Ecchi",
+        "Fantasy",
+        "Romance"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "異世界",
+        "複数恋愛",
+        "エルフ",
+        "超能力",
+        "悪魔",
+        "結婚",
+        "魔法",
+        "ボーイッシュ",
+        "青年向け",
+        "獣耳",
+        "剣術",
+        "旅",
+        "モンスター娘",
+        "政治",
+        "猫耳",
+        "暗殺者",
+        "王侯貴族"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2014年12月09日頃"
+    },
+    {
+      "seriesKey": "美少女戦士セーラームーン",
+      "title": "美少女戦士セーラームーン完全版（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9338/9784063649338_1_23.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063649334",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063649334",
+      "magazine": "なかよし",
+      "magazines": [
+        "なかよし"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Mahou Shoujo",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "魔法",
+        "失われた文明",
+        "現代ファンタジー",
+        "天文学",
+        "変身",
+        "成長譚",
+        "記憶操作",
+        "神話",
+        "戦争",
+        "コズミックホラー",
+        "悪魔",
+        "宇宙",
+        "超能力",
+        "宇宙人",
+        "LGBTQテーマ",
+        "スペースオペラ",
+        "童話",
+        "動物",
+        "都会",
+        "片思い",
+        "更生",
+        "哲学",
+        "多重人格"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2013年11月29日頃"
     },
     {
       "seriesKey": "聲の形",
@@ -10884,6 +12535,37 @@
       "releaseDate": "2019-07-25T00:00:01Z"
     },
     {
+      "seriesKey": "電撃デイジー",
+      "title": "電撃デイジー（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0913/09131306.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/409131306X",
+      "amazonUrl": "https://www.amazon.co.jp/dp/409131306X",
+      "magazine": "ベツコミ",
+      "magazines": [
+        "ベツコミ"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "学園",
+        "犯罪",
+        "不良",
+        "いじめ",
+        "孤児",
+        "都会",
+        "お嬢様"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2007年10月26日"
+    },
+    {
       "seriesKey": "青のフラッグ",
       "title": "青のフラッグ 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51Bs58HTlsL._SL500_.jpg",
@@ -11196,6 +12878,55 @@
       "releaseDate": "2024-04-06T00:00:01Z"
     },
     {
+      "seriesKey": "魔法先生ネギま!",
+      "title": "魔法先生ネギま！（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2682/9784063632682.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063632687",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063632687",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Ecchi",
+        "Fantasy"
+      ],
+      "tags": [
+        "超能力",
+        "逆ハーレム",
+        "魔法",
+        "ドタバタ",
+        "現代ファンタジー",
+        "教師",
+        "学園",
+        "少年向け",
+        "武術",
+        "ロボット",
+        "ヤンデレ",
+        "クーデレ",
+        "ボーイッシュ",
+        "成長譚",
+        "異世界",
+        "剣術",
+        "三角関係",
+        "ツンデレ",
+        "記憶操作",
+        "吸血鬼",
+        "忍者",
+        "海外",
+        "百合",
+        "スペースオペラ"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2003年07月17日頃"
+    },
+    {
       "seriesKey": "魔男のイチ",
       "title": "魔男のイチ 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51WD287PgpL._SL500_.jpg",
@@ -11322,6 +13053,35 @@
       ],
       "publisher": "スクウェア・エニックス",
       "releaseDate": "2007-02-27T00:00:01Z"
+    },
+    {
+      "seriesKey": "黒子のバスケ",
+      "title": "黒子のバスケ 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0887/08874694.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088746945",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088746945",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Sports"
+      ],
+      "tags": [
+        "学園",
+        "バスケットボール",
+        "少年向け",
+        "超能力",
+        "部活",
+        "ボーイッシュ",
+        "疑似家族"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2009年04月"
     },
     {
       "seriesKey": "黒岩メダカに私の可愛いが通じない",
