@@ -1,11 +1,12 @@
 // scripts/lane2/test_rakuten_books_api.mjs
 // FULL REPLACE
-// 楽天Books API 独立テスト
+// 楽天 Books Total Search API 独立テスト
 //
 // 必須 env:
 // RAKUTEN_APP_ID
 //
 // 任意 env:
+// RAKUTEN_ACCESS_KEY
 // RAKUTEN_AFFILIATE_ID
 // RAKUTEN_TEST_ISBN
 
@@ -30,35 +31,48 @@ async function safeReadText(res) {
 
 async function main() {
   const appId = norm(process.env.RAKUTEN_APP_ID);
+  const accessKey = norm(process.env.RAKUTEN_ACCESS_KEY);
   const affiliateId = norm(process.env.RAKUTEN_AFFILIATE_ID);
-  const isbn = norm(process.env.RAKUTEN_TEST_ISBN) || "9784088821294";
+  const isbnjan = norm(process.env.RAKUTEN_TEST_ISBN) || "9784088821294";
 
   console.log("[rakuten:test] env");
   console.log(`- APP_ID: ${mask(appId)}`);
+  console.log(`- ACCESS_KEY: ${accessKey ? "(set)" : "(empty)"}`);
   console.log(`- AFFILIATE_ID: ${affiliateId ? "(set)" : "(empty)"}`);
-  console.log(`- TEST_ISBN: ${isbn}`);
+  console.log(`- TEST_ISBNJAN: ${isbnjan}`);
 
   if (!appId) {
     console.error("[rakuten:test] missing env: RAKUTEN_APP_ID");
     process.exit(1);
   }
 
-  const url = new URL("https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404");
+  const url = new URL("https://openapi.rakuten.co.jp/services/api/BooksTotal/Search/20170404");
   url.searchParams.set("applicationId", appId);
   url.searchParams.set("format", "json");
-  url.searchParams.set("isbn", isbn);
+  url.searchParams.set("formatVersion", "2");
+  url.searchParams.set("isbnjan", isbnjan);
+  url.searchParams.set("outOfStockFlag", "1");
 
   if (affiliateId) {
     url.searchParams.set("affiliateId", affiliateId);
   }
 
+  if (accessKey) {
+    url.searchParams.set("accessKey", accessKey);
+  }
+
   console.log(`[rakuten:test] GET ${url.origin}${url.pathname}?...`);
+
+  const headers = {
+    "User-Agent": "tools-labo/book-scout lane2 rakuten-test",
+  };
+  if (accessKey) {
+    headers["Authorization"] = `Bearer ${accessKey}`;
+  }
 
   const res = await fetch(url.toString(), {
     method: "GET",
-    headers: {
-      "User-Agent": "tools-labo/book-scout lane2 rakuten-test",
-    },
+    headers,
   });
 
   const text = await safeReadText(res);
@@ -73,16 +87,13 @@ async function main() {
   }
 
   if (!res.ok) {
-    if (json) {
-      console.log(JSON.stringify(json, null, 2));
-    } else {
-      console.log(text);
-    }
+    if (json) console.log(JSON.stringify(json, null, 2));
+    else console.log(text);
     process.exit(2);
   }
 
   const items = Array.isArray(json?.Items) ? json.Items : [];
-  const first = items[0]?.Item || null;
+  const first = items[0] || null;
 
   console.log(`[rakuten:test] hit_count=${items.length}`);
 
@@ -97,6 +108,7 @@ async function main() {
     publisherName: first.publisherName || null,
     salesDate: first.salesDate || null,
     isbn: first.isbn || null,
+    jan: first.jan || null,
     itemUrl: first.itemUrl || null,
     affiliateUrl: first.affiliateUrl || null,
     smallImageUrl: first.smallImageUrl || null,
