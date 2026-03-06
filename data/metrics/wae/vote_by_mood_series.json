@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T19:47:13.806Z",
-  "updatedAtJst": "2026-03-07 04:47:13",
+  "updatedAt": "2026-03-06T20:48:08.558Z",
+  "updatedAtJst": "2026-03-07 05:48:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -42,7 +42,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "監獄学園",
+      "seriesKey": "チェンソーマン",
       "n": "2"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "監獄学園",
       "n": "2"
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ぼくたちは勉強ができない",
       "n": "2"
     },
     {
@@ -77,6 +77,11 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ぐらんぶる",
       "n": "1"
     },
@@ -87,17 +92,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "神のみぞ知るセカイ",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "ニセコイ",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "暗殺教室",
+      "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
       "n": "1"
     },
     {
@@ -282,11 +282,6 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "桜蘭高校ホスト部",
       "n": "1"
     },
@@ -297,12 +292,17 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "ロザリオとバンパイア",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "銀魂",
+      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -382,13 +382,18 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "3"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "キングダム",
       "n": "3"
     },
     {
       "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "3"
+      "seriesKey": "銀魂",
+      "n": "2"
     },
     {
       "mood": "hot",
@@ -397,7 +402,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "銀魂",
+      "seriesKey": "ちはやふる",
       "n": "2"
     },
     {
@@ -412,12 +417,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
       "mood": "hot",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ベルセルク",
       "n": "2"
     },
     {
@@ -427,27 +432,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ちはやふる",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ゴールデンカムイ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "リアル",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "はじめの一歩",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -457,12 +442,22 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "はじめの一歩",
       "n": "1"
     },
     {
       "mood": "hot",
       "seriesKey": "バガボンド",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "リアル",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
@@ -473,6 +468,11 @@
     {
       "mood": "hot",
       "seriesKey": "ソウルイーター",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -492,37 +492,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "おやすみプンプン",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "しまなみ誰そ彼",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
       "seriesKey": "ベルセルク",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "ぼくは麻理のなか",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "ノ・ゾ・キ・ア・ナ",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
@@ -532,12 +502,42 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "おやすみプンプン",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
       "mood": "messy",
       "seriesKey": "君は淫らな僕の女王",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "少年のアビス",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -572,32 +572,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "よつばと！",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
@@ -607,37 +582,22 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "聲の形",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "よつばと！",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ソラニン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ReLIFE",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "1"
     },
     {
@@ -647,17 +607,57 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "バガボンド",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ソラニン",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "ドラゴンボール",
       "n": "3"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "3"
     },
     {
@@ -677,22 +677,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "君は淫らな僕の女王",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -702,12 +687,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "魔入りました！入間くん",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "血の轍",
       "n": "1"
     },
     {
@@ -717,22 +697,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ゴールデンカムイ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "血の轍",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
       "mood": "page_turner",
       "seriesKey": "約束のネバーランド",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "不滅のあなたへ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -747,7 +727,27 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "魔入りました！入間くん",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "アイアムアヒーロー",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -767,7 +767,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "2"
     },
     {
@@ -777,12 +777,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
+      "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
@@ -797,17 +802,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "ケンガンアシュラ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
     {
@@ -817,17 +822,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "東京卍リベンジャーズ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
     {
@@ -842,12 +842,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "タコピーの原罪",
       "n": "3"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "3"
     },
     {
@@ -867,12 +867,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -882,12 +882,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
@@ -897,7 +897,32 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "メイドインアビス",
+      "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "約束のネバーランド",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "リアル",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "【推しの子】",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "蟲師",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "進撃の巨人",
       "n": "1"
     },
     {
@@ -908,31 +933,6 @@
     {
       "mood": "tearjerker",
       "seriesKey": "アクタージュ act-age",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "【推しの子】",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "しまなみ誰そ彼",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "進撃の巨人",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
