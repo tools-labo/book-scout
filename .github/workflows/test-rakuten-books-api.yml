@@ -1,0 +1,32 @@
+# .github/workflows/test-rakuten-books-api.yml
+name: Test Rakuten Books API
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_isbn:
+        description: "Test ISBN-13"
+        required: false
+        default: "9784088821294"
+        type: string
+
+jobs:
+  test-rakuten-books-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Rakuten Books API test
+        run: node scripts/lane2/test_rakuten_books_api.mjs
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_TEST_ISBN: ${{ inputs.test_isbn }}
