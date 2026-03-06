@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T14:56:26.242Z",
-  "updatedAtJst": "2026-03-06 23:56:26",
+  "updatedAt": "2026-03-06T15:52:49.009Z",
+  "updatedAtJst": "2026-03-07 00:52:49",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -176,14 +176,14 @@
       "n": "3"
     },
     {
-      "genre": "genre=fantasy",
+      "genre": "genre=drama",
       "aud": "",
       "mag": "",
       "mood": "",
       "n": "3"
     },
     {
-      "genre": "genre=drama",
+      "genre": "genre=fantasy",
       "aud": "",
       "mag": "",
       "mood": "",
@@ -316,9 +316,9 @@
       "n": "1"
     },
     {
-      "genre": "",
+      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
       "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -330,9 +330,9 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
+      "genre": "",
       "aud": "aud=少年",
-      "mag": "",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -344,10 +344,10 @@
       "n": "1"
     },
     {
-      "genre": "genre=sports,drama",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=messy,tearjerker",
       "n": "1"
     },
     {
@@ -358,16 +358,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
-      "aud": "aud=少年",
-      "mag": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Cocohana",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -393,10 +393,10 @@
       "n": "1"
     },
     {
-      "genre": "",
+      "genre": "genre=sports,drama",
       "aud": "",
       "mag": "",
-      "mood": "mood=messy,tearjerker",
+      "mood": "",
       "n": "1"
     },
     {
@@ -459,7 +459,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Action&mood=moving",
+      "mood": "mood=heart_throb,healing",
       "n": "1"
     },
     {
@@ -480,7 +480,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,healing",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
@@ -564,14 +564,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Fantasy",
+      "mood": "mood=hot,heart_throb",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=hot,heart_throb",
+      "mood": "genre=Fantasy",
       "n": "1"
     },
     {
