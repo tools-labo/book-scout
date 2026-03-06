@@ -6024,14 +6024,13 @@
           "サバイバル",
           "宇宙人",
           "都会",
+          "アクロバット",
           "タイムループ",
           "天使",
           "学園",
           "バトルロイヤル"
         ],
-        "tags_missing_en": [
-          "Acrobatics"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -7914,12 +7913,10 @@
           "年上女性",
           "教師",
           "いじめ",
-          "ヤンデレ"
+          "ヤンデレ",
+          "エアソフトガン"
         ],
-        "tags_missing_en": [
-          "Boobjob",
-          "Airsoft"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -11048,7 +11045,7 @@
           "ベツコミ"
         ],
         "audiences": [
-          "その他"
+          "少女"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "電撃デイジー",
@@ -11076,18 +11073,17 @@
         ],
         "tags": [
           "少女",
+          "ソフトウェア開発",
           "学園",
           "犯罪",
           "不良",
           "いじめ",
           "孤児",
+          "園芸",
           "都会",
           "お嬢様"
         ],
-        "tags_missing_en": [
-          "Software Development",
-          "Horticulture"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -11891,10 +11887,7 @@
           "青年向け",
           "ヤンデレ"
         ],
-        "tags_missing_en": [
-          "Masochism",
-          "Bondage"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null

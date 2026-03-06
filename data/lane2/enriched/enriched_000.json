@@ -182,13 +182,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16023375/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16023375%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ+",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "2.5次元の誘惑",
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 110785,
         "genres": [
           "Comedy",
@@ -661,12 +663,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/11411226/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F11411226%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングマガジン",
+        "magazines": [
+          "週刊ヤングマガジン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 66099,
         "genres": [
@@ -1113,12 +1117,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/1545800/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F1545800%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングサンデー / ビッグコミックスピリッツ",
+        "magazines": [
+          "週刊ヤングサンデー",
+          "ビッグコミックスピリッツ"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 37482,
         "genres": [
@@ -3026,7 +3033,7 @@
           "月刊ヤングチャンピオン烈"
         ],
         "audiences": [
-          "その他"
+          "青年"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ヴォイニッチホテル",
@@ -3074,6 +3081,7 @@
           "メイド",
           "暗殺者",
           "海外",
+          "旅館",
           "麻雀",
           "ヤクザ",
           "幽霊",
@@ -3087,9 +3095,7 @@
           "記憶喪失",
           "バイセクシュアル"
         ],
-        "tags_missing_en": [
-          "Inn"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -3433,13 +3439,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/13260163/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F13260163%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "月刊コンプエース",
+        "magazines": [
+          "月刊コンプエース"
         ],
-        "magazineSource": null,
-        "wikiTitle": "オーバーロード",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 85934,
         "genres": [
           "Action",
@@ -3568,9 +3576,7 @@
           "絵・作画",
           "切断"
         ],
-        "tags_missing_en": [
-          "Hypersexuality"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -3785,13 +3791,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/14595997/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F14595997%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊ヤングマガジン",
+        "magazines": [
+          "週刊ヤングマガジン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "オリジン",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 98227,
         "genres": [
           "Action",
@@ -4393,12 +4401,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/15222201/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F15222201%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "マンガワン",
+        "magazines": [
+          "マンガワン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 99549,
         "genres": [
@@ -4484,12 +4494,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/17930835/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F17930835%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ふらっとヒーローズ",
+        "magazines": [
+          "ふらっとヒーローズ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 86549,
         "genres": [
@@ -6991,13 +7003,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/1465959/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F1465959%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "花とゆめ",
+        "magazines": [
+          "花とゆめ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "スキップ・ビート",
+        "audiences": [
+          "少女"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30610,
         "genres": [
           "Drama",
@@ -7189,13 +7203,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/11841992/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F11841992%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "電撃マオウ",
+        "magazines": [
+          "電撃マオウ"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ソードアート・オンライン",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 53718,
         "genres": [
           "Action",
@@ -8122,12 +8138,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/1584764/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F1584764%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年マガジン",
+        "magazines": [
+          "週刊少年マガジン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 30009,
         "genres": [
@@ -8778,15 +8796,17 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/1167442/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F1167442%2F",
         "bookMetaSource": "rakuten",
-        "magazine": "月刊少年キャプテン",
+        "magazine": "月刊少年キャプテン / ヤングキングアワーズ",
         "magazines": [
-          "月刊少年キャプテン"
+          "月刊少年キャプテン",
+          "ヤングキングアワーズ"
         ],
         "audiences": [
-          "その他"
+          "少年",
+          "青年"
         ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "トライガン",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 30703,
         "genres": [
           "Action",
@@ -9898,8 +9918,8 @@
           "月刊少年ガンガン"
         ],
         "audiences": [
-          "その他",
-          "少年"
+          "少年",
+          "Web/アプリ"
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "ばらかもん",
@@ -9944,11 +9964,10 @@
           "車",
           "少年向け",
           "農業",
+          "自転車",
           "女装・男装"
         ],
-        "tags_missing_en": [
-          "Cycling"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -10100,15 +10119,7 @@
           "神々",
           "剣術"
         ],
-        "tags_missing_en": [
-          "Defloration",
-          "Bondage",
-          "Squirting",
-          "Masochism",
-          "Irrumatio",
-          "Exhibitionism",
-          "Deepthroat"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -10324,12 +10335,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/12953154/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F12953154%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "Canna",
+        "magazines": [
+          "Canna"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 85922,
         "genres": [
@@ -10380,13 +10393,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16042205/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16042205%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "コミックガルド",
+        "magazines": [
+          "コミックガルド"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ひとりぼっちの異世界攻略",
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 107540,
         "genres": [
           "Action",
@@ -10744,12 +10759,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16046549/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16046549%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "マンガワン",
+        "magazines": [
+          "マンガワン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 110140,
         "genres": [
@@ -11167,13 +11184,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/1581314/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F1581314%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "IKKI",
+        "magazines": [
+          "IKKI"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "フリージア",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 31131,
         "genres": [
           "Action",
@@ -11235,12 +11254,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16063216/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16063216%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ゼノン編集部",
+        "magazines": [
+          "ゼノン編集部"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 118730,
         "genres": [
@@ -11516,13 +11537,16 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/17087626/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F17087626%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "裏サンデー / マンガワン",
+        "magazines": [
+          "裏サンデー",
+          "マンガワン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ミハエル・ヘルク",
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 86720,
         "genres": [
           "Action",
@@ -11750,13 +11774,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/6454435/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F6454435%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "ヤングコミック",
+        "magazines": [
+          "ヤングコミック"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ベルベット・キス",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 52638,
         "genres": [
           "Drama",
@@ -12205,6 +12231,7 @@
         ],
         "audiences": [
           "その他",
+          "Web/アプリ",
           "少年"
         ],
         "magazineSource": "wikipedia",
@@ -12250,11 +12277,13 @@
           "動物",
           "子どもが中心",
           "成長譚",
+          "代理戦争",
           "ボーイッシュ",
           "犯罪組織",
           "現代ファンタジー",
           "魔物使い",
           "ゲーム",
+          "子ども",
           "ギャング",
           "海辺",
           "お嬢様",
@@ -12268,10 +12297,7 @@
           "学園",
           "環境問題"
         ],
-        "tags_missing_en": [
-          "Proxy Battle",
-          "Kids"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -12292,12 +12318,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/17504200/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F17504200%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "マンガワン",
+        "magazines": [
+          "マンガワン"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 159142,
         "genres": [
@@ -12706,13 +12734,16 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/15336895/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F15336895%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
+        "magazine": "月刊コミックアース・スター",
+        "magazines": [
+          "月刊コミックアース",
+          "スター"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
-        "wikiTitle": "また、同じ夢を見ていた",
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 105747,
         "genres": [
           "Drama",
@@ -13070,13 +13101,16 @@
         "publisher": "小学館",
         "author": "ONE",
         "releaseDate": "2012-11-16T00:00:01Z",
-        "magazine": "裏サンデー／マンガワン",
+        "rakutenUrl": null,
+        "rakutenAffiliateUrl": null,
+        "bookMetaSource": "prev",
+        "magazine": "裏サンデー / マンガワン",
         "magazines": [
           "裏サンデー",
           "マンガワン"
         ],
         "audiences": [
-          "その他"
+          "Web/アプリ"
         ],
         "magazineSource": "manual_override",
         "wikiTitle": null,
@@ -13133,7 +13167,7 @@
           "呪い"
         ],
         "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
@@ -13510,6 +13544,7 @@
           "幽霊",
           "逆ハーレム",
           "少年向け",
+          "旅館",
           "妖怪",
           "超能力",
           "忍者",
@@ -13526,9 +13561,7 @@
           "教師",
           "経済"
         ],
-        "tags_missing_en": [
-          "Inn"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
