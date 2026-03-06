@@ -1,4 +1,3 @@
-# .github/workflows/test-rakuten-books-api.yml
 name: Test Rakuten Books API
 
 on:
@@ -27,8 +26,7 @@ jobs:
       - name: Run Rakuten Books API test
         run: node scripts/lane2/test_rakuten_books_api.mjs
         env:
-           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
-           RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
-           RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
-           RAKUTEN_TEST_ISBN: ${{ inputs.test_isbn }}
-           
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_TEST_ISBN: ${{ inputs.test_isbn }}
