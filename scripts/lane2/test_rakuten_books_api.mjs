@@ -4,11 +4,13 @@
 //
 // 必須 env:
 // RAKUTEN_APP_ID
+// RAKUTEN_ACCESS_KEY
 //
 // 任意 env:
-// RAKUTEN_ACCESS_KEY
 // RAKUTEN_AFFILIATE_ID
 // RAKUTEN_TEST_ISBN
+// RAKUTEN_TEST_REFERER
+// RAKUTEN_TEST_ORIGIN
 
 function norm(v) {
   return String(v ?? "").trim();
@@ -34,15 +36,23 @@ async function main() {
   const accessKey = norm(process.env.RAKUTEN_ACCESS_KEY);
   const affiliateId = norm(process.env.RAKUTEN_AFFILIATE_ID);
   const isbnjan = norm(process.env.RAKUTEN_TEST_ISBN) || "9784088821294";
+  const referer = norm(process.env.RAKUTEN_TEST_REFERER) || "https://book-scout.tools-labo.com/";
+  const origin = norm(process.env.RAKUTEN_TEST_ORIGIN) || "https://book-scout.tools-labo.com";
 
   console.log("[rakuten:test] env");
   console.log(`- APP_ID: ${mask(appId)}`);
   console.log(`- ACCESS_KEY: ${accessKey ? "(set)" : "(empty)"}`);
   console.log(`- AFFILIATE_ID: ${affiliateId ? "(set)" : "(empty)"}`);
   console.log(`- TEST_ISBNJAN: ${isbnjan}`);
+  console.log(`- REFERER: ${referer}`);
+  console.log(`- ORIGIN: ${origin}`);
 
-  if (!appId) {
-    console.error("[rakuten:test] missing env: RAKUTEN_APP_ID");
+  const missing = [];
+  if (!appId) missing.push("RAKUTEN_APP_ID");
+  if (!accessKey) missing.push("RAKUTEN_ACCESS_KEY");
+
+  if (missing.length) {
+    console.error(`[rakuten:test] missing env: ${missing.join(", ")}`);
     process.exit(1);
   }
 
@@ -57,18 +67,14 @@ async function main() {
     url.searchParams.set("affiliateId", affiliateId);
   }
 
-  if (accessKey) {
-    url.searchParams.set("accessKey", accessKey);
-  }
-
   console.log(`[rakuten:test] GET ${url.origin}${url.pathname}?...`);
 
   const headers = {
     "User-Agent": "tools-labo/book-scout lane2 rakuten-test",
+    "Authorization": `Bearer ${accessKey}`,
+    "Referer": referer,
+    "Origin": origin,
   };
-  if (accessKey) {
-    headers["Authorization"] = `Bearer ${accessKey}`;
-  }
 
   const res = await fetch(url.toString(), {
     method: "GET",
@@ -87,8 +93,11 @@ async function main() {
   }
 
   if (!res.ok) {
-    if (json) console.log(JSON.stringify(json, null, 2));
-    else console.log(text);
+    if (json) {
+      console.log(JSON.stringify(json, null, 2));
+    } else {
+      console.log(text);
+    }
     process.exit(2);
   }
 
