@@ -1,12 +1,21 @@
 // scripts/lane2/enrich_lane2.mjs
 // FULL REPLACE
-// - enriched.json 巨大問題の根本対策：sharded output (index.json + enriched_000.json...)
-// - prevEnriched は sharded を優先して読む（無ければ旧 enriched.json を読む）
-// - 出力は sharded のみ（旧 enriched.json は更新しない）
+// 1/3
+// - sharded enriched を維持
+// - 書誌メタ取得層を中立化（provider は現状 Rakuten）
+// - vol1 出力キーは downstream 互換を優先して維持
+// - amazonDp は manual amazonUrl / prev を使って埋める
+// - title / image / publisher / author / releaseDate は Rakuten で補完
+// - synopsis は引き続き series.json 手動値を優先
+//
+// 【分割ルール】
+// - 1/3 はこの END マーカーで必ず終わる
+// - 2/3 は START マーカーから必ず始める
+// - 3/3 は START マーカーから必ず始める
+// token: R7K2
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import crypto from "node:crypto";
 
 const IN_SERIES = "data/lane2/series.json";
 const IN_MAG_OVERRIDES = "data/lane2/magazine_overrides.json";
@@ -21,7 +30,7 @@ const IN_MAG_AUDIENCE_TODO = "data/lane2/magazine_audience_todo.json";
 const CACHE_DIR = "data/lane2/cache";
 const CACHE_ANILIST = `${CACHE_DIR}/anilist.json`;
 const CACHE_WIKI = `${CACHE_DIR}/wiki.json`;
-const CACHE_AMZ = `${CACHE_DIR}/amazon.json`;
+const CACHE_BOOK_META = `${CACHE_DIR}/book_meta.json`;
 
 // ★旧（互換読み取り用：書き出しはしない）
 const LEGACY_ENRICHED = "data/lane2/enriched.json";
@@ -33,6 +42,10 @@ const OUT_ENRICH_PREFIX = "enriched_";
 const ENRICH_SHARD_SIZE = 200;
 
 const OUT_MAG_TODO = "data/lane2/magazine_todo.json";
+
+// Rakuten Books Total Search
+const RAKUTEN_BOOKS_TOTAL_URL =
+  "https://openapi.rakuten.co.jp/services/api/BooksTotal/Search/20170404";
 
 function nowIso() { return new Date().toISOString(); }
 
@@ -74,9 +87,6 @@ function normTagKey(s) {
     .normalize("NFKC");
 }
 
-/**
- * 雑誌名の辞書一致を安定化する正規化
- */
 function normMagazineKey(s) {
   return String(s ?? "")
     .replace(/\u00A0/g, " ")
@@ -142,6 +152,7 @@ async function loadEnrichedSharded() {
     const items = Array.isArray(j?.items) ? j.items : [];
     all.push(...items);
   }
+
   return {
     updatedAt: idx?.updatedAt ?? "",
     total: Number(idx?.total || all.length),
@@ -150,7 +161,6 @@ async function loadEnrichedSharded() {
 }
 
 async function loadPrevEnrichedCompat() {
-  // 1) new sharded
   try {
     const sh = await loadEnrichedSharded();
     if (sh) return sh;
@@ -158,10 +168,13 @@ async function loadPrevEnrichedCompat() {
     console.log(`[lane2:enrich] warn: failed to read sharded enriched: ${String(e?.message || e)}`);
   }
 
-  // 2) legacy single file
   const legacy = await loadJson(LEGACY_ENRICHED, { updatedAt: "", total: 0, items: [] });
   const items = Array.isArray(legacy?.items) ? legacy.items : [];
-  return { updatedAt: legacy?.updatedAt ?? "", total: Number(legacy?.total || items.length), items };
+  return {
+    updatedAt: legacy?.updatedAt ?? "",
+    total: Number(legacy?.total || items.length),
+    items,
+  };
 }
 
 async function writeEnrichedSharded({ items, updatedAt, stats }) {
@@ -171,12 +184,12 @@ async function writeEnrichedSharded({ items, updatedAt, stats }) {
   const lookup = {};
   const total = items.length;
 
-  const shardSize = ENRICH_SHARD_SIZE;
-  const nShards = Math.max(1, Math.ceil(total / shardSize));
+  const nShards = Math.max(1, Math.ceil(total / ENRICH_SHARD_SIZE));
 
   for (let i = 0; i < nShards; i++) {
-    const slice = items.slice(i * shardSize, (i + 1) * shardSize);
+    const slice = items.slice(i * ENRICH_SHARD_SIZE, (i + 1) * ENRICH_SHARD_SIZE);
     const file = shardFileName(OUT_ENRICH_PREFIX, i);
+
     shards.push({ file, count: slice.length });
 
     for (const it of slice) {
@@ -197,7 +210,7 @@ async function writeEnrichedSharded({ items, updatedAt, stats }) {
     version: 1,
     updatedAt: updatedAt || nowIso(),
     total,
-    shardSize,
+    shardSize: ENRICH_SHARD_SIZE,
     shards,
     lookup,
     stats: stats || {},
@@ -330,20 +343,9 @@ function mergeTodoFromPrevMissingTags({ prevEnrichedItems, todoSet, hideSet }) {
 }
 
 /* -----------------------
- * 充足判定
+ * Completeness checks
  * ----------------------- */
-function hasAniListFilled(prevVol1) {
-  return !!(
-    prevVol1 &&
-    prevVol1.anilistId &&
-    Array.isArray(prevVol1.genres) &&
-    prevVol1.genres.length > 0 &&
-    Array.isArray(prevVol1.tags_en) &&
-    prevVol1.tags_en.length > 0
-  );
-}
-function hasMagazineFilled(prevVol1) { return !!(prevVol1 && norm(prevVol1.magazine)); }
-function hasAmazonFilled(vol1) {
+function hasBookMetaFilled(vol1) {
   return !!(
     vol1 &&
     norm(vol1.amazonDp) &&
@@ -354,25 +356,51 @@ function hasAmazonFilled(vol1) {
     norm(vol1.title)
   );
 }
-function isPerfectVol1(prevVol1, hideSet) {
-  if (!prevVol1) return false;
-  if (!hasAmazonFilled(prevVol1)) return false;
-  if (!hasMagazineFilled(prevVol1)) return false;
-  if (!hasAniListFilled(prevVol1)) return false;
 
-  if (!Array.isArray(prevVol1.magazines) || prevVol1.magazines.length === 0) return false;
-  if (!Array.isArray(prevVol1.audiences) || prevVol1.audiences.length === 0) return false;
-  if (!Array.isArray(prevVol1.tags) || prevVol1.tags.length === 0) return false;
+function hasMagazineMetaFilled(vol1) {
+  return !!(
+    vol1 &&
+    norm(vol1.magazine) &&
+    Array.isArray(vol1.magazines) &&
+    vol1.magazines.length > 0 &&
+    Array.isArray(vol1.audiences) &&
+    vol1.audiences.length > 0
+  );
+}
 
-  const miss = Array.isArray(prevVol1.tags_missing_en) ? prevVol1.tags_missing_en : [];
-  if (miss.length > 0) {
-    const hs = hideSet instanceof Set ? hideSet : new Set();
-    const remain = miss
-      .map((x) => normTagKey(x))
-      .filter(Boolean)
-      .filter((k) => !hs.has(k));
-    if (remain.length > 0) return false;
-  }
+function hasAniListMetaFilled(vol1) {
+  return !!(
+    vol1 &&
+    vol1.anilistId &&
+    Array.isArray(vol1.genres) &&
+    vol1.genres.length > 0 &&
+    Array.isArray(vol1.tags_en) &&
+    vol1.tags_en.length > 0
+  );
+}
+
+function hasJaTagsFilled(vol1, hideSet) {
+  if (!vol1) return false;
+  if (!Array.isArray(vol1.tags) || vol1.tags.length === 0) return false;
+
+  const miss = Array.isArray(vol1.tags_missing_en) ? vol1.tags_missing_en : [];
+  if (miss.length === 0) return true;
+
+  const hs = hideSet instanceof Set ? hideSet : new Set();
+  const remain = miss
+    .map((x) => normTagKey(x))
+    .filter(Boolean)
+    .filter((k) => !hs.has(k));
+
+  return remain.length === 0;
+}
+
+function isPerfectVol1(vol1, hideSet) {
+  if (!vol1) return false;
+  if (!hasBookMetaFilled(vol1)) return false;
+  if (!hasMagazineMetaFilled(vol1)) return false;
+  if (!hasAniListMetaFilled(vol1)) return false;
+  if (!hasJaTagsFilled(vol1, hideSet)) return false;
   return true;
 }
 
@@ -380,7 +408,7 @@ function explainPerfectFail(vol1, hideSet) {
   const reasons = [];
   if (!vol1) return ["noVol1"];
 
-  if (!hasAmazonFilled(vol1)) {
+  if (!hasBookMetaFilled(vol1)) {
     const miss = [];
     if (!norm(vol1.amazonDp)) miss.push("amazonDp");
     if (!norm(vol1.image)) miss.push("image");
@@ -388,11 +416,16 @@ function explainPerfectFail(vol1, hideSet) {
     if (!norm(vol1.author)) miss.push("author");
     if (!norm(vol1.releaseDate)) miss.push("releaseDate");
     if (!norm(vol1.title)) miss.push("title");
-    reasons.push(`amazon(${miss.join("|") || "unknown"})`);
+    reasons.push(`bookMeta(${miss.join("|") || "unknown"})`);
   }
-  if (!hasMagazineFilled(vol1)) reasons.push("magazine");
 
-  if (!hasAniListFilled(vol1)) {
+  if (!hasMagazineMetaFilled(vol1)) {
+    if (!norm(vol1.magazine)) reasons.push("magazine");
+    if (!Array.isArray(vol1.magazines) || vol1.magazines.length === 0) reasons.push("magazines[]");
+    if (!Array.isArray(vol1.audiences) || vol1.audiences.length === 0) reasons.push("audiences[]");
+  }
+
+  if (!hasAniListMetaFilled(vol1)) {
     const miss = [];
     if (!vol1.anilistId) miss.push("anilistId");
     if (!Array.isArray(vol1.genres) || vol1.genres.length === 0) miss.push("genres[]");
@@ -400,8 +433,6 @@ function explainPerfectFail(vol1, hideSet) {
     reasons.push(`anilist(${miss.join("|") || "unknown"})`);
   }
 
-  if (!Array.isArray(vol1.magazines) || vol1.magazines.length === 0) reasons.push("magazines[]");
-  if (!Array.isArray(vol1.audiences) || vol1.audiences.length === 0) reasons.push("audiences[]");
   if (!Array.isArray(vol1.tags) || vol1.tags.length === 0) reasons.push("tagsJa[]");
 
   const miss = Array.isArray(vol1.tags_missing_en) ? vol1.tags_missing_en : [];
@@ -413,6 +444,7 @@ function explainPerfectFail(vol1, hideSet) {
       .filter((k) => !hs.has(k));
     if (remain.length > 0) reasons.push(`tags_missing_en(remain=${remain.length})`);
   }
+
   return reasons;
 }
 
@@ -420,11 +452,6 @@ function explainPerfectFail(vol1, hideSet) {
  * perfect未達理由の集計（debug用）
  * ----------------------- */
 function bumpReason(reasons, key) { reasons[key] = (reasons[key] || 0) + 1; }
-function pushSample(samples, key, seriesKey, limit = 12) {
-  if (!samples[key]) samples[key] = [];
-  if (samples[key].length >= limit) return;
-  samples[key].push(seriesKey);
-}
 function pushSampleLine(samples, key, line, limit = 12) {
   if (!samples[key]) samples[key] = [];
   if (samples[key].length >= limit) return;
@@ -522,6 +549,10 @@ function extractFromAniList(media) {
   return { id: media?.id ?? null, genres, tags };
 }
 
+/* END PART 1/3 - token: R7K2 */
+
+/* START PART 2/3 - token: R7K2 */
+
 /* -----------------------
  * Wikipedia (magazine only)
  * ----------------------- */
@@ -532,7 +563,9 @@ async function wikiApi(params) {
     origin: "*",
     ...params,
   }).toString()}`;
-  const r = await fetch(url, { headers: { "user-agent": "tools-labo/book-scout lane2 wiki" } });
+  const r = await fetch(url, {
+    headers: { "user-agent": "tools-labo/book-scout lane2 wiki" },
+  });
   if (!r.ok) throw new Error(`wiki_http_${r.status}`);
   return await r.json();
 }
@@ -610,280 +643,230 @@ async function fetchWikiMagazineBySeriesKey({ seriesKey, cache }) {
       redirects: "1",
     });
     pageHtml = p?.parse?.text?.["*"] ?? null;
-  } catch { pageHtml = null; }
+  } catch {
+    pageHtml = null;
+  }
 
   const magazine = extractMagazineFromInfoboxHtml(pageHtml);
-  const out = { pageid: bestHit.pageid, title: bestHit.title || null, magazine: magazine || null };
+  const out = {
+    pageid: bestHit.pageid,
+    title: bestHit.title || null,
+    magazine: magazine || null,
+  };
   cache[key] = out;
   return { ok: true, data: out, found: true };
 }
 
 /* -----------------------
- * Amazon PA-API (GetItems)
+ * Rakuten Books Total Search
  * ----------------------- */
-function hmac(key, data, enc = null) {
-  return crypto.createHmac("sha256", key).update(data, "utf8").digest(enc || undefined);
-}
-function sha256Hex(s) {
-  return crypto.createHash("sha256").update(s, "utf8").digest("hex");
-}
-function toAmzDate(d = new Date()) {
-  const pad = (n) => String(n).padStart(2, "0");
-  const yyyy = d.getUTCFullYear();
-  const mm = pad(d.getUTCMonth() + 1);
-  const dd = pad(d.getUTCDate());
-  const hh = pad(d.getUTCHours());
-  const mi = pad(d.getUTCMinutes());
-  const ss = pad(d.getUTCSeconds());
-  return { amzDate: `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`, dateStamp: `${yyyy}${mm}${dd}` };
-}
-function signKey(secretKey, dateStamp, region, service) {
-  const kDate = hmac("AWS4" + secretKey, dateStamp);
-  const kRegion = hmac(kDate, region);
-  const kService = hmac(kRegion, service);
-  return hmac(kService, "aws4_request");
-}
-function isRetryablePaapiStatus(status) {
-  return status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
-}
-function summarizePaapiError(json, text) {
-  const code = json?.Errors?.[0]?.Code || json?.Error?.Code || json?.__type || null;
-  const msg = json?.Errors?.[0]?.Message || json?.Error?.Message || null;
+function summarizeRakutenError({ status, json, text }) {
+  const code =
+    json?.errors?.errorCode ??
+    json?.errorCode ??
+    status ??
+    null;
+
+  const message =
+    json?.errors?.errorMessage ??
+    json?.errorMessage ??
+    null;
+
   const shortText = (() => {
     const t = String(text ?? "");
     if (!t) return null;
     return t.length > 180 ? t.slice(0, 180) + "…" : t;
   })();
-  return { code, message: msg, shortText };
-}
-async function paapiPost({ host, region, accessKey, secretKey, target, path: apiPath, payload }) {
-  const service = "ProductAdvertisingAPI";
-  const endpoint = `https://${host}${apiPath}`;
 
-  const { amzDate, dateStamp } = toAmzDate(new Date());
-  const contentType = "application/json; charset=utf-8";
-
-  const canonicalUri = apiPath;
-  const canonicalQuery = "";
-  const canonicalHeaders =
-    `content-encoding:amz-1.0\n` +
-    `content-type:${contentType}\n` +
-    `host:${host}\n` +
-    `x-amz-date:${amzDate}\n` +
-    `x-amz-target:${target}\n`;
-  const signedHeaders = "content-encoding;content-type;host;x-amz-date;x-amz-target";
-  const payloadHash = sha256Hex(payload);
-
-  const canonicalRequest = ["POST", canonicalUri, canonicalQuery, canonicalHeaders, signedHeaders, payloadHash].join("\n");
-  const algorithm = "AWS4-HMAC-SHA256";
-  const credentialScope = `${dateStamp}/${region}/${service}/aws4_request`;
-  const stringToSign = [algorithm, amzDate, credentialScope, sha256Hex(canonicalRequest)].join("\n");
-  const signingKey = signKey(secretKey, dateStamp, region, service);
-  const signature = hmac(signingKey, stringToSign, "hex");
-
-  const authorization =
-    `${algorithm} ` +
-    `Credential=${accessKey}/${credentialScope}, ` +
-    `SignedHeaders=${signedHeaders}, ` +
-    `Signature=${signature}`;
-
-  const r = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "content-encoding": "amz-1.0",
-      "content-type": contentType,
-      host,
-      "x-amz-date": amzDate,
-      "x-amz-target": target,
-      Authorization: authorization,
-    },
-    body: payload,
-  });
-
-  const retryAfter = r.headers?.get?.("retry-after") ?? null;
-
-  const txt = await r.text();
-  let json = null;
-  try { json = JSON.parse(txt); } catch { json = null; }
-
-  if (!r.ok) return { ok: false, status: r.status, json, text: txt, retryAfter };
-  return { ok: true, status: r.status, json, retryAfter };
+  return { code, message, shortText };
 }
 
-function extractPaapiItem(item) {
-  if (!item) return null;
+function extractRakutenItem(item) {
+  if (!item || typeof item !== "object") return null;
 
-  const dp = item?.DetailPageURL ?? null;
-  const img =
-    item?.Images?.Primary?.Large?.URL ||
-    item?.Images?.Primary?.Medium?.URL ||
-    item?.Images?.Primary?.Small?.URL ||
-    null;
+  const large = norm(item?.largeImageUrl);
+  const medium = norm(item?.mediumImageUrl);
+  const small = norm(item?.smallImageUrl);
 
-  const title = item?.ItemInfo?.Title?.DisplayValue || item?.ItemInfo?.Title?.Value || null;
-
-  const manufacturer =
-    item?.ItemInfo?.ByLineInfo?.Manufacturer?.DisplayValue ||
-    item?.ItemInfo?.ByLineInfo?.Manufacturer?.Value ||
-    null;
-
-  const publisher = manufacturer || null;
-
-  const contributors = Array.isArray(item?.ItemInfo?.ByLineInfo?.Contributors)
-    ? item.ItemInfo.ByLineInfo.Contributors
-    : [];
-
-  const authorList = contributors
-    .filter((c) => String(c?.RoleType || "").toLowerCase() === "author")
-    .map((c) => c?.Name)
-    .filter(Boolean);
-
-  const authorFallback = contributors.map((c) => c?.Name).filter(Boolean);
-  const author = (authorList.length ? authorList : authorFallback).join(" / ") || null;
-
-  const releaseDate =
-    item?.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue ||
-    item?.ItemInfo?.ContentInfo?.PublicationDate?.Value ||
-    null;
-
-  return { amazonDp: dp, image: img, title, publisher, author, releaseDate };
+  return {
+    title: norm(item?.title) || null,
+    author: norm(item?.author) || null,
+    publisher: norm(item?.publisherName) || null,
+    releaseDate: norm(item?.salesDate) || null,
+    image: large || medium || small || null,
+    rakutenUrl: norm(item?.itemUrl) || null,
+    rakutenAffiliateUrl: norm(item?.affiliateUrl) || null,
+  };
 }
 
-function readCacheAmzEntry(cacheAmz, asin) {
-  const v = cacheAmz?.[asin];
+function readCacheBookMetaEntry(cacheBookMeta, isbn13) {
+  const v = cacheBookMeta?.[isbn13];
   if (!v) return null;
 
-  if (v === null) return { legacyNull: true, raw: v };
   if (v && typeof v === "object" && "ok" in v) return v;
-  if (v && typeof v === "object") return { ok: true, data: v, at: nowIso(), legacyWrapped: true };
+  if (v && typeof v === "object") {
+    return { ok: true, data: v, at: nowIso(), legacyWrapped: true };
+  }
   return null;
 }
-function writeCacheAmzSuccess(cacheAmz, asin, data) {
-  cacheAmz[asin] = { ok: true, data: data ?? null, at: nowIso() };
-}
-function writeCacheAmzError(cacheAmz, asin, { kind, status, error }) {
-  cacheAmz[asin] = { ok: false, kind, status: status ?? null, error: error ?? null, at: nowIso() };
+
+function writeCacheBookMetaSuccess(cacheBookMeta, isbn13, data) {
+  cacheBookMeta[isbn13] = { ok: true, data: data ?? null, at: nowIso() };
 }
 
-async function fetchPaapiByAsins({ asins, cache, creds, stats }) {
+function writeCacheBookMetaError(cacheBookMeta, isbn13, { kind, status, error }) {
+  cacheBookMeta[isbn13] = {
+    ok: false,
+    kind,
+    status: status ?? null,
+    error: error ?? null,
+    at: nowIso(),
+  };
+}
+
+async function fetchRakutenByIsbn13({ isbn13, creds }) {
+  const url = new URL(RAKUTEN_BOOKS_TOTAL_URL);
+  url.searchParams.set("applicationId", creds.appId);
+  url.searchParams.set("accessKey", creds.accessKey);
+  url.searchParams.set("format", "json");
+  url.searchParams.set("formatVersion", "2");
+  url.searchParams.set("isbnjan", isbn13);
+  url.searchParams.set("outOfStockFlag", "1");
+  if (creds.affiliateId) url.searchParams.set("affiliateId", creds.affiliateId);
+
+  const headers = {
+    "User-Agent": "tools-labo/book-scout lane2 rakuten",
+  };
+  if (creds.referer) headers.Referer = creds.referer;
+  if (creds.origin) headers.Origin = creds.origin;
+
+  const r = await fetch(url.toString(), {
+    method: "GET",
+    headers,
+  });
+
+  const text = await r.text();
+  let json = null;
+  try { json = JSON.parse(text); } catch { json = null; }
+
+  if (!r.ok) return { ok: false, status: r.status, json, text };
+
+  const items = Array.isArray(json?.Items) ? json.Items : [];
+  const first = items[0] || null;
+  if (!first) {
+    return { ok: true, status: r.status, json, item: null, found: false };
+  }
+
+  return { ok: true, status: r.status, json, item: first, found: true };
+}
+
+async function fetchRakutenByIsbn13s({ isbn13s, cacheBookMeta, creds, stats }) {
   const want = [];
-  for (const asin of asins) {
-    const a = norm(asin);
-    if (!a) continue;
 
-    const entry = readCacheAmzEntry(cache, a);
+  for (const raw of isbn13s) {
+    const isbn13 = norm(raw);
+    if (!isbn13) continue;
+
+    const entry = readCacheBookMetaEntry(cacheBookMeta, isbn13);
     if (entry && entry.ok) continue;
 
-    if (entry && entry.ok === false && entry.kind === "temporary") { want.push(a); continue; }
-    if (entry && entry.ok === false && entry.kind === "permanent") continue;
-
-    want.push(a);
+    if (entry && entry.ok === false && entry.kind === "temporary") {
+      want.push(isbn13);
+      continue;
+    }
+    if (entry && entry.ok === false && entry.kind === "permanent") {
+      continue;
+    }
+    want.push(isbn13);
   }
+
   if (!want.length) return;
 
   if (!creds?.enabled) {
-    for (const asin of want) {
-      writeCacheAmzError(cache, asin, {
+    for (const isbn13 of want) {
+      writeCacheBookMetaError(cacheBookMeta, isbn13, {
         kind: "temporary",
         status: null,
-        error: { code: "AMZ_CREDS_MISSING", message: "PA-API creds missing", shortText: null },
+        error: {
+          code: "RAKUTEN_CREDS_MISSING",
+          message: "Rakuten creds missing",
+          shortText: null,
+        },
       });
     }
     return;
   }
 
-  const host = creds.host;
-  const region = creds.region;
+  for (const isbn13 of want) {
+    if (stats) stats.requests++;
 
-  for (let i = 0; i < want.length; i += 10) {
-    const chunk = want.slice(i, i + 10);
-
-    const payloadObj = {
-      ItemIds: chunk,
-      PartnerTag: creds.partnerTag,
-      PartnerType: "Associates",
-      Marketplace: "www.amazon.co.jp",
-      Resources: [
-        "Images.Primary.Large",
-        "Images.Primary.Medium",
-        "Images.Primary.Small",
-        "ItemInfo.Title",
-        "ItemInfo.ByLineInfo",
-        "ItemInfo.ContentInfo",
-      ],
-    };
-    const payload = JSON.stringify(payloadObj);
-
-    const max = 4;
-    let wait = 900;
     let res = null;
+    const max = 3;
+    let wait = 700;
 
     for (let attempt = 1; attempt <= max; attempt++) {
-      res = await paapiPost({
-        host,
-        region,
-        accessKey: creds.accessKey,
-        secretKey: creds.secretKey,
-        target: "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems",
-        path: "/paapi5/getitems",
-        payload,
-      });
+      res = await fetchRakutenByIsbn13({ isbn13, creds });
 
       if (res.ok) break;
 
-      const retryable = isRetryablePaapiStatus(res.status);
-      const ra = Number(res.retryAfter);
-      const waitMs = Number.isFinite(ra) && ra > 0 ? ra * 1000 : wait;
+      const retryable = [403, 429, 500, 502, 503, 504].includes(res.status);
+      const err = summarizeRakutenError({ status: res.status, json: res.json, text: res.text });
 
-      const err = summarizePaapiError(res.json, res.text);
       console.log(
-        `[lane2:enrich] paapi http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${waitMs}ms chunk=${chunk.join(",")} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
+        `[lane2:enrich] rakuten http_${res.status} attempt=${attempt}/${max} retryable=${retryable} wait=${wait}ms isbn13=${isbn13} code=${err.code ?? "-"} msg=${(err.message ?? "").slice(0, 120)}`
       );
 
       if (!retryable || attempt === max) break;
-      await sleep(waitMs);
+      await sleep(wait);
       wait *= 2;
     }
 
     if (!res || !res.ok) {
       const status = res?.status ?? null;
-      const retryable = status != null ? isRetryablePaapiStatus(status) : true;
-      const kind = retryable ? "temporary" : "permanent";
-      const err = summarizePaapiError(res?.json, res?.text);
 
-      for (const asin of chunk) writeCacheAmzError(cache, asin, { kind, status, error: err });
+      // 403 は設定修正後に再取得させたいので permanent にしない
+      const retryableOrRecoverable =
+        status != null ? [403, 429, 500, 502, 503, 504].includes(status) : true;
+
+      const kind = retryableOrRecoverable ? "temporary" : "permanent";
+      const err = summarizeRakutenError({ status, json: res?.json, text: res?.text });
+
+      writeCacheBookMetaError(cacheBookMeta, isbn13, {
+        kind,
+        status,
+        error: err,
+      });
 
       if (stats) {
-        stats.paapiFailures++;
-        if (status === 429) stats.paapi429++;
-        if (status === 503) stats.paapi503++;
+        stats.failures++;
+        if (status === 403) stats.http403++;
+        if (status === 429) stats.http429++;
       }
 
-      await sleep(400);
+      await sleep(250);
       continue;
     }
 
-    const items = res.json?.ItemsResult?.Items || [];
-    const map = new Map(items.map((it) => [it?.ASIN, it]));
-
-    for (const asin of chunk) {
-      const it = map.get(asin) || null;
-      if (!it) {
-        writeCacheAmzError(cache, asin, {
-          kind: "temporary",
-          status: 200,
-          error: { code: "ITEM_NOT_RETURNED", message: "GetItems returned no item for this ASIN", shortText: null },
-        });
-        if (stats) stats.paapiMissingItems++;
-        continue;
-      }
-      const extracted = extractPaapiItem(it);
-      writeCacheAmzSuccess(cache, asin, extracted);
-      if (stats) stats.paapiSuccessItems++;
+    if (!res.item) {
+      writeCacheBookMetaError(cacheBookMeta, isbn13, {
+        kind: "temporary",
+        status: 200,
+        error: {
+          code: "ITEM_NOT_FOUND",
+          message: "Rakuten returned no item for this isbn13",
+          shortText: null,
+        },
+      });
+      if (stats) stats.missingItems++;
+      await sleep(150);
+      continue;
     }
 
-    if (stats) stats.paapiChunks++;
-    await sleep(400);
+    const extracted = extractRakutenItem(res.item);
+    writeCacheBookMetaSuccess(cacheBookMeta, isbn13, extracted);
+    if (stats) stats.successItems++;
+
+    await sleep(150);
   }
 }
 
@@ -906,6 +889,7 @@ async function fetchAniListWithRetry({ seriesKey, cache }) {
     }
     return res;
   }
+
   return { ok: false, reason: "anilist_http_429_exhausted" };
 }
 
@@ -974,17 +958,38 @@ function pickAudiences({ magazines, magAudienceMap, todoSet }) {
 }
 
 /* -----------------------
+ * notPerfect summary helpers
+ * ----------------------- */
+function pushCap(arr, v, cap) {
+  if (!v) return;
+  if (arr.length >= cap) return;
+  arr.push(v);
+}
+
+function parseFailLine(line) {
+  const s = String(line ?? "");
+  const parts = s.split("::");
+  const seriesKey = norm(parts[0] ?? "");
+  const rest = norm(parts.slice(1).join("::"));
+  const reasons = rest
+    ? rest.split(",").map((x) => norm(x)).filter(Boolean)
+    : [];
+  return { seriesKey, reasons };
+}
+
+/* -----------------------
  * main
  * ----------------------- */
 async function main() {
   const seriesJson = await loadJsonStrict(IN_SERIES);
   const items = Array.isArray(seriesJson?.items) ? seriesJson.items : null;
-  if (!items) throw new Error(`[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`);
+  if (!items) {
+    throw new Error(`[lane2:enrich] invalid series.json: "items" is not an array (${IN_SERIES})`);
+  }
 
   const magOvJson = await loadJson(IN_MAG_OVERRIDES, { version: 1, updatedAt: "", items: {} });
   const magOverrides = magOvJson?.items && typeof magOvJson.items === "object" ? magOvJson.items : {};
 
-  // ★prev: sharded優先（無ければ旧 enriched.json）
   const prevEnriched = await loadPrevEnrichedCompat();
   const prevItems = Array.isArray(prevEnriched?.items) ? prevEnriched.items : [];
   const prevMap = new Map(prevItems.map((x) => [norm(x?.seriesKey), x]).filter(([k]) => k));
@@ -993,10 +998,11 @@ async function main() {
 
   const cacheAniList = (await loadJson(CACHE_ANILIST, {})) || {};
   const cacheWiki = (await loadJson(CACHE_WIKI, {})) || {};
-  const cacheAmz = (await loadJson(CACHE_AMZ, {})) || {};
+  const cacheBookMeta = (await loadJson(CACHE_BOOK_META, {})) || {};
 
   const tagMapJson = await loadJson(TAG_JA_MAP, { version: 1, updatedAt: "", map: {} });
   const tagMap = loadTagMap(tagMapJson);
+
   const hideJson = await loadJson(TAG_HIDE, { version: 1, updatedAt: "", hide: [] });
   const hideSet = loadHideSet(hideJson);
 
@@ -1012,18 +1018,14 @@ async function main() {
   const magAudienceMap = loadMagAudienceMap(magAudienceJson);
   const magAudTodoSet = new Set();
 
-  const accessKey = norm(process.env.AMZ_ACCESS_KEY);
-  const secretKey = norm(process.env.AMZ_SECRET_KEY);
-  const partnerTag = norm(process.env.AMZ_PARTNER_TAG);
-
-  const creds = {
-    enabled: !!(accessKey && secretKey && partnerTag),
-    accessKey,
-    secretKey,
-    partnerTag,
-    host: norm(process.env.AMZ_HOST) || "webservices.amazon.co.jp",
-    region: norm(process.env.AMZ_REGION) || "us-west-2",
+  const rakutenCreds = {
+    appId: norm(process.env.RAKUTEN_APP_ID),
+    accessKey: norm(process.env.RAKUTEN_ACCESS_KEY),
+    affiliateId: norm(process.env.RAKUTEN_AFFILIATE_ID),
+    referer: norm(process.env.RAKUTEN_TEST_REFERER) || "https://book-scout.tools-labo.com/",
+    origin: norm(process.env.RAKUTEN_TEST_ORIGIN) || "https://book-scout.tools-labo.com",
   };
+  rakutenCreds.enabled = !!(rakutenCreds.appId && rakutenCreds.accessKey);
 
   const sorted = items
     .map((x) => ({ ...x, seriesKey: norm(x?.seriesKey) }))
@@ -1032,35 +1034,53 @@ async function main() {
 
   assertNonEmptySeries(sorted);
 
-  // --- 差分PA-API
-  const asinsNeed = [];
+  // 差分取得対象は isbn13 ベース
+  const isbn13Need = [];
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
     const v = x?.vol1 || {};
-    const asin = norm(v?.asin) || null;
-    if (!asin) continue;
+    const isbn13 = norm(v?.isbn13) || null;
+    if (!isbn13) continue;
 
     const prev = prevMap.get(seriesKey);
     const prevVol1 = prev?.vol1 || null;
 
-    if (hasAmazonFilled(prevVol1)) continue;
-    asinsNeed.push(asin);
+    if (hasBookMetaFilled(prevVol1)) continue;
+    isbn13Need.push(isbn13);
   }
 
-  const paapiStats = { paapiChunks: 0, paapiFailures: 0, paapi429: 0, paapi503: 0, paapiMissingItems: 0, paapiSuccessItems: 0 };
-  await fetchPaapiByAsins({ asins: asinsNeed, cache: cacheAmz, creds, stats: paapiStats });
+  const bookMetaStats = {
+    provider: "rakuten",
+    enabled: rakutenCreds.enabled,
+    requests: 0,
+    failures: 0,
+    http403: 0,
+    http429: 0,
+    missingItems: 0,
+    successItems: 0,
+  };
+
+  await fetchRakutenByIsbn13s({
+    isbn13s: isbn13Need,
+    cacheBookMeta,
+    creds: rakutenCreds,
+    stats: bookMetaStats,
+  });
 
   const enriched = [];
   let ok = 0;
   let ng = 0;
-  let skippedAni = 0;
+  let skippedAniList = 0;
   let skippedWiki = 0;
-  let skippedAmz = 0;
+  let skippedBookMeta = 0;
   let skippedPerfect = 0;
   let magAudienceTodoAdded = 0;
 
   const perfectNotMetReasons = { prevNotPerfect: 0, outNotPerfect: 0 };
   const perfectNotMetSamples = {};
+
+  // notPerfectSummary は sample ではなく全件集計する
+  const allOutNotPerfectLines = [];
 
   for (const x of sorted) {
     const seriesKey = norm(x?.seriesKey);
@@ -1070,15 +1090,21 @@ async function main() {
     const prevVol1 = prev?.vol1 || null;
 
     const manualMag = norm(magOverrides?.[seriesKey]?.magazine) || null;
-    const manualMagSameAsPrev = !!manualMag && !!norm(prevVol1?.magazine) && norm(prevVol1?.magazine) === manualMag;
+    const manualMagSameAsPrev =
+      !!manualMag &&
+      !!norm(prevVol1?.magazine) &&
+      norm(prevVol1?.magazine) === manualMag;
 
     if (!isPerfectVol1(prevVol1, hideSet)) {
       bumpReason(perfectNotMetReasons, "prevNotPerfect");
       const fails = explainPerfectFail(prevVol1, hideSet);
-      pushSampleLine(perfectNotMetSamples, "prevNotPerfect", `${seriesKey} :: ${fails.join(",") || "unknown"}`);
+      pushSampleLine(
+        perfectNotMetSamples,
+        "prevNotPerfect",
+        `${seriesKey} :: ${fails.join(",") || "unknown"}`
+      );
     }
 
-    // ★完璧は完全スキップ（prevVol1温存）
     if ((manualMagSameAsPrev || !manualMag) && isPerfectVol1(prevVol1, hideSet)) {
       magTodoSet.delete(seriesKey);
 
@@ -1099,7 +1125,7 @@ async function main() {
     const isbn13 = norm(v?.isbn13) || null;
     const asin = norm(v?.asin) || null;
 
-    // 連載誌：manual override > 前回値 > wiki
+    // 連載誌: manual override > prev > wiki
     let magazine = null;
     let magazineSource = null;
     let wikiTitle = null;
@@ -1109,7 +1135,7 @@ async function main() {
       magazineSource = "manual_override";
       wikiTitle = null;
       skippedWiki++;
-    } else if (hasMagazineFilled(prevVol1)) {
+    } else if (prevVol1 && norm(prevVol1.magazine)) {
       magazine = norm(prevVol1.magazine) || null;
       magazineSource = norm(prevVol1.magazineSource) || null;
       wikiTitle = prevVol1.wikiTitle ?? null;
@@ -1125,13 +1151,15 @@ async function main() {
 
     const magazines = splitMagazines(magazine);
 
-    // audiences
     const beforeSize = magAudTodoSet.size;
     const audiences = pickAudiences({ magazines, magAudienceMap, todoSet: magAudTodoSet });
     const afterSize = magAudTodoSet.size;
     if (afterSize > beforeSize) magAudienceTodoAdded += afterSize - beforeSize;
 
-    const audiencesOnlyOther = Array.isArray(audiences) && audiences.length === 1 && norm(audiences[0]) === "その他";
+    const audiencesOnlyOther =
+      Array.isArray(audiences) &&
+      audiences.length === 1 &&
+      norm(audiences[0]) === "その他";
 
     // AniList
     let anilistId = prevVol1?.anilistId ?? null;
@@ -1141,11 +1169,11 @@ async function main() {
     let tagsJa = Array.isArray(prevVol1?.tags) ? prevVol1.tags : [];
     let tagsMissing = Array.isArray(prevVol1?.tags_missing_en) ? prevVol1.tags_missing_en : [];
 
-    if (hasAniListFilled(prevVol1)) {
+    if (hasAniListMetaFilled(prevVol1)) {
       const applied = applyTagDict({ tagsEn, tagMap, hideSet, todoSet });
       tagsJa = applied.tags;
       tagsMissing = applied.tags_missing_en;
-      skippedAni++;
+      skippedAniList++;
     } else {
       const an = await fetchAniListWithRetry({ seriesKey, cache: cacheAniList });
       if (an?.ok) {
@@ -1163,7 +1191,7 @@ async function main() {
       await sleep(250);
     }
 
-    // Amazon
+    // Book meta（provider: Rakuten）
     const manualTitle = norm(v?.title) || null;
 
     const prevAmazonDp = norm(prevVol1?.amazonDp) || null;
@@ -1172,23 +1200,36 @@ async function main() {
     const prevAuthor = norm(prevVol1?.author) || null;
     const prevReleaseDate = norm(prevVol1?.releaseDate) || null;
     const prevTitle = norm(prevVol1?.title) || null;
+    const prevRakutenUrl = norm(prevVol1?.rakutenUrl) || null;
+    const prevRakutenAffiliateUrl = norm(prevVol1?.rakutenAffiliateUrl) || null;
 
-    let amzData = null;
-    if (asin) {
-      const entry = readCacheAmzEntry(cacheAmz, asin);
-      if (entry && entry.ok) amzData = entry.data ?? null;
+    let bookMetaData = null;
+    if (isbn13) {
+      const entry = readCacheBookMetaEntry(cacheBookMeta, isbn13);
+      if (entry && entry.ok) bookMetaData = entry.data ?? null;
     }
 
-    const amazonDp = prevAmazonDp || norm(amzData?.amazonDp) || null;
-    const image = prevImage || norm(amzData?.image) || null;
-    const publisher = prevPublisher || norm(amzData?.publisher) || null;
-    const author = prevAuthor || norm(amzData?.author) || null;
-    const releaseDate = prevReleaseDate || norm(amzData?.releaseDate) || null;
-    const title = manualTitle || prevTitle || norm(amzData?.title) || null;
+    const usedRakuten = !!bookMetaData;
+
+    const amazonDp = prevAmazonDp || amazonUrl || null;
+    const image = prevImage || norm(bookMetaData?.image) || null;
+    const publisher = prevPublisher || norm(bookMetaData?.publisher) || null;
+    const author = prevAuthor || norm(bookMetaData?.author) || null;
+    const releaseDate = prevReleaseDate || norm(bookMetaData?.releaseDate) || null;
+    const title = manualTitle || prevTitle || norm(bookMetaData?.title) || null;
+
+    const rakutenUrl = prevRakutenUrl || norm(bookMetaData?.rakutenUrl) || null;
+    const rakutenAffiliateUrl =
+      prevRakutenAffiliateUrl || norm(bookMetaData?.rakutenAffiliateUrl) || null;
+
+    const bookMetaSource =
+      usedRakuten ? "rakuten" :
+      hasBookMetaFilled(prevVol1) ? "prev" :
+      (manualTitle || amazonUrl) ? "manual" :
+      null;
 
     const synopsis = norm(v?.synopsis) || null;
 
-    // magazine_todo ルール（manualMag は todo から除外）
     const needMagTodo = (() => {
       if (manualMag) return false;
       if (!magazine) return true;
@@ -1200,7 +1241,7 @@ async function main() {
     if (needMagTodo) magTodoSet.add(seriesKey);
     else magTodoSet.delete(seriesKey);
 
-    if (hasAmazonFilled(prevVol1)) skippedAmz++;
+    if (hasBookMetaFilled(prevVol1)) skippedBookMeta++;
 
     const outVol1 = {
       amazonUrl,
@@ -1216,6 +1257,10 @@ async function main() {
       author,
       releaseDate,
 
+      rakutenUrl,
+      rakutenAffiliateUrl,
+      bookMetaSource,
+
       magazine,
       magazines,
       audiences,
@@ -1230,7 +1275,7 @@ async function main() {
       tags: uniq(tagsJa),
       tags_missing_en: uniq(tagsMissing),
 
-      source: "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)",
+      source: "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)",
     };
 
     enriched.push({ seriesKey, vol1: outVol1, meta: x?.meta || null });
@@ -1239,7 +1284,9 @@ async function main() {
     if (!isPerfectVol1(outVol1, hideSet)) {
       bumpReason(perfectNotMetReasons, "outNotPerfect");
       const fails = explainPerfectFail(outVol1, hideSet);
-      pushSampleLine(perfectNotMetSamples, "outNotPerfect", `${seriesKey} :: ${fails.join(",") || "unknown"}`);
+      const line = `${seriesKey} :: ${fails.join(",") || "unknown"}`;
+      pushSampleLine(perfectNotMetSamples, "outNotPerfect", line);
+      allOutNotPerfectLines.push(line);
     }
   }
 
@@ -1265,38 +1312,15 @@ async function main() {
     items: Array.from(magAudTodoSet).sort((a, b) => a.localeCompare(b)),
   });
 
-    // ★ここが本題：enriched を sharded で保存（+ notPerfectSummary を index.json 冒頭に出す）
-  // outNotPerfect は "seriesKey :: reason1,reason2" の行が入るので、ここで表示用に再集計する
   const NOT_PERFECT_KEYS_LIMIT = 80;
   const NOT_PERFECT_TOP_REASONS = 12;
   const NOT_PERFECT_REASON_SAMPLES = 8;
 
-  function pushCap(arr, v, cap) {
-    if (!v) return;
-    if (arr.length >= cap) return;
-    arr.push(v);
-  }
+  const outLines = allOutNotPerfectLines;
 
-  function parseFailLine(line) {
-    const s = String(line ?? "");
-    const parts = s.split("::");
-    const seriesKey = norm(parts[0] ?? "");
-    const rest = norm(parts.slice(1).join("::")); // 念のため :: が増えても壊れない
-    const reasons = rest
-      ? rest.split(",").map((x) => norm(x)).filter(Boolean)
-      : [];
-    return { seriesKey, reasons };
-  }
-
-  const outLines = Array.isArray(perfectNotMetSamples?.outNotPerfect)
-    ? perfectNotMetSamples.outNotPerfect
-    : [];
-
-  // unique seriesKey（表示用）
   const notPerfectSeriesKeys = [];
   const seenSk = new Set();
 
-  // reason集計
   const reasonCounts = {};
   const reasonSamples = {};
 
@@ -1311,7 +1335,6 @@ async function main() {
       if (!r) continue;
       reasonCounts[r] = (reasonCounts[r] || 0) + 1;
       if (!reasonSamples[r]) reasonSamples[r] = [];
-      // サンプルは unique じゃなくてもよいが、見た目を整えるため unique にする
       if (seriesKey && reasonSamples[r].length < NOT_PERFECT_REASON_SAMPLES) {
         if (!reasonSamples[r].includes(seriesKey)) reasonSamples[r].push(seriesKey);
       }
@@ -1328,12 +1351,16 @@ async function main() {
     .slice(0, NOT_PERFECT_TOP_REASONS);
 
   const notPerfectSummary = {
-    // “作品数”として分かりやすいのは unique seriesKey
     notPerfectTotal: seenSk.size,
     seriesKeys: notPerfectSeriesKeys,
     topReasons: notPerfectTopReasons,
-    note: "perfectNotMetSamples.outNotPerfect から再集計（unique seriesKey + 理由TOP）。",
+    note: "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。",
   };
+
+/* END PART 2/3 - token: R7K2 */
+
+
+/* START PART 3/3 - token: R7K2 */
 
   await writeEnrichedSharded({
     items: enriched,
@@ -1343,37 +1370,33 @@ async function main() {
       ok,
       ng,
       skippedPerfect,
-      skippedAniList: skippedAni,
+      skippedAniList,
       skippedWiki,
-      skippedAmazon: skippedAmz,
-      fetchedAmazonAsins: asinsNeed.length,
+      skippedBookMeta,
+      fetchedBookMetaIsbn13s: isbn13Need.length,
       magAudienceTodoAdded,
       perfectNotMetReasons,
       perfectNotMetSamples,
-
-      // ✅追加：index.json 冒頭で一発で分かるやつ
       notPerfectSummary,
-
-      paapi: {
-        host: creds.host,
-        region: creds.region,
-        enabled: creds.enabled,
-        chunks: paapiStats.paapiChunks,
-        failures: paapiStats.paapiFailures,
-        http429: paapiStats.paapi429,
-        http503: paapiStats.paapi503,
-        missingItems: paapiStats.paapiMissingItems,
-        successItems: paapiStats.paapiSuccessItems,
+      bookMeta: {
+        provider: bookMetaStats.provider,
+        enabled: bookMetaStats.enabled,
+        requests: bookMetaStats.requests,
+        failures: bookMetaStats.failures,
+        http403: bookMetaStats.http403,
+        http429: bookMetaStats.http429,
+        missingItems: bookMetaStats.missingItems,
+        successItems: bookMetaStats.successItems,
       },
     },
   });
 
   await saveJson(CACHE_ANILIST, cacheAniList);
   await saveJson(CACHE_WIKI, cacheWiki);
-  await saveJson(CACHE_AMZ, cacheAmz);
+  await saveJson(CACHE_BOOK_META, cacheBookMeta);
 
   console.log(
-    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(perfect=${skippedPerfect}, anilist=${skippedAni}, wiki=${skippedWiki}, amz=${skippedAmz}) fetchedAmazonAsins=${asinsNeed.length} -> ${OUT_ENRICH_INDEX}`
+    `[lane2:enrich] total=${sorted.length} ok=${ok} ng=${ng} skipped(perfect=${skippedPerfect}, anilist=${skippedAniList}, wiki=${skippedWiki}, bookMeta=${skippedBookMeta}) fetchedBookMetaIsbn13s=${isbn13Need.length} -> ${OUT_ENRICH_INDEX}`
   );
 }
 
@@ -1381,3 +1404,5 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
+
+/* END PART 3/3 - token: R7K2 */
