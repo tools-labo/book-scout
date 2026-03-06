@@ -1,12 +1,9 @@
 // scripts/lane2/test_creators_api.mjs
-// 独立テスト用
-// 目的:
-// 1) GitHub Secrets / .env の読み込み確認
-// 2) Creators API への疎通確認
-// 3) ステータスコード / レスポンス本文の確認
-//
-// 実行例:
-// node scripts/lane2/test_creators_api.mjs
+// FULL REPLACE
+// Creators API 独立テスト
+// - OAuth2 access token を取得
+// - GetItems を1回叩く
+// - status と response を確認する
 //
 // 必須 env:
 // AMAZON_CREATORS_CLIENT_ID
@@ -15,9 +12,9 @@
 // AMAZON_MARKETPLACE
 //
 // 任意 env:
-// AMAZON_CREATORS_BASE_URL
-// AMAZON_CREATORS_TEST_PATH
 // AMAZON_TEST_ASIN
+// AMAZON_CREATORS_TOKEN_URL
+// AMAZON_CREATORS_BASE_URL
 
 function norm(v) {
   return String(v ?? "").trim();
@@ -44,9 +41,55 @@ function printEnvSummary(env) {
   console.log(`- CLIENT_SECRET: ${env.clientSecret ? "(set)" : "(empty)"}`);
   console.log(`- PARTNER_TAG: ${env.partnerTag || "(empty)"}`);
   console.log(`- MARKETPLACE: ${env.marketplace || "(empty)"}`);
+  console.log(`- TOKEN_URL: ${env.tokenUrl || "(empty)"}`);
   console.log(`- BASE_URL: ${env.baseUrl || "(empty)"}`);
-  console.log(`- TEST_PATH: ${env.testPath || "(empty)"}`);
   console.log(`- TEST_ASIN: ${env.testAsin || "(empty)"}`);
+}
+
+async function fetchAccessTokenV2(env) {
+  const body = new URLSearchParams({
+    grant_type: "client_credentials",
+    client_id: env.clientId,
+    client_secret: env.clientSecret,
+    scope: "creatorsapi/default",
+  }).toString();
+
+  const res = await fetch(env.tokenUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body,
+  });
+
+  const text = await safeReadText(res);
+
+  let json = null;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    json = null;
+  }
+
+  if (!res.ok) {
+    console.error(`[creators:test] token status=${res.status} ok=${res.ok}`);
+    if (json) {
+      console.error(JSON.stringify(json, null, 2));
+    } else {
+      console.error(text);
+    }
+    process.exit(2);
+  }
+
+  const accessToken = norm(json?.access_token);
+  if (!accessToken) {
+    console.error("[creators:test] token response has no access_token");
+    console.error(json ? JSON.stringify(json, null, 2) : text);
+    process.exit(2);
+  }
+
+  console.log("[creators:test] token acquired");
+  return accessToken;
 }
 
 async function main() {
@@ -56,10 +99,17 @@ async function main() {
     partnerTag: norm(process.env.AMAZON_PARTNER_TAG),
     marketplace: norm(process.env.AMAZON_MARKETPLACE) || "www.amazon.co.jp",
 
-    // ここはあとで実際の Creators API 情報に合わせて変更
-    baseUrl: norm(process.env.AMAZON_CREATORS_BASE_URL),
-    testPath: norm(process.env.AMAZON_CREATORS_TEST_PATH),
-    testAsin: norm(process.env.AMAZON_TEST_ASIN),
+    // FE / JP の v2.3 token endpoint
+    tokenUrl:
+      norm(process.env.AMAZON_CREATORS_TOKEN_URL) ||
+      "https://creatorsapi.auth.us-west-2.amazoncognito.com/oauth2/token",
+
+    // Docs の base URL
+    baseUrl:
+      norm(process.env.AMAZON_CREATORS_BASE_URL) ||
+      "https://creatorsapi.amazon",
+
+    testAsin: norm(process.env.AMAZON_TEST_ASIN) || "4088821297",
   };
 
   printEnvSummary(env);
@@ -69,50 +119,46 @@ async function main() {
   if (!env.clientSecret) missing.push("AMAZON_CREATORS_CLIENT_SECRET");
   if (!env.partnerTag) missing.push("AMAZON_PARTNER_TAG");
   if (!env.marketplace) missing.push("AMAZON_MARKETPLACE");
-  if (!env.baseUrl) missing.push("AMAZON_CREATORS_BASE_URL");
-  if (!env.testPath) missing.push("AMAZON_CREATORS_TEST_PATH");
 
   if (missing.length) {
     console.error(`[creators:test] missing env: ${missing.join(", ")}`);
     process.exit(1);
   }
 
-  // ここは “疎通確認” が目的なので、まずは最小限の body を送る
-  // 実際の Creators API の仕様が確定したら、ここを正式 payload に差し替える
-  const payload = {
-    asin: env.testAsin || undefined,
-    partnerTag: env.partnerTag,
-    marketplace: env.marketplace,
-  };
+  const accessToken = await fetchAccessTokenV2(env);
 
-  const url = `${env.baseUrl.replace(/\/+$/, "")}/${env.testPath.replace(/^\/+/, "")}`;
+  const url = `${env.baseUrl}/catalog/v1/getItems`;
+  const payload = {
+    itemIds: [env.testAsin],
+    itemIdType: "ASIN",
+    marketplace: env.marketplace,
+    partnerTag: env.partnerTag,
+    resources: [
+      "images.primary.small",
+      "images.primary.medium",
+      "images.primary.large",
+      "itemInfo.title",
+      "itemInfo.byLineInfo",
+      "itemInfo.contentInfo",
+    ],
+  };
 
   console.log(`[creators:test] POST ${url}`);
-  console.log(`[creators:test] payload keys = ${Object.keys(payload).filter((k) => payload[k] !== undefined).join(", ")}`);
+  console.log(`[creators:test] asin=${env.testAsin}`);
 
-  const headers = {
-    "content-type": "application/json",
-    // 仮置き:
-    // どの header 名を使うかは Creators API の正式仕様に合わせて後で差し替え
-    "x-client-id": env.clientId,
-    "x-client-secret": env.clientSecret,
-  };
-
-  let res;
-  try {
-    res = await fetch(url, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(payload),
-    });
-  } catch (e) {
-    console.error(`[creators:test] fetch failed: ${String(e?.message || e)}`);
-    process.exit(1);
-  }
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}, Version 2.3`,
+      "Content-Type": "application/json",
+      "x-marketplace": env.marketplace,
+    },
+    body: JSON.stringify(payload),
+  });
 
   const text = await safeReadText(res);
 
-  console.log(`[creators:test] status=${res.status} ok=${res.ok}`);
+  console.log(`[creators:test] api status=${res.status} ok=${res.ok}`);
 
   let json = null;
   try {
