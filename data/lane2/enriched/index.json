@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T09:49:14.548Z",
+  "updatedAt": "2026-03-06T09:53:13.619Z",
   "total": 378,
   "shardSize": 200,
   "shards": [
@@ -396,10 +396,10 @@
   "stats": {
     "total": 378,
     "ok": 378,
-    "ng": 11,
+    "ng": 0,
     "skippedPerfect": 292,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
+    "skippedAniList": 75,
+    "skippedWiki": 47,
     "skippedAmazon": 0,
     "fetchedAmazonAsins": 86,
     "magAudienceTodoAdded": 19,
@@ -409,18 +409,18 @@
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "2.5次元の誘惑 :: noVol1",
-        "GREEN BLOOD-グリーン・ブラッド :: noVol1",
-        "NHKにようこそ! :: noVol1",
-        "NO.6 [ナンバーシックス] :: noVol1",
-        "RAINBOW 二舎六房の七人 :: noVol1",
-        "To LOVEる -とらぶる- :: noVol1",
-        "Übel Blatt ～ユーベルブラット～ :: noVol1",
-        "あずまんが大王 :: noVol1",
-        "ヴォイニッチホテル :: noVol1",
-        "うみねこのなく頃に - Episode 1: Legend of the Golden Witch :: noVol1",
-        "エンジェル伝説 :: noVol1",
-        "オーバーロード :: noVol1"
+        "2.5次元の誘惑 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "GREEN BLOOD-グリーン・ブラッド :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "NHKにようこそ! :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "NO.6 [ナンバーシックス] :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "RAINBOW 二舎六房の七人 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "To LOVEる -とらぶる- :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "Übel Blatt ～ユーベルブラット～ :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "あずまんが大王 :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "ヴォイニッチホテル :: amazon(amazonDp|image|publisher|author|releaseDate|title),tags_missing_en(remain=1)",
+        "うみねこのなく頃に - Episode 1: Legend of the Golden Witch :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "エンジェル伝説 :: amazon(amazonDp|image|publisher|author|releaseDate|title)",
+        "オーバーロード :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]"
       ],
       "outNotPerfect": [
         "2.5次元の誘惑 :: amazon(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
@@ -503,7 +503,7 @@
       "region": "us-west-2",
       "enabled": true,
       "chunks": 0,
-      "failures": 9,
+      "failures": 0,
       "http429": 0,
       "http503": 0,
       "missingItems": 0,

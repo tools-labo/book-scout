@@ -1177,10 +1177,17 @@
         ],
         "magazineSource": null,
         "wikiTitle": "人間失格",
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 173007,
+        "genres": [
+          "Comedy",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Anthology"
+        ],
+        "tags": [
+          "アンソロジー"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1342,10 +1349,24 @@
         ],
         "magazineSource": null,
         "wikiTitle": "付き合ってあげてもいいかな",
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 111916,
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "College",
+          "LGBTQ+ Themes",
+          "Yuri",
+          "Primarily Female Cast",
+          "Primarily Adult Cast",
+          "Nudity"
+        ],
+        "tags": [
+          "大学",
+          "LGBTQテーマ",
+          "百合"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1566,10 +1587,45 @@
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "僕たちがやりました",
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 96518,
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Psychological",
+          "Romance",
+          "Slice of Life",
+          "Thriller"
+        ],
+        "tags_en": [
+          "Seinen",
+          "Terrorism",
+          "Coming of Age",
+          "Primarily Male Cast",
+          "Philosophy",
+          "Male Protagonist",
+          "Satire",
+          "Revenge",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "School",
+          "Delinquents",
+          "Suicide",
+          "Ensemble Cast",
+          "Nudity",
+          "Psychosexual",
+          "Crime"
+        ],
+        "tags": [
+          "青年向け",
+          "成長譚",
+          "哲学",
+          "風刺",
+          "復讐",
+          "学園",
+          "不良",
+          "犯罪"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1796,10 +1852,31 @@
         ],
         "magazineSource": null,
         "wikiTitle": null,
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 106454,
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Teacher",
+          "School",
+          "Heterosexual",
+          "Shounen",
+          "Family Life",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Love Triangle",
+          "Chibi"
+        ],
+        "tags": [
+          "教師",
+          "学園",
+          "少年向け",
+          "家族もの",
+          "三角関係",
+          "ちびキャラ"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -1964,10 +2041,41 @@
         ],
         "magazineSource": null,
         "wikiTitle": "最果てのパラディン",
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 101521,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Magic",
+          "Male Protagonist",
+          "Philosophy",
+          "Coming of Age",
+          "Gods",
+          "Mythology",
+          "Skeleton",
+          "Isekai",
+          "Ghost",
+          "Demons",
+          "Elf",
+          "Nun",
+          "Medieval"
+        ],
+        "tags": [
+          "魔法",
+          "哲学",
+          "成長譚",
+          "神々",
+          "神話",
+          "スケルトン",
+          "異世界",
+          "幽霊",
+          "悪魔",
+          "エルフ",
+          "修道女",
+          "中世"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -8078,10 +8186,44 @@
         ],
         "magazineSource": "wikipedia",
         "wikiTitle": "犬夜叉",
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 30676,
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Demons",
+          "Youkai",
+          "Shounen",
+          "Historical",
+          "Found Family",
+          "Kemonomimi",
+          "Heterosexual",
+          "Isekai",
+          "Female Protagonist",
+          "Revenge",
+          "Love Triangle",
+          "Shrine Maiden",
+          "Male Protagonist",
+          "Body Horror",
+          "Nudity",
+          "Curses"
+        ],
+        "tags": [
+          "悪魔",
+          "妖怪",
+          "少年向け",
+          "歴史",
+          "疑似家族",
+          "獣耳",
+          "異世界",
+          "復讐",
+          "三角関係",
+          "巫女",
+          "呪い"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
@@ -8107,10 +8249,31 @@
         ],
         "magazineSource": null,
         "wikiTitle": null,
-        "anilistId": null,
-        "genres": [],
-        "tags_en": [],
-        "tags": [],
+        "anilistId": 85887,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "tags_en": [
+          "Crossdressing",
+          "Heterosexual",
+          "Love Triangle",
+          "Male Protagonist",
+          "Seinen",
+          "Gender Bending",
+          "School",
+          "LGBTQ+ Themes",
+          "Transgender"
+        ],
+        "tags": [
+          "女装・男装",
+          "三角関係",
+          "青年向け",
+          "性転換",
+          "学園",
+          "LGBTQテーマ",
+          "トランスジェンダー"
+        ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
