@@ -1,6 +1,6 @@
 // scripts/lane2/test_creators_api.mjs
 // FULL REPLACE
-// Creators API 独立テスト
+// Creators API 独立テスト（v3.3 / JP）
 // - OAuth2 access token を取得
 // - GetItems を1回叩く
 // - status と response を確認する
@@ -39,27 +39,25 @@ function printEnvSummary(env) {
   console.log("[creators:test] env");
   console.log(`- CLIENT_ID: ${mask(env.clientId)}`);
   console.log(`- CLIENT_SECRET: ${env.clientSecret ? "(set)" : "(empty)"}`);
-  console.log(`- PARTNER_TAG: ${env.partnerTag || "(empty)"}`);
-  console.log(`- MARKETPLACE: ${env.marketplace || "(empty)"}`);
+  console.log(`- PARTNER_TAG: ${env.partnerTag ? "***" : "(empty)"}`);
+  console.log(`- MARKETPLACE: ${env.marketplace ? "***" : "(empty)"}`);
   console.log(`- TOKEN_URL: ${env.tokenUrl || "(empty)"}`);
   console.log(`- BASE_URL: ${env.baseUrl || "(empty)"}`);
   console.log(`- TEST_ASIN: ${env.testAsin || "(empty)"}`);
 }
 
-async function fetchAccessTokenV2(env) {
-  const body = new URLSearchParams({
-    grant_type: "client_credentials",
-    client_id: env.clientId,
-    client_secret: env.clientSecret,
-    scope: "creatorsapi/default",
-  }).toString();
-
+async function fetchAccessTokenV3(env) {
   const res = await fetch(env.tokenUrl, {
     method: "POST",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
     },
-    body,
+    body: JSON.stringify({
+      grant_type: "client_credentials",
+      client_id: env.clientId,
+      client_secret: env.clientSecret,
+      scope: "creatorsapi::default",
+    }),
   });
 
   const text = await safeReadText(res);
@@ -99,10 +97,10 @@ async function main() {
     partnerTag: norm(process.env.AMAZON_PARTNER_TAG),
     marketplace: norm(process.env.AMAZON_MARKETPLACE) || "www.amazon.co.jp",
 
-    // FE / JP の v2.3 token endpoint
+    // JP / FE / v3.3 token endpoint
     tokenUrl:
       norm(process.env.AMAZON_CREATORS_TOKEN_URL) ||
-      "https://creatorsapi.auth.us-west-2.amazoncognito.com/oauth2/token",
+      "https://api.amazon.co.jp/auth/o2/token",
 
     // Docs の base URL
     baseUrl:
@@ -125,7 +123,7 @@ async function main() {
     process.exit(1);
   }
 
-  const accessToken = await fetchAccessTokenV2(env);
+  const accessToken = await fetchAccessTokenV3(env);
 
   const url = `${env.baseUrl}/catalog/v1/getItems`;
   const payload = {
@@ -149,7 +147,7 @@ async function main() {
   const res = await fetch(url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${accessToken}, Version 2.3`,
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       "x-marketplace": env.marketplace,
     },
