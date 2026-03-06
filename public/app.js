@@ -1,8 +1,8 @@
 // public/app.js（1/3）FULL REPLACE
 // - ✅ List: ジャンルは確定10本（日本語表示 / URLはid）
-// - ✅ List: カテゴリー順固定（少年→青年→少女→女性→Web/アプリ→全部）
+// - ✅ List: カテゴリー順固定（少年→青年→少女→女性→Web/アプリ→その他→全部）
 // - ✅ List: 連載誌は magazine_normalize.json から「主要 + もっと見る」をプルダウン（optgroup）/ 作品数表示
-// - ✅ Web/アプリ連載誌は Web/アプリカテゴリ（aud=その他）にだけ表示（「全部」には混ぜない）
+// - ✅ Web/アプリ連載誌は Web/アプリカテゴリにだけ表示（「全部」には混ぜない）
 // - ✅ genre/mag URL互換（旧クエリ）を拾う
 // - ✅ sort(pop/new/rise) + 50件+もっと見る(+50) + 件数表示(A案) + list_filter拡張
 //
@@ -471,10 +471,12 @@ const HOME_CATEGORY_TABS = [
   { id: "seinen", value: "青年", label: "青年" },
   { id: "shojo", value: "少女", label: "少女" },
   { id: "josei", value: "女性", label: "女性" },
-  { id: "webapp", value: "その他", label: "Web/アプリ" }, // 表示はJSONで上書きされる想定
+  { id: "webapp", value: "Web/アプリ", label: "Web/アプリ" },
+  { id: "other", value: "その他", label: "その他" },
 ];
 
-const WEBAPP_AUD_VALUE = "その他"; // 作品データ上の値は固定（表示名だけWeb/アプリにする）
+const WEBAPP_AUD_VALUE = "Web/アプリ";
+const OTHER_AUD_VALUE = "その他";
 
 /* =======================
  * ✅ Audience helpers（複数audiences対応）
@@ -490,19 +492,19 @@ function hasAudience(it, aud) {
   return list.includes(a);
 }
 // “代表audience” が必要な場面だけ使う（順序ブレ対策）
-const AUD_PRIORITY = ["少年", "青年", "少女", "女性", WEBAPP_AUD_VALUE];
+const AUD_PRIORITY = ["少年", "青年", "少女", "女性", WEBAPP_AUD_VALUE, OTHER_AUD_VALUE];
 function pickMainAudience(it) {
   const list = getAudienceList(it);
   for (const a of AUD_PRIORITY) {
     if (list.includes(a)) return a;
   }
-  return list[0] || WEBAPP_AUD_VALUE;
+  return list[0] || OTHER_AUD_VALUE;
 }
 
 // ✅ 互換：既存コードが「先頭」を期待している箇所があるので残す
 function getFirstAudienceLabel(it) {
   const arr = getAudienceList(it);
-  return arr[0] || WEBAPP_AUD_VALUE;
+  return arr[0] || OTHER_AUD_VALUE;
 }
 
 function hasAnyGenreByTabId(it, tabId) {
@@ -762,11 +764,11 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
     const auds = norm?.audiences || {};
     for (const k of Object.keys(auds)) {
       const lb = toText(auds[k]?.label);
-      if (lb) audLabelMap.set(k, lb); // ここで「その他」→「Web/アプリ」
+      if (lb) audLabelMap.set(k, lb);
     }
   }catch{}
 
-  // --- 連載誌候補：選択audの primary/more（Web/アプリは aud=その他 のときだけ webGroup を使う）
+  // --- 連載誌候補：選択audの primary/more（Web/アプリのときだけ webGroup を使う）
   function magsForAudience(aud) {
     const auds = norm?.audiences || {};
     const webGroup = norm?.webGroup || null;
@@ -775,6 +777,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
       const setP = new Set();
       const setM = new Set();
       for (const key of Object.keys(auds)) {
+        if (key === WEBAPP_AUD_VALUE || key === OTHER_AUD_VALUE) continue;
         const a = auds[key] || {};
         for (const x of (a.primary || [])) setP.add(normalizeMag(x));
         for (const x of (a.more || [])) setM.add(normalizeMag(x));
@@ -784,7 +787,7 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
       return { primary, more, web: [] };
     };
 
-    // aud=""（全部）: 印刷系だけ union（Web/アプリは混ぜない）
+    // aud=""（全部）: 印刷系だけ union（Web/アプリ/その他は混ぜない）
     if (!aud) return onlyPrintForAll();
 
     const a = auds[aud] || {};
@@ -793,11 +796,9 @@ function renderFacetFilters({ allItems, magNormJson, onChange }) {
     const pSet = new Set(primary);
     const more = Array.from(new Set(moreBase)).filter(x => !pSet.has(x));
 
-    // Web/アプリカテゴリ（aud=その他）だけ webGroup を表示
     let web = [];
     if (aud === WEBAPP_AUD_VALUE && webGroup?.items?.length) {
       web = webGroup.items.map(normalizeMag).filter(Boolean);
-      // primary/more と重複排除
       const used = new Set([...primary, ...more]);
       web = Array.from(new Set(web)).filter(x => !used.has(x));
     }
@@ -1043,7 +1044,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     magNormJson: norm,
     onChange: ({ reason } = {}) => {
       resetListVisibleLimit();
-      // facet change -> list_filter (moodは現状維持で送る)
       trackListFilterState({
         genreIds: parseGenreQueryIds(),
         aud: parseAudQuery(),
@@ -1060,7 +1060,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
   const sortSel = document.getElementById("sortSelect");
   const sortKey = parseSortQuery();
 
-  // 急上昇が無いなら選べない（UI側：disable）
   if (sortSel) {
     try {
       sortSel.value = sortKey;
@@ -1086,8 +1085,8 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
   }
 
   const genreIds = parseGenreQueryIds();
-  const audienceWanted = parseAudQuery();     // ""=全部
-  const magazineWanted = parseMagQuery();     // ""=全部
+  const audienceWanted = parseAudQuery();
+  const magazineWanted = parseMagQuery();
 
   const moodSelected = parseMoodQuery();
   const byId = new Map((quickDefs || []).map(d => [d.id, d]));
@@ -1098,7 +1097,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     .filter(it => (audienceWanted ? hasAudience(it, audienceWanted) : true))
     .filter(it => hasMagazineNormalized(it, magazineWanted, normalizeMag));
 
-    // ✅ ヒット理由（一致タグ）を取る：優先順位は quick_filters.json の順
   function pickReasonTags(it, defs, max = 3) {
     const tagSet = new Set(itTags(it));
     if (!defs?.length || !tagSet.size) return [];
@@ -1119,7 +1117,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     return out;
   }
 
-  // --- mood filter (絞り込み) + 理由タグ保持
   const scored = [];
   if (moodActiveDefs.length) {
     for (const it of base) {
@@ -1135,9 +1132,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     for (const it of base) scored.push({ it, score: 0, reasons: [] });
   }
 
-  // --- sort (並び替え)
-  // 仕様：気分フィルター中でも sort=pop のときだけスコア順を初期挙動として維持。
-  //       sortがpop以外に変わったらソート優先（気分は絞り込み条件のみ）。
   if (moodActiveDefs.length && sortKey === "pop") {
     scored.sort((a, b) => (b.score - a.score) || byTitleAsc(a.it, b.it));
   } else {
@@ -1149,7 +1143,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
         (risingMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)
       ) || byTitleAsc(a.it, b.it));
     } else {
-      // pop
       scored.sort((a, b) => (
         (viewsMap.get(toText(pick(b.it, ["seriesKey"]))) || 0) -
         (viewsMap.get(toText(pick(a.it, ["seriesKey"]))) || 0)
@@ -1157,10 +1150,8 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     }
   }
 
-  // ✅ 以降は「it配列」ではなく「{it, score, reasons}配列」を使う
   const outItemsAll = scored;
 
-  // ✅ mood clear
   const clear = document.getElementById("moodClearLink");
   if (clear) {
     clear.onclick = (ev) => {
@@ -1181,7 +1172,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     };
   }
 
-  // ✅ quick filters UI
   const qRoot = document.getElementById("quickFiltersList");
   if (qRoot) {
     const defs = Array.isArray(quickDefs) ? quickDefs : [];
@@ -1247,7 +1237,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     }
   }
 
-  // ---- empty ----
   if (!outItemsAll.length) {
     root.innerHTML = `<div class="status">表示できる作品がありません</div>`;
     const countEl = document.getElementById("listCount");
@@ -1257,10 +1246,9 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     return;
   }
 
-  // ---- pagination (50 + more) ----
   const visible = outItemsAll.slice(0, Math.max(0, __listVisibleLimit));
   const countEl = document.getElementById("listCount");
-  if (countEl) countEl.textContent = `${outItemsAll.length}件`; // ✅ 全ヒット数
+  if (countEl) countEl.textContent = `${outItemsAll.length}件`;
 
   const moreWrap = document.getElementById("listMoreWrap");
   const moreBtn = document.getElementById("listMoreBtn");
@@ -1268,7 +1256,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 
   if (moreWrap) moreWrap.style.display = canMore ? "" : "none";
 
-  // ✅ もっと見る：リストDOMを作り直さず append（スクロール位置固定）
   if (moreBtn) {
     moreBtn.onclick = (ev) => {
       try { ev?.preventDefault?.(); } catch {}
@@ -1282,7 +1269,6 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
     };
   }
 
-  // ---- render ----
   const appendFrom = Number(opt?.appendFrom || 0);
 
   if (!appendFrom) {
@@ -1292,8 +1278,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
   const BATCH = 36;
   let i = appendFrom;
 
-    function itemHtml(row) {
-    // row = { it, score, reasons }
+  function itemHtml(row) {
     const it = row?.it || {};
     const score = Number(row?.score || 0);
     const reasons = Array.isArray(row?.reasons) ? row.reasons : [];
@@ -1309,11 +1294,9 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 
     const tagsJa = pickArr(it, ["tags", "vol1.tags"]).map(toText).filter(Boolean);
 
-    // 表示用の連載誌：正規化して first
     const mags = itMagazinesNormalized(it, normalizeMag);
     const mag = mags[0] || "";
 
-    // ✅ 気分フィルター中だけ「ヒット理由」を表示
     const showReason = !!moodActiveDefs.length;
     const reasonHtml = showReason
       ? `
@@ -1380,6 +1363,7 @@ function renderList(items, quickDefs, magNormJson, opt = {}) {
 // - ✅ NEW: List sort metrics（人気/急上昇）を読み込み、renderList に渡す
 // - ✅ NEW: Home「一覧を見る」リンクを、選択中タブに合わせて絞り込みリンクへ（既存機能は壊さない）
 // - ✅ FIX: audiences が複数ある作品は該当カテゴリすべてに表示（銀魂対策）
+// - ✅ NEW: カテゴリー「Web/アプリ」「その他」を分離
 //
 // 🔥 NEW(今回の目的):
 // - ✅ vote_by_series.json + vote_by_mood_series.json を読み込み
@@ -1413,7 +1397,6 @@ async function loadWorksIndex({ bust }) {
   const idxUrl = v ? `${WORKS_INDEX_PATH}?v=${encodeURIComponent(v)}` : WORKS_INDEX_PATH;
 
   const idx = await tryLoadJson(idxUrl, { bust });
-  // ✅ 正：index.json は listItems を持つ想定
   if (idx && Array.isArray(idx.listItems)) {
     return { mode: "split", index: idx, listItems: idx.listItems, legacyItems: null };
   }
@@ -1673,7 +1656,6 @@ function renderGenreTabsRow({ items, activeId }) {
   const v = qs().get("v");
   const moreHref = `${BASE}list.html?genre=${encodeURIComponent(active.id)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 
-  // ✅ NEW: 右上「一覧を見る」も選択中ジャンルで絞り込みリンクへ
   try {
     const allLink = document.getElementById("genreAllLink");
     if (allLink) allLink.setAttribute("href", moreHref);
@@ -1717,14 +1699,12 @@ function renderAudienceTabsRow({ items, activeAudId }) {
     </div>
   `;
 
-  /* ✅ FIX: audiences が複数ある作品も該当カテゴリに出す */
   const pickedAll = all.filter(it => hasAudience(it, audValue));
   const picked = shuffleWithSeed(pickedAll, `aud:${active.id}:${daySeedStr()}`);
 
   const v = qs().get("v");
   const moreHref = `${BASE}list.html?aud=${encodeURIComponent(audValue)}` + (v ? `&v=${encodeURIComponent(v)}` : "");
 
-  // ✅ NEW: 右上「一覧を見る」も選択中カテゴリで絞り込みリンクへ
   try {
     const allLink = document.getElementById("audienceAllLink");
     if (allLink) allLink.setAttribute("href", moreHref);
