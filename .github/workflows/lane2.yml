@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: 20
 
-      # ★AniList/Wiki/Amazon のローカルキャッシュを Actions cache で永続化
+      # ★ AniList / Wiki / BookMeta(Rakuten) のローカルキャッシュを Actions cache で永続化
       - name: Ensure lane2 cache dir
         run: |
           set -euo pipefail
@@ -63,11 +63,20 @@ jobs:
 
       - name: Run lane2
         env:
+          # 既存（残しても害はない）
           AMZ_ACCESS_KEY: ${{ secrets.AMZ_ACCESS_KEY }}
           AMZ_SECRET_KEY: ${{ secrets.AMZ_SECRET_KEY }}
           AMZ_PARTNER_TAG: ${{ secrets.AMZ_PARTNER_TAG }}
           AMZ_HOST: ${{ secrets.AMZ_HOST }}
           AMZ_REGION: ${{ secrets.AMZ_REGION }}
+
+          # 追加：Rakuten Books Total Search 用
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+          RAKUTEN_TEST_REFERER: https://book-scout.tools-labo.com/
+          RAKUTEN_TEST_ORIGIN: https://book-scout.tools-labo.com
+
           LANE2_FIX_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.fix_mode || 'false' }}
         run: |
           set -euo pipefail
@@ -116,7 +125,6 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      # ✅ ここが重要：必ず最新 main を取る（lane2ジョブがpushした直後のコミットを確実に拾う）
       - name: Checkout (latest main)
         uses: actions/checkout@v4
         with:
@@ -133,7 +141,6 @@ jobs:
       - name: Install (for build script)
         run: npm install
 
-      # public/ を公開ルートにするため、data/ を public/data に同期
       - name: Prepare site root
         run: |
           set -euo pipefail
@@ -143,7 +150,6 @@ jobs:
             cp -R data/* public/data/ || true
           fi
 
-      # ✅ /work/<id>/ を data から再生成して public/work に反映
       - name: Build work pages (static /work/<id>/)
         run: |
           set -euo pipefail
