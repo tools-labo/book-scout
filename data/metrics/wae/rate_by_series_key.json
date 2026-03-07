@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T16:43:33.144Z",
-  "updatedAtJst": "2026-03-08 01:43:33",
+  "updatedAt": "2026-03-07T17:35:48.360Z",
+  "updatedAtJst": "2026-03-08 02:35:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -829,6 +829,12 @@
       "n": "2"
     },
     {
+      "seriesKey": "少年のアビス",
+      "k": "rec",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
       "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 3.5,
@@ -836,12 +842,6 @@
     },
     {
       "seriesKey": "ReLIFE",
-      "k": "rec",
-      "avg": 3.5,
-      "n": "2"
-    },
-    {
-      "seriesKey": "少年のアビス",
       "k": "rec",
       "avg": 3.5,
       "n": "2"
@@ -949,7 +949,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァニタスの手記",
+      "seriesKey": "ガンバレ！中村くん！！",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -979,7 +979,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガンバレ！中村くん！！",
+      "seriesKey": "ヴァニタスの手記",
       "k": "rec",
       "avg": 3,
       "n": "1"
