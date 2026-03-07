@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T16:46:26.656Z",
-  "total": 378,
+  "updatedAt": "2026-03-07T06:31:07.145Z",
+  "total": 383,
   "shardSize": 200,
   "shards": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "file": "enriched_001.json",
-      "count": 178
+      "count": 183
     }
   ],
   "lookup": {
@@ -20,14 +20,17 @@
     "20世紀少年": 0,
     "21世紀少年": 0,
     "3月のライオン": 0,
+    "BLUE GIANT": 0,
     "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-": 0,
     "BTOOOM!-ブトゥーム": 0,
     "DEAD Tube ～デッドチューブ～": 0,
     "GREEN BLOOD-グリーン・ブラッド": 0,
+    "HUNTER×HUNTER": 0,
     "Lv2からチートだった元勇者候補のまったり異世界ライフ": 0,
     "NARUTO -ナルト-": 0,
     "NHKにようこそ!": 0,
     "NO.6 [ナンバーシックス]": 0,
+    "ONE PIECE": 0,
     "orange [オレンジ]": 0,
     "PSYЯEN -サイレン-": 0,
     "RAINBOW 二舎六房の七人": 0,
@@ -211,9 +214,9 @@
     "ゆらぎ荘の幽奈さん": 0,
     "ようこそ実力至上主義の教室へ": 0,
     "ようこそ実力至上主義の教室へ　２年生編": 0,
-    "ヨコハマ買い出し紀行": 0,
-    "よつばと！": 0,
-    "よふかしのうた": 0,
+    "ヨコハマ買い出し紀行": 1,
+    "よつばと！": 1,
+    "よふかしのうた": 1,
     "ラストゲーム": 1,
     "ラブ★コン": 1,
     "リアル": 1,
@@ -240,6 +243,7 @@
     "僕だけがいない街": 1,
     "僕たちがやりました": 1,
     "僕のヒーローアカデミア": 1,
+    "僕の初恋をキミに捧ぐ": 1,
     "僕の心のヤバイやつ": 1,
     "僕らはみんな河合荘": 1,
     "先生は恋を教えられない": 1,
@@ -318,6 +322,7 @@
     "未熟なふたりでございますが": 1,
     "杖と剣のウィストリア": 1,
     "来世は他人がいい": 1,
+    "東京エイリアンズ": 1,
     "東京卍リベンジャーズ": 1,
     "東京喰種 トーキョーグール": 1,
     "東京喰種-トーキョーグール-:re": 1,
@@ -394,50 +399,72 @@
     "黒岩メダカに私の可愛いが通じない": 1
   },
   "stats": {
-    "total": 378,
-    "ok": 378,
+    "total": 383,
+    "ok": 383,
     "ng": 0,
-    "skippedPerfect": 358,
-    "skippedAniList": 20,
-    "skippedWiki": 20,
-    "skippedBookMeta": 20,
-    "fetchedBookMetaIsbn13s": 0,
-    "magAudienceTodoAdded": 6,
+    "skippedPerfect": 378,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedBookMeta": 0,
+    "fetchedBookMetaIsbn13s": 5,
+    "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 20,
-      "outNotPerfect": 0
+      "prevNotPerfect": 5,
+      "outNotPerfect": 2
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "ケントゥリア :: magazine,magazines[]",
-        "マリッジトキシン :: magazine,magazines[]",
-        "人間失格 :: magazine,magazines[]",
-        "付き合ってあげてもいいかな :: magazine,magazines[]",
-        "先生は恋を教えられない :: magazine,magazines[]",
-        "最果てのパラディン :: magazine,magazines[]",
-        "同級生 :: magazine,magazines[]",
-        "姉なるもの :: magazine,magazines[]",
-        "恋と嘘 :: magazine,magazines[]",
-        "暗殺者である俺のステータスが勇者よりも明らかに強いのだが :: magazine,magazines[]",
-        "未熟なふたりでございますが :: magazine,magazines[]",
-        "椿町ロンリープラネット :: magazine,magazines[]"
+        "BLUE GIANT :: noVol1",
+        "HUNTER×HUNTER :: noVol1",
+        "ONE PIECE :: noVol1",
+        "僕の初恋をキミに捧ぐ :: noVol1",
+        "東京エイリアンズ :: noVol1"
+      ],
+      "outNotPerfect": [
+        "BLUE GIANT :: tags_missing_en(remain=1)",
+        "東京エイリアンズ :: magazine,magazines[]"
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 0,
-      "seriesKeys": [],
-      "topReasons": [],
+      "notPerfectTotal": 2,
+      "seriesKeys": [
+        "BLUE GIANT",
+        "東京エイリアンズ"
+      ],
+      "topReasons": [
+        {
+          "reason": "tags_missing_en(remain=1)",
+          "n": 1,
+          "samples": [
+            "BLUE GIANT"
+          ]
+        },
+        {
+          "reason": "magazine",
+          "n": 1,
+          "samples": [
+            "東京エイリアンズ"
+          ]
+        },
+        {
+          "reason": "magazines[]",
+          "n": 1,
+          "samples": [
+            "東京エイリアンズ"
+          ]
+        }
+      ],
       "note": "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。"
     },
     "bookMeta": {
       "provider": "rakuten",
       "enabled": true,
-      "requests": 0,
+      "requests": 5,
       "failures": 0,
       "http403": 0,
       "http429": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 5
     }
   }
 }

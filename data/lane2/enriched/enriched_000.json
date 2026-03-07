@@ -452,6 +452,61 @@
       "meta": null
     },
     {
+      "seriesKey": "BLUE GIANT",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091856780",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091856780",
+        "isbn13": "9784091856784",
+        "asin": "4091856780",
+        "title": "BLUE GIANT（1）",
+        "synopsis": "仙台で暮らす高校生・宮本大は、ジャズと出会いサックスにのめり込む。世界一のジャズプレイヤーになる夢を胸に、毎日ひたすら音と向き合い続ける青春音楽譚。",
+        "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6784/9784091856784.jpg?_ex=200x200",
+        "publisher": "小学館",
+        "author": "石塚 真一",
+        "releaseDate": "2013年11月",
+        "rakutenUrl": "https://books.rakuten.co.jp/rb/12504386/",
+        "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F12504386%2F",
+        "bookMetaSource": "rakuten",
+        "magazine": "ビッグコミック",
+        "magazines": [
+          "ビッグコミック"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "BLUE GIANT",
+        "anilistId": 86890,
+        "genres": [
+          "Drama",
+          "Music",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Seinen",
+          "Jazz Music",
+          "Band",
+          "Male Protagonist",
+          "Coming of Age",
+          "Bar",
+          "Primarily Male Cast",
+          "Ensemble Cast",
+          "Primarily Adult Cast"
+        ],
+        "tags": [
+          "青年向け",
+          "バンド",
+          "成長譚",
+          "バー"
+        ],
+        "tags_missing_en": [
+          "Jazz Music"
+        ],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      },
+      "meta": null
+    },
+    {
       "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
       "vol1": {
         "amazonUrl": "https://www.amazon.co.jp/dp/4088807561",
@@ -707,6 +762,103 @@
           "カウボーイ",
           "海外",
           "警察"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "HUNTER×HUNTER",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088725719",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088725719",
+        "isbn13": "9784088725710",
+        "asin": "4088725719",
+        "title": "HUNTER×HUNTER 1",
+        "synopsis": "父の背中を追う少年ゴンは、幻の職業「ハンター」を目指して試験に挑む。試練の連続の中で仲間と出会い、自分の資質と覚悟を試されていく。",
+        "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5710/9784088725710_1_4.jpg?_ex=200x200",
+        "publisher": "集英社",
+        "author": "冨樫 義博",
+        "releaseDate": "1998年06月04日",
+        "rakutenUrl": "https://books.rakuten.co.jp/rb/977831/",
+        "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F977831%2F",
+        "bookMetaSource": "rakuten",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "HUNTER×HUNTER",
+        "anilistId": 30026,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Shounen",
+          "Super Power",
+          "Cultivation",
+          "Ensemble Cast",
+          "Travel",
+          "Male Protagonist",
+          "Primarily Male Cast",
+          "Urban Fantasy",
+          "Revenge",
+          "Assassins",
+          "Chimera",
+          "Anti-Hero",
+          "Politics",
+          "Battle Royale",
+          "War",
+          "Death Game",
+          "Philosophy",
+          "Crime",
+          "Gangs",
+          "Coming of Age",
+          "Gore",
+          "Lost Civilization",
+          "Conspiracy",
+          "Martial Arts",
+          "Ships",
+          "Card Battle",
+          "Video Games",
+          "Mafia",
+          "Animals",
+          "LGBTQ+ Themes"
+        ],
+        "tags": [
+          "少年向け",
+          "超能力",
+          "修行",
+          "旅",
+          "現代ファンタジー",
+          "復讐",
+          "暗殺者",
+          "キメラ",
+          "アンチヒーロー",
+          "政治",
+          "バトルロイヤル",
+          "戦争",
+          "デスゲーム",
+          "哲学",
+          "犯罪",
+          "ギャング",
+          "成長譚",
+          "失われた文明",
+          "陰謀",
+          "武術",
+          "カップリング",
+          "カードバトル",
+          "ゲーム",
+          "マフィア",
+          "動物",
+          "LGBTQテーマ"
         ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
@@ -978,6 +1130,102 @@
           "ヤンデレ",
           "階級闘争",
           "女装・男装"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "ONE PIECE",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4088725093",
+        "amazonDp": "https://www.amazon.co.jp/dp/4088725093",
+        "isbn13": "9784088725093",
+        "asin": "4088725093",
+        "title": "ONE PIECE 1",
+        "synopsis": "海賊に憧れる少年ルフィは、伝説の秘宝「ひとつなぎの大秘宝（ワンピース）」を目指して海へ出る。自由と夢を掲げ、仲間との出会いを重ねながら大海原の冒険が始まる。",
+        "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5093/9784088725093_1_2.jpg?_ex=200x200",
+        "publisher": "集英社",
+        "author": "尾田 栄一郎",
+        "releaseDate": "1997年12月24日",
+        "rakutenUrl": "https://books.rakuten.co.jp/rb/941204/",
+        "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F941204%2F",
+        "bookMetaSource": "rakuten",
+        "magazine": "週刊少年ジャンプ",
+        "magazines": [
+          "週刊少年ジャンプ"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ONE PIECE",
+        "anilistId": 30013,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags_en": [
+          "Pirates",
+          "Travel",
+          "Found Family",
+          "Shounen",
+          "Ensemble Cast",
+          "Super Power",
+          "Ships",
+          "Politics",
+          "Fugitive",
+          "Crime",
+          "Male Protagonist",
+          "Conspiracy",
+          "Military",
+          "Slapstick",
+          "War",
+          "Terrorism",
+          "Lost Civilization",
+          "Anachronism",
+          "Slavery",
+          "Post-Apocalyptic",
+          "Primarily Adult Cast",
+          "Gods",
+          "Swordplay",
+          "Mythology",
+          "Religion",
+          "Animals",
+          "Environmental",
+          "Gangs",
+          "Espionage",
+          "Anti-Hero"
+        ],
+        "tags": [
+          "海賊",
+          "旅",
+          "疑似家族",
+          "少年向け",
+          "超能力",
+          "カップリング",
+          "政治",
+          "逃亡者",
+          "犯罪",
+          "陰謀",
+          "軍事",
+          "ドタバタ",
+          "戦争",
+          "失われた文明",
+          "奴隷",
+          "終末後",
+          "神々",
+          "剣術",
+          "神話",
+          "宗教",
+          "動物",
+          "環境問題",
+          "ギャング",
+          "スパイ",
+          "アンチヒーロー"
         ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
@@ -13672,221 +13920,6 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4063145883",
-        "amazonDp": "https://www.amazon.co.jp/dp/4063145883?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784063145885",
-        "asin": "4063145883",
-        "title": "ヨコハマ買い出し紀行 1 新装版 (アフタヌーンKC)",
-        "synopsis": "人類が減り、世界がゆっくりと静まっていく“夕凪の時代”。人型ロボットのアルファは海辺の喫茶店を営みながら、いつか帰る主人を待ち、日々の小さな景色を大切に積み重ねていく。",
-        "image": "https://m.media-amazon.com/images/I/51RWQK8SuXL._SL500_.jpg",
-        "publisher": "講談社",
-        "author": "芦奈野 ひとし",
-        "releaseDate": "2009-10-23T00:00:01Z",
-        "magazine": "月刊アフタヌーン",
-        "magazines": [
-          "月刊アフタヌーン"
-        ],
-        "audiences": [
-          "青年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "ヨコハマ買い出し紀行",
-        "anilistId": 30004,
-        "genres": [
-          "Sci-Fi",
-          "Slice of Life"
-        ],
-        "tags_en": [
-          "Iyashikei",
-          "Female Protagonist",
-          "Coastal",
-          "Post-Apocalyptic",
-          "Coming of Age",
-          "Philosophy",
-          "Rural",
-          "Robots",
-          "Lost Civilization",
-          "Seinen",
-          "Artificial Intelligence",
-          "Episodic",
-          "Travel",
-          "Work",
-          "Mopeds",
-          "Yuri",
-          "Family Life",
-          "Restaurant",
-          "Motorcycles",
-          "Nudity"
-        ],
-        "tags": [
-          "癒し系",
-          "海辺",
-          "終末後",
-          "成長譚",
-          "哲学",
-          "田舎",
-          "ロボット",
-          "失われた文明",
-          "青年向け",
-          "人工知能",
-          "旅",
-          "仕事",
-          "原付",
-          "百合",
-          "家族もの",
-          "飲食店",
-          "バイク"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "よつばと！",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4048690663",
-        "amazonDp": "https://www.amazon.co.jp/dp/4048690663?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784048690669",
-        "asin": "4048690663",
-        "title": "よつばと!(1) (電撃コミックス)",
-        "synopsis": "夏休み直前、元気すぎる女の子“よつば”と「とーちゃん」が引っ越してくる。近所の人たちや同年代の子と出会い、毎日が発見だらけの“はじめて”を積み重ねていく日常コメディ。",
-        "image": "https://m.media-amazon.com/images/I/51iQPs6io6L._SL500_.jpg",
-        "publisher": "KADOKAWA",
-        "author": "あずま きよひこ",
-        "releaseDate": "2003-08-27T00:00:01Z",
-        "magazine": "月刊コミック電撃大王",
-        "magazines": [
-          "月刊コミック電撃大王"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "manual_override",
-        "wikiTitle": null,
-        "anilistId": 30104,
-        "genres": [
-          "Comedy",
-          "Slice of Life"
-        ],
-        "tags_en": [
-          "Family Life",
-          "Iyashikei",
-          "Episodic",
-          "Female Protagonist",
-          "Parenthood",
-          "Slapstick",
-          "Shounen",
-          "Cute Girls Doing Cute Things",
-          "Rural",
-          "Adoption",
-          "Primarily Female Cast",
-          "Tomboy",
-          "Fishing"
-        ],
-        "tags": [
-          "家族もの",
-          "癒し系",
-          "親子（子育て）",
-          "ドタバタ",
-          "少年向け",
-          "かわいい女の子の日常",
-          "田舎",
-          "養子縁組",
-          "ボーイッシュ",
-          "釣り"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
-      },
-      "meta": null
-    },
-    {
-      "seriesKey": "よふかしのうた",
-      "vol1": {
-        "amazonUrl": "https://www.amazon.co.jp/dp/4091294928",
-        "amazonDp": "https://www.amazon.co.jp/dp/4091294928?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
-        "isbn13": "9784091294920",
-        "asin": "4091294928",
-        "title": "よふかしのうた (1) (少年サンデーコミックス)",
-        "synopsis": "眠れない中学生・夜守コウは、夜の街で吸血鬼・七草ナズナと出会う。夜ふかしを重ねるうちに、コウは“吸血鬼になる”ことを望み始めるが、その条件は「恋に落ちる」ことだった。",
-        "image": "https://m.media-amazon.com/images/I/51a6-Zb8h0L._SL500_.jpg",
-        "publisher": "小学館",
-        "author": "コトヤマ",
-        "releaseDate": "2019-11-18T00:00:01Z",
-        "magazine": "週刊少年サンデー",
-        "magazines": [
-          "週刊少年サンデー"
-        ],
-        "audiences": [
-          "少年"
-        ],
-        "magazineSource": "wikipedia",
-        "wikiTitle": "よふかしのうた (漫画)",
-        "anilistId": 111233,
-        "genres": [
-          "Comedy",
-          "Psychological",
-          "Romance",
-          "Slice of Life",
-          "Supernatural"
-        ],
-        "tags_en": [
-          "Vampire",
-          "Urban Fantasy",
-          "Monster Girl",
-          "Shounen",
-          "Male Protagonist",
-          "Coming of Age",
-          "Suicide",
-          "Primarily Teen Cast",
-          "Surreal Comedy",
-          "Heterosexual",
-          "Female Protagonist",
-          "Hikikomori",
-          "Monster Boy",
-          "Urban",
-          "LGBTQ+ Themes",
-          "Detective",
-          "Gore",
-          "Maids",
-          "Philosophy",
-          "Outdoor Activities",
-          "Guns",
-          "Yandere",
-          "Gyaru",
-          "Iyashikei",
-          "Femboy"
-        ],
-        "tags": [
-          "吸血鬼",
-          "現代ファンタジー",
-          "モンスター娘",
-          "少年向け",
-          "成長譚",
-          "不条理コメディ",
-          "ひきこもり",
-          "モンスター男子",
-          "都会",
-          "LGBTQテーマ",
-          "探偵",
-          "メイド",
-          "哲学",
-          "アウトドア",
-          "銃",
-          "ヤンデレ",
-          "ギャル",
-          "癒し系",
-          "女装男子"
-        ],
-        "tags_missing_en": [],
-        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
       },
       "meta": null
     }

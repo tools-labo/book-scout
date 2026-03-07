@@ -1,9 +1,11 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-06T16:46:26.656Z",
-  "total": 378,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-03-07T06:31:07.145Z",
+  "total": 382,
+  "droppedTotal": 1,
+  "droppedSeriesKeys": [
+    "東京エイリアンズ"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -12,7 +14,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 178
+      "count": 182
     }
   ],
   "lookup": {
@@ -22,14 +24,17 @@
     "20世紀少年": 0,
     "21世紀少年": 0,
     "3月のライオン": 0,
+    "BLUE GIANT": 0,
     "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-": 0,
     "BTOOOM!-ブトゥーム": 0,
     "DEAD Tube ～デッドチューブ～": 0,
     "GREEN BLOOD-グリーン・ブラッド": 0,
+    "HUNTER×HUNTER": 0,
     "Lv2からチートだった元勇者候補のまったり異世界ライフ": 0,
     "NARUTO -ナルト-": 0,
     "NHKにようこそ!": 0,
     "NO.6 [ナンバーシックス]": 0,
+    "ONE PIECE": 0,
     "orange [オレンジ]": 0,
     "PSYЯEN -サイレン-": 0,
     "RAINBOW 二舎六房の七人": 0,
@@ -213,9 +218,9 @@
     "ゆらぎ荘の幽奈さん": 0,
     "ようこそ実力至上主義の教室へ": 0,
     "ようこそ実力至上主義の教室へ　２年生編": 0,
-    "ヨコハマ買い出し紀行": 0,
-    "よつばと！": 0,
-    "よふかしのうた": 0,
+    "ヨコハマ買い出し紀行": 1,
+    "よつばと！": 1,
+    "よふかしのうた": 1,
     "ラストゲーム": 1,
     "ラブ★コン": 1,
     "リアル": 1,
@@ -242,6 +247,7 @@
     "僕だけがいない街": 1,
     "僕たちがやりました": 1,
     "僕のヒーローアカデミア": 1,
+    "僕の初恋をキミに捧ぐ": 1,
     "僕の心のヤバイやつ": 1,
     "僕らはみんな河合荘": 1,
     "先生は恋を教えられない": 1,
@@ -410,7 +416,7 @@
       ],
       "audiences": [
         "青年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -638,6 +644,33 @@
       "releaseDate": "2008-02-22T00:00:01Z"
     },
     {
+      "seriesKey": "BLUE GIANT",
+      "title": "BLUE GIANT（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6784/9784091856784.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091856780",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091856780",
+      "magazine": "ビッグコミック",
+      "magazines": [
+        "ビッグコミック"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Drama",
+        "Music",
+        "Slice of Life"
+      ],
+      "tags": [
+        "青年向け",
+        "バンド",
+        "成長譚",
+        "バー"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2013年11月"
+    },
+    {
       "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
       "title": "BORUTO―ボルト― 1 ―NARUTO NEXT GENERATIONS― (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/513zy06AifL._SL500_.jpg",
@@ -779,6 +812,54 @@
       "releaseDate": "2011年11月"
     },
     {
+      "seriesKey": "HUNTER×HUNTER",
+      "title": "HUNTER×HUNTER 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5710/9784088725710_1_4.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088725719",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088725719",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "少年向け",
+        "超能力",
+        "修行",
+        "旅",
+        "現代ファンタジー",
+        "復讐",
+        "暗殺者",
+        "キメラ",
+        "アンチヒーロー",
+        "政治",
+        "バトルロイヤル",
+        "戦争",
+        "デスゲーム",
+        "哲学",
+        "犯罪",
+        "ギャング",
+        "成長譚",
+        "失われた文明",
+        "陰謀",
+        "武術",
+        "カップリング",
+        "カードバトル",
+        "ゲーム",
+        "マフィア"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "1998年06月04日"
+    },
+    {
       "seriesKey": "Lv2からチートだった元勇者候補のまったり異世界ライフ",
       "title": "Lv2からチートだった元勇者候補のまったり異世界ライフ 1 (ガルドコミックス)",
       "image": "https://m.media-amazon.com/images/I/51weZoxUOgL._SL500_.jpg",
@@ -789,7 +870,7 @@
         "コミックガルド+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -896,7 +977,7 @@
         "ARIA"
       ],
       "audiences": [
-        "女性"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -924,6 +1005,54 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2011年06月07日"
+    },
+    {
+      "seriesKey": "ONE PIECE",
+      "title": "ONE PIECE 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5093/9784088725093_1_2.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088725093",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088725093",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "海賊",
+        "旅",
+        "疑似家族",
+        "少年向け",
+        "超能力",
+        "カップリング",
+        "政治",
+        "逃亡者",
+        "犯罪",
+        "陰謀",
+        "軍事",
+        "ドタバタ",
+        "戦争",
+        "失われた文明",
+        "奴隷",
+        "終末後",
+        "神々",
+        "剣術",
+        "神話",
+        "宗教",
+        "動物",
+        "環境問題",
+        "ギャング",
+        "スパイ"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "1997年12月24日"
     },
     {
       "seriesKey": "orange [オレンジ]",
@@ -1073,7 +1202,7 @@
         "月刊コミックアライブ"
       ],
       "audiences": [
-        "少年"
+        "青年"
       ],
       "genres": [
         "Action",
@@ -1124,7 +1253,7 @@
         "comico"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -1701,7 +1830,7 @@
         "コミックガルド"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -1785,7 +1914,7 @@
         "マガジンポケット"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -3094,7 +3223,7 @@
         "裏サンデー"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -3383,7 +3512,7 @@
         "pixivコミック"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -3422,7 +3551,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -3544,7 +3673,7 @@
       ],
       "audiences": [
         "青年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -3581,7 +3710,7 @@
         "コミックキューン"
       ],
       "audiences": [
-        "青年"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -4121,7 +4250,7 @@
         "月刊ビッグガンガン"
       ],
       "audiences": [
-        "Web/アプリ",
+        "その他",
         "青年"
       ],
       "genres": [
@@ -4504,7 +4633,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -4584,7 +4713,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -4633,7 +4762,7 @@
       ],
       "audiences": [
         "少年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -4916,7 +5045,7 @@
       ],
       "audiences": [
         "青年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -5076,7 +5205,7 @@
         "ツイ4"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -5110,7 +5239,8 @@
         "ヤングキングアワーズ"
       ],
       "audiences": [
-        "少年"
+        "少年",
+        "青年"
       ],
       "genres": [
         "Action",
@@ -5268,7 +5398,7 @@
         "月刊ドラゴンエイジ"
       ],
       "audiences": [
-        "青年"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -5468,7 +5598,7 @@
         "モバMAN"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -5862,7 +5992,7 @@
         "LINEマンガ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Horror",
@@ -6104,7 +6234,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -7301,7 +7431,7 @@
         "竹コミ!"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Adventure",
@@ -7647,7 +7777,7 @@
         "月刊コミックアライブ"
       ],
       "audiences": [
-        "少年"
+        "青年"
       ],
       "genres": [
         "Drama",
@@ -7675,7 +7805,7 @@
         "月刊コミックアライブ"
       ],
       "audiences": [
-        "少年"
+        "青年"
       ],
       "genres": [
         "Drama",
@@ -7916,7 +8046,7 @@
       ],
       "audiences": [
         "少年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -8069,7 +8199,7 @@
         "となりのヤングジャンプ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -8104,7 +8234,7 @@
         "comic POOL"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -8138,7 +8268,7 @@
         "comic POOL"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -8241,7 +8371,7 @@
         "ドラドラしゃーぷ#"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -8616,7 +8746,7 @@
         "ジーンピクシブ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -8757,6 +8887,31 @@
       "releaseDate": "2014-11-04T00:00:01Z"
     },
     {
+      "seriesKey": "僕の初恋をキミに捧ぐ",
+      "title": "僕の初恋をキミに捧ぐ（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0913/09130245.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091302459",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091302459",
+      "magazine": "少女コミック",
+      "magazines": [
+        "少女コミック"
+      ],
+      "audiences": [
+        "その他"
+      ],
+      "genres": [
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "少女",
+        "更生",
+        "成長譚"
+      ],
+      "publisher": "小学館",
+      "releaseDate": "2005年12月20日"
+    },
+    {
       "seriesKey": "僕の心のヤバイやつ",
       "title": "僕の心のヤバイやつ(1) (少年チャンピオン・コミックス)",
       "image": "https://m.media-amazon.com/images/I/51pGHospy5L._SL500_.jpg",
@@ -8770,7 +8925,7 @@
       ],
       "audiences": [
         "少年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -8857,7 +9012,7 @@
         "comic POOL"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -8893,7 +9048,7 @@
         "ヤングエースUP"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Horror",
@@ -9043,7 +9198,7 @@
       ],
       "audiences": [
         "少年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -9149,7 +9304,7 @@
         "マガジンポケット"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -9310,7 +9465,7 @@
       ],
       "audiences": [
         "青年",
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -9356,7 +9511,7 @@
         "月刊コミックアライブ"
       ],
       "audiences": [
-        "少年"
+        "青年"
       ],
       "genres": [
         "Drama",
@@ -9597,7 +9752,7 @@
         "ヤングエースUP"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Ecchi",
@@ -9681,7 +9836,7 @@
         "週刊ビッグコミックスピリッツ増刊 Casual"
       ],
       "audiences": [
-        "青年"
+        "その他"
       ],
       "genres": [
         "Horror",
@@ -9714,7 +9869,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -9923,7 +10078,7 @@
         "マンガボックス"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -10130,7 +10285,7 @@
         "ドラドラしゃーぷ#"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -10382,7 +10537,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -10413,7 +10568,7 @@
         "くらげバンチ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Adventure",
@@ -10560,7 +10715,7 @@
         "GANMA!"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -10590,7 +10745,7 @@
         "ヤングエースUP"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -10622,7 +10777,7 @@
         "ガンガンpixiv"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -11416,7 +11571,7 @@
         "ガンガンONLINE"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -11811,7 +11966,7 @@
         "くらげバンチ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -11941,7 +12096,7 @@
         "カドコミ（コミックウォーカー）"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Music",
@@ -12014,7 +12169,7 @@
         "on BLUE"
       ],
       "audiences": [
-        "女性"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -12313,7 +12468,7 @@
         "Twitter"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -13035,7 +13190,7 @@
         "マガジンポケット"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -13111,7 +13266,7 @@
         "ヤングエースUP"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Adventure",
@@ -13234,7 +13389,7 @@
         "WebComicアパンダ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -13383,7 +13538,7 @@
         "となりのヤングジャンプ"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -13508,7 +13663,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Comedy",
@@ -13545,7 +13700,7 @@
         "銀魂公式アプリ(完結編)"
       ],
       "audiences": [
-        "Web/アプリ",
+        "その他",
         "少年"
       ],
       "genres": [
@@ -13780,7 +13935,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Drama",
@@ -13933,7 +14088,7 @@
         "コミックガルド"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",
@@ -14052,7 +14207,7 @@
         "コミックグロウル"
       ],
       "audiences": [
-        "Web/アプリ",
+        "その他",
         "青年"
       ],
       "genres": [
@@ -14247,7 +14402,7 @@
         "少年ジャンプ+"
       ],
       "audiences": [
-        "Web/アプリ"
+        "その他"
       ],
       "genres": [
         "Action",

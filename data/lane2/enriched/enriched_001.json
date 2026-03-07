@@ -1,8 +1,223 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 178,
+  "count": 183,
   "items": [
+    {
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4063145883",
+        "amazonDp": "https://www.amazon.co.jp/dp/4063145883?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784063145885",
+        "asin": "4063145883",
+        "title": "ヨコハマ買い出し紀行 1 新装版 (アフタヌーンKC)",
+        "synopsis": "人類が減り、世界がゆっくりと静まっていく“夕凪の時代”。人型ロボットのアルファは海辺の喫茶店を営みながら、いつか帰る主人を待ち、日々の小さな景色を大切に積み重ねていく。",
+        "image": "https://m.media-amazon.com/images/I/51RWQK8SuXL._SL500_.jpg",
+        "publisher": "講談社",
+        "author": "芦奈野 ひとし",
+        "releaseDate": "2009-10-23T00:00:01Z",
+        "magazine": "月刊アフタヌーン",
+        "magazines": [
+          "月刊アフタヌーン"
+        ],
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "ヨコハマ買い出し紀行",
+        "anilistId": 30004,
+        "genres": [
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Iyashikei",
+          "Female Protagonist",
+          "Coastal",
+          "Post-Apocalyptic",
+          "Coming of Age",
+          "Philosophy",
+          "Rural",
+          "Robots",
+          "Lost Civilization",
+          "Seinen",
+          "Artificial Intelligence",
+          "Episodic",
+          "Travel",
+          "Work",
+          "Mopeds",
+          "Yuri",
+          "Family Life",
+          "Restaurant",
+          "Motorcycles",
+          "Nudity"
+        ],
+        "tags": [
+          "癒し系",
+          "海辺",
+          "終末後",
+          "成長譚",
+          "哲学",
+          "田舎",
+          "ロボット",
+          "失われた文明",
+          "青年向け",
+          "人工知能",
+          "旅",
+          "仕事",
+          "原付",
+          "百合",
+          "家族もの",
+          "飲食店",
+          "バイク"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "よつばと！",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4048690663",
+        "amazonDp": "https://www.amazon.co.jp/dp/4048690663?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784048690669",
+        "asin": "4048690663",
+        "title": "よつばと!(1) (電撃コミックス)",
+        "synopsis": "夏休み直前、元気すぎる女の子“よつば”と「とーちゃん」が引っ越してくる。近所の人たちや同年代の子と出会い、毎日が発見だらけの“はじめて”を積み重ねていく日常コメディ。",
+        "image": "https://m.media-amazon.com/images/I/51iQPs6io6L._SL500_.jpg",
+        "publisher": "KADOKAWA",
+        "author": "あずま きよひこ",
+        "releaseDate": "2003-08-27T00:00:01Z",
+        "magazine": "月刊コミック電撃大王",
+        "magazines": [
+          "月刊コミック電撃大王"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
+        "anilistId": 30104,
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Family Life",
+          "Iyashikei",
+          "Episodic",
+          "Female Protagonist",
+          "Parenthood",
+          "Slapstick",
+          "Shounen",
+          "Cute Girls Doing Cute Things",
+          "Rural",
+          "Adoption",
+          "Primarily Female Cast",
+          "Tomboy",
+          "Fishing"
+        ],
+        "tags": [
+          "家族もの",
+          "癒し系",
+          "親子（子育て）",
+          "ドタバタ",
+          "少年向け",
+          "かわいい女の子の日常",
+          "田舎",
+          "養子縁組",
+          "ボーイッシュ",
+          "釣り"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "よふかしのうた",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091294928",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091294928?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+        "isbn13": "9784091294920",
+        "asin": "4091294928",
+        "title": "よふかしのうた (1) (少年サンデーコミックス)",
+        "synopsis": "眠れない中学生・夜守コウは、夜の街で吸血鬼・七草ナズナと出会う。夜ふかしを重ねるうちに、コウは“吸血鬼になる”ことを望み始めるが、その条件は「恋に落ちる」ことだった。",
+        "image": "https://m.media-amazon.com/images/I/51a6-Zb8h0L._SL500_.jpg",
+        "publisher": "小学館",
+        "author": "コトヤマ",
+        "releaseDate": "2019-11-18T00:00:01Z",
+        "magazine": "週刊少年サンデー",
+        "magazines": [
+          "週刊少年サンデー"
+        ],
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "よふかしのうた (漫画)",
+        "anilistId": 111233,
+        "genres": [
+          "Comedy",
+          "Psychological",
+          "Romance",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags_en": [
+          "Vampire",
+          "Urban Fantasy",
+          "Monster Girl",
+          "Shounen",
+          "Male Protagonist",
+          "Coming of Age",
+          "Suicide",
+          "Primarily Teen Cast",
+          "Surreal Comedy",
+          "Heterosexual",
+          "Female Protagonist",
+          "Hikikomori",
+          "Monster Boy",
+          "Urban",
+          "LGBTQ+ Themes",
+          "Detective",
+          "Gore",
+          "Maids",
+          "Philosophy",
+          "Outdoor Activities",
+          "Guns",
+          "Yandere",
+          "Gyaru",
+          "Iyashikei",
+          "Femboy"
+        ],
+        "tags": [
+          "吸血鬼",
+          "現代ファンタジー",
+          "モンスター娘",
+          "少年向け",
+          "成長譚",
+          "不条理コメディ",
+          "ひきこもり",
+          "モンスター男子",
+          "都会",
+          "LGBTQテーマ",
+          "探偵",
+          "メイド",
+          "哲学",
+          "アウトドア",
+          "銃",
+          "ヤンデレ",
+          "ギャル",
+          "癒し系",
+          "女装男子"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
     {
       "seriesKey": "ラストゲーム",
       "vol1": {
@@ -1741,6 +1956,55 @@
         "source": "manual_batch",
         "addedAt": "2026-02-13"
       }
+    },
+    {
+      "seriesKey": "僕の初恋をキミに捧ぐ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4091302459",
+        "amazonDp": "https://www.amazon.co.jp/dp/4091302459",
+        "isbn13": "9784091302458",
+        "asin": "4091302459",
+        "title": "僕の初恋をキミに捧ぐ（1）",
+        "synopsis": "幼い頃から一緒に育った逞と繭は、互いを特別に思いながら日常を重ねていく。けれど逞には将来に関わる秘密があり、二人の関係は少しずつ切実さを帯びていく。",
+        "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0913/09130245.jpg?_ex=200x200",
+        "publisher": "小学館",
+        "author": "青木 琴美",
+        "releaseDate": "2005年12月20日",
+        "rakutenUrl": "https://books.rakuten.co.jp/rb/3679890/",
+        "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F3679890%2F",
+        "bookMetaSource": "rakuten",
+        "magazine": "少女コミック",
+        "magazines": [
+          "少女コミック"
+        ],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": "wikipedia",
+        "wikiTitle": "僕の初恋をキミに捧ぐ",
+        "anilistId": 34207,
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags_en": [
+          "Shoujo",
+          "Heterosexual",
+          "Rehabilitation",
+          "Coming of Age",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Female Protagonist"
+        ],
+        "tags": [
+          "少女",
+          "更生",
+          "成長譚"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      },
+      "meta": null
     },
     {
       "seriesKey": "僕の心のヤバイやつ",
@@ -7026,6 +7290,66 @@
         ],
         "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      },
+      "meta": null
+    },
+    {
+      "seriesKey": "東京エイリアンズ",
+      "vol1": {
+        "amazonUrl": "https://www.amazon.co.jp/dp/4757568657",
+        "amazonDp": "https://www.amazon.co.jp/dp/4757568657",
+        "isbn13": "9784757568655",
+        "asin": "4757568657",
+        "title": "東京エイリアンズ（1）",
+        "synopsis": "ごく普通の高校生だった晃は、ある出来事をきっかけに“宇宙人が混ざる東京”の裏側へ踏み込む。対宇宙人組織の存在や同級生の秘密を知り、日常は一気に非日常へ変わっていく。",
+        "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8655/9784757568655_1_2.jpg?_ex=200x200",
+        "publisher": "スクウェア・エニックス",
+        "author": "NAOE",
+        "releaseDate": "2020年09月26日頃",
+        "rakutenUrl": "https://books.rakuten.co.jp/rb/16405348/",
+        "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16405348%2F",
+        "bookMetaSource": "rakuten",
+        "magazine": null,
+        "magazines": [],
+        "audiences": [
+          "その他"
+        ],
+        "magazineSource": null,
+        "wikiTitle": "エイリアンズ",
+        "anilistId": 123657,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Sci-Fi"
+        ],
+        "tags_en": [
+          "Aliens",
+          "Urban Fantasy",
+          "Cyberpunk",
+          "Male Protagonist",
+          "Police",
+          "Seinen",
+          "Gore",
+          "Super Power",
+          "Primarily Male Cast",
+          "LGBTQ+ Themes",
+          "Chibi",
+          "School",
+          "Primarily Teen Cast"
+        ],
+        "tags": [
+          "宇宙人",
+          "現代ファンタジー",
+          "サイバーパンク",
+          "警察",
+          "青年向け",
+          "超能力",
+          "LGBTQテーマ",
+          "ちびキャラ",
+          "学園"
+        ],
+        "tags_missing_en": [],
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
     },
