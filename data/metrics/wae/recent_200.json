@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T04:39:51.690Z",
-  "updatedAtJst": "2026-03-07 13:39:51",
+  "updatedAt": "2026-03-07T05:51:19.480Z",
+  "updatedAtJst": "2026-03-07 14:51:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,71 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-07 05:14:17",
+      "timestampJst": "2026-03-07 14:14:17",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-07 05:14:16",
+      "timestampJst": "2026-03-07 14:14:16",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-07 05:14:13",
+      "timestampJst": "2026-03-07 14:14:13",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "funny",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-07 05:14:12",
+      "timestampJst": "2026-03-07 14:14:12",
+      "type": "mood_fb",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "page_turner",
+      "genre": "yes",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-07 05:14:08",
+      "timestampJst": "2026-03-07 14:14:08",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-07 02:18:17",
       "timestampJst": "2026-03-07 11:18:17",
@@ -25599,7 +25664,7 @@
     }
   ],
   "raw": {
-    "rows": 1965,
-    "rows_before_limit_at_least": 1965
+    "rows": 1970,
+    "rows_before_limit_at_least": 1970
   }
 }
