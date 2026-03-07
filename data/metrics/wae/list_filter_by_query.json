@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T21:33:20.045Z",
-  "updatedAtJst": "2026-03-08 06:33:20",
+  "updatedAt": "2026-03-07T22:38:31.808Z",
+  "updatedAtJst": "2026-03-08 07:38:31",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -323,29 +323,8 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=messy,tearjerker",
-      "n": "1"
-    },
-    {
       "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
       "aud": "aud=少年",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=romance,sf,fantasy,mystery,action",
-      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -359,14 +338,14 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
+      "aud": "aud=少年",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
-      "aud": "aud=少年",
+      "genre": "genre=romance,sf,fantasy,mystery,action",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -374,7 +353,28 @@
     {
       "genre": "",
       "aud": "",
+      "mag": "",
+      "mood": "mood=messy,tearjerker",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
       "mag": "mag=Cocohana",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -771,15 +771,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
+      "genre": "genre=drama,sports,mystery,slice",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
