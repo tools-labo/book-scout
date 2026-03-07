@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T02:43:36.346Z",
-  "updatedAtJst": "2026-03-07 11:43:36",
+  "updatedAt": "2026-03-07T04:39:51.690Z",
+  "updatedAtJst": "2026-03-07 13:39:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -211,12 +211,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "ソウルイーター",
-      "k": "art",
-      "avg": 3,
-      "n": "2"
-    },
-    {
       "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
@@ -242,6 +236,12 @@
     },
     {
       "seriesKey": "政宗くんのリベンジ",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ソウルイーター",
       "k": "art",
       "avg": 3,
       "n": "2"
@@ -415,7 +415,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "惑星のさみだれ",
+      "seriesKey": "orange [オレンジ]",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -427,13 +427,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "ひるなかの流星",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ひるなかの流星",
+      "seriesKey": "双星の陰陽師",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -445,7 +445,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "双星の陰陽師",
+      "seriesKey": "惑星のさみだれ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -751,6 +751,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "青の祓魔師",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
       "avg": 4,
@@ -764,12 +770,6 @@
     },
     {
       "seriesKey": "orange [オレンジ]",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "青の祓魔師",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -955,7 +955,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "ガンバレ！中村くん！！",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -967,7 +967,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガンバレ！中村くん！！",
+      "seriesKey": "ケンガンアシュラ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -1111,13 +1111,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
+      "seriesKey": "たいようのいえ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
+      "seriesKey": "同級生",
       "k": "rec",
       "avg": 3,
       "n": "1"
