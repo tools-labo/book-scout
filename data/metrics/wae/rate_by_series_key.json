@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T14:39:40.767Z",
-  "updatedAtJst": "2026-03-07 23:39:40",
+  "updatedAt": "2026-03-07T15:36:04.120Z",
+  "updatedAtJst": "2026-03-08 00:36:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -829,12 +829,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "少年のアビス",
-      "k": "rec",
-      "avg": 3.5,
-      "n": "2"
-    },
-    {
       "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 3.5,
@@ -842,6 +836,12 @@
     },
     {
       "seriesKey": "ReLIFE",
+      "k": "rec",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "少年のアビス",
       "k": "rec",
       "avg": 3.5,
       "n": "2"
@@ -1099,13 +1099,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "終わりのセラフ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "終わりのセラフ",
+      "seriesKey": "東京卍リベンジャーズ",
       "k": "rec",
       "avg": 3,
       "n": "1"
