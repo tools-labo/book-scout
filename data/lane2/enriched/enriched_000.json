@@ -495,13 +495,12 @@
         ],
         "tags": [
           "青年向け",
+          "ジャズ音楽",
           "バンド",
           "成長譚",
           "バー"
         ],
-        "tags_missing_en": [
-          "Jazz Music"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null

@@ -1,11 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T06:31:07.145Z",
-  "total": 382,
-  "droppedTotal": 1,
-  "droppedSeriesKeys": [
-    "東京エイリアンズ"
-  ],
+  "updatedAt": "2026-03-07T06:36:53.302Z",
+  "total": 383,
+  "droppedTotal": 0,
+  "droppedSeriesKeys": [],
   "shardSize": 200,
   "shards": [
     {
@@ -14,7 +12,7 @@
     },
     {
       "file": "works_001.json",
-      "count": 182
+      "count": 183
     }
   ],
   "lookup": {
@@ -326,6 +324,7 @@
     "未熟なふたりでございますが": 1,
     "杖と剣のウィストリア": 1,
     "来世は他人がいい": 1,
+    "東京エイリアンズ": 1,
     "東京卍リベンジャーズ": 1,
     "東京喰種 トーキョーグール": 1,
     "東京喰種-トーキョーグール-:re": 1,
@@ -663,6 +662,7 @@
       ],
       "tags": [
         "青年向け",
+        "ジャズ音楽",
         "バンド",
         "成長譚",
         "バー"
@@ -8892,12 +8892,12 @@
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0913/09130245.jpg?_ex=200x200",
       "amazonDp": "https://www.amazon.co.jp/dp/4091302459",
       "amazonUrl": "https://www.amazon.co.jp/dp/4091302459",
-      "magazine": "少女コミック",
+      "magazine": "Sho-Comi",
       "magazines": [
-        "少女コミック"
+        "Sho-Comi"
       ],
       "audiences": [
-        "その他"
+        "少女"
       ],
       "genres": [
         "Romance",
@@ -11733,6 +11733,38 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2017-11-22T00:00:01Z"
+    },
+    {
+      "seriesKey": "東京エイリアンズ",
+      "title": "東京エイリアンズ（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8655/9784757568655_1_2.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757568657",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757568657",
+      "magazine": "月刊Gファンタジー",
+      "magazines": [
+        "月刊Gファンタジー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "宇宙人",
+        "現代ファンタジー",
+        "サイバーパンク",
+        "警察",
+        "青年向け",
+        "超能力",
+        "LGBTQテーマ",
+        "ちびキャラ",
+        "学園"
+      ],
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2020年09月26日頃"
     },
     {
       "seriesKey": "東京卍リベンジャーズ",

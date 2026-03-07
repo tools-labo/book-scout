@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-07T06:31:07.145Z",
+  "updatedAt": "2026-03-07T06:36:53.302Z",
   "total": 383,
   "shardSize": 200,
   "shards": [
@@ -402,69 +402,37 @@
     "total": 383,
     "ok": 383,
     "ng": 0,
-    "skippedPerfect": 378,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedBookMeta": 0,
-    "fetchedBookMetaIsbn13s": 5,
-    "magAudienceTodoAdded": 1,
+    "skippedPerfect": 380,
+    "skippedAniList": 3,
+    "skippedWiki": 3,
+    "skippedBookMeta": 3,
+    "fetchedBookMetaIsbn13s": 0,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 5,
-      "outNotPerfect": 2
+      "prevNotPerfect": 2,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "BLUE GIANT :: noVol1",
-        "HUNTER×HUNTER :: noVol1",
-        "ONE PIECE :: noVol1",
-        "僕の初恋をキミに捧ぐ :: noVol1",
-        "東京エイリアンズ :: noVol1"
-      ],
-      "outNotPerfect": [
         "BLUE GIANT :: tags_missing_en(remain=1)",
         "東京エイリアンズ :: magazine,magazines[]"
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 2,
-      "seriesKeys": [
-        "BLUE GIANT",
-        "東京エイリアンズ"
-      ],
-      "topReasons": [
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 1,
-          "samples": [
-            "BLUE GIANT"
-          ]
-        },
-        {
-          "reason": "magazine",
-          "n": 1,
-          "samples": [
-            "東京エイリアンズ"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 1,
-          "samples": [
-            "東京エイリアンズ"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。"
     },
     "bookMeta": {
       "provider": "rakuten",
       "enabled": true,
-      "requests": 5,
+      "requests": 0,
       "failures": 0,
       "http403": 0,
       "http429": 0,
       "missingItems": 0,
-      "successItems": 5
+      "successItems": 0
     }
   }
 }

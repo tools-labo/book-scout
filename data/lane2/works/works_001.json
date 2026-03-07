@@ -1,7 +1,7 @@
 {
   "version": 1,
   "shard": 1,
-  "count": 182,
+  "count": 183,
   "items": [
     {
       "seriesKey": "ヨコハマ買い出し紀行",
@@ -1351,14 +1351,14 @@
       "isbn13": "9784091302458",
       "asin": "4091302459",
       "synopsis": "幼い頃から一緒に育った逞と繭は、互いを特別に思いながら日常を重ねていく。けれど逞には将来に関わる秘密があり、二人の関係は少しずつ切実さを帯びていく。",
-      "magazine": "少女コミック",
+      "magazine": "Sho-Comi",
       "magazines": [
-        "少女コミック"
+        "Sho-Comi"
       ],
       "audiences": [
-        "その他"
+        "少女"
       ],
-      "magazineSource": "wikipedia",
+      "magazineSource": "manual_override",
       "genres": [
         "Romance",
         "Slice of Life"
@@ -1370,7 +1370,6 @@
       ],
       "meta": {
         "anilistId": 34207,
-        "wikiTitle": "僕の初恋をキミに捧ぐ",
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
@@ -4946,6 +4945,47 @@
         "anilistId": 99897,
         "wikiTitle": "来世は他人がいい",
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "東京エイリアンズ",
+      "title": "東京エイリアンズ（1）",
+      "author": "NAOE",
+      "publisher": "スクウェア・エニックス",
+      "releaseDate": "2020年09月26日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8655/9784757568655_1_2.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4757568657",
+      "amazonDp": "https://www.amazon.co.jp/dp/4757568657",
+      "isbn13": "9784757568655",
+      "asin": "4757568657",
+      "synopsis": "ごく普通の高校生だった晃は、ある出来事をきっかけに“宇宙人が混ざる東京”の裏側へ踏み込む。対宇宙人組織の存在や同級生の秘密を知り、日常は一気に非日常へ変わっていく。",
+      "magazine": "月刊Gファンタジー",
+      "magazines": [
+        "月刊Gファンタジー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "tags": [
+        "宇宙人",
+        "現代ファンタジー",
+        "サイバーパンク",
+        "警察",
+        "青年向け",
+        "超能力",
+        "LGBTQテーマ",
+        "ちびキャラ",
+        "学園"
+      ],
+      "meta": {
+        "anilistId": 123657,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       }
     },
     {
