@@ -365,7 +365,7 @@ function toTimeMsFromYmd(s) {
 /* =======================
  * Amazon（表示側でアフィ付与）
  * ======================= */
-const AMAZON_ASSOCIATE_TAG = "mozublo-22";
+const AMAZON_ASSOCIATE_TAG = "book-scout-22";
 
 function isAmazonJpHost(hostname) {
   const h = String(hostname || "").toLowerCase();
