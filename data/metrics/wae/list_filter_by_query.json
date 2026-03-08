@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-08T14:40:38.033Z",
-  "updatedAtJst": "2026-03-08 23:40:38",
+  "updatedAt": "2026-03-08T15:36:38.633Z",
+  "updatedAtJst": "2026-03-09 00:36:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -75,7 +75,7 @@
       "aud": "aud=少年",
       "mag": "",
       "mood": "",
-      "n": "8"
+      "n": "9"
     },
     {
       "genre": "",
@@ -176,14 +176,14 @@
       "n": "3"
     },
     {
-      "genre": "genre=fantasy",
+      "genre": "genre=drama",
       "aud": "",
       "mag": "",
       "mood": "",
       "n": "3"
     },
     {
-      "genre": "genre=drama",
+      "genre": "genre=fantasy",
       "aud": "",
       "mag": "",
       "mood": "",
@@ -323,9 +323,9 @@
       "n": "1"
     },
     {
-      "genre": "",
+      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
       "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -337,10 +337,10 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -351,17 +351,24 @@
       "n": "1"
     },
     {
-      "genre": "genre=sports,drama",
+      "genre": "",
       "aud": "",
       "mag": "",
+      "mood": "mood=messy,tearjerker",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "aud=少年",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
+      "mag": "mag=Cocohana",
+      "mood": "",
       "n": "1"
     },
     {
@@ -375,13 +382,6 @@
       "genre": "",
       "aud": "",
       "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
@@ -407,10 +407,10 @@
       "n": "1"
     },
     {
-      "genre": "",
+      "genre": "genre=sports,drama",
       "aud": "",
       "mag": "",
-      "mood": "mood=messy,tearjerker",
+      "mood": "",
       "n": "1"
     },
     {
@@ -739,14 +739,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=page_turner,hot",
+      "mood": "mood=healing,satisfying",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=healing,satisfying",
+      "mood": "mood=page_turner,hot",
       "n": "1"
     },
     {
@@ -792,24 +792,24 @@
       "n": "1"
     },
     {
-      "genre": "genre=action",
-      "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=action",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=funny,moving",
+      "n": "1"
+    },
+    {
+      "genre": "genre=action",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=action",
+      "aud": "",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
@@ -834,16 +834,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=action",
-      "aud": "aud=女性",
-      "mag": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Vジャンプ",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Vジャンプ",
+      "genre": "genre=action",
+      "aud": "aud=女性",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
@@ -857,6 +857,6 @@
   ],
   "raw": {
     "rows": 118,
-    "rows_before_limit_at_least": 358
+    "rows_before_limit_at_least": 359
   }
 }
