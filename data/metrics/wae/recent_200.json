@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-08T11:33:13.475Z",
-  "updatedAtJst": "2026-03-08 20:33:13",
+  "updatedAt": "2026-03-08T13:10:15.036Z",
+  "updatedAtJst": "2026-03-08 22:10:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-08 12:27:09",
+      "timestampJst": "2026-03-08 21:27:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ふたり明日もそれなりに",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-07 12:06:30",
       "timestampJst": "2026-03-07 21:06:30",
@@ -26613,7 +26626,7 @@
     }
   ],
   "raw": {
-    "rows": 2043,
-    "rows_before_limit_at_least": 2043
+    "rows": 2044,
+    "rows_before_limit_at_least": 2044
   }
 }
