@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-09T06:10:56.293Z",
-  "updatedAtJst": "2026-03-09 15:10:56",
+  "updatedAt": "2026-03-09T07:17:01.207Z",
+  "updatedAtJst": "2026-03-09 16:17:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -37,14 +37,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ドロヘドロ",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "銀魂",
+      "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -58,7 +51,14 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ドロヘドロ",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -100,6 +100,13 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "銀魂",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
@@ -114,14 +121,14 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "銀魂",
+      "seriesKey": "ソウルイーター",
       "yes": "1",
       "no": "0",
       "n": "1"
     },
     {
-      "mood": "hot",
-      "seriesKey": "ソウルイーター",
+      "mood": "messy",
+      "seriesKey": "【推しの子】",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -162,6 +169,13 @@
       "n": "1"
     },
     {
+      "mood": "page_turner",
+      "seriesKey": "【推しの子】",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
       "mood": "satisfying",
       "seriesKey": "ドラゴンボール",
       "yes": "2",
@@ -177,14 +191,14 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "NARUTO -ナルト-",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -195,10 +209,17 @@
       "yes": "2",
       "no": "0",
       "n": "2"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "【推しの子】",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 24,
-    "rows_before_limit_at_least": 38
+    "rows": 27,
+    "rows_before_limit_at_least": 41
   }
 }

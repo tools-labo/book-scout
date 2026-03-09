@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-09T06:10:56.293Z",
-  "updatedAtJst": "2026-03-09 15:10:56",
+  "updatedAt": "2026-03-09T07:17:01.207Z",
+  "updatedAtJst": "2026-03-09 16:17:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_key",
@@ -22,17 +22,17 @@
   "rows": [
     {
       "k": "rec",
-      "avg": 3.7675675675675677,
-      "n": "185"
+      "avg": 3.7688172043010755,
+      "n": "186"
     },
     {
       "k": "art",
-      "avg": 3.3783783783783785,
-      "n": "185"
+      "avg": 3.381720430107527,
+      "n": "186"
     }
   ],
   "raw": {
     "rows": 2,
-    "rows_before_limit_at_least": 370
+    "rows_before_limit_at_least": 372
   }
 }

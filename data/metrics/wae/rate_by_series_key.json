@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-09T06:10:56.293Z",
-  "updatedAtJst": "2026-03-09 15:10:56",
+  "updatedAt": "2026-03-09T07:17:01.207Z",
+  "updatedAtJst": "2026-03-09 16:17:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -129,8 +129,8 @@
     {
       "seriesKey": "【推しの子】",
       "k": "art",
-      "avg": 3.6666666666666665,
-      "n": "3"
+      "avg": 3.75,
+      "n": "4"
     },
     {
       "seriesKey": "アクタージュ act-age",
@@ -397,7 +397,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "HUNTER×HUNTER",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -409,13 +409,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "20世紀少年",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "とつくにの少女",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -703,13 +703,13 @@
       "n": "4"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
-      "n": "3"
+      "n": "4"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "3"
@@ -775,6 +775,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "青の祓魔師",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "Re:ゼロから始める異世界生活",
       "k": "rec",
       "avg": 4,
@@ -788,12 +794,6 @@
     },
     {
       "seriesKey": "はじめの一歩",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "青の祓魔師",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -1135,13 +1135,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
+      "seriesKey": "同級生",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
+      "seriesKey": "ヲタクに恋は難しい",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -1185,6 +1185,6 @@
   ],
   "raw": {
     "rows": 193,
-    "rows_before_limit_at_least": 370
+    "rows_before_limit_at_least": 372
   }
 }
