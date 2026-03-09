@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-09T13:39:29.839Z",
-  "updatedAtJst": "2026-03-09 22:39:29",
+  "updatedAt": "2026-03-09T15:09:23.612Z",
+  "updatedAtJst": "2026-03-10 00:09:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-09 14:49:23",
+      "timestampJst": "2026-03-09 23:49:23",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=その他",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-09 14:49:22",
+      "timestampJst": "2026-03-09 23:49:22",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=Web/アプリ",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-09 14:49:11",
+      "timestampJst": "2026-03-09 23:49:11",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=その他",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-09 14:49:02",
+      "timestampJst": "2026-03-09 23:49:02",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=その他",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-09 14:49:01",
+      "timestampJst": "2026-03-09 23:49:01",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=Web/アプリ",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-09 14:48:42",
+      "timestampJst": "2026-03-09 23:48:42",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "からかい上手の（元）高木さん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-09 14:48:26",
+      "timestampJst": "2026-03-09 23:48:26",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "最果てのパラディン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-09 06:37:53",
       "timestampJst": "2026-03-09 15:37:53",
@@ -26847,7 +26938,7 @@
     }
   ],
   "raw": {
-    "rows": 2061,
-    "rows_before_limit_at_least": 2061
+    "rows": 2068,
+    "rows_before_limit_at_least": 2068
   }
 }
