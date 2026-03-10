@@ -1,151 +1,17 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T09:48:05.132Z",
+  "updatedAt": "2026-03-10T11:09:59.941Z",
   "mode": "write",
   "totalWorksItems": 383,
-  "changedSeries": 7,
-  "unchangedSeries": 376,
+  "changedSeries": 1,
+  "unchangedSeries": 382,
   "keptNoMagazine": 2,
-  "keptNoMatch": 3,
+  "keptNoMatch": 0,
   "unknownMagazines": [
     "スター",
-    "まんがタイムきららフォワード",
-    "ヤングジャンプGOLD",
-    "移籍先未発表",
-    "週刊少年ジャンプ Vジャンプ",
-    "週刊少年ジャンプ ウルトラジャンプ",
-    "増刊ヤングガンガンビッグ"
+    "移籍先未発表"
   ],
   "samplesChanged": [
-    {
-      "seriesKey": "DEAD Tube ～デッドチューブ～",
-      "magazine": "チャンピオンRED",
-      "magazines": [
-        "チャンピオンRED"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "青年"
-      ],
-      "magazinesCanonical": [
-        "チャンピオンRED"
-      ]
-    },
-    {
-      "seriesKey": "ガンバレ！中村くん！！",
-      "magazine": "ふらっとヒーローズ",
-      "magazines": [
-        "ふらっとヒーローズ"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "Web/アプリ"
-      ],
-      "magazinesCanonical": [
-        "ふらっとヒーローズ"
-      ]
-    },
-    {
-      "seriesKey": "ソードアート・オンライン アインクラッド",
-      "magazine": "電撃マオウ",
-      "magazines": [
-        "電撃マオウ"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "青年"
-      ],
-      "magazinesCanonical": [
-        "電撃マオウ"
-      ]
-    },
-    {
-      "seriesKey": "フリージア",
-      "magazine": "IKKI",
-      "magazines": [
-        "IKKI"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "青年"
-      ],
-      "magazinesCanonical": [
-        "IKKI"
-      ]
-    },
-    {
-      "seriesKey": "ベルベット・キス",
-      "magazine": "ヤングコミック",
-      "magazines": [
-        "ヤングコミック"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "青年"
-      ],
-      "magazinesCanonical": [
-        "ヤングコミック"
-      ]
-    },
-    {
-      "seriesKey": "また、同じ夢を見ていた",
-      "magazine": "月刊コミックアース・スター",
-      "magazines": [
-        "月刊コミックアース",
-        "スター"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "少年"
-      ],
-      "magazinesCanonical": [
-        "月刊コミックアース",
-        "スター"
-      ]
-    },
-    {
-      "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
-      "magazine": "水曜日のシリウス",
-      "magazines": [
-        "水曜日のシリウス"
-      ],
-      "existingAudiences": [
-        "その他"
-      ],
-      "nextAudiences": [
-        "Web/アプリ"
-      ],
-      "magazinesCanonical": [
-        "水曜日のシリウス"
-      ]
-    }
-  ],
-  "samplesKeptNoMatch": [
-    {
-      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
-      "magazine": "週刊少年ジャンプ Vジャンプ",
-      "magazines": [
-        "週刊少年ジャンプ Vジャンプ"
-      ],
-      "existingAudiences": [
-        "少年"
-      ],
-      "unknownMagazines": [
-        "週刊少年ジャンプ Vジャンプ"
-      ]
-    },
     {
       "seriesKey": "がっこうぐらし!",
       "magazine": "まんがタイムきららフォワード",
@@ -155,23 +21,13 @@
       "existingAudiences": [
         "その他"
       ],
-      "unknownMagazines": [
-        "まんがタイムきららフォワード"
-      ]
-    },
-    {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
-      "magazine": "週刊少年ジャンプ ウルトラジャンプ",
-      "magazines": [
-        "週刊少年ジャンプ ウルトラジャンプ"
-      ],
-      "existingAudiences": [
-        "少年",
+      "nextAudiences": [
         "青年"
       ],
-      "unknownMagazines": [
-        "週刊少年ジャンプ ウルトラジャンプ"
+      "magazinesCanonical": [
+        "まんがタイムきららフォワード"
       ]
     }
-  ]
+  ],
+  "samplesKeptNoMatch": []
 }
