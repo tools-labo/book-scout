@@ -1,0 +1,697 @@
+{
+  "version": 1,
+  "updatedAt": "2026-03-10T06:54:08.559Z",
+  "mode": "write",
+  "totalWorksItems": 383,
+  "changedSeries": 67,
+  "unchangedSeries": 316,
+  "keptNoMagazine": 2,
+  "keptNoMatch": 11,
+  "unknownMagazines": [
+    "IKKI",
+    "コミックグロウル",
+    "スター",
+    "チャンピオンRED",
+    "ふらっとヒーローズ",
+    "まんがタイムきららフォワード",
+    "メフィスト",
+    "ヤングコミック",
+    "ヤングジャンプGOLD",
+    "移籍先未発表",
+    "月刊コミックアース",
+    "月刊コミックブレイド",
+    "週刊少年ジャンプ Vジャンプ",
+    "週刊少年ジャンプ ウルトラジャンプ",
+    "水曜日のシリウス",
+    "増刊ヤングガンガンビッグ",
+    "電撃マオウ"
+  ],
+  "samplesChanged": [
+    {
+      "seriesKey": "【推しの子】",
+      "magazine": "週刊ヤングジャンプ / ヤンジャン! / 少年ジャンプ+",
+      "magazines": [
+        "週刊ヤングジャンプ",
+        "ヤンジャン!",
+        "少年ジャンプ+"
+      ],
+      "existingAudiences": [
+        "青年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "週刊ヤングジャンプ",
+        "ヤンジャン!",
+        "少年ジャンプ+"
+      ]
+    },
+    {
+      "seriesKey": "Lv2からチートだった元勇者候補のまったり異世界ライフ",
+      "magazine": "コミックガルド＋",
+      "magazines": [
+        "コミックガルド+"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "コミックガルド+"
+      ]
+    },
+    {
+      "seriesKey": "NO.6 [ナンバーシックス]",
+      "magazine": "ARIA",
+      "magazines": [
+        "ARIA"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "女性"
+      ],
+      "magazinesCanonical": [
+        "ARIA"
+      ]
+    },
+    {
+      "seriesKey": "ReLIFE",
+      "magazine": "comico",
+      "magazines": [
+        "comico"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "comico"
+      ]
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
+      "magazine": "コミックガルド",
+      "magazines": [
+        "コミックガルド"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "コミックガルド"
+      ]
+    },
+    {
+      "seriesKey": "イジらないで、長瀞さん",
+      "magazine": "マガジンポケット",
+      "magazines": [
+        "マガジンポケット"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "マガジンポケット"
+      ]
+    },
+    {
+      "seriesKey": "ケンガンアシュラ",
+      "magazine": "裏サンデー",
+      "magazines": [
+        "裏サンデー"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "裏サンデー"
+      ]
+    },
+    {
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "magazine": "pixivコミック",
+      "magazines": [
+        "pixivコミック"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "pixivコミック"
+      ]
+    },
+    {
+      "seriesKey": "サマータイムレンダ",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "少年ジャンプ+"
+      ]
+    },
+    {
+      "seriesKey": "しまなみ誰そ彼",
+      "magazine": "ヒバナ →裏サンデー/ マンガワン",
+      "magazines": [
+        "ヒバナ",
+        "裏サンデー",
+        "マンガワン"
+      ],
+      "existingAudiences": [
+        "青年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "ヒバナ",
+        "裏サンデー",
+        "マンガワン"
+      ]
+    },
+    {
+      "seriesKey": "シメジ シミュレーション",
+      "magazine": "コミックキューン",
+      "magazines": [
+        "コミックキューン"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年"
+      ],
+      "magazinesCanonical": [
+        "コミックキューン"
+      ]
+    },
+    {
+      "seriesKey": "スーパーの裏でヤニ吸うふたり",
+      "magazine": "作者Twitter / 月刊ビッグガンガン",
+      "magazines": [
+        "作者Twitter",
+        "月刊ビッグガンガン"
+      ],
+      "existingAudiences": [
+        "青年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "作者Twitter",
+        "月刊ビッグガンガン"
+      ]
+    },
+    {
+      "seriesKey": "スピリットサークル",
+      "magazine": "ヤングキングアワーズ",
+      "magazines": [
+        "ヤングキングアワーズ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年"
+      ],
+      "magazinesCanonical": [
+        "ヤングキングアワーズ"
+      ]
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "少年ジャンプ+"
+      ]
+    },
+    {
+      "seriesKey": "ダンダダン",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "少年ジャンプ+"
+      ]
+    },
+    {
+      "seriesKey": "チェンソーマン",
+      "magazine": "週刊少年ジャンプ（第1部） / 少年ジャンプ+（第2部）",
+      "magazines": [
+        "週刊少年ジャンプ(第1部)",
+        "少年ジャンプ+(第2部)"
+      ],
+      "existingAudiences": [
+        "少年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "少年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "週刊少年ジャンプ",
+        "少年ジャンプ+"
+      ]
+    },
+    {
+      "seriesKey": "とつくにの少女",
+      "magazine": "月刊コミックガーデン / MAGCOMI",
+      "magazines": [
+        "月刊コミックガーデン",
+        "MAGCOMI"
+      ],
+      "existingAudiences": [
+        "青年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "月刊コミックガーデン",
+        "MAGCOMI"
+      ]
+    },
+    {
+      "seriesKey": "トモちゃんは女の子!",
+      "magazine": "ツイ4",
+      "magazines": [
+        "ツイ4"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "ツイ4"
+      ]
+    },
+    {
+      "seriesKey": "トリニティセブン 7人の魔書使い",
+      "magazine": "月刊ドラゴンエイジ",
+      "magazines": [
+        "月刊ドラゴンエイジ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "青年"
+      ],
+      "magazinesCanonical": [
+        "月刊ドラゴンエイジ"
+      ]
+    },
+    {
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "magazine": "モバMAN",
+      "magazines": [
+        "モバMAN"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "モバMAN"
+      ]
+    },
+    {
+      "seriesKey": "パンプキンナイト",
+      "magazine": "LINEマンガ",
+      "magazines": [
+        "LINEマンガ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "LINEマンガ"
+      ]
+    },
+    {
+      "seriesKey": "ファイアパンチ",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "少年ジャンプ+"
+      ]
+    },
+    {
+      "seriesKey": "メイドインアビス",
+      "magazine": "WEBコミックガンマ / 竹コミ!",
+      "magazines": [
+        "WEBコミックガンマ",
+        "竹コミ!"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "WEBコミックガンマ",
+        "竹コミ!"
+      ]
+    },
+    {
+      "seriesKey": "ルリドラゴン",
+      "magazine": "週刊少年ジャンプ / →少年ジャンプ+、週刊少年ジャンプ（デジタル版限定連載）",
+      "magazines": [
+        "週刊少年ジャンプ",
+        "少年ジャンプ+",
+        "週刊少年ジャンプ(デジタル版限定連載)"
+      ],
+      "existingAudiences": [
+        "少年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "少年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "週刊少年ジャンプ",
+        "少年ジャンプ+",
+        "週刊少年ジャンプ(デジタル版限定連載)"
+      ]
+    },
+    {
+      "seriesKey": "ワンパンマン",
+      "magazine": "となりのヤングジャンプ",
+      "magazines": [
+        "となりのヤングジャンプ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "となりのヤングジャンプ"
+      ]
+    },
+    {
+      "seriesKey": "ヲタクに恋は難しい",
+      "magazine": "comic POOL",
+      "magazines": [
+        "comic POOL"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "comic POOL"
+      ]
+    },
+    {
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+      "magazine": "comic POOL",
+      "magazines": [
+        "comic POOL"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "comic POOL"
+      ]
+    },
+    {
+      "seriesKey": "乙女ゲー世界はモブに厳しい世界です",
+      "magazine": "ドラドラしゃーぷ＃",
+      "magazines": [
+        "ドラドラしゃーぷ#"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "ドラドラしゃーぷ#"
+      ]
+    },
+    {
+      "seriesKey": "佐々木と宮野",
+      "magazine": "ジーンピクシブ",
+      "magazines": [
+        "ジーンピクシブ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "nextAudiences": [
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "ジーンピクシブ"
+      ]
+    },
+    {
+      "seriesKey": "僕の心のヤバイやつ",
+      "magazine": "週刊少年チャンピオン / →チャンピオンクロス / →マンガクロス",
+      "magazines": [
+        "週刊少年チャンピオン",
+        "チャンピオンクロス",
+        "マンガクロス"
+      ],
+      "existingAudiences": [
+        "少年",
+        "その他"
+      ],
+      "nextAudiences": [
+        "少年",
+        "Web/アプリ"
+      ],
+      "magazinesCanonical": [
+        "週刊少年チャンピオン",
+        "チャンピオンクロス",
+        "マンガクロス"
+      ]
+    }
+  ],
+  "samplesKeptNoMatch": [
+    {
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "magazine": "週刊少年ジャンプ Vジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ Vジャンプ"
+      ],
+      "existingAudiences": [
+        "少年"
+      ],
+      "unknownMagazines": [
+        "週刊少年ジャンプ Vジャンプ"
+      ]
+    },
+    {
+      "seriesKey": "DEAD Tube ～デッドチューブ～",
+      "magazine": "チャンピオンRED",
+      "magazines": [
+        "チャンピオンRED"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "チャンピオンRED"
+      ]
+    },
+    {
+      "seriesKey": "がっこうぐらし!",
+      "magazine": "まんがタイムきららフォワード",
+      "magazines": [
+        "まんがタイムきららフォワード"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "まんがタイムきららフォワード"
+      ]
+    },
+    {
+      "seriesKey": "ガンバレ！中村くん！！",
+      "magazine": "ふらっとヒーローズ",
+      "magazines": [
+        "ふらっとヒーローズ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "ふらっとヒーローズ"
+      ]
+    },
+    {
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "magazine": "週刊少年ジャンプ ウルトラジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ ウルトラジャンプ"
+      ],
+      "existingAudiences": [
+        "少年",
+        "青年"
+      ],
+      "unknownMagazines": [
+        "週刊少年ジャンプ ウルトラジャンプ"
+      ]
+    },
+    {
+      "seriesKey": "ソードアート・オンライン アインクラッド",
+      "magazine": "電撃マオウ",
+      "magazines": [
+        "電撃マオウ"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "電撃マオウ"
+      ]
+    },
+    {
+      "seriesKey": "フリージア",
+      "magazine": "IKKI",
+      "magazines": [
+        "IKKI"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "IKKI"
+      ]
+    },
+    {
+      "seriesKey": "ベルベット・キス",
+      "magazine": "ヤングコミック",
+      "magazines": [
+        "ヤングコミック"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "ヤングコミック"
+      ]
+    },
+    {
+      "seriesKey": "また、同じ夢を見ていた",
+      "magazine": "月刊コミックアース・スター",
+      "magazines": [
+        "月刊コミックアース",
+        "スター"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "月刊コミックアース",
+        "スター"
+      ]
+    },
+    {
+      "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
+      "magazine": "水曜日のシリウス",
+      "magazines": [
+        "水曜日のシリウス"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "水曜日のシリウス"
+      ]
+    },
+    {
+      "seriesKey": "化物語",
+      "magazine": "メフィスト",
+      "magazines": [
+        "メフィスト"
+      ],
+      "existingAudiences": [
+        "その他"
+      ],
+      "unknownMagazines": [
+        "メフィスト"
+      ]
+    }
+  ]
+}
