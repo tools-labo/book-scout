@@ -7,7 +7,8 @@
     "lane2:enrich": "node scripts/lane2/enrich_lane2.mjs",
     "lane2:format": "node scripts/lane2/format_lane2.mjs",
     "lane2:prune": "node scripts/lane2/prune_seeds.mjs",
-
+    "lane2:reassign-audiences": "node scripts/lane2/reassign_audiences_from_works.mjs",
+    "lane2:reassign-audiences:write": "node scripts/lane2/reassign_audiences_from_works.mjs --write",
     "lane2": "npm run lane2:enrich && npm run lane2:format && npm run lane2:prune"
   },
   "dependencies": {}
