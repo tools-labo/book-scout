@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T05:59:19.965Z",
-  "updatedAtJst": "2026-03-10 14:59:19",
+  "updatedAt": "2026-03-10T07:07:18.423Z",
+  "updatedAtJst": "2026-03-10 16:07:18",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-10 06:57:29",
+      "timestampJst": "2026-03-10 15:57:29",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=その他",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-10 06:57:23",
+      "timestampJst": "2026-03-10 15:57:23",
+      "type": "list_filter",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "",
+      "mood": "",
+      "genre": "",
+      "aud": "aud=Web/アプリ",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-09 14:49:23",
       "timestampJst": "2026-03-09 23:49:23",
@@ -26938,7 +26964,7 @@
     }
   ],
   "raw": {
-    "rows": 2068,
-    "rows_before_limit_at_least": 2068
+    "rows": 2070,
+    "rows_before_limit_at_least": 2070
   }
 }

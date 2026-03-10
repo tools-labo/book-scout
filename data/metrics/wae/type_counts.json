@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T05:59:19.965Z",
-  "updatedAtJst": "2026-03-10 14:59:19",
+  "updatedAt": "2026-03-10T07:07:18.423Z",
+  "updatedAtJst": "2026-03-10 16:07:18",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "type_counts",
@@ -30,7 +30,7 @@
     },
     {
       "type": "list_filter",
-      "n": "371"
+      "n": "373"
     },
     {
       "type": "vote",
@@ -55,6 +55,6 @@
   ],
   "raw": {
     "rows": 9,
-    "rows_before_limit_at_least": 2068
+    "rows_before_limit_at_least": 2070
   }
 }
