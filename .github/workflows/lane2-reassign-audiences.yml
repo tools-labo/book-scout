@@ -1,0 +1,47 @@
+name: Lane2 - Reassign Audiences (Works -> Works+Enriched)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reassign-audiences:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Reassign audiences
+        run: npm run lane2:reassign-audiences:write
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            data/lane2/works/index.json \
+            data/lane2/works/*.json \
+            data/lane2/enriched/index.json \
+            data/lane2/enriched/*.json \
+            data/lane2/magazine_audience_reassign_report.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "lane2: reassign audiences from works"
+          git push
