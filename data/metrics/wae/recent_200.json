@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T08:59:55.717Z",
-  "updatedAtJst": "2026-03-10 17:59:55",
+  "updatedAt": "2026-03-10T09:59:38.617Z",
+  "updatedAtJst": "2026-03-10 18:59:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-10 09:53:37",
+      "timestampJst": "2026-03-10 18:53:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "月が導く異世界道中",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-10 06:57:29",
       "timestampJst": "2026-03-10 15:57:29",
@@ -26964,7 +26977,7 @@
     }
   ],
   "raw": {
-    "rows": 2070,
-    "rows_before_limit_at_least": 2070
+    "rows": 2071,
+    "rows_before_limit_at_least": 2071
   }
 }
