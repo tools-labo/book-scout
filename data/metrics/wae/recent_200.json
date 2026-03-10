@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T11:47:01.176Z",
-  "updatedAtJst": "2026-03-10 20:47:01",
+  "updatedAt": "2026-03-10T13:37:07.082Z",
+  "updatedAtJst": "2026-03-10 22:37:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-10 13:03:01",
+      "timestampJst": "2026-03-10 22:03:01",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "無限の住人",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-10 12:13:49",
+      "timestampJst": "2026-03-10 21:13:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君の膵臓をたべたい",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-10 10:05:27",
       "timestampJst": "2026-03-10 19:05:27",
@@ -26990,7 +27016,7 @@
     }
   ],
   "raw": {
-    "rows": 2072,
-    "rows_before_limit_at_least": 2072
+    "rows": 2074,
+    "rows_before_limit_at_least": 2074
   }
 }
