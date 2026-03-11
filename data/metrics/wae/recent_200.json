@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T07:10:42.675Z",
-  "updatedAtJst": "2026-03-11 16:10:42",
+  "updatedAt": "2026-03-11T07:54:13.293Z",
+  "updatedAtJst": "2026-03-11 16:54:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-11 07:32:08",
+      "timestampJst": "2026-03-11 16:32:08",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "光が死んだ夏",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-11 05:30:58",
       "timestampJst": "2026-03-11 14:30:58",
@@ -27081,7 +27094,7 @@
     }
   ],
   "raw": {
-    "rows": 2079,
-    "rows_before_limit_at_least": 2079
+    "rows": 2080,
+    "rows_before_limit_at_least": 2080
   }
 }
