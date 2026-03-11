@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T13:37:19.586Z",
-  "updatedAtJst": "2026-03-11 22:37:19",
+  "updatedAt": "2026-03-11T15:03:14.475Z",
+  "updatedAtJst": "2026-03-12 00:03:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-11 13:51:38",
+      "timestampJst": "2026-03-11 22:51:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "トモダチゲーム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-11 07:32:08",
       "timestampJst": "2026-03-11 16:32:08",
@@ -27094,7 +27107,7 @@
     }
   ],
   "raw": {
-    "rows": 2080,
-    "rows_before_limit_at_least": 2080
+    "rows": 2081,
+    "rows_before_limit_at_least": 2081
   }
 }
