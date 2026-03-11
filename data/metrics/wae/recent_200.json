@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T02:48:51.194Z",
-  "updatedAtJst": "2026-03-11 11:48:51",
+  "updatedAt": "2026-03-11T04:52:12.505Z",
+  "updatedAtJst": "2026-03-11 13:52:12",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-11 03:25:56",
+      "timestampJst": "2026-03-11 12:25:56",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "デッドデッドデーモンズデデデデデストラクション",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-10 16:42:31",
       "timestampJst": "2026-03-11 01:42:31",
@@ -27055,7 +27068,7 @@
     }
   ],
   "raw": {
-    "rows": 2077,
-    "rows_before_limit_at_least": 2077
+    "rows": 2078,
+    "rows_before_limit_at_least": 2078
   }
 }
