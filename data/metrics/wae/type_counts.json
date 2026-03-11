@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T17:09:40.484Z",
-  "updatedAtJst": "2026-03-12 02:09:40",
+  "updatedAt": "2026-03-11T18:02:15.873Z",
+  "updatedAtJst": "2026-03-12 03:02:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "type_counts",
@@ -18,7 +18,7 @@
   "rows": [
     {
       "type": "work_view",
-      "n": "519"
+      "n": "520"
     },
     {
       "type": "rate",
@@ -55,6 +55,6 @@
   ],
   "raw": {
     "rows": 9,
-    "rows_before_limit_at_least": 2081
+    "rows_before_limit_at_least": 2082
   }
 }

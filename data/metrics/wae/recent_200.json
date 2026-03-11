@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T17:09:40.484Z",
-  "updatedAtJst": "2026-03-12 02:09:40",
+  "updatedAt": "2026-03-11T18:02:15.873Z",
+  "updatedAtJst": "2026-03-12 03:02:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-11 17:56:05",
+      "timestampJst": "2026-03-12 02:56:05",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "パンドラハーツ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-11 13:51:38",
       "timestampJst": "2026-03-11 22:51:38",
@@ -27107,7 +27120,7 @@
     }
   ],
   "raw": {
-    "rows": 2081,
-    "rows_before_limit_at_least": 2081
+    "rows": 2082,
+    "rows_before_limit_at_least": 2082
   }
 }
