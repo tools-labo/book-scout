@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-12T21:47:20.754Z",
-  "updatedAtJst": "2026-03-13 06:47:20",
+  "updatedAt": "2026-03-12T22:44:13.599Z",
+  "updatedAtJst": "2026-03-13 07:44:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -162,10 +162,10 @@
       "n": "4"
     },
     {
-      "genre": "genre=action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少年",
       "n": "3"
     },
     {
@@ -197,10 +197,10 @@
       "n": "3"
     },
     {
-      "genre": "",
-      "aud": "",
+      "genre": "genre=action",
+      "aud": "aud=少年",
       "mag": "",
-      "mood": "aud=少年",
+      "mood": "",
       "n": "3"
     },
     {
@@ -309,7 +309,7 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery",
+      "genre": "genre=drama,sports,mystery",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
@@ -330,8 +330,8 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery",
-      "aud": "aud=女性",
+      "genre": "genre=sports,drama",
+      "aud": "",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -351,8 +351,8 @@
       "n": "1"
     },
     {
-      "genre": "genre=sports,drama",
-      "aud": "",
+      "genre": "genre=romance,sf,fantasy,mystery",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -374,14 +374,14 @@
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=Cocohana",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
@@ -739,14 +739,14 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=page_turner,hot",
+      "mood": "mood=healing,satisfying",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=healing,satisfying",
+      "mood": "mood=page_turner,hot",
       "n": "1"
     },
     {
