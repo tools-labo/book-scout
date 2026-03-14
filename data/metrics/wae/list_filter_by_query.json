@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T19:40:03.046Z",
-  "updatedAtJst": "2026-03-15 04:40:03",
+  "updatedAt": "2026-03-14T20:44:50.898Z",
+  "updatedAtJst": "2026-03-15 05:44:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -666,20 +666,6 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery,action,drama",
-      "aud": "aud=その他",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=romance,sf,fantasy,mystery,action",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "mood=funny",
-      "n": "1"
-    },
-    {
       "genre": "genre=fantasy,sf,sports,comedy,slice,horror,action",
       "aud": "aud=少年",
       "mag": "",
@@ -691,6 +677,20 @@
       "aud": "",
       "mag": "",
       "mood": "mood=moving,hot",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance,sf,fantasy,mystery,action,drama",
+      "aud": "aud=その他",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance,sf,fantasy,mystery,action",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "mood=funny",
       "n": "1"
     },
     {
