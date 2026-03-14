@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T17:42:16.473Z",
-  "updatedAtJst": "2026-03-15 02:42:16",
+  "updatedAt": "2026-03-14T18:56:49.426Z",
+  "updatedAtJst": "2026-03-15 03:56:49",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-14 18:38:27",
+      "timestampJst": "2026-03-15 03:38:27",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦≡",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-14 18:03:58",
+      "timestampJst": "2026-03-15 03:03:58",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "花野井くんと恋の病",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-14 16:07:34",
       "timestampJst": "2026-03-15 01:07:34",
@@ -32593,7 +32619,7 @@
     }
   ],
   "raw": {
-    "rows": 2503,
-    "rows_before_limit_at_least": 2503
+    "rows": 2505,
+    "rows_before_limit_at_least": 2505
   }
 }
