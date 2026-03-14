@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T14:39:03.466Z",
+  "updatedAt": "2026-03-14T14:48:28.162Z",
   "total": 424,
   "shardSize": 200,
   "shards": [
@@ -451,11 +451,11 @@
     "skippedAniList": 41,
     "skippedWiki": 41,
     "skippedBookMeta": 0,
-    "fetchedBookMetaIsbn13s": 0,
+    "fetchedBookMetaIsbn13s": 41,
     "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
       "prevNotPerfect": 41,
-      "outNotPerfect": 41
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
@@ -471,94 +471,23 @@
         "ひらやすみ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
         "フェチップル～僕らの純粋な恋～ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
         "ぼっち・ざ・ろっく！ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)"
-      ],
-      "outNotPerfect": [
-        "アナザー :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "イケメン女と箱入り娘 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ウィッチウォッチ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ここは今から倫理です。 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "テラフォーマーズ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "てんぷる :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ノーゲーム・ノーライフ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "パシリな僕と恋する番長さん :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "バトル・ロワイアル :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ひらやすみ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "フェチップル～僕らの純粋な恋～ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ぼっち・ざ・ろっく！ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)"
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 41,
-      "seriesKeys": [
-        "アナザー",
-        "イケメン女と箱入り娘",
-        "ウィッチウォッチ",
-        "ここは今から倫理です。",
-        "テラフォーマーズ",
-        "てんぷる",
-        "ノーゲーム・ノーライフ",
-        "パシリな僕と恋する番長さん",
-        "バトル・ロワイアル",
-        "ひらやすみ",
-        "フェチップル～僕らの純粋な恋～",
-        "ぼっち・ざ・ろっく！",
-        "ポンコツ風紀委員とスカート丈が不適切なJKの話",
-        "ラグナクリムゾン",
-        "らんま1/2",
-        "ロンリーガールに逆らえない",
-        "久住くん、空気読めてますか?",
-        "史上最強の弟子ケンイチ",
-        "呪術廻戦≡",
-        "子連れ狼",
-        "学園黙示録 HIGHSCHOOL OF THE DEAD",
-        "宇宙兄弟",
-        "小林さんちのメイドラゴン",
-        "川柳少女",
-        "幼稚園WARS",
-        "怪物事変",
-        "愛してるゲームを終わらせたい",
-        "日常",
-        "治癒魔法の間違った使い方 戦場を駆ける回復要員",
-        "熱帯魚は雪に焦がれる",
-        "狼と香辛料",
-        "異世界迷宮でハーレムを",
-        "私の推しは悪役令嬢。",
-        "結婚するって、本当ですか 365 Days To The Wedding",
-        "花野井くんと恋の病",
-        "軍鶏",
-        "転生したら剣でした",
-        "進撃の巨人 外伝 悔いなき選択",
-        "銀の匙",
-        "魔王の俺が奴隷エルフを嫁にしたんだが、どう愛でればいい？",
-        "黄昏乙女×アムネジア"
-      ],
-      "topReasons": [
-        {
-          "reason": "bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-          "n": 41,
-          "samples": [
-            "アナザー",
-            "イケメン女と箱入り娘",
-            "ウィッチウォッチ",
-            "ここは今から倫理です。",
-            "テラフォーマーズ",
-            "てんぷる",
-            "ノーゲーム・ノーライフ",
-            "パシリな僕と恋する番長さん"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。"
     },
     "bookMeta": {
       "provider": "rakuten",
       "enabled": true,
-      "requests": 0,
+      "requests": 41,
       "failures": 0,
       "http403": 0,
       "http429": 0,
       "missingItems": 0,
-      "successItems": 0
+      "successItems": 41
     }
   }
 }
