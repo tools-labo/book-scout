@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T15:40:58.492Z",
-  "updatedAtJst": "2026-03-15 00:40:58",
+  "updatedAt": "2026-03-14T16:47:51.505Z",
+  "updatedAtJst": "2026-03-15 01:47:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -309,15 +309,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance",
-      "aud": "",
+      "genre": "genre=drama,sports,mystery",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery",
-      "aud": "aud=女性",
+      "genre": "genre=romance",
+      "aud": "",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -435,17 +435,17 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice,action",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "aud=少年",
       "mag": "",
       "mood": "mood=heart_throb,satisfying",
+      "n": "1"
+    },
+    {
+      "genre": "genre=drama,sports,mystery,slice,action",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "",
       "n": "1"
     },
     {
@@ -473,7 +473,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Action&mood=moving",
+      "mood": "mood=heart_throb,healing",
       "n": "1"
     },
     {
@@ -494,7 +494,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,healing",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
