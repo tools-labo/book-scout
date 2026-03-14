@@ -4,7 +4,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BOOKスカウト｜ランキング</title>
+  <title>マンガランキング｜人気・支持率・おすすめ度・作画 - BOOKスカウト</title>
+  <meta
+    name="description"
+    content="人気ランキング、支持率ランキング、おすすめ度、作画クオリティからマンガを探せるランキングページです。ジャンルごとの絞り込みにも対応しています。"
+  />
+  <link rel="canonical" href="https://book-scout.tools-labo.com/stats.html" />
+
+  <meta property="og:site_name" content="BOOKスカウト" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="マンガランキング｜人気・支持率・おすすめ度・作画 - BOOKスカウト" />
+  <meta
+    property="og:description"
+    content="人気ランキング、支持率ランキング、おすすめ度、作画クオリティからマンガを探せるランキングページです。ジャンルごとの絞り込みにも対応しています。"
+  />
+  <meta property="og:url" content="https://book-scout.tools-labo.com/stats.html" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="マンガランキング｜人気・支持率・おすすめ度・作画 - BOOKスカウト" />
+  <meta
+    name="twitter:description"
+    content="人気ランキング、支持率ランキング、おすすめ度、作画クオリティからマンガを探せるランキングページです。ジャンルごとの絞り込みにも対応しています。"
+  />
+
   <link rel="stylesheet" href="./style.css" />
 
   <!-- PWA / Home screen icons -->
@@ -335,7 +358,7 @@
     function fmtPct(x){
       if (!Number.isFinite(x) || x <= 0) return "0%";
       if (x >= 10) return `${Math.round(x)}%`;
-      return `${Math.round(x * 10) / 10}%`; // 0.0〜9.9
+      return `${Math.round(x * 10) / 10}%`;
     }
 
     function fmtStar(avg){
