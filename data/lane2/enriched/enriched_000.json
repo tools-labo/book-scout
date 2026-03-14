@@ -13574,11 +13574,10 @@
           "少年向け",
           "ツンデレ",
           "学園",
+          "ヒップホップ",
           "ギャル"
         ],
-        "tags_missing_en": [
-          "Hip-hop Music"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null

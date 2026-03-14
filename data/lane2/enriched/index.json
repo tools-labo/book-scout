@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T13:48:59.548Z",
+  "updatedAt": "2026-03-14T14:16:43.976Z",
   "total": 424,
   "shardSize": 200,
   "shards": [
@@ -446,31 +446,31 @@
   "stats": {
     "total": 424,
     "ok": 424,
-    "ng": 5,
+    "ng": 0,
     "skippedPerfect": 383,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
+    "skippedAniList": 36,
+    "skippedWiki": 27,
     "skippedBookMeta": 0,
     "fetchedBookMetaIsbn13s": 0,
-    "magAudienceTodoAdded": 7,
+    "magAudienceTodoAdded": 1,
     "perfectNotMetReasons": {
       "prevNotPerfect": 41,
       "outNotPerfect": 41
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "アナザー :: noVol1",
-        "イケメン女と箱入り娘 :: noVol1",
-        "ウィッチウォッチ :: noVol1",
-        "ここは今から倫理です。 :: noVol1",
-        "テラフォーマーズ :: noVol1",
-        "てんぷる :: noVol1",
-        "ノーゲーム・ノーライフ :: noVol1",
-        "パシリな僕と恋する番長さん :: noVol1",
-        "バトル・ロワイアル :: noVol1",
-        "ひらやすみ :: noVol1",
-        "フェチップル～僕らの純粋な恋～ :: noVol1",
-        "ぼっち・ざ・ろっく！ :: noVol1"
+        "アナザー :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "イケメン女と箱入り娘 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "ウィッチウォッチ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "ここは今から倫理です。 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "テラフォーマーズ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "てんぷる :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "ノーゲーム・ノーライフ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "パシリな僕と恋する番長さん :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "バトル・ロワイアル :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "ひらやすみ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
+        "フェチップル～僕らの純粋な恋～ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
+        "ぼっち・ざ・ろっく！ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]"
       ],
       "outNotPerfect": [
         "アナザー :: bookMeta(amazonDp|image|publisher|author|releaseDate|title),magazine,magazines[]",
@@ -573,36 +573,6 @@
             "フェチップル～僕らの純粋な恋～",
             "ぼっち・ざ・ろっく！",
             "ポンコツ風紀委員とスカート丈が不適切なJKの話"
-          ]
-        },
-        {
-          "reason": "anilist(anilistId|genres[]|tags_en[])",
-          "n": 5,
-          "samples": [
-            "軍鶏",
-            "転生したら剣でした",
-            "進撃の巨人 外伝 悔いなき選択",
-            "銀の匙",
-            "魔王の俺が奴隷エルフを嫁にしたんだが、どう愛でればいい？"
-          ]
-        },
-        {
-          "reason": "tagsJa[]",
-          "n": 5,
-          "samples": [
-            "軍鶏",
-            "転生したら剣でした",
-            "進撃の巨人 外伝 悔いなき選択",
-            "銀の匙",
-            "魔王の俺が奴隷エルフを嫁にしたんだが、どう愛でればいい？"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 2,
-          "samples": [
-            "ポンコツ風紀委員とスカート丈が不適切なJKの話",
-            "日常"
           ]
         }
       ],
