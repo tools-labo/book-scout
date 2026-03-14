@@ -1283,12 +1283,14 @@
         "rakutenUrl": null,
         "rakutenAffiliateUrl": null,
         "bookMetaSource": null,
-        "magazine": null,
-        "magazines": [],
+        "magazine": "コミックファイア",
+        "magazines": [
+          "コミックファイア"
+        ],
         "audiences": [
           "その他"
         ],
-        "magazineSource": null,
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 101722,
         "genres": [
