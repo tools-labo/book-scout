@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T11:35:59.259Z",
-  "updatedAtJst": "2026-03-14 20:35:59",
+  "updatedAt": "2026-03-14T13:14:33.655Z",
+  "updatedAtJst": "2026-03-14 22:14:33",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,58 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-14 12:38:05",
+      "timestampJst": "2026-03-14 21:38:05",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-14 12:36:49",
+      "timestampJst": "2026-03-14 21:36:49",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "art",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-14 12:36:47",
+      "timestampJst": "2026-03-14 21:36:47",
+      "type": "rate",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "rec",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": 3
+    },
+    {
+      "timestamp": "2026-03-14 12:36:43",
+      "timestampJst": "2026-03-14 21:36:43",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-13 06:17:55",
       "timestampJst": "2026-03-13 15:17:55",
@@ -27146,7 +27198,7 @@
     }
   ],
   "raw": {
-    "rows": 2084,
-    "rows_before_limit_at_least": 2084
+    "rows": 2088,
+    "rows_before_limit_at_least": 2088
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T11:35:59.259Z",
-  "updatedAtJst": "2026-03-14 20:35:59",
+  "updatedAt": "2026-03-14T13:14:33.655Z",
+  "updatedAtJst": "2026-03-14 22:14:33",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -13,7 +13,7 @@
     {
       "id": "recent_200",
       "file": "recent_200.json",
-      "rows": 2084
+      "rows": 2088
     },
     {
       "id": "work_view_by_series",
@@ -53,7 +53,7 @@
     {
       "id": "rate_by_series_key",
       "file": "rate_by_series_key.json",
-      "rows": 193
+      "rows": 195
     },
     {
       "id": "rate_by_key",
@@ -63,12 +63,12 @@
     {
       "id": "rate_rec_top",
       "file": "rate_rec_top.json",
-      "rows": 96
+      "rows": 97
     },
     {
       "id": "rate_art_top",
       "file": "rate_art_top.json",
-      "rows": 97
+      "rows": 98
     },
     {
       "id": "rising_work_view_since_20260227",
