@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T13:14:33.655Z",
-  "updatedAtJst": "2026-03-14 22:14:33",
+  "updatedAt": "2026-03-14T13:54:31.737Z",
+  "updatedAtJst": "2026-03-14 22:54:31",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,45 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-14 13:46:12",
+      "timestampJst": "2026-03-14 22:46:12",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "list",
+      "seriesKey": "ONE PIECE",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-14 13:45:56",
+      "timestampJst": "2026-03-14 22:45:56",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "月が導く異世界道中",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-14 13:19:24",
+      "timestampJst": "2026-03-14 22:19:24",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-14 12:38:05",
       "timestampJst": "2026-03-14 21:38:05",
@@ -27198,7 +27237,7 @@
     }
   ],
   "raw": {
-    "rows": 2088,
-    "rows_before_limit_at_least": 2088
+    "rows": 2091,
+    "rows_before_limit_at_least": 2091
   }
 }
