@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-14T14:48:28.162Z",
+  "updatedAt": "2026-03-14T14:50:11.331Z",
   "total": 424,
   "shardSize": 200,
   "shards": [
@@ -447,32 +447,17 @@
     "total": 424,
     "ok": 424,
     "ng": 0,
-    "skippedPerfect": 383,
-    "skippedAniList": 41,
-    "skippedWiki": 41,
+    "skippedPerfect": 424,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
     "skippedBookMeta": 0,
-    "fetchedBookMetaIsbn13s": 41,
-    "magAudienceTodoAdded": 1,
+    "fetchedBookMetaIsbn13s": 0,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 41,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "アナザー :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "イケメン女と箱入り娘 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ウィッチウォッチ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ここは今から倫理です。 :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "テラフォーマーズ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "てんぷる :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ノーゲーム・ノーライフ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "パシリな僕と恋する番長さん :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "バトル・ロワイアル :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ひらやすみ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "フェチップル～僕らの純粋な恋～ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)",
-        "ぼっち・ざ・ろっく！ :: bookMeta(amazonDp|image|publisher|author|releaseDate|title)"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
@@ -482,12 +467,12 @@
     "bookMeta": {
       "provider": "rakuten",
       "enabled": true,
-      "requests": 41,
+      "requests": 0,
       "failures": 0,
       "http403": 0,
       "http429": 0,
       "missingItems": 0,
-      "successItems": 41
+      "successItems": 0
     }
   }
 }
