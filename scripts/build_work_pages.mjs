@@ -270,16 +270,14 @@ ${jsonLd}
     </section>
 
     <footer class="gfooter" aria-label="サイトフッター">
-      <div class="gfooter-inner">
-        <span>© Tools-LABO</span>
-        <a href="../../privacy/">プライバシーポリシー</a>
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSfF73yZ69HH-FASKEYSkp98zM92o4dtQLtiQs7BzLRuwsobfA/viewform?pli=1"
-          target="_blank"
-          rel="noopener noreferrer"
-        >お問い合わせ</a>
-      </div>
-    </footer>
+  <div class="gfooter-inner">
+    <span>© Tools-LABO</span>
+    <a href="https://tools-labo.com/" target="_blank" rel="noopener noreferrer">Tools-LABOホーム</a>
+    <a href="../../privacy/">プライバシーポリシー</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfF73yZ69HH-FASKEYSkp98zM92o4dtQLtiQs7BzLRuwsobfA/viewform?pli=1"
+       target="_blank" rel="noopener noreferrer">お問い合わせ</a>
+  </div>
+  </footer>
   </main>
 
   <script>
