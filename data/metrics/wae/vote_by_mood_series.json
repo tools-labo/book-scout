@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T10:48:32.820Z",
-  "updatedAtJst": "2026-03-15 19:48:32",
+  "updatedAt": "2026-03-15T11:37:26.663Z",
+  "updatedAtJst": "2026-03-15 20:37:26",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -37,17 +37,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "幽☆遊☆白書",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "チェンソーマン",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "ソウルイーター",
       "n": "2"
     },
     {
@@ -57,7 +47,17 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "ソウルイーター",
+      "n": "2"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ぼくたちは勉強ができない",
+      "n": "2"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "幽☆遊☆白書",
       "n": "2"
     },
     {
@@ -72,17 +72,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "暗殺教室",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "ぐらんぶる",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -92,7 +82,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -102,12 +92,22 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "ドロヘドロ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "ニセコイ",
       "n": "1"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ニセコイ",
+      "seriesKey": "ロザリオとバンパイア",
       "n": "1"
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ロザリオとバンパイア",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -462,12 +462,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -552,12 +552,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -627,7 +627,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -637,12 +637,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -652,12 +647,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ソラニン",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ソラニン",
       "n": "1"
     },
     {
@@ -702,12 +702,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "進撃の巨人",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "ドロヘドロ",
       "n": "2"
     },
     {
@@ -747,6 +747,11 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "亜人",
       "n": "1"
     },
@@ -758,11 +763,6 @@
     {
       "mood": "page_turner",
       "seriesKey": "不滅のあなたへ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -807,12 +807,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
     {
@@ -942,11 +942,6 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "メイドインアビス",
       "n": "1"
     },
@@ -957,12 +952,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "ノラガミ",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
