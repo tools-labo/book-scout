@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T11:37:26.663Z",
-  "updatedAtJst": "2026-03-15 20:37:26",
+  "updatedAt": "2026-03-15T13:16:02.361Z",
+  "updatedAtJst": "2026-03-15 22:16:02",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-15 12:21:05",
+      "timestampJst": "2026-03-15 21:21:05",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ホーリーランド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 12:14:58",
+      "timestampJst": "2026-03-15 21:14:58",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "うるわしの宵の月",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-15 11:18:58",
       "timestampJst": "2026-03-15 20:18:58",
@@ -32684,7 +32710,7 @@
     }
   ],
   "raw": {
-    "rows": 2510,
-    "rows_before_limit_at_least": 2510
+    "rows": 2512,
+    "rows_before_limit_at_least": 2512
   }
 }
