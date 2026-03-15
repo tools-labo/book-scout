@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T21:41:30.289Z",
-  "updatedAtJst": "2026-03-16 06:41:30",
+  "updatedAt": "2026-03-15T22:47:03.189Z",
+  "updatedAtJst": "2026-03-16 07:47:03",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,110 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-15 22:35:49",
+      "timestampJst": "2026-03-16 07:35:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "履いてください、鷹峰さん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:32:37",
+      "timestampJst": "2026-03-16 07:32:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:26:46",
+      "timestampJst": "2026-03-16 07:26:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "フリージア",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:21:04",
+      "timestampJst": "2026-03-16 07:21:04",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "パンドラハーツ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:15:21",
+      "timestampJst": "2026-03-16 07:15:21",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:11:19",
+      "timestampJst": "2026-03-16 07:11:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:08:27",
+      "timestampJst": "2026-03-16 07:08:27",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ザ・ファブル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 22:02:45",
+      "timestampJst": "2026-03-16 07:02:45",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "×××ホリック",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-15 21:32:54",
       "timestampJst": "2026-03-16 06:32:54",
@@ -33204,7 +33308,7 @@
     }
   ],
   "raw": {
-    "rows": 2550,
-    "rows_before_limit_at_least": 2550
+    "rows": 2558,
+    "rows_before_limit_at_least": 2558
   }
 }
