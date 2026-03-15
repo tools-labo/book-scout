@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T17:43:59.082Z",
-  "updatedAtJst": "2026-03-16 02:43:59",
+  "updatedAt": "2026-03-15T18:57:45.174Z",
+  "updatedAtJst": "2026-03-16 03:57:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-15 18:45:38",
+      "timestampJst": "2026-03-16 03:45:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "3月のライオン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 18:41:34",
+      "timestampJst": "2026-03-16 03:41:34",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "鬼滅の刃",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 18:31:08",
+      "timestampJst": "2026-03-16 03:31:08",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "銀魂",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 18:27:10",
+      "timestampJst": "2026-03-16 03:27:10",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "進撃の巨人",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 18:23:19",
+      "timestampJst": "2026-03-16 03:23:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "暗殺教室",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 18:17:12",
+      "timestampJst": "2026-03-16 03:17:12",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "惡の華",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 17:46:10",
+      "timestampJst": "2026-03-16 02:46:10",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ブラッドラッド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-15 17:39:24",
       "timestampJst": "2026-03-16 02:39:24",
@@ -32827,7 +32918,7 @@
     }
   ],
   "raw": {
-    "rows": 2521,
-    "rows_before_limit_at_least": 2521
+    "rows": 2528,
+    "rows_before_limit_at_least": 2528
   }
 }
