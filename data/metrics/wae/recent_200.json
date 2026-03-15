@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T03:30:11.946Z",
-  "updatedAtJst": "2026-03-15 12:30:11",
+  "updatedAt": "2026-03-15T07:12:39.901Z",
+  "updatedAtJst": "2026-03-15 16:12:39",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,58 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-15 05:52:43",
+      "timestampJst": "2026-03-15 14:52:43",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ホーリーランド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 05:52:37",
+      "timestampJst": "2026-03-15 14:52:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 05:51:43",
+      "timestampJst": "2026-03-15 14:51:43",
+      "type": "favorite",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ホーリーランド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 05:51:39",
+      "timestampJst": "2026-03-15 14:51:39",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ホーリーランド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-14 18:38:27",
       "timestampJst": "2026-03-15 03:38:27",
@@ -32619,7 +32671,7 @@
     }
   ],
   "raw": {
-    "rows": 2505,
-    "rows_before_limit_at_least": 2505
+    "rows": 2509,
+    "rows_before_limit_at_least": 2509
   }
 }
