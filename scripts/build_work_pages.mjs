@@ -9,6 +9,9 @@ const WORK_DIR = path.join(ROOT_PUBLIC, "work");
 const SITE_ORIGIN = "https://book-scout.tools-labo.com";
 const SITE_BASE_PATH = "";
 
+// GA4
+const GA_MEASUREMENT_ID = "G-09Q7K095VK";
+
 // OGP画像は未導入なら空のまま
 // 後で共通画像を置いたら "/assets/ogp/book-scout.png" などに差し替え
 const OGP_IMAGE_URL = "";
@@ -194,6 +197,7 @@ function pageHtml({
   const desc = String(description || "").trim();
   const canon = String(canonicalUrl || "").trim();
   const ogImage = String(ogImageUrl || "").trim();
+  const gaId = String(GA_MEASUREMENT_ID || "").trim();
 
   return `<!doctype html>
 <html lang="ja">
@@ -219,6 +223,20 @@ function pageHtml({
   ${ogImage ? `<meta name="twitter:image" content="${escHtml(ogImage)}" />` : ""}
 
   <link rel="stylesheet" href="../../style.css" />
+
+  ${
+    gaId
+      ? `
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${escHtml(gaId)}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${escHtml(gaId)}');
+  </script>`
+      : ""
+  }
 
   <script type="application/ld+json">
 ${jsonLd}
