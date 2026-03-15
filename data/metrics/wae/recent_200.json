@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T18:57:45.174Z",
-  "updatedAtJst": "2026-03-16 03:57:45",
+  "updatedAt": "2026-03-15T19:41:46.021Z",
+  "updatedAtJst": "2026-03-16 04:41:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,97 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-15 19:37:30",
+      "timestampJst": "2026-03-16 04:37:30",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "カッコウの許嫁",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:33:26",
+      "timestampJst": "2026-03-16 04:33:26",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アヤシモン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:25:18",
+      "timestampJst": "2026-03-16 04:25:18",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:21:50",
+      "timestampJst": "2026-03-16 04:21:50",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "タコピーの原罪",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:17:17",
+      "timestampJst": "2026-03-16 04:17:17",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:14:41",
+      "timestampJst": "2026-03-16 04:14:41",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ちはやふる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:01:56",
+      "timestampJst": "2026-03-16 04:01:56",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ありふれた職業で世界最強",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-15 18:45:38",
       "timestampJst": "2026-03-16 03:45:38",
@@ -32918,7 +33009,7 @@
     }
   ],
   "raw": {
-    "rows": 2528,
-    "rows_before_limit_at_least": 2528
+    "rows": 2535,
+    "rows_before_limit_at_least": 2535
   }
 }
