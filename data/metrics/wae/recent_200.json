@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T19:41:46.021Z",
-  "updatedAtJst": "2026-03-16 04:41:46",
+  "updatedAt": "2026-03-15T20:45:39.006Z",
+  "updatedAtJst": "2026-03-16 05:45:39",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,136 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-15 20:43:33",
+      "timestampJst": "2026-03-16 05:43:33",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "BORUTO-ボルト- -NARUTO NEXT GENERATIONS-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:39:29",
+      "timestampJst": "2026-03-16 05:39:29",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "20世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:36:41",
+      "timestampJst": "2026-03-16 05:36:41",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "血の轍",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:33:03",
+      "timestampJst": "2026-03-16 05:33:03",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:26:01",
+      "timestampJst": "2026-03-16 05:26:01",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蟲師",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:14:04",
+      "timestampJst": "2026-03-16 05:14:04",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "今まで一度も女扱いされたことがない女騎士を女扱いする漫画",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:10:26",
+      "timestampJst": "2026-03-16 05:10:26",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "五等分の花嫁",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 20:06:34",
+      "timestampJst": "2026-03-16 05:06:34",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "乙嫁語り",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:45:19",
+      "timestampJst": "2026-03-16 04:45:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 19:41:44",
+      "timestampJst": "2026-03-16 04:41:44",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-15 19:37:30",
       "timestampJst": "2026-03-16 04:37:30",
@@ -33009,7 +33139,7 @@
     }
   ],
   "raw": {
-    "rows": 2535,
-    "rows_before_limit_at_least": 2535
+    "rows": 2545,
+    "rows_before_limit_at_least": 2545
   }
 }
