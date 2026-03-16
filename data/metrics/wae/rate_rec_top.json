@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-16T13:53:13.950Z",
-  "updatedAtJst": "2026-03-16 22:53:13",
+  "updatedAt": "2026-03-16T15:18:12.662Z",
+  "updatedAtJst": "2026-03-17 00:18:12",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -32,6 +32,11 @@
     },
     {
       "seriesKey": "葬送のフリーレン",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
       "avg": 5,
       "n": "1"
     },
@@ -161,12 +166,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "ディー・グレイマン",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ディー・グレイマン",
+      "seriesKey": "orange [オレンジ]",
       "avg": 4,
       "n": "1"
     },
@@ -176,12 +181,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "バガボンド",
+      "seriesKey": "ノラガミ",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "バガボンド",
       "avg": 4,
       "n": "1"
     },
@@ -331,22 +336,22 @@
       "n": "1"
     },
     {
-      "seriesKey": "たいようのいえ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ケンガンアシュラ",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "seriesKey": "たいようのいえ",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "五等分の花嫁",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
       "avg": 3,
       "n": "1"
     },
@@ -507,7 +512,7 @@
     }
   ],
   "raw": {
-    "rows": 97,
-    "rows_before_limit_at_least": 97
+    "rows": 98,
+    "rows_before_limit_at_least": 98
   }
 }
