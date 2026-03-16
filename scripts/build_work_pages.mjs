@@ -12,9 +12,8 @@ const SITE_BASE_PATH = "";
 // GA4
 const GA_MEASUREMENT_ID = "G-09Q7K095VK";
 
-// OGP画像は未導入なら空のまま
-// 後で共通画像を置いたら "/assets/ogp/book-scout.png" などに差し替え
-const OGP_IMAGE_URL = "";
+// 共通OGP画像
+const OGP_IMAGE_URL = "https://book-scout.tools-labo.com/assets/ogp.png";
 
 // base64url
 function b64urlFromUtf8(s) {
@@ -187,12 +186,39 @@ function makeBookJsonLd({
   return JSON.stringify(obj, null, 2);
 }
 
+function makeOrganizationJsonLd() {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Tools-LABO",
+    url: `${SITE_ORIGIN}/`,
+    logo: `${SITE_ORIGIN}/assets/icons/apple-touch-icon.png`
+  }, null, 2);
+}
+
+function makeWebsiteJsonLd() {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "BOOKスカウト",
+    url: `${SITE_ORIGIN}/`,
+    inLanguage: "ja",
+    publisher: {
+      "@type": "Organization",
+      name: "Tools-LABO",
+      url: `${SITE_ORIGIN}/`
+    }
+  }, null, 2);
+}
+
 function pageHtml({
   pageTitle,
   description,
   canonicalUrl,
   ogImageUrl,
   jsonLd,
+  organizationJsonLd,
+  websiteJsonLd,
 }) {
   const desc = String(description || "").trim();
   const canon = String(canonicalUrl || "").trim();
@@ -208,6 +234,7 @@ function pageHtml({
 
   ${desc ? `<meta name="description" content="${escHtml(desc)}" />` : ""}
   ${canon ? `<link rel="canonical" href="${escHtml(canon)}" />` : ""}
+  <meta name="robots" content="index,follow" />
 
   <meta property="og:site_name" content="BOOKスカウト" />
   <meta property="og:locale" content="ja_JP" />
@@ -237,6 +264,14 @@ function pageHtml({
   </script>`
       : ""
   }
+
+  <script type="application/ld+json">
+${organizationJsonLd}
+  </script>
+
+  <script type="application/ld+json">
+${websiteJsonLd}
+  </script>
 
   <script type="application/ld+json">
 ${jsonLd}
@@ -394,6 +429,9 @@ for (const it of items) {
     isbn13,
   });
 
+  const organizationJsonLd = makeOrganizationJsonLd();
+  const websiteJsonLd = makeWebsiteJsonLd();
+
   fs.writeFileSync(
     path.join(dir, "index.html"),
     pageHtml({
@@ -402,6 +440,8 @@ for (const it of items) {
       canonicalUrl,
       ogImageUrl: OGP_IMAGE_URL,
       jsonLd,
+      organizationJsonLd,
+      websiteJsonLd,
     }),
     "utf8"
   );
