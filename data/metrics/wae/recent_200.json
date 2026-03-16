@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-15T23:44:03.536Z",
-  "updatedAtJst": "2026-03-16 08:44:03",
+  "updatedAt": "2026-03-16T03:32:59.627Z",
+  "updatedAtJst": "2026-03-16 12:32:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-16 00:47:27",
+      "timestampJst": "2026-03-16 09:47:27",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "鋼の錬金術師",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-03-15 23:46:33",
+      "timestampJst": "2026-03-16 08:46:33",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "監獄学園",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-15 22:35:49",
       "timestampJst": "2026-03-16 07:35:49",
@@ -33308,7 +33334,7 @@
     }
   ],
   "raw": {
-    "rows": 2558,
-    "rows_before_limit_at_least": 2558
+    "rows": 2560,
+    "rows_before_limit_at_least": 2560
   }
 }
