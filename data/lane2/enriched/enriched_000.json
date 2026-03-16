@@ -3204,13 +3204,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/6573618/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F6573618%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ヤングガンガン",
+        "magazines": [
+          "ヤングガンガン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "イビツ",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 46688,
         "genres": [
           "Horror"
@@ -4469,13 +4471,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/17157008/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F17157008%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "マンガUP!",
+        "magazines": [
+          "マンガUP!"
         ],
-        "magazineSource": null,
-        "wikiTitle": "お隣の天使様にいつの間にか駄目人間にされていた件",
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 122337,
         "genres": [
           "Comedy",
@@ -4759,12 +4763,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16729122/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16729122%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "Kiss",
+        "magazines": [
+          "Kiss"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "女性"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 114003,
         "genres": [
@@ -4792,12 +4798,11 @@
           "LGBTQテーマ",
           "結婚",
           "バイセクシュアル",
+          "浮気・不倫",
           "妊娠",
           "片思い"
         ],
-        "tags_missing_en": [
-          "Cheating"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -6597,13 +6602,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/438430/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F438430%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ビッグコミックスペリオール",
+        "magazines": [
+          "ビッグコミックスペリオール"
         ],
-        "magazineSource": null,
-        "wikiTitle": "サンクチュアリ",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 31461,
         "genres": [
           "Action",
@@ -6630,11 +6637,10 @@
           "青年向け",
           "犯罪",
           "都会",
+          "裏社会",
           "警察"
         ],
-        "tags_missing_en": [
-          "Noir"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null

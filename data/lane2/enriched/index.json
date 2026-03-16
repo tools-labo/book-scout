@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-16T13:19:49.090Z",
+  "updatedAt": "2026-03-16T13:37:13.351Z",
   "total": 441,
   "shardSize": 200,
   "shards": [
@@ -464,32 +464,18 @@
     "total": 441,
     "ok": 441,
     "ng": 0,
-    "skippedPerfect": 424,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedBookMeta": 0,
-    "fetchedBookMetaIsbn13s": 17,
-    "magAudienceTodoAdded": 2,
+    "skippedPerfect": 434,
+    "skippedAniList": 7,
+    "skippedWiki": 7,
+    "skippedBookMeta": 7,
+    "fetchedBookMetaIsbn13s": 0,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 17,
-      "outNotPerfect": 7
+      "prevNotPerfect": 7,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "GIRL FRIENDS-ガールフレンズ :: noVol1",
-        "イビツ :: noVol1",
-        "お隣の天使様にいつの間にか駄目人間にされていた件 :: noVol1",
-        "かけおちガール :: noVol1",
-        "グラップラー刃牙 :: noVol1",
-        "サンクチュアリ :: noVol1",
-        "ストロボ・エッジ :: noVol1",
-        "ハッピーシュガーライフ :: noVol1",
-        "ラブ ひな :: noVol1",
-        "一ノ瀬家の大罪 :: noVol1",
-        "世話やきキツネの仙狐さん :: noVol1",
-        "乙女ゲームの破滅フラグしかない悪役令嬢に転生してしまった… :: noVol1"
-      ],
-      "outNotPerfect": [
         "イビツ :: magazine,magazines[]",
         "お隣の天使様にいつの間にか駄目人間にされていた件 :: magazine,magazines[]",
         "かけおちガール :: magazine,magazines[],tags_missing_en(remain=1)",
@@ -500,63 +486,20 @@
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 7,
-      "seriesKeys": [
-        "イビツ",
-        "お隣の天使様にいつの間にか駄目人間にされていた件",
-        "かけおちガール",
-        "サンクチュアリ",
-        "世話やきキツネの仙狐さん",
-        "欠けた月とドーナッツ",
-        "異世界魔王と召喚少女の奴隷魔術"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 7,
-          "samples": [
-            "イビツ",
-            "お隣の天使様にいつの間にか駄目人間にされていた件",
-            "かけおちガール",
-            "サンクチュアリ",
-            "世話やきキツネの仙狐さん",
-            "欠けた月とドーナッツ",
-            "異世界魔王と召喚少女の奴隷魔術"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 7,
-          "samples": [
-            "イビツ",
-            "お隣の天使様にいつの間にか駄目人間にされていた件",
-            "かけおちガール",
-            "サンクチュアリ",
-            "世話やきキツネの仙狐さん",
-            "欠けた月とドーナッツ",
-            "異世界魔王と召喚少女の奴隷魔術"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 2,
-          "samples": [
-            "かけおちガール",
-            "サンクチュアリ"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。"
     },
     "bookMeta": {
       "provider": "rakuten",
       "enabled": true,
-      "requests": 17,
+      "requests": 0,
       "failures": 0,
       "http403": 0,
       "http429": 0,
       "missingItems": 0,
-      "successItems": 17
+      "successItems": 0
     }
   }
 }
