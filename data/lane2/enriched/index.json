@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-16T13:37:13.351Z",
+  "updatedAt": "2026-03-16T13:41:04.315Z",
   "total": 441,
   "shardSize": 200,
   "shards": [
@@ -464,27 +464,17 @@
     "total": 441,
     "ok": 441,
     "ng": 0,
-    "skippedPerfect": 434,
-    "skippedAniList": 7,
-    "skippedWiki": 7,
-    "skippedBookMeta": 7,
+    "skippedPerfect": 441,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedBookMeta": 0,
     "fetchedBookMetaIsbn13s": 0,
     "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 7,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "イビツ :: magazine,magazines[]",
-        "お隣の天使様にいつの間にか駄目人間にされていた件 :: magazine,magazines[]",
-        "かけおちガール :: magazine,magazines[],tags_missing_en(remain=1)",
-        "サンクチュアリ :: magazine,magazines[],tags_missing_en(remain=1)",
-        "世話やきキツネの仙狐さん :: magazine,magazines[]",
-        "欠けた月とドーナッツ :: magazine,magazines[]",
-        "異世界魔王と召喚少女の奴隷魔術 :: magazine,magazines[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
