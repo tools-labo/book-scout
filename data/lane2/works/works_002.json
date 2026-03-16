@@ -1,8 +1,495 @@
 {
   "version": 1,
   "shard": 2,
-  "count": 24,
+  "count": 34,
   "items": [
+    {
+      "seriesKey": "赤髪の白雪姫",
+      "title": "赤髪の白雪姫1 (花とゆめCOMICS)",
+      "author": "あきづき空太",
+      "publisher": "白泉社",
+      "releaseDate": "2007-12-05T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51okzYj1YUL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592183738",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592183738?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784592183730",
+      "asin": "4592183738",
+      "synopsis": "珍しい赤髪を狙われた少女・白雪は国を飛び出し、隣国の森で王子・ゼンと出会う。自分の力で生きることを選んだ白雪は、薬剤師としての道を進みながら、ゼンや仲間たちと信頼を育んでいく王宮ロマンス。",
+      "magazine": "LaLa DX、LaLa",
+      "magazines": [
+        "LaLa DX",
+        "LaLa"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "医療",
+        "政治",
+        "王侯貴族",
+        "歴史",
+        "剣術",
+        "三角関係",
+        "片思い",
+        "暗殺者",
+        "バイセクシュアル",
+        "LGBTQテーマ",
+        "疑似家族",
+        "女系社会",
+        "双子",
+        "童話"
+      ],
+      "meta": {
+        "anilistId": 34571,
+        "wikiTitle": "赤髪の白雪姫",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "超人X",
+      "title": "超人X 1 (ヤングジャンプコミックス)",
+      "author": "石田 スイ",
+      "publisher": "集英社",
+      "releaseDate": "2021-12-17T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/41RXAXo8yxL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088921666",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088921666?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088921662",
+      "asin": "4088921666",
+      "synopsis": "超人の襲撃をきっかけに、高校生の東九と東亜は異能を得てしまう。正義も悪も曖昧な暴力の世界で、二人の選択が狂気と混乱を呼び込んでいく。",
+      "magazine": "となりのヤングジャンプ",
+      "magazines": [
+        "となりのヤングジャンプ"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Drama",
+        "Fantasy",
+        "Psychological"
+      ],
+      "tags": [
+        "現代ファンタジー",
+        "変身",
+        "超能力",
+        "青年向け",
+        "不条理コメディ",
+        "陰謀",
+        "コズミックホラー",
+        "宗教",
+        "記憶操作",
+        "成長譚",
+        "クローン"
+      ],
+      "meta": {
+        "anilistId": 126693,
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "軍鶏",
+      "title": "軍鶏（1）",
+      "author": "たなか亜希夫/橋本以蔵",
+      "publisher": "双葉社",
+      "releaseDate": "1998年10月12日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5758/57582383.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/457582383X",
+      "amazonDp": "https://www.amazon.co.jp/dp/457582383X",
+      "isbn13": "9784575823837",
+      "asin": "457582383X",
+      "synopsis": "ある事件で人生が一変した少年・成嶋亮が、格闘の世界で己をむき出しにして生き抜いていく。暴力と人間の本質をえぐる格闘ドラマ。",
+      "magazine": "イブニング",
+      "magazines": [
+        "イブニング"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Drama",
+        "Psychological",
+        "Sports"
+      ],
+      "tags": [
+        "武術",
+        "アンチヒーロー",
+        "更生",
+        "青年向け",
+        "サバイバル",
+        "ボクシング",
+        "ヤクザ",
+        "不良",
+        "ギャング",
+        "成長譚",
+        "剣術",
+        "監獄",
+        "いじめ"
+      ],
+      "meta": {
+        "anilistId": 30727,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "転生したらスライムだった件",
+      "title": "転生したらスライムだった件(1) (シリウスコミックス)",
+      "author": "川上 泰樹 / みっつばー",
+      "publisher": "講談社",
+      "releaseDate": "2015-10-30T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51cWsdIlymL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063765784",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063765784?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063765786",
+      "asin": "4063765784",
+      "synopsis": "通り魔に刺されて命を落としたサラリーマンが異世界でスライムに転生し、“捕食者”と“賢者”の能力を得る。彼はモンスターたちと絆を結び、冒険を通じて国づくりと進化を目指す異世界ファンタジー。",
+      "magazine": "月刊少年シリウス",
+      "magazines": [
+        "月刊少年シリウス"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "異世界",
+        "国づくり",
+        "政治",
+        "中世",
+        "戦争",
+        "魔法",
+        "少年向け",
+        "経済",
+        "モンスター娘",
+        "大人中心",
+        "男性主人公",
+        "悪魔",
+        "ドラゴン",
+        "ゴブリン",
+        "無性別",
+        "田舎",
+        "百合"
+      ],
+      "meta": {
+        "anilistId": 86399,
+        "wikiTitle": "転生したらスライムだった件",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "転生したら剣でした",
+      "title": "転生したら剣でした（1）",
+      "author": "棚架　ユウ/丸山　朝ヲ/るろお",
+      "publisher": "幻冬舎コミックス",
+      "releaseDate": "2017年04月26日",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9755/9784344839755.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4344839757",
+      "amazonDp": "https://www.amazon.co.jp/dp/4344839757",
+      "isbn13": "9784344839755",
+      "asin": "4344839757",
+      "synopsis": "異世界で剣として転生した主人公は、獣人の少女フランと出会い、ともに成長していく。相棒として戦うふたりの冒険を描く異世界ファンタジー。",
+      "magazine": "comicブースト",
+      "magazines": [
+        "comicブースト"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "獣耳",
+        "異世界",
+        "中世",
+        "擬人化",
+        "魔法",
+        "ダンジョン",
+        "少年向け",
+        "悪魔",
+        "ゴブリン",
+        "グルメ",
+        "スケルトン",
+        "ゾンビ"
+      ],
+      "meta": {
+        "anilistId": 98014,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "進撃の巨人",
+      "title": "進撃の巨人（1）",
+      "author": "諫山 創",
+      "publisher": "講談社",
+      "releaseDate": "2010-03-17T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/51RkDetC0uL._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/進撃の巨人-1-少年マガジンKC-諫山-創/dp/4063842762",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063842762?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784063842760",
+      "asin": "4063842762",
+      "synopsis": "巨人に支配された世界で、人類は壁の内側で生き延びていた。だが超大型巨人の出現で均衡が崩れ、少年エレンは絶望的な戦いへ踏み出す。",
+      "magazine": "別冊少年マガジン / 週刊少年マガジン（特別編）",
+      "magazines": [
+        "別冊少年マガジン",
+        "週刊少年マガジン（特別編）"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Drama",
+        "Fantasy",
+        "Mystery"
+      ],
+      "tags": [
+        "ディストピア",
+        "アンチヒーロー",
+        "戦争",
+        "哲学",
+        "軍事",
+        "陰謀",
+        "サバイバル",
+        "怪獣",
+        "変身能力",
+        "記憶操作",
+        "政治",
+        "復讐",
+        "変身",
+        "男性主人公",
+        "モンスター男子",
+        "終末後",
+        "超能力",
+        "群像劇",
+        "コズミックホラー",
+        "成長譚",
+        "奴隷",
+        "剣術",
+        "少年向け",
+        "スパイ"
+      ],
+      "meta": {
+        "anilistId": 53390,
+        "wikiTitle": "進撃の巨人",
+        "source": "enrich(diff+prev+wiki(mag)+anilist(genres)+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "進撃の巨人 外伝 悔いなき選択",
+      "title": "進撃の巨人　悔いなき選択（1）",
+      "author": "駿河 ヒカル/諫山 創/砂阿久 雁（ニトロプラス）/「進撃の巨人」製作委員会",
+      "publisher": "講談社",
+      "releaseDate": "2014年04月",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9616/9784063769616_1_19.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063769615",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063769615",
+      "isbn13": "9784063769616",
+      "asin": "4063769615",
+      "synopsis": "地下街で生きるリヴァイが、調査兵団に入るまでの過去を描くスピンオフ。過酷な環境の中での選択と仲間との関係が掘り下げられる。",
+      "magazine": "別冊少年マガジン / 週刊少年マガジン（特別編）",
+      "magazines": [
+        "別冊少年マガジン",
+        "週刊少年マガジン(特別編)"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Drama",
+        "Fantasy",
+        "Supernatural"
+      ],
+      "tags": [
+        "軍事",
+        "サバイバル",
+        "怪獣",
+        "ディストピア",
+        "スパイ",
+        "終末後",
+        "不良",
+        "政治",
+        "クーデレ",
+        "神話",
+        "階級闘争",
+        "暗殺者",
+        "犯罪",
+        "少女",
+        "中世"
+      ],
+      "meta": {
+        "anilistId": 85199,
+        "wikiTitle": "進撃の巨人",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "道産子ギャルはなまらめんこい",
+      "title": "道産子ギャルはなまらめんこい 1 (ジャンプコミックス)",
+      "author": "伊科田 海",
+      "publisher": "集英社",
+      "releaseDate": "2019-12-04T00:00:01Z",
+      "image": "https://m.media-amazon.com/images/I/518al7vz01L._SL500_.jpg",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088821653",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088821653?tag=book-scout-22&linkCode=ogi&th=1&psc=1",
+      "isbn13": "9784088821658",
+      "asin": "4088821653",
+      "synopsis": "北海道・北見に転校してきた四季翼は、雪の街で距離感近めの道産子ギャルと出会う。方言全開で明るい彼女に振り回されつつ、雪国ならではの青春が動き出す。",
+      "magazine": "少年ジャンプ+",
+      "magazines": [
+        "少年ジャンプ+"
+      ],
+      "audiences": [
+        "Web/アプリ"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "ギャル",
+        "成長譚",
+        "雪景色",
+        "学園",
+        "三角関係",
+        "少年向け",
+        "逆ハーレム",
+        "田舎",
+        "結婚",
+        "都会",
+        "ゲーム"
+      ],
+      "meta": {
+        "anilistId": 111403,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+paapi+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
+      "title": "金色のガッシュ！！（1）",
+      "author": "雷句誠",
+      "publisher": "小学館",
+      "releaseDate": "2001年05月18日頃",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2318/9784091262318.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091262317",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091262317",
+      "isbn13": "9784091262318",
+      "asin": "4091262317",
+      "synopsis": "天才だが孤独な中学生・清麿の前に、魔物の子ガッシュが現れる。100人の魔物の王を決める戦いに巻き込まれながら、ふたりは絆を深めていく。",
+      "magazine": "週刊少年サンデー",
+      "magazines": [
+        "週刊少年サンデー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "wikipedia",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Fantasy"
+      ],
+      "tags": [
+        "バトルロイヤル",
+        "少年向け",
+        "魔法",
+        "サバイバル",
+        "現代ファンタジー",
+        "超能力",
+        "子どもが中心",
+        "悪魔",
+        "成長譚",
+        "ドタバタ",
+        "海外",
+        "記憶喪失",
+        "不条理コメディ",
+        "記憶操作",
+        "怪獣",
+        "ドラゴン",
+        "いじめ"
+      ],
+      "meta": {
+        "anilistId": 30869,
+        "wikiTitle": "金色のガッシュ!!",
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
+    {
+      "seriesKey": "銀の匙",
+      "title": "銀の匙 Silver Spoon（1）",
+      "author": "荒川 弘",
+      "publisher": "小学館",
+      "releaseDate": "2011年07月",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1802/9784091231802_1_3.jpg?_ex=200x200",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4091231802",
+      "amazonDp": "https://www.amazon.co.jp/dp/4091231802",
+      "isbn13": "9784091231802",
+      "asin": "4091231802",
+      "synopsis": "進学校に挫折した八軒勇吾は、全寮制の農業高校へ進学する。慣れない酪農や畜産の現実に向き合いながら、自分の生き方を探していく青春ドラマ。",
+      "magazine": "週刊少年サンデー",
+      "magazines": [
+        "週刊少年サンデー"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "magazineSource": "manual_override",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Slice of Life"
+      ],
+      "tags": [
+        "田舎",
+        "学園",
+        "成長譚",
+        "農業",
+        "動物",
+        "教育",
+        "少年向け",
+        "グルメ",
+        "部活",
+        "環境問題",
+        "野球",
+        "大学",
+        "更生",
+        "経済",
+        "修行",
+        "お嬢様"
+      ],
+      "meta": {
+        "anilistId": 55096,
+        "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
+      }
+    },
     {
       "seriesKey": "銀魂",
       "title": "銀魂-ぎんたま- 1",
