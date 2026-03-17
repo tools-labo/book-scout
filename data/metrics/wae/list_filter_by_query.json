@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-17T05:02:01.732Z",
-  "updatedAtJst": "2026-03-17 14:02:01",
+  "updatedAt": "2026-03-17T06:12:33.817Z",
+  "updatedAtJst": "2026-03-17 15:12:33",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -339,8 +339,8 @@
     {
       "genre": "",
       "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
@@ -381,8 +381,8 @@
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -673,20 +673,6 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery,action,drama",
-      "aud": "aud=その他",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=romance,sf,fantasy,mystery,action",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "mood=funny",
-      "n": "1"
-    },
-    {
       "genre": "genre=fantasy,sf,sports,comedy,slice,horror,action",
       "aud": "aud=少年",
       "mag": "",
@@ -698,6 +684,20 @@
       "aud": "",
       "mag": "",
       "mood": "mood=moving,hot",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance,sf,fantasy,mystery,action,drama",
+      "aud": "aud=その他",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance,sf,fantasy,mystery,action",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "mood=funny",
       "n": "1"
     },
     {
@@ -778,15 +778,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
+      "genre": "genre=drama,sports,mystery,slice",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -799,24 +799,24 @@
       "n": "1"
     },
     {
-      "genre": "genre=action",
-      "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=action",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=funny,moving",
+      "n": "1"
+    },
+    {
+      "genre": "genre=action",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=action",
+      "aud": "",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
