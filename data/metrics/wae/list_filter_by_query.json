@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-18T05:40:41.917Z",
-  "updatedAtJst": "2026-03-18 14:40:41",
+  "updatedAt": "2026-03-18T07:16:41.633Z",
+  "updatedAtJst": "2026-03-18 16:16:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -359,8 +359,15 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
+      "aud": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
@@ -373,16 +380,9 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "mag=Cocohana",
+      "aud": "aud=少年",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -596,17 +596,17 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=moving,healing",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "",
       "n": "1"
     },
     {
