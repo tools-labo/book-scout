@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-18T10:10:39.699Z",
-  "updatedAtJst": "2026-03-18 19:10:39",
+  "updatedAt": "2026-03-18T11:09:08.833Z",
+  "updatedAtJst": "2026-03-18 20:09:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -44,6 +44,13 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "銀魂",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ソウルイーター",
       "yes": "1",
       "no": "0",
@@ -52,13 +59,6 @@
     {
       "mood": "funny",
       "seriesKey": "ドロヘドロ",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -100,13 +100,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
@@ -122,6 +115,13 @@
     {
       "mood": "hot",
       "seriesKey": "ソウルイーター",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -184,6 +184,13 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "NARUTO -ナルト-",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "ありふれた職業で世界最強",
       "yes": "1",
       "no": "0",
@@ -192,13 +199,6 @@
     {
       "mood": "satisfying",
       "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
       "yes": "1",
       "no": "0",
       "n": "1"

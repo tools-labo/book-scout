@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-18T10:10:39.699Z",
-  "updatedAtJst": "2026-03-18 19:10:39",
+  "updatedAt": "2026-03-18T11:09:08.833Z",
+  "updatedAtJst": "2026-03-18 20:09:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -47,11 +47,6 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "幽☆遊☆白書",
       "n": "2"
     },
@@ -62,12 +57,22 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "チェンソーマン",
+      "n": "2"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "ガンバレ！中村くん！！",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -93,11 +98,6 @@
     {
       "mood": "funny",
       "seriesKey": "ニセコイ",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -347,12 +347,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ホリミヤ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "ホリミヤ",
       "n": "1"
     },
     {
@@ -422,12 +422,17 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "ちはやふる",
       "n": "2"
     },
     {
       "mood": "hot",
       "seriesKey": "銀魂",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "青の祓魔師",
       "n": "2"
     },
     {
@@ -438,11 +443,6 @@
     {
       "mood": "hot",
       "seriesKey": "東京卍リベンジャーズ",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "ちはやふる",
       "n": "2"
     },
     {
@@ -552,6 +552,11 @@
     },
     {
       "mood": "messy",
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
       "seriesKey": "少年のアビス",
       "n": "1"
     },
@@ -568,11 +573,6 @@
     {
       "mood": "messy",
       "seriesKey": "しまなみ誰そ彼",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "ノ・ゾ・キ・ア・ナ",
       "n": "1"
     },
     {
@@ -642,7 +642,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -652,7 +652,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -687,7 +687,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -712,17 +712,17 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ドロヘドロ",
+      "n": "2"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "進撃の巨人",
       "n": "2"
     },
     {
       "mood": "page_turner",
       "seriesKey": "【推しの子】",
-      "n": "2"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
       "n": "2"
     },
     {
@@ -737,7 +737,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -747,22 +747,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "メイドインアビス",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "血の轍",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
       "mood": "page_turner",
       "seriesKey": "ゴールデンカムイ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
@@ -822,12 +822,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "n": "2"
     },
     {
@@ -857,12 +857,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
     {
