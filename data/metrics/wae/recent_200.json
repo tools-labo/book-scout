@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-18T23:41:38.956Z",
-  "updatedAtJst": "2026-03-19 08:41:38",
+  "updatedAt": "2026-03-19T03:19:44.108Z",
+  "updatedAtJst": "2026-03-19 12:19:44",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-03-19 02:05:26",
+      "timestampJst": "2026-03-19 11:05:26",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ハッピーシュガーライフ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-17 12:30:33",
       "timestampJst": "2026-03-17 21:30:33",
@@ -33568,7 +33581,7 @@
     }
   ],
   "raw": {
-    "rows": 2578,
-    "rows_before_limit_at_least": 2578
+    "rows": 2579,
+    "rows_before_limit_at_least": 2579
   }
 }
