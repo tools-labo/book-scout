@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-19T20:55:55.138Z",
-  "updatedAtJst": "2026-03-20 05:55:55",
+  "updatedAt": "2026-03-19T21:48:42.709Z",
+  "updatedAtJst": "2026-03-20 06:48:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -162,10 +162,10 @@
       "n": "4"
     },
     {
-      "genre": "genre=action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少年",
       "n": "3"
     },
     {
@@ -197,10 +197,10 @@
       "n": "3"
     },
     {
-      "genre": "",
-      "aud": "",
+      "genre": "genre=action",
+      "aud": "aud=少年",
       "mag": "",
-      "mood": "aud=少年",
+      "mood": "",
       "n": "3"
     },
     {
@@ -309,7 +309,7 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery",
+      "genre": "genre=drama,sports,mystery",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
@@ -330,7 +330,7 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery",
+      "genre": "genre=romance,sf,fantasy,mystery",
       "aud": "aud=女性",
       "mag": "",
       "mood": "",
@@ -338,7 +338,7 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
+      "aud": "",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -380,7 +380,7 @@
     },
     {
       "genre": "",
-      "aud": "",
+      "aud": "aud=少年",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -477,16 +477,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama",
-      "aud": "aud=少年",
-      "mag": "",
+      "genre": "genre=romance,sf,fantasy,mystery,action",
+      "aud": "aud=青年",
+      "mag": "mag=週刊ヤングジャンプ",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery,action",
-      "aud": "aud=青年",
-      "mag": "mag=週刊ヤングジャンプ",
+      "genre": "genre=fantasy,sf,romance,drama",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
