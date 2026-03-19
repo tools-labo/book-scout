@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-19T22:47:58.997Z",
-  "updatedAtJst": "2026-03-20 07:47:58",
+  "updatedAt": "2026-03-19T23:43:36.765Z",
+  "updatedAtJst": "2026-03-20 08:43:36",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -183,14 +183,14 @@
       "n": "3"
     },
     {
-      "genre": "genre=drama",
+      "genre": "genre=fantasy",
       "aud": "",
       "mag": "",
       "mood": "",
       "n": "3"
     },
     {
-      "genre": "genre=fantasy",
+      "genre": "genre=drama",
       "aud": "",
       "mag": "",
       "mood": "",
@@ -309,15 +309,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance",
-      "aud": "",
+      "genre": "genre=drama,sports,mystery",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery",
-      "aud": "aud=女性",
+      "genre": "genre=romance",
+      "aud": "",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -351,10 +351,10 @@
       "n": "1"
     },
     {
-      "genre": "",
+      "genre": "genre=sports,drama",
       "aud": "",
       "mag": "",
-      "mood": "mood=messy,tearjerker",
+      "mood": "",
       "n": "1"
     },
     {
@@ -407,10 +407,10 @@
       "n": "1"
     },
     {
-      "genre": "genre=sports,drama",
+      "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=messy,tearjerker",
       "n": "1"
     },
     {
@@ -519,15 +519,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=mystery,slice,action,fantasy",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror",
-      "aud": "aud=少年",
+      "genre": "genre=mystery,slice,action,fantasy",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
