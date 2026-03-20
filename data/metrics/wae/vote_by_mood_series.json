@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-20T21:44:21.651Z",
-  "updatedAtJst": "2026-03-21 06:44:21",
+  "updatedAt": "2026-03-20T22:47:07.862Z",
+  "updatedAtJst": "2026-03-21 07:47:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -47,6 +47,11 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "チェンソーマン",
+      "n": "2"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "幽☆遊☆白書",
       "n": "2"
     },
@@ -57,22 +62,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "ガンバレ！中村くん！！",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -98,6 +93,11 @@
     {
       "mood": "funny",
       "seriesKey": "ニセコイ",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -347,12 +347,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "ホリミヤ",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ホリミヤ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -642,7 +642,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -652,7 +652,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -687,7 +687,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -727,7 +727,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -737,12 +737,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "亜人",
+      "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
@@ -752,7 +752,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "メイドインアビス",
+      "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
     {
@@ -767,7 +767,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "不滅のあなたへ",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -797,7 +797,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -822,27 +822,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "2"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "銀魂",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
-      "n": "1"
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "2"
     },
     {
       "mood": "satisfying",
       "seriesKey": "ドラゴンボール超",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
     {
@@ -852,12 +842,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "seriesKey": "無職転生 ～異世界行ったら本気だす～",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     },
     {
@@ -867,7 +857,17 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "ケンガンアシュラ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "HUNTER×HUNTER",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -882,7 +882,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "バガボンド",
+      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
@@ -947,12 +947,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
