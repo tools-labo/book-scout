@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-20T17:52:41.840Z",
-  "updatedAtJst": "2026-03-21 02:52:41",
+  "updatedAt": "2026-03-20T19:05:53.472Z",
+  "updatedAtJst": "2026-03-21 04:05:53",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -362,12 +362,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "日々蝶々",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "日々蝶々",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "n": "1"
     },
     {
@@ -602,38 +602,13 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "乙嫁語り",
-      "n": "2"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "蟲師",
       "n": "2"
     },
     {
       "mood": "moving",
-      "seriesKey": "ソラニン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ちはやふる",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
+      "seriesKey": "乙嫁語り",
+      "n": "2"
     },
     {
       "mood": "moving",
@@ -652,12 +627,17 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "ちはやふる",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -672,7 +652,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
@@ -682,12 +662,32 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "ソウルイーター",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "キングダム",
       "n": "1"
     },
     {
       "mood": "moving",
+      "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ReLIFE",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ソラニン",
       "n": "1"
     },
     {
@@ -702,22 +702,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "n": "3"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "ドラゴンボール",
       "n": "3"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "【推しの子】",
-      "n": "2"
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "n": "3"
     },
     {
       "mood": "page_turner",
       "seriesKey": "進撃の巨人",
+      "n": "2"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
@@ -727,17 +727,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -757,7 +752,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "亜人",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -767,12 +762,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
@@ -787,17 +782,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "不滅のあなたへ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "page_turner",
       "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "約束のネバーランド",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
     {
@@ -832,7 +832,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "終末のワルキューレ",
+      "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
@@ -847,7 +852,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "七つの大罪",
+      "seriesKey": "終末のワルキューレ",
       "n": "1"
     },
     {
@@ -857,7 +862,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "東京卍リベンジャーズ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -872,17 +882,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "東京卍リベンジャーズ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
@@ -912,6 +912,11 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "2"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "ボーイミーツマリア",
       "n": "2"
     },
@@ -927,18 +932,8 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "2"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "神のみぞ知るセカイ",
       "n": "2"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "リアル",
-      "n": "1"
     },
     {
       "mood": "tearjerker",
@@ -957,12 +952,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "銀魂",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -972,7 +967,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -982,7 +977,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -993,6 +988,11 @@
     {
       "mood": "tearjerker",
       "seriesKey": "ソラニン",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
