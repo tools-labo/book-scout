@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-20T07:12:59.129Z",
-  "updatedAtJst": "2026-03-20 16:12:59",
+  "updatedAt": "2026-03-20T07:54:56.477Z",
+  "updatedAtJst": "2026-03-20 16:54:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -162,10 +162,10 @@
       "n": "4"
     },
     {
-      "genre": "genre=action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "aud=少年",
       "n": "3"
     },
     {
@@ -197,10 +197,10 @@
       "n": "3"
     },
     {
-      "genre": "",
-      "aud": "",
+      "genre": "genre=action",
+      "aud": "aud=少年",
       "mag": "",
-      "mood": "aud=少年",
+      "mood": "",
       "n": "3"
     },
     {
@@ -309,22 +309,8 @@
       "n": "1"
     },
     {
-      "genre": "genre=romance,sf,fantasy,mystery",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "genre=romance",
       "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
-      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
@@ -337,10 +323,24 @@
       "n": "1"
     },
     {
+      "genre": "genre=fantasy,sf,sports,comedy,slice,mystery,horror,action",
+      "aud": "aud=少年",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=romance,sf,fantasy,mystery",
+      "aud": "aud=女性",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
       "genre": "",
       "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
@@ -359,9 +359,16 @@
     },
     {
       "genre": "",
+      "aud": "aud=少年",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
       "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
+      "mag": "mag=Cocohana",
+      "mood": "",
       "n": "1"
     },
     {
@@ -374,13 +381,6 @@
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=Cocohana",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "aud=少年",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -739,13 +739,6 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=page_turner,hot",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
       "mood": "aud=その他",
       "n": "1"
     },
@@ -754,6 +747,13 @@
       "aud": "",
       "mag": "",
       "mood": "mood=healing,satisfying",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=page_turner,hot",
       "n": "1"
     },
     {
