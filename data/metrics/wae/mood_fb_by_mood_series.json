@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-20T07:54:56.477Z",
-  "updatedAtJst": "2026-03-20 16:54:56",
+  "updatedAt": "2026-03-20T08:58:21.186Z",
+  "updatedAtJst": "2026-03-20 17:58:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -44,7 +44,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "銀魂",
+      "seriesKey": "ドロヘドロ",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -58,7 +58,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -100,13 +100,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "アイシールド21",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
@@ -115,6 +108,13 @@
     {
       "mood": "hot",
       "seriesKey": "ソウルイーター",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -191,14 +191,14 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "ありふれた職業で世界最強",
       "yes": "1",
       "no": "0",
       "n": "1"
