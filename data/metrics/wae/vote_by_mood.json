@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-20T15:57:21.593Z",
-  "updatedAtJst": "2026-03-21 00:57:21",
+  "updatedAt": "2026-03-20T17:00:57.169Z",
+  "updatedAtJst": "2026-03-21 02:00:57",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood",
@@ -18,7 +18,7 @@
   "rows": [
     {
       "mood": "hot",
-      "n": "55"
+      "n": "63"
     },
     {
       "mood": "heart_throb",
@@ -55,6 +55,6 @@
   ],
   "raw": {
     "rows": 9,
-    "rows_before_limit_at_least": 328
+    "rows_before_limit_at_least": 327
   }
 }
