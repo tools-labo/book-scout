@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-20T17:00:57.169Z",
-  "updatedAtJst": "2026-03-21 02:00:57",
+  "updatedAt": "2026-03-20T17:52:41.840Z",
+  "updatedAtJst": "2026-03-21 02:52:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -47,11 +47,6 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "幽☆遊☆白書",
       "n": "2"
     },
@@ -62,12 +57,22 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "チェンソーマン",
+      "n": "2"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
       "mood": "funny",
       "seriesKey": "ガンバレ！中村くん！！",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -93,11 +98,6 @@
     {
       "mood": "funny",
       "seriesKey": "ニセコイ",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -232,11 +232,6 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ニセコイ",
-      "n": "3"
-    },
-    {
-      "mood": "heart_throb",
       "seriesKey": "君に届け",
       "n": "3"
     },
@@ -247,17 +242,22 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "ニセコイ",
+      "n": "3"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "カッコウの許嫁",
       "n": "3"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ゆびさきと恋々",
       "n": "2"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ゆびさきと恋々",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "2"
     },
     {
@@ -277,7 +277,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
       "n": "1"
     },
     {
@@ -287,7 +287,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -312,12 +312,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "アオのハコ",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -387,11 +387,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "バガボンド",
-      "n": "10"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ドラゴンボール",
       "n": "8"
     },
@@ -417,27 +412,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ベルセルク",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "キングダム",
-      "n": "2"
+      "n": "3"
     },
     {
       "mood": "hot",
-      "seriesKey": "東京卍リベンジャーズ",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "ちはやふる",
       "n": "2"
     },
     {
@@ -447,7 +427,27 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "青の祓魔師",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "東京卍リベンジャーズ",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "蜘蛛ですが、なにか？",
+      "n": "2"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ベルセルク",
       "n": "2"
     },
     {
@@ -457,22 +457,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ちはやふる",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "チェンソーマン",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "リアル",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -483,6 +468,21 @@
     {
       "mood": "hot",
       "seriesKey": "ゴールデンカムイ",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "リアル",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -622,17 +622,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
       "mood": "moving",
       "seriesKey": "ちはやふる",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -672,17 +672,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -692,7 +692,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "キングダム",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -712,12 +712,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "進撃の巨人",
       "n": "2"
     },
     {
@@ -737,22 +737,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ベルセルク",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ベルセルク",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "君は淫らな僕の女王",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
@@ -767,17 +767,12 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "約束のネバーランド",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "魔入りました！入間くん",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
@@ -787,17 +782,22 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -937,7 +937,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -957,11 +957,6 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "銀魂",
       "n": "1"
     },
@@ -977,7 +972,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "蟲師",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "進撃の巨人",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
@@ -987,22 +992,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "ソラニン",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 196,
-    "rows_before_limit_at_least": 327
+    "rows_before_limit_at_least": 328
   }
 }
