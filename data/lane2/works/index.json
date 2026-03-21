@@ -1,9 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-16T13:41:04.315Z",
-  "total": 441,
-  "droppedTotal": 0,
-  "droppedSeriesKeys": [],
+  "updatedAt": "2026-03-21T11:41:59.264Z",
+  "total": 455,
+  "droppedTotal": 18,
+  "droppedSeriesKeys": [
+    "アフターゴッド",
+    "エクソシストを堕とせない",
+    "この会社に好きな人がいます",
+    "シャイ",
+    "ドリフターズ",
+    "マギ シンドバッドの冒険",
+    "世界最高の暗殺者、異世界貴族に転生する",
+    "妄想テレパシー",
+    "攻殻機動隊",
+    "望まぬ不死の冒険者",
+    "生まれ変わってもまた、私と結婚してくれますか",
+    "真夜中ハートチューン",
+    "素晴らしい世界",
+    "謎の彼女Ｘ",
+    "賢者の孫",
+    "転生したら第七王子だったので、気ままに魔術を極めます",
+    "魔王になったので、ダンジョン造って人外娘とほのぼのする",
+    "黒の召喚士"
+  ],
   "shardSize": 200,
   "shards": [
     {
@@ -16,7 +35,7 @@
     },
     {
       "file": "works_002.json",
-      "count": 41
+      "count": 55
     }
   ],
   "lookup": {
@@ -69,6 +88,7 @@
     "イノサン": 0,
     "イビツ": 0,
     "ヴァニタスの手記": 0,
+    "ヴァンパイア騎士 (ナイト)": 0,
     "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-": 0,
     "ウィッチウォッチ": 0,
     "ヴィンランド・サガ": 0,
@@ -76,9 +96,11 @@
     "うずまき": 0,
     "うみねこのなく頃に - Episode 1: Legend of the Golden Witch": 0,
     "うるわしの宵の月": 0,
+    "エデンの檻": 0,
     "エルフェンリート": 0,
     "エンジェル伝説": 0,
     "オーバーロード": 0,
+    "オオカミ少女と黒王子": 0,
     "おかえりアリス": 0,
     "おはよう、いばら姫": 0,
     "おもいでエマノン": 0,
@@ -87,6 +109,7 @@
     "お兄ちゃんはおしまい！": 0,
     "お隣の天使様にいつの間にか駄目人間にされていた件": 0,
     "カードキャプターさくら": 0,
+    "かくかくしかじか": 0,
     "かぐや様は告らせたい～天才たちの恋愛頭脳戦～": 0,
     "カグラバチ": 0,
     "かけおちガール": 0,
@@ -139,6 +162,7 @@
     "スキップとローファー": 0,
     "ストロボ・エッジ": 0,
     "スピリットサークル": 0,
+    "すんドめ": 0,
     "ソードアート・オンライン アインクラッド": 0,
     "ソウルイーター": 0,
     "その着せ替え人形は恋をする": 0,
@@ -152,6 +176,7 @@
     "チェンソーマン": 0,
     "ちはやふる": 0,
     "ちょびっツ": 0,
+    "つぐもも": 0,
     "ツバサ -RESERVoir CHRoNiCLE-": 0,
     "ディー・グレイマン": 0,
     "デッドデッドデーモンズデデデデデストラクション": 0,
@@ -170,7 +195,9 @@
     "トリニティセブン 7人の魔書使い": 0,
     "ドロヘドロ": 0,
     "とんがり帽子のアトリエ": 0,
+    "ナナとカオル": 0,
     "なまいきざかり。": 0,
+    "なんでここに先生が!?": 0,
     "ニセコイ": 0,
     "ノ・ゾ・キ・ア・ナ": 0,
     "ノーゲーム・ノーライフ": 0,
@@ -212,14 +239,14 @@
     "べるぜバブ": 0,
     "ベルセルク": 0,
     "ベルベット・キス": 0,
-    "ボーイミーツマリア": 0,
-    "ホーリーランド": 0,
-    "ボールルームへようこそ": 0,
-    "ボクガール": 0,
-    "ぼくたちは勉強ができない": 0,
-    "ぼくは麻理のなか": 0,
-    "ポケットモンスターSPECIAL": 0,
-    "ホタルの嫁入り": 0,
+    "ボーイミーツマリア": 1,
+    "ホーリーランド": 1,
+    "ボールルームへようこそ": 1,
+    "ボクガール": 1,
+    "ぼくたちは勉強ができない": 1,
+    "ぼくは麻理のなか": 1,
+    "ポケットモンスターSPECIAL": 1,
+    "ホタルの嫁入り": 1,
     "ぼっち・ざ・ろっく！": 1,
     "ホムンクルス": 1,
     "ホリミヤ": 1,
@@ -236,6 +263,7 @@
     "モンスター娘のいる日常": 1,
     "やがて君になる": 1,
     "やはり俺の青春ラブコメはまちがっている。": 1,
+    "ヤンキーJKクズハナちゃん": 1,
     "やんちゃギャルの安城さん": 1,
     "ゆびさきと恋々": 1,
     "ゆらぎ荘の幽奈さん": 1,
@@ -296,6 +324,7 @@
     "名探偵コナン": 1,
     "君と綴るうたかた": 1,
     "君に届け": 1,
+    "君のいる町": 1,
     "君のことが大大大大大好きな100人の彼女": 1,
     "君の名は。": 1,
     "君の膵臓をたべたい": 1,
@@ -391,11 +420,13 @@
     "無職転生 ～異世界行ったら本気だす～": 1,
     "無能なナナ": 1,
     "無限の住人": 1,
+    "焼いてるふたり": 1,
     "熱帯魚は雪に焦がれる": 1,
     "犬夜叉": 1,
     "狼と香辛料": 1,
     "狼少年は今日も嘘を重ねる": 1,
     "現実もたまには嘘をつく": 1,
+    "甘神さんちの縁結び": 1,
     "町田くんの世界": 1,
     "異世界のんびり農家": 1,
     "異世界迷宮でハーレムを": 1,
@@ -408,18 +439,18 @@
     "神様はじめました": 1,
     "私たちの幸せな時間": 1,
     "私の推しは悪役令嬢。": 1,
-    "約束のネバーランド": 1,
-    "紙袋くんは恋してる": 1,
-    "累－かさね－": 1,
-    "終わりのセラフ": 1,
-    "終末のワルキューレ": 1,
-    "結婚するって、本当ですか 365 Days To The Wedding": 1,
-    "結婚指輪物語": 1,
-    "美少女戦士セーラームーン": 1,
-    "聲の形": 1,
-    "花野井くんと恋の病": 1,
-    "葬送のフリーレン": 1,
-    "薫る花は凛と咲く": 1,
+    "約束のネバーランド": 2,
+    "紙袋くんは恋してる": 2,
+    "累－かさね－": 2,
+    "終わりのセラフ": 2,
+    "終末のワルキューレ": 2,
+    "結婚するって、本当ですか 365 Days To The Wedding": 2,
+    "結婚指輪物語": 2,
+    "美少女戦士セーラームーン": 2,
+    "聲の形": 2,
+    "花野井くんと恋の病": 2,
+    "葬送のフリーレン": 2,
+    "薫る花は凛と咲く": 2,
     "薬屋のひとりごと": 2,
     "蜘蛛ですが、なにか？": 2,
     "蟲師": 2,
@@ -434,6 +465,7 @@
     "転生したら剣でした": 2,
     "進撃の巨人": 2,
     "進撃の巨人 外伝 悔いなき選択": 2,
+    "遊☆戯☆王": 2,
     "道産子ギャルはなまらめんこい": 2,
     "金色のガッシュ!!": 2,
     "銀の匙": 2,
@@ -446,6 +478,7 @@
     "青のフラッグ": 2,
     "青の祓魔師": 2,
     "風の谷のナウシカ": 2,
+    "風夏": 2,
     "食戟のソーマ": 2,
     "骸骨騎士様、只今異世界へお出掛け中": 2,
     "鬼滅の刃": 2,
@@ -2236,6 +2269,46 @@
       "releaseDate": "2016-04-22T00:00:01Z"
     },
     {
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "title": "ヴァンパイア騎士(ナイト) 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5921/59218301.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592183010",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592183010",
+      "magazine": "LaLa",
+      "magazines": [
+        "LaLa"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Mystery",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "少女",
+        "吸血鬼",
+        "現代ファンタジー",
+        "クーデレ",
+        "双子",
+        "ツンデレ",
+        "三角関係",
+        "学園",
+        "養子縁組",
+        "男性ハーレム",
+        "全寮制",
+        "記憶喪失",
+        "お嬢様",
+        "記憶操作",
+        "陰謀"
+      ],
+      "publisher": "白泉社",
+      "releaseDate": "2005年07月05日"
+    },
+    {
       "seriesKey": "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-",
       "title": "ヴィジランテ 1 ―僕のヒーローアカデミアILLEGALS― (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/51OchDJi0tL._SL500_.jpg",
@@ -2510,6 +2583,40 @@
       "releaseDate": "2020-12-11T00:00:01Z"
     },
     {
+      "seriesKey": "エデンの檻",
+      "title": "エデンの檻（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/1060/9784063841060.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063841065",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063841065",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Ecchi",
+        "Fantasy"
+      ],
+      "tags": [
+        "サバイバル",
+        "キメラ",
+        "少年向け",
+        "恐竜",
+        "失われた文明",
+        "女装・男装",
+        "性転換",
+        "登山",
+        "教育",
+        "三角関係"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2009年02月"
+    },
+    {
       "seriesKey": "エルフェンリート",
       "title": "エルフェンリート 1 (ヤングジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/5150dxQEIGL._SL500_.jpg",
@@ -2623,6 +2730,35 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2015年06月26日頃"
+    },
+    {
+      "seriesKey": "オオカミ少女と黒王子",
+      "title": "オオカミ少女と黒王子（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/7153/9784088467153.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088467159",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088467159",
+      "magazine": "別冊マーガレット",
+      "magazines": [
+        "別冊マーガレット"
+      ],
+      "audiences": [
+        "少女"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "tags": [
+        "少女",
+        "ツンデレ",
+        "三角関係",
+        "学園",
+        "偽装恋愛",
+        "ギャル"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2011年10月"
     },
     {
       "seriesKey": "おかえりアリス",
@@ -2900,6 +3036,43 @@
       ],
       "publisher": "講談社",
       "releaseDate": "1996年11月20日"
+    },
+    {
+      "seriesKey": "かくかくしかじか",
+      "title": "かくかくしかじか（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4575/9784087824575.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4087824578",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4087824578",
+      "magazine": "Cocohana",
+      "magazines": [
+        "Cocohana"
+      ],
+      "audiences": [
+        "女性"
+      ],
+      "genres": [
+        "Drama",
+        "Slice of Life"
+      ],
+      "tags": [
+        "絵・作画",
+        "成長譚",
+        "オタク文化",
+        "自伝（作者体験）",
+        "教師",
+        "女性向け",
+        "ノンフィクション",
+        "大学",
+        "仕事",
+        "執筆",
+        "剣術",
+        "田舎",
+        "哲学",
+        "教育",
+        "原付"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "2012年07月"
     },
     {
       "seriesKey": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
@@ -4773,6 +4946,39 @@
       "releaseDate": "2012-12-10T00:00:01Z"
     },
     {
+      "seriesKey": "すんドめ",
+      "title": "すんドめ（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2531/25315001.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253150012",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253150012",
+      "magazine": "ヤングチャンピオン",
+      "magazines": [
+        "ヤングチャンピオン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Ecchi",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "青年向け",
+        "部活",
+        "都会",
+        "成長譚",
+        "学園",
+        "ギャル",
+        "障害",
+        "陰謀"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2006年11月20日頃"
+    },
+    {
       "seriesKey": "ソードアート・オンライン アインクラッド",
       "title": "ソードアート・オンライン　アインクラッド1",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9065/9784048869065.jpg?_ex=200x200",
@@ -5267,6 +5473,52 @@
       ],
       "publisher": "講談社",
       "releaseDate": "2001年02月16日頃"
+    },
+    {
+      "seriesKey": "つぐもも",
+      "title": "つぐもも（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5090/9784575835090.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4575835099",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4575835099",
+      "magazine": "COMIC SEED! / WEBコミックハイ！ / 月刊アクション / 漫画アクション",
+      "magazines": [
+        "COMIC SEED!",
+        "WEBコミックハイ!",
+        "月刊アクション",
+        "漫画アクション"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Action",
+        "Comedy",
+        "Ecchi",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "超能力",
+        "青年向け",
+        "神々",
+        "妖怪",
+        "魔法",
+        "変身",
+        "記憶喪失",
+        "複数恋愛",
+        "逆ハーレム",
+        "悪魔",
+        "武術",
+        "疑似家族",
+        "年齢退行",
+        "学園",
+        "部活",
+        "異世界",
+        "剣術",
+        "監獄"
+      ],
+      "publisher": "双葉社",
+      "releaseDate": "2008年06月"
     },
     {
       "seriesKey": "ツバサ -RESERVoir CHRoNiCLE-",
@@ -5983,6 +6235,35 @@
       "releaseDate": "2017-01-23T00:00:01Z"
     },
     {
+      "seriesKey": "ナナとカオル",
+      "title": "ナナとカオル（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5921/59214561.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4592145615",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4592145615",
+      "magazine": "ヤングアニマル嵐 / →ヤングアニマル",
+      "magazines": [
+        "ヤングアニマル嵐",
+        "ヤングアニマル"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Psychological",
+        "Romance"
+      ],
+      "tags": [
+        "青年向け",
+        "学園",
+        "三角関係",
+        "日焼け肌"
+      ],
+      "publisher": "白泉社",
+      "releaseDate": "2008年11月"
+    },
+    {
       "seriesKey": "なまいきざかり。",
       "title": "なまいきざかり。 1 (花とゆめCOMICS)",
       "image": "https://m.media-amazon.com/images/I/51AAaWNdFGL._SL500_.jpg",
@@ -6014,6 +6295,40 @@
       ],
       "publisher": "白泉社",
       "releaseDate": "2014-05-20T00:00:01Z"
+    },
+    {
+      "seriesKey": "なんでここに先生が!?",
+      "title": "なんでここに先生が！？",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9044/9784063829044.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063829049",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063829049",
+      "magazine": "週刊ヤングマガジン",
+      "magazines": [
+        "週刊ヤングマガジン"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "教師",
+        "学園",
+        "ドタバタ",
+        "青年向け",
+        "コスプレ",
+        "足フェチ",
+        "日焼け肌",
+        "クーデレ",
+        "年上女性",
+        "ボーイッシュ",
+        "女装・男装"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2017年01月06日頃"
     },
     {
       "seriesKey": "ニセコイ",
@@ -8387,6 +8702,40 @@
       "releaseDate": "2013-05-17T00:00:01Z"
     },
     {
+      "seriesKey": "ヤンキーJKクズハナちゃん",
+      "title": "ヤンキーJKクズハナちゃん 1",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5076/9784253225076.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4253225071",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4253225071",
+      "magazine": "週刊少年チャンピオン",
+      "magazines": [
+        "週刊少年チャンピオン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "逆ハーレム",
+        "ギャル",
+        "学園",
+        "不良",
+        "ファッション",
+        "少年向け",
+        "いじめ",
+        "武術",
+        "ボーイッシュ",
+        "ツンデレ",
+        "女装・男装"
+      ],
+      "publisher": "秋田書店",
+      "releaseDate": "2020年08月06日"
+    },
+    {
       "seriesKey": "やんちゃギャルの安城さん",
       "title": "やんちゃギャルの安城さん 1 (ヤングキングコミックス)",
       "image": "https://m.media-amazon.com/images/I/51lXwx1UPOL._SL500_.jpg",
@@ -10477,6 +10826,35 @@
       ],
       "publisher": "集英社",
       "releaseDate": "2006-05-25T00:00:01Z"
+    },
+    {
+      "seriesKey": "君のいる町",
+      "title": "君のいる町（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0292/9784063840292.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063840298",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063840298",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Drama",
+        "Ecchi",
+        "Romance"
+      ],
+      "tags": [
+        "三角関係",
+        "学園",
+        "成長譚",
+        "少年向け",
+        "田舎",
+        "グルメ"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2008年08月"
     },
     {
       "seriesKey": "君のことが大大大大大好きな100人の彼女",
@@ -13923,6 +14301,36 @@
       "releaseDate": "1994-09-01T00:00:01Z"
     },
     {
+      "seriesKey": "焼いてるふたり",
+      "title": "焼いてるふたり（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/5395/9784065215395.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065215390",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065215390",
+      "magazine": "モーニング",
+      "magazines": [
+        "モーニング"
+      ],
+      "audiences": [
+        "青年"
+      ],
+      "genres": [
+        "Romance",
+        "Slice of Life"
+      ],
+      "tags": [
+        "グルメ",
+        "青年向け",
+        "家族もの",
+        "アウトドア",
+        "田舎",
+        "教育",
+        "癒し系",
+        "OL"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2020年12月23日"
+    },
+    {
       "seriesKey": "熱帯魚は雪に焦がれる",
       "title": "熱帯魚は雪に焦がれる1",
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4701/9784048934701_1_3.jpg?_ex=200x200",
@@ -14084,6 +14492,43 @@
       ],
       "publisher": "KADOKAWA",
       "releaseDate": "2020-07-31T00:00:01Z"
+    },
+    {
+      "seriesKey": "甘神さんちの縁結び",
+      "title": "甘神さんちの縁結び（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0410/9784065240410_1_2.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4065240417",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4065240417",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Ecchi",
+        "Romance",
+        "Supernatural"
+      ],
+      "tags": [
+        "巫女",
+        "逆ハーレム",
+        "疑似家族",
+        "少年向け",
+        "ツンデレ",
+        "神々",
+        "宗教",
+        "複数恋愛",
+        "養子縁組",
+        "家族もの",
+        "双子",
+        "孤児"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2021年07月16日"
     },
     {
       "seriesKey": "町田くんの世界",
@@ -15540,6 +15985,50 @@
       "releaseDate": "2014年04月"
     },
     {
+      "seriesKey": "遊☆戯☆王",
+      "title": "遊☆戯☆王（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0887/08872311.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4088723112",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4088723112",
+      "magazine": "週刊少年ジャンプ",
+      "magazines": [
+        "週刊少年ジャンプ"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy",
+        "Drama",
+        "Fantasy",
+        "Mystery"
+      ],
+      "tags": [
+        "多重人格",
+        "カードバトル",
+        "少年向け",
+        "神話",
+        "デスゲーム",
+        "ドラゴン",
+        "ギャンブル",
+        "学園",
+        "現代ファンタジー",
+        "いじめ",
+        "子どもが中心",
+        "神々",
+        "魔法",
+        "記憶喪失",
+        "部活",
+        "養子縁組",
+        "砂漠",
+        "戦争"
+      ],
+      "publisher": "集英社",
+      "releaseDate": "1997年03月04日頃"
+    },
+    {
       "seriesKey": "道産子ギャルはなまらめんこい",
       "title": "道産子ギャルはなまらめんこい 1 (ジャンプコミックス)",
       "image": "https://m.media-amazon.com/images/I/518al7vz01L._SL500_.jpg",
@@ -16013,6 +16502,38 @@
       ],
       "publisher": "徳間書店",
       "releaseDate": "1983-07-20T00:00:01Z"
+    },
+    {
+      "seriesKey": "風夏",
+      "title": "風夏（1）",
+      "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0861/9784063950861.jpg?_ex=200x200",
+      "amazonDp": "https://www.amazon.co.jp/dp/4063950867",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4063950867",
+      "magazine": "週刊少年マガジン",
+      "magazines": [
+        "週刊少年マガジン"
+      ],
+      "audiences": [
+        "少年"
+      ],
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Ecchi",
+        "Music",
+        "Romance"
+      ],
+      "tags": [
+        "バンド",
+        "農業",
+        "ミュージカル",
+        "学園",
+        "少年向け",
+        "成長譚",
+        "バイセクシュアル"
+      ],
+      "publisher": "講談社",
+      "releaseDate": "2014年05月16日頃"
     },
     {
       "seriesKey": "食戟のソーマ",
