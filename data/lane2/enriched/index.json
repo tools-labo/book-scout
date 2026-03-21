@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-21T11:57:14.144Z",
+  "updatedAt": "2026-03-21T12:01:41.401Z",
   "total": 473,
   "shardSize": 200,
   "shards": [
@@ -496,32 +496,17 @@
     "total": 473,
     "ok": 473,
     "ng": 0,
-    "skippedPerfect": 453,
-    "skippedAniList": 20,
-    "skippedWiki": 20,
-    "skippedBookMeta": 20,
+    "skippedPerfect": 473,
+    "skippedAniList": 0,
+    "skippedWiki": 0,
+    "skippedBookMeta": 0,
     "fetchedBookMetaIsbn13s": 0,
-    "magAudienceTodoAdded": 2,
+    "magAudienceTodoAdded": 0,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 20,
+      "prevNotPerfect": 0,
       "outNotPerfect": 0
     },
-    "perfectNotMetSamples": {
-      "prevNotPerfect": [
-        "アフターゴッド :: magazine,magazines[],tags_missing_en(remain=1)",
-        "エクソシストを堕とせない :: magazine,magazines[]",
-        "この会社に好きな人がいます :: magazine,magazines[]",
-        "シャイ :: magazine,magazines[]",
-        "すんドめ :: tags_missing_en(remain=1)",
-        "ドリフターズ :: magazine,magazines[]",
-        "なんでここに先生が!? :: tags_missing_en(remain=1)",
-        "マギ シンドバッドの冒険 :: magazine,magazines[]",
-        "世界最高の暗殺者、異世界貴族に転生する :: magazine,magazines[]",
-        "妄想テレパシー :: magazine,magazines[]",
-        "攻殻機動隊 :: magazine,magazines[]",
-        "望まぬ不死の冒険者 :: magazine,magazines[]"
-      ]
-    },
+    "perfectNotMetSamples": {},
     "notPerfectSummary": {
       "notPerfectTotal": 0,
       "seriesKeys": [],
