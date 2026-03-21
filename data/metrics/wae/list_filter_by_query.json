@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-21T02:46:51.725Z",
-  "updatedAtJst": "2026-03-21 11:46:51",
+  "updatedAt": "2026-03-21T04:46:08.254Z",
+  "updatedAtJst": "2026-03-21 13:46:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -127,17 +127,17 @@
       "n": "5"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=hot",
-      "n": "5"
-    },
-    {
       "genre": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
       "aud": "",
       "mag": "",
       "mood": "JP",
+      "n": "5"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "mood": "mood=hot",
       "n": "5"
     },
     {
@@ -330,16 +330,16 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "genre=Action&mood=heart_throb",
-      "n": "1"
-    },
-    {
       "genre": "genre=romance,sf,fantasy,mystery",
       "aud": "aud=女性",
       "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -374,15 +374,15 @@
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=Cocohana",
-      "mood": "",
+      "mag": "",
+      "mood": "genre=Action&mood=heart_throb",
       "n": "1"
     },
     {
