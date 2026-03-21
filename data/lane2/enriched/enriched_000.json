@@ -2713,12 +2713,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16924577/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16924577%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "裏サンデー",
+        "magazines": [
+          "裏サンデー"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 138577,
         "genres": [
@@ -2772,11 +2774,10 @@
           "パンデミック",
           "百合",
           "環境ホラー",
-          "ボーイズラブ"
+          "ボーイズラブ",
+          "獣医"
         ],
-        "tags_missing_en": [
-          "Veterinarian"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -4025,13 +4026,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/17098223/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F17098223%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "少年ジャンプ＋",
+        "magazines": [
+          "少年ジャンプ+"
         ],
-        "magazineSource": null,
-        "wikiTitle": "エクソシストを堕とせない",
+        "audiences": [
+          "Web/アプリ"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 143516,
         "genres": [
           "Action",
@@ -6473,12 +6476,14 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/15961100/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F15961100%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "モーニング",
+        "magazines": [
+          "モーニング"
         ],
-        "magazineSource": null,
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
         "wikiTitle": null,
         "anilistId": 116333,
         "genres": [
@@ -7408,13 +7413,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/16099322/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F16099322%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "週刊少年チャンピオン",
+        "magazines": [
+          "週刊少年チャンピオン"
         ],
-        "magazineSource": null,
-        "wikiTitle": "シャイ",
+        "audiences": [
+          "少年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 110909,
         "genres": [
           "Action",
@@ -8692,13 +8699,12 @@
           "都会",
           "成長譚",
           "学園",
+          "貧乳",
           "ギャル",
           "障害",
           "陰謀"
         ],
-        "tags_missing_en": [
-          "Flat Chest"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null
@@ -10883,13 +10889,15 @@
         "rakutenUrl": "https://books.rakuten.co.jp/rb/6484005/",
         "rakutenAffiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q0724.fgrhs2e0.g00q0724.fgrhtd85/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F6484005%2F",
         "bookMetaSource": "rakuten",
-        "magazine": null,
-        "magazines": [],
-        "audiences": [
-          "その他"
+        "magazine": "ヤングキングアワーズ",
+        "magazines": [
+          "ヤングキングアワーズ"
         ],
-        "magazineSource": null,
-        "wikiTitle": "ドリフターズ",
+        "audiences": [
+          "青年"
+        ],
+        "magazineSource": "manual_override",
+        "wikiTitle": null,
         "anilistId": 43801,
         "genres": [
           "Action",
@@ -11296,15 +11304,14 @@
           "青年向け",
           "コスプレ",
           "足フェチ",
+          "授乳",
           "日焼け肌",
           "クーデレ",
           "年上女性",
           "ボーイッシュ",
           "女装・男装"
         ],
-        "tags_missing_en": [
-          "Lactation"
-        ],
+        "tags_missing_en": [],
         "source": "enrich(sharded+prev+wiki+anilist+tagdict+hide+magazine_overrides+book_meta(rakuten)+mag_audience)"
       },
       "meta": null

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-21T11:41:59.264Z",
+  "updatedAt": "2026-03-21T11:57:14.144Z",
   "total": 473,
   "shardSize": 200,
   "shards": [
@@ -496,32 +496,18 @@
     "total": 473,
     "ok": 473,
     "ng": 0,
-    "skippedPerfect": 441,
-    "skippedAniList": 0,
-    "skippedWiki": 0,
-    "skippedBookMeta": 0,
-    "fetchedBookMetaIsbn13s": 32,
-    "magAudienceTodoAdded": 3,
+    "skippedPerfect": 453,
+    "skippedAniList": 20,
+    "skippedWiki": 20,
+    "skippedBookMeta": 20,
+    "fetchedBookMetaIsbn13s": 0,
+    "magAudienceTodoAdded": 2,
     "perfectNotMetReasons": {
-      "prevNotPerfect": 32,
-      "outNotPerfect": 20
+      "prevNotPerfect": 20,
+      "outNotPerfect": 0
     },
     "perfectNotMetSamples": {
       "prevNotPerfect": [
-        "アフターゴッド :: noVol1",
-        "ヴァンパイア騎士 (ナイト) :: noVol1",
-        "エクソシストを堕とせない :: noVol1",
-        "エデンの檻 :: noVol1",
-        "オオカミ少女と黒王子 :: noVol1",
-        "かくかくしかじか :: noVol1",
-        "この会社に好きな人がいます :: noVol1",
-        "シャイ :: noVol1",
-        "すんドめ :: noVol1",
-        "つぐもも :: noVol1",
-        "ドリフターズ :: noVol1",
-        "ナナとカオル :: noVol1"
-      ],
-      "outNotPerfect": [
         "アフターゴッド :: magazine,magazines[],tags_missing_en(remain=1)",
         "エクソシストを堕とせない :: magazine,magazines[]",
         "この会社に好きな人がいます :: magazine,magazines[]",
@@ -537,79 +523,20 @@
       ]
     },
     "notPerfectSummary": {
-      "notPerfectTotal": 20,
-      "seriesKeys": [
-        "アフターゴッド",
-        "エクソシストを堕とせない",
-        "この会社に好きな人がいます",
-        "シャイ",
-        "すんドめ",
-        "ドリフターズ",
-        "なんでここに先生が!?",
-        "マギ シンドバッドの冒険",
-        "世界最高の暗殺者、異世界貴族に転生する",
-        "妄想テレパシー",
-        "攻殻機動隊",
-        "望まぬ不死の冒険者",
-        "生まれ変わってもまた、私と結婚してくれますか",
-        "真夜中ハートチューン",
-        "素晴らしい世界",
-        "謎の彼女Ｘ",
-        "賢者の孫",
-        "転生したら第七王子だったので、気ままに魔術を極めます",
-        "魔王になったので、ダンジョン造って人外娘とほのぼのする",
-        "黒の召喚士"
-      ],
-      "topReasons": [
-        {
-          "reason": "magazine",
-          "n": 18,
-          "samples": [
-            "アフターゴッド",
-            "エクソシストを堕とせない",
-            "この会社に好きな人がいます",
-            "シャイ",
-            "ドリフターズ",
-            "マギ シンドバッドの冒険",
-            "世界最高の暗殺者、異世界貴族に転生する",
-            "妄想テレパシー"
-          ]
-        },
-        {
-          "reason": "magazines[]",
-          "n": 18,
-          "samples": [
-            "アフターゴッド",
-            "エクソシストを堕とせない",
-            "この会社に好きな人がいます",
-            "シャイ",
-            "ドリフターズ",
-            "マギ シンドバッドの冒険",
-            "世界最高の暗殺者、異世界貴族に転生する",
-            "妄想テレパシー"
-          ]
-        },
-        {
-          "reason": "tags_missing_en(remain=1)",
-          "n": 3,
-          "samples": [
-            "アフターゴッド",
-            "すんドめ",
-            "なんでここに先生が!?"
-          ]
-        }
-      ],
+      "notPerfectTotal": 0,
+      "seriesKeys": [],
+      "topReasons": [],
       "note": "outNotPerfect 全件から再集計（unique seriesKey + 理由TOP）。"
     },
     "bookMeta": {
       "provider": "rakuten",
       "enabled": true,
-      "requests": 32,
+      "requests": 0,
       "failures": 0,
       "http403": 0,
       "http429": 0,
       "missingItems": 0,
-      "successItems": 32
+      "successItems": 0
     }
   }
 }
