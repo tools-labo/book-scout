@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-22T13:13:46.077Z",
-  "updatedAtJst": "2026-03-22 22:13:46",
+  "updatedAt": "2026-03-22T13:53:00.076Z",
+  "updatedAtJst": "2026-03-22 22:53:00",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -374,14 +374,14 @@
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=Cocohana",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
     {
       "genre": "",
       "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
@@ -473,7 +473,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb,healing",
+      "mood": "genre=Action&mood=moving",
       "n": "1"
     },
     {
@@ -494,7 +494,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "genre=Action&mood=moving",
+      "mood": "mood=heart_throb,healing",
       "n": "1"
     },
     {
