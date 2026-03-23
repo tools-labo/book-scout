@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-23T17:08:20.472Z",
-  "updatedAtJst": "2026-03-24 02:08:20",
+  "updatedAt": "2026-03-23T18:02:52.190Z",
+  "updatedAtJst": "2026-03-24 03:02:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -247,7 +247,7 @@
     },
     {
       "genre": "",
-      "aud": "",
+      "aud": "aud=少年",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -268,15 +268,8 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
       "aud": "",
-      "mag": "mag=Cocohana",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -284,6 +277,13 @@
       "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
       "aud": "aud=少年",
       "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
@@ -568,10 +568,10 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
       "mag": "",
-      "mood": "mood=healing",
+      "mood": "",
       "n": "1"
     },
     {
@@ -603,10 +603,10 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=healing",
       "n": "1"
     },
     {
