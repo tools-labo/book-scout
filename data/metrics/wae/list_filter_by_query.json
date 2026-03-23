@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-23T20:54:11.065Z",
-  "updatedAtJst": "2026-03-24 05:54:11",
+  "updatedAt": "2026-03-23T21:49:52.197Z",
+  "updatedAtJst": "2026-03-24 06:49:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -239,15 +239,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=drama,sports,mystery,slice,action",
-      "aud": "aud=女性",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=satisfying",
       "n": "1"
     },
     {
       "genre": "",
-      "aud": "",
+      "aud": "aud=少年",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -268,7 +268,7 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
+      "aud": "",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -309,10 +309,10 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
+      "genre": "genre=drama,sports,mystery,slice,action",
+      "aud": "aud=女性",
       "mag": "",
-      "mood": "mood=satisfying",
+      "mood": "",
       "n": "1"
     },
     {
@@ -568,10 +568,10 @@
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
+      "genre": "genre=fantasy,sf,horror,action",
+      "aud": "aud=少年",
       "mag": "",
-      "mood": "mood=healing",
+      "mood": "",
       "n": "1"
     },
     {
@@ -603,10 +603,10 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,horror,action",
-      "aud": "aud=少年",
+      "genre": "",
+      "aud": "",
       "mag": "",
-      "mood": "",
+      "mood": "mood=healing",
       "n": "1"
     },
     {
@@ -617,24 +617,24 @@
       "n": "1"
     },
     {
-      "genre": "genre=action",
-      "aud": "",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=action",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=funny,moving",
+      "n": "1"
+    },
+    {
+      "genre": "genre=action",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "genre=action",
+      "aud": "",
+      "mag": "mag=週刊少年ジャンプ",
+      "mood": "",
       "n": "1"
     },
     {
