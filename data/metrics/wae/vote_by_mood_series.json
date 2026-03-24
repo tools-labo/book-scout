@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-24T06:12:36.938Z",
-  "updatedAtJst": "2026-03-24 15:12:36",
+  "updatedAt": "2026-03-24T07:19:25.401Z",
+  "updatedAtJst": "2026-03-24 16:19:25",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -282,6 +282,11 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "徒然チルドレン",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "同級生",
       "n": "1"
     },
@@ -298,11 +303,6 @@
     {
       "mood": "heart_throb",
       "seriesKey": "ぼくたちは勉強ができない",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -412,7 +412,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "ベルセルク",
       "n": "2"
     },
     {
@@ -427,7 +427,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
     {
@@ -447,17 +447,17 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "はじめの一歩",
       "n": "1"
     },
     {
       "mood": "hot",
       "seriesKey": "リアル",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
@@ -517,7 +517,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
@@ -527,12 +527,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "君は淫らな僕の女王",
+      "seriesKey": "ぼくは麻理のなか",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "ぼくは麻理のなか",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -577,17 +577,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "乙嫁語り",
-      "n": "2"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "蟲師",
       "n": "2"
     },
     {
       "mood": "moving",
-      "seriesKey": "聲の形",
+      "seriesKey": "乙嫁語り",
+      "n": "2"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -597,7 +597,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "銀魂",
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
@@ -607,17 +607,17 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -627,7 +627,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -647,17 +647,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ReLIFE",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ちはやふる",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "フルーツバスケット",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "金色のガッシュ!!",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
@@ -737,11 +737,6 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "不滅のあなたへ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
@@ -752,7 +747,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "不滅のあなたへ",
       "n": "1"
     },
     {
@@ -763,6 +758,11 @@
     {
       "mood": "page_turner",
       "seriesKey": "大ダーク",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -797,12 +797,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "銀魂",
       "n": "2"
     },
     {
@@ -817,12 +817,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     },
     {
@@ -842,12 +842,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "バガボンド",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -927,12 +927,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
