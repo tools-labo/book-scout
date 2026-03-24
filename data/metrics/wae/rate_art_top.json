@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-24T13:50:01.904Z",
-  "updatedAtJst": "2026-03-24 22:50:01",
+  "updatedAt": "2026-03-24T15:18:39.095Z",
+  "updatedAtJst": "2026-03-25 00:18:39",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -21,58 +21,503 @@
   ],
   "rows": [
     {
-      "seriesKey": "ONE PIECE",
+      "seriesKey": "乙嫁語り",
       "avg": 5,
-      "n": "10"
+      "n": "3"
+    },
+    {
+      "seriesKey": "バガボンド",
+      "avg": 5,
+      "n": "1"
     },
     {
       "seriesKey": "ドラゴンボール",
-      "avg": 5,
-      "n": "10"
+      "avg": 4.928571428571429,
+      "n": "14"
+    },
+    {
+      "seriesKey": "アイシールド21",
+      "avg": 4.666666666666667,
+      "n": "3"
+    },
+    {
+      "seriesKey": "リアル",
+      "avg": 4.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "avg": 4.25,
+      "n": "8"
+    },
+    {
+      "seriesKey": "ONE PIECE",
+      "avg": 4.222222222222222,
+      "n": "9"
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "蟲師",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ちはやふる",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ノラガミ",
+      "avg": 4,
+      "n": "1"
     },
     {
       "seriesKey": "ディー・グレイマン",
       "avg": 4,
-      "n": "10"
+      "n": "1"
+    },
+    {
+      "seriesKey": "葬送のフリーレン",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種-トーキョーグール-:re",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオハライド",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴァニタスの手記",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "監獄学園",
+      "avg": 3.75,
+      "n": "4"
+    },
+    {
+      "seriesKey": "【推しの子】",
+      "avg": 3.75,
+      "n": "4"
+    },
+    {
+      "seriesKey": "銀魂",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "君は淫らな僕の女王",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
+      "avg": 3.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "avg": 3.4,
+      "n": "5"
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "avg": 3.2,
+      "n": "5"
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "avg": 3,
+      "n": "4"
+    },
+    {
+      "seriesKey": "フルーツバスケット",
+      "avg": 3,
+      "n": "3"
+    },
+    {
+      "seriesKey": "ニセコイ",
+      "avg": 3,
+      "n": "3"
+    },
+    {
+      "seriesKey": "トモちゃんは女の子!",
+      "avg": 3,
+      "n": "3"
+    },
+    {
+      "seriesKey": "カッコウの許嫁",
+      "avg": 3,
+      "n": "3"
+    },
+    {
+      "seriesKey": "からかい上手の高木さん",
+      "avg": 3,
+      "n": "3"
+    },
+    {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "彼女、お借りします",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "マギ",
+      "avg": 3,
+      "n": "2"
     },
     {
       "seriesKey": "宝石の国",
       "avg": 3,
-      "n": "10"
+      "n": "2"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "神のみぞ知るセカイ",
       "avg": 3,
-      "n": "10"
+      "n": "2"
+    },
+    {
+      "seriesKey": "ガチアクタ",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "政宗くんのリベンジ",
+      "avg": 3,
+      "n": "2"
     },
     {
       "seriesKey": "約束のネバーランド",
       "avg": 3,
-      "n": "10"
+      "n": "2"
     },
     {
-      "seriesKey": "魔入りました！入間くん",
+      "seriesKey": "ソウルイーター",
       "avg": 3,
-      "n": "10"
+      "n": "2"
     },
     {
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "血の轍",
       "avg": 3,
-      "n": "10"
+      "n": "2"
+    },
+    {
+      "seriesKey": "少年のアビス",
+      "avg": 3,
+      "n": "2"
     },
     {
       "seriesKey": "アイアムアヒーロー",
       "avg": 3,
-      "n": "10"
+      "n": "2"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "君に届け",
+      "avg": 3,
+      "n": "2"
+    },
+    {
+      "seriesKey": "この音とまれ！",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "HUNTER×HUNTER",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "あせとせっけん",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "惑星のさみだれ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぼくたちは勉強ができない",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ラストゲーム",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "orange [オレンジ]",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール超",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひるなかの流星",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "双星の陰陽師",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ホリミヤ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "不滅のあなたへ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "亜人",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "終わりのセラフ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゆびさきと恋々",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソラニン",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "寄生獣",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "とつくにの少女",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "神様はじめました",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "たいようのいえ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヲタクに恋は難しい",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "五等分の花嫁",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔男のイチ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "日々蝶々",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオのハコ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ケンガンアシュラ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "青の祓魔師",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京喰種 トーキョーグール",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔入りました！入間くん",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "七つの大罪",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "東京卍リベンジャーズ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "同級生",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "イジらないで、長瀞さん",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ボーイミーツマリア",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "黒執事",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ガンバレ！中村くん！！",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "20世紀少年",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドメスティックな彼女",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "月刊少女野崎くん",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
+      "avg": 2.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
+      "avg": 2.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "ReLIFE",
+      "avg": 2.5,
+      "n": "2"
+    },
+    {
+      "seriesKey": "チェンソーマン",
+      "avg": 2.5,
+      "n": "2"
     },
     {
       "seriesKey": "幽☆遊☆白書",
       "avg": 2,
-      "n": "10"
+      "n": "3"
+    },
+    {
+      "seriesKey": "キングダム",
+      "avg": 2,
+      "n": "3"
+    },
+    {
+      "seriesKey": "はじめの一歩",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "徒然チルドレン",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "おやすみプンプン",
+      "avg": 1,
+      "n": "1"
+    },
+    {
+      "seriesKey": "道産子ギャルはなまらめんこい",
+      "avg": 1,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 10,
-    "rows_before_limit_at_least": 10
+    "rows": 99,
+    "rows_before_limit_at_least": 99
   }
 }
