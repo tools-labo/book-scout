@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-25T11:06:01.456Z",
-  "updatedAtJst": "2026-03-25 20:06:01",
+  "updatedAt": "2026-03-25T11:54:51.433Z",
+  "updatedAtJst": "2026-03-25 20:54:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -379,15 +379,15 @@
       "n": "1"
     },
     {
-      "genre": "genre=mystery,slice,action,fantasy",
-      "aud": "aud=女性",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror",
+      "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery,horror",
-      "aud": "aud=少年",
+      "genre": "genre=mystery,slice,action,fantasy",
+      "aud": "aud=女性",
       "mag": "",
       "mood": "",
       "n": "1"
