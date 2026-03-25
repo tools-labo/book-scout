@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-25T10:07:51.114Z",
-  "updatedAtJst": "2026-03-25 19:07:51",
+  "updatedAt": "2026-03-25T11:06:01.456Z",
+  "updatedAtJst": "2026-03-25 20:06:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -332,12 +332,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "キングダム",
       "n": "3"
     },
     {
       "mood": "hot",
-      "seriesKey": "キングダム",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "3"
     },
     {
@@ -367,17 +367,32 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "HUNTER×HUNTER",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "呪術廻戦",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "バガボンド",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "はじめの一歩",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -392,11 +407,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
@@ -407,12 +417,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "呪術廻戦",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "リアル",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
@@ -427,12 +432,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "東京卍リベンジャーズ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -447,12 +447,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "少年のアビス",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -462,7 +462,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
@@ -532,17 +532,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
@@ -552,7 +542,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ソラニン",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
@@ -562,7 +552,17 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "ソラニン",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -592,12 +592,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
+      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "2"
     },
     {
@@ -607,7 +607,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -622,17 +622,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "亜人",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "魔入りました！入間くん",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
@@ -652,17 +647,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ゴールデンカムイ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "ゴールデンカムイ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "アイアムアヒーロー",
       "n": "1"
     },
     {
@@ -697,12 +697,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
@@ -722,17 +722,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
       "mood": "satisfying",
       "seriesKey": "蜘蛛ですが、なにか？",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
