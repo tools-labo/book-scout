@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-25T05:38:00.677Z",
-  "updatedAtJst": "2026-03-25 14:38:00",
+  "updatedAt": "2026-03-25T07:17:00.367Z",
+  "updatedAtJst": "2026-03-25 16:17:00",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood",
@@ -22,11 +22,11 @@
     },
     {
       "mood": "heart_throb",
-      "n": "40"
+      "n": "39"
     },
     {
       "mood": "moving",
-      "n": "36"
+      "n": "35"
     },
     {
       "mood": "tearjerker",
@@ -46,7 +46,7 @@
     },
     {
       "mood": "messy",
-      "n": "14"
+      "n": "13"
     },
     {
       "mood": "healing",
@@ -55,6 +55,6 @@
   ],
   "raw": {
     "rows": 9,
-    "rows_before_limit_at_least": 266
+    "rows_before_limit_at_least": 263
   }
 }
