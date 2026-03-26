@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-26T07:36:05.364Z",
-  "updatedAtJst": "2026-03-26 16:36:05",
+  "updatedAt": "2026-03-26T09:12:57.377Z",
+  "updatedAtJst": "2026-03-26 18:12:57",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -61,12 +61,12 @@
       "n": "9"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
-      "avg": 4.666666666666667,
-      "n": "3"
+      "seriesKey": "ちはやふる",
+      "avg": 4.5,
+      "n": "2"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "幽☆遊☆白書",
       "avg": 4.5,
       "n": "2"
     },
@@ -91,11 +91,6 @@
       "n": "7"
     },
     {
-      "seriesKey": "ベルセルク",
-      "avg": 4,
-      "n": "4"
-    },
-    {
       "seriesKey": "ヴィンランド・サガ",
       "avg": 4,
       "n": "4"
@@ -106,12 +101,17 @@
       "n": "4"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "ベルセルク",
       "avg": 4,
-      "n": "3"
+      "n": "4"
     },
     {
       "seriesKey": "タコピーの原罪",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "君に届け",
       "avg": 4,
       "n": "2"
     },
@@ -122,6 +122,11 @@
     },
     {
       "seriesKey": "ゴールデンカムイ",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "監獄学園",
       "avg": 4,
       "n": "2"
     },
@@ -137,11 +142,6 @@
     },
     {
       "seriesKey": "チェンソーマン",
-      "avg": 4,
-      "n": "2"
-    },
-    {
-      "seriesKey": "君に届け",
       "avg": 4,
       "n": "2"
     },
@@ -201,12 +201,12 @@
       "n": "2"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "乙嫁語り",
       "avg": 3.5,
       "n": "2"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "ソウルイーター",
       "avg": 3.5,
       "n": "2"
     },
@@ -311,12 +311,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "神様はじめました",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "神様はじめました",
+      "seriesKey": "とつくにの少女",
       "avg": 3,
       "n": "1"
     },
@@ -336,12 +336,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "五等分の花嫁",
+      "seriesKey": "同級生",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
+      "seriesKey": "五等分の花嫁",
       "avg": 3,
       "n": "1"
     },
@@ -471,11 +471,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヲタクに恋は難しい",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ラストゲーム",
       "avg": 3,
       "n": "1"
@@ -492,7 +487,7 @@
     }
   ],
   "raw": {
-    "rows": 94,
-    "rows_before_limit_at_least": 94
+    "rows": 93,
+    "rows_before_limit_at_least": 93
   }
 }
