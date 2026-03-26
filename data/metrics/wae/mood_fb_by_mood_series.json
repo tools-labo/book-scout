@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-26T22:50:00.275Z",
-  "updatedAtJst": "2026-03-27 07:50:00",
+  "updatedAt": "2026-03-26T23:46:58.015Z",
+  "updatedAtJst": "2026-03-27 08:46:58",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -37,13 +37,6 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ソウルイーター",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
@@ -52,6 +45,13 @@
     {
       "mood": "funny",
       "seriesKey": "銀魂",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "ソウルイーター",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -100,13 +100,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ソウルイーター",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
@@ -115,6 +108,13 @@
     {
       "mood": "hot",
       "seriesKey": "チェンソーマン",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ソウルイーター",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -135,13 +135,6 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "NARUTO -ナルト-",
-      "yes": "0",
-      "no": "1",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
@@ -155,6 +148,13 @@
       "n": "1"
     },
     {
+      "mood": "moving",
+      "seriesKey": "NARUTO -ナルト-",
+      "yes": "0",
+      "no": "1",
+      "n": "1"
+    },
+    {
       "mood": "page_turner",
       "seriesKey": "ドラゴンボール",
       "yes": "3",
@@ -163,14 +163,14 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "ドロヘドロ",
       "yes": "1",
       "no": "0",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "【推しの子】",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -191,14 +191,14 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "ありふれた職業で世界最強",
       "yes": "1",
       "no": "0",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
