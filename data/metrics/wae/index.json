@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T11:54:20.954Z",
-  "updatedAtJst": "2026-03-27 20:54:20",
+  "updatedAt": "2026-03-27T13:42:13.684Z",
+  "updatedAtJst": "2026-03-27 22:42:13",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -18,12 +18,12 @@
     {
       "id": "work_view_by_series",
       "file": "work_view_by_series.json",
-      "rows": 171
+      "rows": 169
     },
     {
       "id": "vote_by_series",
       "file": "vote_by_series.json",
-      "rows": 83
+      "rows": 81
     },
     {
       "id": "vote_by_mood",
@@ -33,7 +33,7 @@
     {
       "id": "vote_by_mood_series",
       "file": "vote_by_mood_series.json",
-      "rows": 163
+      "rows": 156
     },
     {
       "id": "mood_fb_by_mood_series",
@@ -53,7 +53,7 @@
     {
       "id": "rate_by_series_key",
       "file": "rate_by_series_key.json",
-      "rows": 181
+      "rows": 169
     },
     {
       "id": "rate_by_key",
@@ -63,12 +63,12 @@
     {
       "id": "rate_rec_top",
       "file": "rate_rec_top.json",
-      "rows": 90
+      "rows": 84
     },
     {
       "id": "rate_art_top",
       "file": "rate_art_top.json",
-      "rows": 91
+      "rows": 85
     },
     {
       "id": "rising_work_view_since_20260227",
