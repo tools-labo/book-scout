@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T10:06:02.268Z",
-  "updatedAtJst": "2026-03-27 19:06:02",
+  "updatedAt": "2026-03-27T11:54:20.954Z",
+  "updatedAtJst": "2026-03-27 20:54:20",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -44,6 +44,13 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "銀魂",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ソウルイーター",
       "yes": "1",
       "no": "0",
@@ -57,7 +64,7 @@
       "n": "1"
     },
     {
-      "mood": "funny",
+      "mood": "healing",
       "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
@@ -68,13 +75,6 @@
       "seriesKey": "チェンソーマン",
       "yes": "0",
       "no": "1",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
       "n": "1"
     },
     {
@@ -100,13 +100,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
@@ -122,6 +115,13 @@
     {
       "mood": "hot",
       "seriesKey": "ソウルイーター",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -184,7 +184,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "NARUTO -ナルト-",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -198,7 +198,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
