@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T19:10:47.396Z",
-  "updatedAtJst": "2026-03-28 04:10:47",
+  "updatedAt": "2026-03-27T19:50:10.658Z",
+  "updatedAtJst": "2026-03-28 04:50:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -246,16 +246,16 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
-      "aud": "aud=少年",
-      "mag": "",
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },
     {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Cocohana",
+      "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
+      "aud": "aud=少年",
+      "mag": "",
       "mood": "",
       "n": "1"
     },
