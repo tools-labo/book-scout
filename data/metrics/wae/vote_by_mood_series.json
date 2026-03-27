@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T19:50:10.658Z",
-  "updatedAtJst": "2026-03-28 04:50:10",
+  "updatedAt": "2026-03-27T20:54:50.067Z",
+  "updatedAtJst": "2026-03-28 05:54:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -237,12 +237,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "チェンソーマン",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "ぼくたちは勉強ができない",
       "n": "1"
     },
     {
@@ -253,11 +258,6 @@
     {
       "mood": "heart_throb",
       "seriesKey": "フルーツバスケット",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -372,12 +372,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
@@ -532,7 +532,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -542,7 +542,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -577,17 +577,17 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "大ダーク",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
       "mood": "page_turner",
       "seriesKey": "血の轍",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -602,12 +602,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -652,12 +652,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
@@ -667,12 +667,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "HUNTER×HUNTER",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
@@ -687,17 +692,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -717,7 +717,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "2"
     },
     {
@@ -727,18 +727,23 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "2"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "2"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "2"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "アクタージュ act-age",
+      "n": "1"
     },
     {
       "mood": "tearjerker",
@@ -747,7 +752,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
@@ -762,17 +767,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "君に届け",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "メイドインアビス",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -782,22 +777,27 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
+      "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "蟲師",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ノラガミ",
       "n": "1"
     }
   ],
