@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T20:54:50.067Z",
-  "updatedAtJst": "2026-03-28 05:54:50",
+  "updatedAt": "2026-03-27T21:50:37.968Z",
+  "updatedAtJst": "2026-03-28 06:50:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -222,6 +222,11 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "徒然チルドレン",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
@@ -233,11 +238,6 @@
     {
       "mood": "heart_throb",
       "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -297,12 +297,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "日々蝶々",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "日々蝶々",
       "n": "1"
     },
     {
@@ -397,12 +397,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "リアル",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "バガボンド",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -432,7 +432,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ノ・ゾ・キ・ア・ナ",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -477,7 +477,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ノ・ゾ・キ・ア・ナ",
       "n": "1"
     },
     {
@@ -527,12 +527,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "n": "1"
     },
     {
@@ -652,12 +652,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
@@ -667,17 +667,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
@@ -692,12 +687,17 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
@@ -717,7 +717,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "2"
     },
     {
@@ -732,18 +732,13 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
-      "n": "2"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "ヴィンランド・サガ",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
-      "n": "1"
+      "seriesKey": "神のみぞ知るセカイ",
+      "n": "2"
     },
     {
       "mood": "tearjerker",
@@ -752,7 +747,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "君に届け",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
@@ -763,6 +758,16 @@
     {
       "mood": "tearjerker",
       "seriesKey": "リアル",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "アクタージュ act-age",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
@@ -782,22 +787,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "蟲師",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
       "n": "1"
     }
   ],
