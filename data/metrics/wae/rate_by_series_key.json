@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T13:42:13.684Z",
-  "updatedAtJst": "2026-03-27 22:42:13",
+  "updatedAt": "2026-03-27T15:08:23.333Z",
+  "updatedAtJst": "2026-03-28 00:08:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -29,12 +29,6 @@
       "k": "art",
       "avg": 5,
       "n": "2"
-    },
-    {
-      "seriesKey": "ドラゴンボール",
-      "k": "art",
-      "avg": 4.9,
-      "n": "10"
     },
     {
       "seriesKey": "アイシールド21",
@@ -92,6 +86,12 @@
     },
     {
       "seriesKey": "【推しの子】",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -187,12 +187,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "タコピーの原罪",
-      "k": "art",
-      "avg": 3,
-      "n": "2"
-    },
-    {
       "seriesKey": "惑星のさみだれ",
       "k": "art",
       "avg": 3,
@@ -206,6 +200,12 @@
     },
     {
       "seriesKey": "3月のライオン",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -565,12 +565,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール",
-      "k": "rec",
-      "avg": 4.9,
-      "n": "10"
-    },
-    {
       "seriesKey": "ONE PIECE",
       "k": "rec",
       "avg": 4.888888888888889,
@@ -619,12 +613,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "タコピーの原罪",
-      "k": "rec",
-      "avg": 4,
-      "n": "2"
-    },
-    {
       "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
       "avg": 4,
@@ -649,6 +637,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "亜人",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
@@ -661,7 +655,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "はじめの一歩",
+      "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -686,6 +680,12 @@
     },
     {
       "seriesKey": "血の轍",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -727,7 +727,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "はじめの一歩",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -1041,6 +1041,6 @@
   ],
   "raw": {
     "rows": 169,
-    "rows_before_limit_at_least": 263
+    "rows_before_limit_at_least": 243
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-27T13:42:13.684Z",
-  "updatedAtJst": "2026-03-27 22:42:13",
+  "updatedAt": "2026-03-27T15:08:23.333Z",
+  "updatedAtJst": "2026-03-28 00:08:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -372,12 +372,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
@@ -427,11 +427,6 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "タコピーの原罪",
-      "n": "2"
-    },
-    {
-      "mood": "messy",
       "seriesKey": "【推しの子】",
       "n": "1"
     },
@@ -452,17 +447,17 @@
     },
     {
       "mood": "messy",
+      "seriesKey": "少年のアビス",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
       "seriesKey": "血の轍",
       "n": "1"
     },
     {
       "mood": "messy",
       "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
@@ -478,6 +473,11 @@
     {
       "mood": "messy",
       "seriesKey": "ベルセルク",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -602,12 +602,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -737,11 +737,6 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
-      "n": "2"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "神のみぞ知るセカイ",
       "n": "2"
     },
@@ -767,7 +762,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "君に届け",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
@@ -792,7 +787,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "君に届け",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -803,6 +803,6 @@
   ],
   "raw": {
     "rows": 156,
-    "rows_before_limit_at_least": 224
+    "rows_before_limit_at_least": 222
   }
 }
