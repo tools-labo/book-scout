@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-28T03:16:15.482Z",
-  "updatedAtJst": "2026-03-28 12:16:15",
+  "updatedAt": "2026-03-28T05:34:30.784Z",
+  "updatedAtJst": "2026-03-28 14:34:30",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -252,6 +252,11 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "徒然チルドレン",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "会長はメイド様！",
       "n": "1"
     },
@@ -263,11 +268,6 @@
     {
       "mood": "heart_throb",
       "seriesKey": "しまなみ誰そ彼",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "徒然チルドレン",
       "n": "1"
     },
     {
@@ -437,12 +437,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "少年のアビス",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "少年のアビス",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -452,12 +452,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "銀魂",
+      "seriesKey": "【推しの子】",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -502,7 +502,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -512,7 +512,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ちはやふる",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -562,7 +562,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -577,7 +577,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -597,22 +597,22 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "血の轍",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "亜人",
+      "seriesKey": "ドロヘドロ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "ドラゴンボール",
       "n": "1"
     },
     {
@@ -622,7 +622,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
@@ -632,13 +632,18 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "ドラゴンボール",
+      "n": "2"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "キングダム",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
-      "n": "2"
+      "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
     },
     {
       "mood": "satisfying",
@@ -647,12 +652,17 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
+      "seriesKey": "七つの大罪",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
@@ -667,22 +677,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
       "mood": "satisfying",
       "seriesKey": "東京卍リベンジャーズ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "七つの大罪",
       "n": "1"
     },
     {
@@ -702,12 +702,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "3月のライオン",
+      "n": "2"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "ボーイミーツマリア",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
@@ -722,17 +727,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "2"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "ヴィンランド・サガ",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "銀魂",
+      "seriesKey": "約束のネバーランド",
       "n": "1"
     },
     {
@@ -742,17 +742,37 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "リアル",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "アクタージュ act-age",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "蟲師",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ソラニン",
       "n": "1"
     },
     {
@@ -763,26 +783,6 @@
     {
       "mood": "tearjerker",
       "seriesKey": "タコピーの原罪",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "orange [オレンジ]",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ソラニン",
       "n": "1"
     },
     {
