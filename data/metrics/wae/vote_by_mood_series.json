@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-28T20:47:36.473Z",
-  "updatedAtJst": "2026-03-29 05:47:36",
+  "updatedAt": "2026-03-28T21:43:53.762Z",
+  "updatedAtJst": "2026-03-29 06:43:53",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -27,17 +27,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "2"
     },
     {
       "mood": "funny",
       "seriesKey": "ソウルイーター",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "NARUTO -ナルト-",
       "n": "2"
     },
     {
@@ -57,8 +52,8 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "監獄学園",
-      "n": "1"
+      "seriesKey": "チェンソーマン",
+      "n": "2"
     },
     {
       "mood": "funny",
@@ -92,6 +87,11 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "監獄学園",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "寄生獣",
       "n": "1"
     },
@@ -107,7 +107,7 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "ゆびさきと恋々",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
@@ -117,7 +117,7 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "会長はメイド様！",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -127,7 +127,7 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ゆびさきと恋々",
       "n": "1"
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "銀魂",
+      "seriesKey": "会長はメイド様！",
       "n": "1"
     },
     {
@@ -162,12 +162,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ニセコイ",
+      "seriesKey": "カッコウの許嫁",
       "n": "2"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "カッコウの許嫁",
+      "seriesKey": "ニセコイ",
       "n": "2"
     },
     {
@@ -187,7 +187,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "アオのハコ",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
@@ -197,7 +197,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -212,12 +212,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "チェンソーマン",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "会長はメイド様！",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -237,17 +242,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "会長はメイド様！",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -337,12 +337,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
@@ -402,7 +402,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
@@ -442,7 +442,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "ベルセルク",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -452,7 +452,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "葬送のフリーレン",
+      "seriesKey": "蟲師",
       "n": "2"
     },
     {
@@ -462,7 +462,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "蟲師",
+      "seriesKey": "葬送のフリーレン",
       "n": "2"
     },
     {
@@ -472,17 +472,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "orange [オレンジ]",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
@@ -492,7 +482,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -507,6 +497,11 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ノラガミ",
       "n": "1"
     },
@@ -517,17 +512,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "mood": "moving",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -537,12 +532,17 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ドロヘドロ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "しまなみ誰そ彼",
       "n": "1"
     },
     {
@@ -552,7 +552,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "約束のネバーランド",
       "n": "1"
     },
     {
@@ -562,7 +562,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -572,12 +572,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "亜人",
+      "seriesKey": "ドラゴンボール",
       "n": "1"
     },
     {
@@ -592,12 +592,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "キングダム",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "キングダム",
+      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
@@ -657,17 +657,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "【推しの子】",
+      "n": "2"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "ボーイミーツマリア",
       "n": "2"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "2"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
@@ -682,7 +682,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "メイドインアビス",
+      "seriesKey": "アクタージュ act-age",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -692,12 +697,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "約束のネバーランド",
       "n": "1"
     },
     {
@@ -712,17 +717,22 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "君に届け",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "君に届け",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "メイドインアビス",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -733,16 +743,6 @@
     {
       "mood": "tearjerker",
       "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "蟲師",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "リアル",
       "n": "1"
     }
   ],
