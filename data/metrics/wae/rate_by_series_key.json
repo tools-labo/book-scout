@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-28T11:40:13.507Z",
-  "updatedAtJst": "2026-03-28 20:40:13",
+  "updatedAt": "2026-03-28T13:18:14.513Z",
+  "updatedAtJst": "2026-03-28 22:18:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -49,12 +49,6 @@
       "n": "9"
     },
     {
-      "seriesKey": "ちはやふる",
-      "k": "art",
-      "avg": 4,
-      "n": "2"
-    },
-    {
       "seriesKey": "蟲師",
       "k": "art",
       "avg": 4,
@@ -65,6 +59,12 @@
       "k": "art",
       "avg": 4,
       "n": "2"
+    },
+    {
+      "seriesKey": "ちはやふる",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
     },
     {
       "seriesKey": "ノラガミ",
@@ -319,13 +319,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "とつくにの少女",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "政宗くんのリベンジ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -571,12 +571,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "ちはやふる",
-      "k": "rec",
-      "avg": 4.5,
-      "n": "2"
-    },
-    {
       "seriesKey": "フルーツバスケット",
       "k": "rec",
       "avg": 4.333333333333333,
@@ -589,19 +583,13 @@
       "n": "3"
     },
     {
+      "seriesKey": "ベルセルク",
+      "k": "rec",
+      "avg": 4,
+      "n": "2"
+    },
+    {
       "seriesKey": "君は淫らな僕の女王",
-      "k": "rec",
-      "avg": 4,
-      "n": "2"
-    },
-    {
-      "seriesKey": "ヴィンランド・サガ",
-      "k": "rec",
-      "avg": 4,
-      "n": "2"
-    },
-    {
-      "seriesKey": "君に届け",
       "k": "rec",
       "avg": 4,
       "n": "2"
@@ -613,25 +601,31 @@
       "n": "2"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "君に届け",
       "k": "rec",
       "avg": 4,
       "n": "2"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ヴィンランド・サガ",
+      "k": "rec",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
+      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -643,31 +637,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "青の祓魔師",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ゴールデンカムイ",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "タコピーの原罪",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -703,7 +679,25 @@
       "n": "1"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "亜人",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ちはやふる",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "3月のライオン",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "青の祓魔師",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -722,6 +716,12 @@
     },
     {
       "seriesKey": "ReLIFE",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -847,7 +847,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "seriesKey": "同級生",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -865,7 +865,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -1035,6 +1035,6 @@
   ],
   "raw": {
     "rows": 168,
-    "rows_before_limit_at_least": 238
+    "rows_before_limit_at_least": 236
   }
 }
