@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-28T17:47:07.844Z",
-  "updatedAtJst": "2026-03-29 02:47:07",
+  "updatedAt": "2026-03-28T18:59:13.880Z",
+  "updatedAtJst": "2026-03-29 03:59:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -219,7 +219,7 @@
     },
     {
       "genre": "",
-      "aud": "",
+      "aud": "aud=少年",
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
@@ -240,15 +240,8 @@
     },
     {
       "genre": "",
-      "aud": "aud=少年",
-      "mag": "mag=週刊少年ジャンプ",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
       "aud": "",
-      "mag": "mag=Cocohana",
+      "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
     },
@@ -256,6 +249,13 @@
       "genre": "genre=fantasy,sf,romance,drama,sports,comedy,slice,mystery",
       "aud": "aud=少年",
       "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
+      "genre": "",
+      "aud": "",
+      "mag": "mag=Cocohana",
       "mood": "",
       "n": "1"
     },

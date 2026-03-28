@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-28T17:47:07.844Z",
-  "updatedAtJst": "2026-03-29 02:47:07",
+  "updatedAt": "2026-03-28T18:59:13.880Z",
+  "updatedAtJst": "2026-03-29 03:59:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -472,6 +472,11 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "orange [オレンジ]",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "3月のライオン",
       "n": "1"
     },
@@ -502,6 +507,11 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "バガボンド",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "ノラガミ",
       "n": "1"
     },
@@ -512,27 +522,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "orange [オレンジ]",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "大ダーク",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
@@ -543,6 +533,16 @@
     {
       "mood": "page_turner",
       "seriesKey": "ドロヘドロ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "大ダーク",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
@@ -602,12 +602,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -617,12 +617,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "僕のヒーローアカデミア",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -632,12 +627,17 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "ケンガンアシュラ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "東京卍リベンジャーズ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
     {
@@ -682,16 +682,6 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "アクタージュ act-age",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "タコピーの原罪",
       "n": "1"
     },
@@ -707,12 +697,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "君に届け",
+      "seriesKey": "アクタージュ act-age",
       "n": "1"
     },
     {
@@ -722,17 +707,32 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ノラガミ",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "君に届け",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "リアル",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
