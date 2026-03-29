@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-29T07:19:45.756Z",
-  "updatedAtJst": "2026-03-29 16:19:45",
+  "updatedAt": "2026-03-29T08:58:04.130Z",
+  "updatedAtJst": "2026-03-29 17:58:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -487,6 +487,11 @@
     },
     {
       "mood": "moving",
+      "seriesKey": "金色のガッシュ!!",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
       "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
@@ -503,11 +508,6 @@
     {
       "mood": "moving",
       "seriesKey": "ひげを剃る。そして女子高生を拾う。",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -532,6 +532,11 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ドロヘドロ",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
@@ -552,17 +557,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -592,12 +592,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "キングダム",
+      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "キングダム",
       "n": "2"
     },
     {
@@ -657,7 +657,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
@@ -667,7 +667,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
@@ -682,12 +682,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "蟲師",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
@@ -732,17 +732,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "リアル",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "orange [オレンジ]",
       "n": "1"
     },
     {
       "mood": "tearjerker",
       "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "リアル",
       "n": "1"
     }
   ],
