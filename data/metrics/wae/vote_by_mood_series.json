@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-30T11:17:59.546Z",
-  "updatedAtJst": "2026-03-30 20:17:59",
+  "updatedAt": "2026-03-30T14:01:40.667Z",
+  "updatedAtJst": "2026-03-30 23:01:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -422,17 +422,17 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "タコピーの原罪",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
       "seriesKey": "未来日記",
       "n": "1"
     },
     {
       "mood": "messy",
       "seriesKey": "ベルセルク",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -552,7 +552,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "約束のネバーランド",
       "n": "1"
     },
     {
@@ -562,7 +562,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -572,17 +572,12 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "ドラゴンボール",
       "n": "1"
     },
     {
       "mood": "satisfying",
       "seriesKey": "ありふれた職業で世界最強",
-      "n": "2"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
@@ -623,6 +618,11 @@
     {
       "mood": "satisfying",
       "seriesKey": "僕のヒーローアカデミア",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ドラゴンボール",
       "n": "1"
     },
     {
@@ -702,12 +702,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "君に届け",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
@@ -738,6 +738,6 @@
   ],
   "raw": {
     "rows": 143,
-    "rows_before_limit_at_least": 197
+    "rows_before_limit_at_least": 196
   }
 }

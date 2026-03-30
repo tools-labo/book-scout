@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-30T11:17:59.546Z",
-  "updatedAtJst": "2026-03-30 20:17:59",
+  "updatedAt": "2026-03-30T14:01:40.667Z",
+  "updatedAtJst": "2026-03-30 23:01:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -22,7 +22,7 @@
     },
     {
       "seriesKey": "ドラゴンボール",
-      "n": "12"
+      "n": "11"
     },
     {
       "seriesKey": "銀魂",
@@ -117,7 +117,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "リアル",
       "n": "2"
     },
     {
@@ -217,11 +217,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "リアル",
+      "seriesKey": "ノラガミ",
       "n": "2"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "約束のネバーランド",
       "n": "2"
     },
     {
@@ -273,11 +273,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
@@ -319,6 +319,6 @@
   ],
   "raw": {
     "rows": 75,
-    "rows_before_limit_at_least": 197
+    "rows_before_limit_at_least": 196
   }
 }
