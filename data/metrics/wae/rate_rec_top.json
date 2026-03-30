@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-30T07:59:42.740Z",
-  "updatedAtJst": "2026-03-30 16:59:42",
+  "updatedAt": "2026-03-30T09:46:34.483Z",
+  "updatedAtJst": "2026-03-30 18:46:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -61,6 +61,11 @@
       "n": "3"
     },
     {
+      "seriesKey": "アイシールド21",
+      "avg": 4,
+      "n": "2"
+    },
+    {
       "seriesKey": "ベルセルク",
       "avg": 4,
       "n": "2"
@@ -81,17 +86,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "アイシールド21",
-      "avg": 4,
-      "n": "2"
-    },
-    {
       "seriesKey": "ゴールデンカムイ",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ReLIFE",
       "avg": 4,
       "n": "1"
     },
@@ -131,7 +126,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ReLIFE",
       "avg": 4,
       "n": "1"
     },
@@ -422,7 +417,7 @@
     }
   ],
   "raw": {
-    "rows": 80,
-    "rows_before_limit_at_least": 80
+    "rows": 79,
+    "rows_before_limit_at_least": 79
   }
 }

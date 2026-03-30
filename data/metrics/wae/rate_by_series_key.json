@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-30T07:59:42.740Z",
-  "updatedAtJst": "2026-03-30 16:59:42",
+  "updatedAt": "2026-03-30T09:46:34.483Z",
+  "updatedAtJst": "2026-03-30 18:46:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -61,12 +61,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ヴィンランド・サガ",
       "k": "art",
       "avg": 4,
@@ -74,6 +68,12 @@
     },
     {
       "seriesKey": "ノラガミ",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "銀魂",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -133,25 +133,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "ニセコイ",
-      "k": "art",
-      "avg": 3,
-      "n": "3"
-    },
-    {
       "seriesKey": "フルーツバスケット",
       "k": "art",
       "avg": 3,
       "n": "3"
     },
     {
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "ニセコイ",
       "k": "art",
       "avg": 3,
-      "n": "2"
+      "n": "3"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "トモちゃんは女の子!",
       "k": "art",
       "avg": 3,
       "n": "2"
@@ -163,19 +157,25 @@
       "n": "2"
     },
     {
+      "seriesKey": "神のみぞ知るセカイ",
+      "k": "art",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "君に届け",
       "k": "art",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "少年のアビス",
+      "seriesKey": "彼女、お借りします",
       "k": "art",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
+      "seriesKey": "少年のアビス",
       "k": "art",
       "avg": 3,
       "n": "2"
@@ -199,7 +199,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "HUNTER×HUNTER",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -211,7 +211,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
+      "seriesKey": "ガンバレ！中村くん！！",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -229,25 +229,25 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドメスティックな彼女",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ボーイミーツマリア",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "アオのハコ",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ガンバレ！中村くん！！",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔男のイチ",
+      "seriesKey": "3月のライオン",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -265,13 +265,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ひるなかの流星",
+      "seriesKey": "魔男のイチ",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "ひるなかの流星",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -283,7 +283,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "ソラニン",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -295,7 +295,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "ケンガンアシュラ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -331,13 +331,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソラニン",
+      "seriesKey": "イジらないで、長瀞さん",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "イジらないで、長瀞さん",
+      "seriesKey": "青の祓魔師",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -349,7 +349,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "惑星のさみだれ",
+      "seriesKey": "月刊少女野崎くん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -361,7 +361,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "月刊少女野崎くん",
+      "seriesKey": "この音とまれ！",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -379,19 +379,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "青の祓魔師",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ゆびさきと恋々",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "この音とまれ！",
+      "seriesKey": "ドラゴンボール超",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "惑星のさみだれ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -433,25 +433,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "終わりのセラフ",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "亜人",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "マギ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -571,31 +565,37 @@
       "n": "2"
     },
     {
-      "seriesKey": "リアル",
-      "k": "rec",
-      "avg": 4,
-      "n": "2"
-    },
-    {
       "seriesKey": "君に届け",
       "k": "rec",
       "avg": 4,
       "n": "2"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "リアル",
+      "k": "rec",
+      "avg": 4,
+      "n": "2"
+    },
+    {
+      "seriesKey": "青の祓魔師",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "3月のライオン",
+      "seriesKey": "タコピーの原罪",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ゴールデンカムイ",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -613,25 +613,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "【推しの子】",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ゴールデンカムイ",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "キングダム",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -643,7 +625,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "ドラゴンボール",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -667,25 +655,25 @@
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "宝石の国",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ReLIFE",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "監獄学園",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "3月のライオン",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -745,25 +733,37 @@
       "n": "2"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "ホリミヤ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "君のことが大大大大大好きな100人の彼女",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "イジらないで、長瀞さん",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "同級生",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ソラニン",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -787,31 +787,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソラニン",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "徒然チルドレン",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "アオのハコ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "seriesKey": "東京卍リベンジャーズ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "徒然チルドレン",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -829,6 +817,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "ソウルイーター",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ひるなかの流星",
       "k": "rec",
       "avg": 3,
@@ -841,37 +835,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ホリミヤ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "約束のネバーランド",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "惑星のさみだれ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "乙嫁語り",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "終わりのセラフ",
+      "seriesKey": "ボーイミーツマリア",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -883,13 +847,25 @@
       "n": "1"
     },
     {
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "とつくにの少女",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "政宗くんのリベンジ",
+      "seriesKey": "終わりのセラフ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "約束のネバーランド",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -901,19 +877,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "五等分の花嫁",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ソウルイーター",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "政宗くんのリベンジ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -925,19 +889,37 @@
       "n": "1"
     },
     {
+      "seriesKey": "五等分の花嫁",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ラストゲーム",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ありふれた職業で世界最強",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ケンガンアシュラ",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "この音とまれ！",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "この音とまれ！",
+      "seriesKey": "ドロヘドロ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -967,7 +949,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ラストゲーム",
+      "seriesKey": "ドメスティックな彼女",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "惑星のさみだれ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -986,7 +974,7 @@
     }
   ],
   "raw": {
-    "rows": 160,
-    "rows_before_limit_at_least": 220
+    "rows": 158,
+    "rows_before_limit_at_least": 218
   }
 }
