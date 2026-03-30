@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-30T15:38:42.027Z",
-  "updatedAtJst": "2026-03-31 00:38:42",
+  "updatedAt": "2026-03-30T17:10:55.570Z",
+  "updatedAtJst": "2026-03-31 02:10:55",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -111,17 +111,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "ニセコイ",
-      "avg": 3,
-      "n": "3"
-    },
-    {
       "seriesKey": "君に届け",
-      "avg": 3,
-      "n": "2"
-    },
-    {
-      "seriesKey": "彼女、お借りします",
       "avg": 3,
       "n": "2"
     },
@@ -131,22 +121,17 @@
       "n": "2"
     },
     {
+      "seriesKey": "ニセコイ",
+      "avg": 3,
+      "n": "2"
+    },
+    {
       "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "カッコウの許嫁",
-      "avg": 3,
-      "n": "2"
-    },
-    {
       "seriesKey": "少年のアビス",
-      "avg": 3,
-      "n": "2"
-    },
-    {
-      "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "2"
     },
@@ -161,7 +146,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "血の轍",
       "avg": 3,
       "n": "1"
     },
@@ -171,7 +156,22 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "ケンガンアシュラ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "宝石の国",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "亜人",
       "avg": 3,
       "n": "1"
     },
@@ -201,7 +201,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "avg": 3,
       "n": "1"
     },
@@ -221,7 +221,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "avg": 3,
       "n": "1"
     },
@@ -251,7 +251,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "日々蝶々",
+      "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "1"
     },
@@ -261,7 +261,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "カッコウの許嫁",
       "avg": 3,
       "n": "1"
     },
@@ -276,12 +276,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "とつくにの少女",
+      "seriesKey": "神様はじめました",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "神様はじめました",
+      "seriesKey": "とつくにの少女",
       "avg": 3,
       "n": "1"
     },
@@ -291,12 +291,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "五等分の花嫁",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヨコハマ買い出し紀行",
+      "seriesKey": "ドメスティックな彼女",
       "avg": 3,
       "n": "1"
     },
@@ -316,7 +311,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぼくたちは勉強ができない",
+      "seriesKey": "HUNTER×HUNTER",
       "avg": 3,
       "n": "1"
     },
@@ -346,7 +341,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "同級生",
       "avg": 3,
       "n": "1"
     },
@@ -356,17 +351,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
+      "seriesKey": "彼女、お借りします",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "日々蝶々",
       "avg": 3,
       "n": "1"
     },
@@ -412,7 +402,7 @@
     }
   ],
   "raw": {
-    "rows": 78,
-    "rows_before_limit_at_least": 78
+    "rows": 76,
+    "rows_before_limit_at_least": 76
   }
 }
