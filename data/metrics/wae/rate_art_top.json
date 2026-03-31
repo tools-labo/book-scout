@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-31T14:01:35.538Z",
-  "updatedAtJst": "2026-03-31 23:01:35",
+  "updatedAt": "2026-03-31T15:21:13.881Z",
+  "updatedAtJst": "2026-04-01 00:21:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -31,7 +31,7 @@
       "n": "9"
     },
     {
-      "seriesKey": "リアル",
+      "seriesKey": "ノラガミ",
       "avg": 4,
       "n": "1"
     },
@@ -66,12 +66,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "リアル",
       "avg": 4,
       "n": "1"
     },
@@ -91,17 +86,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "同級生",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "東京卍リベンジャーズ",
       "avg": 3,
       "n": "1"
     },
@@ -121,12 +106,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "日々蝶々",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "血の轍",
       "avg": 3,
       "n": "1"
     },
@@ -136,7 +121,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "ニセコイ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
       "avg": 3,
       "n": "1"
     },
@@ -146,27 +136,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ホリミヤ",
+      "seriesKey": "ベルセルク",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "ドラゴンボール超",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "orange [オレンジ]",
       "avg": 3,
       "n": "1"
     },
@@ -196,11 +176,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "カッコウの許嫁",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ゆびさきと恋々",
       "avg": 3,
       "n": "1"
@@ -226,17 +201,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "日々蝶々",
+      "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "同級生",
       "avg": 3,
       "n": "1"
     },
@@ -292,7 +262,7 @@
     }
   ],
   "raw": {
-    "rows": 54,
-    "rows_before_limit_at_least": 54
+    "rows": 48,
+    "rows_before_limit_at_least": 48
   }
 }
