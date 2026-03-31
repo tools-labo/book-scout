@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-31T11:58:56.339Z",
-  "updatedAtJst": "2026-03-31 20:58:56",
+  "updatedAt": "2026-03-31T14:01:35.538Z",
+  "updatedAtJst": "2026-03-31 23:01:35",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -26,22 +26,22 @@
       "n": "1"
     },
     {
-      "seriesKey": "リアル",
-      "avg": 4.5,
-      "n": "2"
-    },
-    {
       "seriesKey": "ONE PIECE",
       "avg": 4.222222222222222,
       "n": "9"
     },
     {
-      "seriesKey": "蟲師",
+      "seriesKey": "リアル",
       "avg": 4,
-      "n": "2"
+      "n": "1"
     },
     {
       "seriesKey": "銀魂",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "蟲師",
       "avg": 4,
       "n": "1"
     },
@@ -81,22 +81,17 @@
       "n": "5"
     },
     {
-      "seriesKey": "君は淫らな僕の女王",
-      "avg": 3.5,
-      "n": "2"
-    },
-    {
       "seriesKey": "フルーツバスケット",
       "avg": 3,
       "n": "2"
     },
     {
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "1"
     },
@@ -116,7 +111,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "君は淫らな僕の女王",
       "avg": 3,
       "n": "1"
     },
@@ -166,7 +161,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソラニン",
+      "seriesKey": "ドラゴンボール超",
       "avg": 3,
       "n": "1"
     },
@@ -181,27 +176,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "惑星のさみだれ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "タコピーの原罪",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "双星の陰陽師",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "3月のライオン",
       "avg": 3,
       "n": "1"
     },
@@ -226,7 +206,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "寄生獣",
+      "seriesKey": "ソラニン",
       "avg": 3,
       "n": "1"
     },
@@ -236,17 +216,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "約束のネバーランド",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "日々蝶々",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "1"
     },
@@ -281,6 +261,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "彼女、お借りします",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ケンガンアシュラ",
       "avg": 3,
       "n": "1"
@@ -288,15 +273,10 @@
     {
       "seriesKey": "幽☆遊☆白書",
       "avg": 2,
-      "n": "2"
-    },
-    {
-      "seriesKey": "ゴールデンカムイ",
-      "avg": 2,
       "n": "1"
     },
     {
-      "seriesKey": "徒然チルドレン",
+      "seriesKey": "ゴールデンカムイ",
       "avg": 2,
       "n": "1"
     },
@@ -312,7 +292,7 @@
     }
   ],
   "raw": {
-    "rows": 58,
-    "rows_before_limit_at_least": 58
+    "rows": 54,
+    "rows_before_limit_at_least": 54
   }
 }
