@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-31T05:53:29.081Z",
-  "updatedAtJst": "2026-03-31 14:53:29",
+  "updatedAt": "2026-03-31T07:43:39.971Z",
+  "updatedAtJst": "2026-03-31 16:43:39",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -277,11 +277,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ヴィンランド・サガ",
       "n": "2"
     },
@@ -358,6 +353,11 @@
     {
       "mood": "hot",
       "seriesKey": "チェンソーマン",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -447,7 +447,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -462,7 +462,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -518,11 +518,6 @@
     {
       "mood": "page_turner",
       "seriesKey": "ゴールデンカムイ",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -637,12 +632,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "【推しの子】",
+      "seriesKey": "神のみぞ知るセカイ",
       "n": "2"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "【推しの子】",
       "n": "2"
     },
     {
@@ -717,7 +712,7 @@
     }
   ],
   "raw": {
-    "rows": 139,
-    "rows_before_limit_at_least": 184
+    "rows": 138,
+    "rows_before_limit_at_least": 182
   }
 }
