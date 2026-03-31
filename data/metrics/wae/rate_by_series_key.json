@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-31T22:52:01.084Z",
-  "updatedAtJst": "2026-04-01 07:52:01",
+  "updatedAt": "2026-03-31T23:48:31.165Z",
+  "updatedAtJst": "2026-04-01 08:48:31",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -146,12 +146,6 @@
     },
     {
       "seriesKey": "君に届け",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "東京卍リベンジャーズ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -373,13 +367,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "宝石の国",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "幽☆遊☆白書",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -457,7 +451,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "神のみぞ知るセカイ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -493,7 +487,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガンバレ！中村くん！！",
+      "seriesKey": "ドラゴンボール超",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -517,7 +511,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "東京卍リベンジャーズ",
+      "seriesKey": "同級生",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -530,12 +524,6 @@
     },
     {
       "seriesKey": "彼女、お借りします",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "同級生",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -565,7 +553,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -595,14 +583,14 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール超",
+      "seriesKey": "ガンバレ！中村くん！！",
       "k": "rec",
       "avg": 3,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 96,
-    "rows_before_limit_at_least": 122
+    "rows": 94,
+    "rows_before_limit_at_least": 120
   }
 }
