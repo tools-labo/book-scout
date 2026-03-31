@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-31T17:12:44.039Z",
-  "updatedAtJst": "2026-04-01 02:12:44",
+  "updatedAt": "2026-03-31T18:06:00.980Z",
+  "updatedAtJst": "2026-04-01 03:06:00",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -52,12 +52,12 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ONE PIECE",
+      "seriesKey": "幽☆遊☆白書",
       "n": "1"
     },
     {
       "mood": "funny",
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "ONE PIECE",
       "n": "1"
     },
     {
@@ -82,12 +82,7 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "蟲師",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "ヨコハマ買い出し紀行",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -102,7 +97,12 @@
     },
     {
       "mood": "healing",
-      "seriesKey": "銀魂",
+      "seriesKey": "蟲師",
+      "n": "1"
+    },
+    {
+      "mood": "healing",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "五等分の花嫁",
       "n": "1"
     },
     {
@@ -152,12 +152,17 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "からかい上手の高木さん",
       "n": "1"
     },
     {
       "mood": "heart_throb",
       "seriesKey": "彼女、お借りします",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -177,12 +182,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "五等分の花嫁",
+      "seriesKey": "カッコウの許嫁",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "ガンバレ！中村くん！！",
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
       "n": "1"
     },
     {
@@ -197,12 +202,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "カッコウの許嫁",
+      "seriesKey": "ガンバレ！中村くん！！",
       "n": "1"
     },
     {
@@ -242,12 +242,12 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "蜘蛛ですが、なにか？",
       "n": "1"
     },
     {
@@ -257,12 +257,22 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ゴールデンカムイ",
+      "seriesKey": "幽☆遊☆白書",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
       "mood": "hot",
       "seriesKey": "東京卍リベンジャーズ",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
@@ -277,7 +287,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
@@ -291,18 +301,18 @@
       "n": "1"
     },
     {
-      "mood": "hot",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "幽☆遊☆白書",
+      "mood": "messy",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "少年のアビス",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "君は淫らな僕の女王",
       "n": "1"
     },
     {
@@ -317,7 +327,7 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "少年のアビス",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -327,22 +337,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "血の轍",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "君は淫らな僕の女王",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
       "seriesKey": "タコピーの原罪",
+      "n": "1"
+    },
+    {
+      "mood": "messy",
+      "seriesKey": "血の轍",
       "n": "1"
     },
     {
@@ -362,41 +362,6 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "アイシールド21",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "3月のライオン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "ソラニン",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "蟲師",
       "n": "1"
     },
@@ -407,7 +372,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
@@ -416,18 +381,38 @@
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
+      "mood": "moving",
+      "seriesKey": "ソラニン",
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "しまなみ誰そ彼",
+      "mood": "moving",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "mood": "moving",
+      "seriesKey": "アイシールド21",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "金色のガッシュ!!",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "3月のライオン",
+      "n": "1"
+    },
+    {
+      "mood": "moving",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -442,7 +427,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "血の轍",
+      "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
@@ -452,23 +437,33 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "血の轍",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
+      "seriesKey": "しまなみ誰そ彼",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "ゴールデンカムイ",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "メイドインアビス",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
       "mood": "satisfying",
       "seriesKey": "キングダム",
       "n": "2"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
-      "n": "1"
     },
     {
       "mood": "satisfying",
@@ -482,22 +477,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "ドラゴンボール超",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -507,7 +487,27 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "銀魂",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ケンガンアシュラ",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ドラゴンボール",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -542,7 +542,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "リアル",
       "n": "1"
     },
     {
@@ -577,7 +577,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "リアル",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
