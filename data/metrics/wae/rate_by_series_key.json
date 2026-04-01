@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T03:44:16.768Z",
-  "updatedAtJst": "2026-04-01 12:44:16",
+  "updatedAt": "2026-04-01T06:03:19.299Z",
+  "updatedAtJst": "2026-04-01 15:03:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -103,13 +103,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -139,6 +133,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドロヘドロ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "神のみぞ知るセカイ",
       "k": "art",
       "avg": 3,
@@ -146,12 +146,6 @@
     },
     {
       "seriesKey": "君に届け",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -175,19 +169,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール超",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "青の祓魔師",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
+      "seriesKey": "ドラゴンボール超",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "少年のアビス",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -211,7 +205,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "約束のネバーランド",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -229,19 +223,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "ソウルイーター",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "双星の陰陽師",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "終わりのセラフ",
+      "seriesKey": "からかい上手の高木さん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -277,7 +271,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "少年のアビス",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -367,13 +361,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "宝石の国",
+      "seriesKey": "幽☆遊☆白書",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "宝石の国",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -505,7 +499,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "終わりのセラフ",
+      "seriesKey": "ニセコイ",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -517,7 +511,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "ソウルイーター",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -529,19 +523,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "約束のネバーランド",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -590,7 +578,7 @@
     }
   ],
   "raw": {
-    "rows": 94,
-    "rows_before_limit_at_least": 120
+    "rows": 92,
+    "rows_before_limit_at_least": 118
   }
 }
