@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T09:21:04.086Z",
-  "updatedAtJst": "2026-04-01 18:21:04",
+  "updatedAt": "2026-04-01T11:12:52.606Z",
+  "updatedAtJst": "2026-04-01 20:12:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -174,17 +174,10 @@
       "mag": "mag=週刊少年ジャンプ",
       "mood": "",
       "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "mag=Vジャンプ",
-      "mood": "",
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 22,
-    "rows_before_limit_at_least": 50
+    "rows": 21,
+    "rows_before_limit_at_least": 49
   }
 }
