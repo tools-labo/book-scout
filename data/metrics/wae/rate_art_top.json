@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T21:56:39.581Z",
-  "updatedAtJst": "2026-04-02 06:56:39",
+  "updatedAt": "2026-04-01T22:57:16.864Z",
+  "updatedAtJst": "2026-04-02 07:57:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -20,11 +20,6 @@
     }
   ],
   "rows": [
-    {
-      "seriesKey": "乙嫁語り",
-      "avg": 5,
-      "n": "1"
-    },
     {
       "seriesKey": "ONE PIECE",
       "avg": 4.222222222222222,
@@ -71,12 +66,7 @@
       "n": "5"
     },
     {
-      "seriesKey": "マギ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "1"
     },
@@ -111,7 +101,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔男のイチ",
+      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
@@ -137,11 +127,6 @@
     },
     {
       "seriesKey": "ソウルイーター",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヨコハマ買い出し紀行",
       "avg": 3,
       "n": "1"
     },
@@ -176,7 +161,17 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "彼女、お借りします",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔男のイチ",
       "avg": 3,
       "n": "1"
     },
@@ -189,15 +184,10 @@
       "seriesKey": "金色のガッシュ!!",
       "avg": 2,
       "n": "1"
-    },
-    {
-      "seriesKey": "キングダム",
-      "avg": 2,
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 35,
-    "rows_before_limit_at_least": 35
+    "rows": 33,
+    "rows_before_limit_at_least": 33
   }
 }

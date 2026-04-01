@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T21:56:39.581Z",
-  "updatedAtJst": "2026-04-02 06:56:39",
+  "updatedAt": "2026-04-01T22:57:16.864Z",
+  "updatedAtJst": "2026-04-02 07:57:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -25,31 +25,25 @@
   ],
   "rows": [
     {
-      "seriesKey": "乙嫁語り",
-      "k": "art",
-      "avg": 5,
-      "n": "1"
-    },
-    {
       "seriesKey": "ONE PIECE",
       "k": "art",
       "avg": 4.222222222222222,
       "n": "9"
     },
     {
-      "seriesKey": "ノラガミ",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "【推しの子】",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "蟲師",
+      "k": "art",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -73,7 +67,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "ノラガミ",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -85,13 +79,13 @@
       "n": "5"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "タコピーの原罪",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -121,13 +115,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "ドロヘドロ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -157,7 +145,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "フルーツバスケット",
+      "seriesKey": "ソウルイーター",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -175,13 +163,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
+      "seriesKey": "フルーツバスケット",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -211,13 +193,25 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "血の轍",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "マギ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "HUNTER×HUNTER",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
       "n": "1"
@@ -229,13 +223,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
-      "k": "art",
-      "avg": 2,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔男のイチ",
+      "seriesKey": "蟲師",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -253,7 +241,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "蟲師",
+      "seriesKey": "魔男のイチ",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -271,7 +259,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "キングダム",
+      "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -320,12 +308,6 @@
     },
     {
       "seriesKey": "からかい上手の高木さん",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -416,12 +398,6 @@
     },
     {
       "seriesKey": "トモちゃんは女の子!",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "乙嫁語り",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -446,7 +422,7 @@
     }
   ],
   "raw": {
-    "rows": 70,
-    "rows_before_limit_at_least": 94
+    "rows": 66,
+    "rows_before_limit_at_least": 90
   }
 }
