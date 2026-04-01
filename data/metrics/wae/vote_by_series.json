@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T14:04:08.437Z",
-  "updatedAtJst": "2026-04-01 23:04:08",
+  "updatedAt": "2026-04-01T15:40:10.029Z",
+  "updatedAtJst": "2026-04-02 00:40:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -21,12 +21,12 @@
       "n": "16"
     },
     {
-      "seriesKey": "ドラゴンボール",
-      "n": "11"
-    },
-    {
       "seriesKey": "銀魂",
       "n": "10"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
+      "n": "9"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
@@ -53,10 +53,6 @@
       "n": "3"
     },
     {
-      "seriesKey": "フルーツバスケット",
-      "n": "3"
-    },
-    {
       "seriesKey": "神のみぞ知るセカイ",
       "n": "3"
     },
@@ -69,19 +65,11 @@
       "n": "3"
     },
     {
-      "seriesKey": "ゆびさきと恋々",
-      "n": "3"
-    },
-    {
-      "seriesKey": "キングダム",
-      "n": "3"
-    },
-    {
       "seriesKey": "アイシールド21",
       "n": "3"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "キングダム",
       "n": "3"
     },
     {
@@ -97,7 +85,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "ケンガンアシュラ",
+      "n": "2"
+    },
+    {
       "seriesKey": "ノラガミ",
+      "n": "2"
+    },
+    {
+      "seriesKey": "HUNTER×HUNTER",
       "n": "2"
     },
     {
@@ -121,15 +117,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "ゴールデンカムイ",
-      "n": "2"
-    },
-    {
       "seriesKey": "バガボンド",
       "n": "2"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "フルーツバスケット",
       "n": "2"
     },
     {
@@ -141,7 +133,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "ゆびさきと恋々",
+      "n": "2"
+    },
+    {
+      "seriesKey": "血の轍",
       "n": "2"
     },
     {
@@ -149,7 +145,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "君に届け",
       "n": "2"
     },
     {
@@ -165,10 +161,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
-      "n": "1"
-    },
-    {
       "seriesKey": "トモちゃんは女の子!",
       "n": "1"
     },
@@ -181,7 +173,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "日々蝶々",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -201,10 +193,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ノ・ゾ・キ・ア・ナ",
-      "n": "1"
-    },
-    {
       "seriesKey": "乙嫁語り",
       "n": "1"
     },
@@ -221,10 +209,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "君は淫らな僕の女王",
-      "n": "1"
-    },
-    {
       "seriesKey": "ありふれた職業で世界最強",
       "n": "1"
     },
@@ -234,7 +218,7 @@
     }
   ],
   "raw": {
-    "rows": 54,
-    "rows_before_limit_at_least": 141
+    "rows": 50,
+    "rows_before_limit_at_least": 131
   }
 }

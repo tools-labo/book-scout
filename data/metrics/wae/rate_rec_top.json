@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T14:04:08.437Z",
-  "updatedAtJst": "2026-04-01 23:04:08",
+  "updatedAt": "2026-04-01T15:40:10.029Z",
+  "updatedAtJst": "2026-04-02 00:40:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -21,17 +21,17 @@
   ],
   "rows": [
     {
-      "seriesKey": "HUNTER×HUNTER",
-      "avg": 5,
-      "n": "1"
-    },
-    {
       "seriesKey": "蟲師",
       "avg": 5,
       "n": "1"
     },
     {
       "seriesKey": "魔男のイチ",
+      "avg": 5,
+      "n": "1"
+    },
+    {
+      "seriesKey": "HUNTER×HUNTER",
       "avg": 5,
       "n": "1"
     },
@@ -46,26 +46,6 @@
       "n": "9"
     },
     {
-      "seriesKey": "フルーツバスケット",
-      "avg": 4.5,
-      "n": "2"
-    },
-    {
-      "seriesKey": "君は淫らな僕の女王",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドラゴンボール",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "血の轍",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "からかい上手の高木さん",
       "avg": 4,
       "n": "1"
@@ -76,12 +56,27 @@
       "n": "1"
     },
     {
+      "seriesKey": "フルーツバスケット",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "幽☆遊☆白書",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "血の轍",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール",
       "avg": 4,
       "n": "1"
     },
@@ -101,17 +96,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "【推しの子】",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ゴールデンカムイ",
       "avg": 4,
       "n": "1"
     },
@@ -119,16 +104,6 @@
       "seriesKey": "NARUTO -ナルト-",
       "avg": 3.8,
       "n": "5"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "乙嫁語り",
-      "avg": 3,
-      "n": "1"
     },
     {
       "seriesKey": "アイシールド21",
@@ -141,17 +116,22 @@
       "n": "1"
     },
     {
+      "seriesKey": "ニセコイ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "同級生",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "双星の陰陽師",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ゆびさきと恋々",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "ドロヘドロ",
       "avg": 3,
       "n": "1"
     },
@@ -161,7 +141,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ニセコイ",
+      "seriesKey": "ベルセルク",
       "avg": 3,
       "n": "1"
     },
@@ -191,7 +171,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "乙嫁語り",
       "avg": 3,
       "n": "1"
     },
@@ -206,12 +186,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "日々蝶々",
+      "seriesKey": "銀魂",
       "avg": 3,
       "n": "1"
     },
@@ -222,7 +197,7 @@
     }
   ],
   "raw": {
-    "rows": 40,
-    "rows_before_limit_at_least": 40
+    "rows": 35,
+    "rows_before_limit_at_least": 35
   }
 }
