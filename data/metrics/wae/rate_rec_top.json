@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T12:01:08.078Z",
-  "updatedAtJst": "2026-04-01 21:01:08",
+  "updatedAt": "2026-04-01T14:04:08.437Z",
+  "updatedAtJst": "2026-04-01 23:04:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -62,11 +62,6 @@
     },
     {
       "seriesKey": "血の轍",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "リアル",
       "avg": 4,
       "n": "1"
     },
@@ -171,11 +166,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "約束のネバーランド",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "トモちゃんは女の子!",
       "avg": 3,
       "n": "1"
@@ -232,7 +222,7 @@
     }
   ],
   "raw": {
-    "rows": 42,
-    "rows_before_limit_at_least": 42
+    "rows": 40,
+    "rows_before_limit_at_least": 40
   }
 }

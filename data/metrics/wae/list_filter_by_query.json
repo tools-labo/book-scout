@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T12:01:08.078Z",
-  "updatedAtJst": "2026-04-01 21:01:08",
+  "updatedAt": "2026-04-01T14:04:08.437Z",
+  "updatedAtJst": "2026-04-01 23:04:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -30,13 +30,6 @@
   "rows": [
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "8"
-    },
-    {
-      "genre": "",
       "aud": "aud=その他",
       "mag": "",
       "mood": "",
@@ -45,6 +38,13 @@
     {
       "genre": "",
       "aud": "aud=Web/アプリ",
+      "mag": "",
+      "mood": "",
+      "n": "7"
+    },
+    {
+      "genre": "",
+      "aud": "",
       "mag": "",
       "mood": "",
       "n": "7"
@@ -68,13 +68,6 @@
       "aud": "",
       "mag": "",
       "mood": "mood=page_turner",
-      "n": "2"
-    },
-    {
-      "genre": "genre=fantasy",
-      "aud": "",
-      "mag": "",
-      "mood": "",
       "n": "2"
     },
     {
@@ -134,6 +127,13 @@
       "n": "1"
     },
     {
+      "genre": "genre=fantasy",
+      "aud": "",
+      "mag": "",
+      "mood": "",
+      "n": "1"
+    },
+    {
       "genre": "",
       "aud": "aud=女性",
       "mag": "",
@@ -148,24 +148,10 @@
       "n": "1"
     },
     {
-      "genre": "genre=sf,fantasy",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "",
       "mag": "",
       "mood": "mood=heart_throb",
-      "n": "1"
-    },
-    {
-      "genre": "genre=sf",
-      "aud": "",
-      "mag": "",
-      "mood": "",
       "n": "1"
     },
     {
@@ -177,7 +163,7 @@
     }
   ],
   "raw": {
-    "rows": 21,
-    "rows_before_limit_at_least": 49
+    "rows": 19,
+    "rows_before_limit_at_least": 45
   }
 }
