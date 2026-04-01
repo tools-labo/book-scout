@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T06:03:19.299Z",
-  "updatedAtJst": "2026-04-01 15:03:19",
+  "updatedAt": "2026-04-01T07:53:05.881Z",
+  "updatedAtJst": "2026-04-01 16:53:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -69,19 +69,15 @@
       "n": "4"
     },
     {
-      "seriesKey": "君は淫らな僕の女王",
-      "n": "4"
-    },
-    {
       "seriesKey": "キングダム",
       "n": "4"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "3月のライオン",
       "n": "4"
     },
     {
-      "seriesKey": "3月のライオン",
+      "seriesKey": "乙嫁語り",
       "n": "4"
     },
     {
@@ -94,6 +90,10 @@
     },
     {
       "seriesKey": "ゴールデンカムイ",
+      "n": "3"
+    },
+    {
+      "seriesKey": "君は淫らな僕の女王",
       "n": "3"
     },
     {
@@ -213,7 +213,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "ブラッドラッド",
+      "seriesKey": "マギ",
       "n": "1"
     },
     {
@@ -277,7 +277,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "ブラッドラッド",
       "n": "1"
     },
     {
@@ -318,10 +318,6 @@
     },
     {
       "seriesKey": "光が死んだ夏",
-      "n": "1"
-    },
-    {
-      "seriesKey": "終わりのセラフ",
       "n": "1"
     },
     {
@@ -538,7 +534,7 @@
     }
   ],
   "raw": {
-    "rows": 130,
-    "rows_before_limit_at_least": 263
+    "rows": 129,
+    "rows_before_limit_at_least": 261
   }
 }
