@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T11:09:38.900Z",
-  "updatedAtJst": "2026-04-02 20:09:38",
+  "updatedAt": "2026-04-02T11:56:47.189Z",
+  "updatedAtJst": "2026-04-02 20:56:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -24,6 +24,11 @@
       "seriesKey": "ONE PIECE",
       "avg": 4.222222222222222,
       "n": "9"
+    },
+    {
+      "seriesKey": "NARUTO -ナルト-",
+      "avg": 4,
+      "n": "4"
     },
     {
       "seriesKey": "ノラガミ",
@@ -56,11 +61,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
-      "avg": 3.8,
-      "n": "5"
-    },
-    {
       "seriesKey": "からかい上手の高木さん",
       "avg": 3,
       "n": "1"
@@ -76,11 +76,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "青の祓魔師",
       "avg": 3,
       "n": "1"
@@ -91,7 +86,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "血の轍",
+      "seriesKey": "同級生",
       "avg": 3,
       "n": "1"
     },
@@ -102,11 +97,6 @@
     },
     {
       "seriesKey": "ドロヘドロ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "タコピーの原罪",
       "avg": 3,
       "n": "1"
     },
@@ -177,7 +167,7 @@
     }
   ],
   "raw": {
-    "rows": 31,
-    "rows_before_limit_at_least": 31
+    "rows": 29,
+    "rows_before_limit_at_least": 29
   }
 }
