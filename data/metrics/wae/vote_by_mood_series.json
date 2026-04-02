@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-01T23:49:44.528Z",
-  "updatedAtJst": "2026-04-02 08:49:44",
+  "updatedAt": "2026-04-02T03:24:42.375Z",
+  "updatedAtJst": "2026-04-02 12:24:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -172,6 +172,11 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "ロザリオとバンパイア",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "会長はメイド様！",
       "n": "1"
     },
@@ -188,11 +193,6 @@
     {
       "mood": "heart_throb",
       "seriesKey": "カッコウの許嫁",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "ロザリオとバンパイア",
       "n": "1"
     },
     {
@@ -287,12 +287,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "銀魂",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -357,22 +357,17 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "mood": "moving",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -387,17 +382,22 @@
     },
     {
       "mood": "page_turner",
+      "seriesKey": "ドラゴンボール",
+      "n": "1"
+    },
+    {
+      "mood": "page_turner",
       "seriesKey": "メイドインアビス",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -427,17 +427,17 @@
     },
     {
       "mood": "satisfying",
+      "seriesKey": "ありふれた職業で世界最強",
+      "n": "1"
+    },
+    {
+      "mood": "satisfying",
       "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
@@ -447,7 +447,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -497,12 +497,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "3月のライオン",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "3月のライオン",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
