@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T10:11:50.558Z",
-  "updatedAtJst": "2026-04-02 19:11:50",
+  "updatedAt": "2026-04-02T11:09:38.900Z",
+  "updatedAtJst": "2026-04-02 20:09:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -47,7 +47,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "7"
+      "n": "5"
     },
     {
       "genre": "",
@@ -65,20 +65,6 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=page_turner",
-      "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=page_turner,heart_throb",
-      "n": "2"
-    },
-    {
-      "genre": "",
       "aud": "aud=少年",
       "mag": "",
       "mood": "",
@@ -86,23 +72,9 @@
     },
     {
       "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=funny",
-      "n": "2"
-    },
-    {
-      "genre": "",
       "aud": "aud=青年",
       "mag": "mag=good!アフタヌーン",
       "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "mood": "mood=heart_throb,page_turner",
       "n": "1"
     },
     {
@@ -137,7 +109,7 @@
       "genre": "",
       "aud": "",
       "mag": "",
-      "mood": "mood=heart_throb",
+      "mood": "mood=funny",
       "n": "1"
     },
     {
@@ -149,7 +121,7 @@
     }
   ],
   "raw": {
-    "rows": 17,
-    "rows_before_limit_at_least": 43
+    "rows": 13,
+    "rows_before_limit_at_least": 34
   }
 }

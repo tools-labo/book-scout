@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T10:11:50.558Z",
-  "updatedAtJst": "2026-04-02 19:11:50",
+  "updatedAt": "2026-04-02T11:09:38.900Z",
+  "updatedAtJst": "2026-04-02 20:09:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,12 +17,12 @@
   ],
   "rows": [
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ONE PIECE",
       "n": "12"
     },
     {
-      "seriesKey": "ONE PIECE",
-      "n": "12"
+      "seriesKey": "ドラゴンボール",
+      "n": "11"
     },
     {
       "seriesKey": "【推しの子】",
@@ -61,19 +61,19 @@
       "n": "4"
     },
     {
-      "seriesKey": "ソウルイーター",
-      "n": "4"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "4"
-    },
-    {
       "seriesKey": "3月のライオン",
       "n": "4"
     },
     {
+      "seriesKey": "ソウルイーター",
+      "n": "3"
+    },
+    {
       "seriesKey": "チェンソーマン",
+      "n": "3"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "3"
     },
     {
@@ -185,7 +185,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "それでも歩は寄せてくる",
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
       "n": "1"
     },
     {
@@ -313,11 +313,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "無限の住人",
       "n": "1"
     },
     {
-      "seriesKey": "無限の住人",
+      "seriesKey": "幽☆遊☆白書",
       "n": "1"
     },
     {
@@ -441,19 +441,19 @@
       "n": "1"
     },
     {
-      "seriesKey": "盾の勇者の成り上がり",
-      "n": "1"
-    },
-    {
       "seriesKey": "魔男のイチ",
       "n": "1"
     },
     {
-      "seriesKey": "惡の華",
+      "seriesKey": "盾の勇者の成り上がり",
       "n": "1"
     },
     {
       "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "惡の華",
       "n": "1"
     },
     {
@@ -473,7 +473,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "seriesKey": "それでも歩は寄せてくる",
       "n": "1"
     },
     {
@@ -483,6 +483,6 @@
   ],
   "raw": {
     "rows": 116,
-    "rows_before_limit_at_least": 229
+    "rows_before_limit_at_least": 226
   }
 }

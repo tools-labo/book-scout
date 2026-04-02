@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T10:11:50.558Z",
-  "updatedAtJst": "2026-04-02 19:11:50",
+  "updatedAt": "2026-04-02T11:09:38.900Z",
+  "updatedAtJst": "2026-04-02 20:09:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -31,7 +31,7 @@
       "n": "9"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "【推しの子】",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -61,7 +61,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
+      "seriesKey": "ノラガミ",
       "k": "art",
       "avg": 4,
       "n": "1"
@@ -73,13 +73,7 @@
       "n": "5"
     },
     {
-      "seriesKey": "ドロヘドロ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "ヨコハマ買い出し紀行",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -103,7 +97,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "神のみぞ知るセカイ",
+      "seriesKey": "からかい上手の高木さん",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -115,13 +109,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "ドロヘドロ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -145,7 +133,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "神のみぞ知るセカイ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -205,15 +193,27 @@
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "HUNTER×HUNTER",
       "k": "art",
-      "avg": 2,
+      "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "幽☆遊☆白書",
       "k": "art",
       "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
+      "k": "art",
+      "avg": 2,
+      "n": "1"
+    },
+    {
+      "seriesKey": "HUNTER×HUNTER",
+      "k": "rec",
+      "avg": 5,
       "n": "1"
     },
     {
@@ -224,12 +224,6 @@
     },
     {
       "seriesKey": "金色のガッシュ!!",
-      "k": "rec",
-      "avg": 5,
-      "n": "1"
-    },
-    {
-      "seriesKey": "HUNTER×HUNTER",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -247,25 +241,13 @@
       "n": "9"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
       "seriesKey": "ヴィンランド・サガ",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "血の轍",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "【推しの子】",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -289,13 +271,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "血の轍",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "タコピーの原罪",
+      "seriesKey": "ドラゴンボール",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -307,31 +289,25 @@
       "n": "1"
     },
     {
+      "seriesKey": "タコピーの原罪",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ノラガミ",
+      "k": "rec",
+      "avg": 4,
+      "n": "1"
+    },
+    {
       "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
       "avg": 3.8,
       "n": "5"
     },
     {
-      "seriesKey": "双星の陰陽師",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ガンバレ！中村くん！！",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "神のみぞ知るセカイ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "銀魂",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -343,13 +319,31 @@
       "n": "1"
     },
     {
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "銀魂",
       "k": "rec",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "ドロヘドロ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "マギ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "双星の陰陽師",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -373,19 +367,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ソウルイーター",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ベルセルク",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ガンバレ！中村くん！！",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -397,7 +385,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "ボーイミーツマリア",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -410,7 +398,7 @@
     }
   ],
   "raw": {
-    "rows": 64,
-    "rows_before_limit_at_least": 88
+    "rows": 62,
+    "rows_before_limit_at_least": 86
   }
 }
