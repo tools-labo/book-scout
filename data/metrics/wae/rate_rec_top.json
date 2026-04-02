@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T13:56:02.922Z",
-  "updatedAtJst": "2026-04-02 22:56:02",
+  "updatedAt": "2026-04-02T15:14:56.644Z",
+  "updatedAtJst": "2026-04-03 00:14:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -76,11 +76,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "銀魂",
       "avg": 3,
       "n": "1"
@@ -132,7 +127,7 @@
     }
   ],
   "raw": {
-    "rows": 22,
-    "rows_before_limit_at_least": 22
+    "rows": 21,
+    "rows_before_limit_at_least": 21
   }
 }

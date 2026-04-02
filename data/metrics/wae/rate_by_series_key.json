@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T13:56:02.922Z",
-  "updatedAtJst": "2026-04-02 22:56:02",
+  "updatedAt": "2026-04-02T15:14:56.644Z",
+  "updatedAtJst": "2026-04-03 00:14:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -121,12 +121,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ケンガンアシュラ",
       "k": "art",
       "avg": 3,
@@ -241,12 +235,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "マギ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ケンガンアシュラ",
       "k": "rec",
       "avg": 3,
@@ -290,7 +278,7 @@
     }
   ],
   "raw": {
-    "rows": 44,
-    "rows_before_limit_at_least": 64
+    "rows": 42,
+    "rows_before_limit_at_least": 62
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T13:56:02.922Z",
-  "updatedAtJst": "2026-04-02 22:56:02",
+  "updatedAt": "2026-04-02T15:14:56.644Z",
+  "updatedAtJst": "2026-04-03 00:14:56",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -102,17 +102,17 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "銀魂",
       "n": "2"
     },
     {
       "mood": "hot",
       "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -278,6 +278,6 @@
   ],
   "raw": {
     "rows": 51,
-    "rows_before_limit_at_least": 70
+    "rows_before_limit_at_least": 69
   }
 }
