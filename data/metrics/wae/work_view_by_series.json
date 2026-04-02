@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T09:13:36.997Z",
-  "updatedAtJst": "2026-04-02 18:13:36",
+  "updatedAt": "2026-04-02T10:11:50.558Z",
+  "updatedAtJst": "2026-04-02 19:11:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,11 +17,11 @@
   ],
   "rows": [
     {
-      "seriesKey": "ONE PIECE",
+      "seriesKey": "ドラゴンボール",
       "n": "12"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ONE PIECE",
       "n": "12"
     },
     {
@@ -149,11 +149,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "パンドラハーツ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "2"
     },
     {
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "パンドラハーツ",
       "n": "2"
     },
     {
@@ -161,11 +161,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "フリージア",
       "n": "2"
     },
     {
-      "seriesKey": "フリージア",
+      "seriesKey": "ありふれた職業で世界最強",
       "n": "2"
     },
     {
@@ -193,10 +193,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "うずまき",
-      "n": "1"
-    },
-    {
       "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
@@ -205,11 +201,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "うずまき",
       "n": "1"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
@@ -217,7 +213,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
@@ -265,6 +261,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "20世紀少年",
+      "n": "1"
+    },
+    {
       "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
@@ -273,15 +273,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
-      "n": "1"
-    },
-    {
       "seriesKey": "双星の陰陽師",
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "同級生",
       "n": "1"
     },
     {
@@ -293,7 +289,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "化物語",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -301,11 +297,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "君に届け",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "君に届け",
       "n": "1"
     },
     {
@@ -317,11 +313,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "無限の住人",
+      "seriesKey": "幽☆遊☆白書",
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
+      "seriesKey": "無限の住人",
       "n": "1"
     },
     {
@@ -453,11 +449,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "seriesKey": "惡の華",
       "n": "1"
     },
     {
-      "seriesKey": "惡の華",
+      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
       "n": "1"
     },
     {
@@ -486,7 +482,7 @@
     }
   ],
   "raw": {
-    "rows": 117,
-    "rows_before_limit_at_least": 230
+    "rows": 116,
+    "rows_before_limit_at_least": 229
   }
 }
