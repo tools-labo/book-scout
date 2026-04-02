@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T11:56:47.189Z",
-  "updatedAtJst": "2026-04-02 20:56:47",
+  "updatedAt": "2026-04-02T13:56:02.922Z",
+  "updatedAtJst": "2026-04-02 22:56:02",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -47,7 +47,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "5"
+      "n": "4"
     },
     {
       "genre": "",
@@ -93,13 +93,6 @@
     },
     {
       "genre": "",
-      "aud": "aud=女性",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "",
       "aud": "aud=少年",
       "mag": "mag=週刊少年サンデー",
       "mood": "",
@@ -114,7 +107,7 @@
     }
   ],
   "raw": {
-    "rows": 12,
-    "rows_before_limit_at_least": 33
+    "rows": 11,
+    "rows_before_limit_at_least": 31
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T11:56:47.189Z",
-  "updatedAtJst": "2026-04-02 20:56:47",
+  "updatedAt": "2026-04-02T13:56:02.922Z",
+  "updatedAtJst": "2026-04-02 22:56:02",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -21,19 +21,14 @@
   ],
   "rows": [
     {
+      "seriesKey": "NARUTO -ナルト-",
+      "avg": 4.333333333333333,
+      "n": "3"
+    },
+    {
       "seriesKey": "ONE PIECE",
       "avg": 4.222222222222222,
       "n": "9"
-    },
-    {
-      "seriesKey": "NARUTO -ナルト-",
-      "avg": 4,
-      "n": "4"
-    },
-    {
-      "seriesKey": "ノラガミ",
-      "avg": 4,
-      "n": "1"
     },
     {
       "seriesKey": "銀魂",
@@ -41,17 +36,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "蟲師",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヴィンランド・サガ",
-      "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ノラガミ",
       "avg": 4,
       "n": "1"
     },
@@ -61,17 +46,42 @@
       "n": "1"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "ドラゴンボール",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ヴィンランド・サガ",
+      "avg": 4,
+      "n": "1"
+    },
+    {
+      "seriesKey": "マギ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "魔男のイチ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ベルセルク",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "同級生",
       "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "HUNTER×HUNTER",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ニセコイ",
       "avg": 3,
       "n": "1"
     },
@@ -86,27 +96,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "双星の陰陽師",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ベルセルク",
       "avg": 3,
       "n": "1"
     },
@@ -126,48 +116,23 @@
       "n": "1"
     },
     {
-      "seriesKey": "神のみぞ知るセカイ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ガンバレ！中村くん！！",
       "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "フルーツバスケット",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "彼女、お借りします",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ヨコハマ買い出し紀行",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔男のイチ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "幽☆遊☆白書",
-      "avg": 2,
       "n": "1"
     },
     {
       "seriesKey": "金色のガッシュ!!",
       "avg": 2,
       "n": "1"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
+      "avg": 2,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 29,
-    "rows_before_limit_at_least": 29
+    "rows": 22,
+    "rows_before_limit_at_least": 22
   }
 }
