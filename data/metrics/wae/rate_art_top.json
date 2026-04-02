@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T03:24:42.375Z",
-  "updatedAtJst": "2026-04-02 12:24:42",
+  "updatedAt": "2026-04-02T05:48:34.404Z",
+  "updatedAtJst": "2026-04-02 14:48:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -51,11 +51,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "アイシールド21",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "【推しの子】",
       "avg": 4,
       "n": "1"
@@ -66,7 +61,7 @@
       "n": "5"
     },
     {
-      "seriesKey": "からかい上手の高木さん",
+      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
@@ -81,6 +76,11 @@
       "n": "1"
     },
     {
+      "seriesKey": "同級生",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "青の祓魔師",
       "avg": 3,
       "n": "1"
@@ -91,17 +91,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "同級生",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "血の轍",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
       "avg": 3,
       "n": "1"
     },
@@ -176,18 +166,23 @@
       "n": "1"
     },
     {
-      "seriesKey": "幽☆遊☆白書",
-      "avg": 2,
+      "seriesKey": "からかい上手の高木さん",
+      "avg": 3,
       "n": "1"
     },
     {
       "seriesKey": "金色のガッシュ!!",
       "avg": 2,
       "n": "1"
+    },
+    {
+      "seriesKey": "幽☆遊☆白書",
+      "avg": 2,
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 33,
-    "rows_before_limit_at_least": 33
+    "rows": 32,
+    "rows_before_limit_at_least": 32
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-02T03:24:42.375Z",
-  "updatedAtJst": "2026-04-02 12:24:42",
+  "updatedAt": "2026-04-02T05:48:34.404Z",
+  "updatedAtJst": "2026-04-02 14:48:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -120,20 +120,6 @@
       "n": "1"
     },
     {
-      "genre": "genre=fantasy",
-      "aud": "aud=少女",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
-      "genre": "genre=fantasy",
-      "aud": "",
-      "mag": "",
-      "mood": "",
-      "n": "1"
-    },
-    {
       "genre": "",
       "aud": "aud=女性",
       "mag": "",
@@ -163,7 +149,7 @@
     }
   ],
   "raw": {
-    "rows": 19,
-    "rows_before_limit_at_least": 45
+    "rows": 17,
+    "rows_before_limit_at_least": 43
   }
 }
