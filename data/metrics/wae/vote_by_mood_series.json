@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T09:08:47.014Z",
-  "updatedAtJst": "2026-04-03 18:08:47",
+  "updatedAt": "2026-04-03T10:02:10.298Z",
+  "updatedAtJst": "2026-04-03 19:02:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -93,7 +93,7 @@
     {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
-      "n": "4"
+      "n": "3"
     },
     {
       "mood": "hot",
@@ -112,12 +112,17 @@
     },
     {
       "mood": "hot",
+      "seriesKey": "金色のガッシュ!!",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "幽☆遊☆白書",
       "n": "1"
     },
     {
@@ -126,8 +131,8 @@
       "n": "1"
     },
     {
-      "mood": "hot",
-      "seriesKey": "幽☆遊☆白書",
+      "mood": "messy",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -138,11 +143,6 @@
     {
       "mood": "messy",
       "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "messy",
-      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -157,11 +157,6 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
@@ -171,8 +166,8 @@
       "n": "1"
     },
     {
-      "mood": "page_turner",
-      "seriesKey": "ドラゴンボール",
+      "mood": "moving",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
@@ -182,12 +177,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
@@ -202,7 +197,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ノラガミ",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -212,12 +212,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -232,7 +227,7 @@
     }
   ],
   "raw": {
-    "rows": 42,
-    "rows_before_limit_at_least": 58
+    "rows": 41,
+    "rows_before_limit_at_least": 56
   }
 }
