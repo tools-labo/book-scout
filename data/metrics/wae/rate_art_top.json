@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T13:37:46.826Z",
-  "updatedAtJst": "2026-04-03 22:37:46",
+  "updatedAt": "2026-04-03T15:00:37.118Z",
+  "updatedAtJst": "2026-04-04 00:00:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -22,8 +22,8 @@
   "rows": [
     {
       "seriesKey": "NARUTO -ナルト-",
-      "avg": 4.5,
-      "n": "2"
+      "avg": 5,
+      "n": "1"
     },
     {
       "seriesKey": "ONE PIECE",
@@ -99,15 +99,10 @@
       "seriesKey": "金色のガッシュ!!",
       "avg": 2,
       "n": "1"
-    },
-    {
-      "seriesKey": "幽☆遊☆白書",
-      "avg": 2,
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 17,
-    "rows_before_limit_at_least": 17
+    "rows": 16,
+    "rows_before_limit_at_least": 16
   }
 }

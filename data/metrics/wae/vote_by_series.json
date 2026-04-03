@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T13:37:46.826Z",
-  "updatedAtJst": "2026-04-03 22:37:46",
+  "updatedAt": "2026-04-03T15:00:37.118Z",
+  "updatedAtJst": "2026-04-04 00:00:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -21,10 +21,6 @@
       "n": "16"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "3"
-    },
-    {
       "seriesKey": "HUNTER×HUNTER",
       "n": "2"
     },
@@ -38,10 +34,6 @@
     },
     {
       "seriesKey": "金色のガッシュ!!",
-      "n": "2"
-    },
-    {
-      "seriesKey": "幽☆遊☆白書",
       "n": "2"
     },
     {
@@ -70,7 +62,7 @@
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 36
+    "rows": 11,
+    "rows_before_limit_at_least": 31
   }
 }

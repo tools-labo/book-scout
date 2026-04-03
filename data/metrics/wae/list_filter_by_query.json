@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T13:37:46.826Z",
-  "updatedAtJst": "2026-04-03 22:37:46",
+  "updatedAt": "2026-04-03T15:00:37.118Z",
+  "updatedAtJst": "2026-04-04 00:00:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -51,31 +51,10 @@
     },
     {
       "genre": "",
-      "aud": "aud=青年",
-      "mag": "",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "",
       "aud": "aud=少年",
       "mag": "",
       "mood": "",
       "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "aud=青年",
-      "mag": "mag=月刊アフタヌーン",
-      "mood": "",
-      "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "aud=青年",
-      "mag": "mag=good!アフタヌーン",
-      "mood": "",
-      "n": "1"
     },
     {
       "genre": "genre=action",
@@ -107,7 +86,7 @@
     }
   ],
   "raw": {
-    "rows": 11,
-    "rows_before_limit_at_least": 29
+    "rows": 8,
+    "rows_before_limit_at_least": 24
   }
 }
