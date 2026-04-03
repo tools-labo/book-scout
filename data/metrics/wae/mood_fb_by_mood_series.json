@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T11:02:46.939Z",
-  "updatedAtJst": "2026-04-03 20:02:46",
+  "updatedAt": "2026-04-03T11:52:01.703Z",
+  "updatedAtJst": "2026-04-03 20:52:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -30,13 +30,6 @@
   "rows": [
     {
       "mood": "funny",
-      "seriesKey": "ドラゴンボール",
-      "yes": "2",
-      "no": "0",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
       "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
@@ -51,6 +44,13 @@
     },
     {
       "mood": "funny",
+      "seriesKey": "ソウルイーター",
+      "yes": "1",
+      "no": "0",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ドロヘドロ",
       "yes": "1",
       "no": "0",
@@ -58,7 +58,7 @@
     },
     {
       "mood": "funny",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "ドラゴンボール",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -87,9 +87,9 @@
     {
       "mood": "hot",
       "seriesKey": "ドラゴンボール",
-      "yes": "3",
+      "yes": "2",
       "no": "0",
-      "n": "3"
+      "n": "2"
     },
     {
       "mood": "hot",
@@ -100,7 +100,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "チェンソーマン",
+      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -114,14 +114,14 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ソウルイーター",
+      "seriesKey": "チェンソーマン",
       "yes": "1",
       "no": "0",
       "n": "1"
     },
     {
       "mood": "hot",
-      "seriesKey": "銀魂",
+      "seriesKey": "ソウルイーター",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -148,18 +148,11 @@
       "n": "1"
     },
     {
-      "mood": "moving",
-      "seriesKey": "NARUTO -ナルト-",
-      "yes": "0",
-      "no": "1",
-      "n": "1"
-    },
-    {
       "mood": "page_turner",
       "seriesKey": "ドラゴンボール",
-      "yes": "2",
+      "yes": "1",
       "no": "0",
-      "n": "2"
+      "n": "1"
     },
     {
       "mood": "page_turner",
@@ -177,10 +170,10 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "銀魂",
       "yes": "1",
-      "no": "1",
-      "n": "2"
+      "no": "0",
+      "n": "1"
     },
     {
       "mood": "satisfying",
@@ -191,7 +184,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "ドラゴンボール",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -212,7 +205,7 @@
     }
   ],
   "raw": {
-    "rows": 26,
-    "rows_before_limit_at_least": 33
+    "rows": 25,
+    "rows_before_limit_at_least": 28
   }
 }

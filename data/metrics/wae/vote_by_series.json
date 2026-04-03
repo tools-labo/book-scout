@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T11:02:46.939Z",
-  "updatedAtJst": "2026-04-03 20:02:46",
+  "updatedAt": "2026-04-03T11:52:01.703Z",
+  "updatedAtJst": "2026-04-03 20:52:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -25,16 +25,16 @@
       "n": "8"
     },
     {
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "4"
+    },
+    {
       "seriesKey": "ドラゴンボール",
-      "n": "5"
+      "n": "3"
     },
     {
       "seriesKey": "NARUTO -ナルト-",
-      "n": "4"
-    },
-    {
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "4"
+      "n": "3"
     },
     {
       "seriesKey": "HUNTER×HUNTER",
@@ -91,6 +91,6 @@
   ],
   "raw": {
     "rows": 18,
-    "rows_before_limit_at_least": 56
+    "rows_before_limit_at_least": 53
   }
 }
