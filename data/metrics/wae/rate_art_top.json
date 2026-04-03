@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T21:48:54.934Z",
-  "updatedAtJst": "2026-04-04 06:48:54",
+  "updatedAt": "2026-04-03T22:52:42.442Z",
+  "updatedAtJst": "2026-04-04 07:52:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -29,11 +29,6 @@
       "seriesKey": "ONE PIECE",
       "avg": 4.222222222222222,
       "n": "9"
-    },
-    {
-      "seriesKey": "銀魂",
-      "avg": 4,
-      "n": "1"
     },
     {
       "seriesKey": "ノラガミ",
@@ -102,7 +97,7 @@
     }
   ],
   "raw": {
-    "rows": 16,
-    "rows_before_limit_at_least": 16
+    "rows": 15,
+    "rows_before_limit_at_least": 15
   }
 }

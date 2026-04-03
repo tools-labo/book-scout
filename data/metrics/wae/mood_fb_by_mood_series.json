@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T21:48:54.934Z",
-  "updatedAtJst": "2026-04-04 06:48:54",
+  "updatedAt": "2026-04-03T22:52:42.442Z",
+  "updatedAtJst": "2026-04-04 07:52:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -36,29 +36,8 @@
       "n": "1"
     },
     {
-      "mood": "funny",
-      "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
       "mood": "hot",
       "seriesKey": "アイシールド21",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "銀魂",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -92,13 +71,6 @@
       "n": "1"
     },
     {
-      "mood": "satisfying",
-      "seriesKey": "銀魂",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
       "mood": "tearjerker",
       "seriesKey": "【推しの子】",
       "yes": "1",
@@ -107,7 +79,7 @@
     }
   ],
   "raw": {
-    "rows": 11,
-    "rows_before_limit_at_least": 11
+    "rows": 7,
+    "rows_before_limit_at_least": 7
   }
 }

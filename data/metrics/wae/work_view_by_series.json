@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T21:48:54.934Z",
-  "updatedAtJst": "2026-04-04 06:48:54",
+  "updatedAt": "2026-04-03T22:52:42.442Z",
+  "updatedAtJst": "2026-04-04 07:52:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -29,15 +29,11 @@
       "n": "6"
     },
     {
-      "seriesKey": "銀魂",
+      "seriesKey": "ホーリーランド",
       "n": "5"
     },
     {
       "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
-      "n": "5"
-    },
-    {
-      "seriesKey": "ホーリーランド",
       "n": "5"
     },
     {
@@ -49,11 +45,11 @@
       "n": "4"
     },
     {
-      "seriesKey": "トモダチゲーム",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "3"
     },
     {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "トモダチゲーム",
       "n": "3"
     },
     {
@@ -69,11 +65,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+      "n": "2"
+    },
+    {
       "seriesKey": "パンドラハーツ",
       "n": "2"
     },
     {
-      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+      "seriesKey": "銀魂",
       "n": "2"
     },
     {
@@ -117,7 +117,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "それでも歩は寄せてくる",
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
       "n": "1"
     },
     {
@@ -385,7 +385,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "seriesKey": "それでも歩は寄せてくる",
       "n": "1"
     },
     {
@@ -395,6 +395,6 @@
   ],
   "raw": {
     "rows": 94,
-    "rows_before_limit_at_least": 152
+    "rows_before_limit_at_least": 149
   }
 }
