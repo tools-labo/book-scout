@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T11:52:01.703Z",
-  "updatedAtJst": "2026-04-03 20:52:01",
+  "updatedAt": "2026-04-03T13:37:46.826Z",
+  "updatedAtJst": "2026-04-03 22:37:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -22,17 +22,12 @@
   "rows": [
     {
       "mood": "funny",
+      "seriesKey": "ガンバレ！中村くん！！",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
       "seriesKey": "ONE PIECE",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "チェンソーマン",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "ソウルイーター",
       "n": "1"
     },
     {
@@ -41,33 +36,8 @@
       "n": "1"
     },
     {
-      "mood": "funny",
-      "seriesKey": "ドラゴンボール",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "ガンバレ！中村くん！！",
-      "n": "1"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "healing",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
       "mood": "heart_throb",
       "seriesKey": "同級生",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -87,12 +57,17 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ドラゴンボール",
-      "n": "2"
+      "seriesKey": "青の祓魔師",
+      "n": "1"
     },
     {
       "mood": "hot",
       "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "幽☆遊☆白書",
       "n": "1"
     },
     {
@@ -102,27 +77,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "青の祓魔師",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "金色のガッシュ!!",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "幽☆遊☆白書",
       "n": "1"
     },
     {
@@ -136,28 +91,13 @@
       "n": "1"
     },
     {
-      "mood": "messy",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
       "mood": "moving",
       "seriesKey": "ONE PIECE",
       "n": "7"
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "金色のガッシュ!!",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -172,17 +112,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "HUNTER×HUNTER",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -192,7 +122,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -202,27 +132,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "【推しの子】",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "ノラガミ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 40,
-    "rows_before_limit_at_least": 53
+    "rows": 24,
+    "rows_before_limit_at_least": 36
   }
 }

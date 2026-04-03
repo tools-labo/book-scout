@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T11:52:01.703Z",
-  "updatedAtJst": "2026-04-03 20:52:01",
+  "updatedAt": "2026-04-03T13:37:46.826Z",
+  "updatedAtJst": "2026-04-03 22:37:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -55,12 +55,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "HUNTER×HUNTER",
       "k": "art",
       "avg": 3,
@@ -103,6 +97,12 @@
       "n": "1"
     },
     {
+      "seriesKey": "ガンバレ！中村くん！！",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "ベルセルク",
       "k": "art",
       "avg": 3,
@@ -110,12 +110,6 @@
     },
     {
       "seriesKey": "双星の陰陽師",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ガンバレ！中村くん！！",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -175,12 +169,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "幽☆遊☆白書",
       "k": "rec",
       "avg": 4,
@@ -211,12 +199,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "銀魂",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ベルセルク",
       "k": "rec",
       "avg": 3,
@@ -242,7 +224,7 @@
     }
   ],
   "raw": {
-    "rows": 36,
-    "rows_before_limit_at_least": 54
+    "rows": 33,
+    "rows_before_limit_at_least": 51
   }
 }
