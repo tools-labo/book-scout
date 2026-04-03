@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T03:26:42.695Z",
-  "updatedAtJst": "2026-04-03 12:26:42",
+  "updatedAt": "2026-04-03T05:49:14.053Z",
+  "updatedAtJst": "2026-04-03 14:49:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -67,12 +67,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "ガンバレ！中村くん！！",
+      "seriesKey": "同級生",
       "n": "1"
     },
     {
@@ -82,12 +77,17 @@
     },
     {
       "mood": "heart_throb",
+      "seriesKey": "ガンバレ！中村くん！！",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
       "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "同級生",
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
       "n": "1"
     },
     {
@@ -107,17 +107,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "NARUTO -ナルト-",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ヴィンランド・サガ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -127,17 +117,22 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "金色のガッシュ!!",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ケンガンアシュラ",
       "n": "1"
     },
     {
       "mood": "hot",
+      "seriesKey": "金色のガッシュ!!",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
       "seriesKey": "青の祓魔師",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -152,12 +147,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "未来日記",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "銀魂",
+      "seriesKey": "未来日記",
       "n": "1"
     },
     {
@@ -167,12 +162,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
@@ -182,7 +177,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -197,17 +192,7 @@
     },
     {
       "mood": "page_turner",
-      "seriesKey": "大ダーク",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
       "seriesKey": "ドラゴンボール",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -217,12 +202,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "銀魂",
+      "seriesKey": "バガボンド",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "バガボンド",
+      "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
     {
@@ -232,12 +217,12 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ありふれた職業で世界最強",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "ありふれた職業で世界最強",
       "n": "1"
     },
     {
@@ -252,7 +237,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -262,7 +247,7 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -272,12 +257,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "銀魂",
+      "seriesKey": "ノラガミ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 51,
-    "rows_before_limit_at_least": 69
+    "rows": 48,
+    "rows_before_limit_at_least": 66
   }
 }
