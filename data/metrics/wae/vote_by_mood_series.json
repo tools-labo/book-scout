@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T05:49:14.053Z",
-  "updatedAtJst": "2026-04-03 14:49:14",
+  "updatedAt": "2026-04-03T07:36:50.069Z",
+  "updatedAtJst": "2026-04-03 16:36:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -23,11 +23,6 @@
     {
       "mood": "funny",
       "seriesKey": "ドラゴンボール",
-      "n": "2"
-    },
-    {
-      "mood": "funny",
-      "seriesKey": "銀魂",
       "n": "2"
     },
     {
@@ -58,6 +53,11 @@
     {
       "mood": "funny",
       "seriesKey": "ガンバレ！中村くん！！",
+      "n": "1"
+    },
+    {
+      "mood": "funny",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -102,11 +102,6 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "銀魂",
-      "n": "2"
-    },
-    {
-      "mood": "hot",
       "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
@@ -133,6 +128,11 @@
     {
       "mood": "hot",
       "seriesKey": "NARUTO -ナルト-",
+      "n": "1"
+    },
+    {
+      "mood": "hot",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -167,11 +167,6 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "ノラガミ",
       "n": "1"
     },
@@ -202,11 +197,6 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "バガボンド",
-      "n": "1"
-    },
-    {
-      "mood": "satisfying",
       "seriesKey": "HUNTER×HUNTER",
       "n": "1"
     },
@@ -221,11 +211,6 @@
       "n": "1"
     },
     {
-      "mood": "satisfying",
-      "seriesKey": "ありふれた職業で世界最強",
-      "n": "1"
-    },
-    {
       "mood": "tearjerker",
       "seriesKey": "ONE PIECE",
       "n": "3"
@@ -237,12 +222,12 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ボーイミーツマリア",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ボーイミーツマリア",
       "n": "1"
     },
     {
@@ -262,7 +247,7 @@
     }
   ],
   "raw": {
-    "rows": 48,
-    "rows_before_limit_at_least": 66
+    "rows": 45,
+    "rows_before_limit_at_least": 61
   }
 }

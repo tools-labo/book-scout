@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T05:49:14.053Z",
-  "updatedAtJst": "2026-04-03 14:49:14",
+  "updatedAt": "2026-04-03T07:36:50.069Z",
+  "updatedAtJst": "2026-04-03 16:36:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_series",
@@ -22,7 +22,7 @@
     },
     {
       "seriesKey": "銀魂",
-      "n": "10"
+      "n": "8"
     },
     {
       "seriesKey": "ドラゴンボール",
@@ -35,10 +35,6 @@
     {
       "seriesKey": "ヴィンランド・サガ",
       "n": "4"
-    },
-    {
-      "seriesKey": "バガボンド",
-      "n": "2"
     },
     {
       "seriesKey": "HUNTER×HUNTER",
@@ -99,14 +95,10 @@
     {
       "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
       "n": "1"
-    },
-    {
-      "seriesKey": "ありふれた職業で世界最強",
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 22,
-    "rows_before_limit_at_least": 66
+    "rows": 20,
+    "rows_before_limit_at_least": 61
   }
 }
