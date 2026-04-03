@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T07:36:50.069Z",
-  "updatedAtJst": "2026-04-03 16:36:50",
+  "updatedAt": "2026-04-03T09:08:47.014Z",
+  "updatedAtJst": "2026-04-03 18:08:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -67,17 +67,7 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "同級生",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "トモちゃんは女の子!",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "ガンバレ！中村くん！！",
+      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
       "n": "1"
     },
     {
@@ -87,7 +77,12 @@
     },
     {
       "mood": "heart_throb",
-      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
+      "seriesKey": "ガンバレ！中村くん！！",
+      "n": "1"
+    },
+    {
+      "mood": "heart_throb",
+      "seriesKey": "同級生",
       "n": "1"
     },
     {
@@ -102,7 +97,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -112,12 +107,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "ケンガンアシュラ",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -127,7 +117,7 @@
     },
     {
       "mood": "hot",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -142,12 +132,12 @@
     },
     {
       "mood": "messy",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "mood": "messy",
-      "seriesKey": "銀魂",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -162,7 +152,7 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "銀魂",
       "n": "1"
     },
     {
@@ -172,17 +162,12 @@
     },
     {
       "mood": "moving",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "page_turner",
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -191,8 +176,8 @@
       "n": "1"
     },
     {
-      "mood": "satisfying",
-      "seriesKey": "ヴィンランド・サガ",
+      "mood": "page_turner",
+      "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
     {
@@ -202,7 +187,7 @@
     },
     {
       "mood": "satisfying",
-      "seriesKey": "ケンガンアシュラ",
+      "seriesKey": "ヴィンランド・サガ",
       "n": "1"
     },
     {
@@ -217,12 +202,17 @@
     },
     {
       "mood": "tearjerker",
+      "seriesKey": "ヴィンランド・サガ",
+      "n": "1"
+    },
+    {
+      "mood": "tearjerker",
       "seriesKey": "青の祓魔師",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ノラガミ",
       "n": "1"
     },
     {
@@ -232,22 +222,17 @@
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
       "seriesKey": "【推しの子】",
       "n": "1"
     },
     {
       "mood": "tearjerker",
-      "seriesKey": "ノラガミ",
+      "seriesKey": "銀魂",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 45,
-    "rows_before_limit_at_least": 61
+    "rows": 42,
+    "rows_before_limit_at_least": 58
   }
 }

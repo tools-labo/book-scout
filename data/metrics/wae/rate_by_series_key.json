@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-03T07:36:50.069Z",
-  "updatedAtJst": "2026-04-03 16:36:50",
+  "updatedAt": "2026-04-03T09:08:47.014Z",
+  "updatedAtJst": "2026-04-03 18:08:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -79,13 +79,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "魔男のイチ",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "art",
       "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "seriesKey": "魔男のイチ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -110,18 +110,6 @@
     },
     {
       "seriesKey": "ガンバレ！中村くん！！",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモちゃんは女の子!",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ケンガンアシュラ",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -187,13 +175,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴィンランド・サガ",
+      "seriesKey": "ノラガミ",
       "k": "rec",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "ヴィンランド・サガ",
       "k": "rec",
       "avg": 4,
       "n": "1"
@@ -229,19 +217,13 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ケンガンアシュラ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ドロヘドロ",
+      "k": "rec",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ベルセルク",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -265,12 +247,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "トモちゃんは女の子!",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ボーイミーツマリア",
       "k": "rec",
       "avg": 3,
@@ -278,7 +254,7 @@
     }
   ],
   "raw": {
-    "rows": 42,
-    "rows_before_limit_at_least": 62
+    "rows": 38,
+    "rows_before_limit_at_least": 58
   }
 }
