@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-04T11:42:35.397Z",
-  "updatedAtJst": "2026-04-04 20:42:35",
+  "updatedAt": "2026-04-04T13:19:40.204Z",
+  "updatedAtJst": "2026-04-04 22:19:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -37,55 +37,13 @@
       "n": "9"
     },
     {
-      "seriesKey": "ノラガミ",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "【推しの子】",
       "k": "art",
       "avg": 4,
       "n": "1"
     },
     {
-      "seriesKey": "HUNTER×HUNTER",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "魔男のイチ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ボーイミーツマリア",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "青の祓魔師",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "同級生",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -97,7 +55,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "双星の陰陽師",
+      "seriesKey": "HUNTER×HUNTER",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -109,19 +67,31 @@
       "n": "1"
     },
     {
+      "seriesKey": "同級生",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ボーイミーツマリア",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドロヘドロ",
+      "k": "art",
+      "avg": 3,
+      "n": "1"
+    },
+    {
       "seriesKey": "金色のガッシュ!!",
       "k": "art",
       "avg": 2,
       "n": "1"
     },
     {
-      "seriesKey": "魔男のイチ",
-      "k": "rec",
-      "avg": 5,
-      "n": "1"
-    },
-    {
-      "seriesKey": "NARUTO -ナルト-",
+      "seriesKey": "金色のガッシュ!!",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -133,7 +103,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -151,15 +121,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "ノラガミ",
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "rec",
-      "avg": 4,
+      "avg": 3,
       "n": "1"
     },
     {
-      "seriesKey": "青の祓魔師",
+      "seriesKey": "ベルセルク",
       "k": "rec",
-      "avg": 4,
+      "avg": 3,
       "n": "1"
     },
     {
@@ -175,25 +145,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "双星の陰陽師",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ベルセルク",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "同級生",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "rec",
       "avg": 3,
       "n": "1"
@@ -206,7 +158,7 @@
     }
   ],
   "raw": {
-    "rows": 30,
-    "rows_before_limit_at_least": 46
+    "rows": 22,
+    "rows_before_limit_at_least": 38
   }
 }

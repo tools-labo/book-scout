@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-04T11:42:35.397Z",
-  "updatedAtJst": "2026-04-04 20:42:35",
+  "updatedAt": "2026-04-04T13:19:40.204Z",
+  "updatedAtJst": "2026-04-04 22:19:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -47,7 +47,7 @@
       "aud": "",
       "mag": "",
       "mood": "",
-      "n": "4"
+      "n": "2"
     },
     {
       "genre": "",
@@ -87,6 +87,6 @@
   ],
   "raw": {
     "rows": 8,
-    "rows_before_limit_at_least": 24
+    "rows_before_limit_at_least": 22
   }
 }
