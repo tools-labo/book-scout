@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-05T09:00:00.072Z",
-  "updatedAtJst": "2026-04-05 18:00:00",
+  "updatedAt": "2026-04-05T09:55:13.541Z",
+  "updatedAtJst": "2026-04-05 18:55:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -28,11 +28,6 @@
     {
       "mood": "funny",
       "seriesKey": "ガンバレ！中村くん！！",
-      "n": "1"
-    },
-    {
-      "mood": "heart_throb",
-      "seriesKey": "一日ごとにデレが増えてくツンツンツンツンツンデレちゃん",
       "n": "1"
     },
     {
@@ -97,7 +92,7 @@
     }
   ],
   "raw": {
-    "rows": 15,
-    "rows_before_limit_at_least": 27
+    "rows": 14,
+    "rows_before_limit_at_least": 26
   }
 }

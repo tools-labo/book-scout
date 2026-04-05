@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-05T09:00:00.072Z",
-  "updatedAtJst": "2026-04-05 18:00:00",
+  "updatedAt": "2026-04-05T09:55:13.541Z",
+  "updatedAtJst": "2026-04-05 18:55:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "mood_fb_by_mood_series",
@@ -36,22 +36,8 @@
       "n": "1"
     },
     {
-      "mood": "hot",
-      "seriesKey": "アイシールド21",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
       "mood": "messy",
       "seriesKey": "【推しの子】",
-      "yes": "1",
-      "no": "0",
-      "n": "1"
-    },
-    {
-      "mood": "moving",
-      "seriesKey": "アイシールド21",
       "yes": "1",
       "no": "0",
       "n": "1"
@@ -79,7 +65,7 @@
     }
   ],
   "raw": {
-    "rows": 7,
-    "rows_before_limit_at_least": 7
+    "rows": 5,
+    "rows_before_limit_at_least": 5
   }
 }
