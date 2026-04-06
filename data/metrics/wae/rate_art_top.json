@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-06T03:39:40.063Z",
-  "updatedAtJst": "2026-04-06 12:39:40",
+  "updatedAt": "2026-04-06T06:06:13.759Z",
+  "updatedAtJst": "2026-04-06 15:06:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -21,11 +21,6 @@
   ],
   "rows": [
     {
-      "seriesKey": "NARUTO -ナルト-",
-      "avg": 5,
-      "n": "1"
-    },
-    {
       "seriesKey": "ONE PIECE",
       "avg": 4.222222222222222,
       "n": "9"
@@ -33,11 +28,6 @@
     {
       "seriesKey": "【推しの子】",
       "avg": 4,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
-      "avg": 3,
       "n": "1"
     },
     {
@@ -57,7 +47,7 @@
     }
   ],
   "raw": {
-    "rows": 7,
-    "rows_before_limit_at_least": 7
+    "rows": 5,
+    "rows_before_limit_at_least": 5
   }
 }

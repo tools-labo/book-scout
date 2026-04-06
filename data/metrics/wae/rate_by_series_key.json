@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-06T03:39:40.063Z",
-  "updatedAtJst": "2026-04-06 12:39:40",
+  "updatedAt": "2026-04-06T06:06:13.759Z",
+  "updatedAtJst": "2026-04-06 15:06:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -24,12 +24,6 @@
     }
   ],
   "rows": [
-    {
-      "seriesKey": "NARUTO -ナルト-",
-      "k": "art",
-      "avg": 5,
-      "n": "1"
-    },
     {
       "seriesKey": "ONE PIECE",
       "k": "art",
@@ -55,12 +49,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドロヘドロ",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "金色のガッシュ!!",
       "k": "art",
       "avg": 2,
@@ -74,12 +62,6 @@
     },
     {
       "seriesKey": "HUNTER×HUNTER",
-      "k": "rec",
-      "avg": 5,
-      "n": "1"
-    },
-    {
-      "seriesKey": "NARUTO -ナルト-",
       "k": "rec",
       "avg": 5,
       "n": "1"
@@ -101,16 +83,10 @@
       "k": "rec",
       "avg": 3,
       "n": "1"
-    },
-    {
-      "seriesKey": "ドロヘドロ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 14,
-    "rows_before_limit_at_least": 30
+    "rows": 10,
+    "rows_before_limit_at_least": 26
   }
 }
