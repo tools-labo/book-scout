@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-05T23:48:24.668Z",
-  "updatedAtJst": "2026-04-06 08:48:24",
+  "updatedAt": "2026-04-06T03:39:40.063Z",
+  "updatedAtJst": "2026-04-06 12:39:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -49,31 +49,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "HUNTER×HUNTER",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ガンバレ！中村くん！！",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "同級生",
-      "k": "art",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ボーイミーツマリア",
       "k": "art",
       "avg": 3,
       "n": "1"
@@ -127,38 +103,14 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ガンバレ！中村くん！！",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ドロヘドロ",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "同級生",
-      "k": "rec",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ボーイミーツマリア",
       "k": "rec",
       "avg": 3,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 22,
-    "rows_before_limit_at_least": 38
+    "rows": 14,
+    "rows_before_limit_at_least": 30
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-05T23:48:24.668Z",
-  "updatedAtJst": "2026-04-06 08:48:24",
+  "updatedAt": "2026-04-06T03:39:40.063Z",
+  "updatedAtJst": "2026-04-06 12:39:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -46,22 +46,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "ドロヘドロ",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "同級生",
-      "avg": 3,
-      "n": "1"
-    },
-    {
-      "seriesKey": "ボーイミーツマリア",
       "avg": 3,
       "n": "1"
     },
@@ -69,15 +54,10 @@
       "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "avg": 3,
       "n": "1"
-    },
-    {
-      "seriesKey": "ガンバレ！中村くん！！",
-      "avg": 3,
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 11,
-    "rows_before_limit_at_least": 11
+    "rows": 7,
+    "rows_before_limit_at_least": 7
   }
 }
