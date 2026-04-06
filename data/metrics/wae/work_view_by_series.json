@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-06T06:06:13.759Z",
-  "updatedAtJst": "2026-04-06 15:06:13",
+  "updatedAt": "2026-04-06T08:00:37.437Z",
+  "updatedAtJst": "2026-04-06 17:00:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -16,10 +16,6 @@
     }
   ],
   "rows": [
-    {
-      "seriesKey": "ONE PIECE",
-      "n": "12"
-    },
     {
       "seriesKey": "月が導く異世界道中",
       "n": "6"
@@ -41,7 +37,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "キングダム",
       "n": "2"
     },
     {
@@ -61,19 +57,23 @@
       "n": "2"
     },
     {
-      "seriesKey": "キングダム",
-      "n": "2"
-    },
-    {
-      "seriesKey": "トライガン",
-      "n": "2"
-    },
-    {
       "seriesKey": "銀魂",
       "n": "1"
     },
     {
       "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "n": "1"
+    },
+    {
+      "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ベルセルク",
       "n": "1"
     },
     {
@@ -93,7 +93,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "ドロヘドロ",
       "n": "1"
     },
     {
@@ -101,11 +101,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "暗殺教室",
-      "n": "1"
-    },
-    {
-      "seriesKey": "HUNTER×HUNTER",
+      "seriesKey": "トライガン",
       "n": "1"
     },
     {
@@ -121,7 +117,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "ONE PIECE",
       "n": "1"
     },
     {
@@ -325,12 +321,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ベルセルク",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 78,
-    "rows_before_limit_at_least": 116
+    "rows": 77,
+    "rows_before_limit_at_least": 102
   }
 }

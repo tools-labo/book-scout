@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-06T06:06:13.759Z",
-  "updatedAtJst": "2026-04-06 15:06:13",
+  "updatedAt": "2026-04-06T08:00:37.437Z",
+  "updatedAtJst": "2026-04-06 17:00:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "vote_by_mood_series",
@@ -21,44 +21,14 @@
   ],
   "rows": [
     {
-      "mood": "funny",
-      "seriesKey": "ONE PIECE",
-      "n": "1"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "ONE PIECE",
-      "n": "5"
-    },
-    {
-      "mood": "hot",
-      "seriesKey": "HUNTER×HUNTER",
-      "n": "1"
-    },
-    {
       "mood": "hot",
       "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
       "mood": "moving",
-      "seriesKey": "ONE PIECE",
-      "n": "7"
-    },
-    {
-      "mood": "moving",
       "seriesKey": "金色のガッシュ!!",
       "n": "1"
-    },
-    {
-      "mood": "satisfying",
-      "seriesKey": "HUNTER×HUNTER",
-      "n": "1"
-    },
-    {
-      "mood": "tearjerker",
-      "seriesKey": "ONE PIECE",
-      "n": "3"
     },
     {
       "mood": "tearjerker",
@@ -67,7 +37,7 @@
     }
   ],
   "raw": {
-    "rows": 9,
-    "rows_before_limit_at_least": 21
+    "rows": 3,
+    "rows_before_limit_at_least": 3
   }
 }
