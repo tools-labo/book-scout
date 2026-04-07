@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T12:03:26.082Z",
-  "updatedAtJst": "2026-04-07 21:03:26",
+  "updatedAt": "2026-04-07T14:00:25.245Z",
+  "updatedAtJst": "2026-04-07 23:00:25",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-07 13:48:25",
+      "timestampJst": "2026-04-07 22:48:25",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "キングダム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-03-25 07:06:27",
       "timestampJst": "2026-03-25 16:06:27",
@@ -34231,7 +34244,7 @@
     }
   ],
   "raw": {
-    "rows": 2629,
-    "rows_before_limit_at_least": 2629
+    "rows": 2630,
+    "rows_before_limit_at_least": 2630
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T12:03:26.082Z",
-  "updatedAtJst": "2026-04-07 21:03:26",
+  "updatedAt": "2026-04-07T14:00:25.245Z",
+  "updatedAtJst": "2026-04-07 23:00:25",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -33,12 +33,12 @@
       "n": "5"
     },
     {
-      "seriesKey": "トモダチゲーム",
+      "seriesKey": "キングダム",
       "n": "3"
     },
     {
-      "seriesKey": "キングダム",
-      "n": "2"
+      "seriesKey": "トモダチゲーム",
+      "n": "3"
     },
     {
       "seriesKey": "君のことが大大大大大好きな100人の彼女",
@@ -237,10 +237,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "ふたり明日もそれなりに",
-      "n": "1"
-    },
-    {
       "seriesKey": "君の膵臓をたべたい",
       "n": "1"
     },
@@ -322,7 +318,7 @@
     }
   ],
   "raw": {
-    "rows": 76,
+    "rows": 75,
     "rows_before_limit_at_least": 100
   }
 }
