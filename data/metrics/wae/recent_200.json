@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T21:02:36.441Z",
-  "updatedAtJst": "2026-04-08 06:02:36",
+  "updatedAt": "2026-04-07T21:57:13.879Z",
+  "updatedAtJst": "2026-04-08 06:57:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,71 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-07 21:17:25",
+      "timestampJst": "2026-04-08 06:17:25",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アカメが斬る！",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-07 21:14:03",
+      "timestampJst": "2026-04-08 06:14:03",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アオのハコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-07 21:10:24",
+      "timestampJst": "2026-04-08 06:10:24",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "あしたのジョー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-07 21:06:31",
+      "timestampJst": "2026-04-08 06:06:31",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "×××ホリック",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-07 21:03:55",
+      "timestampJst": "2026-04-08 06:03:55",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "PSYЯEN -サイレン-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-07 21:00:24",
       "timestampJst": "2026-04-08 06:00:24",
@@ -34673,7 +34738,7 @@
     }
   ],
   "raw": {
-    "rows": 2663,
-    "rows_before_limit_at_least": 2663
+    "rows": 2668,
+    "rows_before_limit_at_least": 2668
   }
 }

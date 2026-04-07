@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T21:02:36.441Z",
-  "updatedAtJst": "2026-04-08 06:02:36",
+  "updatedAt": "2026-04-07T21:57:13.879Z",
+  "updatedAtJst": "2026-04-08 06:57:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -121,6 +121,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "×××ホリック",
+      "n": "2"
+    },
+    {
       "seriesKey": "シャーマンキング",
       "n": "2"
     },
@@ -129,15 +133,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "PSYЯEN -サイレン-",
+      "n": "2"
+    },
+    {
       "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
       "seriesKey": "銀魂",
-      "n": "1"
-    },
-    {
-      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
@@ -169,11 +173,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "あしたのジョー",
+      "n": "1"
+    },
+    {
       "seriesKey": "カノジョも彼女",
       "n": "1"
     },
     {
-      "seriesKey": "PSYЯEN -サイレン-",
+      "seriesKey": "アカメが斬る！",
+      "n": "1"
+    },
+    {
+      "seriesKey": "十字架のろくにん",
       "n": "1"
     },
     {
@@ -181,11 +193,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "×××ホリック",
+      "seriesKey": "20世紀少年",
       "n": "1"
     },
     {
-      "seriesKey": "20世紀少年",
+      "seriesKey": "子連れ狼",
       "n": "1"
     },
     {
@@ -193,7 +205,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "子連れ狼",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -349,12 +361,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "十字架のろくにん",
+      "seriesKey": "犬夜叉",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 84,
-    "rows_before_limit_at_least": 133
+    "rows": 87,
+    "rows_before_limit_at_least": 138
   }
 }
