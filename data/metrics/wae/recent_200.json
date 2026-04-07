@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T18:09:45.560Z",
-  "updatedAtJst": "2026-04-08 03:09:45",
+  "updatedAt": "2026-04-07T19:21:17.400Z",
+  "updatedAtJst": "2026-04-08 04:21:17",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,45 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-07 18:48:38",
+      "timestampJst": "2026-04-08 03:48:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "Re:ゼロから始める異世界生活",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-07 18:44:09",
+      "timestampJst": "2026-04-08 03:44:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "風夏",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-07 18:32:40",
+      "timestampJst": "2026-04-08 03:32:40",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "望まぬ不死の冒険者",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-07 18:08:32",
       "timestampJst": "2026-04-08 03:08:32",
@@ -34387,7 +34426,7 @@
     }
   ],
   "raw": {
-    "rows": 2641,
-    "rows_before_limit_at_least": 2641
+    "rows": 2644,
+    "rows_before_limit_at_least": 2644
   }
 }
