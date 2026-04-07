@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T14:00:25.245Z",
-  "updatedAtJst": "2026-04-07 23:00:25",
+  "updatedAt": "2026-04-07T17:14:46.354Z",
+  "updatedAtJst": "2026-04-08 02:14:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -33,12 +33,16 @@
       "n": "5"
     },
     {
+      "seriesKey": "トモダチゲーム",
+      "n": "3"
+    },
+    {
       "seriesKey": "キングダム",
       "n": "3"
     },
     {
-      "seriesKey": "トモダチゲーム",
-      "n": "3"
+      "seriesKey": "呪術廻戦≡",
+      "n": "2"
     },
     {
       "seriesKey": "君のことが大大大大大好きな100人の彼女",
@@ -61,11 +65,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァンパイア騎士 (ナイト)",
-      "n": "1"
-    },
-    {
-      "seriesKey": "暗殺教室",
+      "seriesKey": "それでも歩は寄せてくる",
       "n": "1"
     },
     {
@@ -85,7 +85,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦≡",
+      "seriesKey": "監獄学園",
       "n": "1"
     },
     {
@@ -105,7 +105,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -118,6 +118,14 @@
     },
     {
       "seriesKey": "ONE PIECE",
+      "n": "1"
+    },
+    {
+      "seriesKey": "十字架のろくにん",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ルリドラゴン",
       "n": "1"
     },
     {
@@ -146,6 +154,10 @@
     },
     {
       "seriesKey": "ザ・ファブル",
+      "n": "1"
+    },
+    {
+      "seriesKey": "サンケンロック",
       "n": "1"
     },
     {
@@ -269,11 +281,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "ドメスティックな彼女",
+      "n": "1"
+    },
+    {
       "seriesKey": "最果てのパラディン",
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "ひげを剃る。そして女子高生を拾う。",
       "n": "1"
     },
     {
@@ -285,11 +301,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "seriesKey": "蟲師",
       "n": "1"
     },
     {
-      "seriesKey": "蟲師",
+      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
       "n": "1"
     },
     {
@@ -309,16 +325,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "それでも歩は寄せてくる",
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "暗殺教室",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 75,
-    "rows_before_limit_at_least": 100
+    "rows": 79,
+    "rows_before_limit_at_least": 105
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T14:00:25.245Z",
-  "updatedAtJst": "2026-04-07 23:00:25",
+  "updatedAt": "2026-04-07T17:14:46.354Z",
+  "updatedAtJst": "2026-04-08 02:14:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "type_counts",
@@ -22,11 +22,11 @@
     },
     {
       "type": "work_view",
-      "n": "100"
+      "n": "105"
     },
     {
       "type": "list_filter",
-      "n": "14"
+      "n": "13"
     },
     {
       "type": "rate",
@@ -43,6 +43,6 @@
   ],
   "raw": {
     "rows": 6,
-    "rows_before_limit_at_least": 586
+    "rows_before_limit_at_least": 590
   }
 }
