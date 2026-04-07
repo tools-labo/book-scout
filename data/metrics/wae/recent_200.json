@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T21:57:13.879Z",
-  "updatedAtJst": "2026-04-08 06:57:13",
+  "updatedAt": "2026-04-07T22:57:14.992Z",
+  "updatedAtJst": "2026-04-08 07:57:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-07 21:57:42",
+      "timestampJst": "2026-04-08 06:57:42",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NARUTO -ナルト-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-07 21:17:25",
       "timestampJst": "2026-04-08 06:17:25",
@@ -34738,7 +34751,7 @@
     }
   ],
   "raw": {
-    "rows": 2668,
-    "rows_before_limit_at_least": 2668
+    "rows": 2669,
+    "rows_before_limit_at_least": 2669
   }
 }
