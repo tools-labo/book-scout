@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-08T05:56:10.019Z",
-  "updatedAtJst": "2026-04-08 14:56:10",
+  "updatedAt": "2026-04-08T07:51:54.514Z",
+  "updatedAtJst": "2026-04-08 16:51:54",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_by_series_key",
@@ -25,12 +25,6 @@
   ],
   "rows": [
     {
-      "seriesKey": "【推しの子】",
-      "k": "art",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "art",
       "avg": 3,
@@ -49,12 +43,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "【推しの子】",
-      "k": "rec",
-      "avg": 4,
-      "n": "1"
-    },
-    {
       "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "k": "rec",
       "avg": 3,
@@ -62,7 +50,7 @@
     }
   ],
   "raw": {
-    "rows": 6,
-    "rows_before_limit_at_least": 6
+    "rows": 4,
+    "rows_before_limit_at_least": 4
   }
 }
