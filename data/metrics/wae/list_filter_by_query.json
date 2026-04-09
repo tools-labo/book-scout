@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-09T05:56:42.664Z",
-  "updatedAtJst": "2026-04-09 14:56:42",
+  "updatedAt": "2026-04-09T07:54:19.518Z",
+  "updatedAtJst": "2026-04-09 16:54:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "list_filter_by_query",
@@ -33,7 +33,7 @@
       "aud": "aud=Web/アプリ",
       "mag": "",
       "mood": "",
-      "n": "3"
+      "n": "2"
     },
     {
       "genre": "",
@@ -41,13 +41,6 @@
       "mag": "",
       "mood": "",
       "n": "2"
-    },
-    {
-      "genre": "",
-      "aud": "aud=その他",
-      "mag": "",
-      "mood": "",
-      "n": "1"
     },
     {
       "genre": "",
@@ -65,7 +58,7 @@
     }
   ],
   "raw": {
-    "rows": 5,
-    "rows_before_limit_at_least": 8
+    "rows": 4,
+    "rows_before_limit_at_least": 6
   }
 }
