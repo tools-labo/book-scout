@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-10T03:39:37.303Z",
-  "updatedAtJst": "2026-04-10 12:39:37",
+  "updatedAt": "2026-04-10T06:06:36.436Z",
+  "updatedAtJst": "2026-04-10 15:06:36",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -25,10 +25,6 @@
       "n": "5"
     },
     {
-      "seriesKey": "月が導く異世界道中",
-      "n": "4"
-    },
-    {
       "seriesKey": "トモダチゲーム",
       "n": "4"
     },
@@ -38,6 +34,10 @@
     },
     {
       "seriesKey": "君のことが大大大大大好きな100人の彼女",
+      "n": "3"
+    },
+    {
+      "seriesKey": "月が導く異世界道中",
       "n": "3"
     },
     {
@@ -343,6 +343,6 @@
   ],
   "raw": {
     "rows": 81,
-    "rows_before_limit_at_least": 120
+    "rows_before_limit_at_least": 119
   }
 }
