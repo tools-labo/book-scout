@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-10T13:48:30.188Z",
-  "updatedAtJst": "2026-04-10 22:48:30",
+  "updatedAt": "2026-04-10T15:04:50.576Z",
+  "updatedAtJst": "2026-04-11 00:04:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -25,10 +25,6 @@
       "n": "5"
     },
     {
-      "seriesKey": "トモダチゲーム",
-      "n": "4"
-    },
-    {
       "seriesKey": "キングダム",
       "n": "3"
     },
@@ -42,6 +38,10 @@
     },
     {
       "seriesKey": "ガチアクタ",
+      "n": "3"
+    },
+    {
+      "seriesKey": "トモダチゲーム",
       "n": "3"
     },
     {
@@ -339,6 +339,6 @@
   ],
   "raw": {
     "rows": 80,
-    "rows_before_limit_at_least": 118
+    "rows_before_limit_at_least": 117
   }
 }
