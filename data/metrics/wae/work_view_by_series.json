@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-11T11:45:02.189Z",
-  "updatedAtJst": "2026-04-11 20:45:02",
+  "updatedAt": "2026-04-11T13:21:32.938Z",
+  "updatedAtJst": "2026-04-11 22:21:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -33,10 +33,6 @@
       "n": "3"
     },
     {
-      "seriesKey": "月が導く異世界道中",
-      "n": "3"
-    },
-    {
       "seriesKey": "ガチアクタ",
       "n": "3"
     },
@@ -58,6 +54,10 @@
     },
     {
       "seriesKey": "ロザリオとバンパイア",
+      "n": "2"
+    },
+    {
+      "seriesKey": "月が導く異世界道中",
       "n": "2"
     },
     {
@@ -285,11 +285,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "彼女、お借りします",
       "n": "1"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
@@ -339,6 +339,6 @@
   ],
   "raw": {
     "rows": 80,
-    "rows_before_limit_at_least": 116
+    "rows_before_limit_at_least": 115
   }
 }
