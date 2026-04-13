@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-13T12:09:48.707Z",
-  "updatedAtJst": "2026-04-13 21:09:48",
+  "updatedAt": "2026-04-13T14:06:06.141Z",
+  "updatedAtJst": "2026-04-13 23:06:06",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_art_top",
@@ -21,18 +21,13 @@
   ],
   "rows": [
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
-      "avg": 3,
-      "n": "1"
-    },
-    {
       "seriesKey": "金色のガッシュ!!",
       "avg": 2,
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 2,
-    "rows_before_limit_at_least": 2
+    "rows": 1,
+    "rows_before_limit_at_least": 1
   }
 }
