@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-13T15:43:47.419Z",
-  "updatedAtJst": "2026-04-14 00:43:47",
+  "updatedAt": "2026-04-13T17:18:41.077Z",
+  "updatedAtJst": "2026-04-14 02:18:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -33,10 +33,6 @@
       "n": "3"
     },
     {
-      "seriesKey": "トモダチゲーム",
-      "n": "3"
-    },
-    {
       "seriesKey": "ガチアクタ",
       "n": "3"
     },
@@ -54,6 +50,10 @@
     },
     {
       "seriesKey": "ロザリオとバンパイア",
+      "n": "2"
+    },
+    {
+      "seriesKey": "トモダチゲーム",
       "n": "2"
     },
     {
@@ -185,11 +185,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ブラッドラッド",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
-      "seriesKey": "鬼滅の刃",
+      "seriesKey": "ブラッドラッド",
       "n": "1"
     },
     {
@@ -331,6 +331,6 @@
   ],
   "raw": {
     "rows": 78,
-    "rows_before_limit_at_least": 109
+    "rows_before_limit_at_least": 108
   }
 }
