@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T23:03:09.461Z",
-  "updatedAtJst": "2026-04-15 08:03:09",
+  "updatedAt": "2026-04-14T23:58:07.147Z",
+  "updatedAtJst": "2026-04-15 08:58:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -45,10 +45,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "暗殺教室",
-      "n": "1"
-    },
-    {
       "seriesKey": "ぐらんぶる",
       "n": "1"
     },
@@ -81,11 +77,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "監獄学園",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
@@ -209,12 +205,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 49,
-    "rows_before_limit_at_least": 54
+    "rows": 48,
+    "rows_before_limit_at_least": 53
   }
 }
