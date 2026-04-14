@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T11:18:30.994Z",
-  "updatedAtJst": "2026-04-14 20:18:30",
+  "updatedAt": "2026-04-14T14:09:48.680Z",
+  "updatedAtJst": "2026-04-14 23:09:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -29,14 +29,6 @@
       "n": "3"
     },
     {
-      "seriesKey": "ホーリーランド",
-      "n": "3"
-    },
-    {
-      "seriesKey": "うるわしの宵の月",
-      "n": "3"
-    },
-    {
       "seriesKey": "ヴァンパイア騎士 (ナイト)",
       "n": "2"
     },
@@ -54,6 +46,10 @@
     },
     {
       "seriesKey": "トモダチゲーム",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ホーリーランド",
       "n": "2"
     },
     {
@@ -82,6 +78,10 @@
     },
     {
       "seriesKey": "シャーマンキング",
+      "n": "2"
+    },
+    {
+      "seriesKey": "うるわしの宵の月",
       "n": "2"
     },
     {
@@ -261,10 +261,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "転生したら剣でした",
-      "n": "1"
-    },
-    {
       "seriesKey": "風夏",
       "n": "1"
     },
@@ -293,11 +289,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "日常",
+      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
       "n": "1"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ジョジョリオン",
+      "seriesKey": "日常",
       "n": "1"
     },
     {
@@ -326,7 +322,7 @@
     }
   ],
   "raw": {
-    "rows": 77,
-    "rows_before_limit_at_least": 103
+    "rows": 76,
+    "rows_before_limit_at_least": 100
   }
 }
