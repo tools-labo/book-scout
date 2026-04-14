@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T03:40:17.686Z",
-  "updatedAtJst": "2026-04-14 12:40:17",
+  "updatedAt": "2026-04-14T06:08:49.310Z",
+  "updatedAtJst": "2026-04-14 15:08:49",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,10 +17,6 @@
   ],
   "rows": [
     {
-      "seriesKey": "ホーリーランド",
-      "n": "5"
-    },
-    {
       "seriesKey": "キングダム",
       "n": "3"
     },
@@ -29,11 +25,11 @@
       "n": "3"
     },
     {
-      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "seriesKey": "ガチアクタ",
       "n": "3"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "ホーリーランド",
       "n": "3"
     },
     {
@@ -46,6 +42,10 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ジョジョの奇妙な冒険 ストーンオーシャン",
       "n": "2"
     },
     {
@@ -327,6 +327,6 @@
   ],
   "raw": {
     "rows": 77,
-    "rows_before_limit_at_least": 106
+    "rows_before_limit_at_least": 103
   }
 }

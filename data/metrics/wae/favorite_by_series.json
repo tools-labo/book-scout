@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T03:40:17.686Z",
-  "updatedAtJst": "2026-04-14 12:40:17",
+  "updatedAt": "2026-04-14T06:08:49.310Z",
+  "updatedAtJst": "2026-04-14 15:08:49",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -98,10 +98,6 @@
     },
     {
       "seriesKey": "一ノ瀬家の大罪",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ホーリーランド",
       "n": "1"
     },
     {
@@ -206,7 +202,7 @@
     }
   ],
   "raw": {
-    "rows": 47,
-    "rows_before_limit_at_least": 48
+    "rows": 46,
+    "rows_before_limit_at_least": 47
   }
 }
