@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-15T14:03:56.849Z",
-  "updatedAtJst": "2026-04-15 23:03:56",
+  "updatedAt": "2026-04-15T15:22:15.257Z",
+  "updatedAtJst": "2026-04-16 00:22:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "favorite_by_series",
@@ -17,15 +17,15 @@
   ],
   "rows": [
     {
-      "seriesKey": "金色のガッシュ!!",
-      "n": "2"
-    },
-    {
       "seriesKey": "風夏",
       "n": "1"
     },
     {
       "seriesKey": "魔王になったので、ダンジョン造って人外娘とほのぼのする",
+      "n": "1"
+    },
+    {
+      "seriesKey": "賢者の孫",
       "n": "1"
     },
     {
@@ -65,15 +65,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "シャイ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "賢者の孫",
-      "n": "1"
-    },
-    {
       "seriesKey": "イビツ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "妄想テレパシー",
+      "n": "1"
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -197,12 +197,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "妄想テレパシー",
+      "seriesKey": "シャイ",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 46,
-    "rows_before_limit_at_least": 47
+    "rows_before_limit_at_least": 46
   }
 }

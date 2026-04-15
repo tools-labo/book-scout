@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-15T14:03:56.849Z",
-  "updatedAtJst": "2026-04-15 23:03:56",
+  "updatedAt": "2026-04-15T15:22:15.257Z",
+  "updatedAtJst": "2026-04-16 00:22:15",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rate_rec_top",
@@ -19,15 +19,9 @@
       "type": "UInt64"
     }
   ],
-  "rows": [
-    {
-      "seriesKey": "金色のガッシュ!!",
-      "avg": 5,
-      "n": "1"
-    }
-  ],
+  "rows": [],
   "raw": {
-    "rows": 1,
-    "rows_before_limit_at_least": 1
+    "rows": 0,
+    "rows_before_limit_at_least": 0
   }
 }

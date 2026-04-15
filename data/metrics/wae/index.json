@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-15T14:03:56.849Z",
-  "updatedAtJst": "2026-04-15 23:03:56",
+  "updatedAt": "2026-04-15T15:22:15.257Z",
+  "updatedAtJst": "2026-04-16 00:22:15",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
     {
       "id": "type_counts",
       "file": "type_counts.json",
-      "rows": 5
+      "rows": 2
     },
     {
       "id": "recent_200",
@@ -18,22 +18,22 @@
     {
       "id": "work_view_by_series",
       "file": "work_view_by_series.json",
-      "rows": 46
+      "rows": 44
     },
     {
       "id": "vote_by_series",
       "file": "vote_by_series.json",
-      "rows": 1
+      "rows": 0
     },
     {
       "id": "vote_by_mood",
       "file": "vote_by_mood.json",
-      "rows": 2
+      "rows": 0
     },
     {
       "id": "vote_by_mood_series",
       "file": "vote_by_mood_series.json",
-      "rows": 2
+      "rows": 0
     },
     {
       "id": "mood_fb_by_mood_series",
@@ -48,27 +48,27 @@
     {
       "id": "list_filter_by_query",
       "file": "list_filter_by_query.json",
-      "rows": 4
+      "rows": 0
     },
     {
       "id": "rate_by_series_key",
       "file": "rate_by_series_key.json",
-      "rows": 2
+      "rows": 0
     },
     {
       "id": "rate_by_key",
       "file": "rate_by_key.json",
-      "rows": 2
+      "rows": 0
     },
     {
       "id": "rate_rec_top",
       "file": "rate_rec_top.json",
-      "rows": 1
+      "rows": 0
     },
     {
       "id": "rate_art_top",
       "file": "rate_art_top.json",
-      "rows": 1
+      "rows": 0
     },
     {
       "id": "rising_work_view_since_20260227",
