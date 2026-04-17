@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T13:57:42.579Z",
-  "updatedAtJst": "2026-04-17 22:57:42",
+  "updatedAt": "2026-04-17T15:14:20.459Z",
+  "updatedAtJst": "2026-04-18 00:14:20",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,58 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-17 14:46:47",
+      "timestampJst": "2026-04-17 23:46:47",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "日常",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-17 14:43:43",
+      "timestampJst": "2026-04-17 23:43:43",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦≡",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-17 14:27:49",
+      "timestampJst": "2026-04-17 23:27:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ハッピーシュガーライフ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-17 14:16:02",
+      "timestampJst": "2026-04-17 23:16:02",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "デッドデッドデーモンズデデデデデストラクション",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-17 12:45:29",
       "timestampJst": "2026-04-17 21:45:29",
@@ -34790,7 +34842,7 @@
     }
   ],
   "raw": {
-    "rows": 2672,
-    "rows_before_limit_at_least": 2672
+    "rows": 2676,
+    "rows_before_limit_at_least": 2676
   }
 }
