@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T12:03:06.581Z",
-  "updatedAtJst": "2026-04-17 21:03:06",
+  "updatedAt": "2026-04-17T13:57:42.579Z",
+  "updatedAtJst": "2026-04-17 22:57:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-17 12:45:29",
+      "timestampJst": "2026-04-17 21:45:29",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "金色のガッシュ!!",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-17 12:37:56",
+      "timestampJst": "2026-04-17 21:37:56",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "文豪ストレイドッグス",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-17 11:51:58",
       "timestampJst": "2026-04-17 20:51:58",
@@ -34764,7 +34790,7 @@
     }
   ],
   "raw": {
-    "rows": 2670,
-    "rows_before_limit_at_least": 2670
+    "rows": 2672,
+    "rows_before_limit_at_least": 2672
   }
 }
