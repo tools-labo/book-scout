@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T22:59:31.219Z",
-  "updatedAtJst": "2026-04-18 07:59:31",
+  "updatedAt": "2026-04-17T23:54:37.313Z",
+  "updatedAtJst": "2026-04-18 08:54:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-17 23:35:02",
+      "timestampJst": "2026-04-18 08:35:02",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "20世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-17 14:46:47",
       "timestampJst": "2026-04-17 23:46:47",
@@ -34842,7 +34855,7 @@
     }
   ],
   "raw": {
-    "rows": 2676,
-    "rows_before_limit_at_least": 2676
+    "rows": 2677,
+    "rows_before_limit_at_least": 2677
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T22:59:31.219Z",
-  "updatedAtJst": "2026-04-18 07:59:31",
+  "updatedAt": "2026-04-17T23:54:37.313Z",
+  "updatedAtJst": "2026-04-18 08:54:37",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -66,6 +66,10 @@
     },
     {
       "seriesKey": "キングダム",
+      "n": "1"
+    },
+    {
+      "seriesKey": "20世紀少年",
       "n": "1"
     },
     {
@@ -202,7 +206,7 @@
     }
   ],
   "raw": {
-    "rows": 46,
-    "rows_before_limit_at_least": 52
+    "rows": 47,
+    "rows_before_limit_at_least": 53
   }
 }
