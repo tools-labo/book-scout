@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T11:11:37.821Z",
-  "updatedAtJst": "2026-04-17 20:11:37",
+  "updatedAt": "2026-04-17T12:03:06.581Z",
+  "updatedAtJst": "2026-04-17 21:03:06",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-17 11:51:58",
+      "timestampJst": "2026-04-17 20:51:58",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドメスティックな彼女",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-07 21:57:42",
       "timestampJst": "2026-04-08 06:57:42",
@@ -34751,7 +34764,7 @@
     }
   ],
   "raw": {
-    "rows": 2669,
-    "rows_before_limit_at_least": 2669
+    "rows": 2670,
+    "rows_before_limit_at_least": 2670
   }
 }
