@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-18T22:54:21.163Z",
-  "updatedAtJst": "2026-04-19 07:54:21",
+  "updatedAt": "2026-04-18T23:50:32.649Z",
+  "updatedAtJst": "2026-04-19 08:50:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-18 23:46:21",
+      "timestampJst": "2026-04-19 08:46:21",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アイシールド21",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-18 22:06:03",
       "timestampJst": "2026-04-19 07:06:03",
@@ -34894,7 +34907,7 @@
     }
   ],
   "raw": {
-    "rows": 2680,
-    "rows_before_limit_at_least": 2680
+    "rows": 2681,
+    "rows_before_limit_at_least": 2681
   }
 }

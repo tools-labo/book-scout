@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-18T22:54:21.163Z",
-  "updatedAtJst": "2026-04-19 07:54:21",
+  "updatedAt": "2026-04-18T23:50:32.649Z",
+  "updatedAtJst": "2026-04-19 08:50:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -82,6 +82,10 @@
     },
     {
       "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -205,12 +209,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "アイシールド21",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 48,
-    "rows_before_limit_at_least": 54
+    "rows": 49,
+    "rows_before_limit_at_least": 55
   }
 }
