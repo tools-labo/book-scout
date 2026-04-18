@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-18T20:52:36.106Z",
-  "updatedAtJst": "2026-04-19 05:52:36",
+  "updatedAt": "2026-04-18T21:50:03.689Z",
+  "updatedAtJst": "2026-04-19 06:50:03",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-18 21:06:40",
+      "timestampJst": "2026-04-19 06:06:40",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "道産子ギャルはなまらめんこい",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-18 03:43:57",
       "timestampJst": "2026-04-18 12:43:57",
@@ -34868,7 +34881,7 @@
     }
   ],
   "raw": {
-    "rows": 2678,
-    "rows_before_limit_at_least": 2678
+    "rows": 2679,
+    "rows_before_limit_at_least": 2679
   }
 }
