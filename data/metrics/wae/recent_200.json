@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-18T21:50:03.689Z",
-  "updatedAtJst": "2026-04-19 06:50:03",
+  "updatedAt": "2026-04-18T22:54:21.163Z",
+  "updatedAtJst": "2026-04-19 07:54:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-18 22:06:03",
+      "timestampJst": "2026-04-19 07:06:03",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "やがて君になる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-18 21:06:40",
       "timestampJst": "2026-04-19 06:06:40",
@@ -34881,7 +34894,7 @@
     }
   ],
   "raw": {
-    "rows": 2679,
-    "rows_before_limit_at_least": 2679
+    "rows": 2680,
+    "rows_before_limit_at_least": 2680
   }
 }
