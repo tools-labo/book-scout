@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T23:54:37.313Z",
-  "updatedAtJst": "2026-04-18 08:54:37",
+  "updatedAt": "2026-04-18T03:29:17.765Z",
+  "updatedAtJst": "2026-04-18 12:29:17",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -29,10 +29,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "ハッピーシュガーライフ",
-      "n": "2"
-    },
-    {
       "seriesKey": "デッドデッドデーモンズデデデデデストラクション",
       "n": "2"
     },
@@ -49,7 +45,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "暗殺教室",
+      "seriesKey": "ぐらんぶる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
@@ -81,7 +81,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
@@ -145,7 +145,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "ガチアクタ",
       "n": "1"
     },
     {
@@ -157,7 +157,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "ハッピーシュガーライフ",
       "n": "1"
     },
     {
@@ -201,12 +201,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "暗殺教室",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 47,
-    "rows_before_limit_at_least": 53
+    "rows_before_limit_at_least": 52
   }
 }
