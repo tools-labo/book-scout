@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-18T23:50:32.649Z",
-  "updatedAtJst": "2026-04-19 08:50:32",
+  "updatedAt": "2026-04-19T03:48:43.999Z",
+  "updatedAtJst": "2026-04-19 12:48:43",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -25,11 +25,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "n": "2"
+    },
+    {
       "seriesKey": "日常",
       "n": "2"
     },
     {
-      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
@@ -37,15 +41,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "マギ",
       "n": "1"
     },
     {
-      "seriesKey": "なんでここに先生が!?",
+      "seriesKey": "それでも歩は寄せてくる",
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "暗殺教室",
+      "n": "1"
+    },
+    {
+      "seriesKey": "桃源暗鬼",
       "n": "1"
     },
     {
@@ -81,7 +89,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "暗殺教室",
+      "seriesKey": "アイシールド21",
       "n": "1"
     },
     {
@@ -102,6 +110,10 @@
     },
     {
       "seriesKey": "アカメが斬る！",
+      "n": "1"
+    },
+    {
+      "seriesKey": "おもいでエマノン",
       "n": "1"
     },
     {
@@ -126,6 +138,10 @@
     },
     {
       "seriesKey": "パンドラハーツ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "タコピーの原罪",
       "n": "1"
     },
     {
@@ -173,7 +189,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "それでも歩は寄せてくる",
+      "seriesKey": "なんでここに先生が!?",
       "n": "1"
     },
     {
@@ -197,7 +213,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "風夏",
       "n": "1"
     },
     {
@@ -205,16 +221,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "風夏",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 49,
-    "rows_before_limit_at_least": 55
+    "rows": 53,
+    "rows_before_limit_at_least": 60
   }
 }
