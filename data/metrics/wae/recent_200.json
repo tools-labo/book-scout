@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T09:06:21.014Z",
-  "updatedAtJst": "2026-04-19 18:06:21",
+  "updatedAt": "2026-04-19T09:59:50.352Z",
+  "updatedAtJst": "2026-04-19 18:59:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-19 09:24:59",
+      "timestampJst": "2026-04-19 18:24:59",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アヤシモン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-19 07:03:52",
       "timestampJst": "2026-04-19 16:03:52",
@@ -35024,7 +35037,7 @@
     }
   ],
   "raw": {
-    "rows": 2690,
-    "rows_before_limit_at_least": 2690
+    "rows": 2691,
+    "rows_before_limit_at_least": 2691
   }
 }
