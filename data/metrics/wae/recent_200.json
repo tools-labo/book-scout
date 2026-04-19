@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T06:07:11.711Z",
-  "updatedAtJst": "2026-04-19 15:07:11",
+  "updatedAt": "2026-04-19T07:44:38.944Z",
+  "updatedAtJst": "2026-04-19 16:44:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,58 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-19 07:03:52",
+      "timestampJst": "2026-04-19 16:03:52",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール超",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-19 06:55:07",
+      "timestampJst": "2026-04-19 15:55:07",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "血の轍",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-19 06:33:13",
+      "timestampJst": "2026-04-19 15:33:13",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "あしたのジョー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-19 06:31:01",
+      "timestampJst": "2026-04-19 15:31:01",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "21世紀少年",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-19 00:41:37",
       "timestampJst": "2026-04-19 09:41:37",
@@ -34972,7 +35024,7 @@
     }
   ],
   "raw": {
-    "rows": 2686,
-    "rows_before_limit_at_least": 2686
+    "rows": 2690,
+    "rows_before_limit_at_least": 2690
   }
 }

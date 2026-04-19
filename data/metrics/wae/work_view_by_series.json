@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T06:07:11.711Z",
-  "updatedAtJst": "2026-04-19 15:07:11",
+  "updatedAt": "2026-04-19T07:44:38.944Z",
+  "updatedAtJst": "2026-04-19 16:44:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -37,6 +37,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "あしたのジョー",
+      "n": "2"
+    },
+    {
       "seriesKey": "ルリドラゴン",
       "n": "2"
     },
@@ -49,15 +53,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "暗殺教室",
-      "n": "1"
-    },
-    {
-      "seriesKey": "桃源暗鬼",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     },
     {
       "seriesKey": "ドロヘドロ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "血の轍",
       "n": "1"
     },
     {
@@ -77,6 +81,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "21世紀少年",
+      "n": "1"
+    },
+    {
       "seriesKey": "ONE PIECE",
       "n": "1"
     },
@@ -85,7 +93,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "桃源暗鬼",
       "n": "1"
     },
     {
@@ -105,11 +113,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "あしたのジョー",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
       "seriesKey": "アカメが斬る！",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ドラゴンボール超",
       "n": "1"
     },
     {
@@ -225,12 +237,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "暗殺教室",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 53,
-    "rows_before_limit_at_least": 60
+    "rows": 56,
+    "rows_before_limit_at_least": 64
   }
 }
