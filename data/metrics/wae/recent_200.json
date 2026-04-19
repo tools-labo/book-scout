@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T21:51:11.367Z",
-  "updatedAtJst": "2026-04-20 06:51:11",
+  "updatedAt": "2026-04-19T22:55:01.609Z",
+  "updatedAtJst": "2026-04-20 07:55:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-19 22:37:50",
+      "timestampJst": "2026-04-20 07:37:50",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "蜘蛛ですが、なにか？",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-19 21:44:46",
       "timestampJst": "2026-04-20 06:44:46",
@@ -35076,7 +35089,7 @@
     }
   ],
   "raw": {
-    "rows": 2694,
-    "rows_before_limit_at_least": 2694
+    "rows": 2695,
+    "rows_before_limit_at_least": 2695
   }
 }
