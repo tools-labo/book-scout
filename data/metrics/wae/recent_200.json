@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T20:53:08.702Z",
-  "updatedAtJst": "2026-04-20 05:53:08",
+  "updatedAt": "2026-04-19T21:51:11.367Z",
+  "updatedAtJst": "2026-04-20 06:51:11",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-19 21:44:46",
+      "timestampJst": "2026-04-20 06:44:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "よふかしのうた",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-19 11:28:02",
       "timestampJst": "2026-04-19 20:28:02",
@@ -35063,7 +35076,7 @@
     }
   ],
   "raw": {
-    "rows": 2693,
-    "rows_before_limit_at_least": 2693
+    "rows": 2694,
+    "rows_before_limit_at_least": 2694
   }
 }
