@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T10:59:03.248Z",
-  "updatedAtJst": "2026-04-19 19:59:03",
+  "updatedAt": "2026-04-19T11:49:13.673Z",
+  "updatedAtJst": "2026-04-19 20:49:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -53,11 +53,15 @@
       "n": "1"
     },
     {
+      "seriesKey": "乙嫁語り",
+      "n": "1"
+    },
+    {
       "seriesKey": "暗殺教室",
       "n": "1"
     },
     {
-      "seriesKey": "桃源暗鬼",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
@@ -97,7 +101,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -245,12 +249,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "桃源暗鬼",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 58,
-    "rows_before_limit_at_least": 66
+    "rows": 59,
+    "rows_before_limit_at_least": 67
   }
 }

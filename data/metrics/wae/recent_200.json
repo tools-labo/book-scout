@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T10:59:03.248Z",
-  "updatedAtJst": "2026-04-19 19:59:03",
+  "updatedAt": "2026-04-19T11:49:13.673Z",
+  "updatedAtJst": "2026-04-19 20:49:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-19 11:28:02",
+      "timestampJst": "2026-04-19 20:28:02",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-19 10:56:35",
       "timestampJst": "2026-04-19 19:56:35",
@@ -35050,7 +35063,7 @@
     }
   ],
   "raw": {
-    "rows": 2692,
-    "rows_before_limit_at_least": 2692
+    "rows": 2693,
+    "rows_before_limit_at_least": 2693
   }
 }
