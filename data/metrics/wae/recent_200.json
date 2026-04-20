@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-20T17:18:05.499Z",
-  "updatedAtJst": "2026-04-21 02:18:05",
+  "updatedAt": "2026-04-20T19:31:52.604Z",
+  "updatedAtJst": "2026-04-21 04:31:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-20 17:24:45",
+      "timestampJst": "2026-04-21 02:24:45",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "少年のアビス",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-19 23:23:59",
       "timestampJst": "2026-04-20 08:23:59",
@@ -35102,7 +35115,7 @@
     }
   ],
   "raw": {
-    "rows": 2696,
-    "rows_before_limit_at_least": 2696
+    "rows": 2697,
+    "rows_before_limit_at_least": 2697
   }
 }
