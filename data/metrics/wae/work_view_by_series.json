@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-20T11:41:08.817Z",
-  "updatedAtJst": "2026-04-20 20:41:08",
+  "updatedAt": "2026-04-20T14:09:27.565Z",
+  "updatedAtJst": "2026-04-20 23:09:27",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -25,15 +25,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
       "seriesKey": "日常",
-      "n": "2"
-    },
-    {
-      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
@@ -49,7 +45,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "それでも歩は寄せてくる",
+      "seriesKey": "ハッピーシュガーライフ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
@@ -65,7 +65,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "ガチアクタ",
       "n": "1"
     },
     {
@@ -97,7 +97,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ONE PIECE",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -105,7 +105,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -125,7 +125,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "大ダーク",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -201,7 +201,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アヤシモン",
+      "seriesKey": "風夏",
       "n": "1"
     },
     {
@@ -213,7 +213,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ハッピーシュガーライフ",
+      "seriesKey": "それでも歩は寄せてくる",
       "n": "1"
     },
     {
@@ -249,7 +249,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "風夏",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
@@ -257,16 +257,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "ONE PIECE",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 62,
-    "rows_before_limit_at_least": 70
+    "rows_before_limit_at_least": 69
   }
 }

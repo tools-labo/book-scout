@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-20T11:41:08.817Z",
-  "updatedAtJst": "2026-04-20 20:41:08",
+  "updatedAt": "2026-04-20T14:09:27.565Z",
+  "updatedAtJst": "2026-04-20 23:09:27",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
     {
       "id": "type_counts",
       "file": "type_counts.json",
-      "rows": 2
+      "rows": 1
     },
     {
       "id": "recent_200",
@@ -43,7 +43,7 @@
     {
       "id": "favorite_by_series",
       "file": "favorite_by_series.json",
-      "rows": 46
+      "rows": 0
     },
     {
       "id": "list_filter_by_query",
