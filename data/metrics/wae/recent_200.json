@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T03:44:32.552Z",
-  "updatedAtJst": "2026-04-21 12:44:32",
+  "updatedAt": "2026-04-21T06:13:02.624Z",
+  "updatedAtJst": "2026-04-21 15:13:02",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-21 05:48:16",
+      "timestampJst": "2026-04-21 14:48:16",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "見える子ちゃん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-21 05:00:37",
+      "timestampJst": "2026-04-21 14:00:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "光が死んだ夏",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-21 03:33:05",
       "timestampJst": "2026-04-21 12:33:05",
@@ -35180,7 +35206,7 @@
     }
   ],
   "raw": {
-    "rows": 2702,
-    "rows_before_limit_at_least": 2702
+    "rows": 2704,
+    "rows_before_limit_at_least": 2704
   }
 }
