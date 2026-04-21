@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T15:41:14.247Z",
-  "updatedAtJst": "2026-04-22 00:41:14",
+  "updatedAt": "2026-04-21T17:15:32.270Z",
+  "updatedAtJst": "2026-04-22 02:15:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -189,6 +189,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "四月は君の嘘",
+      "n": "1"
+    },
+    {
       "seriesKey": "NARUTO -ナルト-",
       "n": "1"
     },
@@ -206,6 +210,10 @@
     },
     {
       "seriesKey": "見える子ちゃん",
+      "n": "1"
+    },
+    {
+      "seriesKey": "モンスター娘のいる日常",
       "n": "1"
     },
     {
@@ -249,11 +257,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "彼女、お借りします",
       "n": "1"
     },
     {
@@ -294,7 +302,7 @@
     }
   ],
   "raw": {
-    "rows": 69,
-    "rows_before_limit_at_least": 77
+    "rows": 71,
+    "rows_before_limit_at_least": 79
   }
 }

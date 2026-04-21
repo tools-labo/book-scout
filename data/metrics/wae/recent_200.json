@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T15:41:14.247Z",
-  "updatedAtJst": "2026-04-22 00:41:14",
+  "updatedAt": "2026-04-21T17:15:32.270Z",
+  "updatedAtJst": "2026-04-22 02:15:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-21 16:06:16",
+      "timestampJst": "2026-04-22 01:06:16",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "四月は君の嘘",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-21 15:49:14",
+      "timestampJst": "2026-04-22 00:49:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "モンスター娘のいる日常",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-21 05:48:16",
       "timestampJst": "2026-04-21 14:48:16",
@@ -35206,7 +35232,7 @@
     }
   ],
   "raw": {
-    "rows": 2704,
-    "rows_before_limit_at_least": 2704
+    "rows": 2706,
+    "rows_before_limit_at_least": 2706
   }
 }
