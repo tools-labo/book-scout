@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-20T23:57:24.525Z",
-  "updatedAtJst": "2026-04-21 08:57:24",
+  "updatedAt": "2026-04-21T03:44:32.552Z",
+  "updatedAtJst": "2026-04-21 12:44:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,71 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-21 03:33:05",
+      "timestampJst": "2026-04-21 12:33:05",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "君は放課後インソムニア",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-21 03:08:25",
+      "timestampJst": "2026-04-21 12:08:25",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "食戟のソーマ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-21 03:07:34",
+      "timestampJst": "2026-04-21 12:07:34",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "彼女、お借りします",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-21 02:40:20",
+      "timestampJst": "2026-04-21 11:40:20",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドロヘドロ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-20 23:59:55",
+      "timestampJst": "2026-04-21 08:59:55",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "寄宿学校のジュリエット",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-20 17:24:45",
       "timestampJst": "2026-04-21 02:24:45",
@@ -35115,7 +35180,7 @@
     }
   ],
   "raw": {
-    "rows": 2697,
-    "rows_before_limit_at_least": 2697
+    "rows": 2702,
+    "rows_before_limit_at_least": 2702
   }
 }
