@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T19:35:46.335Z",
-  "updatedAtJst": "2026-04-22 04:35:46",
+  "updatedAt": "2026-04-21T21:04:09.292Z",
+  "updatedAtJst": "2026-04-22 06:04:09",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-21 19:43:54",
+      "timestampJst": "2026-04-22 04:43:54",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "トリコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-21 18:24:49",
       "timestampJst": "2026-04-22 03:24:49",
@@ -35258,7 +35271,7 @@
     }
   ],
   "raw": {
-    "rows": 2708,
-    "rows_before_limit_at_least": 2708
+    "rows": 2709,
+    "rows_before_limit_at_least": 2709
   }
 }

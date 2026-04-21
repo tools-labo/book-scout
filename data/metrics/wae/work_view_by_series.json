@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T19:35:46.335Z",
-  "updatedAtJst": "2026-04-22 04:35:46",
+  "updatedAt": "2026-04-21T21:04:09.292Z",
+  "updatedAtJst": "2026-04-22 06:04:09",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -57,6 +57,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "トリコ",
+      "n": "1"
+    },
+    {
       "seriesKey": "乙嫁語り",
       "n": "1"
     },
@@ -109,11 +113,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "十字架のろくにん",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -265,11 +269,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "彼女、お借りします",
       "n": "1"
     },
     {
@@ -297,20 +301,20 @@
       "n": "1"
     },
     {
-      "seriesKey": "ヴァンパイア騎士 (ナイト)",
-      "n": "1"
-    },
-    {
       "seriesKey": "それでも歩は寄せてくる",
       "n": "1"
     },
     {
-      "seriesKey": "大ダーク",
+      "seriesKey": "ヴァンパイア騎士 (ナイト)",
+      "n": "1"
+    },
+    {
+      "seriesKey": "十字架のろくにん",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 73,
-    "rows_before_limit_at_least": 81
+    "rows": 74,
+    "rows_before_limit_at_least": 82
   }
 }
