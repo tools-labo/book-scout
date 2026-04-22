@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T23:50:34.189Z",
-  "updatedAtJst": "2026-04-22 08:50:34",
+  "updatedAt": "2026-04-22T03:40:59.146Z",
+  "updatedAtJst": "2026-04-22 12:40:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,84 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-22 03:11:38",
+      "timestampJst": "2026-04-22 12:11:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "聲の形",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-22 03:10:26",
+      "timestampJst": "2026-04-22 12:10:26",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アクタージュ act-age",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-22 02:45:54",
+      "timestampJst": "2026-04-22 11:45:54",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "はじめてのギャル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-22 02:34:57",
+      "timestampJst": "2026-04-22 11:34:57",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "シャドーハウス",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-22 00:25:25",
+      "timestampJst": "2026-04-22 09:25:25",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "宝石の国",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-21 23:54:08",
+      "timestampJst": "2026-04-22 08:54:08",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "鋼の錬金術師",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-21 21:55:33",
       "timestampJst": "2026-04-22 06:55:33",
@@ -35284,7 +35362,7 @@
     }
   ],
   "raw": {
-    "rows": 2710,
-    "rows_before_limit_at_least": 2710
+    "rows": 2716,
+    "rows_before_limit_at_least": 2716
   }
 }

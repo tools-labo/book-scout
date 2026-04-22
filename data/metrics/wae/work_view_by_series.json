@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T23:50:34.189Z",
-  "updatedAtJst": "2026-04-22 08:50:34",
+  "updatedAt": "2026-04-22T03:40:59.146Z",
+  "updatedAtJst": "2026-04-22 12:40:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -33,6 +33,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "アクタージュ act-age",
+      "n": "2"
+    },
+    {
       "seriesKey": "あしたのジョー",
       "n": "2"
     },
@@ -49,11 +53,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ハッピーシュガーライフ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "桃源暗鬼",
+      "seriesKey": "風夏",
       "n": "1"
     },
     {
@@ -69,11 +69,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -97,11 +97,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "宝石の国",
+      "n": "1"
+    },
+    {
       "seriesKey": "20世紀少年",
       "n": "1"
     },
     {
       "seriesKey": "21世紀少年",
+      "n": "1"
+    },
+    {
+      "seriesKey": "聲の形",
       "n": "1"
     },
     {
@@ -113,11 +121,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "桃源暗鬼",
       "n": "1"
     },
     {
-      "seriesKey": "大ダーク",
+      "seriesKey": "ガチアクタ",
       "n": "1"
     },
     {
@@ -129,6 +137,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "鋼の錬金術師",
+      "n": "1"
+    },
+    {
       "seriesKey": "うるわしの宵の月",
       "n": "1"
     },
@@ -137,7 +149,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アヤシモン",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -150,6 +162,14 @@
     },
     {
       "seriesKey": "よふかしのうた",
+      "n": "1"
+    },
+    {
+      "seriesKey": "シャドーハウス",
+      "n": "1"
+    },
+    {
+      "seriesKey": "はじめてのギャル",
       "n": "1"
     },
     {
@@ -241,7 +261,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "風夏",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -249,11 +269,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "寄宿学校のジュリエット",
       "n": "1"
     },
     {
-      "seriesKey": "寄宿学校のジュリエット",
+      "seriesKey": "ハッピーシュガーライフ",
       "n": "1"
     },
     {
@@ -318,7 +338,7 @@
     }
   ],
   "raw": {
-    "rows": 75,
-    "rows_before_limit_at_least": 83
+    "rows": 80,
+    "rows_before_limit_at_least": 89
   }
 }
