@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-23T19:39:41.663Z",
-  "updatedAtJst": "2026-04-24 04:39:41",
+  "updatedAt": "2026-04-23T21:05:48.875Z",
+  "updatedAtJst": "2026-04-24 06:05:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-23 20:44:30",
+      "timestampJst": "2026-04-24 05:44:30",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "フルーツバスケット",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-23 19:50:38",
+      "timestampJst": "2026-04-24 04:50:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "それでも歩は寄せてくる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-22 04:28:10",
       "timestampJst": "2026-04-22 13:28:10",
@@ -35388,7 +35414,7 @@
     }
   ],
   "raw": {
-    "rows": 2718,
-    "rows_before_limit_at_least": 2718
+    "rows": 2720,
+    "rows_before_limit_at_least": 2720
   }
 }

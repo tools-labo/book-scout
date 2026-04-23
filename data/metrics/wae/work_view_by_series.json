@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-23T19:39:41.663Z",
-  "updatedAtJst": "2026-04-24 04:39:41",
+  "updatedAt": "2026-04-23T21:05:48.875Z",
+  "updatedAtJst": "2026-04-24 06:05:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -25,11 +25,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "Re:ゼロから始める異世界生活",
+      "seriesKey": "それでも歩は寄せてくる",
       "n": "2"
     },
     {
       "seriesKey": "日常",
+      "n": "2"
+    },
+    {
+      "seriesKey": "Re:ゼロから始める異世界生活",
       "n": "2"
     },
     {
@@ -57,11 +61,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "風夏",
-      "n": "1"
-    },
-    {
-      "seriesKey": "乙嫁語り",
+      "seriesKey": "寄宿学校のジュリエット",
       "n": "1"
     },
     {
@@ -69,11 +69,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "桃源暗鬼",
+      "seriesKey": "トリコ",
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "桃源暗鬼",
       "n": "1"
     },
     {
@@ -125,7 +125,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "トリコ",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
@@ -149,7 +149,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -261,11 +261,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "大ダーク",
+      "seriesKey": "ガチアクタ",
       "n": "1"
     },
     {
-      "seriesKey": "アヤシモン",
+      "seriesKey": "大ダーク",
       "n": "1"
     },
     {
@@ -273,7 +273,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "寄宿学校のジュリエット",
+      "seriesKey": "アヤシモン",
       "n": "1"
     },
     {
@@ -294,6 +294,10 @@
     },
     {
       "seriesKey": "なんでここに先生が!?",
+      "n": "1"
+    },
+    {
+      "seriesKey": "フルーツバスケット",
       "n": "1"
     },
     {
@@ -321,7 +325,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "亜人",
+      "seriesKey": "風夏",
       "n": "1"
     },
     {
@@ -333,16 +337,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "それでも歩は寄せてくる",
+      "seriesKey": "亜人",
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "乙嫁語り",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 81,
-    "rows_before_limit_at_least": 91
+    "rows": 82,
+    "rows_before_limit_at_least": 93
   }
 }
