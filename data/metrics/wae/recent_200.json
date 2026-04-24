@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-24T17:58:45.293Z",
-  "updatedAtJst": "2026-04-25 02:58:45",
+  "updatedAt": "2026-04-24T19:11:52.291Z",
+  "updatedAtJst": "2026-04-25 04:11:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,71 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-24 18:52:50",
+      "timestampJst": "2026-04-25 03:52:50",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NHKにようこそ!",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-24 18:06:00",
+      "timestampJst": "2026-04-25 03:06:00",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヴォイニッチホテル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-24 18:05:55",
+      "timestampJst": "2026-04-25 03:05:55",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ブラッドラッド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-24 18:05:53",
+      "timestampJst": "2026-04-25 03:05:53",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "葬送のフリーレン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-24 18:04:47",
+      "timestampJst": "2026-04-25 03:04:47",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "焼いてるふたり",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-24 02:05:31",
       "timestampJst": "2026-04-24 11:05:31",
@@ -35427,7 +35492,7 @@
     }
   ],
   "raw": {
-    "rows": 2721,
-    "rows_before_limit_at_least": 2721
+    "rows": 2726,
+    "rows_before_limit_at_least": 2726
   }
 }
