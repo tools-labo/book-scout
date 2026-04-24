@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-24T00:01:10.825Z",
-  "updatedAtJst": "2026-04-24 09:01:10",
+  "updatedAt": "2026-04-24T03:48:48.893Z",
+  "updatedAtJst": "2026-04-24 12:48:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -18,6 +18,10 @@
   "rows": [
     {
       "seriesKey": "デッドデッドデーモンズデデデデデストラクション",
+      "n": "3"
+    },
+    {
+      "seriesKey": "ルリドラゴン",
       "n": "3"
     },
     {
@@ -46,10 +50,6 @@
     },
     {
       "seriesKey": "あしたのジョー",
-      "n": "2"
-    },
-    {
-      "seriesKey": "ルリドラゴン",
       "n": "2"
     },
     {
@@ -347,6 +347,6 @@
   ],
   "raw": {
     "rows": 82,
-    "rows_before_limit_at_least": 93
+    "rows_before_limit_at_least": 94
   }
 }

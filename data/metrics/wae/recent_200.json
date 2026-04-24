@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-24T00:01:10.825Z",
-  "updatedAtJst": "2026-04-24 09:01:10",
+  "updatedAt": "2026-04-24T03:48:48.893Z",
+  "updatedAtJst": "2026-04-24 12:48:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-24 02:05:31",
+      "timestampJst": "2026-04-24 11:05:31",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ルリドラゴン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-23 20:44:30",
       "timestampJst": "2026-04-24 05:44:30",
@@ -35414,7 +35427,7 @@
     }
   ],
   "raw": {
-    "rows": 2720,
-    "rows_before_limit_at_least": 2720
+    "rows": 2721,
+    "rows_before_limit_at_least": 2721
   }
 }
