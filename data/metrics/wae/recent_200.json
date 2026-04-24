@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-24T19:11:52.291Z",
-  "updatedAtJst": "2026-04-25 04:11:52",
+  "updatedAt": "2026-04-24T20:00:27.033Z",
+  "updatedAtJst": "2026-04-25 05:00:27",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-24 19:46:51",
+      "timestampJst": "2026-04-25 04:46:51",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヒナまつり",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-24 19:44:19",
+      "timestampJst": "2026-04-25 04:44:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "イケメン女と箱入り娘",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-24 18:52:50",
       "timestampJst": "2026-04-25 03:52:50",
@@ -35492,7 +35518,7 @@
     }
   ],
   "raw": {
-    "rows": 2726,
-    "rows_before_limit_at_least": 2726
+    "rows": 2728,
+    "rows_before_limit_at_least": 2728
   }
 }
