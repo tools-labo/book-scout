@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-24T20:00:27.033Z",
-  "updatedAtJst": "2026-04-25 05:00:27",
+  "updatedAt": "2026-04-24T21:04:53.917Z",
+  "updatedAtJst": "2026-04-25 06:04:53",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-24 20:35:27",
+      "timestampJst": "2026-04-25 05:35:27",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "さびしすぎてレズ風俗に行きましたレポ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-24 19:46:51",
       "timestampJst": "2026-04-25 04:46:51",
@@ -35518,7 +35531,7 @@
     }
   ],
   "raw": {
-    "rows": 2728,
-    "rows_before_limit_at_least": 2728
+    "rows": 2729,
+    "rows_before_limit_at_least": 2729
   }
 }
