@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-25T23:53:37.831Z",
-  "updatedAtJst": "2026-04-26 08:53:37",
+  "updatedAt": "2026-04-26T03:54:34.986Z",
+  "updatedAtJst": "2026-04-26 12:54:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-26 02:19:27",
+      "timestampJst": "2026-04-26 11:19:27",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "天空侵犯",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-04-26 00:10:49",
+      "timestampJst": "2026-04-26 09:10:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "オオカミ少女と黒王子",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-25 21:41:36",
       "timestampJst": "2026-04-26 06:41:36",
@@ -35557,7 +35583,7 @@
     }
   ],
   "raw": {
-    "rows": 2731,
-    "rows_before_limit_at_least": 2731
+    "rows": 2733,
+    "rows_before_limit_at_least": 2733
   }
 }
