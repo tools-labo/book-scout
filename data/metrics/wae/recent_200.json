@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-26T23:55:12.420Z",
-  "updatedAtJst": "2026-04-27 08:55:12",
+  "updatedAt": "2026-04-27T03:58:41.481Z",
+  "updatedAtJst": "2026-04-27 12:58:41",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-27 02:20:49",
+      "timestampJst": "2026-04-27 11:20:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジャガーン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-26 02:19:27",
       "timestampJst": "2026-04-26 11:19:27",
@@ -35583,7 +35596,7 @@
     }
   ],
   "raw": {
-    "rows": 2733,
-    "rows_before_limit_at_least": 2733
+    "rows": 2734,
+    "rows_before_limit_at_least": 2734
   }
 }
