@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-29T16:52:23.612Z",
-  "updatedAtJst": "2026-04-30 01:52:23",
+  "updatedAt": "2026-04-29T18:46:08.654Z",
+  "updatedAtJst": "2026-04-30 03:46:08",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-29 18:28:02",
+      "timestampJst": "2026-04-30 03:28:02",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ばらかもん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-29 10:11:50",
       "timestampJst": "2026-04-29 19:11:50",
@@ -35648,7 +35661,7 @@
     }
   ],
   "raw": {
-    "rows": 2738,
-    "rows_before_limit_at_least": 2738
+    "rows": 2739,
+    "rows_before_limit_at_least": 2739
   }
 }
