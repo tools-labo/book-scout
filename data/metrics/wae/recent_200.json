@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-29T20:20:03.140Z",
-  "updatedAtJst": "2026-04-30 05:20:03",
+  "updatedAt": "2026-04-29T22:10:49.762Z",
+  "updatedAtJst": "2026-04-30 07:10:49",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-29 20:37:46",
+      "timestampJst": "2026-04-30 05:37:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "オーバーロード",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-29 18:28:02",
       "timestampJst": "2026-04-30 03:28:02",
@@ -35661,7 +35674,7 @@
     }
   ],
   "raw": {
-    "rows": 2739,
-    "rows_before_limit_at_least": 2739
+    "rows": 2740,
+    "rows_before_limit_at_least": 2740
   }
 }
