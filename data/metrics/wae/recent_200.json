@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-29T00:06:02.637Z",
-  "updatedAtJst": "2026-04-29 09:06:02",
+  "updatedAt": "2026-04-29T04:01:28.421Z",
+  "updatedAtJst": "2026-04-29 13:01:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-29 03:43:07",
+      "timestampJst": "2026-04-29 12:43:07",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ジョジョの奇妙な冒険 戦闘潮流",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-28 22:37:28",
       "timestampJst": "2026-04-29 07:37:28",
@@ -35609,7 +35622,7 @@
     }
   ],
   "raw": {
-    "rows": 2735,
-    "rows_before_limit_at_least": 2735
+    "rows": 2736,
+    "rows_before_limit_at_least": 2736
   }
 }
