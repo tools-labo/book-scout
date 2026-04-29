@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-29T06:36:19.325Z",
-  "updatedAtJst": "2026-04-29 15:36:19",
+  "updatedAt": "2026-04-29T09:23:04.168Z",
+  "updatedAtJst": "2026-04-29 18:23:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-04-29 07:33:49",
+      "timestampJst": "2026-04-29 16:33:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "望まぬ不死の冒険者",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-04-29 03:43:07",
       "timestampJst": "2026-04-29 12:43:07",
@@ -35622,7 +35635,7 @@
     }
   ],
   "raw": {
-    "rows": 2736,
-    "rows_before_limit_at_least": 2736
+    "rows": 2737,
+    "rows_before_limit_at_least": 2737
   }
 }
