@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-03T15:59:40.857Z",
-  "updatedAtJst": "2026-05-04 00:59:40",
+  "updatedAt": "2026-05-03T17:06:44.172Z",
+  "updatedAtJst": "2026-05-04 02:06:44",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-05-03 16:45:04",
+      "timestampJst": "2026-05-04 01:45:04",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "少女終末旅行",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-05-02 06:36:59",
       "timestampJst": "2026-05-02 15:36:59",
@@ -35713,7 +35726,7 @@
     }
   ],
   "raw": {
-    "rows": 2743,
-    "rows_before_limit_at_least": 2743
+    "rows": 2744,
+    "rows_before_limit_at_least": 2744
   }
 }
