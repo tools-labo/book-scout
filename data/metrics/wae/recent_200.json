@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-05T09:19:06.688Z",
-  "updatedAtJst": "2026-05-05 18:19:06",
+  "updatedAt": "2026-05-05T11:37:01.544Z",
+  "updatedAtJst": "2026-05-05 20:37:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-05-05 10:49:38",
+      "timestampJst": "2026-05-05 19:49:38",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "クズの本懐",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-05-03 16:45:04",
       "timestampJst": "2026-05-04 01:45:04",
@@ -35726,7 +35739,7 @@
     }
   ],
   "raw": {
-    "rows": 2744,
-    "rows_before_limit_at_least": 2744
+    "rows": 2745,
+    "rows_before_limit_at_least": 2745
   }
 }
