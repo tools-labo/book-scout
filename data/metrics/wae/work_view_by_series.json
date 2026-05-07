@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-07T12:04:36.539Z",
-  "updatedAtJst": "2026-05-07 21:04:36",
+  "updatedAt": "2026-05-07T14:48:47.495Z",
+  "updatedAtJst": "2026-05-07 23:48:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,11 +21,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "ルリドラゴン",
-      "n": "3"
-    },
-    {
-      "seriesKey": "呪術廻戦≡",
+      "seriesKey": "ドロヘドロ",
       "n": "2"
     },
     {
@@ -53,7 +49,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "ドロヘドロ",
+      "seriesKey": "ルリドラゴン",
       "n": "2"
     },
     {
@@ -62,6 +58,10 @@
     },
     {
       "seriesKey": "終末のワルキューレ",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ばらかもん",
       "n": "1"
     },
     {
@@ -81,7 +81,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "犬夜叉",
+      "seriesKey": "呪術廻戦≡",
       "n": "1"
     },
     {
@@ -106,10 +106,6 @@
     },
     {
       "seriesKey": "あかね噺",
-      "n": "1"
-    },
-    {
-      "seriesKey": "キングダム",
       "n": "1"
     },
     {
@@ -145,19 +141,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "十字架のろくにん",
-      "n": "1"
-    },
-    {
       "seriesKey": "クズの本懐",
       "n": "1"
     },
     {
-      "seriesKey": "ばらかもん",
+      "seriesKey": "アイシールド21",
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "犬夜叉",
       "n": "1"
     },
     {
@@ -389,11 +381,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドメスティックな彼女",
+      "seriesKey": "彼女、お借りします",
       "n": "1"
     },
     {
-      "seriesKey": "彼女、お借りします",
+      "seriesKey": "ドメスティックな彼女",
       "n": "1"
     },
     {
@@ -433,12 +425,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 105,
-    "rows_before_limit_at_least": 117
+    "rows": 103,
+    "rows_before_limit_at_least": 113
   }
 }
