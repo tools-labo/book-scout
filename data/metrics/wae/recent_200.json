@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-12T12:15:05.534Z",
-  "updatedAtJst": "2026-05-12 21:15:05",
+  "updatedAt": "2026-05-12T15:09:17.296Z",
+  "updatedAtJst": "2026-05-13 00:09:17",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-05-12 13:08:15",
+      "timestampJst": "2026-05-12 22:08:15",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "マギ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-05-05 23:44:56",
       "timestampJst": "2026-05-06 08:44:56",
@@ -35752,7 +35765,7 @@
     }
   ],
   "raw": {
-    "rows": 2746,
-    "rows_before_limit_at_least": 2746
+    "rows": 2747,
+    "rows_before_limit_at_least": 2747
   }
 }
