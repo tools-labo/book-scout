@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-22T23:18:23.418Z",
-  "updatedAtJst": "2026-05-23 08:18:23",
+  "updatedAt": "2026-05-23T04:06:14.192Z",
+  "updatedAtJst": "2026-05-23 13:06:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -35723,75 +35723,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-02-19 15:43:28",
-      "timestampJst": "2026-02-20 00:43:28",
-      "type": "test",
-      "schema": "book-scout-events.dx7qqdcchs.workers.dev",
-      "page": "GET",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-02-19 15:43:28",
-      "timestampJst": "2026-02-20 00:43:28",
-      "type": "test",
-      "schema": "book-scout-events.dx7qqdcchs.workers.dev",
-      "page": "GET",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-02-19 15:43:26",
-      "timestampJst": "2026-02-20 00:43:26",
-      "type": "test",
-      "schema": "book-scout-events.dx7qqdcchs.workers.dev",
-      "page": "GET",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-02-19 15:43:23",
-      "timestampJst": "2026-02-20 00:43:23",
-      "type": "test",
-      "schema": "book-scout-events.dx7qqdcchs.workers.dev",
-      "page": "GET",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-02-19 15:42:48",
-      "timestampJst": "2026-02-20 00:42:48",
-      "type": "test",
-      "schema": "book-scout-events.dx7qqdcchs.workers.dev",
-      "page": "GET",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 2749,
-    "rows_before_limit_at_least": 2749
+    "rows": 2744,
+    "rows_before_limit_at_least": 2744
   }
 }
