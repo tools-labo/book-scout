@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-24T18:12:11.026Z",
-  "updatedAtJst": "2026-05-25 03:12:11",
+  "updatedAt": "2026-05-24T19:40:05.644Z",
+  "updatedAtJst": "2026-05-25 04:40:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -49,15 +49,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "NHKにようこそ!",
+      "seriesKey": "少女終末旅行",
       "n": "1"
     },
     {
       "seriesKey": "ひるなかの流星",
-      "n": "1"
-    },
-    {
-      "seriesKey": "少女終末旅行",
       "n": "1"
     },
     {
@@ -114,7 +110,7 @@
     }
   ],
   "raw": {
-    "rows": 24,
-    "rows_before_limit_at_least": 24
+    "rows": 23,
+    "rows_before_limit_at_least": 23
   }
 }
