@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-26T23:32:07.993Z",
-  "updatedAtJst": "2026-05-27 08:32:07",
+  "updatedAt": "2026-05-27T04:46:32.957Z",
+  "updatedAtJst": "2026-05-27 13:46:32",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -13,12 +13,12 @@
     {
       "id": "recent_200",
       "file": "recent_200.json",
-      "rows": 2350
+      "rows": 2257
     },
     {
       "id": "work_view_by_series",
       "file": "work_view_by_series.json",
-      "rows": 16
+      "rows": 15
     },
     {
       "id": "vote_by_series",

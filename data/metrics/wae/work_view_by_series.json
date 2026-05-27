@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-26T23:32:07.993Z",
-  "updatedAtJst": "2026-05-27 08:32:07",
+  "updatedAt": "2026-05-27T04:46:32.957Z",
+  "updatedAtJst": "2026-05-27 13:46:32",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -26,10 +26,6 @@
     },
     {
       "seriesKey": "ばらかもん",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ジャガーン",
       "n": "1"
     },
     {
@@ -82,7 +78,7 @@
     }
   ],
   "raw": {
-    "rows": 16,
-    "rows_before_limit_at_least": 16
+    "rows": 15,
+    "rows_before_limit_at_least": 15
   }
 }
