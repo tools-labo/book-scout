@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-29T16:52:55.482Z",
-  "updatedAtJst": "2026-05-30 01:52:55",
+  "updatedAt": "2026-05-29T19:39:51.012Z",
+  "updatedAtJst": "2026-05-30 04:39:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -26,10 +26,6 @@
     },
     {
       "seriesKey": "クズの本懐",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ばらかもん",
       "n": "1"
     },
     {
@@ -82,7 +78,7 @@
     }
   ],
   "raw": {
-    "rows": 16,
-    "rows_before_limit_at_least": 17
+    "rows": 15,
+    "rows_before_limit_at_least": 16
   }
 }
