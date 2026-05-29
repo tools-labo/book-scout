@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-29T08:50:55.134Z",
-  "updatedAtJst": "2026-05-29 17:50:55",
+  "updatedAt": "2026-05-29T12:26:19.593Z",
+  "updatedAtJst": "2026-05-29 21:26:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-05-29 10:46:30",
+      "timestampJst": "2026-05-29 19:46:30",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "双星の陰陽師",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-05-29 00:35:35",
       "timestampJst": "2026-05-29 09:35:35",
@@ -25833,7 +25846,7 @@
     }
   ],
   "raw": {
-    "rows": 1983,
-    "rows_before_limit_at_least": 1983
+    "rows": 1984,
+    "rows_before_limit_at_least": 1984
   }
 }
