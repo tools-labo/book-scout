@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-01T05:14:25.154Z",
-  "updatedAtJst": "2026-06-01 14:14:25",
+  "updatedAt": "2026-06-01T10:31:11.333Z",
+  "updatedAtJst": "2026-06-01 19:31:11",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-06-01 05:38:31",
+      "timestampJst": "2026-06-01 14:38:31",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "子連れ狼",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-06-01 05:34:49",
+      "timestampJst": "2026-06-01 14:34:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "紙袋くんは恋してる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-05-31 18:16:41",
       "timestampJst": "2026-06-01 03:16:41",
@@ -22518,7 +22544,7 @@
     }
   ],
   "raw": {
-    "rows": 1728,
-    "rows_before_limit_at_least": 1728
+    "rows": 1730,
+    "rows_before_limit_at_least": 1730
   }
 }
