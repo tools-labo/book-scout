@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-04T22:43:44.285Z",
-  "updatedAtJst": "2026-06-05 07:43:44",
+  "updatedAt": "2026-06-05T00:19:23.382Z",
+  "updatedAtJst": "2026-06-05 09:19:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -45,10 +45,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "風の谷のナウシカ",
-      "n": "1"
-    },
-    {
       "seriesKey": "トモダチゲーム",
       "n": "1"
     },
@@ -70,7 +66,7 @@
     }
   ],
   "raw": {
-    "rows": 13,
-    "rows_before_limit_at_least": 15
+    "rows": 12,
+    "rows_before_limit_at_least": 14
   }
 }
