@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-06T00:18:26.000Z",
-  "updatedAtJst": "2026-06-06 09:18:26",
+  "updatedAt": "2026-06-06T05:04:11.429Z",
+  "updatedAtJst": "2026-06-06 14:04:11",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -10984,101 +10984,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-03-05 12:39:48",
-      "timestampJst": "2026-03-05 21:39:48",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-05 12:38:46",
-      "timestampJst": "2026-03-05 21:38:46",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "双星の陰陽師",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-05 12:38:43",
-      "timestampJst": "2026-03-05 21:38:43",
-      "type": "rate",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "青の祓魔師",
-      "mood": "art",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 3
-    },
-    {
-      "timestamp": "2026-03-05 12:38:41",
-      "timestampJst": "2026-03-05 21:38:41",
-      "type": "rate",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "青の祓魔師",
-      "mood": "rec",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": 4
-    },
-    {
-      "timestamp": "2026-03-05 12:38:39",
-      "timestampJst": "2026-03-05 21:38:39",
-      "type": "vote",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "青の祓魔師",
-      "mood": "tearjerker",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-05 12:38:34",
-      "timestampJst": "2026-03-05 21:38:34",
-      "type": "favorite",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "青の祓魔師",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-05 12:17:43",
-      "timestampJst": "2026-03-05 21:17:43",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "銀魂",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 848,
-    "rows_before_limit_at_least": 848
+    "rows": 841,
+    "rows_before_limit_at_least": 841
   }
 }
