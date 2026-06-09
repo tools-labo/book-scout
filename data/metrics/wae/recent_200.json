@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-08T23:34:59.564Z",
-  "updatedAtJst": "2026-06-09 08:34:59",
+  "updatedAt": "2026-06-09T04:31:54.198Z",
+  "updatedAtJst": "2026-06-09 13:31:54",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -9736,49 +9736,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-03-08 22:11:00",
-      "timestampJst": "2026-03-09 07:11:00",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "亜人",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-08 15:30:44",
-      "timestampJst": "2026-03-09 00:30:44",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "aud=少年",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-08 12:27:09",
-      "timestampJst": "2026-03-08 21:27:09",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ふたり明日もそれなりに",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 748,
-    "rows_before_limit_at_least": 748
+    "rows": 745,
+    "rows_before_limit_at_least": 745
   }
 }
