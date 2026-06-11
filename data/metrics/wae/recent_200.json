@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-10T22:55:51.002Z",
-  "updatedAtJst": "2026-06-11 07:55:51",
+  "updatedAt": "2026-06-11T01:37:34.949Z",
+  "updatedAtJst": "2026-06-11 10:37:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-06-11 01:16:00",
+      "timestampJst": "2026-06-11 10:16:00",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ツバサ -RESERVoir CHRoNiCLE-",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-06-08 05:17:06",
       "timestampJst": "2026-06-08 14:17:06",
@@ -9333,127 +9346,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 16:42:31",
-      "timestampJst": "2026-03-11 01:42:31",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ヲタクに恋は難しい",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 16:35:12",
-      "timestampJst": "2026-03-11 01:35:12",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ベルセルク",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 15:55:31",
-      "timestampJst": "2026-03-11 00:55:31",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "月が導く異世界道中",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 13:03:01",
-      "timestampJst": "2026-03-10 22:03:01",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "無限の住人",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 12:13:49",
-      "timestampJst": "2026-03-10 21:13:49",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "君の膵臓をたべたい",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 10:05:27",
-      "timestampJst": "2026-03-10 19:05:27",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "それでも歩は寄せてくる",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 09:53:37",
-      "timestampJst": "2026-03-10 18:53:37",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "月が導く異世界道中",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 06:57:29",
-      "timestampJst": "2026-03-10 15:57:29",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "aud=その他",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-10 06:57:23",
-      "timestampJst": "2026-03-10 15:57:23",
-      "type": "list_filter",
-      "schema": "v2",
-      "page": "list",
-      "seriesKey": "",
-      "mood": "",
-      "genre": "",
-      "aud": "aud=Web/アプリ",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 723,
-    "rows_before_limit_at_least": 723
+    "rows": 715,
+    "rows_before_limit_at_least": 715
   }
 }
