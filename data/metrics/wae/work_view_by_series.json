@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-11T11:46:36.736Z",
-  "updatedAtJst": "2026-06-11 20:46:36",
+  "updatedAt": "2026-06-11T16:19:26.328Z",
+  "updatedAtJst": "2026-06-12 01:19:26",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -29,11 +29,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "アオハライド",
-      "n": "2"
-    },
-    {
-      "seriesKey": "アクタージュ act-age",
+      "seriesKey": "暗殺教室",
       "n": "2"
     },
     {
@@ -42,6 +38,10 @@
     },
     {
       "seriesKey": "あかね噺",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
       "n": "2"
     },
     {
@@ -57,15 +57,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "暗殺教室",
-      "n": "2"
-    },
-    {
       "seriesKey": "あしたのジョー",
       "n": "2"
     },
     {
       "seriesKey": "アカメが斬る！",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アオハライド",
       "n": "2"
     },
     {
@@ -77,10 +77,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "子連れ狼",
-      "n": "1"
-    },
-    {
       "seriesKey": "なまいきざかり。",
       "n": "1"
     },
@@ -89,11 +85,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "子連れ狼",
       "n": "1"
     },
     {
-      "seriesKey": "おやすみプンプン",
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -101,7 +97,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "怪獣８号",
+      "seriesKey": "おやすみプンプン",
       "n": "1"
     },
     {
@@ -109,19 +105,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "怪獣８号",
+      "n": "1"
+    },
+    {
+      "seriesKey": "古見さんは、コミュ症です。",
+      "n": "1"
+    },
+    {
+      "seriesKey": "進撃の巨人",
+      "n": "1"
+    },
+    {
       "seriesKey": "戦隊大失格",
-      "n": "1"
-    },
-    {
-      "seriesKey": "マギ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -137,12 +133,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "古見さんは、コミュ症です。",
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 31,
-    "rows_before_limit_at_least": 46
+    "rows": 30,
+    "rows_before_limit_at_least": 45
   }
 }
