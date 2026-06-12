@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-11T23:54:28.475Z",
-  "updatedAtJst": "2026-06-12 08:54:28",
+  "updatedAt": "2026-06-12T05:01:04.457Z",
+  "updatedAtJst": "2026-06-12 14:01:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -9281,75 +9281,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-03-11 17:56:05",
-      "timestampJst": "2026-03-12 02:56:05",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "パンドラハーツ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-11 13:51:38",
-      "timestampJst": "2026-03-11 22:51:38",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "トモダチゲーム",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-11 07:32:08",
-      "timestampJst": "2026-03-11 16:32:08",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "光が死んだ夏",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-11 05:30:58",
-      "timestampJst": "2026-03-11 14:30:58",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "月が導く異世界道中",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-11 03:25:56",
-      "timestampJst": "2026-03-11 12:25:56",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "デッドデッドデーモンズデデデデデストラクション",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 715,
-    "rows_before_limit_at_least": 715
+    "rows": 710,
+    "rows_before_limit_at_least": 710
   }
 }
