@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-18T11:16:22.548Z",
-  "updatedAtJst": "2026-06-18 20:16:22",
+  "updatedAt": "2026-06-18T15:50:54.301Z",
+  "updatedAtJst": "2026-06-19 00:50:54",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,15 +21,15 @@
       "n": "4"
     },
     {
-      "seriesKey": "双星の陰陽師",
-      "n": "3"
-    },
-    {
       "seriesKey": "とんがり帽子のアトリエ",
       "n": "2"
     },
     {
-      "seriesKey": "暗殺教室",
+      "seriesKey": "アオハライド",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アクタージュ act-age",
       "n": "2"
     },
     {
@@ -38,10 +38,6 @@
     },
     {
       "seriesKey": "あかね噺",
-      "n": "2"
-    },
-    {
-      "seriesKey": "アクタージュ act-age",
       "n": "2"
     },
     {
@@ -57,6 +53,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "暗殺教室",
+      "n": "2"
+    },
+    {
       "seriesKey": "あしたのジョー",
       "n": "2"
     },
@@ -65,7 +65,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "アオハライド",
+      "seriesKey": "双星の陰陽師",
       "n": "2"
     },
     {
@@ -73,11 +73,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "テラフォーマーズ",
+      "seriesKey": "子連れ狼",
       "n": "1"
     },
     {
-      "seriesKey": "なまいきざかり。",
+      "seriesKey": "テラフォーマーズ",
       "n": "1"
     },
     {
@@ -85,15 +85,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "子連れ狼",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ぐらんぶる",
-      "n": "1"
-    },
-    {
-      "seriesKey": "トモダチゲーム",
+      "seriesKey": "なまいきざかり。",
       "n": "1"
     },
     {
@@ -101,7 +93,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "紙袋くんは恋してる",
+      "seriesKey": "トモダチゲーム",
       "n": "1"
     },
     {
@@ -109,7 +101,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "古見さんは、コミュ症です。",
+      "seriesKey": "紙袋くんは恋してる",
+      "n": "1"
+    },
+    {
+      "seriesKey": "戦隊大失格",
       "n": "1"
     },
     {
@@ -117,7 +113,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "戦隊大失格",
+      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ぐらんぶる",
       "n": "1"
     },
     {
@@ -133,12 +133,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
+      "seriesKey": "古見さんは、コミュ症です。",
       "n": "1"
     }
   ],
   "raw": {
     "rows": 30,
-    "rows_before_limit_at_least": 46
+    "rows_before_limit_at_least": 45
   }
 }
