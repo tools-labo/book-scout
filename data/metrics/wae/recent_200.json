@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-17T22:52:04.939Z",
-  "updatedAtJst": "2026-06-18 07:52:04",
+  "updatedAt": "2026-06-18T01:39:29.341Z",
+  "updatedAtJst": "2026-06-18 10:39:29",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -2833,23 +2833,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-03-17 12:30:33",
-      "timestampJst": "2026-03-17 21:30:33",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ホーリーランド",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 215,
-    "rows_before_limit_at_least": 215
+    "rows": 214,
+    "rows_before_limit_at_least": 214
   }
 }
