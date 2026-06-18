@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-18T01:39:29.341Z",
-  "updatedAtJst": "2026-06-18 10:39:29",
+  "updatedAt": "2026-06-18T07:04:13.408Z",
+  "updatedAtJst": "2026-06-18 16:04:13",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-06-18 04:42:49",
+      "timestampJst": "2026-06-18 13:42:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ラストゲーム",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-06-11 01:16:00",
       "timestampJst": "2026-06-11 10:16:00",
@@ -2836,7 +2849,7 @@
     }
   ],
   "raw": {
-    "rows": 214,
-    "rows_before_limit_at_least": 214
+    "rows": 215,
+    "rows_before_limit_at_least": 215
   }
 }
