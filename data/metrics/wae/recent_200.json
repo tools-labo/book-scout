@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-19T23:12:52.688Z",
-  "updatedAtJst": "2026-06-20 08:12:52",
+  "updatedAt": "2026-06-20T00:19:44.793Z",
+  "updatedAtJst": "2026-06-20 09:19:44",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -2820,36 +2820,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-03-19 05:32:08",
-      "timestampJst": "2026-03-19 14:32:08",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ぐらんぶる",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-03-19 02:05:26",
-      "timestampJst": "2026-03-19 11:05:26",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ハッピーシュガーライフ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 215,
-    "rows_before_limit_at_least": 215
+    "rows": 213,
+    "rows_before_limit_at_least": 213
   }
 }
