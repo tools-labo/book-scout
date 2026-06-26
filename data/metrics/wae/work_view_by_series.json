@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-26T13:18:49.490Z",
-  "updatedAtJst": "2026-06-26 22:18:49",
+  "updatedAt": "2026-06-26T16:27:09.515Z",
+  "updatedAtJst": "2026-06-27 01:27:09",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,15 +21,11 @@
       "n": "3"
     },
     {
-      "seriesKey": "とんがり帽子のアトリエ",
-      "n": "2"
-    },
-    {
-      "seriesKey": "アオハライド",
-      "n": "2"
-    },
-    {
       "seriesKey": "アクタージュ act-age",
+      "n": "2"
+    },
+    {
+      "seriesKey": "暗殺教室",
       "n": "2"
     },
     {
@@ -53,7 +49,7 @@
       "n": "2"
     },
     {
-      "seriesKey": "暗殺教室",
+      "seriesKey": "双星の陰陽師",
       "n": "2"
     },
     {
@@ -65,15 +61,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "双星の陰陽師",
+      "seriesKey": "とんがり帽子のアトリエ",
       "n": "2"
     },
     {
-      "seriesKey": "となりの怪物くん",
-      "n": "1"
+      "seriesKey": "アオハライド",
+      "n": "2"
     },
     {
-      "seriesKey": "子連れ狼",
+      "seriesKey": "薬屋のひとりごと",
       "n": "1"
     },
     {
@@ -81,11 +77,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "薬屋のひとりごと",
+      "seriesKey": "なまいきざかり。",
       "n": "1"
     },
     {
-      "seriesKey": "なまいきざかり。",
+      "seriesKey": "となりの怪物くん",
       "n": "1"
     },
     {
@@ -113,7 +109,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "古見さんは、コミュ症です。",
       "n": "1"
     },
     {
@@ -121,7 +117,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ぐらんぶる",
+      "seriesKey": "子連れ狼",
       "n": "1"
     },
     {
@@ -137,12 +133,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "古見さんは、コミュ症です。",
+      "seriesKey": "進撃の巨人",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 31,
-    "rows_before_limit_at_least": 45
+    "rows": 30,
+    "rows_before_limit_at_least": 44
   }
 }
