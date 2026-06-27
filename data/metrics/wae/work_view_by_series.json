@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-27T12:16:52.159Z",
-  "updatedAtJst": "2026-06-27 21:16:52",
+  "updatedAt": "2026-06-27T14:54:29.307Z",
+  "updatedAtJst": "2026-06-27 23:54:29",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -19,6 +19,10 @@
     {
       "seriesKey": "ラストゲーム",
       "n": "3"
+    },
+    {
+      "seriesKey": "アオハライド",
+      "n": "2"
     },
     {
       "seriesKey": "アクタージュ act-age",
@@ -49,10 +53,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "双星の陰陽師",
-      "n": "2"
-    },
-    {
       "seriesKey": "あしたのジョー",
       "n": "2"
     },
@@ -61,11 +61,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "とんがり帽子のアトリエ",
+      "seriesKey": "双星の陰陽師",
       "n": "2"
     },
     {
-      "seriesKey": "アオハライド",
+      "seriesKey": "とんがり帽子のアトリエ",
       "n": "2"
     },
     {
@@ -82,10 +82,6 @@
     },
     {
       "seriesKey": "となりの怪物くん",
-      "n": "1"
-    },
-    {
-      "seriesKey": "おやすみプンプン",
       "n": "1"
     },
     {
@@ -125,10 +121,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "山田くんとLv999の恋をする",
-      "n": "1"
-    },
-    {
       "seriesKey": "ツバサ -RESERVoir CHRoNiCLE-",
       "n": "1"
     },
@@ -138,7 +130,7 @@
     }
   ],
   "raw": {
-    "rows": 30,
-    "rows_before_limit_at_least": 44
+    "rows": 28,
+    "rows_before_limit_at_least": 42
   }
 }
