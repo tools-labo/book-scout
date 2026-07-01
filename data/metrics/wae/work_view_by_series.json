@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-01T00:20:05.678Z",
-  "updatedAtJst": "2026-07-01 09:20:05",
+  "updatedAt": "2026-07-01T05:53:19.638Z",
+  "updatedAtJst": "2026-07-01 14:53:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -19,10 +19,6 @@
     {
       "seriesKey": "ラストゲーム",
       "n": "3"
-    },
-    {
-      "seriesKey": "とんがり帽子のアトリエ",
-      "n": "2"
     },
     {
       "seriesKey": "暗殺教室",
@@ -65,6 +61,14 @@
       "n": "2"
     },
     {
+      "seriesKey": "とんがり帽子のアトリエ",
+      "n": "2"
+    },
+    {
+      "seriesKey": "進撃の巨人",
+      "n": "1"
+    },
+    {
       "seriesKey": "戦隊大失格",
       "n": "1"
     },
@@ -85,19 +89,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "子連れ狼",
-      "n": "1"
-    },
-    {
       "seriesKey": "双星の陰陽師",
       "n": "1"
     },
     {
       "seriesKey": "ソウルイーター",
-      "n": "1"
-    },
-    {
-      "seriesKey": "紙袋くんは恋してる",
       "n": "1"
     },
     {
@@ -107,14 +103,10 @@
     {
       "seriesKey": "ツバサ -RESERVoir CHRoNiCLE-",
       "n": "1"
-    },
-    {
-      "seriesKey": "進撃の巨人",
-      "n": "1"
     }
   ],
   "raw": {
-    "rows": 24,
-    "rows_before_limit_at_least": 37
+    "rows": 22,
+    "rows_before_limit_at_least": 35
   }
 }
