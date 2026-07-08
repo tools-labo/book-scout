@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-08T03:42:39.564Z",
-  "updatedAtJst": "2026-07-08 12:42:39",
+  "updatedAt": "2026-07-08T06:37:21.896Z",
+  "updatedAtJst": "2026-07-08 15:37:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,10 +21,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "双星の陰陽師",
-      "n": "1"
-    },
-    {
       "seriesKey": "ソウルイーター",
       "n": "1"
     },
@@ -34,7 +30,7 @@
     }
   ],
   "raw": {
-    "rows": 4,
-    "rows_before_limit_at_least": 4
+    "rows": 3,
+    "rows_before_limit_at_least": 3
   }
 }
