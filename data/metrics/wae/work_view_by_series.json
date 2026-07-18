@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-18T03:28:23.878Z",
-  "updatedAtJst": "2026-07-18 12:28:23",
+  "updatedAt": "2026-07-18T06:16:20.054Z",
+  "updatedAtJst": "2026-07-18 15:16:20",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -17,16 +17,12 @@
   ],
   "rows": [
     {
-      "seriesKey": "ラストゲーム",
-      "n": "1"
-    },
-    {
       "seriesKey": "ソウルイーター",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 2,
-    "rows_before_limit_at_least": 2
+    "rows": 1,
+    "rows_before_limit_at_least": 1
   }
 }
