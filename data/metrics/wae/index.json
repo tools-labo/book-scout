@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-21T11:58:33.102Z",
-  "updatedAtJst": "2026-07-21 20:58:33",
+  "updatedAt": "2026-07-21T14:19:00.672Z",
+  "updatedAtJst": "2026-07-21 23:19:00",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
     {
       "id": "type_counts",
       "file": "type_counts.json",
-      "rows": 1
+      "rows": 0
     },
     {
       "id": "recent_200",
@@ -18,7 +18,7 @@
     {
       "id": "work_view_by_series",
       "file": "work_view_by_series.json",
-      "rows": 1
+      "rows": 0
     },
     {
       "id": "vote_by_series",
