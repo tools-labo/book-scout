@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-20T23:13:54.389Z",
-  "updatedAtJst": "2026-07-21 08:13:54",
+  "updatedAt": "2026-07-21T00:10:17.499Z",
+  "updatedAtJst": "2026-07-21 09:10:17",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1340,32 +1340,6 @@
       "rating": null
     },
     {
-      "timestamp": "2026-04-19 22:37:50",
-      "timestampJst": "2026-04-20 07:37:50",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "蜘蛛ですが、なにか？",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-19 21:44:46",
-      "timestampJst": "2026-04-20 06:44:46",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "よふかしのうた",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
       "timestamp": "2026-04-19 11:28:02",
       "timestampJst": "2026-04-19 20:28:02",
       "type": "work_view",
@@ -1379,38 +1353,12 @@
       "rating": null
     },
     {
-      "timestamp": "2026-04-19 10:56:35",
-      "timestampJst": "2026-04-19 19:56:35",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "僕だけがいない街",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
       "timestamp": "2026-04-19 09:24:59",
       "timestampJst": "2026-04-19 18:24:59",
       "type": "work_view",
       "schema": "v2",
       "page": "work",
       "seriesKey": "アヤシモン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-19 07:03:52",
-      "timestampJst": "2026-04-19 16:03:52",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ドラゴンボール超",
       "mood": "",
       "genre": "",
       "aud": "",
@@ -1483,19 +1431,6 @@
       "rating": null
     },
     {
-      "timestamp": "2026-04-19 00:36:15",
-      "timestampJst": "2026-04-19 09:36:15",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "マギ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
       "timestamp": "2026-04-19 00:24:54",
       "timestampJst": "2026-04-19 09:24:54",
       "type": "work_view",
@@ -1523,7 +1458,7 @@
     }
   ],
   "raw": {
-    "rows": 113,
-    "rows_before_limit_at_least": 113
+    "rows": 108,
+    "rows_before_limit_at_least": 108
   }
 }
