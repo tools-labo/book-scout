@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T00:09:45.601Z",
-  "updatedAtJst": "2026-07-24 09:09:45",
+  "updatedAt": "2026-07-24T03:40:34.041Z",
+  "updatedAtJst": "2026-07-24 12:40:34",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1065,49 +1065,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-04-22 04:15:39",
-      "timestampJst": "2026-04-22 13:15:39",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "終末のワルキューレ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-22 03:11:38",
-      "timestampJst": "2026-04-22 12:11:38",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "聲の形",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-22 03:10:26",
-      "timestampJst": "2026-04-22 12:10:26",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "アクタージュ act-age",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 81,
-    "rows_before_limit_at_least": 81
+    "rows": 78,
+    "rows_before_limit_at_least": 78
   }
 }
