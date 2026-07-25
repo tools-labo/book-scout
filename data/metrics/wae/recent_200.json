@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T23:14:36.218Z",
-  "updatedAtJst": "2026-07-25 08:14:36",
+  "updatedAt": "2026-07-25T00:15:14.106Z",
+  "updatedAtJst": "2026-07-25 09:15:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1052,23 +1052,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-04-23 19:50:38",
-      "timestampJst": "2026-04-24 04:50:38",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "それでも歩は寄せてくる",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 78,
-    "rows_before_limit_at_least": 78
+    "rows": 77,
+    "rows_before_limit_at_least": 77
   }
 }
