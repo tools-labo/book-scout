@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-25T23:10:01.803Z",
-  "updatedAtJst": "2026-07-26 08:10:01",
+  "updatedAt": "2026-07-26T00:11:23.399Z",
+  "updatedAtJst": "2026-07-26 09:11:23",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -937,38 +937,12 @@
       "rating": null
     },
     {
-      "timestamp": "2026-04-24 19:46:51",
-      "timestampJst": "2026-04-25 04:46:51",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ヒナまつり",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
       "timestamp": "2026-04-24 19:44:19",
       "timestampJst": "2026-04-25 04:44:19",
       "type": "work_view",
       "schema": "v2",
       "page": "work",
       "seriesKey": "イケメン女と箱入り娘",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-24 18:52:50",
-      "timestampJst": "2026-04-25 03:52:50",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "NHKにようこそ!",
       "mood": "",
       "genre": "",
       "aud": "",
@@ -989,38 +963,12 @@
       "rating": null
     },
     {
-      "timestamp": "2026-04-24 18:05:55",
-      "timestampJst": "2026-04-25 03:05:55",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ブラッドラッド",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
       "timestamp": "2026-04-24 18:05:53",
       "timestampJst": "2026-04-25 03:05:53",
       "type": "work_view",
       "schema": "v2",
       "page": "work",
       "seriesKey": "葬送のフリーレン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-24 18:04:47",
-      "timestampJst": "2026-04-25 03:04:47",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "焼いてるふたり",
       "mood": "",
       "genre": "",
       "aud": "",
@@ -1042,7 +990,7 @@
     }
   ],
   "raw": {
-    "rows": 76,
-    "rows_before_limit_at_least": 76
+    "rows": 72,
+    "rows_before_limit_at_least": 72
   }
 }
