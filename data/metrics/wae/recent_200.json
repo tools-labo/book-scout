@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-27T00:10:54.003Z",
-  "updatedAtJst": "2026-07-27 09:10:54",
+  "updatedAt": "2026-07-27T03:59:48.757Z",
+  "updatedAtJst": "2026-07-27 12:59:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -896,36 +896,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-04-25 21:41:36",
-      "timestampJst": "2026-04-26 06:41:36",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "女神のカフェテラス",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-25 21:05:22",
-      "timestampJst": "2026-04-26 06:05:22",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "3月のライオン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 67,
-    "rows_before_limit_at_least": 67
+    "rows": 65,
+    "rows_before_limit_at_least": 65
   }
 }
