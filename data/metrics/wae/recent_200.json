@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-28T00:09:46.237Z",
-  "updatedAtJst": "2026-07-28 09:09:46",
+  "updatedAt": "2026-07-28T03:31:43.622Z",
+  "updatedAtJst": "2026-07-28 12:31:43",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -870,23 +870,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-04-26 00:10:49",
-      "timestampJst": "2026-04-26 09:10:49",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "オオカミ少女と黒王子",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 64,
-    "rows_before_limit_at_least": 64
+    "rows": 63,
+    "rows_before_limit_at_least": 63
   }
 }
