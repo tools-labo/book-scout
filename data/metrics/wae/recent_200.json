@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T00:10:41.528Z",
-  "updatedAtJst": "2026-07-30 09:10:41",
+  "updatedAt": "2026-07-30T03:25:38.393Z",
+  "updatedAtJst": "2026-07-30 12:25:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -844,23 +844,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-04-28 22:37:28",
-      "timestampJst": "2026-04-29 07:37:28",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ひるなかの流星",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 62,
-    "rows_before_limit_at_least": 62
+    "rows": 61,
+    "rows_before_limit_at_least": 61
   }
 }
