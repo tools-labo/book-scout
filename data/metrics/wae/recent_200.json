@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T22:17:01.559Z",
-  "updatedAtJst": "2026-07-31 07:17:01",
+  "updatedAt": "2026-07-31T00:14:07.290Z",
+  "updatedAtJst": "2026-07-31 09:14:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -781,32 +781,6 @@
       "rating": null
     },
     {
-      "timestamp": "2026-04-29 20:37:46",
-      "timestampJst": "2026-04-30 05:37:46",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "オーバーロード",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-04-29 18:28:02",
-      "timestampJst": "2026-04-30 03:28:02",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ばらかもん",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
       "timestamp": "2026-04-29 10:11:50",
       "timestampJst": "2026-04-29 19:11:50",
       "type": "work_view",
@@ -831,23 +805,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-04-29 03:43:07",
-      "timestampJst": "2026-04-29 12:43:07",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ジョジョの奇妙な冒険 戦闘潮流",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 61,
-    "rows_before_limit_at_least": 61
+    "rows": 58,
+    "rows_before_limit_at_least": 58
   }
 }
