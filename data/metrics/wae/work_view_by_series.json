@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T23:15:59.912Z",
-  "updatedAtJst": "2026-08-01 08:15:59",
+  "updatedAt": "2026-08-01T03:47:11.883Z",
+  "updatedAtJst": "2026-08-01 12:47:11",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -23,10 +23,14 @@
     {
       "seriesKey": "薬屋のひとりごと",
       "n": "1"
+    },
+    {
+      "seriesKey": "彼女、お借りします",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 2,
-    "rows_before_limit_at_least": 2
+    "rows": 3,
+    "rows_before_limit_at_least": 3
   }
 }
