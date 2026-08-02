@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-02T00:09:47.681Z",
-  "updatedAtJst": "2026-08-02 09:09:47",
+  "updatedAt": "2026-08-02T03:49:47.594Z",
+  "updatedAtJst": "2026-08-02 12:49:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -792,23 +792,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-05-01 20:17:56",
-      "timestampJst": "2026-05-02 05:17:56",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "転生したら剣でした",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 58,
-    "rows_before_limit_at_least": 58
+    "rows": 57,
+    "rows_before_limit_at_least": 57
   }
 }
