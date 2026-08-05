@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-04T23:17:04.652Z",
-  "updatedAtJst": "2026-08-05 08:17:04",
+  "updatedAt": "2026-08-05T03:29:26.691Z",
+  "updatedAtJst": "2026-08-05 12:29:26",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,6 +21,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "アオのハコ",
+      "n": "1"
+    },
+    {
       "seriesKey": "薬屋のひとりごと",
       "n": "1"
     },
@@ -34,7 +38,7 @@
     }
   ],
   "raw": {
-    "rows": 4,
-    "rows_before_limit_at_least": 4
+    "rows": 5,
+    "rows_before_limit_at_least": 5
   }
 }

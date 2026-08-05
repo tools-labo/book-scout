@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-04T23:17:04.652Z",
-  "updatedAtJst": "2026-08-05 08:17:04",
+  "updatedAt": "2026-08-05T03:29:26.691Z",
+  "updatedAtJst": "2026-08-05 12:29:26",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-05 00:07:49",
+      "timestampJst": "2026-08-05 09:07:49",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アオのハコ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-01 21:13:31",
       "timestampJst": "2026-08-02 06:13:31",
@@ -756,7 +769,7 @@
     }
   ],
   "raw": {
-    "rows": 54,
-    "rows_before_limit_at_least": 54
+    "rows": 55,
+    "rows_before_limit_at_least": 55
   }
 }
