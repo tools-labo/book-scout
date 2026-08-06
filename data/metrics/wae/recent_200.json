@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-06T00:09:06.503Z",
-  "updatedAtJst": "2026-08-06 09:09:06",
+  "updatedAt": "2026-08-06T03:33:11.122Z",
+  "updatedAtJst": "2026-08-06 12:33:11",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -740,36 +740,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-05-05 23:44:56",
-      "timestampJst": "2026-05-06 08:44:56",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "風の谷のナウシカ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-05-05 10:49:38",
-      "timestampJst": "2026-05-05 19:49:38",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "クズの本懐",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 55,
-    "rows_before_limit_at_least": 55
+    "rows": 53,
+    "rows_before_limit_at_least": 53
   }
 }
