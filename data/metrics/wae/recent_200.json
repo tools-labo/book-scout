@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T15:07:15.900Z",
-  "updatedAtJst": "2026-08-08 00:07:15",
+  "updatedAt": "2026-08-07T16:07:18.815Z",
+  "updatedAtJst": "2026-08-08 01:07:18",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-07 15:16:26",
+      "timestampJst": "2026-08-08 00:16:26",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "かけおちガール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-07 05:53:54",
       "timestampJst": "2026-08-07 14:53:54",
@@ -795,7 +808,7 @@
     }
   ],
   "raw": {
-    "rows": 57,
-    "rows_before_limit_at_least": 57
+    "rows": 58,
+    "rows_before_limit_at_least": 58
   }
 }

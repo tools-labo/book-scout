@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T15:07:15.900Z",
-  "updatedAtJst": "2026-08-08 00:07:15",
+  "updatedAt": "2026-08-07T16:07:18.815Z",
+  "updatedAtJst": "2026-08-08 01:07:18",
   "dataset": "book_scout_events",
   "days": 30,
   "outputs": [
@@ -13,12 +13,12 @@
     {
       "id": "recent_200",
       "file": "recent_200.json",
-      "rows": 57
+      "rows": 58
     },
     {
       "id": "work_view_by_series",
       "file": "work_view_by_series.json",
-      "rows": 9
+      "rows": 10
     },
     {
       "id": "vote_by_series",
@@ -73,7 +73,7 @@
     {
       "id": "rising_work_view_since_20260227",
       "file": "rising_work_view_since_20260227.json",
-      "rows": 38
+      "rows": 39
     }
   ]
 }
