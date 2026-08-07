@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T05:03:07.564Z",
-  "updatedAtJst": "2026-08-07 14:03:07",
+  "updatedAt": "2026-08-07T06:16:51.447Z",
+  "updatedAtJst": "2026-08-07 15:16:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-07 05:53:54",
+      "timestampJst": "2026-08-07 14:53:54",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "先輩がうざい後輩の話",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-07 04:24:42",
       "timestampJst": "2026-08-07 13:24:42",
@@ -782,7 +795,7 @@
     }
   ],
   "raw": {
-    "rows": 56,
-    "rows_before_limit_at_least": 56
+    "rows": 57,
+    "rows_before_limit_at_least": 57
   }
 }

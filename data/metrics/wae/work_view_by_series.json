@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T05:03:07.564Z",
-  "updatedAtJst": "2026-08-07 14:03:07",
+  "updatedAt": "2026-08-07T06:16:51.447Z",
+  "updatedAtJst": "2026-08-07 15:16:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -37,6 +37,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "先輩がうざい後輩の話",
+      "n": "1"
+    },
+    {
       "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
@@ -50,7 +54,7 @@
     }
   ],
   "raw": {
-    "rows": 8,
-    "rows_before_limit_at_least": 8
+    "rows": 9,
+    "rows_before_limit_at_least": 9
   }
 }
