@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T03:14:31.681Z",
-  "updatedAtJst": "2026-08-07 12:14:31",
+  "updatedAt": "2026-08-07T05:03:07.564Z",
+  "updatedAtJst": "2026-08-07 14:03:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -43,10 +43,14 @@
     {
       "seriesKey": "彼女、お借りします",
       "n": "1"
+    },
+    {
+      "seriesKey": "とんがり帽子のアトリエ",
+      "n": "1"
     }
   ],
   "raw": {
-    "rows": 7,
-    "rows_before_limit_at_least": 7
+    "rows": 8,
+    "rows_before_limit_at_least": 8
   }
 }

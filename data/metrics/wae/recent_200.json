@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T03:14:31.681Z",
-  "updatedAtJst": "2026-08-07 12:14:31",
+  "updatedAt": "2026-08-07T05:03:07.564Z",
+  "updatedAtJst": "2026-08-07 14:03:07",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-07 04:24:42",
+      "timestampJst": "2026-08-07 13:24:42",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "とんがり帽子のアトリエ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-06 22:03:55",
       "timestampJst": "2026-08-07 07:03:55",
@@ -769,7 +782,7 @@
     }
   ],
   "raw": {
-    "rows": 55,
-    "rows_before_limit_at_least": 55
+    "rows": 56,
+    "rows_before_limit_at_least": 56
   }
 }
