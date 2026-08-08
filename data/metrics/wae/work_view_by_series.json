@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T08:57:53.353Z",
-  "updatedAtJst": "2026-08-08 17:57:53",
+  "updatedAt": "2026-08-08T09:52:28.297Z",
+  "updatedAtJst": "2026-08-08 18:52:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -49,6 +49,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "山田くんと7人の魔女",
+      "n": "1"
+    },
+    {
       "seriesKey": "彼女、お借りします",
       "n": "1"
     },
@@ -58,7 +62,7 @@
     }
   ],
   "raw": {
-    "rows": 10,
-    "rows_before_limit_at_least": 10
+    "rows": 11,
+    "rows_before_limit_at_least": 11
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T08:57:53.353Z",
-  "updatedAtJst": "2026-08-08 17:57:53",
+  "updatedAt": "2026-08-08T09:52:28.297Z",
+  "updatedAtJst": "2026-08-08 18:52:28",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-08 09:40:44",
+      "timestampJst": "2026-08-08 18:40:44",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "山田くんと7人の魔女",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-07 15:16:26",
       "timestampJst": "2026-08-08 00:16:26",
@@ -808,7 +821,7 @@
     }
   ],
   "raw": {
-    "rows": 58,
-    "rows_before_limit_at_least": 58
+    "rows": 59,
+    "rows_before_limit_at_least": 59
   }
 }
