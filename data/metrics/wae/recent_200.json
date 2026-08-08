@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-08T21:44:07.073Z",
-  "updatedAtJst": "2026-08-09 06:44:07",
+  "updatedAt": "2026-08-08T22:44:45.523Z",
+  "updatedAtJst": "2026-08-09 07:44:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-08 22:00:15",
+      "timestampJst": "2026-08-09 07:00:15",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "鬼滅の刃",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-08 09:40:44",
       "timestampJst": "2026-08-08 18:40:44",
@@ -821,7 +834,7 @@
     }
   ],
   "raw": {
-    "rows": 59,
-    "rows_before_limit_at_least": 59
+    "rows": 60,
+    "rows_before_limit_at_least": 60
   }
 }
