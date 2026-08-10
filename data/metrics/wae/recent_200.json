@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T06:21:12.817Z",
-  "updatedAtJst": "2026-08-10 15:21:12",
+  "updatedAt": "2026-08-10T08:49:26.496Z",
+  "updatedAtJst": "2026-08-10 17:49:26",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-10 07:15:09",
+      "timestampJst": "2026-08-10 16:15:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "富江",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-08-10 06:24:13",
+      "timestampJst": "2026-08-10 15:24:13",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "呪術廻戦",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-10 05:37:07",
       "timestampJst": "2026-08-10 14:37:07",
@@ -873,7 +899,7 @@
     }
   ],
   "raw": {
-    "rows": 63,
-    "rows_before_limit_at_least": 63
+    "rows": 65,
+    "rows_before_limit_at_least": 65
   }
 }
