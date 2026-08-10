@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T23:44:27.457Z",
-  "updatedAtJst": "2026-08-10 08:44:27",
+  "updatedAt": "2026-08-10T02:31:42.635Z",
+  "updatedAtJst": "2026-08-10 11:31:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,32 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-10 01:43:21",
+      "timestampJst": "2026-08-10 10:43:21",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "欠けた月とドーナッツ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-08-10 01:27:55",
+      "timestampJst": "2026-08-10 10:27:55",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "気になってる人が男じゃなかった",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-08 22:00:15",
       "timestampJst": "2026-08-09 07:00:15",
@@ -834,7 +860,7 @@
     }
   ],
   "raw": {
-    "rows": 60,
-    "rows_before_limit_at_least": 60
+    "rows": 62,
+    "rows_before_limit_at_least": 62
   }
 }

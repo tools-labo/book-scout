@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T23:44:27.457Z",
-  "updatedAtJst": "2026-08-10 08:44:27",
+  "updatedAt": "2026-08-10T02:31:42.635Z",
+  "updatedAtJst": "2026-08-10 11:31:42",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -49,6 +49,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "気になってる人が男じゃなかった",
+      "n": "1"
+    },
+    {
       "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
@@ -61,12 +65,16 @@
       "n": "1"
     },
     {
+      "seriesKey": "欠けた月とドーナッツ",
+      "n": "1"
+    },
+    {
       "seriesKey": "とんがり帽子のアトリエ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 12,
-    "rows_before_limit_at_least": 12
+    "rows": 14,
+    "rows_before_limit_at_least": 14
   }
 }
