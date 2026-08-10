@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T15:14:36.206Z",
-  "updatedAtJst": "2026-08-11 00:14:36",
+  "updatedAt": "2026-08-10T16:09:52.073Z",
+  "updatedAtJst": "2026-08-11 01:09:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -65,6 +65,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "ノーゲーム・ノーライフ",
+      "n": "1"
+    },
+    {
       "seriesKey": "僕のヒーローアカデミア",
       "n": "1"
     },
@@ -86,7 +90,7 @@
     }
   ],
   "raw": {
-    "rows": 17,
-    "rows_before_limit_at_least": 17
+    "rows": 18,
+    "rows_before_limit_at_least": 18
   }
 }
