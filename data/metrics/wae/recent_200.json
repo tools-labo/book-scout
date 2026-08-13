@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-13T17:09:44.830Z",
-  "updatedAtJst": "2026-08-14 02:09:44",
+  "updatedAt": "2026-08-13T18:05:20.388Z",
+  "updatedAtJst": "2026-08-14 03:05:20",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-13 18:01:51",
+      "timestampJst": "2026-08-14 03:01:51",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "アナザー",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-13 13:51:24",
       "timestampJst": "2026-08-13 22:51:24",
@@ -1354,7 +1367,7 @@
     }
   ],
   "raw": {
-    "rows": 100,
-    "rows_before_limit_at_least": 100
+    "rows": 101,
+    "rows_before_limit_at_least": 101
   }
 }
