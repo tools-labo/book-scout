@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-12T23:55:50.234Z",
-  "updatedAtJst": "2026-08-13 08:55:50",
+  "updatedAt": "2026-08-13T02:44:31.477Z",
+  "updatedAtJst": "2026-08-13 11:44:31",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -17,10 +17,6 @@
   ],
   "rows": [
     {
-      "seriesKey": "ラストゲーム",
-      "n": "4"
-    },
-    {
       "seriesKey": "アオハライド",
       "n": "4"
     },
@@ -30,6 +26,10 @@
     },
     {
       "seriesKey": "あかね噺",
+      "n": "4"
+    },
+    {
+      "seriesKey": "ラストゲーム",
       "n": "4"
     },
     {
@@ -45,7 +45,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "アカメが斬る！",
+      "seriesKey": "あずまんが大王",
       "n": "2"
     },
     {
@@ -53,15 +53,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "To LOVEる -とらぶる-",
-      "n": "2"
-    },
-    {
       "seriesKey": "暗殺教室",
       "n": "2"
     },
     {
-      "seriesKey": "あずまんが大王",
+      "seriesKey": "To LOVEる -とらぶる-",
       "n": "2"
     },
     {
@@ -69,19 +65,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "トモダチゲーム",
-      "n": "2"
-    },
-    {
-      "seriesKey": "素晴らしい世界",
-      "n": "2"
-    },
-    {
       "seriesKey": "アクタージュ act-age",
       "n": "2"
     },
     {
+      "seriesKey": "トモダチゲーム",
+      "n": "2"
+    },
+    {
       "seriesKey": "To LOVEる -とらぶる- ダークネス",
+      "n": "2"
+    },
+    {
+      "seriesKey": "素晴らしい世界",
       "n": "2"
     },
     {
@@ -97,11 +93,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "薬屋のひとりごと",
+      "seriesKey": "アイアムアヒーロー",
       "n": "2"
     },
     {
-      "seriesKey": "アイアムアヒーロー",
+      "seriesKey": "薬屋のひとりごと",
       "n": "2"
     },
     {
@@ -117,7 +113,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "マギ",
+      "seriesKey": "アカメが斬る！",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
@@ -125,15 +125,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "テラフォーマーズ",
+      "seriesKey": "なまいきざかり。",
       "n": "1"
     },
     {
       "seriesKey": "となりの怪物くん",
-      "n": "1"
-    },
-    {
-      "seriesKey": "おやすみプンプン",
       "n": "1"
     },
     {
@@ -142,6 +138,10 @@
     },
     {
       "seriesKey": "かけおちガール",
+      "n": "1"
+    },
+    {
+      "seriesKey": "おやすみプンプン",
       "n": "1"
     },
     {
@@ -157,11 +157,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "地獄星レミナ",
       "n": "1"
     },
     {
-      "seriesKey": "地獄星レミナ",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -170,10 +170,6 @@
     },
     {
       "seriesKey": "ぐらんぶる",
-      "n": "1"
-    },
-    {
-      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
@@ -189,11 +185,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "べるぜバブ",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
-      "seriesKey": "子連れ狼",
+      "seriesKey": "べるぜバブ",
       "n": "1"
     },
     {
@@ -213,7 +209,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "進撃の巨人",
+      "seriesKey": "子連れ狼",
       "n": "1"
     },
     {
@@ -229,7 +225,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "進撃の巨人",
       "n": "1"
     },
     {
@@ -245,11 +241,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
-      "seriesKey": "惡の華",
+      "seriesKey": "ガチアクタ",
       "n": "1"
     },
     {
@@ -257,16 +253,16 @@
       "n": "1"
     },
     {
-      "seriesKey": "ReLIFE",
+      "seriesKey": "惡の華",
       "n": "1"
     },
     {
-      "seriesKey": "なまいきざかり。",
+      "seriesKey": "テラフォーマーズ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 62,
-    "rows_before_limit_at_least": 62
+    "rows": 61,
+    "rows_before_limit_at_least": 61
   }
 }
