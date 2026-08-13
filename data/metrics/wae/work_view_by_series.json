@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-13T13:44:04.115Z",
-  "updatedAtJst": "2026-08-13 22:44:04",
+  "updatedAt": "2026-08-13T15:12:36.922Z",
+  "updatedAtJst": "2026-08-14 00:12:36",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -53,6 +53,10 @@
       "n": "2"
     },
     {
+      "seriesKey": "アオハライド",
+      "n": "2"
+    },
+    {
       "seriesKey": "あかね噺",
       "n": "2"
     },
@@ -65,15 +69,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "アオハライド",
-      "n": "2"
-    },
-    {
       "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -89,11 +93,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
@@ -109,7 +113,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "鬼滅の刃",
+      "seriesKey": "べるぜバブ",
       "n": "1"
     },
     {
@@ -121,7 +125,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "べるぜバブ",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -141,7 +145,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "ガチアクタ",
       "n": "1"
     },
     {
@@ -153,7 +157,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "イビツ",
       "n": "1"
     },
     {
@@ -174,7 +178,7 @@
     }
   ],
   "raw": {
-    "rows": 39,
-    "rows_before_limit_at_least": 52
+    "rows": 40,
+    "rows_before_limit_at_least": 53
   }
 }
