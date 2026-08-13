@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-13T06:43:08.585Z",
-  "updatedAtJst": "2026-08-13 15:43:08",
+  "updatedAt": "2026-08-13T08:41:44.794Z",
+  "updatedAtJst": "2026-08-13 17:41:44",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-13 06:53:57",
+      "timestampJst": "2026-08-13 15:53:57",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "あずまんが大王",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-13 03:25:42",
       "timestampJst": "2026-08-13 12:25:42",
@@ -1328,7 +1341,7 @@
     }
   ],
   "raw": {
-    "rows": 98,
-    "rows_before_limit_at_least": 98
+    "rows": 99,
+    "rows_before_limit_at_least": 99
   }
 }
