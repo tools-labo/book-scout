@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T05:40:35.005Z",
-  "updatedAtJst": "2026-08-16 14:40:35",
+  "updatedAt": "2026-08-16T06:56:59.597Z",
+  "updatedAtJst": "2026-08-16 15:56:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "rising_work_view_since_20260227",
@@ -209,6 +209,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "ここは今から倫理です。",
+      "n": "1"
+    },
+    {
       "seriesKey": "ノーゲーム・ノーライフ",
       "n": "1"
     },
@@ -274,7 +278,7 @@
     }
   ],
   "raw": {
-    "rows": 64,
-    "rows_before_limit_at_least": 64
+    "rows": 65,
+    "rows_before_limit_at_least": 65
   }
 }
