@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T21:32:40.991Z",
-  "updatedAtJst": "2026-08-17 06:32:40",
+  "updatedAt": "2026-08-16T22:35:05.689Z",
+  "updatedAtJst": "2026-08-17 07:35:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -173,6 +173,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "その着せ替え人形は恋をする",
+      "n": "1"
+    },
+    {
       "seriesKey": "惡の華",
       "n": "1"
     },
@@ -190,7 +194,7 @@
     }
   ],
   "raw": {
-    "rows": 43,
-    "rows_before_limit_at_least": 56
+    "rows": 44,
+    "rows_before_limit_at_least": 57
   }
 }

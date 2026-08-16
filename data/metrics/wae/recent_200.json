@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T21:32:40.991Z",
-  "updatedAtJst": "2026-08-17 06:32:40",
+  "updatedAt": "2026-08-16T22:35:05.689Z",
+  "updatedAtJst": "2026-08-17 07:35:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-16 22:17:47",
+      "timestampJst": "2026-08-17 07:17:47",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "その着せ替え人形は恋をする",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-16 21:20:46",
       "timestampJst": "2026-08-17 06:20:46",
@@ -1393,7 +1406,7 @@
     }
   ],
   "raw": {
-    "rows": 103,
-    "rows_before_limit_at_least": 103
+    "rows": 104,
+    "rows_before_limit_at_least": 104
   }
 }
