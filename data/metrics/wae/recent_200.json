@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-17T04:55:34.928Z",
-  "updatedAtJst": "2026-08-17 13:55:34",
+  "updatedAt": "2026-08-17T05:47:51.211Z",
+  "updatedAtJst": "2026-08-17 14:47:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-17 05:40:36",
+      "timestampJst": "2026-08-17 14:40:36",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "To LOVEる -とらぶる- ダークネス",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-17 03:27:46",
       "timestampJst": "2026-08-17 12:27:46",
@@ -1419,7 +1432,7 @@
     }
   ],
   "raw": {
-    "rows": 105,
-    "rows_before_limit_at_least": 105
+    "rows": 106,
+    "rows_before_limit_at_least": 106
   }
 }
