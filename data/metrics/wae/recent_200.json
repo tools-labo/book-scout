@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-17T03:11:42.492Z",
-  "updatedAtJst": "2026-08-17 12:11:42",
+  "updatedAt": "2026-08-17T04:01:16.302Z",
+  "updatedAtJst": "2026-08-17 13:01:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-17 03:27:46",
+      "timestampJst": "2026-08-17 12:27:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "シメジ シミュレーション",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-16 22:17:47",
       "timestampJst": "2026-08-17 07:17:47",
@@ -1406,7 +1419,7 @@
     }
   ],
   "raw": {
-    "rows": 104,
-    "rows_before_limit_at_least": 104
+    "rows": 105,
+    "rows_before_limit_at_least": 105
   }
 }
