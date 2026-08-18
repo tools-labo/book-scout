@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-18T08:51:30.870Z",
-  "updatedAtJst": "2026-08-18 17:51:30",
+  "updatedAt": "2026-08-18T09:46:47.760Z",
+  "updatedAtJst": "2026-08-18 18:46:47",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,7 +21,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "ハイキュー！！",
       "n": "2"
     },
     {
@@ -34,6 +34,10 @@
     },
     {
       "seriesKey": "Übel Blatt ～ユーベルブラット～",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ノーゲーム・ノーライフ",
       "n": "2"
     },
     {
@@ -57,15 +61,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "ハイキュー！！",
-      "n": "2"
-    },
-    {
       "seriesKey": "あかね噺",
       "n": "2"
     },
     {
       "seriesKey": "アオアシ",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アイシールド21",
       "n": "2"
     },
     {
@@ -78,10 +82,6 @@
     },
     {
       "seriesKey": "アオのハコ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "アナザー",
       "n": "1"
     },
     {
@@ -101,11 +101,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "アナザー",
       "n": "1"
     },
     {
-      "seriesKey": "鬼滅の刃",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -121,7 +121,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "べるぜバブ",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
@@ -133,7 +133,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "べるぜバブ",
       "n": "1"
     },
     {
@@ -145,7 +145,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ノーゲーム・ノーライフ",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -199,6 +199,6 @@
   ],
   "raw": {
     "rows": 45,
-    "rows_before_limit_at_least": 59
+    "rows_before_limit_at_least": 60
   }
 }
