@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T07:03:31.532Z",
-  "updatedAtJst": "2026-08-20 16:03:31",
+  "updatedAt": "2026-08-20T07:54:27.401Z",
+  "updatedAtJst": "2026-08-20 16:54:27",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,7 +21,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "ハイキュー！！",
+      "seriesKey": "アイシールド21",
       "n": "2"
     },
     {
@@ -65,11 +65,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "アオアシ",
+      "seriesKey": "ハイキュー！！",
       "n": "2"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "アオアシ",
       "n": "2"
     },
     {
@@ -78,6 +78,10 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "seriesKey": "海月姫",
       "n": "1"
     },
     {
@@ -198,7 +202,7 @@
     }
   ],
   "raw": {
-    "rows": 45,
-    "rows_before_limit_at_least": 60
+    "rows": 46,
+    "rows_before_limit_at_least": 61
   }
 }
