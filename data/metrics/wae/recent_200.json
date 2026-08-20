@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T20:43:57.798Z",
-  "updatedAtJst": "2026-08-21 05:43:57",
+  "updatedAt": "2026-08-20T21:41:29.491Z",
+  "updatedAtJst": "2026-08-21 06:41:29",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-08-20 21:18:56",
+      "timestampJst": "2026-08-21 06:18:56",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "結婚指輪物語",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-08-20 08:17:43",
       "timestampJst": "2026-08-20 17:17:43",
@@ -1471,7 +1484,7 @@
     }
   ],
   "raw": {
-    "rows": 109,
-    "rows_before_limit_at_least": 109
+    "rows": 110,
+    "rows_before_limit_at_least": 110
   }
 }

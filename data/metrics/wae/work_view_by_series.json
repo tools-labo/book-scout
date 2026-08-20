@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T20:43:57.798Z",
-  "updatedAtJst": "2026-08-21 05:43:57",
+  "updatedAt": "2026-08-20T21:41:29.491Z",
+  "updatedAtJst": "2026-08-21 06:41:29",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -117,6 +117,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "結婚指輪物語",
+      "n": "1"
+    },
+    {
       "seriesKey": "トモダチゲーム",
       "n": "1"
     },
@@ -206,7 +210,7 @@
     }
   ],
   "raw": {
-    "rows": 47,
-    "rows_before_limit_at_least": 63
+    "rows": 48,
+    "rows_before_limit_at_least": 64
   }
 }
