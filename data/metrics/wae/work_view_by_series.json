@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T07:54:27.401Z",
-  "updatedAtJst": "2026-08-20 16:54:27",
+  "updatedAt": "2026-08-20T08:54:40.100Z",
+  "updatedAtJst": "2026-08-20 17:54:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,7 +21,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "ハイキュー！！",
       "n": "2"
     },
     {
@@ -34,6 +34,10 @@
     },
     {
       "seriesKey": "Übel Blatt ～ユーベルブラット～",
+      "n": "2"
+    },
+    {
+      "seriesKey": "ゆらぎ荘の幽奈さん",
       "n": "2"
     },
     {
@@ -57,19 +61,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "アオハライド",
-      "n": "2"
-    },
-    {
       "seriesKey": "あかね噺",
       "n": "2"
     },
     {
-      "seriesKey": "ハイキュー！！",
+      "seriesKey": "アオハライド",
       "n": "2"
     },
     {
       "seriesKey": "アオアシ",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アイシールド21",
       "n": "2"
     },
     {
@@ -82,10 +86,6 @@
     },
     {
       "seriesKey": "海月姫",
-      "n": "1"
-    },
-    {
-      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -105,11 +105,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アナザー",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "アナザー",
       "n": "1"
     },
     {
@@ -125,7 +125,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "鬼滅の刃",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -137,7 +137,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "べるぜバブ",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
@@ -146,6 +146,10 @@
     },
     {
       "seriesKey": "ここは今から倫理です。",
+      "n": "1"
+    },
+    {
+      "seriesKey": "べるぜバブ",
       "n": "1"
     },
     {
@@ -202,7 +206,7 @@
     }
   ],
   "raw": {
-    "rows": 46,
-    "rows_before_limit_at_least": 61
+    "rows": 47,
+    "rows_before_limit_at_least": 63
   }
 }
