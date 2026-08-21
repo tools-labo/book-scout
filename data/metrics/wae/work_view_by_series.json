@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-21T03:14:12.692Z",
-  "updatedAtJst": "2026-08-21 12:14:12",
+  "updatedAt": "2026-08-21T04:02:14.691Z",
+  "updatedAtJst": "2026-08-21 13:02:14",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -57,15 +57,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "モブサイコ100",
-      "n": "2"
-    },
-    {
       "seriesKey": "あかね噺",
       "n": "2"
     },
     {
-      "seriesKey": "アオハライド",
+      "seriesKey": "モブサイコ100",
       "n": "2"
     },
     {
@@ -77,15 +73,15 @@
       "n": "2"
     },
     {
+      "seriesKey": "アオハライド",
+      "n": "2"
+    },
+    {
       "seriesKey": "ReLIFE",
       "n": "1"
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
-      "n": "1"
-    },
-    {
-      "seriesKey": "海月姫",
       "n": "1"
     },
     {
@@ -105,11 +101,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "アオのハコ",
+      "seriesKey": "海月姫",
       "n": "1"
     },
     {
-      "seriesKey": "アナザー",
+      "seriesKey": "アオのハコ",
       "n": "1"
     },
     {
@@ -129,7 +125,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "アナザー",
       "n": "1"
     },
     {
@@ -141,7 +137,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "鬼滅の刃",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -153,11 +149,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "べるぜバブ",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "べるぜバブ",
       "n": "1"
     },
     {
@@ -169,7 +165,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ガチアクタ",
+      "seriesKey": "呪術廻戦",
       "n": "1"
     },
     {
@@ -210,7 +206,7 @@
     }
   ],
   "raw": {
-    "rows": 48,
-    "rows_before_limit_at_least": 64
+    "rows": 47,
+    "rows_before_limit_at_least": 63
   }
 }
