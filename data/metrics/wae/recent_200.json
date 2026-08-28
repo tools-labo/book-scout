@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-27T20:28:38.463Z",
-  "updatedAtJst": "2026-08-28 05:28:38",
+  "updatedAt": "2026-08-28T05:21:59.744Z",
+  "updatedAtJst": "2026-08-28 14:21:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1455,23 +1455,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-05-27 13:55:22",
-      "timestampJst": "2026-05-27 22:55:22",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ぐらんぶる",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 109,
-    "rows_before_limit_at_least": 109
+    "rows": 108,
+    "rows_before_limit_at_least": 108
   }
 }
