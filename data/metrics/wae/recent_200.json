@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-28T18:38:42.055Z",
-  "updatedAtJst": "2026-08-29 03:38:42",
+  "updatedAt": "2026-08-29T02:09:21.480Z",
+  "updatedAtJst": "2026-08-29 11:09:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1416,49 +1416,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-05-28 14:56:03",
-      "timestampJst": "2026-05-28 23:56:03",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "るろうに剣心 -明治剣客浪漫譚-",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-05-28 14:51:16",
-      "timestampJst": "2026-05-28 23:51:16",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "山田くんとLv999の恋をする",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-05-28 13:35:04",
-      "timestampJst": "2026-05-28 22:35:04",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "おやすみプンプン",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 108,
-    "rows_before_limit_at_least": 108
+    "rows": 105,
+    "rows_before_limit_at_least": 105
   }
 }
