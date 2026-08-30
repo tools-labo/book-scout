@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T21:42:27.367Z",
-  "updatedAtJst": "2026-08-30 06:42:27",
+  "updatedAt": "2026-08-30T00:17:55.475Z",
+  "updatedAtJst": "2026-08-30 09:17:55",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1403,23 +1403,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-05-29 00:35:35",
-      "timestampJst": "2026-05-29 09:35:35",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "薬屋のひとりごと",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 105,
-    "rows_before_limit_at_least": 105
+    "rows": 104,
+    "rows_before_limit_at_least": 104
   }
 }
