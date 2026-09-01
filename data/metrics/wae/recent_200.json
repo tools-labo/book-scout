@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-31T23:49:09.581Z",
-  "updatedAtJst": "2026-09-01 08:49:09",
+  "updatedAt": "2026-09-01T05:03:49.846Z",
+  "updatedAtJst": "2026-09-01 14:03:49",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1364,23 +1364,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-05-31 18:16:41",
-      "timestampJst": "2026-06-01 03:16:41",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "古見さんは、コミュ症です。",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 102,
-    "rows_before_limit_at_least": 102
+    "rows": 101,
+    "rows_before_limit_at_least": 101
   }
 }
