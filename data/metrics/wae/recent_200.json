@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-01T21:44:58.291Z",
-  "updatedAtJst": "2026-09-02 06:44:58",
+  "updatedAt": "2026-09-02T00:11:05.588Z",
+  "updatedAtJst": "2026-09-02 09:11:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1325,49 +1325,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-06-01 11:58:44",
-      "timestampJst": "2026-06-01 20:58:44",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ラストゲーム",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-06-01 05:38:31",
-      "timestampJst": "2026-06-01 14:38:31",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "子連れ狼",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-06-01 05:34:49",
-      "timestampJst": "2026-06-01 14:34:49",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "紙袋くんは恋してる",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 101,
-    "rows_before_limit_at_least": 101
+    "rows": 98,
+    "rows_before_limit_at_least": 98
   }
 }
