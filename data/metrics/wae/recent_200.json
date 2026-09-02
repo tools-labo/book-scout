@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T14:27:15.153Z",
-  "updatedAtJst": "2026-09-02 23:27:15",
+  "updatedAt": "2026-09-02T18:39:50.516Z",
+  "updatedAtJst": "2026-09-03 03:39:50",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-02 17:44:07",
+      "timestampJst": "2026-09-03 02:44:07",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "終わりのセラフ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-02 06:01:35",
       "timestampJst": "2026-09-02 15:01:35",
@@ -1354,7 +1367,7 @@
     }
   ],
   "raw": {
-    "rows": 100,
-    "rows_before_limit_at_least": 100
+    "rows": 101,
+    "rows_before_limit_at_least": 101
   }
 }
