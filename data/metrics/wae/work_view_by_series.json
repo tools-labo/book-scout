@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T04:30:51.523Z",
-  "updatedAtJst": "2026-09-02 13:30:51",
+  "updatedAt": "2026-09-02T09:34:53.312Z",
+  "updatedAtJst": "2026-09-02 18:34:53",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -117,6 +117,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "正反対な君と僕",
+      "n": "1"
+    },
+    {
       "seriesKey": "あずまんが大王",
       "n": "1"
     },
@@ -198,7 +202,7 @@
     }
   ],
   "raw": {
-    "rows": 45,
-    "rows_before_limit_at_least": 61
+    "rows": 46,
+    "rows_before_limit_at_least": 62
   }
 }

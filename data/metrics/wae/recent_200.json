@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T04:30:51.523Z",
-  "updatedAtJst": "2026-09-02 13:30:51",
+  "updatedAt": "2026-09-02T09:34:53.312Z",
+  "updatedAtJst": "2026-09-02 18:34:53",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-02 06:01:35",
+      "timestampJst": "2026-09-02 15:01:35",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "正反対な君と僕",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-02 03:37:43",
       "timestampJst": "2026-09-02 12:37:43",
@@ -1341,7 +1354,7 @@
     }
   ],
   "raw": {
-    "rows": 99,
-    "rows_before_limit_at_least": 99
+    "rows": 100,
+    "rows_before_limit_at_least": 100
   }
 }
