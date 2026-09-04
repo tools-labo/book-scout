@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-04T18:22:21.433Z",
-  "updatedAtJst": "2026-09-05 03:22:21",
+  "updatedAt": "2026-09-04T21:26:24.139Z",
+  "updatedAtJst": "2026-09-05 06:26:24",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -157,6 +157,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "進撃の巨人 外伝 悔いなき選択",
+      "n": "1"
+    },
+    {
       "seriesKey": "べるぜバブ",
       "n": "1"
     },
@@ -206,7 +210,7 @@
     }
   ],
   "raw": {
-    "rows": 47,
-    "rows_before_limit_at_least": 63
+    "rows": 48,
+    "rows_before_limit_at_least": 64
   }
 }
