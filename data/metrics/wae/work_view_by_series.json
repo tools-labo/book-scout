@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-04T14:19:39.179Z",
-  "updatedAtJst": "2026-09-04 23:19:39",
+  "updatedAt": "2026-09-04T18:22:21.433Z",
+  "updatedAtJst": "2026-09-05 03:22:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -82,6 +82,10 @@
     },
     {
       "seriesKey": "Re:ゼロから始める異世界生活",
+      "n": "1"
+    },
+    {
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     },
     {
@@ -197,12 +201,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "ドリフターズ",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 46,
-    "rows_before_limit_at_least": 62
+    "rows": 47,
+    "rows_before_limit_at_least": 63
   }
 }

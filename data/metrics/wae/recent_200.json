@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-04T14:19:39.179Z",
-  "updatedAtJst": "2026-09-04 23:19:39",
+  "updatedAt": "2026-09-04T18:22:21.433Z",
+  "updatedAtJst": "2026-09-05 03:22:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-04 17:59:01",
+      "timestampJst": "2026-09-05 02:59:01",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドリフターズ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-02 17:44:07",
       "timestampJst": "2026-09-03 02:44:07",
@@ -1367,7 +1380,7 @@
     }
   ],
   "raw": {
-    "rows": 101,
-    "rows_before_limit_at_least": 101
+    "rows": 102,
+    "rows_before_limit_at_least": 102
   }
 }
