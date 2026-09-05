@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05T18:15:37.082Z",
-  "updatedAtJst": "2026-09-06 03:15:37",
+  "updatedAt": "2026-09-05T21:12:40.294Z",
+  "updatedAtJst": "2026-09-06 06:12:40",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-05 18:49:19",
+      "timestampJst": "2026-09-06 03:49:19",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "風夏",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-05 14:49:33",
       "timestampJst": "2026-09-05 23:49:33",
@@ -1523,7 +1536,7 @@
     }
   ],
   "raw": {
-    "rows": 113,
-    "rows_before_limit_at_least": 113
+    "rows": 114,
+    "rows_before_limit_at_least": 114
   }
 }
