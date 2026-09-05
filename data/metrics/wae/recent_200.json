@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05T00:02:05.527Z",
-  "updatedAtJst": "2026-09-05 09:02:05",
+  "updatedAt": "2026-09-05T04:22:46.940Z",
+  "updatedAtJst": "2026-09-05 13:22:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,45 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-05 02:23:27",
+      "timestampJst": "2026-09-05 11:23:27",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "また、同じ夢を見ていた",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-05 01:57:45",
+      "timestampJst": "2026-09-05 10:57:45",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ラブ★コン",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-05 00:25:36",
+      "timestampJst": "2026-09-05 09:25:36",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "マギ シンドバッドの冒険",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-04 23:48:52",
       "timestampJst": "2026-09-05 08:48:52",
@@ -1419,7 +1458,7 @@
     }
   ],
   "raw": {
-    "rows": 105,
-    "rows_before_limit_at_least": 105
+    "rows": 108,
+    "rows_before_limit_at_least": 108
   }
 }

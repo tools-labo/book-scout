@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05T00:02:05.527Z",
-  "updatedAtJst": "2026-09-05 09:02:05",
+  "updatedAt": "2026-09-05T04:22:46.940Z",
+  "updatedAtJst": "2026-09-05 13:22:46",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,7 +21,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "ハイキュー！！",
+      "seriesKey": "アイシールド21",
       "n": "2"
     },
     {
@@ -61,19 +61,19 @@
       "n": "2"
     },
     {
-      "seriesKey": "あかね噺",
-      "n": "2"
-    },
-    {
       "seriesKey": "アオハライド",
       "n": "2"
     },
     {
-      "seriesKey": "アオアシ",
+      "seriesKey": "あかね噺",
       "n": "2"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "ハイキュー！！",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アオアシ",
       "n": "2"
     },
     {
@@ -85,11 +85,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "ドリフターズ",
       "n": "1"
     },
     {
       "seriesKey": "海月姫",
+      "n": "1"
+    },
+    {
+      "seriesKey": "アナザー",
       "n": "1"
     },
     {
@@ -105,7 +109,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "アナザー",
+      "seriesKey": "ラブ ひな",
       "n": "1"
     },
     {
@@ -113,7 +117,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ラブ ひな",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -133,7 +137,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "鬼滅の刃",
       "n": "1"
     },
     {
@@ -149,7 +153,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "鬼滅の刃",
+      "seriesKey": "べるぜバブ",
       "n": "1"
     },
     {
@@ -161,7 +165,15 @@
       "n": "1"
     },
     {
-      "seriesKey": "べるぜバブ",
+      "seriesKey": "ラブ★コン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "マギ シンドバッドの冒険",
+      "n": "1"
+    },
+    {
+      "seriesKey": "また、同じ夢を見ていた",
       "n": "1"
     },
     {
@@ -213,12 +225,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ドリフターズ",
+      "seriesKey": "金色のガッシュ!!",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 50,
-    "rows_before_limit_at_least": 66
+    "rows": 53,
+    "rows_before_limit_at_least": 69
   }
 }
