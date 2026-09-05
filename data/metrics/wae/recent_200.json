@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05T21:12:40.294Z",
-  "updatedAtJst": "2026-09-06 06:12:40",
+  "updatedAt": "2026-09-05T22:54:21.890Z",
+  "updatedAtJst": "2026-09-06 07:54:21",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-05 21:13:03",
+      "timestampJst": "2026-09-06 06:13:03",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "久住くん、空気読めてますか?",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-05 18:49:19",
       "timestampJst": "2026-09-06 03:49:19",
@@ -1536,7 +1549,7 @@
     }
   ],
   "raw": {
-    "rows": 114,
-    "rows_before_limit_at_least": 114
+    "rows": 115,
+    "rows_before_limit_at_least": 115
   }
 }
