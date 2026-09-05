@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05T09:02:22.246Z",
-  "updatedAtJst": "2026-09-05 18:02:22",
+  "updatedAt": "2026-09-05T12:40:48.147Z",
+  "updatedAtJst": "2026-09-05 21:40:48",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -21,7 +21,7 @@
       "n": "3"
     },
     {
-      "seriesKey": "アイシールド21",
+      "seriesKey": "アオアシ",
       "n": "2"
     },
     {
@@ -65,15 +65,15 @@
       "n": "2"
     },
     {
-      "seriesKey": "あかね噺",
-      "n": "2"
-    },
-    {
       "seriesKey": "ハイキュー！！",
       "n": "2"
     },
     {
-      "seriesKey": "アオアシ",
+      "seriesKey": "あかね噺",
+      "n": "2"
+    },
+    {
+      "seriesKey": "アイシールド21",
       "n": "2"
     },
     {
@@ -85,15 +85,19 @@
       "n": "1"
     },
     {
+      "seriesKey": "金色のガッシュ!!",
+      "n": "1"
+    },
+    {
       "seriesKey": "ドリフターズ",
       "n": "1"
     },
     {
-      "seriesKey": "海月姫",
+      "seriesKey": "アナザー",
       "n": "1"
     },
     {
-      "seriesKey": "アナザー",
+      "seriesKey": "ラブ ひな",
       "n": "1"
     },
     {
@@ -109,7 +113,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ラブ ひな",
+      "seriesKey": "ちはやふる",
       "n": "1"
     },
     {
@@ -117,7 +121,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "ちはやふる",
+      "seriesKey": "オリジン",
       "n": "1"
     },
     {
@@ -153,6 +157,10 @@
       "n": "1"
     },
     {
+      "seriesKey": "マイホームヒーロー",
+      "n": "1"
+    },
+    {
       "seriesKey": "べるぜバブ",
       "n": "1"
     },
@@ -166,6 +174,10 @@
     },
     {
       "seriesKey": "ラブ★コン",
+      "n": "1"
+    },
+    {
+      "seriesKey": "骸骨騎士様、只今異世界へお出掛け中",
       "n": "1"
     },
     {
@@ -190,6 +202,10 @@
     },
     {
       "seriesKey": "呪術廻戦",
+      "n": "1"
+    },
+    {
+      "seriesKey": "阿波連さんははかれない",
       "n": "1"
     },
     {
@@ -221,12 +237,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "金色のガッシュ!!",
+      "seriesKey": "海月姫",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 52,
-    "rows_before_limit_at_least": 68
+    "rows": 56,
+    "rows_before_limit_at_least": 72
   }
 }
