@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-07T10:14:05.460Z",
-  "updatedAtJst": "2026-09-07 19:14:05",
+  "updatedAt": "2026-09-07T15:52:30.570Z",
+  "updatedAtJst": "2026-09-08 00:52:30",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-07 11:47:21",
+      "timestampJst": "2026-09-07 20:47:21",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ひだまりが聴こえる",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-06 12:09:37",
       "timestampJst": "2026-09-06 21:09:37",
@@ -1172,7 +1185,7 @@
     }
   ],
   "raw": {
-    "rows": 86,
-    "rows_before_limit_at_least": 86
+    "rows": 87,
+    "rows_before_limit_at_least": 87
   }
 }
