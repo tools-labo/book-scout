@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-09T04:40:26.515Z",
-  "updatedAtJst": "2026-09-09 13:40:26",
+  "updatedAt": "2026-09-09T09:42:16.406Z",
+  "updatedAtJst": "2026-09-09 18:42:16",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -22,10 +22,6 @@
     },
     {
       "seriesKey": "アオアシ",
-      "n": "2"
-    },
-    {
-      "seriesKey": "富江",
       "n": "2"
     },
     {
@@ -145,10 +141,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "がっこうぐらし!",
-      "n": "1"
-    },
-    {
       "seriesKey": "マイホームヒーロー",
       "n": "1"
     },
@@ -181,11 +173,11 @@
       "n": "1"
     },
     {
-      "seriesKey": "呪術廻戦",
+      "seriesKey": "イビツ",
       "n": "1"
     },
     {
-      "seriesKey": "イビツ",
+      "seriesKey": "惡の華",
       "n": "1"
     },
     {
@@ -209,7 +201,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "惡の華",
+      "seriesKey": "風夏",
       "n": "1"
     },
     {
@@ -217,7 +209,7 @@
       "n": "1"
     },
     {
-      "seriesKey": "風夏",
+      "seriesKey": "富江",
       "n": "1"
     },
     {
@@ -230,7 +222,7 @@
     }
   ],
   "raw": {
-    "rows": 53,
-    "rows_before_limit_at_least": 69
+    "rows": 51,
+    "rows_before_limit_at_least": 66
   }
 }
