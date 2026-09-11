@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-11T00:08:04.997Z",
-  "updatedAtJst": "2026-09-11 09:08:04",
+  "updatedAt": "2026-09-11T04:35:45.522Z",
+  "updatedAtJst": "2026-09-11 13:35:45",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,136 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-09-11 01:47:14",
+      "timestampJst": "2026-09-11 10:47:14",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "GREEN BLOOD-グリーン・ブラッド",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:47:09",
+      "timestampJst": "2026-09-11 10:47:09",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "HUNTER×HUNTER",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:47:04",
+      "timestampJst": "2026-09-11 10:47:04",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "Lv2からチートだった元勇者候補のまったり異世界ライフ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:59",
+      "timestampJst": "2026-09-11 10:46:59",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NHKにようこそ!",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:57",
+      "timestampJst": "2026-09-11 10:46:57",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "HUNTER×HUNTER",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:51",
+      "timestampJst": "2026-09-11 10:46:51",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "Lv2からチートだった元勇者候補のまったり異世界ライフ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:50",
+      "timestampJst": "2026-09-11 10:46:50",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ゆらぎ荘の幽奈さん",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:46",
+      "timestampJst": "2026-09-11 10:46:46",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "NHKにようこそ!",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:41",
+      "timestampJst": "2026-09-11 10:46:41",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "東京エイリアンズ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-09-11 01:46:36",
+      "timestampJst": "2026-09-11 10:46:36",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "政宗くんのリベンジ",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-09-07 11:47:21",
       "timestampJst": "2026-09-07 20:47:21",
@@ -1172,7 +1302,7 @@
     }
   ],
   "raw": {
-    "rows": 86,
-    "rows_before_limit_at_least": 86
+    "rows": 96,
+    "rows_before_limit_at_least": 96
   }
 }
