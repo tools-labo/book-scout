@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-12T05:45:22.722Z",
-  "updatedAtJst": "2026-09-12 14:45:22",
+  "updatedAt": "2026-09-12T10:42:19.472Z",
+  "updatedAtJst": "2026-09-12 19:42:19",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -85,10 +85,6 @@
       "n": "1"
     },
     {
-      "seriesKey": "あずまんが大王",
-      "n": "1"
-    },
-    {
       "seriesKey": "ナナとカオル",
       "n": "1"
     },
@@ -166,7 +162,7 @@
     }
   ],
   "raw": {
-    "rows": 37,
-    "rows_before_limit_at_least": 42
+    "rows": 36,
+    "rows_before_limit_at_least": 41
   }
 }
