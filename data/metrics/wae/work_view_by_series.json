@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-19T20:36:38.280Z",
-  "updatedAtJst": "2026-09-20 05:36:38",
+  "updatedAt": "2026-09-19T23:01:01.405Z",
+  "updatedAtJst": "2026-09-20 08:01:01",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -58,10 +58,6 @@
     },
     {
       "seriesKey": "終わりのセラフ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "結婚指輪物語",
       "n": "1"
     },
     {
@@ -126,7 +122,7 @@
     }
   ],
   "raw": {
-    "rows": 27,
-    "rows_before_limit_at_least": 30
+    "rows": 26,
+    "rows_before_limit_at_least": 29
   }
 }
