@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T00:04:48.467Z",
-  "updatedAtJst": "2026-09-22 09:04:48",
+  "updatedAt": "2026-09-22T04:51:05.981Z",
+  "updatedAtJst": "2026-09-22 13:51:05",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -1260,23 +1260,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-06-21 13:45:06",
-      "timestampJst": "2026-06-21 22:45:06",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ソウルイーター",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 94,
-    "rows_before_limit_at_least": 94
+    "rows": 93,
+    "rows_before_limit_at_least": 93
   }
 }
