@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T07:31:45.058Z",
-  "updatedAtJst": "2026-10-06 16:31:45",
+  "updatedAt": "2026-10-06T15:07:59.625Z",
+  "updatedAtJst": "2026-10-07 00:07:59",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -29,10 +29,6 @@
       "n": "2"
     },
     {
-      "seriesKey": "ちょびっツ",
-      "n": "1"
-    },
-    {
       "seriesKey": "東京エイリアンズ",
       "n": "1"
     },
@@ -54,7 +50,7 @@
     }
   ],
   "raw": {
-    "rows": 9,
-    "rows_before_limit_at_least": 12
+    "rows": 8,
+    "rows_before_limit_at_least": 11
   }
 }
