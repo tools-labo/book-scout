@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T07:11:49.849Z",
-  "updatedAtJst": "2026-10-07 16:11:49",
+  "updatedAt": "2026-10-07T14:29:17.670Z",
+  "updatedAtJst": "2026-10-07 23:29:17",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -41,16 +41,12 @@
       "n": "1"
     },
     {
-      "seriesKey": "ひだまりが聴こえる",
-      "n": "1"
-    },
-    {
       "seriesKey": "GREEN BLOOD-グリーン・ブラッド",
       "n": "1"
     }
   ],
   "raw": {
-    "rows": 8,
-    "rows_before_limit_at_least": 11
+    "rows": 7,
+    "rows_before_limit_at_least": 10
   }
 }
