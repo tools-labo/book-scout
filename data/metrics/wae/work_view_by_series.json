@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-10T22:29:03.033Z",
-  "updatedAtJst": "2026-10-11 07:29:03",
+  "updatedAt": "2026-10-11T01:50:29.739Z",
+  "updatedAtJst": "2026-10-11 10:50:29",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -15,38 +15,9 @@
       "type": "UInt64"
     }
   ],
-  "rows": [
-    {
-      "seriesKey": "HUNTER×HUNTER",
-      "n": "2"
-    },
-    {
-      "seriesKey": "NHKにようこそ!",
-      "n": "2"
-    },
-    {
-      "seriesKey": "Lv2からチートだった元勇者候補のまったり異世界ライフ",
-      "n": "2"
-    },
-    {
-      "seriesKey": "東京エイリアンズ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "政宗くんのリベンジ",
-      "n": "1"
-    },
-    {
-      "seriesKey": "ゆらぎ荘の幽奈さん",
-      "n": "1"
-    },
-    {
-      "seriesKey": "GREEN BLOOD-グリーン・ブラッド",
-      "n": "1"
-    }
-  ],
+  "rows": [],
   "raw": {
-    "rows": 7,
-    "rows_before_limit_at_least": 10
+    "rows": 0,
+    "rows_before_limit_at_least": 0
   }
 }
