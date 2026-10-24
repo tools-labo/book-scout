@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T05:48:08.191Z",
-  "updatedAtJst": "2026-10-24 14:48:08",
+  "updatedAt": "2026-10-24T10:53:52.882Z",
+  "updatedAtJst": "2026-10-24 19:53:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,19 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-10-24 07:29:59",
+      "timestampJst": "2026-10-24 16:29:59",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ナナとカオル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-10-23 22:53:34",
       "timestampJst": "2026-10-24 07:53:34",
@@ -2563,7 +2576,7 @@
     }
   ],
   "raw": {
-    "rows": 193,
-    "rows_before_limit_at_least": 193
+    "rows": 194,
+    "rows_before_limit_at_least": 194
   }
 }
