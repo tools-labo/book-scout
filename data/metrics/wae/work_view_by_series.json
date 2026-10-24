@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-23T22:06:43.377Z",
-  "updatedAtJst": "2026-10-24 07:06:43",
+  "updatedAt": "2026-10-24T00:38:38.416Z",
+  "updatedAtJst": "2026-10-24 09:38:38",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "work_view_by_series",
@@ -101,11 +101,11 @@
       "n": "2"
     },
     {
-      "seriesKey": "ゴブリンスレイヤー",
+      "seriesKey": "ドラゴンボール",
       "n": "2"
     },
     {
-      "seriesKey": "ドラゴンボール",
+      "seriesKey": "ゴブリンスレイヤー",
       "n": "2"
     },
     {
@@ -170,6 +170,10 @@
     },
     {
       "seriesKey": "あせとせっけん",
+      "n": "1"
+    },
+    {
+      "seriesKey": "ナナとカオル",
       "n": "1"
     },
     {
@@ -298,7 +302,7 @@
     }
   ],
   "raw": {
-    "rows": 70,
-    "rows_before_limit_at_least": 101
+    "rows": 71,
+    "rows_before_limit_at_least": 102
   }
 }
