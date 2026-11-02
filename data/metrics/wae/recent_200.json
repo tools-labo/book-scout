@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-01T22:46:51.455Z",
-  "updatedAtJst": "2026-11-02 07:46:51",
+  "updatedAt": "2026-11-02T02:27:58.254Z",
+  "updatedAtJst": "2026-11-02 11:27:58",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -2547,36 +2547,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-01 21:13:31",
-      "timestampJst": "2026-08-02 06:13:31",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "トモダチゲーム",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-01 00:29:05",
-      "timestampJst": "2026-08-01 09:29:05",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "彼女、お借りします",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 194,
-    "rows_before_limit_at_least": 194
+    "rows": 192,
+    "rows_before_limit_at_least": 192
   }
 }
