@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-04T14:29:11.469Z",
-  "updatedAtJst": "2026-11-04 23:29:11",
+  "updatedAt": "2026-11-04T21:17:02.448Z",
+  "updatedAtJst": "2026-11-05 06:17:02",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -52,6 +52,45 @@
     }
   ],
   "rows": [
+    {
+      "timestamp": "2026-11-04 18:41:37",
+      "timestampJst": "2026-11-05 03:41:37",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "スピリットサークル",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-11-04 17:47:06",
+      "timestampJst": "2026-11-05 02:47:06",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ドラゴンボール",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
+    {
+      "timestamp": "2026-11-04 16:00:05",
+      "timestampJst": "2026-11-05 01:00:05",
+      "type": "work_view",
+      "schema": "v2",
+      "page": "work",
+      "seriesKey": "ヨコハマ買い出し紀行",
+      "mood": "",
+      "genre": "",
+      "aud": "",
+      "mag": "",
+      "rating": null
+    },
     {
       "timestamp": "2026-11-04 11:56:59",
       "timestampJst": "2026-11-04 20:56:59",
@@ -9011,7 +9050,7 @@
     }
   ],
   "raw": {
-    "rows": 689,
-    "rows_before_limit_at_least": 689
+    "rows": 692,
+    "rows_before_limit_at_least": 692
   }
 }
