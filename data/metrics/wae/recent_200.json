@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T20:51:39.220Z",
-  "updatedAtJst": "2026-11-07 05:51:39",
+  "updatedAt": "2026-11-07T00:53:24.731Z",
+  "updatedAtJst": "2026-11-07 09:53:24",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -9021,36 +9021,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-06 22:03:55",
-      "timestampJst": "2026-08-07 07:03:55",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "かくかくしかじか",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-06 04:31:20",
-      "timestampJst": "2026-08-06 13:31:20",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "僕のヒーローアカデミア",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 692,
-    "rows_before_limit_at_least": 692
+    "rows": 690,
+    "rows_before_limit_at_least": 690
   }
 }
