@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T21:06:54.772Z",
-  "updatedAtJst": "2026-11-09 06:06:54",
+  "updatedAt": "2026-11-09T00:49:51.341Z",
+  "updatedAtJst": "2026-11-09 09:49:51",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8956,36 +8956,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-08 22:00:15",
-      "timestampJst": "2026-08-09 07:00:15",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "鬼滅の刃",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-08 09:40:44",
-      "timestampJst": "2026-08-08 18:40:44",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "山田くんと7人の魔女",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 687,
-    "rows_before_limit_at_least": 687
+    "rows": 685,
+    "rows_before_limit_at_least": 685
   }
 }
