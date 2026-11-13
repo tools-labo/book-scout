@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-12T18:52:40.485Z",
-  "updatedAtJst": "2026-11-13 03:52:40",
+  "updatedAt": "2026-11-13T00:17:52.722Z",
+  "updatedAtJst": "2026-11-13 09:17:52",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8475,23 +8475,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-12 17:43:18",
-      "timestampJst": "2026-08-13 02:43:18",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "地獄星レミナ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 649,
-    "rows_before_limit_at_least": 649
+    "rows": 648,
+    "rows_before_limit_at_least": 648
   }
 }
