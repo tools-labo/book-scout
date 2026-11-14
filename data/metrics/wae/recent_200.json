@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-13T22:34:22.013Z",
-  "updatedAtJst": "2026-11-14 07:34:22",
+  "updatedAt": "2026-11-14T03:10:44.653Z",
+  "updatedAtJst": "2026-11-14 12:10:44",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8410,62 +8410,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-13 18:01:51",
-      "timestampJst": "2026-08-14 03:01:51",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "アナザー",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-13 13:51:24",
-      "timestampJst": "2026-08-13 22:51:24",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "イビツ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-13 06:53:57",
-      "timestampJst": "2026-08-13 15:53:57",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "あずまんが大王",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-13 03:25:42",
-      "timestampJst": "2026-08-13 12:25:42",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ぼっち・ざ・ろっく！",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 647,
-    "rows_before_limit_at_least": 647
+    "rows": 643,
+    "rows_before_limit_at_least": 643
   }
 }
