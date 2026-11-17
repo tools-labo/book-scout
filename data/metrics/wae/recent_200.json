@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-16T20:25:12.845Z",
-  "updatedAtJst": "2026-11-17 05:25:12",
+  "updatedAt": "2026-11-17T03:48:10.815Z",
+  "updatedAtJst": "2026-11-17 12:48:10",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8371,49 +8371,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-16 22:17:47",
-      "timestampJst": "2026-08-17 07:17:47",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "その着せ替え人形は恋をする",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-16 21:20:46",
-      "timestampJst": "2026-08-17 06:20:46",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "魔法先生ネギま!",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-16 06:30:39",
-      "timestampJst": "2026-08-16 15:30:39",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ここは今から倫理です。",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 643,
-    "rows_before_limit_at_least": 643
+    "rows": 640,
+    "rows_before_limit_at_least": 640
   }
 }
