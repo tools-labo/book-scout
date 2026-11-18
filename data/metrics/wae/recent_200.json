@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T22:17:35.784Z",
-  "updatedAtJst": "2026-11-18 07:17:35",
+  "updatedAt": "2026-11-18T04:15:04.863Z",
+  "updatedAtJst": "2026-11-18 13:15:04",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8345,36 +8345,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-17 05:40:36",
-      "timestampJst": "2026-08-17 14:40:36",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "To LOVEる -とらぶる- ダークネス",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-17 03:27:46",
-      "timestampJst": "2026-08-17 12:27:46",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "シメジ シミュレーション",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 640,
-    "rows_before_limit_at_least": 640
+    "rows": 638,
+    "rows_before_limit_at_least": 638
   }
 }
