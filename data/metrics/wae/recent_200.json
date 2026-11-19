@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-18T21:24:02.544Z",
-  "updatedAtJst": "2026-11-19 06:24:02",
+  "updatedAt": "2026-11-19T03:20:53.500Z",
+  "updatedAtJst": "2026-11-19 12:20:53",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8332,23 +8332,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-18 09:35:29",
-      "timestampJst": "2026-08-18 18:35:29",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ノーゲーム・ノーライフ",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 638,
-    "rows_before_limit_at_least": 638
+    "rows": 637,
+    "rows_before_limit_at_least": 637
   }
 }
