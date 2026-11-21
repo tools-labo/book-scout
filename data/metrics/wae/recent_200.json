@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-20T20:08:51.172Z",
-  "updatedAtJst": "2026-11-21 05:08:51",
+  "updatedAt": "2026-11-21T01:28:39.437Z",
+  "updatedAtJst": "2026-11-21 10:28:39",
   "dataset": "book_scout_events",
   "days": 30,
   "id": "recent_200",
@@ -8280,62 +8280,10 @@
       "aud": "",
       "mag": "",
       "rating": null
-    },
-    {
-      "timestamp": "2026-08-20 21:18:56",
-      "timestampJst": "2026-08-21 06:18:56",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "結婚指輪物語",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-20 08:17:43",
-      "timestampJst": "2026-08-20 17:17:43",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ゆらぎ荘の幽奈さん",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-20 08:04:07",
-      "timestampJst": "2026-08-20 17:04:07",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "ゆらぎ荘の幽奈さん",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
-    },
-    {
-      "timestamp": "2026-08-20 07:46:40",
-      "timestampJst": "2026-08-20 16:46:40",
-      "type": "work_view",
-      "schema": "v2",
-      "page": "work",
-      "seriesKey": "海月姫",
-      "mood": "",
-      "genre": "",
-      "aud": "",
-      "mag": "",
-      "rating": null
     }
   ],
   "raw": {
-    "rows": 637,
-    "rows_before_limit_at_least": 637
+    "rows": 633,
+    "rows_before_limit_at_least": 633
   }
 }
